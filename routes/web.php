@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\PektpController;
 use App\Http\Controllers\SktmController;
+use App\Models\Pektp;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,3 +60,10 @@ Route::get('/surat-domisili', function () {
         'title' => 'Surat Keterangan Domisili',
     ]);
 });
+
+Route::get('/p-ektp', [PektpController::class, 'index']);
+Route::post('/surat-pektp', [PektpController::class, 'store_pektp']);
+Route::put('/surat-pektp{id}', [PektpController::class, 'update_pektp']);
+Route::get('/surat-pektp/{id}/view', [SktmController::class, 'show_pektp']);
+
+
