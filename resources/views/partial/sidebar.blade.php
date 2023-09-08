@@ -25,6 +25,16 @@
                             </a>
                         </li>
                         <li>
+                            <a href="/surat-kbm" class="{{ ($title == "Surat Keterangan Belum Menikah") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Keterangan  Belum Menikah</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/surat-pbm" class="{{ ($title == "Surat Pernyataan Belum Menikah") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Keterangan Pernyataan Belum Menikah</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="/surat-kematian" class="{{ ($title == "Surat Kematian") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Keterangan Kematian</span>
                             </a>

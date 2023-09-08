@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\SbmController;
 use App\Http\Controllers\SktmController;
+use App\Http\Controllers\SpbmController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,3 +60,10 @@ Route::get('/surat-domisili', function () {
         'title' => 'Surat Keterangan Domisili',
     ]);
 });
+
+Route::get('/surat-kbm', [SbmController::class, 'index']);
+Route::post('/surat-kbm', [SbmController::class, 'store']);
+Route::get('/surat-kbm/{id}/view', [SbmController::class, 'show_skbm']);
+Route::put('/surat-kbm/{id}/edit', [SbmController::class, 'update_skbm']);
+
+Route::get('/surat-pbm', [SpbmController::class, 'index']);
