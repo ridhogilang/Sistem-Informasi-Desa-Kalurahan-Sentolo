@@ -26,6 +26,7 @@
                         </li>
                         <li>
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <a href="/surat-kbm" class="{{ ($title == "Surat Keterangan Belum Menikah") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Keterangan  Belum Menikah</span>
                             </a>
@@ -37,6 +38,10 @@
                             <a href="/p-ektp" class="{{ ($title == "Pengantar E-KTP") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Pengantar E-KTP</span>
 >>>>>>> yosia
+=======
+                            <a href="/surat-pskck" class="{{ ($title == "Surat Pengantar SKCK") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Pengantar SKCK</span>
+>>>>>>> fatur
                             </a>
                         </li>
                         <li>

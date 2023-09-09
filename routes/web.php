@@ -1,6 +1,7 @@
 <?php
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use App\Http\Controllers\SbmController;
 use App\Http\Controllers\SktmController;
 use App\Http\Controllers\SpbmController;
@@ -9,6 +10,11 @@ use App\Http\Controllers\PektpController;
 use App\Http\Controllers\SktmController;
 use App\Models\Pektp;
 >>>>>>> yosia
+=======
+use App\Http\Controllers\PengantarskckController;
+use App\Http\Controllers\SktmController;
+use App\Models\Pengantarskck;
+>>>>>>> fatur
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,6 +74,7 @@ Route::get('/surat-domisili', function () {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Route::get('/surat-kbm', [SbmController::class, 'index']);
 Route::post('/surat-kbm', [SbmController::class, 'store']);
 Route::get('/surat-kbm/{id}/view', [SbmController::class, 'show_skbm']);
@@ -88,3 +95,9 @@ Route::post('/surat-spbm', [SpbmController::class, 'store']);
 Route::get('/surat-pbm/{id}/view', [SpbmController::class, 'show_spbm']);
 Route::put('/surat-pbm/{id}/edit', [SpbmController::class, 'update_spbm']);
 >>>>>>> adi
+=======
+Route::get('/surat-pskck', [PengantarskckController::class, 'index']);
+Route::post('/surat-pskck', [PengantarskckController::class, 'store_pskck']);
+Route::get('/surat-pskck/{id}/view', [PengantarskckController::class, 'show_pskck']);
+Route::put('/surat-pskck/{id}', [PengantarskckController::class, 'update']);
+>>>>>>> fatur
