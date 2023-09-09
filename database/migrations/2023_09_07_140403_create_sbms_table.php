@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('skbm', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->string('nomor_surat')->unique();;
+            $table->string('nomor_surat')->unique();
             $table->string('nama');
             $table->string('nik');
             $table->string('jenis_kelamin');

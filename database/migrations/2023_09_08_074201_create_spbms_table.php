@@ -11,8 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('spbms', function (Blueprint $table) {
-            $table->id();
+        Schema::create('spbm', function (Blueprint $table) {
+            $table->string('id')->primary();
+            $table->string('nomor_surat')->unique();
+            $table->string('nama');
+            $table->string('nik');
+            $table->string('jenis_kelamin');
+            $table->string('tempat_lahir');
+            $table->string('tanggal_lahir');
+            $table->string('agama');
+            $table->string('pekerjaan');
+            $table->string('alamat');
+            $table->string('deskripsi');
+            $table->string('jenis_spbm');
+            $table->string('status_surat');
             $table->timestamps();
         });
     }
@@ -22,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('spbms');
+        Schema::dropIfExists('spbm');
     }
 };

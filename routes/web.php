@@ -74,6 +74,7 @@ Route::get('/surat-kbm/{id}/view', [SbmController::class, 'show_skbm']);
 Route::put('/surat-kbm/{id}/edit', [SbmController::class, 'update_skbm']);
 
 Route::get('/surat-pbm', [SpbmController::class, 'index']);
+<<<<<<< HEAD
 =======
 Route::get('/p-ektp', [PektpController::class, 'index']);
 Route::post('/surat-pektp', [PektpController::class, 'store_pektp']);
@@ -82,3 +83,8 @@ Route::get('/surat-pektp/{id}/view', [SktmController::class, 'show_pektp']);
 
 
 >>>>>>> yosia
+=======
+Route::post('/surat-spbm', [SpbmController::class, 'store']);
+Route::get('/surat-pbm/{id}/view', [SpbmController::class, 'show_spbm']);
+Route::put('/surat-pbm/{id}/edit', [SpbmController::class, 'update_spbm']);
+>>>>>>> adi
