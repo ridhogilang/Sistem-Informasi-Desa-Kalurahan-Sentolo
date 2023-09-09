@@ -38,7 +38,7 @@ class PektpController extends Controller
      return view('page.surat-pektp', [
          'dropdown1' => 'Surat',
          'dropdown2' => 'Kemasyarakatan',
-         'title' => 'Surat Pengantar E-Ktp',
+         'title' => 'Surat Pengantar E-KTP',
          'TemplateNoSurat' => $TemplateNoSurat
      ])->with('pektp', $pektp);
     }

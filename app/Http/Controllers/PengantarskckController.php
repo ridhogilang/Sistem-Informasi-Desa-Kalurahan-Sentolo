@@ -41,18 +41,18 @@ class PengantarskckController extends Controller
         return view('page.pengantar_skck', [
             'dropdown1' => 'Surat',
             'dropdown2' => 'Kemasyarakatan',
-            'title' => 'PengantarSKCK',
+            'title' => 'Surat Pengantar SKCK',
             'TemplateNoSurat' => $TemplateNoSurat
         ])->with('pskck',$pskck);
     }
 
-    
+
     public function store_pskck(Request $request)
     {
         $record = $request->validate([
             'nomor_surat' => [
                 'required',
-                'unique:pskck,nomor_surat', // Pastikan nomor surat unik di tabel 
+                'unique:pskck,nomor_surat', // Pastikan nomor surat unik di tabel
             ],
             'nama' => 'required',
             'nik' => 'required',

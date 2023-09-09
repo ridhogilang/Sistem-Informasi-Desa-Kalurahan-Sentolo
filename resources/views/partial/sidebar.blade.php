@@ -25,33 +25,23 @@
                             </a>
                         </li>
                         <li>
-<<<<<<< HEAD
-<<<<<<< HEAD
+                            <a href="/surat-pbm" class="{{ ($title == "Surat Pernyataan Belum Menikah") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Pernyataan Belum Menikah</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="/surat-kbm" class="{{ ($title == "Surat Keterangan Belum Menikah") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Keterangan  Belum Menikah</span>
                             </a>
                         </li>
                         <li>
-                            <a href="/surat-pbm" class="{{ ($title == "Surat Pernyataan Belum Menikah") ? 'active' : '' }}">
-                                <i class="bi bi-circle"></i><span>Keterangan Pernyataan Belum Menikah</span>
-=======
-                            <a href="/p-ektp" class="{{ ($title == "Pengantar E-KTP") ? 'active' : '' }}">
+                            <a href="/p-ektp" class="{{ ($title == "Surat Pengantar E-KTP") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Pengantar E-KTP</span>
->>>>>>> yosia
-=======
+                            </a>
+                        </li>
+                        <li>
                             <a href="/surat-pskck" class="{{ ($title == "Surat Pengantar SKCK") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Pengantar SKCK</span>
->>>>>>> fatur
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/surat-kematian" class="{{ ($title == "Surat Kematian") ? 'active' : '' }}">
-                                <i class="bi bi-circle"></i><span>Keterangan Kematian</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/surat-kelahiran" class="{{ ($title == "Surat Kelahiran") ? 'active' : '' }}">
-                                <i class="bi bi-circle"></i><span>Keterangan Kelahiran</span>
                             </a>
                         </li>
                     </ul>
