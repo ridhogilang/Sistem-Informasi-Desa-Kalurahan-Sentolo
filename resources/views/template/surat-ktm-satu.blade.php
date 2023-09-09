@@ -59,11 +59,16 @@
             margin-left: 80px;
         }
 
+        .lima tr .template {
+            font-size: 17px;
+            padding-right: 20px;
+            padding-top:10px;
+            /* margin-right: 10px; */
+        }
         .lima tr td {
             font-size: 17px;
-            padding-right: 30px;
+            padding-right: 5px;
             padding-top:10px;
-            margin-right: 10px;
         }
          P{
              font-size: 16px;
@@ -126,38 +131,46 @@
                 </td>
             </tr>
         </table>
-        <table  class="lima">
+        <table class="lima">
             <tr>
-                <td> Nama</td>
-                <td>:  {{$sktm->nama}}</td>
+                <td class="template">Nama</td>
+                <td>:</td>
+                <td>{{$sktm->nama}}</td>
             </tr>
             <tr>
-                <td>NIK</td>
-                <td> : {{$sktm->nik}}</td>
+                <td class="template">NIK</td>
+                <td>:</td>
+                <td>{{$sktm->nik}}</td>
             </tr>
             <tr>
-                <td>Jenis Kelamin</td>
-                <td> : {{$sktm->jenis_kelamin}}</td>
+                <td class="template">Jenis Kelamin</td>
+                <td>:</td>
+                <td>{{$sktm->jenis_kelamin}}</td>
             </tr>
             <tr>
-                <td>Tempat / Tanggal Lahir</td>
-                <td> : {{$sktm->tempat_lahir}} / {{date('d-m-Y',strtotime($sktm->tanggal_lahir))}}  </td>
+                <td class="template">Tempat / Tanggal Lahir</td>
+                <td>:</td>
+                <td>{{$sktm->tempat_lahir}} / {{date('d-m-Y',strtotime($sktm->tanggal_lahir))}}  </td>
             </tr>
             <tr>
-                <td>Agama</td>
-                <td> : {{$sktm->agama}}</td>
+                <td class="template">Agama</td>
+                <td>:</td>
+                <td>{{$sktm->agama}}</td>
             </tr>
             <tr>
-                <td>Status Perkawinan</td>
-                <td> : {{$sktm->status_perkawinan}}</td>
+                <td class="template">Status Perkawinan</td>
+                <td>:</td>
+                <td>{{$sktm->status_perkawinan}}</td>
             </tr>
             <tr>
-                <td>Pekerjaan</td>
-                <td> : {{$sktm->pekerjaan}}</td>
+                <td class="template">Pekerjaan</td>
+                <td>:</td>
+                <td>{{$sktm->pekerjaan}}</td>
             </tr>
             <tr>
-                <td>Alamat</td>
-                <td> : {{$sktm->alamat}}</td>
+                <td class="template" style="vertical-align: top;">Alamat</td>
+                <td style="vertical-align: top;">:</td>
+                <td style="max-width: 405px; word-wrap: break-word;">{{$sktm->alamat}}</td>
             </tr>
         </table>
         <table class="empat">

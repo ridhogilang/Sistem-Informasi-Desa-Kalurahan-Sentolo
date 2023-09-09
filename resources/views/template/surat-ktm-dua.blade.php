@@ -59,11 +59,16 @@
             margin-left: 80px;
         }
 
+        .lima tr .template {
+            font-size: 17px;
+            padding-right: 20px;
+            padding-top:3px;
+            /* margin-right: 10px; */
+        }
         .lima tr td {
             font-size: 17px;
-            padding-right: 30px;
-            padding-top: 5px;
-            margin-right: 10px;
+            padding-right: 5px;
+            padding-top:3px;
         }
          P{
              font-size: 16px;
@@ -121,78 +126,90 @@
 
         <table class="empat">
             <tr>
-                <td><P> &#160; &#160; &#160; &#160;  &#160; Yang bertanda tangan dibawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon
-                    <br>Progo, menerangkan bahwa ;</P>
+                <td><p> &#160; &#160; &#160; &#160;  &#160; Yang bertanda tangan dibawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon
+                    <br>Progo, menerangkan bahwa ;</p>
                 </td>
             </tr>
         </table>
         <table  class="lima">
             <tr>
-                <td> Nama</td>
-                <td>:  {{$sktm->nama}}</td>
+                <td class="template">Nama</td>
+                <td>:</td>
+                <td>{{$sktm->nama}}</td>
             </tr>
             <tr>
-                <td>NIK</td>
-                <td> : {{$sktm->nik}}</td>
+                <td class="template">NIK</td>
+                <td>:</td>
+                <td>{{$sktm->nik}}</td>
             </tr>
             <tr>
-                <td>Tempat / Tanggal Lahir</td>
-                <td> : {{$sktm->tempat_lahir}} / {{date('d-m-Y',strtotime($sktm->tanggal_lahir))}}  </td>
+                <td class="template">Tempat / Tanggal Lahir</td>
+                <td>:</td>
+                <td>{{$sktm->tempat_lahir}} / {{date('d-m-Y',strtotime($sktm->tanggal_lahir))}}  </td>
             </tr>
             <tr>
-                <td>Agama</td>
-                <td> : {{$sktm->agama}}</td>
+                <td class="template">Agama</td>
+                <td>:</td>
+                <td>{{$sktm->agama}}</td>
             </tr>
             <tr>
-                <td>Pekerjaan</td>
-                <td> : {{$sktm->pekerjaan}}</td>
+                <td class="template">Pekerjaan</td>
+                <td>:</td>
+                <td>{{$sktm->pekerjaan}}</td>
             </tr>
             <tr>
-                <td>Alamat</td>
-                <td> : {{$sktm->alamat}}</td>
+                <td class="template" style="vertical-align: top;">Alamat</td>
+                <td style="vertical-align: top;">:</td>
+                <td style="max-width: 405px; word-wrap: break-word;">{{$sktm->alamat}}</td>
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
                     <p>
-                        <br>Adalah {{$sktm->hubungan}} dari :<br>
+                        Adalah {{$sktm->hubungan}} dari :
                     </p>
                 </td>
             </tr>
         </table>
         <table  class="lima">
             <tr>
-                <td> Nama</td>
-                <td>:  {{$sktm->nama_dua}}</td>
+                <td class="template">Nama</td>
+                <td>:</td>
+                <td>{{$sktm->nama_dua}}</td>
             </tr>
             <tr>
-                <td>NIK</td>
-                <td> : {{$sktm->nik_dua}}</td>
+                <td class="template">NIK</td>
+                <td>:</td>
+                <td>{{$sktm->nik_dua}}</td>
             </tr>
             <tr>
-                <td>Tempat / Tanggal Lahir</td>
-                <td> : {{$sktm->tempat_lahir_dua}} / {{date('d-m-Y',strtotime($sktm->tanggal_lahir_dua))}}  </td>
+                <td class="template">Tempat / Tanggal Lahir</td>
+                <td>:</td>
+                <td>{{$sktm->tempat_lahir_dua}} / {{date('d-m-Y',strtotime($sktm->tanggal_lahir_dua))}}  </td>
             </tr>
             <tr>
-                <td>Agama</td>
-                <td> : {{$sktm->agama_dua}}</td>
+                <td class="template">Agama</td>
+                <td>:</td>
+                <td>{{$sktm->agama_dua}}</td>
             </tr>
             <tr>
-                <td>Pekerjaan</td>
-                <td> : {{$sktm->pekerjaan_dua}}</td>
+                <td class="template">Pekerjaan</td>
+                <td>:</td>
+                <td>{{$sktm->pekerjaan_dua}}</td>
             </tr>
             <tr>
-                <td>Alamat</td>
-                <td> : {{$sktm->alamat_dua}}</td>
+                <td class="template" style="vertical-align: top;">Alamat</td>
+                <td style="vertical-align: top;">:</td>
+                <td style="max-width: 405px; word-wrap: break-word;">{{$sktm->alamat_dua}}</td>
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
                     <p>
-                        <br>{{$sktm->deskripsi}}<br><br>
-                        &#160; &#160; &#160; &#160;  &#160; Demikian Surat Keterangan ini dibuat agar dapat dipergunakan untuk sebagaimana <br> mestinya.
+                        {{$sktm->deskripsi}}<br><br>
+                        &#160; &#160; &#160; &#160; &#160; Demikian Surat Keterangan ini dibuat agar dapat dipergunakan untuk sebagaimana <br> mestinya.
                     </p>
                 </td>
             </tr>
@@ -205,7 +222,7 @@
         </table>
         <table  class="tujuh">
             <tr>
-                <td> <P>&#160; &#160; &#160; &#160; Lurah Sentolo</P>  <br>  <P class="namadesa">&#160; &#160; &#160; <b>(TEGUH) </b></P></td>
+                <td> <p>&#160; &#160; &#160; &#160; Lurah Sentolo</p>  <br>  <p class="namadesa">&#160; &#160; &#160; <b>(TEGUH) </b></p></td>
             </tr>
         </table>
     </center>

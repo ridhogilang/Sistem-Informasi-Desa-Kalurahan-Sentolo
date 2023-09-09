@@ -119,7 +119,7 @@
                                             <div class="row mb-3">
                                                 <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="alamat" class="form-control" id="alamat" required maxlength="60" >
+                                                    <input type="text" name="alamat" class="form-control" id="alamat" required >
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -208,7 +208,7 @@
                                             <div class="row mb-3">
                                                 <label for="alamat_satu" class="col-sm-3 col-form-label">Alamat</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="alamat" class="form-control" id="alamat_satu" required maxlength="60" >
+                                                    <input type="text" name="alamat" class="form-control" id="alamat_satu" required >
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -269,7 +269,7 @@
                                             <div class="row mb-3">
                                                 <label for="alamat_dua" class="col-sm-3 col-form-label">Alamat</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="alamat_dua" class="form-control" id="alamat_dua" required maxlength="60" >
+                                                    <input type="text" name="alamat_dua" class="form-control" id="alamat_dua" required >
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -575,7 +575,7 @@
                                                         <div class="row mb-3">
                                                             <label for="alamat_dua4" class="col-sm-3 col-form-label">Alamat</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" name="alamat_dua" class="form-control" id="alamat_dua4" value="{{$value->alamat_dua}}" required maxlength="60" >
+                                                                <input type="text" name="alamat_dua" class="form-control" id="alamat_dua4" value="{{$value->alamat_dua}}" required >
                                                             </div>
                                                         </div>
                                                         <div class="row">
