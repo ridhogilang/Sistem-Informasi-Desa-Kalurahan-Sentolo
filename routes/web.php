@@ -67,3 +67,6 @@ Route::get('/surat-kbm/{id}/view', [SbmController::class, 'show_skbm']);
 Route::put('/surat-kbm/{id}/edit', [SbmController::class, 'update_skbm']);
 
 Route::get('/surat-pbm', [SpbmController::class, 'index']);
+Route::post('/surat-spbm', [SpbmController::class, 'store']);
+Route::get('/surat-pbm/{id}/view', [SpbmController::class, 'show_spbm']);
+Route::put('/surat-pbm/{id}/edit', [SpbmController::class, 'update_spbm']);

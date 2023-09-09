@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>SKBM | {{$skbm->nama}}</title>
+    <title>SKBM | {{$spbm->nama}}</title>
     {{-- <link rel="icon" href="/public/template/assets/img/favicon.png" type="image/icon" > --}}
     <style>
         table tr td {
@@ -73,12 +73,12 @@
 
          .enam{
              margin-top: 5px;
-             margin-left: 450px;
+             margin-left: 500px;
          }
 
          .tujuh{
-            margin-left: 450px;
-            margin-top: -30px;
+            margin-left: 100px;
+            margin-top: -150px;
          }
 
          .namadesa{
@@ -95,105 +95,89 @@
 
 <body>
     <center>
-        <table class="satu">
-            <tr >
-                <td><img src="{{ public_path('template/img/kulonprogo.png')}}" style="height: 100px"></td>
-                <td>
-                    <center>
-                        <font size="5"><b>&#160; &#160; &#160; &#160; PEMERINTAH BALAI DESA SENTOLO</b></font><br>
-                        <font size="5"><b>&#160; &#160; &#160; &#160; &#160; KECAMATAN SENTOLO</b></font><br> <br>
-                        <font size="2"><b>&#160; &#160; &#160; &#160; Alamat : Siwalan, Sentolo Kidul, Sentolo, Kec. Sentolo, Kulon Progo</b></font><br>
-                        <font size="1"><b>&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;Telepon : xxxxxxxxxxxxx, Website : sentolo-kulonprogo.desa.id</b></font><br>
-                    </center>
-                </td>
-            </tr>
-        </table>
-        <table class="dua">
-            <tr>
-                <td colspan="2" >
-                    <hr>
-                </td>
-            </tr>
-        </table>
+        <br>
+        <br>
+        <br>
         <table class="tiga">
             <tr>
                 <td width="538">
                     <center>
-                        <font size="3"><b>SURAT KETERANGAN BELUM MENIKAH </b></font><br>
-                        <hr class="hrsatu">
+                        <font size="3"><b>SURAT PERNYATAAN BELUM MENIKAH </b></font><br>
                     </center>
                 </td>
             </tr>
         </table>
-        <table class="nosurat">
+        {{-- <table class="nosurat">
             <tr>
                 <td width="537">
                     <center>
-                        <font size="2">Nomor : {{$skbm->nomor_surat}}</font>
+                        <font size="2">Nomor : {{$spbm->nomor_surat}}</font>
                     </center>
                 </td>
             </tr>
-        </table>
+        </table> --}}
 
         <table class="empat">
             <tr>
-                <td><P> &#160; &#160; &#160;Yang Bertanda Tangan di bawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon
-                    Progo menerangkan dengan sebenernya bahwa :</P></td>
+                <td><P> &#160; &#160; &#160;Yang Bertanda Tangan di bawah ini :</P></td>
             </tr>
         </table>
         <table  class="lima">
             <tr>
                 <td> Nama</td>
-                <td>:  {{$skbm->nama}}</td>
+                <td>:  {{$spbm->nama}}</td>
             </tr>
             <tr>
                 <td>Jenis Kelamin</td>
-                <td> : {{$skbm->jenis_kelamin}}</td>
+                <td> : {{$spbm->jenis_kelamin}}</td>
             </tr>
             <tr>
                 <td>Tempat / Tanggal Lahir</td>
-                <td> : {{$skbm->tempat}} / {{date('d-m-Y',strtotime($skbm->tanggal_lahir))}}  </td>
+                <td> : {{$spbm->tempat_lahir}} / {{date('d-m-Y',strtotime($spbm->tanggal_lahir))}}  </td>
             </tr>
             <tr>
                 <td>Agama</td>
-                <td> : {{$skbm->agama}}</td>
+                <td> : {{$spbm->agama}}</td>
             </tr>
             <tr>
                 <td>Pekerjaan</td>
-                <td> : {{$skbm->pekerjaan}}</td>
+                <td> : {{$spbm->pekerjaan}}</td>
             </tr>
             <tr>
                 <td style="vertical-align: top;">Alamat</td>
-                <td style="max-width: 350px; word-wrap: break-word;"> : {{ $skbm->alamat }}</td>
+                <td style="max-width: 350px; word-wrap: break-word;"> : {{ $spbm->alamat }}</td>
+
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160;Orang tersebut di atas sampai saat ini betul-betul berstatus <strong>{{$skbm->deskripsi}}</strong>
-                        Demikian Surat Keterangan ini diberikan, kemudian untuk dapat dipergunakan sebagaimana mestinya.
-                    </p>
+                        &#160; &#160; &#160; &#160;Dengan ini saya menyatakan bahwa saya sampai saat ini berstatus <strong>{{$spbm->deskripsi}}</strong>
+                        Apabila pernyataan ini tidak benar saya siap menanggung segala akibat dan bersedia
+                        dituntut dimuka hukum sesuai dengan peraturan  perundangan yang berlaku.
+                        <br>
+                        &#160; &#160; &#160; &#160;Surat ini saya buat dengan kesadaran sendiri tanpa ada paksaan dan atau tekanan dari pihak 
+                        manapun dalam keadaan sehat jasmani maupun rohani, selanjutnya agardapat dipergunakan sebagaimana mestinya.
+                    </strong>
                 </td>
             </tr>
         </table>
 
         <table class="enam">
             <tr>
-                <p>Sentolo, {{ \Carbon\Carbon::parse($skbm['created_at'])->translatedFormat('j F Y') }}</p>
+                <p>{{ \Carbon\Carbon::parse($spbm['created_at'])->translatedFormat('j F Y') }}
+                <br>
+                &#160; &#160; &#160; &#160;Pernyataan</p>
             </tr>
         </table>
-        <table  class="tujuh">
+        <table class="tujuh">
             <tr>
-                <td> <P>&#160; &#160; &#160; &#160; Lurah Sentolo</P>  <br>  <P class="namadesa">&#160; &#160; &#160; <b>(TEGUH) </b></P></td>
+                <p>Mengetahui :
+                <br>&#160; &#160; &#160; Lurah<br>
             </tr>
         </table>
-
-        <table class="delapan">
-            <tr>
-                <td><hr></td>
-            </tr>
-        </table>
+        
     </center>
 </body>
 </html>

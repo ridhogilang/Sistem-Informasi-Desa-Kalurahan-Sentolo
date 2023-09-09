@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Surat Keterangan Belum Menikah </h1>
+        <h1>Surat Pernyataan Belum Menikah </h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item">Surat</li>
-                <li class="breadcrumb-item active">Keterangan Belum Menikah</li>
+                <li class="breadcrumb-item active">Pernytaan Belum Menikah</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -19,36 +19,31 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Pilih Jenis SKBM</h5>
+                        <h5 class="card-title">Pilih Jenis SPBM</h5>
 
                         <div class="d-flex justify-content-between">
                             <div>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#skbm"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Buat Surat</button>
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#spbm"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Buat Surat</button>
                                 <a class="btn btn-success btn-sm" type="submit" target="blank" href="#"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat 1 Orang</a>
                             </div>
-                            {{-- <div>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#sktm-dua"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Form 2 Orang</button>
-                                <a class="btn btn-success btn-sm" type="submit" target="blank" href="#"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat 2 Orang</a>
-                            </div>
-                        </div> --}}
+                        </div>
 
-                        <!-- Modal Form 1 Orang -->
-                        <div class="modal fade" id="skbm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="skbm-Label" aria-hidden="true">
+                        <!-- Modal Form SPBM -->
+                        <div class="modal fade" id="spbm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="spbm-Label" aria-hidden="true">
                             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="tambah-skbm-Label">Data Surat Keterangan Belum Menikah</h1>
+                                        <h1 class="modal-title fs-5" id="tambah-spbm-Label">Data Surat Pernyataan Belum Menikah</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row" action="/surat-kbm" method="POST">
+                                        <form class="row" action="/surat-spbm" method="POST">
                                             @csrf
                                             <div class="row mb-3">
                                                 <label for="nomor_surat" class="col-sm-3 col-form-label">Nomor Surat</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" value="" required>
+                                                    <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" value="{{$TemplateNoSurat}}" required>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -98,18 +93,6 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            {{-- <div class="row mb-3">
-                                                <label for="status_perkawinan" class="col-sm-3 col-form-label">Status Perkawinan</label>
-                                                <div class="col-sm-9">
-                                                    <select id="status_perkawinan" name="status_perkawinan" class="form-select" required>
-                                                        <option value="" selected>Pilih Status Perkawinan ...</option>
-                                                        <option value="Belum Menikah">Belum Menikah</option>
-                                                        <option value="Sudah Menikah">Sudah Menikah</option>
-                                                        <option value="Janda">Janda</option>
-                                                        <option value="Duda">Duda</option>
-                                                    </select>
-                                                </div>
-                                            </div> --}}
                                             <div class="row mb-3">
                                                 <label for="pekerjaan" class="col-sm-3 col-form-label">Pekerjaan</label>
                                                 <div class="col-sm-9">
@@ -129,10 +112,10 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <input type="hidden" name="jenis_skbm" class="form-control" value="skbm" >
+                                                <input type="hidden" name="jenis_spbm" class="form-control" value="spbm">
                                             </div>
                                             <div class="row">
-                                                <input type="hidden" name="status_surat" class="form-control" value="Pending" >
+                                                <input type="hidden" name="status_surat" class="form-control" value="Pending">
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -149,7 +132,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="card-title">Data Surat Keterangan Belum Menikah</h5>
+                            <h5 class="card-title">Data Surat Penyataan Belum Menikah</h5>
                         </div>
 
                         <!-- Table with hoverable rows -->
@@ -168,7 +151,7 @@
                                 @php
                                     $no = 1;
                                 @endphp
-                                @foreach ($skbm as $value)
+                                @foreach ($spbm as $value)
                                     <tr>
                                         <th scope="row">{{ $no++ }}.</th>
                                         <td>{{ $value->nomor_surat }}</td>
@@ -176,18 +159,18 @@
                                         <td>{{ $value->nik }}</td>
                                         <td>{{ $value->status_surat }}</td>
                                         <td class="text-center">
-                                            <a class="btn btn-success" type="submit" target="blank" href="surat-kbm/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
+                                            <a class="btn btn-success" type="submit" target="blank" href="surat-pbm/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
                                             <!-- Button trigger modal -->
-                                            <a class="btn btn-warning" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-SKBM{{$value->id}}" href="/edit-surat-kbm/{{$value->id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a class="btn btn-warning" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-SPBM{{$value->id}}" href="/edit-surat-pbm/{{$value->id}}"><i class="fa-solid fa-pen-to-square"></i></a>
                                             {{-- <a class="btn btn-danger" type="submit" href="/surat-kbm/{{$value->id}}/delete"><i class="fa-regular fa-trash-can"></i></a> --}}
                                         </td>
                                     </tr>
 
-                                    <!-- Modal Edit SKBM-->
-                                    <div class="modal fade" id="Modal-Edit-SKBM{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Modal-Edit-SKBM" aria-hidden="true">
+                                    <!-- Modal Edit SPBM-->
+                                    <div class="modal fade" id="Modal-Edit-SPBM{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Modal-Edit-SPBM" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                             <div class="modal-content">
-                                                <form action="/surat-kbm/{{$value->id}}/edit" method="POST">
+                                                <form action="/surat-pbm/{{$value->id}}/edit" method="POST">
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-header">
@@ -208,7 +191,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="nik3" class="col-sm-3 col-form-label">NIK</label>
+                                                            <label for="nik" class="col-sm-3 col-form-label">NIK</label>
                                                             <div class="col-sm-9">
                                                                 <input type="text" name="nik" class="form-control" id="nik3" value="{{$value->nik}}" required>
                                                             </div>
@@ -267,7 +250,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <input type="hidden" name="jenis_skbm" class="form-control" value="{{$value->jenis_skbm}}" >
+                                                            <input type="hidden" name="jenis_spbm" class="form-control" value="{{$value->jenis_spbm}}" >
                                                         </div>
                                                         <div class="row">
                                                             <input type="hidden" name="status_surat" class="form-control" value="{{$value->status_surat}}" >
@@ -281,15 +264,12 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 @endforeach
                             </tbody>
                         </table>
                         <!-- End Table with hoverable rows -->
-
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
