@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\PengantarskckController;
 use App\Http\Controllers\SktmController;
+use App\Models\Pengantarskck;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,3 +60,8 @@ Route::get('/surat-domisili', function () {
         'title' => 'Surat Keterangan Domisili',
     ]);
 });
+
+Route::get('/surat-pskck', [PengantarskckController::class, 'index']);
+Route::post('/surat-pskck', [PengantarskckController::class, 'store_pskck']);
+Route::get('/surat-pskck/{id}/view', [PengantarskckController::class, 'show_pskck']);
+Route::put('/surat-pskck/{id}', [PengantarskckController::class, 'update']);

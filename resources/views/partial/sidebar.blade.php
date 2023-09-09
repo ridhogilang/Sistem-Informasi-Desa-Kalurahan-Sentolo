@@ -25,6 +25,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="/surat-pskck" class="{{ ($title == "Surat Pengantar SKCK") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Pengantar SKCK</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="/surat-kematian" class="{{ ($title == "Surat Kematian") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Keterangan Kematian</span>
                             </a>
