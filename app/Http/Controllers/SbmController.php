@@ -67,7 +67,7 @@ class SbmController extends Controller
             'status_surat' => 'required',
         ]);
         $nomor = str_replace("/", "-", $record['nomor_surat']);
-        $record['id'] = 'SKBM'.$nomor;
+        $record['id'] = 'KMS'.$nomor;
         // Menggunakan metode create untuk membuat dan menyimpan data
         Sbm::create($record);
 

@@ -1,11 +1,18 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\SktmController;
 use App\Http\Controllers\SbmController;
 use App\Http\Controllers\SpbmController;
 use App\Http\Controllers\PektpController;
 use App\Http\Controllers\PengantarskckController;
 
+=======
+use App\Http\Controllers\SbmController;
+use App\Http\Controllers\SpbmController;
+use App\Http\Controllers\PektpController;
+use App\Http\Controllers\SktmController;
+>>>>>>> adi
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,22 +71,38 @@ Route::get('/surat-domisili', function () {
     ]);
 });
 
+<<<<<<< HEAD
+=======
+// Surat Keterengan Belum Menikah
+>>>>>>> adi
 Route::get('/surat-kbm', [SbmController::class, 'index']);
 Route::post('/surat-kbm', [SbmController::class, 'store']);
 Route::get('/surat-kbm/{id}/view', [SbmController::class, 'show_skbm']);
 Route::put('/surat-kbm/{id}/edit', [SbmController::class, 'update_skbm']);
 
+// Surat Pernyataan Belum Menikah
 Route::get('/surat-pbm', [SpbmController::class, 'index']);
+<<<<<<< HEAD
 Route::get('/p-ektp', [PektpController::class, 'index']);
 Route::post('/surat-pektp', [PektpController::class, 'store_pektp']);
 Route::put('/surat-pektp{id}', [PektpController::class, 'update_pektp']);
 Route::get('/surat-pektp/{id}/view', [SktmController::class, 'show_pektp']);
 
+=======
+>>>>>>> adi
 Route::post('/surat-spbm', [SpbmController::class, 'store']);
 Route::get('/surat-pbm/{id}/view', [SpbmController::class, 'show_spbm']);
 Route::put('/surat-pbm/{id}/edit', [SpbmController::class, 'update_spbm']);
 
+<<<<<<< HEAD
 Route::get('/surat-pskck', [PengantarskckController::class, 'index']);
 Route::post('/surat-pskck', [PengantarskckController::class, 'store_pskck']);
 Route::get('/surat-pskck/{id}/view', [PengantarskckController::class, 'show_pskck']);
 Route::put('/surat-pskck/{id}', [PengantarskckController::class, 'update']);
+=======
+// Surat Pengantar SKCK
+Route::get('/p-ektp', [PektpController::class, 'index']);
+Route::post('/surat-pektp', [PektpController::class, 'store_pektp']);
+Route::put('/surat-pektp{id}/edit', [PektpController::class, 'update_pektp']);
+Route::get('/surat-pektp/{id}/view', [SktmController::class, 'show_pektp']);
+>>>>>>> adi

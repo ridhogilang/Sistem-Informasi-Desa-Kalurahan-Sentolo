@@ -38,7 +38,7 @@ class SpbmController extends Controller
             12 => 'XII',
         ];
         $bulanRomawi = $angkaRomawi[$bulanSekarang];
-        $TemplateNoSurat = "000/SPBM/{$bulanRomawi}/" . date('Y');
+        $TemplateNoSurat = "000/KMS/{$bulanRomawi}/" . date('Y');
 
         return view('page.surat-pbm', [
             'dropdown1' => 'Surat',

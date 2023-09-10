@@ -45,6 +45,7 @@
 
         .tiga{
             margin-top:10px;
+            margin-bottom: 20px;
         }
         .nosurat{
             margin-top:-12px;
