@@ -39,7 +39,7 @@ class PengantarskckController extends Controller
         $TemplateNoSurat = "000/KBM/{$bulanRomawi}/" . date('Y');
 
         return view('page.pengantar_skck', [
-            'dropdown1' => 'Surat',
+            'dropdown1' => 'Surat Keluar',
             'dropdown2' => 'Kemasyarakatan',
             'title' => 'Surat Pengantar SKCK',
             'TemplateNoSurat' => $TemplateNoSurat

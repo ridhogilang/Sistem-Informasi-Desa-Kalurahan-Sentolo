@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SktmDua;
 use App\Models\SktmSatu;
+use App\Models\SktmDua;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-class SktmController extends Controller
+class SktmSatuController extends Controller
 {
     public function __construct()
     {
@@ -43,22 +43,23 @@ class SktmController extends Controller
         $TemplateNoSurat = "000/KMS/{$bulanRomawi}/" . date('Y');
 
         return view('page.surat-ktm', [
-            'dropdown1' => 'Surat',
+            'dropdown1' => 'Surat Keluar',
             'dropdown2' => 'Kemasyarakatan',
             'title' => 'Surat Keterangan Tidak Mampu',
             'TemplateNoSurat' => $TemplateNoSurat
         ])->with('sktm', $sktm);
     }
-    public function store_sktm_satu(Request $request)
+    public function store(Request $request)
     {
         $record = $request->validate([
             'nomor_surat' => [
                 'required',
                 'unique:sktm_satu,nomor_surat', // Pastikan nomor surat unik di tabel sktm_satu
                 Rule::unique('sktm_dua', 'nomor_surat'), // Pastikan nomor surat unik di tabel sktm_dua
+
             ],
             'nama' => 'required',
-            'nik' => 'required',
+            'nik' => 'required|min:16',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
@@ -69,6 +70,9 @@ class SktmController extends Controller
             'deskripsi' => 'required',
             'jenis_sktm' => 'required',
             'status_surat' => 'required',
+        ], [
+            'unique' => 'Nomor Surat sudah digunakan.',
+            'min' => 'Masukkan 16 Digit NIK.',
         ]);
         $nomor = str_replace("/", "-", $record['nomor_surat']);
         $record['id'] = 'SKTM-1-'.$nomor;
@@ -77,42 +81,7 @@ class SktmController extends Controller
 
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
     }
-    public function store_sktm_dua(Request $request)
-    {
-        $record = $request->validate([
-            'nomor_surat' => [
-                'required',
-                'unique:sktm_dua,nomor_surat', // Pastikan nomor surat unik di tabel sktm_dua
-                Rule::unique('sktm_satu', 'nomor_surat'), // Pastikan nomor surat unik di tabel sktm_satu
-            ],
-            'nama' => 'required',
-            'nik' => 'required',
-            'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required',
-            'agama' => 'required',
-            'pekerjaan' => 'required',
-            'alamat' => 'required',
-            'hubungan' => 'required',
-            'nama_dua' => 'required',
-            'nik_dua' => 'required',
-            'tempat_lahir_dua' => 'required',
-            'tanggal_lahir_dua' => 'required',
-            'agama_dua' => 'required',
-            'pekerjaan_dua' => 'required',
-            'alamat_dua' => 'required',
-            'deskripsi' => 'required',
-            'jenis_sktm' => 'required',
-            'status_surat' => 'required',
-        ]);
-
-        $nomor = str_replace("/", "-", $record['nomor_surat']);
-        $record['id'] = 'SKTM-2-'.$nomor;
-        // Menggunakan metode create untuk membuat dan menyimpan data
-        SktmDua::create($record);
-
-        return redirect()->back()->with('toast_success', 'Data Terkirim!');
-    }
-    public function update_sktm_satu(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $record = $request->validate([
             'nomor_surat' => [
@@ -128,7 +97,7 @@ class SktmController extends Controller
                 },
             ],
             'nama' => 'required',
-            'nik' => 'required',
+            'nik' => 'required|min:16',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
@@ -139,62 +108,17 @@ class SktmController extends Controller
             'deskripsi' => 'required',
             'jenis_sktm' => 'required',
             'status_surat' => 'required',
+        ], [
+            'min' => 'Masukkan 16 Digit NIK.',
         ]);
 
         SktmSatu::where('id', $id)->update($record);
         return redirect()->back()->with('toast_success', 'Data Diubah!');
     }
-    public function update_sktm_dua(Request $request, $id)
-    {
-        $record = $request->validate([
-            'nomor_surat' => [
-                'required',
-                function ($attribute, $value, $fail) use ($id) {
-                    // Menggunakan closure untuk memeriksa keunikan nomor_surat
-                    $existingRecordSktmSatu = SktmSatu::where('nomor_surat', $value)->first();
-                    $existingRecordSktmDua = SktmDua::where('id', '!=', $id)->where('nomor_surat', $value)->first();
-
-                    if ($existingRecordSktmSatu || $existingRecordSktmDua) {
-                        $fail("Nomor Surat sudah digunakan.");
-                    }
-                },
-            ],
-            'nama' => 'required',
-            'nik' => 'required',
-            'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required',
-            'agama' => 'required',
-            'pekerjaan' => 'required',
-            'alamat' => 'required',
-            'hubungan' => 'required',
-            'nama_dua' => 'required',
-            'nik_dua' => 'required',
-            'tempat_lahir_dua' => 'required',
-            'tanggal_lahir_dua' => 'required',
-            'agama_dua' => 'required',
-            'pekerjaan_dua' => 'required',
-            'alamat_dua' => 'required',
-            'deskripsi' => 'required',
-            'jenis_sktm' => 'required',
-            'status_surat' => 'required',
-        ]);
-
-        SktmDua::where('id', $id)->update($record);
-        return redirect()->back()->with('toast_success', 'Data Diubah!');
-    }
-    public function show_sktm_satu($id) {
+    public function show($id) {
         $sktm = SktmSatu::findOrFail($id);
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
         $data = view('template.surat-ktm-satu', compact('sktm'))->render();
-        // Membuat instance DomPDF
-        $pdf = Pdf::loadHTML($data);
-        // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
-        return $pdf->stream();
-    }
-    public function show_sktm_dua($id) {
-        $sktm = SktmDua::findOrFail($id);
-        // Menggunakan view untuk mengambil HTML dari template surat-ktm
-        $data = view('template.surat-ktm-dua', compact('sktm'))->render();
         // Membuat instance DomPDF
         $pdf = Pdf::loadHTML($data);
         // Menghasilkan file PDF dan mengirimkannya sebagai respons stream

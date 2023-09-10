@@ -39,7 +39,7 @@ class SbmController extends Controller
         $TemplateNoSurat = "000/SBM/{$bulanRomawi}/" . date('Y');
 
         return view('page.surat-kbm', [
-            'dropdown1' => 'Surat',
+            'dropdown1' => 'Surat Keluar',
             'dropdown2' => 'Kemasyarakatan',
             'title' => 'Surat Keterangan Belum Menikah',
             'TemplateNoSurat' => $TemplateNoSurat
@@ -72,7 +72,7 @@ class SbmController extends Controller
         Sbm::create($record);
 
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
-    
+
     }
     /**
      * Display the specified resource.
@@ -93,7 +93,7 @@ class SbmController extends Controller
      */
     public function update_skbm(Request $request, $id)
     {
-        
+
         $record = $request->validate([
             'nama' => 'required',
             'nik' => 'required',
@@ -107,7 +107,7 @@ class SbmController extends Controller
             'jenis_skbm' => 'required',
             'status_surat' => 'required',
         ]);
-        
+
         Sbm::where('id', $id)->update($record);
         return redirect()->back()->with('toast_success', 'Data Diubah!');
     }

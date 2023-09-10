@@ -3,6 +3,8 @@
 <<<<<<< HEAD
 use App\Http\Controllers\SktmController;
 use App\Http\Controllers\SbmController;
+use App\Http\Controllers\SktmDuaController;
+use App\Http\Controllers\SktmSatuController;
 use App\Http\Controllers\SpbmController;
 use App\Http\Controllers\PektpController;
 use App\Http\Controllers\PengantarskckController;
@@ -55,30 +57,41 @@ Route::get('/login', function () {
     ]);
 });
 
-Route::get('/surat-ktm', [SktmController::class, 'index']);
-Route::post('/surat-ktm-satu', [SktmController::class, 'store_sktm_satu']);
-Route::post('/surat-ktm-dua', [SktmController::class, 'store_sktm_dua']);
-Route::put('/surat-ktm-satu/{id}', [SktmController::class, 'update_sktm_satu']);
-Route::put('/surat-ktm-dua/{id}', [SktmController::class, 'update_sktm_dua']);
-Route::get('/surat-ktm-satu/{id}/view', [SktmController::class, 'show_sktm_satu']);
-Route::get('/surat-ktm-dua/{id}/view', [SktmController::class, 'show_sktm_dua']);
-
 Route::get('/surat-domisili', function () {
     return view('page.accordion',[
-        'dropdown1' => 'Surat',
+        'dropdown1' => 'Surat Keluar',
         'dropdown2' => 'Pemerintahan',
         'title' => 'Surat Keterangan Domisili',
     ]);
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 // Surat Keterengan Belum Menikah
 >>>>>>> adi
+=======
+// SKTM Satu Orang
+Route::get('/surat-ktm', [SktmSatuController::class, 'index']);
+Route::post('/surat-ktm-satu', [SktmSatuController::class, 'store']);
+Route::put('/surat-ktm-satu/{id}', [SktmSatuController::class, 'update']);
+Route::get('/surat-ktm-satu/{id}/view', [SktmSatuController::class, 'show']);
+// SKTM Dua Orang
+Route::post('/surat-ktm-dua', [SktmDuaController::class, 'store']);
+Route::put('/surat-ktm-dua/{id}', [SktmDuaController::class, 'update']);
+Route::get('/surat-ktm-dua/{id}/view', [SktmDuaController::class, 'show']);
+// Pernyataan Belum Menikah
+Route::get('/surat-pbm', [SpbmController::class, 'index']);
+Route::post('/surat-spbm', [SpbmController::class, 'store']);
+Route::get('/surat-pbm/{id}/view', [SpbmController::class, 'show']);
+Route::put('/surat-pbm/{id}/edit', [SpbmController::class, 'update']);
+// Keterangan Belum Menikah
+>>>>>>> rizki
 Route::get('/surat-kbm', [SbmController::class, 'index']);
 Route::post('/surat-kbm', [SbmController::class, 'store']);
 Route::get('/surat-kbm/{id}/view', [SbmController::class, 'show_skbm']);
 Route::put('/surat-kbm/{id}/edit', [SbmController::class, 'update_skbm']);
+<<<<<<< HEAD
 
 // Surat Pernyataan Belum Menikah
 Route::get('/surat-pbm', [SpbmController::class, 'index']);
@@ -95,6 +108,14 @@ Route::get('/surat-pbm/{id}/view', [SpbmController::class, 'show_spbm']);
 Route::put('/surat-pbm/{id}/edit', [SpbmController::class, 'update_spbm']);
 
 <<<<<<< HEAD
+=======
+// Pengantar E-KTP
+Route::get('/p-ektp', [PektpController::class, 'index']);
+Route::post('/surat-pektp', [PektpController::class, 'store_pektp']);
+Route::put('/surat-pektp{id}', [PektpController::class, 'update_pektp']);
+Route::get('/surat-pektp/{id}/view', [PektpController::class, 'show_pektp']);
+// Pengantar SKCK
+>>>>>>> rizki
 Route::get('/surat-pskck', [PengantarskckController::class, 'index']);
 Route::post('/surat-pskck', [PengantarskckController::class, 'store_pskck']);
 Route::get('/surat-pskck/{id}/view', [PengantarskckController::class, 'show_pskck']);
