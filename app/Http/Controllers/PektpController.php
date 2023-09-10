@@ -111,9 +111,24 @@ class PektpController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePektpRequest $request, Pektp $pektp)
+    public function update_pektp(Request $request, $id)
     {
-        //
+        $record = $request->validate([
+            'nama' => 'required',
+            'nik' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'pekerjaan' => 'required',
+            'agama' => 'required',
+            'alamat' => 'required',
+            'deskripsi' => 'required',
+            'jenis_pektp' => 'required',
+            'status_surat' => 'required',
+        ]);
+
+        Pektp::where('id', $id)->update($record);
+        return redirect()->back()->with('toast_success', 'Data Diubah!');
     }
 
     /**

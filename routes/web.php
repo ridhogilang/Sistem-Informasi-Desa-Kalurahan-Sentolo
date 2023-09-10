@@ -1,14 +1,9 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\SbmController;
-use App\Http\Controllers\SktmController;
 use App\Http\Controllers\SpbmController;
-=======
 use App\Http\Controllers\PektpController;
 use App\Http\Controllers\SktmController;
-use App\Models\Pektp;
->>>>>>> yosia
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,24 +62,20 @@ Route::get('/surat-domisili', function () {
     ]);
 });
 
-<<<<<<< HEAD
+// Surat Keterengan Belum Menikah
 Route::get('/surat-kbm', [SbmController::class, 'index']);
 Route::post('/surat-kbm', [SbmController::class, 'store']);
 Route::get('/surat-kbm/{id}/view', [SbmController::class, 'show_skbm']);
 Route::put('/surat-kbm/{id}/edit', [SbmController::class, 'update_skbm']);
 
+// Surat Pernyataan Belum Menikah
 Route::get('/surat-pbm', [SpbmController::class, 'index']);
-<<<<<<< HEAD
-=======
-Route::get('/p-ektp', [PektpController::class, 'index']);
-Route::post('/surat-pektp', [PektpController::class, 'store_pektp']);
-Route::put('/surat-pektp{id}', [PektpController::class, 'update_pektp']);
-Route::get('/surat-pektp/{id}/view', [SktmController::class, 'show_pektp']);
-
-
->>>>>>> yosia
-=======
 Route::post('/surat-spbm', [SpbmController::class, 'store']);
 Route::get('/surat-pbm/{id}/view', [SpbmController::class, 'show_spbm']);
 Route::put('/surat-pbm/{id}/edit', [SpbmController::class, 'update_spbm']);
->>>>>>> adi
+
+// Surat Pengantar SKCK
+Route::get('/p-ektp', [PektpController::class, 'index']);
+Route::post('/surat-pektp', [PektpController::class, 'store_pektp']);
+Route::put('/surat-pektp{id}/edit', [PektpController::class, 'update_pektp']);
+Route::get('/surat-pektp/{id}/view', [SktmController::class, 'show_pektp']);

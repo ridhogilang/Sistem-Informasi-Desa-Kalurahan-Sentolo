@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Surat Keterangan Tidak Mampu</h1>
+        <h1>Surat Pengantar E-KTP</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item">Surat</li>
-                <li class="breadcrumb-item active">Keterangan Tidak Mampu</li>
+                <li class="breadcrumb-item active">Pengantar E-KTP</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -29,7 +29,7 @@
                             </div>
                         </div>
 
-                        <!-- Modal Form 1 Orang -->
+                        <!-- Modal PEKTP -->
                         <div class="modal fade" id="pektp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="pektp-Label" aria-hidden="true">
                             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                 <div class="modal-content">
@@ -132,7 +132,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="card-title">Data Surat Keterangan Tidak Mampu</h5>
+                            <h5 class="card-title">Data Surat Pengantar E-KTP</h5>
                         </div>
 
                         <!-- Table with hoverable rows -->
@@ -161,15 +161,15 @@
                                         <td class="text-center">
                                             <a class="btn btn-success" type="submit" target="blank" href="/surat-pektp/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
                                             <!-- Button trigger modal -->
-                                            <a class="btn btn-warning" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-pektp{{$value->id}}" href="/surat-pektp{{$value->id}}/edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a class="btn btn-warning" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-PEKTP{{$value->id}}" href="/surat-pektp{{$value->id}}/edit"><i class="fa-solid fa-pen-to-square"></i></a>
                                         </td>
                                     </tr>
 
                                     <!-- Modal Edit PEKTP -->
-                                    <div class="modal fade" id="Modal-Edit-SKTM-Satu-{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Modal-Edit-SKTM-Satu-Label" aria-hidden="true">
+                                    <div class="modal fade" id="Modal-Edit-PEKTP{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Modal-Edit-SKTM-Satu-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                             <div class="modal-content">
-                                                <form action="/surat-ektp{{$value->id}}" method="POST" >
+                                                <form action="/surat-pektp{{$value->id}}/edit" method="POST" >
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-header">
@@ -227,18 +227,6 @@
                                                                     <option value="Buddha" {{ ($value->agama == "Buddha") ? 'selected' : '' }}>Buddha</option>
                                                                     <option value="Konghucu" {{ ($value->agama == "Konghucu") ? 'selected' : '' }}>Konghucu</option>
                                                                     <option value="Lainnya" {{ ($value->agama == "Lainnya") ? 'selected' : '' }}>Lainnya</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <label for="status_perkawinan3" class="col-sm-3 col-form-label">Status Perkawinan</label>
-                                                            <div class="col-sm-9">
-                                                                <select id="status_perkawinan3" name="status_perkawinan" class="form-select" required>
-                                                                    <option value="">Pilih Status Perkawinan ...</option>
-                                                                    <option value="Belum Menikah" {{ ($value->status_perkawinan == "Belum Menikah") ? 'selected' : '' }}>Belum Menikah</option>
-                                                                    <option value="Sudah Menikah" {{ ($value->status_perkawinan == "Sudah Menikah") ? 'selected' : '' }}>Sudah Menikah</option>
-                                                                    <option value="Janda" {{ ($value->status_perkawinan == "Janda") ? 'selected' : '' }}>Janda</option>
-                                                                    <option value="Duda" {{ ($value->status_perkawinan == "Duda") ? 'selected' : '' }}>Duda</option>
                                                                 </select>
                                                             </div>
                                                         </div>
