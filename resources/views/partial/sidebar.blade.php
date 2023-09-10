@@ -25,26 +25,14 @@
                             </a>
                         </li>
                         <li>
-<<<<<<< HEAD
-                            <a href="/surat-pbm" class="{{ ($title == "Surat Pernyataan Belum Menikah") ? 'active' : '' }}">
-                                <i class="bi bi-circle"></i><span>Pernyataan Belum Menikah</span>
-                            </a>
-                        </li>
-                        <li>
-=======
->>>>>>> adi
                             <a href="/surat-kbm" class="{{ ($title == "Surat Keterangan Belum Menikah") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Keterangan  Belum Menikah</span>
                             </a>
                         </li>
                         <li>
-<<<<<<< HEAD
-                            <a href="/p-ektp" class="{{ ($title == "Surat Pengantar E-KTP") ? 'active' : '' }}">
-=======
                             <a href="/surat-pbm" class="{{ ($title == "Surat Pernyataan Belum Menikah") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Keterangan Pernyataan Belum Menikah</span>
                             <a href="/p-ektp" class="{{ ($title == "Pengantar E-KTP") ? 'active' : '' }}">
->>>>>>> adi
                                 <i class="bi bi-circle"></i><span>Pengantar E-KTP</span>
                             </a>
                         </li>
