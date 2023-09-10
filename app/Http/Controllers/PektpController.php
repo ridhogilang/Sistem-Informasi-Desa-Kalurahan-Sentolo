@@ -17,30 +17,30 @@ class PektpController extends Controller
     {
      // Gabungkan hasil dari kedua query menjadi satu array
     $pektp = Pektp::all();
-     $bulanSekarang = date('n');
-     $angkaRomawi = [
-         1 => 'I',
-         2 => 'II',
-         3 => 'III',
-         4 => 'IV',
-         5 => 'V',
-         6 => 'VI',
-         7 => 'VII',
-         8 => 'VIII',
-         9 => 'IX',
-         10 => 'X',
-         11 => 'XI',
-         12 => 'XII',
-     ];
-     $bulanRomawi = $angkaRomawi[$bulanSekarang];
-     $TemplateNoSurat = "000/KMS/{$bulanRomawi}/" . date('Y');
+    $bulanSekarang = date('n');
+    $angkaRomawi = [
+        1 => 'I',
+        2 => 'II',
+        3 => 'III',
+        4 => 'IV',
+        5 => 'V',
+        6 => 'VI',
+        7 => 'VII',
+        8 => 'VIII',
+        9 => 'IX',
+        10 => 'X',
+        11 => 'XI',
+        12 => 'XII',
+    ];
+    $bulanRomawi = $angkaRomawi[$bulanSekarang];
+    $TemplateNoSurat = "000/KMS/{$bulanRomawi}/" . date('Y');
 
-     return view('page.surat-pektp', [
-         'dropdown1' => 'Surat',
-         'dropdown2' => 'Kemasyarakatan',
-         'title' => 'Surat Pengantar E-KTP',
-         'TemplateNoSurat' => $TemplateNoSurat
-     ])->with('pektp', $pektp);
+    return view('page.surat-pektp', [
+        'dropdown1' => 'Surat Keluar',
+        'dropdown2' => 'Kemasyarakatan',
+        'title' => 'Surat Pengantar E-KTP',
+        'TemplateNoSurat' => $TemplateNoSurat
+    ])->with('pektp', $pektp);
     }
 
 

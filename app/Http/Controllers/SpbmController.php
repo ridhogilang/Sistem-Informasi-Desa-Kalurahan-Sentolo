@@ -21,7 +21,6 @@ class SpbmController extends Controller
     {
 
         $spbm = Spbm::all();
-        $tanggalSekarang = date('d');
         $bulanSekarang = date('n');
         $angkaRomawi = [
             1 => 'I',
@@ -38,10 +37,10 @@ class SpbmController extends Controller
             12 => 'XII',
         ];
         $bulanRomawi = $angkaRomawi[$bulanSekarang];
-        $TemplateNoSurat = "000/SPBM/{$bulanRomawi}/" . date('Y');
+        $TemplateNoSurat = "000/KMS/{$bulanRomawi}/" . date('Y');
 
         return view('page.surat-pbm', [
-            'dropdown1' => 'Surat',
+            'dropdown1' => 'Surat Keluar',
             'dropdown2' => 'Kemasyarakatan',
             'title' => 'Surat Pernyataan Belum Menikah',
             'TemplateNoSurat' => $TemplateNoSurat
@@ -50,8 +49,8 @@ class SpbmController extends Controller
 
 
     public function store(Request $request)
-    
-    {   
+
+    {
         $record = $request->validate([
             'nomor_surat' => [
                 'required',
@@ -79,7 +78,7 @@ class SpbmController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show_spbm($id)
+    public function show($id)
     {
         $spbm = Spbm::findOrFail($id);
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
@@ -90,8 +89,8 @@ class SpbmController extends Controller
         return $pdf->stream();
     }
 
-   
-    public function update_spbm(Request $request,$id)
+
+    public function update(Request $request,$id)
     {
         $record = $request->validate([
             'nama' => 'required',
@@ -106,7 +105,7 @@ class SpbmController extends Controller
             'jenis_spbm' => 'required',
             'status_surat' => 'required',
         ]);
-        
+
         Spbm::where('id', $id)->update($record);
         return redirect()->back()->with('toast_success', 'Data Diubah!');
     }
