@@ -19,7 +19,6 @@ class SbmController extends Controller
     {
 
         $skbm = Sbm::all();
-        $tanggalSekarang = date('d');
         $bulanSekarang = date('n');
         $angkaRomawi = [
             1 => 'I',
@@ -77,7 +76,7 @@ class SbmController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show_skbm($id)
+    public function show($id)
     {
         $skbm = Sbm::findOrFail($id);
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
@@ -91,7 +90,7 @@ class SbmController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function update_skbm(Request $request, $id)
+    public function update(Request $request, $id)
     {
 
         $record = $request->validate([

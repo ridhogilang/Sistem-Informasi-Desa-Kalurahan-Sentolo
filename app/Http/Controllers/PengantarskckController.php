@@ -19,7 +19,6 @@ class PengantarskckController extends Controller
     public function index()
     {
         $pskck= Pengantarskck::all();
-        $tanggalSekarang = date('d');
         $bulanSekarang = date('n');
         $angkaRomawi = [
             1 => 'I',
@@ -47,7 +46,7 @@ class PengantarskckController extends Controller
     }
 
 
-    public function store_pskck(Request $request)
+    public function store(Request $request)
     {
         $record = $request->validate([
             'nomor_surat' => [
@@ -75,7 +74,7 @@ class PengantarskckController extends Controller
 
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
     }
-    public function show_pskck($id)
+    public function show($id)
     {
         $pskck = Pengantarskck::findOrFail($id);
         // Menggunakan view untuk mengambil HTML dari template surat-ktm

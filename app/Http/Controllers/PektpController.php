@@ -44,7 +44,7 @@ class PektpController extends Controller
     }
 
 
-    public function store_pektp(Request $request)
+    public function store(Request $request)
     {
         $record = $request->validate([
             'nomor_surat' => [
@@ -74,7 +74,7 @@ class PektpController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show_pektp($id)
+    public function show($id)
     {
         $sktm = Pektp::findOrFail($id);
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
@@ -88,30 +88,11 @@ class PektpController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function update_petkp(Request $request,$id)
-    {
-        $record = $request->validate([
-            'nama' => 'required',
-            'nik' => 'required',
-            'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required',
-            'jenis_kelamin' => 'required',
-            'pekerjaan' => 'required',
-            'agama' => 'required',
-            'alamat' => 'required',
-            'deskripsi' => 'required',
-            'jenis_pektp' => 'required',
-            'status_surat' => 'required',
-        ]);
-
-        Pektp::where('id', $id)->update($record);
-        return redirect()->back()->with('toast_success', 'Data Diubah!');
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update_pektp(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $record = $request->validate([
             'nama' => 'required',
