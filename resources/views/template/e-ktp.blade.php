@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>SURAT KETERANGAN TIDAK MAMPU | {{$sktm->nik}}</title>
+    <title>SKTM | {{$pektp->nik}}</title>
     <style>
         table tr td {
             font-size: 13px;
@@ -53,24 +53,17 @@
             font-size: 17px;
             margin-left: 20px;
             text-align: justify;
-            margin-right: 20px;
-            line-height: 1.5;
         }
 
         .lima{
             margin-left: 80px;
         }
 
-        .lima tr .template {
-            font-size: 17px;
-            padding-right: 20px;
-            padding-top:10px;
-            /* margin-right: 10px; */
-        }
         .lima tr td {
             font-size: 17px;
-            padding-right: 5px;
+            padding-right: 30px;
             padding-top:10px;
+            margin-right: 10px;
         }
          P{
              font-size: 16px;
@@ -120,7 +113,7 @@
             <tr>
                 <td width="537">
                     <center>
-                        <font size="2">Nomor : {{$sktm->nomor_surat}}</font>
+                        <font size="2">Nomor : {{$pektp->nomor_surat}}</font>
                     </center>
                 </td>
             </tr>
@@ -128,61 +121,47 @@
 
         <table class="empat">
             <tr>
-                <td>
-                    <p>
-                        &#160; &#160; &#160; &#160; Yang bertanda tangan dibawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo, menerangkan bahwa ;
-                    </p>
+                <td><P> &#160; &#160; &#160; &#160;  &#160; Yang bertanda tangan dibawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon
+                    <br> <br> Progo, menerangkan bahwa ;</P>
                 </td>
             </tr>
         </table>
-        <table class="lima">
+        <table  class="lima">
             <tr>
-                <td class="template">Nama</td>
-                <td>:</td>
-                <td>{{$sktm->nama}}</td>
+                <td> Nama</td>
+                <td>:  {{$pektp->nama}}</td>
             </tr>
             <tr>
-                <td class="template">NIK</td>
-                <td>:</td>
-                <td>{{$sktm->nik}}</td>
+                <td>NIK</td>
+                <td> : {{$pektp->nik}}</td>
             </tr>
             <tr>
-                <td class="template">Jenis Kelamin</td>
-                <td>:</td>
-                <td>{{$sktm->jenis_kelamin}}</td>
+                <td>Jenis Kelamin</td>
+                <td> : {{$pektp->jenis_kelamin}}</td>
             </tr>
             <tr>
-                <td class="template">Tempat / Tanggal Lahir</td>
-                <td>:</td>
-                <td>{{$sktm->tempat_lahir}} / {{date('d-m-Y',strtotime($sktm->tanggal_lahir))}}  </td>
+                <td>Tempat / Tanggal Lahir</td>
+                <td> : {{$pektp->tempat_lahir}} / {{date('d-m-Y',strtotime($pektp->tanggal_lahir))}}  </td>
             </tr>
             <tr>
-                <td class="template">Agama</td>
-                <td>:</td>
-                <td>{{$sktm->agama}}</td>
+                <td>Agama</td>
+                <td> : {{$pektp->agama}}</td>
             </tr>
             <tr>
-                <td class="template">Status Perkawinan</td>
-                <td>:</td>
-                <td>{{$sktm->status_perkawinan}}</td>
+                <td>Pekerjaan</td>
+                <td> : {{$pektp->pekerjaan}}</td>
             </tr>
             <tr>
-                <td class="template">Pekerjaan</td>
-                <td>:</td>
-                <td>{{$sktm->pekerjaan}}</td>
-            </tr>
-            <tr>
-                <td class="template" style="vertical-align: top;">Alamat</td>
-                <td style="vertical-align: top;">:</td>
-                <td style="max-width: 405px; word-wrap: break-word;">{{$sktm->alamat}}</td>
+                <td>Alamat</td>
+                <td> : {{$pektp->alamat}}</td>
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160;{{$sktm->deskripsi}}
-                        Demikian Surat Keterangan ini dibuat agar dapat dipergunakan untuk sebagaimana mestinya.
+                        <br>{{$petkp->deskripsi}}<br><br>
+                        &#160; &#160; &#160; &#160;  &#160; Demikian Surat Keterangan ini dibuat agar dapat dipergunakan untuk sebagaimana <br><br> mestinya.
                     </p>
                 </td>
             </tr>
@@ -190,7 +169,7 @@
 
         <table class="enam">
             <tr>
-                <p>Sentolo, {{ \Carbon\Carbon::parse($sktm['created_at'])->translatedFormat('j F Y') }}</p>
+                <p>Sentolo, {{ \Carbon\Carbon::parse($pektp['created_at'])->translatedFormat('j F Y') }}</p>
             </tr>
         </table>
         <table  class="tujuh">
