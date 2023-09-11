@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>SKTM | {{$pektp->nik}}</title>
+    <title>SURAT PENGANTAR E-KTP | {{$pektp->nik}}</title>
     <style>
         table tr td {
             font-size: 13px;
@@ -103,7 +103,7 @@
             <tr>
                 <td width="538">
                     <center>
-                        <font size="3"><b>SURAT KETERANGAN KURANG MAMPU </b></font><br>
+                        <font size="3"><b>SURAT PENGANTAR E-KTP </b></font><br>
                         <hr class="hrsatu">
                     </center>
                 </td>
@@ -160,8 +160,9 @@
             <tr>
                 <td>
                     <p>
-                        <br>{{$petkp->deskripsi}}<br><br>
-                        &#160; &#160; &#160; &#160;  &#160; Demikian Surat Keterangan ini dibuat agar dapat dipergunakan untuk sebagaimana <br><br> mestinya.
+
+                        &#160; &#160; &#160; &#160;  &#160; Nama tersebut diatas adalah penduduk Kalurahan Sentolo, Kabupaten Kulon Progo yang telah memenuhi syarat dan ketentuan untuk melakukan perekaman E-KTP.
+                        <br><br> Demikian surat pengantar ini dibuat dengan sebenarnya untuk dapat dipergunakan sebagaimana <br>mestinya. Atas kerjasamanya diucapkan terimakasih.
                     </p>
                 </td>
             </tr>

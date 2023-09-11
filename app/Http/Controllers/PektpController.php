@@ -7,6 +7,7 @@ use App\Http\Requests\StorePektpRequest;
 use App\Http\Requests\UpdatePektpRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PektpController extends Controller
 {
@@ -52,7 +53,7 @@ class PektpController extends Controller
                 'unique:pektp,nomor_surat', // Pastikan nomor surat unik di tabel sktm_satu
             ],
             'nama' => 'required',
-            'nik' => 'required',
+            'nik' => 'required|min:16',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
@@ -62,9 +63,12 @@ class PektpController extends Controller
             'deskripsi' => 'required',
             'jenis_pektp' => 'required',
             'status_surat' => 'required',
+        ], [
+            'unique' => 'Nomor Surat sudah digunakan.',
+            'min' => 'Masukkan 16 Digit NIK.',
         ]);
         $nomor = str_replace("/", "-", $record['nomor_surat']);
-        $record['id'] = 'PEKTP-1-'.$nomor;
+        $record['id'] = 'PEKTP-'.$nomor;
         // Menggunakan metode create untuk membuat dan menyimpan data
         Pektp::create($record);
 
@@ -76,9 +80,17 @@ class PektpController extends Controller
      */
     public function show($id)
     {
-        $sktm = Pektp::findOrFail($id);
+        $pektp = Pektp::findOrFail($id);
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
         $data = view('template.surat-pektp', compact('pektp'))->render();
+        // Membuat instance DomPDF
+        $pdf = Pdf::loadHTML($data);
+        // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
+        return $pdf->stream();
+    }
+    public function contoh() {
+        // Menggunakan view untuk mengambil HTML dari template surat-ktm
+        $data = view('template.contoh-surat-pektp')->render();
         // Membuat instance DomPDF
         $pdf = Pdf::loadHTML($data);
         // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
@@ -95,8 +107,12 @@ class PektpController extends Controller
     public function update(Request $request, $id)
     {
         $record = $request->validate([
+            'nomor_surat' => [
+                'required',
+                Rule::unique('pektp', 'nomor_surat')->ignore($id), // Pastikan nomor surat unik di tabel pektp, kecuali untuk catatan dengan ID yang sama
+            ],
             'nama' => 'required',
-            'nik' => 'required',
+            'nik' => 'required|min:16',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
@@ -106,6 +122,9 @@ class PektpController extends Controller
             'deskripsi' => 'required',
             'jenis_pektp' => 'required',
             'status_surat' => 'required',
+        ], [
+            'unique' => 'Nomor Surat sudah digunakan.',
+            'min' => 'Masukkan 16 Digit NIK.',
         ]);
 
         Pektp::where('id', $id)->update($record);
