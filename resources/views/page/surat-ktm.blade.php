@@ -24,13 +24,13 @@
                         <div class="d-flex justify-content-between">
                             <div>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#sktm-satu"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Form 1 Orang</button>
-                                <a class="btn btn-success btn-sm" type="submit" target="blank" href="#"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat 1 Orang</a>
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#sktm-satu"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Buat Surat 1 Orang</button>
+                                <a class="btn btn-success btn-sm" type="submit" target="blank" href="/contoh-surat-ktm-satu/view"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat 1 Orang</a>
                             </div>
                             <div>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#sktm-dua"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Form 2 Orang</button>
-                                <a class="btn btn-success btn-sm" type="submit" target="blank" href="#"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat 2 Orang</a>
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#sktm-dua"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Buat Surat 2 Orang</button>
+                                <a class="btn btn-success btn-sm" type="submit" target="blank" href="/contoh-surat-ktm-dua/view"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat 2 Orang</a>
                             </div>
                         </div>
 

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sbm;
+use App\Models\Skbm;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateSbmRequest;
+use Illuminate\Validation\Rule;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
-class SbmController extends Controller
+class SkbmController extends Controller
 {
     public function __construct()
     {
@@ -18,7 +19,7 @@ class SbmController extends Controller
     public function index()
     {
 
-        $skbm = Sbm::all();
+        $skbm = Skbm::all();
         $bulanSekarang = date('n');
         $angkaRomawi = [
             1 => 'I',
@@ -35,7 +36,7 @@ class SbmController extends Controller
             12 => 'XII',
         ];
         $bulanRomawi = $angkaRomawi[$bulanSekarang];
-        $TemplateNoSurat = "000/SBM/{$bulanRomawi}/" . date('Y');
+        $TemplateNoSurat = "000/KMS/{$bulanRomawi}/" . date('Y');
 
         return view('page.surat-kbm', [
             'dropdown1' => 'Surat Keluar',
@@ -54,7 +55,7 @@ class SbmController extends Controller
                 'unique:skbm,nomor_surat', // Pastikan nomor surat unik di tabel sktm_satu
             ],
             'nama' => 'required',
-            'nik' => 'required',
+            'nik' => 'required|min:16',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
@@ -64,11 +65,14 @@ class SbmController extends Controller
             'deskripsi' => 'required',
             'jenis_skbm' => 'required',
             'status_surat' => 'required',
+        ], [
+            'unique' => 'Nomor Surat sudah digunakan.',
+            'min' => 'Masukkan 16 Digit NIK.',
         ]);
         $nomor = str_replace("/", "-", $record['nomor_surat']);
-        $record['id'] = 'KMS'.$nomor;
+        $record['id'] = 'SKBM-'.$nomor;
         // Menggunakan metode create untuk membuat dan menyimpan data
-        Sbm::create($record);
+        Skbm::create($record);
 
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
 
@@ -78,9 +82,17 @@ class SbmController extends Controller
      */
     public function show($id)
     {
-        $skbm = Sbm::findOrFail($id);
+        $skbm = Skbm::findOrFail($id);
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
         $data = view('template.surat-kbm', compact('skbm'))->render();
+        // Membuat instance DomPDF
+        $pdf = Pdf::loadHTML($data);
+        // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
+        return $pdf->stream();
+    }
+    public function contoh() {
+        // Menggunakan view untuk mengambil HTML dari template surat-ktm
+        $data = view('template.contoh-surat-kbm')->render();
         // Membuat instance DomPDF
         $pdf = Pdf::loadHTML($data);
         // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
@@ -92,8 +104,11 @@ class SbmController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $record = $request->validate([
+            'nomor_surat' => [
+                'required',
+                Rule::unique('skbm', 'nomor_surat')->ignore($id), // Pastikan nomor surat unik di tabel skbm, kecuali untuk catatan dengan ID yang sama
+            ],
             'nama' => 'required',
             'nik' => 'required',
             'jenis_kelamin' => 'required',
@@ -105,14 +120,17 @@ class SbmController extends Controller
             'deskripsi' => 'required',
             'jenis_skbm' => 'required',
             'status_surat' => 'required',
+        ], [
+            'min' => 'Masukkan 16 Digit NIK.',
+            'unique' => 'Nomor Surat sudah digunakan.',
         ]);
 
-        Sbm::where('id', $id)->update($record);
+        Skbm::where('id', $id)->update($record);
         return redirect()->back()->with('toast_success', 'Data Diubah!');
     }
 
 
-    public function destroy(Sbm $sbm)
+    public function destroy(Skbm $sbm)
     {
         //
     }

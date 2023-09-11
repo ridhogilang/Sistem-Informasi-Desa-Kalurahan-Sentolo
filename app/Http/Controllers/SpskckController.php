@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\Pengantarskck;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Routing\Controller;
-// use Illuminate\Http\Client\Request;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Spskck;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Validation\Rule;
 
-
-class PengantarskckController extends Controller
+class SpskckController extends Controller
 {
     public function __construct()
     {
@@ -18,7 +16,7 @@ class PengantarskckController extends Controller
     }
     public function index()
     {
-        $pskck= Pengantarskck::all();
+        $pskck= Spskck::all();
         $bulanSekarang = date('n');
         $angkaRomawi = [
             1 => 'I',
@@ -35,9 +33,9 @@ class PengantarskckController extends Controller
             12 => 'XII',
         ];
         $bulanRomawi = $angkaRomawi[$bulanSekarang];
-        $TemplateNoSurat = "000/KBM/{$bulanRomawi}/" . date('Y');
+        $TemplateNoSurat = "000/KMS/{$bulanRomawi}/" . date('Y');
 
-        return view('page.pengantar_skck', [
+        return view('page.surat-pskck', [
             'dropdown1' => 'Surat Keluar',
             'dropdown2' => 'Kemasyarakatan',
             'title' => 'Surat Pengantar SKCK',
@@ -54,7 +52,7 @@ class PengantarskckController extends Controller
                 'unique:pskck,nomor_surat', // Pastikan nomor surat unik di tabel
             ],
             'nama' => 'required',
-            'nik' => 'required',
+            'nik' => 'required|min:16',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
@@ -62,23 +60,33 @@ class PengantarskckController extends Controller
             'status_perkawinan' => 'required',
             'pekerjaan' => 'required',
             'alamat' => 'required',
-            'deskripsi' => 'required',
-            // 'jenis_skck' => 'required',
+            'jenis_skck' => 'required',
             'status_surat' => 'required',
+        ], [
+            'unique' => 'Nomor Surat sudah digunakan.',
+            'min' => 'Masukkan 16 Digit NIK.',
         ]);
-        $record['jenis_skck'] = '1';
         $nomor = str_replace("/", "-", $record['nomor_surat']);
-        $record['id'] = 'SPKCK-1-'.$nomor;
+        $record['id'] = 'SP-SKCK-'.$nomor;
         // Menggunakan metode create untuk membuat dan menyimpan data
-        Pengantarskck::create($record);
+        Spskck::create($record);
 
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
     }
     public function show($id)
     {
-        $pskck = Pengantarskck::findOrFail($id);
+        $pskck = Spskck::findOrFail($id);
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
-        $data = view('template.surat-pengantarskck-satu', compact('pskck'))->render();
+        $data = view('template.surat-pskck', compact('pskck'))->render();
+        // Membuat instance DomPDF
+        $pdf = Pdf::loadHTML($data);
+        // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
+        return $pdf->stream();
+    }
+
+    public function contoh() {
+        // Menggunakan view untuk mengambil HTML dari template surat-ktm
+        $data = view('template.contoh-surat-pskck')->render();
         // Membuat instance DomPDF
         $pdf = Pdf::loadHTML($data);
         // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
@@ -88,7 +96,7 @@ class PengantarskckController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pengantarskck $pengantarskck)
+    public function edit(Spskck $spskck)
     {
         //
     }
@@ -96,12 +104,16 @@ class PengantarskckController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         // dd($request);
-        $record=$request->validate( [
+        $record = $request->validate([
+            'nomor_surat' => [
+                'required',
+                Rule::unique('pskck', 'nomor_surat')->ignore($id), // Pastikan nomor surat unik di tabel pskck, kecuali untuk catatan dengan ID yang sama
+            ],
             'nama' => 'required',
-            'nik' => 'required',
+            'nik' => 'required|min:16',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
@@ -109,13 +121,16 @@ class PengantarskckController extends Controller
             'status_perkawinan' => 'required',
             'pekerjaan' => 'required',
             'alamat' => 'required',
-            'deskripsi' => 'required',
-
+            'jenis_skck' => 'required',
+            'status_surat' => 'required',
+        ], [
+            'min' => 'Masukkan 16 Digit NIK.',
+            'unique' => 'Nomor Surat sudah digunakan.',
         ]);
-        Pengantarskck::where('id')->update($record);
+        Spskck::where('id')->update($record);
         return redirect()->back()->with('toast_sukses','data diubah!');
     }
-    public function destroy(Pengantarskck $pengantarskck)
+    public function destroy(Spskck $spskck)
     {
         //
     }

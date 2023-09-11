@@ -25,7 +25,7 @@
                             <div>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#pskck"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Buat Surat</button>
-                                <a class="btn btn-success btn-sm" type="submit" target="blank" href="#"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat 1 Orang</a>
+                                <a class="btn btn-success btn-sm" type="submit" target="blank" href="/contoh-surat-pskck/view"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat</a>
                             </div>
                         </div>
 
@@ -34,7 +34,7 @@
                             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="pskck">Data Surat Keterangan Tidak Mampu 1 Orang</h1>
+                                        <h1 class="modal-title fs-5" id="pskck">Data Surat Pengantar SKCK</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -49,47 +49,47 @@
                                             <div class="row mb-3">
                                                 <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="nama" class="form-control" id="nama" required>
+                                                    <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}" required>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="nik" class="col-sm-3 col-form-label">NIK</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="nik" class="form-control" id="nik" required>
+                                                    <input type="text" name="nik" class="form-control" id="nik" value="{{ old('nik') }}" required>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                                 <div class="col-sm-9">
                                                     <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
-                                                        <option value="" selected>Pilih Jenis Kelamin ...</option>
-                                                        <option value="Laki-laki">Laki-laki</option>
-                                                        <option value="Perempuan">Perempuan</option>
+                                                        <option value="" @if(old('jenis_kelamin') == '') selected @endif>Pilih Jenis Kelamin ...</option>
+                                                        <option value="Laki-laki" @if(old('jenis_kelamin') == 'Laki-laki') selected @endif>Laki-laki</option>
+                                                        <option value="Perempuan" @if(old('jenis_kelamin') == 'Perempuan') selected @endif>Perempuan</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="tempat_lahir" class="col-sm-4 col-form-label">Tempat / Tanggal Lahir</label>
                                                 <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" required>
+                                                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir') }}" required>
                                                 </div>
                                                 <label for="tanggal_lahir" class="col-sm-1 col-form-label text-center">/</label>
                                                 <div class="col-sm-3">
-                                                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+                                                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="agama" class="col-sm-3 col-form-label">Agama</label>
                                                 <div class="col-sm-9">
                                                     <select id="agama" name="agama" class="form-select" required>
-                                                        <option value="" selected>Pilih Agama ...</option>
-                                                        <option value="Islam">Islam</option>
-                                                        <option value="Kristen Protestan">Kristen Protestan</option>
-                                                        <option value="Kristen Katolik">Kristen Katolik</option>
-                                                        <option value="Hindu">Hindu</option>
-                                                        <option value="Buddha">Buddha</option>
-                                                        <option value="Konghucu">Konghucu</option>
-                                                        <option value="Lainnya">Lainnya</option>
+                                                        <option value="" @if(old('agama') == '') selected @endif>Pilih Agama ...</option>
+                                                        <option value="Islam" @if(old('agama') == 'Islam') selected @endif>Islam</option>
+                                                        <option value="Kristen Protestan" @if(old('agama') == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
+                                                        <option value="Kristen Katolik" @if(old('agama') == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
+                                                        <option value="Hindu" @if(old('agama') == 'Hindu') selected @endif>Hindu</option>
+                                                        <option value="Buddha" @if(old('agama') == 'Buddha') selected @endif>Buddha</option>
+                                                        <option value="Konghucu" @if(old('agama') == 'Konghucu') selected @endif>Konghucu</option>
+                                                        <option value="Lainnya" @if(old('agama') == 'Lainnya') selected @endif>Lainnya</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -97,33 +97,28 @@
                                                 <label for="status_perkawinan" class="col-sm-3 col-form-label">Status Perkawinan</label>
                                                 <div class="col-sm-9">
                                                     <select id="status_perkawinan" name="status_perkawinan" class="form-select" required>
-                                                        <option value="" selected>Pilih Status Perkawinan ...</option>
-                                                        <option value="Belum Menikah">Belum Menikah</option>
-                                                        <option value="Sudah Menikah">Sudah Menikah</option>
-                                                        <option value="Janda">Janda</option>
-                                                        <option value="Duda">Duda</option>
+                                                        <option value="" @if(old('status_perkawinan') == '') selected @endif>Pilih Status Perkawinan ...</option>
+                                                        <option value="Belum Menikah" @if(old('status_perkawinan') == 'Belum Menikah') selected @endif>Belum Menikah</option>
+                                                        <option value="Sudah Menikah" @if(old('status_perkawinan') == 'Sudah Menikah') selected @endif>Sudah Menikah</option>
+                                                        <option value="Janda" @if(old('status_perkawinan') == 'Janda') selected @endif>Janda</option>
+                                                        <option value="Duda" @if(old('status_perkawinan') == 'Duda') selected @endif>Duda</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="pekerjaan" class="col-sm-3 col-form-label">Pekerjaan</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" required>
+                                                    <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" value="{{ old('pekerjaan') }}" required>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="alamat" class="form-control" id="alamat" required maxlength="60" >
+                                                    <input type="text" name="alamat" class="form-control" id="alamat" value="{{ old('alamat') }}" required>
                                                 </div>
                                             </div>
-                                            <div class="row mb-3">
-                                                <label for="deskripsi" class="col-sm-3 col-form-label">Deskripsi</label>
-                                                <div class="col-sm-9">
-                                                    <textarea type="text" name="deskripsi" class="form-control" id="deskripsi" rows="3" required>Benar yang tersebut namanya di atas adalah penduduk Kecamatan Sentolo, Kabupaten Kulonprogo. Berdasarkan catatan yang ada serta sepengetahuan kami dan lainya: 
-                                                        Berkelakuan Baik, tidak pernah melakukan tindakan/ perbuatan yang menyimpang atau norma sosial yang berlaku, Tidak bersangkut paut Perkara Kriminal,Tidak dalam status tahanan yang berwajib & Tidak terlibat dalam penggunaan Narkoba 
-                                                        </textarea>
-                                                </div>
+                                            <div class="row">
+                                                <input type="hidden" name="jenis_skck" class="form-control" value="spskck" >
                                             </div>
                                             <div class="row">
                                                 <input type="hidden" name="status_surat" class="form-control" value="Pending" >
@@ -143,7 +138,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="card-title">Data Surat Keterangan Tidak Mampu</h5>
+                            <h5 class="card-title">Data Surat Pengantar SKCK</h5>
                         </div>
 
                         <!-- Table with hoverable rows -->
@@ -170,9 +165,9 @@
                                         <td>{{ $value->nik }}</td>
                                         <td>{{ $value->status_surat }}</td>
                                         <td class="text-center">
-                                                <a class="btn btn-success" type="submit" target="blank" href="/surat-pskck/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
-                                                <!-- Button trigger modal -->
-                                                <a class="btn btn-warning" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-PSKCK{{$value->id}}" href="/surat-pskck/{{$value->id}}/edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a class="btn btn-success" type="submit" target="blank" href="/surat-pskck/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
+                                            <!-- Button trigger modal -->
+                                            <a class="btn btn-warning" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-PSKCK{{$value->id}}" href="/surat-pskck/{{$value->id}}/edit"><i class="fa-solid fa-pen-to-square"></i></a>
                                         </td>
                                     </tr>
 
@@ -263,12 +258,6 @@
                                                             <label for="alamat3" class="col-sm-3 col-form-label">Alamat</label>
                                                             <div class="col-sm-9">
                                                                 <input type="text" name="alamat" class="form-control" id="alamat3" value="{{$value->alamat}}" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <label for="deskripsi3" class="col-sm-3 col-form-label">Deskripsi</label>
-                                                            <div class="col-sm-9">
-                                                                <textarea type="text" name="deskripsi" class="form-control" id="deskripsi3" rows="3" required>{{$value->deskripsi}}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="row">

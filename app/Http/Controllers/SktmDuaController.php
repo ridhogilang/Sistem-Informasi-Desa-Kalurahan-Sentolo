@@ -99,4 +99,12 @@ class SktmDuaController extends Controller
         // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
         return $pdf->stream();
     }
+    public function contoh() {
+        // Menggunakan view untuk mengambil HTML dari template surat-ktm
+        $data = view('template.contoh-surat-ktm-dua')->render();
+        // Membuat instance DomPDF
+        $pdf = Pdf::loadHTML($data);
+        // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
+        return $pdf->stream();
+    }
 }

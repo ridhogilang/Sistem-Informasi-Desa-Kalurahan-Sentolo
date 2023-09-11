@@ -25,7 +25,7 @@
                             <div>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#pektp"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Buat Surat</button>
-                                <a class="btn btn-success btn-sm" type="submit" target="blank" href="#"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat 1 Orang</a>
+                                <a class="btn btn-success btn-sm" type="submit" target="blank" href="#"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat</a>
                             </div>
                         </div>
 
