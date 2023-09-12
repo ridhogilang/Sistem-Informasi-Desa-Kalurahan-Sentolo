@@ -3,6 +3,7 @@
 use App\Http\Controllers\SktmSatuController;
 use App\Http\Controllers\SktmDuaController;
 use App\Http\Controllers\SkbmController;
+use App\Http\Controllers\SkkematianController;
 use App\Http\Controllers\SpbmController;
 use App\Http\Controllers\SpektpController;
 use App\Http\Controllers\SpskckController;
@@ -92,3 +93,9 @@ Route::post('/surat-pektp', [SpektpController::class, 'store']);
 Route::put('/surat-pektp{id}/edit', [SpektpController::class, 'update']);
 Route::get('/surat-pektp/{id}/view', [SpektpController::class, 'show']);
 Route::get('/contoh-surat-pektp/view', [SpektpController::class, 'contoh']);
+// Surat Keterangan Kematian
+Route::get('/surat-kkematian', [SkkematianController::class, 'index']);
+Route::post('/surat-kkematian', [SkkematianController::class, 'store']);
+Route::put('/surat-kkematian{id}/edit', [SkkematianController::class, 'update']);
+Route::get('/surat-kkematian/{id}/view', [SkkematianController::class, 'show']);
+Route::get('/contoh-surat-kkematian/view', [SkkematianController::class, 'contoh']);

@@ -66,6 +66,11 @@
                                 <i class="bi bi-circle"></i><span>Keterangan Tidak Bekerja</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="/surat-kkematian" class="{{ ($title == "Surat Keterangan Kematian") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Keterangan Kematian</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
