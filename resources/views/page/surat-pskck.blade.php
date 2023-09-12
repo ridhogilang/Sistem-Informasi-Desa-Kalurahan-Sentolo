@@ -30,7 +30,7 @@
                         </div>
 
                         <!-- Modal Form 1 Orang -->
-                        <div class="modal fade" id="pskck" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="sktm-satu-Label" aria-hidden="true">
+                        <div class="modal fade" id="pskck" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="spskck-satu-Label" aria-hidden="true">
                             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -171,7 +171,7 @@
                                         </td>
                                     </tr>
 
-                                    <!-- Modal Edit SKTM Satu Orang -->
+                                    <!-- Modal Edit spskck Satu Orang -->
                                     <div class="modal fade" id="Modal-Edit-PSKCK{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Modal-Edit-PSKCK-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                             <div class="modal-content">
@@ -179,7 +179,7 @@
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="Modal-Edit-PSKCK-Label">Edit Data SKTM {{$value->nomor_surat}}</h1>
+                                                        <h1 class="modal-title fs-5" id="Modal-Edit-PSKCK-Label">Edit Data Surat Pengantar SKCK {{$value->nomor_surat}}</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -261,7 +261,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <input type="hidden" name="jenis_pskck" class="form-control" value="{{$value->jenis_pskck}}" >
+                                                            <input type="hidden" name="jenis_skck" class="form-control" value="{{$value->jenis_skck}}" >
                                                         </div>
                                                         <div class="row">
                                                             <input type="hidden" name="status_surat" class="form-control" value="{{$value->status_surat}}" >

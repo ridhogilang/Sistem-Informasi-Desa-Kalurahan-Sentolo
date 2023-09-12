@@ -35,7 +35,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/p-ektp" class="{{ ($title == "Surat Pengantar E-KTP") ? 'active' : '' }}">
+                            <a href="/surat-pektp" class="{{ ($title == "Surat Pengantar E-KTP") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Pengantar E-KTP</span>
                             </a>
                         </li>

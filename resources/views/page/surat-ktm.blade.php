@@ -19,7 +19,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Pilih Jenis SKTM</h5>
+                        <h5 class="card-title">Pilih Jenis Surat Keterangan Tidak Mampu</h5>
 
                         <div class="d-flex justify-content-between">
                             <div>
@@ -346,7 +346,7 @@
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="Modal-Edit-SKTM-Satu-Label">Edit Data SKTM {{$value->nomor_surat}}</h1>
+                                                        <h1 class="modal-title fs-5" id="Modal-Edit-SKTM-Satu-Label">Edit Data Surat Keterangan Tidak Mampu 1 Orang {{$value->nomor_surat}}</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -457,7 +457,7 @@
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="Modal-Edit-SKTM-Dua-Label">Edit Data SKTM {{$value->nomor_surat}}</h1>
+                                                        <h1 class="modal-title fs-5" id="Modal-Edit-SKTM-Dua-Label">Edit Data Surat Keterangan Tidak Mampu 2 Orang {{$value->nomor_surat}}</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">

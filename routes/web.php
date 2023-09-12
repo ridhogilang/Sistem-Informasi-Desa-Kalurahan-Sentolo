@@ -4,7 +4,7 @@ use App\Http\Controllers\SktmSatuController;
 use App\Http\Controllers\SktmDuaController;
 use App\Http\Controllers\SkbmController;
 use App\Http\Controllers\SpbmController;
-use App\Http\Controllers\PektpController;
+use App\Http\Controllers\SpektpController;
 use App\Http\Controllers\SpskckController;
 
 use Illuminate\Support\Facades\Route;
@@ -87,7 +87,8 @@ Route::get('/surat-pskck/{id}/view', [SpskckController::class, 'show']);
 Route::put('/surat-pskck/{id}', [SpskckController::class, 'update']);
 Route::get('/contoh-surat-pskck/view', [SpskckController::class, 'contoh']);
 // Surat Pengantar E-KTP
-Route::get('/p-ektp', [PektpController::class, 'index']);
-Route::post('/surat-pektp', [PektpController::class, 'store']);
-Route::put('/surat-pektp{id}/edit', [PektpController::class, 'update']);
-Route::get('/surat-pektp/{id}/view', [PektpController::class, 'show']);
+Route::get('/surat-pektp', [SpektpController::class, 'index']);
+Route::post('/surat-pektp', [SpektpController::class, 'store']);
+Route::put('/surat-pektp{id}/edit', [SpektpController::class, 'update']);
+Route::get('/surat-pektp/{id}/view', [SpektpController::class, 'show']);
+Route::get('/contoh-surat-pektp/view', [SpektpController::class, 'contoh']);

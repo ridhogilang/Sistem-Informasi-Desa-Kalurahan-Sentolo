@@ -127,8 +127,10 @@ class SpskckController extends Controller
             'min' => 'Masukkan 16 Digit NIK.',
             'unique' => 'Nomor Surat sudah digunakan.',
         ]);
-        Spskck::where('id')->update($record);
-        return redirect()->back()->with('toast_sukses','data diubah!');
+        Spskck::where('id', $id)->update($record);
+        return redirect()->back()->with('toast_success', 'Data Diubah!');
+        // Spskck::where('id')->update($record);
+        // return redirect()->back()->with('toast_sukses','data diubah!');
     }
     public function destroy(Spskck $spskck)
     {

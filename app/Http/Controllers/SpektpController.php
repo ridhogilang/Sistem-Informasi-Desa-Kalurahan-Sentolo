@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pektp;
-use App\Http\Requests\StorePektpRequest;
-use App\Http\Requests\UpdatePektpRequest;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Spektp;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Validation\Rule;
 
-class PektpController extends Controller
+class SpektpController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class PektpController extends Controller
     public function index()
     {
      // Gabungkan hasil dari kedua query menjadi satu array
-    $pektp = Pektp::all();
+    $pektp = Spektp::all();
     $bulanSekarang = date('n');
     $angkaRomawi = [
         1 => 'I',
@@ -60,7 +59,6 @@ class PektpController extends Controller
             'pekerjaan' => 'required',
             'agama' => 'required',
             'alamat' => 'required',
-            'deskripsi' => 'required',
             'jenis_pektp' => 'required',
             'status_surat' => 'required',
         ], [
@@ -68,9 +66,9 @@ class PektpController extends Controller
             'min' => 'Masukkan 16 Digit NIK.',
         ]);
         $nomor = str_replace("/", "-", $record['nomor_surat']);
-        $record['id'] = 'PEKTP-'.$nomor;
+        $record['id'] = 'SP-EKTP-'.$nomor;
         // Menggunakan metode create untuk membuat dan menyimpan data
-        Pektp::create($record);
+        Spektp::create($record);
 
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
     }
@@ -80,7 +78,7 @@ class PektpController extends Controller
      */
     public function show($id)
     {
-        $pektp = Pektp::findOrFail($id);
+        $pektp = Spektp::findOrFail($id);
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
         $data = view('template.surat-pektp', compact('pektp'))->render();
         // Membuat instance DomPDF
@@ -119,7 +117,6 @@ class PektpController extends Controller
             'pekerjaan' => 'required',
             'agama' => 'required',
             'alamat' => 'required',
-            'deskripsi' => 'required',
             'jenis_pektp' => 'required',
             'status_surat' => 'required',
         ], [
@@ -127,14 +124,14 @@ class PektpController extends Controller
             'min' => 'Masukkan 16 Digit NIK.',
         ]);
 
-        Pektp::where('id', $id)->update($record);
+        Spektp::where('id', $id)->update($record);
         return redirect()->back()->with('toast_success', 'Data Diubah!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pektp $pektp)
+    public function destroy(Spektp $pektp)
     {
         //
     }
