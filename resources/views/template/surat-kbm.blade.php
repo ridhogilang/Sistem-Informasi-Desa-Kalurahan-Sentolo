@@ -129,7 +129,7 @@
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160; Yang Bertanda Tangan di bawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo menerangkan dengan sebenernya bahwa ;
+                        &#160; &#160; &#160; &#160; Yang Bertanda Tangan di bawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo menerangkan dengan sebenernya bahwa :
                     </p>
                 </td>
             </tr>
@@ -176,7 +176,7 @@
                 <td>
                     <p>
                         &#160; &#160; &#160; &#160; Orang tersebut di atas sampai saat ini betul-betul berstatus <strong>{{$skbm->deskripsi}}</strong>
-                        Demikian Surat Keterangan ini diberikan, kemudian untuk dapat dipergunakan sebagaimana mestinya.
+                        Demikian surat Keterangan ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SkdudaController;
 use App\Http\Controllers\SktmSatuController;
 use App\Http\Controllers\SktmDuaController;
 use App\Http\Controllers\SkbmController;
@@ -70,6 +71,12 @@ Route::post('/surat-ktm-dua', [SktmDuaController::class, 'store']);
 Route::put('/surat-ktm-dua/{id}', [SktmDuaController::class, 'update']);
 Route::get('/surat-ktm-dua/{id}/view', [SktmDuaController::class, 'show']);
 Route::get('/contoh-surat-ktm-dua/view', [SktmDuaController::class, 'contoh']);
+// SK Duda / Janda
+Route::get('/surat-kduda', [SkdudaController::class, 'index']);
+Route::post('/surat-kduda', [SkdudaController::class, 'store']);
+Route::get('/surat-kduda/{id}/view', [SkdudaController::class, 'show']);
+Route::put('/surat-kduda/{id}', [SkdudaController::class, 'update']);
+Route::get('/contoh-surat-kduda/view', [SkdudaController::class, 'contoh']);
 // Pernyataan Belum Menikah
 Route::get('/surat-pbm', [SpbmController::class, 'index']);
 Route::post('/surat-spbm', [SpbmController::class, 'store']);

@@ -57,8 +57,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/surat-duda" class="{{ ($title == "Surat Keterangan Duda") ? 'active' : '' }}">
-                                <i class="bi bi-circle"></i><span>Keterangan Duda</span>
+                            <a href="/surat-kduda" class="{{ ($title == "Surat Keterangan Duda / Janda") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Keterangan Duda / Janda</span>
                             </a>
                         </li>
                         <li>

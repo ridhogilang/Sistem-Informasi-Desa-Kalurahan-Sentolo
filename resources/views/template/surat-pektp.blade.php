@@ -136,7 +136,7 @@
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160; Yang bertanda tangan dibawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo, menerangkan bahwa ;
+                        &#160; &#160; &#160; &#160; Yang bertanda tangan dibawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo, menerangkan bahwa :
                     </p>
                 </td>
             </tr>
@@ -183,7 +183,7 @@
                 <td>
                     <p>
                         &#160; &#160; &#160; &#160; Nama diatas adalah penduduk Kalurahan Sentolo, Kabupaten Kulon Progo yang telah memenuhi syarat dan ketentuan untuk melakukan perekaman E-KTP.
-                        <br>&#160; &#160; &#160; Demikian surat pengantar ini dibuat dengan sebenarnya untuk dapat dipergunakan sebagaimana mestinya. Atas kerjasamanya diucapkan terima kasih.
+                        <br>&#160; &#160; &#160; Demikian surat Pengantar ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>
