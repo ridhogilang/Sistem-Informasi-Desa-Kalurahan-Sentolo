@@ -62,7 +62,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/surat-tidak-bekerja" class="{{ ($title == "Surat Tidak Bekerja") ? 'active' : '' }}">
+                            <a href="/surat-ktbekerja" class="{{ ($title == "Surat Tidak Bekerja") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Keterangan Tidak Bekerja</span>
                             </a>
                         </li>

@@ -7,6 +7,7 @@ use App\Http\Controllers\SkkematianController;
 use App\Http\Controllers\SpbmController;
 use App\Http\Controllers\SpektpController;
 use App\Http\Controllers\SpskckController;
+use App\Http\Controllers\SktbekerjaController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -99,3 +100,9 @@ Route::post('/surat-kkematian', [SkkematianController::class, 'store']);
 Route::put('/surat-kkematian{id}/edit', [SkkematianController::class, 'update']);
 Route::get('/surat-kkematian/{id}/view', [SkkematianController::class, 'show']);
 Route::get('/contoh-surat-kkematian/view', [SkkematianController::class, 'contoh']);
+// Surat Keterangan Tidak Bekerja
+Route::get('/surat-ktbekerja', [sktbekerjaController::class, 'index']);
+Route::post('/surat-ktbekerja', [sktbekerjaController::class, 'store']);
+Route::put('/surat-ktbekerja/{id}/edit', [sktbekerjaController::class, 'update']);
+Route::get('/surat-ktbekerja/{id}/view', [sktbekerjaController::class, 'show']);
+Route::get('/contoh-surat-ktbekerja/view', [sktbekerjaController::class, 'contoh']);
