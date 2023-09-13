@@ -130,7 +130,7 @@
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160; Yang bertanda tangan dibawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo, menerangkan bahwa ;
+                        &#160; &#160; &#160; &#160; Yang bertanda tangan dibawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo, menerangkan bahwa :
                     </p>
                 </td>
             </tr>
@@ -213,7 +213,7 @@
                 <td>
                     <p>
                         &#160; &#160; &#160; &#160; Bahwa bersangkutan tersebut adalah benar dari keluarga kurang mampu.
-                        Demikian Surat Keterangan ini dibuat agar dapat dipergunakan untuk sebagaimana mestinya.
+                        Demikian surat Keterangan ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>
@@ -221,7 +221,7 @@
 
         <table class="enam">
             <tr>
-                <p>Sentolo, 01-01-2023</p>
+                <p>Sentolo, 01 Januari 2023</p>
             </tr>
         </table>
         <table  class="tujuh">

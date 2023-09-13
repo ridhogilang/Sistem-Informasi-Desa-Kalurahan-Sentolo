@@ -136,7 +136,7 @@
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160; Yang bertanda tangan dibawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo, menerangkan bahwa ;
+                        &#160; &#160; &#160; &#160; Yang bertanda tangan dibawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo, menerangkan bahwa :
                     </p>
                 </td>
             </tr>
@@ -196,7 +196,7 @@
                         <li>Tidak terlibat dalam penggunaan Narkoba.</li>
                     </ol>
                     <p>
-                        &#160; &#160; &#160; &#160; Surat Pengantar ini diberikan kepada yang bersangkutan untuk Kelengkapan Administrasi pengurusan SKCK.
+                        &#160; &#160; &#160; &#160; Demikian surat Pengantar ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>

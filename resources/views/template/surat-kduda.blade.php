@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>SURAT PERNYATAAN BELUM MENIKAH | {{$spbm->nik}}</title>
+    <title>SURAT KETERANGAN DUDA / JANDA | {{$skduda->nik}}</title>
     <style>
         table tr td {
             font-size: 13px;
@@ -37,14 +37,13 @@
         }
 
         .hrsatu{
-            margin-left:199px;
+            margin-left:213px;
             margin-top:-3px;
-            width:314px
+            width:289px
         }
 
         .tiga{
             margin-top:10px;
-            margin-bottom: 20px;
         }
         .nosurat{
             margin-top:-12px;
@@ -61,7 +60,6 @@
         .lima{
             margin-left: 80px;
         }
-
         .lima tr .template {
             font-size: 17px;
             padding-right: 20px;
@@ -78,26 +76,17 @@
              font-family: Arial;
          }
 
-        .enam p{
-            margin-top: 5px;
-            margin-left: 490px;
-            line-height: 1.5;
-        }
-        .enam .namapernyataan{
-            text-align: center;
-        }
+         .enam{
+             margin-top: 5px;
+             margin-left: 460px;
+         }
 
          .tujuh{
-            margin-left: 100px;
-            margin-top: -180px;
-            line-height: 1.5;
+            margin-left: 450px;
+            margin-top: -30px;
          }
 
          .namadesa{
-             margin-left: 10px;
-             margin-top:50px;
-         }
-         .namapernyataan{
              margin-left: 20px;
              margin-top:50px;
          }
@@ -111,12 +100,26 @@
 
 <body>
     <center>
-        <br>
+        <table class="satu">
+            <tr >
+                <td><img src="{{ public_path('template/img/kop_surat.jpg') }}" style="width: 97%; height:auto"></td>
+            </tr>
+        </table>
         <table class="tiga">
             <tr>
                 <td width="538">
                     <center>
-                        <font size="3"><b>SURAT PERNYATAAN BELUM MENIKAH </b></font><br>
+                        <font size="3"><b>SURAT KETERANGAN DUDA / JANDA </b></font><br>
+                        <hr class="hrsatu">
+                    </center>
+                </td>
+            </tr>
+        </table>
+        <table class="nosurat">
+            <tr>
+                <td width="537">
+                    <center>
+                        <font size="2">Nomor : {{$skduda->nomor_surat}}</font>
                     </center>
                 </td>
             </tr>
@@ -124,56 +127,66 @@
 
         <table class="empat">
             <tr>
-                <td><p> &#160; &#160; &#160; &#160; &#160; Yang Bertanda Tangan di bawah ini :</p></td>
+                <td>
+                    <p>
+                        &#160; &#160; &#160; &#160; Yang Bertanda Tangan di bawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo menerangkan dengan sebenernya bahwa :
+                    </p>
+                </td>
             </tr>
         </table>
         <table  class="lima">
             <tr>
-                <td class="template"> Nama</td>
+                <td class="template">Nama</td>
                 <td>:</td>
-                <td>{{$spbm->nama}}</td>
+                <td>{{$skduda->nama}}</td>
             </tr>
             <tr>
-                <td class="template"> NIK</td>
+                <td class="template">NIK</td>
                 <td>:</td>
-                <td>{{$spbm->nik}}</td>
+                <td>{{$skduda->nik}}</td>
             </tr>
             <tr>
                 <td class="template">Jenis Kelamin</td>
                 <td>:</td>
-                <td>{{$spbm->jenis_kelamin}}</td>
+                <td>{{$skduda->jenis_kelamin}}</td>
             </tr>
             <tr>
                 <td class="template">Tempat / Tanggal Lahir</td>
                 <td>:</td>
-                <td>{{$spbm->tempat_lahir}} / {{date('d-m-Y',strtotime($spbm->tanggal_lahir))}}  </td>
+                <td>{{$skduda->tempat_lahir}} / {{date('d-m-Y',strtotime($skduda->tanggal_lahir))}}  </td>
+            </tr>
+            <tr>
+                <td class="template">Kewarganegaraan</td>
+                <td>:</td>
+                <td>{{$skduda->kewarganegaraan}}</td>
             </tr>
             <tr>
                 <td class="template">Agama</td>
                 <td>:</td>
-                <td>{{$spbm->agama}}</td>
+                <td>{{$skduda->agama}}</td>
+            </tr>
+            <tr>
+                <td class="template">Status Perkawinan</td>
+                <td>:</td>
+                <td>{{$skduda->status_perkawinan}}</td>
             </tr>
             <tr>
                 <td class="template">Pekerjaan</td>
                 <td>:</td>
-                <td>{{$spbm->pekerjaan}}</td>
+                <td>{{$skduda->pekerjaan}}</td>
             </tr>
             <tr>
                 <td class="template" style="vertical-align: top;">Alamat</td>
                 <td style="vertical-align: top;">:</td>
-                <td style="max-width: 405px; word-wrap: break-word;">{{ $spbm->alamat }}</td>
-
+                <td style="max-width: 400px; word-wrap: break-word;">{{ $skduda->alamat }}</td>
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; Dengan ini saya menyatakan bahwa saya sampai saat ini berstatus <strong>{{$spbm->deskripsi}}</strong>
-                        Apabila pernyataan ini tidak benar saya siap menanggung segala akibat dan bersedia dituntut dimuka hukum sesuai dengan peraturan  perundangan yang berlaku.
-                        <br>
-                        &#160; &#160; &#160; &#160; Surat ini saya buat dengan kesadaran sendiri tanpa ada paksaan dan atau tekanan dari pihak manapun dalam keadaan sehat jasmani maupun rohani.
-                        Demikian surat Pernyataan ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
+                        &#160; &#160; &#160; &#160; Menerangkan bahwa benar nama tersebut sampai saat ini, belum menikah lagi secara hukum yang berlaku atau Duda / Janda.
+                        Demikian surat Keterangan ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>
@@ -181,27 +194,14 @@
 
         <table class="enam">
             <tr>
-                <p>
-                    Sentolo, {{ \Carbon\Carbon::parse($spbm['created_at'])->translatedFormat('j F Y') }}<br>
-                    Yang membuat pernyataan,
-                </p>
-                <p class="namapernyataan"><br><br><br>
-                    <b>({{$spbm->nama}})</b>
-                </p>
+                <p>Sentolo, {{ \Carbon\Carbon::parse($skduda['created_at'])->translatedFormat('j F Y') }}</p>
             </tr>
         </table>
-        <table class="tujuh">
+        <table  class="tujuh">
             <tr>
-                <p>
-                    &#160; Mengetahui :
-                    <br>Lurah Sentolo<br>
-                </p>
-                <p class="namadesa"><br>
-                    <b>(TEGUH)</b>
-                </p>
+                <td> <p>&#160; &#160; &#160; &#160; &#160; &#160; Lurah Sentolo</p>  <br>  <p class="namadesa">&#160; &#160; &#160; &#160; &#160; <b>(TEGUH) </b></p></td>
             </tr>
         </table>
-
     </center>
 </body>
 </html>
