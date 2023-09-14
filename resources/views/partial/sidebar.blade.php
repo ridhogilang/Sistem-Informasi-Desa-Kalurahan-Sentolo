@@ -71,6 +71,11 @@
                                 <i class="bi bi-circle"></i><span>Keterangan Kematian</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="/surat-pk" class="{{ ($title == "Surat Pengantar Kependudukan") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Pengantar Kependudukan</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
