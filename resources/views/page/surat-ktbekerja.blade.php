@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Surat KETERANGAN TIDAK BEKERJA</h1>
+        <h1>Surat Keterangan Tidak Bekerja</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item">Surat</li>
-                <li class="breadcrumb-item active">Keterangan TIDAK BEKERJA</li>
+                <li class="breadcrumb-item active">Keterangan tidak bekerja</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -19,7 +19,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Keterangan TIDAK BEKERJA</h5>
+                        <h5 class="card-title">Keterangan Tidak Bekerja</h5>
 
                         <div class="d-flex justify-content-between">
                             <div>
@@ -34,7 +34,7 @@
                             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="ktbekerja">Data Surat Keterangan TIDAK BEKERJA</h1>
+                                        <h1 class="modal-title fs-5" id="ktbekerja">Data Surat Keterangan Tidak Bekerja</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">

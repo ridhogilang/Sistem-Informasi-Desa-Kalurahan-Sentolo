@@ -197,7 +197,7 @@
 
         <table class="enam">
             <tr>
-                <p>Sentolo, 1 Januari 2023</p>
+                <p>Sentolo,  {{ \Carbon\Carbon::parse($skkematian['created_at'])->translatedFormat('j F Y') }}</p>
             </tr>
         </table>
         <table  class="tujuh">
