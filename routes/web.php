@@ -9,7 +9,7 @@ use App\Http\Controllers\SpbmController;
 use App\Http\Controllers\SpektpController;
 use App\Http\Controllers\SpskckController;
 use App\Http\Controllers\SktbekerjaController;
-
+use App\Http\Controllers\SpnController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -89,6 +89,12 @@ Route::post('/surat-kbm', [SkbmController::class, 'store']);
 Route::get('/surat-kbm/{id}/view', [SkbmController::class, 'show']);
 Route::put('/surat-kbm/{id}', [SkbmController::class, 'update']);
 Route::get('/contoh-surat-kbm/view', [SkbmController::class, 'contoh']);
+// Pengantar Nikah
+Route::get('/surat-pn', [SpnController::class, 'index']);
+Route::post('/surat-pn', [SpnController::class, 'store']);
+Route::get('/surat-pn/{id}/view', [SpnController::class, 'show']);
+Route::put('/surat-pn/{id}', [SpnController::class, 'update']);
+Route::get('/contoh-surat-pn/view', [SpnController::class, 'contoh']);
 // Surat Pengantar SKCK
 Route::get('/surat-pskck', [SpskckController::class, 'index']);
 Route::post('/surat-pskck', [SpskckController::class, 'store']);

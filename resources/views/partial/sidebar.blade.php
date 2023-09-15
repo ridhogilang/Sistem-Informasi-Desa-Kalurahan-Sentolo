@@ -35,6 +35,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="/surat-pn" class="{{ ($title == "Surat Pengantar Nikah") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Pengantar Nikah</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="/surat-pektp" class="{{ ($title == "Surat Pengantar E-KTP") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Pengantar E-KTP</span>
                             </a>
