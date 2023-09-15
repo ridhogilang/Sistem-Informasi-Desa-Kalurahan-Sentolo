@@ -2,26 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sbm;
-use App\Models\Spbm;
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
+use App\Models\Spn;
 use Illuminate\Routing\Controller;
-use App\Http\Requests\StoreSpbmRequest;
-use App\Http\Requests\UpdateSpbmRequest;
-use Illuminate\Validation\Rule;
+use App\Http\Requests\StoreSpnRequest;
+use App\Http\Requests\UpdateSpnRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
-class SpbmController extends Controller
+
+class SpnController extends Controller
 {
-    public function __construct()
-    {
-        Carbon::setLocale('id');
-    }
+   public function __construct() 
+   {
+    Carbon::setLocale('id');
+   }
     public function index()
     {
-
-        $spbm = Spbm::all();
+        $spn = Spn::all();
         $bulanSekarang = date('n');
         $angkaRomawi = [
             1 => 'I',
@@ -40,97 +39,128 @@ class SpbmController extends Controller
         $bulanRomawi = $angkaRomawi[$bulanSekarang];
         $TemplateNoSurat = "000/KMS/{$bulanRomawi}/" . date('Y');
 
-        return view('page.surat-pbm', [
+        return view('page.surat-pn', [
             'dropdown1' => 'Surat Keluar',
             'dropdown2' => 'Kemasyarakatan',
-            'title' => 'Surat Pernyataan Belum Menikah',
+            'title' => 'Surat Pernyataan Nikah',
             'TemplateNoSurat' => $TemplateNoSurat
-        ])->with('spbm', $spbm);
+        ])->with('spn', $spn);
     }
 
-
+    /**
+     * Show the form for creating a new resource.
+     */
     public function store(Request $request)
-
     {
         $record = $request->validate([
             'nomor_surat' => [
                 'required',
                 'unique:spbm,nomor_surat', // Pastikan nomor surat unik di tabel sktm_satu
             ],
+            'deskripsi1' => 'required',
             'nama' => 'required',
             'nik' => 'required|min:16',
-            'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
             'agama' => 'required',
             'pekerjaan' => 'required',
             'alamat' => 'required',
-            'deskripsi' => 'required',
-            'jenis_spbm' => 'required',
+            // Ayah
+            'namaayah' => 'required',
+            'nikayah' => 'required|min:16',
+            'tempat_lahirayah' => 'required',
+            'tanggal_lahirayah' => 'required',
+            'jenis_kelaminayah' => 'required',
+            'agamaayah' => 'required',
+            'pekerjaanayah' => 'required',
+            'alamatayah' => 'required',
+            // Ibu
+            'namaibu' => 'required',
+            'nikibu' => 'required|min:16',
+            'tempat_lahiribu' => 'required',
+            'tanggal_lahiribu' => 'required',
+            'jenis_kelaminibu' => 'required',
+            'agamaibu' => 'required',
+            'pekerjaanibu' => 'required',
+            'alamatibu' => 'required',
+            'deskripsi2' => 'required',
+            'jenis_spn' => 'required',
             'status_surat' => 'required',
         ], [
             'unique' => 'Nomor Surat sudah digunakan.',
             'min' => 'Masukkan 16 Digit NIK.',
         ]);
         $nomor = str_replace("/", "-", $record['nomor_surat']);
-        $record['id'] = 'SPBM-'.$nomor;
+        $record['id'] = 'SPN-'.$nomor;
         // Menggunakan metode create untuk membuat dan menyimpan data
-        Spbm::create($record);
+        Spn::create($record);
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
     }
 
-    /**
-     * Display the specified resource.
-     */
+  
     public function show($id)
     {
-        $spbm = Spbm::findOrFail($id);
+        $spn = Spn::findOrFail($id);
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
-        $data = view('template.surat-pbm', compact('spbm'))->render();
+        $data = view('template.surat-pn', compact('spn'))->render();
         // Membuat instance DomPDF
         $pdf = Pdf::loadHTML($data);
         // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
         return $pdf->stream();
     }
-    public function contoh() {
-        // Menggunakan view untuk mengambil HTML dari template surat-ktm
-        $data = view('template.contoh-surat-pbm')->render();
-        // Membuat instance DomPDF
-        $pdf = Pdf::loadHTML($data);
-        // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
-        return $pdf->stream();
-    }
+
+  
     public function update(Request $request,$id)
     {
         $record = $request->validate([
             'nomor_surat' => [
                 'required',
-                Rule::unique('spbm', 'nomor_surat')->ignore($id), // Pastikan nomor surat unik di tabel spbm, kecuali untuk catatan dengan ID yang sama
+                Rule::unique('spn', 'nomor_surat')->ignore($id),// Pastikan nomor surat unik di tabel spbm, kecuali untuk catatan dengan ID yang sama
             ],
+            'deskripsi1' => 'required',
             'nama' => 'required',
             'nik' => 'required|min:16',
-            'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
             'agama' => 'required',
             'pekerjaan' => 'required',
             'alamat' => 'required',
-            'deskripsi' => 'required',
-            'jenis_spbm' => 'required',
+            // Ayah
+            'namaayah' => 'required',
+            'nikayah' => 'required|min:16',
+            'tempat_lahirayah' => 'required',
+            'tanggal_lahirayah' => 'required',
+            'jenis_kelaminayah' => 'required',
+            'agamaayah' => 'required',
+            'pekerjaanayah' => 'required',
+            'alamatayah' => 'required',
+            // Ibu
+            'namaibu' => 'required',
+            'nikibu' => 'required|min:16',
+            'tempat_lahiribu' => 'required',
+            'tanggal_lahiribu' => 'required',
+            'jenis_kelaminibu' => 'required',
+            'agamaibu' => 'required',
+            'pekerjaanibu' => 'required',
+            'alamatibu' => 'required',
+            'deskripsi2' => 'required',
+            'jenis_spn' => 'required',
             'status_surat' => 'required',
         ], [
             'min' => 'Masukkan 16 Digit NIK.',
             'unique' => 'Nomor Surat sudah digunakan.',
         ]);
 
-        Spbm::where('id', $id)->update($record);
+        Spn::where('id', $id)->update($record);
         return redirect()->back()->with('toast_success', 'Data Diubah!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Spbm $spbm)
+    public function destroy(Spn $spn)
     {
         //
     }

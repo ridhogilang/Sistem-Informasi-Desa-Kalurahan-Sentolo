@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pektp', function (Blueprint $table) {
+        Schema::create('ktbekerja', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('nomor_surat')->unique();
             $table->string('nama');
@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('tempat_lahir');
             $table->string('tanggal_lahir');
             $table->string('jenis_kelamin');
-            $table->string('pekerjaan');
             $table->string('agama');
+            $table->string('warga_negara');
             $table->string('alamat');
-            $table->string('jenis_pektp');
+            $table->string('jenis_ktbekerja');
             $table->string('status_surat');
             $table->timestamps();
         });
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pektp');
+        Schema::dropIfExists('sktbekerja');
     }
 };

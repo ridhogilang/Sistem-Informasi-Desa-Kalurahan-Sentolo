@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>SURAT KETERANGAN TIDAK MAMPU | {{$sktm->nik}}</title>
+    <title>SURAT KETERANGAN DUDA / JANDA | {{$skduda->nik}}</title>
     <style>
         table tr td {
             font-size: 13px;
@@ -17,7 +17,7 @@
         }
 
         .satu{
-            margin-left: 40px;
+            margin-left: 50px;
         }
         hr{
             width: 650px;
@@ -37,9 +37,9 @@
         }
 
         .hrsatu{
-            margin-left:199px;
+            margin-left:213px;
             margin-top:-3px;
-            width:314px
+            width:289px
         }
 
         .tiga{
@@ -60,17 +60,16 @@
         .lima{
             margin-left: 80px;
         }
-
         .lima tr .template {
             font-size: 17px;
             padding-right: 20px;
-            padding-top:3px;
+            padding-top:10px;
             /* margin-right: 10px; */
         }
         .lima tr td {
             font-size: 17px;
             padding-right: 5px;
-            padding-top:3px;
+            padding-top:10px;
         }
          P{
              font-size: 16px;
@@ -79,7 +78,7 @@
 
          .enam{
              margin-top: 5px;
-             margin-left: 450px;
+             margin-left: 460px;
          }
 
          .tujuh{
@@ -110,7 +109,7 @@
             <tr>
                 <td width="538">
                     <center>
-                        <font size="3"><b>SURAT KETERANGAN KURANG MAMPU </b></font><br>
+                        <font size="3"><b>SURAT KETERANGAN DUDA / JANDA </b></font><br>
                         <hr class="hrsatu">
                     </center>
                 </td>
@@ -120,7 +119,7 @@
             <tr>
                 <td width="537">
                     <center>
-                        <font size="2">Nomor : {{$sktm->nomor_surat}}</font>
+                        <font size="2">Nomor : {{$skduda->nomor_surat}}</font>
                     </center>
                 </td>
             </tr>
@@ -130,7 +129,7 @@
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160; Yang bertanda tangan dibawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo, menerangkan bahwa :
+                        &#160; &#160; &#160; &#160; Yang Bertanda Tangan di bawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo menerangkan dengan sebenernya bahwa :
                     </p>
                 </td>
             </tr>
@@ -139,80 +138,54 @@
             <tr>
                 <td class="template">Nama</td>
                 <td>:</td>
-                <td>{{$sktm->nama}}</td>
+                <td>{{$skduda->nama}}</td>
             </tr>
             <tr>
                 <td class="template">NIK</td>
                 <td>:</td>
-                <td>{{$sktm->nik}}</td>
+                <td>{{$skduda->nik}}</td>
+            </tr>
+            <tr>
+                <td class="template">Jenis Kelamin</td>
+                <td>:</td>
+                <td>{{$skduda->jenis_kelamin}}</td>
             </tr>
             <tr>
                 <td class="template">Tempat / Tanggal Lahir</td>
                 <td>:</td>
-                <td>{{$sktm->tempat_lahir}} / {{date('d-m-Y',strtotime($sktm->tanggal_lahir))}}  </td>
+                <td>{{$skduda->tempat_lahir}} / {{date('d-m-Y',strtotime($skduda->tanggal_lahir))}}  </td>
+            </tr>
+            <tr>
+                <td class="template">Kewarganegaraan</td>
+                <td>:</td>
+                <td>{{$skduda->kewarganegaraan}}</td>
             </tr>
             <tr>
                 <td class="template">Agama</td>
                 <td>:</td>
-                <td>{{$sktm->agama}}</td>
+                <td>{{$skduda->agama}}</td>
+            </tr>
+            <tr>
+                <td class="template">Status Perkawinan</td>
+                <td>:</td>
+                <td>{{$skduda->status_perkawinan}}</td>
             </tr>
             <tr>
                 <td class="template">Pekerjaan</td>
                 <td>:</td>
-                <td>{{$sktm->pekerjaan}}</td>
+                <td>{{$skduda->pekerjaan}}</td>
             </tr>
             <tr>
                 <td class="template" style="vertical-align: top;">Alamat</td>
                 <td style="vertical-align: top;">:</td>
-                <td style="max-width: 405px; word-wrap: break-word;">{{$sktm->alamat}}</td>
+                <td style="max-width: 400px; word-wrap: break-word;">{{ $skduda->alamat }}</td>
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
                     <p>
-                        Adalah {{$sktm->hubungan}} dari :
-                    </p>
-                </td>
-            </tr>
-        </table>
-        <table  class="lima">
-            <tr>
-                <td class="template">Nama</td>
-                <td>:</td>
-                <td>{{$sktm->nama_dua}}</td>
-            </tr>
-            <tr>
-                <td class="template">NIK</td>
-                <td>:</td>
-                <td>{{$sktm->nik_dua}}</td>
-            </tr>
-            <tr>
-                <td class="template">Tempat / Tanggal Lahir</td>
-                <td>:</td>
-                <td>{{$sktm->tempat_lahir_dua}} / {{date('d-m-Y',strtotime($sktm->tanggal_lahir_dua))}}  </td>
-            </tr>
-            <tr>
-                <td class="template">Agama</td>
-                <td>:</td>
-                <td>{{$sktm->agama_dua}}</td>
-            </tr>
-            <tr>
-                <td class="template">Pekerjaan</td>
-                <td>:</td>
-                <td>{{$sktm->pekerjaan_dua}}</td>
-            </tr>
-            <tr>
-                <td class="template" style="vertical-align: top;">Alamat</td>
-                <td style="vertical-align: top;">:</td>
-                <td style="max-width: 405px; word-wrap: break-word;">{{$sktm->alamat_dua}}</td>
-            </tr>
-        </table>
-        <table class="empat">
-            <tr>
-                <td>
-                    <p>
-                        &#160; &#160; &#160; &#160; {{$sktm->deskripsi}}
+                        &#160; &#160; &#160; &#160; Menerangkan bahwa benar nama tersebut sampai saat ini, belum menikah lagi secara hukum yang berlaku atau Duda / Janda.
                         Demikian surat Keterangan ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
@@ -221,12 +194,12 @@
 
         <table class="enam">
             <tr>
-                <p>Sentolo, {{ \Carbon\Carbon::parse($sktm['created_at'])->translatedFormat('j F Y') }}</p>
+                <p>Sentolo, {{ \Carbon\Carbon::parse($skduda['created_at'])->translatedFormat('j F Y') }}</p>
             </tr>
         </table>
         <table  class="tujuh">
             <tr>
-                <td> <p>&#160; &#160; &#160; &#160; Lurah Sentolo</p>  <br>  <p class="namadesa">&#160; &#160; &#160; <b>(TEGUH) </b></p></td>
+                <td> <p>&#160; &#160; &#160; &#160; &#160; &#160; Lurah Sentolo</p>  <br>  <p class="namadesa">&#160; &#160; &#160; &#160; &#160; <b>(TEGUH) </b></p></td>
             </tr>
         </table>
     </center>

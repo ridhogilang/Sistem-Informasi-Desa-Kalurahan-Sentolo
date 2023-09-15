@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>SURAT KETERANGAN TIDAK MAMPU | {{$sktm->nik}}</title>
+    <title>SURAT PERNYATAAN BELUM MENIKAH | 3401032201000001</title>
     <style>
         table tr td {
             font-size: 13px;
@@ -17,7 +17,7 @@
         }
 
         .satu{
-            margin-left: 40px;
+            margin-left: 50px;
         }
         hr{
             width: 650px;
@@ -44,6 +44,7 @@
 
         .tiga{
             margin-top:10px;
+            margin-bottom: 20px;
         }
         .nosurat{
             margin-top:-12px;
@@ -77,17 +78,26 @@
              font-family: Arial;
          }
 
-         .enam{
-             margin-top: 5px;
-             margin-left: 450px;
-         }
+        .enam p{
+            margin-top: 5px;
+            margin-left: 490px;
+            line-height: 1.5;
+        }
+        .enam .namapernyataan{
+            text-align: center;
+        }
 
          .tujuh{
-            margin-left: 450px;
-            margin-top: -30px;
+            margin-left: 100px;
+            margin-top: -180px;
+            line-height: 1.5;
          }
 
          .namadesa{
+             margin-left: 10px;
+             margin-top:50px;
+         }
+         .namapernyataan{
              margin-left: 20px;
              margin-top:50px;
          }
@@ -101,26 +111,12 @@
 
 <body>
     <center>
-        <table class="satu">
-            <tr >
-                <td><img src="{{ public_path('template/img/kop_surat.jpg') }}" style="width: 97%; height:auto"></td>
-            </tr>
-        </table>
+        <br>
         <table class="tiga">
             <tr>
                 <td width="538">
                     <center>
-                        <font size="3"><b>SURAT KETERANGAN KURANG MAMPU </b></font><br>
-                        <hr class="hrsatu">
-                    </center>
-                </td>
-            </tr>
-        </table>
-        <table class="nosurat">
-            <tr>
-                <td width="537">
-                    <center>
-                        <font size="2">Nomor : {{$sktm->nomor_surat}}</font>
+                        <font size="3"><b>SURAT PERNYATAAN BELUM MENIKAH </b></font><br>
                     </center>
                 </td>
             </tr>
@@ -128,61 +124,56 @@
 
         <table class="empat">
             <tr>
-                <td>
-                    <p>
-                        &#160; &#160; &#160; &#160; Yang bertanda tangan dibawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo, menerangkan bahwa :
-                    </p>
-                </td>
+                <td><p> &#160; &#160; &#160; &#160; &#160; Yang Bertanda Tangan di bawah ini :</p></td>
             </tr>
         </table>
-        <table class="lima">
+        <table  class="lima">
             <tr>
-                <td class="template">Nama</td>
+                <td class="template"> Nama</td>
                 <td>:</td>
-                <td>{{$sktm->nama}}</td>
+                <td>John Doe</td>
             </tr>
             <tr>
-                <td class="template">NIK</td>
+                <td class="template"> NIK</td>
                 <td>:</td>
-                <td>{{$sktm->nik}}</td>
+                <td>3401032201000001</td>
             </tr>
             <tr>
                 <td class="template">Jenis Kelamin</td>
                 <td>:</td>
-                <td>{{$sktm->jenis_kelamin}}</td>
+                <td>Laki-laki</td>
             </tr>
             <tr>
                 <td class="template">Tempat / Tanggal Lahir</td>
                 <td>:</td>
-                <td>{{$sktm->tempat_lahir}} / {{date('d-m-Y',strtotime($sktm->tanggal_lahir))}}  </td>
+                <td>Kulon Progo / 22-01-2000  </td>
             </tr>
             <tr>
                 <td class="template">Agama</td>
                 <td>:</td>
-                <td>{{$sktm->agama}}</td>
-            </tr>
-            <tr>
-                <td class="template">Status Perkawinan</td>
-                <td>:</td>
-                <td>{{$sktm->status_perkawinan}}</td>
+                <td>Islam</td>
             </tr>
             <tr>
                 <td class="template">Pekerjaan</td>
                 <td>:</td>
-                <td>{{$sktm->pekerjaan}}</td>
+                <td>Wiraswasta</td>
             </tr>
             <tr>
                 <td class="template" style="vertical-align: top;">Alamat</td>
                 <td style="vertical-align: top;">:</td>
-                <td style="max-width: 405px; word-wrap: break-word;">{{$sktm->alamat}}</td>
+                <td style="max-width: 405px; word-wrap: break-word;">Padukuhan Gedangan, RT 50 RW 24, Kalurahan Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo</td>
+
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160;{{$sktm->deskripsi}}
-                        Demikian surat Keterangan ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
+                        &#160; &#160; &#160; Dengan ini saya menyatakan bahwa saya sampai saat ini berstatus <strong>Belum Pernah Menikah.</strong>
+                        Apabila pernyataan ini tidak benar saya siap menanggung segala akibat dan bersedia dituntut dimuka hukum sesuai dengan peraturan  perundangan yang berlaku.
+                        <br>
+                        &#160; &#160; &#160; &#160; Surat ini saya buat dengan kesadaran sendiri tanpa ada paksaan dan atau tekanan dari pihak manapun dalam keadaan sehat jasmani maupun rohani.
+                        Demikian surat Pernyataan ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>
@@ -190,14 +181,27 @@
 
         <table class="enam">
             <tr>
-                <p>Sentolo, {{ \Carbon\Carbon::parse($sktm['created_at'])->translatedFormat('j F Y') }}</p>
+                <p>
+                    &#160; Sentolo, 1 Januari 2023<br>
+                    Yang membuat pernyataan,
+                </p>
+                <p class="namapernyataan"><br><br><br>
+                    <b>(John Doe)</b>
+                </p>
             </tr>
         </table>
-        <table  class="tujuh">
+        <table class="tujuh">
             <tr>
-                <td> <P>&#160; &#160; &#160; &#160; Lurah Sentolo</P>  <br>  <P class="namadesa">&#160; &#160; &#160; <b>(TEGUH) </b></P></td>
+                <p>
+                    &#160; Mengetahui :
+                    <br>Lurah Sentolo<br>
+                </p>
+                <p class="namadesa"><br>
+                    <b>(TEGUH)</b>
+                </p>
             </tr>
         </table>
+
     </center>
 </body>
 </html>

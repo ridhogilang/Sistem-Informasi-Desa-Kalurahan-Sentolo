@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Surat Pengantar E-KTP</h1>
+        <h1>Surat Keterangan Kematian</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item">Surat Keluar</li>
-                <li class="breadcrumb-item active">Pengantar E-KTP</li>
+                <li class="breadcrumb-item">Surat</li>
+                <li class="breadcrumb-item active">Keterangan Kematian</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -19,26 +19,26 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Surat Pengantar E-KTP</h5>
+                        <h5 class="card-title">Surat Keterangan Kematian</h5>
 
                         <div class="d-flex justify-content-between">
                             <div>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#pektp"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Buat Surat</button>
-                                <a class="btn btn-success btn-sm" type="submit" target="blank" href="/contoh-surat-pektp/view"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat</a>
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#kkematian"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Buat Surat</button>
+                                <a class="btn btn-success btn-sm" type="submit" target="blank" href="/contoh-surat-kkematian/view"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat</a>
                             </div>
                         </div>
 
-                        <!-- Modal PEKTP -->
-                        <div class="modal fade" id="pektp" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="pektp-Label" aria-hidden="true">
+                        <!-- Modal KKEMATIAN -->
+                        <div class="modal fade" id="kkematian" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="kkematian-Label" aria-hidden="true">
                             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="pektp-Label">Data Surat Pengantar E-KTP</h1>
+                                        <h1 class="modal-title fs-5" id="kkematian-Label">Data Surat Keterangan Kematian</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row" action="/surat-pektp" method="POST">
+                                        <form class="row" action="/surat-kkematian" method="POST">
                                             @csrf
                                             <div class="row mb-3">
                                                 <label for="nomor_surat" class="col-sm-3 col-form-label">Nomor Surat</label>
@@ -59,16 +59,6 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="tempat_lahir" class="col-sm-4 col-form-label">Tempat / Tanggal Lahir</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir') }}" required>
-                                                </div>
-                                                <label for="tanggal_lahir" class="col-sm-1 col-form-label text-center">/</label>
-                                                <div class="col-sm-3">
-                                                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
                                                 <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                                 <div class="col-sm-9">
                                                     <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
@@ -76,6 +66,12 @@
                                                         <option value="Laki-laki" @if(old('jenis_kelamin') == 'Laki-laki') selected @endif>Laki-laki</option>
                                                         <option value="Perempuan" @if(old('jenis_kelamin') == 'Perempuan') selected @endif>Perempuan</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="umur" class="col-sm-3 col-form-label">Umur</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="umur" class="form-control" id="umur" value="{{ old('umur') }}" required>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -100,13 +96,35 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                                                <label for="kewarganegaraan" class="col-sm-3 col-form-label">Kewarganegaraan</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="alamat" class="form-control" id="alamat" value="{{ old('alamat') }}" required>
+                                                    <select id="kewarganegaraan" name="kewarganegaraan" class="form-select" required>
+                                                        <option value="" @if(old('kewarganegaraan') == '') selected @endif>Pilih Kewarganegaraan ...</option>
+                                                        <option value="Indonesia" @if(old('kewarganegaraan') == 'Indonesia') selected @endif>Indonesia</option>
+                                                        <option value="Asing" @if(old('kewarganegaraan') == 'Asing') selected @endif>Asing</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="status_perkawinan" class="col-sm-3 col-form-label">Status Perkawinan</label>
+                                                <div class="col-sm-9">
+                                                    <select id="status_perkawinan" name="status_perkawinan" class="form-select" required>
+                                                        <option value="" @if(old('status_perkawinan') == '') selected @endif>Pilih Status Perkawinan ...</option>
+                                                        <option value="Belum Menikah" @if(old('status_perkawinan') == 'Belum Menikah') selected @endif>Belum Menikah</option>
+                                                        <option value="Sudah Menikah" @if(old('status_perkawinan') == 'Sudah Menikah') selected @endif>Sudah Menikah</option>
+                                                        <option value="Janda" @if(old('status_perkawinan') == 'Janda') selected @endif>Janda</option>
+                                                        <option value="Duda" @if(old('status_perkawinan') == 'Duda') selected @endif>Duda</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="deskripsi" class="col-sm-3 col-form-label">Deskripsi</label>
+                                                <div class="col-sm-9">
+                                                    <textarea type="text" name="deskripsi" class="form-control" id="deskripsi" rows="3" required>Adalah benar-benar warga Kalurahan Sentolo, Kabupaten Kulon Progo dan yang bersangkutan Telah Meninggal Dunia pada hari... , tanggal..., jam...di Desa... </textarea>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <input type="hidden" name="jenis_pektp" class="form-control" value="pektp" >
+                                                <input type="hidden" name="jenis_kkematian" class="form-control" value="kkematian" >
                                             </div>
                                             <div class="row">
                                                 <input type="hidden" name="status_surat" class="form-control" value="Pending" >
@@ -126,7 +144,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="card-title">Data Surat Pengantar E-KTP</h5>
+                            <h5 class="card-title">Data Surat Keterangan Kematian</h5>
                         </div>
 
                         <!-- Table with hoverable rows -->
@@ -137,6 +155,7 @@
                                     <th scope="col">Nomor Surat</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">NIK</th>
+                                    <th scope="col">Umur</th>
                                     <th scope="col">Status</th>
                                     <th scope="col" class="text-center">Action</th>
                                 </tr>
@@ -145,29 +164,30 @@
                                 @php
                                     $no = 1;
                                 @endphp
-                                @foreach ($pektp as $value)
+                                @foreach ($kkematian as $value)
                                     <tr>
                                         <th scope="row">{{ $no++ }}.</th>
                                         <td>{{ $value->nomor_surat }}</td>
                                         <td>{{ $value->nama }}</td>
                                         <td>{{ $value->nik }}</td>
+                                        <td>{{ $value->umur }}</td>
                                         <td>{{ $value->status_surat }}</td>
                                         <td class="text-center">
-                                            <a class="btn btn-success" type="submit" target="blank" href="/surat-pektp/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
+                                            <a class="btn btn-success" type="submit" target="blank" href="/surat-kkematian/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
                                             <!-- Button trigger modal -->
-                                            <a class="btn btn-warning" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-PEKTP{{$value->id}}" href="/surat-pektp{{$value->id}}/edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a class="btn btn-warning" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-KKEMATIAN{{$value->id}}" href="/surat-kkematian{{$value->id}}/edit"><i class="fa-solid fa-pen-to-square"></i></a>
                                         </td>
                                     </tr>
 
-                                    <!-- Modal Edit PEKTP -->
-                                    <div class="modal fade" id="Modal-Edit-PEKTP{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Modal-Edit-SPEKTP-Satu-Label" aria-hidden="true">
+                                    <!-- Modal Edit KKEMATIAN -->
+                                    <div class="modal fade" id="Modal-Edit-KKEMATIAN{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Modal-Edit-KKEMATIAN-Satu-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                             <div class="modal-content">
-                                                <form action="/surat-pektp/{{$value->id}}/edit" method="POST" >
+                                                <form action="/surat-kkematian/{{$value->id}}/edit" method="POST" >
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="Modal-Edit-SPEKTP-Satu-Label">Edit Data Surat Pengantar E-KTP {{$value->nomor_surat}}</h1>
+                                                        <h1 class="modal-title fs-5" id="Modal-Edit-KKEMATIAN-Satu-Label">Edit Data Surat Keterangan Kematian {{$value->nomor_surat}}</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -200,13 +220,15 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="tempat_lahir3" class="col-sm-4 col-form-label">Tempat / Tanggal Lahir</label>
-                                                            <div class="col-sm-4">
-                                                                <input type="text" class="form-control" id="tempat_lahir3" name="tempat_lahir" value="{{$value->tempat_lahir}}" required>
+                                                            <label for="umur" class="col-sm-3 col-form-label">Umur</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="umur" class="form-control" id="umur" value="{{$value->umur}}" required>
                                                             </div>
-                                                            <label for="tanggal_lahir3" class="col-sm-1 col-form-label text-center">/</label>
-                                                            <div class="col-sm-3">
-                                                                <input type="date" class="form-control" id="tanggal_lahir3" name="tanggal_lahir" value="{{$value->tanggal_lahir}}" required>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="pekerjaan" class="col-sm-3 col-form-label">Pekerjaan</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" value="{{$value->pekerjaan}}" required>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
@@ -224,16 +246,27 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+
                                                         <div class="row mb-3">
-                                                            <label for="pekerjaan3" class="col-sm-3 col-form-label">Pekerjaan</label>
+                                                            <label for="kewarganegaraan" class="col-sm-3 col-form-label">Kewarganegaraan</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" name="pekerjaan" class="form-control" id="pekerjaan3" value="{{$value->pekerjaan}}" required>
+                                                                <select id="kewarganegaraan" name="kewarganegaraan" class="form-select" required>
+                                                                    <option value="" >Pilih Kewarganegaraan ...</option>
+                                                                    <option value="Indonesia" {{ ($value->kewarganegaraan == "Indonesia") ? 'selected' : '' }}>Indonesia</option>
+                                                                    <option value="Asing" {{ ($value->kewarganegaraan == "Asing") ? 'selected' : '' }}>Asing</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="alamat3" class="col-sm-3 col-form-label">Alamat</label>
+                                                            <label for="status_perkawinan3" class="col-sm-3 col-form-label">Status Perkawinan</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" name="alamat" class="form-control" id="alamat3" value="{{$value->alamat}}" required>
+                                                                <select id="status_perkawinan3" name="status_perkawinan" class="form-select" required>
+                                                                    <option value="">Pilih Status Perkawinan ...</option>
+                                                                    <option value="Belum Menikah" {{ ($value->status_perkawinan == "Belum Menikah") ? 'selected' : '' }}>Belum Menikah</option>
+                                                                    <option value="Sudah Menikah" {{ ($value->status_perkawinan == "Sudah Menikah") ? 'selected' : '' }}>Sudah Menikah</option>
+                                                                    <option value="Janda" {{ ($value->status_perkawinan == "Janda") ? 'selected' : '' }}>Janda</option>
+                                                                    <option value="Duda" {{ ($value->status_perkawinan == "Duda") ? 'selected' : '' }}>Duda</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="row">

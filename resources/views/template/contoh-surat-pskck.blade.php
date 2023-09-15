@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>SURAT KETERANGAN TIDAK MAMPU | {{$sktm->nik}}</title>
+    <title>SURAT PENGANTAR SKCK | 3401030101200001</title>
     <style>
         table tr td {
             font-size: 13px;
@@ -17,7 +17,7 @@
         }
 
         .satu{
-            margin-left: 40px;
+            margin-left: 50px;
         }
         hr{
             width: 650px;
@@ -37,9 +37,9 @@
         }
 
         .hrsatu{
-            margin-left:199px;
+            margin-left:254px;
             margin-top:-3px;
-            width:314px
+            width:208px
         }
 
         .tiga{
@@ -56,21 +56,27 @@
             margin-right: 20px;
             line-height: 1.5;
         }
+        .empat ol li{
+            font-size: 17px;
+            margin-left: 40px;
+            text-align: justify;
+            margin-right: 20px;
+            line-height: 1.2;
+        }
 
         .lima{
             margin-left: 80px;
         }
-
         .lima tr .template {
             font-size: 17px;
             padding-right: 20px;
-            padding-top:3px;
+            padding-top:5px;
             /* margin-right: 10px; */
         }
         .lima tr td {
             font-size: 17px;
             padding-right: 5px;
-            padding-top:3px;
+            padding-top:5px;
         }
          P{
              font-size: 16px;
@@ -79,7 +85,7 @@
 
          .enam{
              margin-top: 5px;
-             margin-left: 450px;
+             margin-left: 460px;
          }
 
          .tujuh{
@@ -88,7 +94,7 @@
          }
 
          .namadesa{
-             margin-left: 20px;
+             margin-left: 60px;
              margin-top:50px;
          }
          .delapan hr{
@@ -110,7 +116,7 @@
             <tr>
                 <td width="538">
                     <center>
-                        <font size="3"><b>SURAT KETERANGAN KURANG MAMPU </b></font><br>
+                        <font size="3"><b>SURAT PENGANTAR SKCK</b></font><br>
                         <hr class="hrsatu">
                     </center>
                 </td>
@@ -120,7 +126,7 @@
             <tr>
                 <td width="537">
                     <center>
-                        <font size="2">Nomor : {{$sktm->nomor_surat}}</font>
+                        <font size="2">Nomor : 000/KMS/IX/2023</font>
                     </center>
                 </td>
             </tr>
@@ -139,81 +145,58 @@
             <tr>
                 <td class="template">Nama</td>
                 <td>:</td>
-                <td>{{$sktm->nama}}</td>
+                <td>John Doe</td>
             </tr>
             <tr>
                 <td class="template">NIK</td>
                 <td>:</td>
-                <td>{{$sktm->nik}}</td>
+                <td>3401030101200001</td>
+            </tr>
+            <tr>
+                <td class="template">Jenis Kelamin</td>
+                <td>:</td>
+                <td>Laki-laki</td>
             </tr>
             <tr>
                 <td class="template">Tempat / Tanggal Lahir</td>
                 <td>:</td>
-                <td>{{$sktm->tempat_lahir}} / {{date('d-m-Y',strtotime($sktm->tanggal_lahir))}}  </td>
+                <td>Kulon Progo / 01-01-2020</td>
             </tr>
             <tr>
                 <td class="template">Agama</td>
                 <td>:</td>
-                <td>{{$sktm->agama}}</td>
+                <td>Islam</td>
+            </tr>
+            <tr>
+                <td class="template">Status Perkawinan</td>
+                <td>:</td>
+                <td>Belum Menikah</td>
             </tr>
             <tr>
                 <td class="template">Pekerjaan</td>
                 <td>:</td>
-                <td>{{$sktm->pekerjaan}}</td>
+                <td>Pelajar</td>
             </tr>
             <tr>
                 <td class="template" style="vertical-align: top;">Alamat</td>
                 <td style="vertical-align: top;">:</td>
-                <td style="max-width: 405px; word-wrap: break-word;">{{$sktm->alamat}}</td>
+                <td style="max-width: 405px; word-wrap: break-word;">Padukuhan Gedangan, RT 50 RW 24, Kalurahan Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo</td>
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
                     <p>
-                        Adalah {{$sktm->hubungan}} dari :
+                        Benar yang tersebut namanya di atas adalah penduduk Kecamatan Sentolo, Kabupaten Kulon Progo. Berdasarkan catatan yang ada serta sepengetahuan kami dan lainnya:
                     </p>
-                </td>
-            </tr>
-        </table>
-        <table  class="lima">
-            <tr>
-                <td class="template">Nama</td>
-                <td>:</td>
-                <td>{{$sktm->nama_dua}}</td>
-            </tr>
-            <tr>
-                <td class="template">NIK</td>
-                <td>:</td>
-                <td>{{$sktm->nik_dua}}</td>
-            </tr>
-            <tr>
-                <td class="template">Tempat / Tanggal Lahir</td>
-                <td>:</td>
-                <td>{{$sktm->tempat_lahir_dua}} / {{date('d-m-Y',strtotime($sktm->tanggal_lahir_dua))}}  </td>
-            </tr>
-            <tr>
-                <td class="template">Agama</td>
-                <td>:</td>
-                <td>{{$sktm->agama_dua}}</td>
-            </tr>
-            <tr>
-                <td class="template">Pekerjaan</td>
-                <td>:</td>
-                <td>{{$sktm->pekerjaan_dua}}</td>
-            </tr>
-            <tr>
-                <td class="template" style="vertical-align: top;">Alamat</td>
-                <td style="vertical-align: top;">:</td>
-                <td style="max-width: 405px; word-wrap: break-word;">{{$sktm->alamat_dua}}</td>
-            </tr>
-        </table>
-        <table class="empat">
-            <tr>
-                <td>
+                    <ol>
+                        <li>Berkelakuan Baik, tidak pernah melakukan tindakan / perbuatan yang menyimpang atau norma sosial yang berlaku.</li>
+                        <li>Tidak bersangkut paut Perkara Kriminal.</li>
+                        <li>Tidak dalam status tahanan yang berwajib.</li>
+                        <li>Tidak terlibat dalam penggunaan Narkoba.</li>
+                    </ol>
                     <p>
-                        &#160; &#160; &#160; &#160; {{$sktm->deskripsi}}
-                        Demikian surat Keterangan ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
+                        &#160; &#160; &#160; &#160; Demikian surat Pengantar ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>
@@ -221,12 +204,12 @@
 
         <table class="enam">
             <tr>
-                <p>Sentolo, {{ \Carbon\Carbon::parse($sktm['created_at'])->translatedFormat('j F Y') }}</p>
+                <p>Sentolo, 1 Januari 2023</p>
             </tr>
         </table>
         <table  class="tujuh">
             <tr>
-                <td> <p>&#160; &#160; &#160; &#160; Lurah Sentolo</p>  <br>  <p class="namadesa">&#160; &#160; &#160; <b>(TEGUH) </b></p></td>
+                <td> <P>&#160; &#160; &#160; &#160; &#160; &#160; Lurah Sentolo</P>  <br>  <P class="namadesa"><b>(TEGUH) </b></P></td>
             </tr>
         </table>
     </center>

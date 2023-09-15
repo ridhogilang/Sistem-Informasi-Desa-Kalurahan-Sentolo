@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SktmSatu extends Model
+class Skkematian extends Model
 {
     use HasFactory;
-    protected $table = 'sktm_satu';
+    protected $table = 'kkematian';
     protected $casts = ['id' => 'string'];
     protected $fillable = [
         'id',
@@ -16,14 +16,13 @@ class SktmSatu extends Model
         'nama',
         'nik',
         'jenis_kelamin',
-        'tempat_lahir',
-        'tanggal_lahir',
-        'agama',
-        'status_perkawinan',
+        'umur',
         'pekerjaan',
-        'alamat',
+        'agama',
+        'kewarganegaraan',
+        'status_perkawinan',
         'deskripsi',
-        'jenis_sktm',
+        'jenis_kkematian',
         'status_surat'
     ];
 }

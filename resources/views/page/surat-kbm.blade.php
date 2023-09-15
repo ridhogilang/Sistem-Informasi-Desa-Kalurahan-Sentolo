@@ -6,7 +6,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item">Surat</li>
+                <li class="breadcrumb-item">Surat Keluar</li>
                 <li class="breadcrumb-item active">Keterangan Belum Menikah</li>
             </ol>
         </nav>
@@ -19,20 +19,10 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Pilih Jenis SKBM</h5>
-
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#skbm"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Buat Surat</button>
-                                <a class="btn btn-success btn-sm" type="submit" target="blank" href="#"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat 1 Orang</a>
-                            </div>
-                            {{-- <div>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#sktm-dua"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Form 2 Orang</button>
-                                <a class="btn btn-success btn-sm" type="submit" target="blank" href="#"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat 2 Orang</a>
-                            </div>
-                        </div> --}}
+                        <h5 class="card-title">Keterangan Belum Menikah</h5>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#skbm"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Buat Surat</button>
+                        <a class="btn btn-success btn-sm" type="submit" target="blank" href="/contoh-surat-kbm/view"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat</a>
 
                         <!-- Modal Form 1 Orang -->
                         <div class="modal fade" id="skbm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="skbm-Label" aria-hidden="true">
@@ -54,78 +44,66 @@
                                             <div class="row mb-3">
                                                 <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="nama" class="form-control" id="nama" required>
+                                                    <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}" required>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="nik" class="col-sm-3 col-form-label">NIK</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="nik" class="form-control" id="nik" required>
+                                                    <input type="text" name="nik" class="form-control" id="nik" value="{{ old('nik') }}" required>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                                 <div class="col-sm-9">
                                                     <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
-                                                        <option value="" selected>Pilih Jenis Kelamin ...</option>
-                                                        <option value="Laki-laki">Laki-laki</option>
-                                                        <option value="Perempuan">Perempuan</option>
+                                                        <option value="" @if(old('jenis_kelamin') == '') selected @endif>Pilih Jenis Kelamin ...</option>
+                                                        <option value="Laki-laki" @if(old('jenis_kelamin') == 'Laki-laki') selected @endif>Laki-laki</option>
+                                                        <option value="Perempuan" @if(old('jenis_kelamin') == 'Perempuan') selected @endif>Perempuan</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="tempat_lahir" class="col-sm-4 col-form-label">Tempat / Tanggal Lahir</label>
                                                 <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" required>
+                                                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir') }}" required>
                                                 </div>
                                                 <label for="tanggal_lahir" class="col-sm-1 col-form-label text-center">/</label>
                                                 <div class="col-sm-3">
-                                                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+                                                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="agama" class="col-sm-3 col-form-label">Agama</label>
                                                 <div class="col-sm-9">
                                                     <select id="agama" name="agama" class="form-select" required>
-                                                        <option value="" selected>Pilih Agama ...</option>
-                                                        <option value="Islam">Islam</option>
-                                                        <option value="Kristen Protestan">Kristen Protestan</option>
-                                                        <option value="Kristen Katolik">Kristen Katolik</option>
-                                                        <option value="Hindu">Hindu</option>
-                                                        <option value="Buddha">Buddha</option>
-                                                        <option value="Konghucu">Konghucu</option>
-                                                        <option value="Lainnya">Lainnya</option>
+                                                        <option value="" @if(old('agama') == '') selected @endif>Pilih Agama ...</option>
+                                                        <option value="Islam" @if(old('agama') == 'Islam') selected @endif>Islam</option>
+                                                        <option value="Kristen Protestan" @if(old('agama') == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
+                                                        <option value="Kristen Katolik" @if(old('agama') == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
+                                                        <option value="Hindu" @if(old('agama') == 'Hindu') selected @endif>Hindu</option>
+                                                        <option value="Buddha" @if(old('agama') == 'Buddha') selected @endif>Buddha</option>
+                                                        <option value="Konghucu" @if(old('agama') == 'Konghucu') selected @endif>Konghucu</option>
+                                                        <option value="Lainnya" @if(old('agama') == 'Lainnya') selected @endif>Lainnya</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            {{-- <div class="row mb-3">
-                                                <label for="status_perkawinan" class="col-sm-3 col-form-label">Status Perkawinan</label>
-                                                <div class="col-sm-9">
-                                                    <select id="status_perkawinan" name="status_perkawinan" class="form-select" required>
-                                                        <option value="" selected>Pilih Status Perkawinan ...</option>
-                                                        <option value="Belum Menikah">Belum Menikah</option>
-                                                        <option value="Sudah Menikah">Sudah Menikah</option>
-                                                        <option value="Janda">Janda</option>
-                                                        <option value="Duda">Duda</option>
-                                                    </select>
-                                                </div>
-                                            </div> --}}
                                             <div class="row mb-3">
                                                 <label for="pekerjaan" class="col-sm-3 col-form-label">Pekerjaan</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" required>
+                                                    <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" value="{{ old('pekerjaan') }}" required>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="alamat" class="form-control" id="alamat" required maxlength="60" >
+                                                    <input type="text" name="alamat" class="form-control" id="alamat" value="{{ old('alamat') }}" required>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="deskripsi" class="col-sm-3 col-form-label">Deskripsi</label>
                                                 <div class="col-sm-9">
-                                                    <textarea type="text" name="deskripsi" class="form-control" id="deskripsi" rows="3" required>Perawan/Belum Pernah Menikah.</textarea>
+                                                    <textarea type="text" name="deskripsi" class="form-control" id="deskripsi" rows="3" required>Belum Pernah Menikah.</textarea>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -187,11 +165,11 @@
                                     <div class="modal fade" id="Modal-Edit-SKBM{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Modal-Edit-SKBM" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                             <div class="modal-content">
-                                                <form action="/surat-kbm/{{$value->id}}/edit" method="POST">
+                                                <form action="/surat-kbm/{{$value->id}}" method="POST">
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="Modal-Edit-SKTM-Satu-Label">Edit Data SKBM {{$value->nomor_surat}}</h1>
+                                                        <h1 class="modal-title fs-5" id="Modal-Edit-SKTM-Satu-Label">Edit Data Surat Keterangan Belum Menikah {{$value->nomor_surat}}</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">

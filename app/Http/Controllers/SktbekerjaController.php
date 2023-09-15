@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sbm;
-use App\Models\Spbm;
-use Illuminate\Support\Carbon;
-use Illuminate\Routing\Controller;
-use App\Http\Requests\StoreSpbmRequest;
-use App\Http\Requests\UpdateSpbmRequest;
-use Illuminate\Validation\Rule;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Sktbekerja;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Validation\Rule;
 
-class SpbmController extends Controller
+class SktbekerjaController extends Controller
 {
     public function __construct()
     {
@@ -20,8 +16,7 @@ class SpbmController extends Controller
     }
     public function index()
     {
-
-        $spbm = Spbm::all();
+        $Sktbekerja= Sktbekerja::all();
         $bulanSekarang = date('n');
         $angkaRomawi = [
             1 => 'I',
@@ -38,99 +33,104 @@ class SpbmController extends Controller
             12 => 'XII',
         ];
         $bulanRomawi = $angkaRomawi[$bulanSekarang];
-        $TemplateNoSurat = "000/KMS/{$bulanRomawi}/" . date('Y');
+        $TemplateNoSurat = "000/KET/TB/{$bulanRomawi}/" . date('Y');
 
-        return view('page.surat-pbm', [
+        return view('page.surat-ktbekerja', [
             'dropdown1' => 'Surat Keluar',
-            'dropdown2' => 'Kemasyarakatan',
-            'title' => 'Surat Pernyataan Belum Menikah',
+            'dropdown2' => 'Pemerintahan',
+            'title' => 'Surat Keterangan Tidak Bekerja',
             'TemplateNoSurat' => $TemplateNoSurat
-        ])->with('spbm', $spbm);
+        ])->with('ktbekerja',$Sktbekerja);
     }
 
 
     public function store(Request $request)
-
     {
         $record = $request->validate([
             'nomor_surat' => [
                 'required',
-                'unique:spbm,nomor_surat', // Pastikan nomor surat unik di tabel sktm_satu
+                'unique:ktbekerja,nomor_surat', // Pastikan nomor surat unik di tabel
             ],
             'nama' => 'required',
             'nik' => 'required|min:16',
-            'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
             'agama' => 'required',
-            'pekerjaan' => 'required',
+            'warga_negara' => 'required',
             'alamat' => 'required',
-            'deskripsi' => 'required',
-            'jenis_spbm' => 'required',
+            'jenis_ktbekerja' => 'required',
             'status_surat' => 'required',
         ], [
             'unique' => 'Nomor Surat sudah digunakan.',
             'min' => 'Masukkan 16 Digit NIK.',
         ]);
         $nomor = str_replace("/", "-", $record['nomor_surat']);
-        $record['id'] = 'SPBM-'.$nomor;
+        $record['id'] = 'SKTB-'.$nomor;
         // Menggunakan metode create untuk membuat dan menyimpan data
-        Spbm::create($record);
+        Sktbekerja::create($record);
+
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
+    }
+    public function show($id)
+    {
+        $ktbekerja = Sktbekerja::findOrFail($id);
+        // Menggunakan view untuk mengambil HTML dari template surat-ktm
+        $data = view('template.surat-ktbekerja', compact('ktbekerja'))->render();
+        // Membuat instance DomPDF
+        $pdf = Pdf::loadHTML($data);
+        // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
+        return $pdf->stream();
+    }
+
+    public function contoh() {
+        // Menggunakan view untuk mengambil HTML dari template surat-ktm
+        $data = view('template.contoh-surat-ktbekerja')->render();
+        // Membuat instance DomPDF
+        $pdf = Pdf::loadHTML($data);
+        // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
+        return $pdf->stream();
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the specified resource.
      */
-    public function show($id)
+    public function edit(Sktbekerja $sktbekerja)
     {
-        $spbm = Spbm::findOrFail($id);
-        // Menggunakan view untuk mengambil HTML dari template surat-ktm
-        $data = view('template.surat-pbm', compact('spbm'))->render();
-        // Membuat instance DomPDF
-        $pdf = Pdf::loadHTML($data);
-        // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
-        return $pdf->stream();
+        //
     }
-    public function contoh() {
-        // Menggunakan view untuk mengambil HTML dari template surat-ktm
-        $data = view('template.contoh-surat-pbm')->render();
-        // Membuat instance DomPDF
-        $pdf = Pdf::loadHTML($data);
-        // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
-        return $pdf->stream();
-    }
-    public function update(Request $request,$id)
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id)
     {
+        // dd($request);
         $record = $request->validate([
             'nomor_surat' => [
                 'required',
-                Rule::unique('spbm', 'nomor_surat')->ignore($id), // Pastikan nomor surat unik di tabel spbm, kecuali untuk catatan dengan ID yang sama
+                Rule::unique('ktbekerja', 'nomor_surat')->ignore($id), // Pastikan nomor surat unik di tabel pskck, kecuali untuk catatan dengan ID yang sama
             ],
             'nama' => 'required',
             'nik' => 'required|min:16',
-            'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
             'agama' => 'required',
-            'pekerjaan' => 'required',
+            'warga_negara' => 'required',
             'alamat' => 'required',
-            'deskripsi' => 'required',
-            'jenis_spbm' => 'required',
+            'jenis_ktbekerja' => 'required',
             'status_surat' => 'required',
         ], [
             'min' => 'Masukkan 16 Digit NIK.',
             'unique' => 'Nomor Surat sudah digunakan.',
         ]);
-
-        Spbm::where('id', $id)->update($record);
+        Sktbekerja::where('id', $id)->update($record);
         return redirect()->back()->with('toast_success', 'Data Diubah!');
+        // Spskck::where('id')->update($record);
+        // return redirect()->back()->with('toast_sukses','data diubah!');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Spbm $spbm)
+    public function destroy(Sktbekerja $sktbekerja)
     {
         //
     }

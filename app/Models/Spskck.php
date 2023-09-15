@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SktmSatu extends Model
+class Spskck extends Model
 {
     use HasFactory;
-    protected $table = 'sktm_satu';
+    protected $table = 'pskck';
     protected $casts = ['id' => 'string'];
     protected $fillable = [
         'id',
@@ -22,8 +22,7 @@ class SktmSatu extends Model
         'status_perkawinan',
         'pekerjaan',
         'alamat',
-        'deskripsi',
-        'jenis_sktm',
+        'jenis_skck',
         'status_surat'
     ];
 }

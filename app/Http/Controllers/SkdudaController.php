@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sbm;
+use App\Models\Skduda;
 use Illuminate\Support\Carbon;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateSbmRequest;
+use Illuminate\Routing\Controller;
+use Illuminate\Validation\Rule;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
-class SbmController extends Controller
+class SkdudaController extends Controller
 {
     public function __construct()
     {
@@ -17,9 +17,7 @@ class SbmController extends Controller
     }
     public function index()
     {
-
-        $skbm = Sbm::all();
-        $tanggalSekarang = date('d');
+        $skduda = Skduda::all();
         $bulanSekarang = date('n');
         $angkaRomawi = [
             1 => 'I',
@@ -36,85 +34,91 @@ class SbmController extends Controller
             12 => 'XII',
         ];
         $bulanRomawi = $angkaRomawi[$bulanSekarang];
-        $TemplateNoSurat = "000/SBM/{$bulanRomawi}/" . date('Y');
+        $TemplateNoSurat = "000/KET/PEM/{$bulanRomawi}/" . date('Y');
 
-        return view('page.surat-kbm', [
-            'dropdown1' => 'Surat',
-            'dropdown2' => 'Kemasyarakatan',
-            'title' => 'Surat Keterangan Belum Menikah',
+        return view('page.surat-kduda', [
+            'dropdown1' => 'Surat Keluar',
+            'dropdown2' => 'Pemerintahan',
+            'title' => 'Surat Keterangan Duda / Janda',
             'TemplateNoSurat' => $TemplateNoSurat
-        ])->with('skbm', $skbm);
+        ])->with('skduda', $skduda);
     }
-
-
     public function store(Request $request)
     {
         $record = $request->validate([
             'nomor_surat' => [
                 'required',
-                'unique:skbm,nomor_surat', // Pastikan nomor surat unik di tabel sktm_satu
+                'unique:skduda,nomor_surat', // Pastikan nomor surat unik di tabel sktm_satu
             ],
             'nama' => 'required',
-            'nik' => 'required',
+            'nik' => 'required|min:16',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
+            'kewarganegaraan' => 'required',
             'agama' => 'required',
+            'status_perkawinan' => 'required',
             'pekerjaan' => 'required',
             'alamat' => 'required',
-            'deskripsi' => 'required',
-            'jenis_skbm' => 'required',
+            'jenis_skduda' => 'required',
             'status_surat' => 'required',
+        ], [
+            'unique' => 'Nomor Surat sudah digunakan.',
+            'min' => 'Masukkan 16 Digit NIK.',
         ]);
         $nomor = str_replace("/", "-", $record['nomor_surat']);
-        $record['id'] = 'KMS'.$nomor;
+        $record['id'] = 'SK-DJ-'.$nomor;
         // Menggunakan metode create untuk membuat dan menyimpan data
-        Sbm::create($record);
-
+        Skduda::create($record);
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
-    
     }
+
     /**
      * Display the specified resource.
      */
-    public function show_skbm($id)
+    public function show($id)
     {
-        $skbm = Sbm::findOrFail($id);
+        $skduda = Skduda::findOrFail($id);
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
-        $data = view('template.surat-kbm', compact('skbm'))->render();
+        $data = view('template.surat-kduda', compact('skduda'))->render();
         // Membuat instance DomPDF
         $pdf = Pdf::loadHTML($data);
         // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
         return $pdf->stream();
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function update_skbm(Request $request, $id)
+    public function contoh() {
+        // Menggunakan view untuk mengambil HTML dari template surat-ktm
+        $data = view('template.contoh-surat-kduda')->render();
+        // Membuat instance DomPDF
+        $pdf = Pdf::loadHTML($data);
+        // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
+        return $pdf->stream();
+    }
+    public function update(Request $request,$id)
     {
-        
         $record = $request->validate([
+            'nomor_surat' => [
+                'required',
+                Rule::unique('skduda', 'nomor_surat')->ignore($id), // Pastikan nomor surat unik di tabel skduda, kecuali untuk catatan dengan ID yang sama
+            ],
             'nama' => 'required',
-            'nik' => 'required',
+            'nik' => 'required|min:16',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
+            'kewarganegaraan' => 'required',
             'agama' => 'required',
+            'status_perkawinan' => 'required',
             'pekerjaan' => 'required',
             'alamat' => 'required',
-            'deskripsi' => 'required',
-            'jenis_skbm' => 'required',
+            'jenis_skduda' => 'required',
             'status_surat' => 'required',
+        ], [
+            'min' => 'Masukkan 16 Digit NIK.',
+            'unique' => 'Nomor Surat sudah digunakan.',
         ]);
-        
-        Sbm::where('id', $id)->update($record);
+
+        Skduda::where('id', $id)->update($record);
         return redirect()->back()->with('toast_success', 'Data Diubah!');
-    }
-
-
-    public function destroy(Sbm $sbm)
-    {
-        //
     }
 }

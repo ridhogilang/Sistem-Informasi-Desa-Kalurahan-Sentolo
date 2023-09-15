@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <head>
-    <title>SKBM | {{$spbm->nama}}</title>
-    {{-- <link rel="icon" href="/public/template/assets/img/favicon.png" type="image/icon" > --}}
+    <title>SURAT PERNYATAAN BELUM MENIKAH | {{$spbm->nik}}</title>
     <style>
         table tr td {
-            font-size: 13px;
+            font-size: 16px;
         }
 
         table tr .text {
             text-align: right;
-            font-size: 13px;
+            font-size: 16px;
         }
 
         table tr .text2 {
@@ -45,44 +44,60 @@
 
         .tiga{
             margin-top:10px;
-            margin-bottom: 20px;
+            margin-bottom: 50px;
         }
         .nosurat{
             margin-top:-12px;
         }
 
         .empat p {
-            font-size: 17px;
+            font-size: 16px;
             margin-left: 20px;
             text-align: justify;
+            margin-right: 20px;
+            line-height: 1.5;
         }
 
         .lima{
             margin-left: 80px;
         }
 
+        .lima tr .template {
+            font-size: 16px;
+            padding-right: 20px;
+            padding-top:1px;
+            /* margin-right: 10px; */
+        }
         .lima tr td {
-            font-size: 17px;
-            padding-right:30px;
-            padding-top:10px;
-            margin-right:20px;
+            font-size: 16px;
+            padding-right: 5px;
+            padding-top:1px;
         }
          P{
              font-size: 16px;
              font-family: Arial;
          }
 
-         .enam{
-             margin-top: 5px;
-             margin-left: 500px;
-         }
+        .enam p{
+            margin-top: 5px;
+            margin-left: 490px;
+            line-height: 1.5;
+        }
+        .enam .namapernyataan{
+            text-align: center;
+        }
 
          .tujuh{
             margin-left: 100px;
-            margin-top: -150px;
+            margin-top: -180px;
+            line-height: 1.5;
          }
 
          .namadesa{
+             margin-left: 10px;
+             margin-top:50px;
+         }
+         .namapernyataan{
              margin-left: 20px;
              margin-top:50px;
          }
@@ -91,13 +106,27 @@
              margin-left: 470px;
              margin-top:-23px;
          }
+         p {
+        text-indent: 40px; /* Menjorokkan teks sejauh 40px dari kiri */
+        margin-top: 5px; /* Jarak atas antara paragraf */
+        margin-bottom: 5px; /* Jarak bawah antara paragraf */
+        }
+         .signature {
+            width: 300px; /* Lebar area tanda tangan */
+            height: 100px; /* Tinggi area tanda tangan */
+            /* border: 1px solid #000; Garis tepi */
+            margin-top: 50px; /* Jarak atas */
+            padding: 10px; /* Ruang dalam */
+            text-align: center; /* Pusatkan teks di dalam area tanda tangan */
+            font-size: 16px; /* Ukuran font */
+            display: inline-block; /* Tampilkan tanda tangan secara berdampingan */
+            margin-right: 20px; /* Jarak antara tanda tangan */
+        }
     </style>
 </head>
 
 <body>
     <center>
-        <br>
-        <br>
         <br>
         <table class="tiga">
             <tr>
@@ -108,77 +137,68 @@
                 </td>
             </tr>
         </table>
-        {{-- <table class="nosurat">
-            <tr>
-                <td width="537">
-                    <center>
-                        <font size="2">Nomor : {{$spbm->nomor_surat}}</font>
-                    </center>
-                </td>
-            </tr>
-        </table> --}}
-
-        <table class="empat">
-            <tr>
-                <td><P> &#160; &#160; &#160;Yang Bertanda Tangan di bawah ini :</P></td>
-            </tr>
-        </table>
+    </center>
+    <p>&#160; &#160; &#160;Yang bertanda tangan di bawah ini :</p>
+    <center>
         <table  class="lima">
             <tr>
-                <td> Nama</td>
-                <td>:  {{$spbm->nama}}</td>
+                <td class="template"> Nama</td>
+                <td>:</td>
+                <td>{{$spbm->nama}}</td>
             </tr>
             <tr>
-                <td>Jenis Kelamin</td>
-                <td> : {{$spbm->jenis_kelamin}}</td>
+                <td class="template"> NIK</td>
+                <td>:</td>
+                <td>{{$spbm->nik}}</td>
             </tr>
             <tr>
-                <td>Tempat / Tanggal Lahir</td>
-                <td> : {{$spbm->tempat_lahir}} / {{date('d-m-Y',strtotime($spbm->tanggal_lahir))}}  </td>
+                <td class="template">Jenis Kelamin</td>
+                <td>:</td>
+                <td>{{$spbm->jenis_kelamin}}</td>
             </tr>
             <tr>
-                <td>Agama</td>
-                <td> : {{$spbm->agama}}</td>
+                <td class="template">Tempat / Tanggal Lahir</td>
+                <td>:</td>
+                <td>{{$spbm->tempat_lahir}} / {{date('d-m-Y',strtotime($spbm->tanggal_lahir))}}  </td>
             </tr>
             <tr>
-                <td>Pekerjaan</td>
-                <td> : {{$spbm->pekerjaan}}</td>
+                <td class="template">Agama</td>
+                <td>:</td>
+                <td>{{$spbm->agama}}</td>
             </tr>
             <tr>
-                <td style="vertical-align: top;">Alamat</td>
-                <td style="max-width: 350px; word-wrap: break-word;"> : {{ $spbm->alamat }}</td>
+                <td class="template">Pekerjaan</td>
+                <td>:</td>
+                <td>{{$spbm->pekerjaan}}</td>
+            </tr>
+            <tr>
+                <td class="template" style="vertical-align: top;">Alamat</td>
+                <td style="vertical-align: top;">:</td>
+                <td style="max-width: 405px; word-wrap: break-word;">{{ $spbm->alamat }}</td>
 
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
-                    <p>
-                        &#160; &#160; &#160; &#160;Dengan ini saya menyatakan bahwa saya sampai saat ini berstatus <strong>{{$spbm->deskripsi}}</strong>
-                        Apabila pernyataan ini tidak benar saya siap menanggung segala akibat dan bersedia
-                        dituntut dimuka hukum sesuai dengan peraturan  perundangan yang berlaku.
-                        <br>
-                        &#160; &#160; &#160; &#160;Surat ini saya buat dengan kesadaran sendiri tanpa ada paksaan dan atau tekanan dari pihak 
-                        manapun dalam keadaan sehat jasmani maupun rohani, selanjutnya agardapat dipergunakan sebagaimana mestinya.
-                    </strong>
+                    <p>Dengan ini saya menyatakan bahwa saya sampai saat ini berstatus <strong>{{$spbm->deskripsi}}</strong> Apabila pernyataan ini tidak benar saya siap menanggung segala akibat dan bersedia dituntut dimuka hukum sesuai dengan peraturan  perundangan yang berlaku.</p>
+                    <p>Surat ini saya buat dengan kesadaran sendiri tanpa ada paksaan dan atau tekanan dari pihak manapun dalam keadaan sehat jasmani maupun rohani.
+                        Demikian surat Pernyataan ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.</p>
                 </td>
             </tr>
         </table>
-
-        <table class="enam">
-            <tr>
-                <p>{{ \Carbon\Carbon::parse($spbm['created_at'])->translatedFormat('j F Y') }}
-                <br>
-                &#160; &#160; &#160; &#160;Pernyataan</p>
-            </tr>
-        </table>
-        <table class="tujuh">
-            <tr>
-                <p>Mengetahui :
-                <br>&#160; &#160; &#160; Lurah<br>
-            </tr>
-        </table>
-        
+    <!-- Area tanda tangan Satu -->
+        <div class="signature">
+            &#160; Mengetahui,
+            <br>&#160; Lurah Sentolo<br><br><br><br><br>
+            <b>(TEGUH)</b>
+        </div>
+    
+    <!-- Area tanda tangan kedua -->
+        <div class="signature">
+            Sentolo, {{ \Carbon\Carbon::parse($spbm['created_at'])->translatedFormat('j F Y') }}<br>Yang membuat pernyataan<br><br><br><br><br>
+            <b>({{$spbm->nama}})</b>
+        </div>
     </center>
 </body>
 </html>

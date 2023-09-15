@@ -11,18 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pektp', function (Blueprint $table) {
+        Schema::create('skduda', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('nomor_surat')->unique();
             $table->string('nama');
             $table->string('nik');
+            $table->string('jenis_kelamin');
             $table->string('tempat_lahir');
             $table->string('tanggal_lahir');
-            $table->string('jenis_kelamin');
-            $table->string('pekerjaan');
+            $table->string('kewarganegaraan');
             $table->string('agama');
+            $table->string('status_perkawinan');
+            $table->string('pekerjaan');
             $table->string('alamat');
-            $table->string('jenis_pektp');
+            $table->string('jenis_skduda');
             $table->string('status_surat');
             $table->timestamps();
         });
@@ -33,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pektp');
+        Schema::dropIfExists('skduda');
     }
 };
