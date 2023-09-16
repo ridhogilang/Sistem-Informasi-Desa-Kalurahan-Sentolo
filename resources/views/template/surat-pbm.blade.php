@@ -3,12 +3,12 @@
     <title>SURAT PERNYATAAN BELUM MENIKAH | {{$spbm->nik}}</title>
     <style>
         table tr td {
-            font-size: 13px;
+            font-size: 16px;
         }
 
         table tr .text {
             text-align: right;
-            font-size: 13px;
+            font-size: 16px;
         }
 
         table tr .text2 {
@@ -44,14 +44,14 @@
 
         .tiga{
             margin-top:10px;
-            margin-bottom: 20px;
+            margin-bottom: 50px;
         }
         .nosurat{
             margin-top:-12px;
         }
 
         .empat p {
-            font-size: 17px;
+            font-size: 16px;
             margin-left: 20px;
             text-align: justify;
             margin-right: 20px;
@@ -63,15 +63,15 @@
         }
 
         .lima tr .template {
-            font-size: 17px;
+            font-size: 16px;
             padding-right: 20px;
-            padding-top:10px;
+            padding-top:1px;
             /* margin-right: 10px; */
         }
         .lima tr td {
-            font-size: 17px;
+            font-size: 16px;
             padding-right: 5px;
-            padding-top:10px;
+            padding-top:1px;
         }
          P{
              font-size: 16px;
@@ -106,6 +106,22 @@
              margin-left: 470px;
              margin-top:-23px;
          }
+         p {
+        text-indent: 40px; /* Menjorokkan teks sejauh 40px dari kiri */
+        margin-top: 5px; /* Jarak atas antara paragraf */
+        margin-bottom: 5px; /* Jarak bawah antara paragraf */
+        }
+         .signature {
+            width: 300px; /* Lebar area tanda tangan */
+            height: 100px; /* Tinggi area tanda tangan */
+            /* border: 1px solid #000; Garis tepi */
+            margin-top: 50px; /* Jarak atas */
+            padding: 10px; /* Ruang dalam */
+            text-align: center; /* Pusatkan teks di dalam area tanda tangan */
+            font-size: 16px; /* Ukuran font */
+            display: inline-block; /* Tampilkan tanda tangan secara berdampingan */
+            margin-right: 20px; /* Jarak antara tanda tangan */
+        }
     </style>
 </head>
 
@@ -121,12 +137,9 @@
                 </td>
             </tr>
         </table>
-
-        <table class="empat">
-            <tr>
-                <td><p> &#160; &#160; &#160; &#160; &#160; Yang Bertanda Tangan di bawah ini :</p></td>
-            </tr>
-        </table>
+    </center>
+    <p>&#160; &#160; &#160;Yang bertanda tangan di bawah ini :</p>
+    <center>
         <table  class="lima">
             <tr>
                 <td class="template"> Nama</td>
@@ -168,40 +181,24 @@
         <table class="empat">
             <tr>
                 <td>
-                    <p>
-                        &#160; &#160; &#160; Dengan ini saya menyatakan bahwa saya sampai saat ini berstatus <strong>{{$spbm->deskripsi}}</strong>
-                        Apabila pernyataan ini tidak benar saya siap menanggung segala akibat dan bersedia dituntut dimuka hukum sesuai dengan peraturan  perundangan yang berlaku.
-                        <br>
-                        &#160; &#160; &#160; &#160; Surat ini saya buat dengan kesadaran sendiri tanpa ada paksaan dan atau tekanan dari pihak manapun dalam keadaan sehat jasmani maupun rohani.
-                        Demikian surat Pernyataan ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
-                    </p>
+                    <p>Dengan ini saya menyatakan bahwa saya sampai saat ini berstatus <strong>{{$spbm->deskripsi}}</strong> Apabila pernyataan ini tidak benar saya siap menanggung segala akibat dan bersedia dituntut dimuka hukum sesuai dengan peraturan  perundangan yang berlaku.</p>
+                    <p>Surat ini saya buat dengan kesadaran sendiri tanpa ada paksaan dan atau tekanan dari pihak manapun dalam keadaan sehat jasmani maupun rohani.
+                        Demikian surat Pernyataan ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.</p>
                 </td>
             </tr>
         </table>
-
-        <table class="enam">
-            <tr>
-                <p>
-                    Sentolo, {{ \Carbon\Carbon::parse($spbm['created_at'])->translatedFormat('j F Y') }}<br>
-                    Yang membuat pernyataan,
-                </p>
-                <p class="namapernyataan"><br><br><br>
-                    <b>({{$spbm->nama}})</b>
-                </p>
-            </tr>
-        </table>
-        <table class="tujuh">
-            <tr>
-                <p>
-                    &#160; Mengetahui :
-                    <br>Lurah Sentolo<br>
-                </p>
-                <p class="namadesa"><br>
-                    <b>(TEGUH)</b>
-                </p>
-            </tr>
-        </table>
-
+    <!-- Area tanda tangan Satu -->
+        <div class="signature">
+            &#160; Mengetahui,
+            <br>&#160; Lurah Sentolo<br><br><br><br><br>
+            <b>(TEGUH)</b>
+        </div>
+    
+    <!-- Area tanda tangan kedua -->
+        <div class="signature">
+            Sentolo, {{ \Carbon\Carbon::parse($spbm['created_at'])->translatedFormat('j F Y') }}<br>Yang membuat pernyataan<br><br><br><br><br>
+            <b>({{$spbm->nama}})</b>
+        </div>
     </center>
 </body>
 </html>

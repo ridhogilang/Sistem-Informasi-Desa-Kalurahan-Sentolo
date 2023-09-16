@@ -183,7 +183,7 @@
                                     <div class="modal fade" id="Modal-Edit-KKEMATIAN{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Modal-Edit-KKEMATIAN-Satu-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                             <div class="modal-content">
-                                                <form action="/surat-kkematian{{$value->id}}/edit" method="POST" >
+                                                <form action="/surat-kkematian/{{$value->id}}/edit" method="POST" >
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-header">
@@ -246,7 +246,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                
+
                                                         <div class="row mb-3">
                                                             <label for="kewarganegaraan" class="col-sm-3 col-form-label">Kewarganegaraan</label>
                                                             <div class="col-sm-9">

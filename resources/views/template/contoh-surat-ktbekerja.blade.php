@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>SURAT KETERANGAN KEMATIAN | {{$kkematian->nik}}</title>
+    <title>SURAT KETERANGAN TIDAK BEKERJA | 3401030101200001</title>
     <style>
         table tr td {
             font-size: 13px;
@@ -116,7 +116,7 @@
             <tr>
                 <td width="538">
                     <center>
-                        <font size="3"><b>SURAT KETERANGAN KEMATIAN </b></font><br>
+                        <font size="3"><b>SURAT KETERANGAN TIDAK BEKERJA </b></font><br>
                         <hr class="hrsatu">
                     </center>
                 </td>
@@ -126,7 +126,7 @@
             <tr>
                 <td width="537">
                     <center>
-                        <font size="2">Nomor :  {{$kkematian->nomor_surat}}</font>
+                        <font size="2">Nomor : 000/KET/TB/IX/2023</font>
                     </center>
                 </td>
             </tr>
@@ -145,51 +145,40 @@
             <tr>
                 <td class="template">Nama</td>
                 <td>:</td>
-                <td>{{$kkematian->nama}}</td>
+                <td>Cristiano Messi</td>
             </tr>
             <tr>
                 <td class="template">NIK</td>
                 <td>:</td>
-                <td>{{$kkematian->nik}}</td>
+                <td>3401030101200001</td>
             </tr>
             <tr>
-                <td class="template">Jenis Kelamin</td>
+                <td class="template">Tempat / Tanggal Lahir</td>
                 <td>:</td>
-                <td>{{$kkematian->jenis_kelamin}}</td>
-            </tr>
-            <tr>
-                <td class="template">Umur</td>
-                <td>:</td>
-                <td>{{$kkematian->umur}} Tahun</td>
-            </tr>
-            <tr>
-                <td class="template">Pekerjaan</td>
-                <td>:</td>
-                <td>{{$kkematian->pekerjaan}}</td>
+                <td>Kulon Progo / 01-01-2020</td>
             </tr>
             <tr>
                 <td class="template">Agama</td>
                 <td>:</td>
-                <td>{{$kkematian->agama}}</td>
+                <td>Islam</td>
             </tr>
             <tr>
-                <td class="template">Kewarganegaraan</td>
+                <td class="template">Warga Negara</td>
                 <td>:</td>
-                <td>{{$kkematian->kewarganegaraan}}</td>
-            </tr>
+                <td>Indonesia</td>
             </tr>
             <tr>
-                <td class="template">Status Perkawinan</td>
-                <td>:</td>
-                <td>{{$kkematian->status_perkawinan}}</td>
+                <td class="template" style="vertical-align: top;">Alamat</td>
+                <td style="vertical-align: top;">:</td>
+                <td style="max-width: 405px; word-wrap: break-word;">Padukuhan Gedangan, RT 50 RW 24, Kalurahan Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo</td>
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160; Adalah benar-benar warga Kalurahan Sentolo, Kabupaten Kulon Progo dan yang bersangkutan Telah Meninggal Dunia pada hari senin 05
-                        <br>&#160; &#160; &#160; Demikian surat keterangan ini kami buat dengan sebenarnya untuk dapat dipergunakan seperlunya.
+                        &#160; &#160; &#160; &#160; Benar nama tersebut diatas warga masyarakat Desa Kalurahan Sentolo Kapanewon Ssentolo Kabupaten Kulon Progo dan berdomisili sebagai tercantum diatas <b><u>Tidak Bekerja/Tidak Punya Penghasilan</b></u>
+                        <br>&#160; &#160; &#160; Demikian surat keterangan ini dibuat,untuk mengetahui dan dapat dipergunakan seperlunya.
                     </p>
                 </td>
             </tr>
@@ -197,7 +186,7 @@
 
         <table class="enam">
             <tr>
-                <p>Sentolo,  {{ \Carbon\Carbon::parse($skkematian['created_at'])->translatedFormat('j F Y') }}</p>
+                <p>Sentolo, 1 Januari 2023</p>
             </tr>
         </table>
         <table  class="tujuh">

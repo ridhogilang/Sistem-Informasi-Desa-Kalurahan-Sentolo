@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>SURAT KETERANGAN KEMATIAN | {{$kkematian->nik}}</title>
+    <title>SURAT PENGANTAR KEPENDUDUKAN | 3401032201000090</title>
     <style>
         table tr td {
             font-size: 13px;
@@ -37,13 +37,14 @@
         }
 
         .hrsatu{
-            margin-left:252px;
+            margin-left:199px;
             margin-top:-3px;
-            width:209px
+            width:314px
         }
 
         .tiga{
             margin-top:10px;
+            margin-bottom: 20px;
         }
         .nosurat{
             margin-top:-12px;
@@ -56,45 +57,48 @@
             margin-right: 20px;
             line-height: 1.5;
         }
-        .empat ol li{
-            font-size: 17px;
-            margin-left: 40px;
-            text-align: justify;
-            margin-right: 20px;
-            line-height: 1.2;
-        }
 
         .lima{
             margin-left: 80px;
         }
+
         .lima tr .template {
             font-size: 17px;
             padding-right: 20px;
-            padding-top:5px;
+            padding-top:10px;
             /* margin-right: 10px; */
         }
         .lima tr td {
             font-size: 17px;
             padding-right: 5px;
-            padding-top:5px;
+            padding-top:10px;
         }
          P{
              font-size: 16px;
              font-family: Arial;
          }
 
-         .enam{
-             margin-top: 5px;
-             margin-left: 460px;
-         }
+        .enam p{
+            margin-top: 5px;
+            margin-left: 490px;
+            line-height: 1.5;
+        }
+        .enam .namapernyataan{
+            text-align: center;
+        }
 
          .tujuh{
-            margin-left: 450px;
-            margin-top: -30px;
+            margin-left: 100px;
+            margin-top: -180px;
+            line-height: 1.5;
          }
 
          .namadesa{
-             margin-left: 60px;
+             margin-left: 10px;
+             margin-top:50px;
+         }
+         .namapernyataan{
+             margin-left: 20px;
              margin-top:50px;
          }
          .delapan hr{
@@ -107,26 +111,12 @@
 
 <body>
     <center>
-        <table class="satu">
-            <tr >
-                <td><img src="{{ public_path('template/img/kop_surat.jpg') }}" style="width: 97%; height:auto"></td>
-            </tr>
-        </table>
+        <br>
         <table class="tiga">
             <tr>
                 <td width="538">
                     <center>
-                        <font size="3"><b>SURAT KETERANGAN KEMATIAN </b></font><br>
-                        <hr class="hrsatu">
-                    </center>
-                </td>
-            </tr>
-        </table>
-        <table class="nosurat">
-            <tr>
-                <td width="537">
-                    <center>
-                        <font size="2">Nomor :  {{$kkematian->nomor_surat}}</font>
+                        <font size="3"><b>SURAT PENGANTAR KEPENDUDUKAN </b></font><br>
                     </center>
                 </td>
             </tr>
@@ -134,62 +124,60 @@
 
         <table class="empat">
             <tr>
-                <td>
-                    <p>
-                        &#160; &#160; &#160; &#160; Yang bertanda tangan dibawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo, menerangkan bahwa ;
-                    </p>
-                </td>
+                <td><p> &#160; &#160; &#160; &#160; &#160; Yang Bertanda Tangan di bawah ini :</p></td>
             </tr>
         </table>
         <table  class="lima">
             <tr>
-                <td class="template">Nama</td>
+                <td class="template"> Nama</td>
                 <td>:</td>
-                <td>{{$kkematian->nama}}</td>
+                <td>Takiya Genjiah</td>
             </tr>
             <tr>
-                <td class="template">NIK</td>
+                <td class="template"> NIK</td>
                 <td>:</td>
-                <td>{{$kkematian->nik}}</td>
+                <td>3401032201000001</td>
             </tr>
             <tr>
                 <td class="template">Jenis Kelamin</td>
                 <td>:</td>
-                <td>{{$kkematian->jenis_kelamin}}</td>
+                <td>Laki-laki</td>
             </tr>
             <tr>
-                <td class="template">Umur</td>
+                <td class="template">Tempat / Tanggal Lahir</td>
                 <td>:</td>
-                <td>{{$kkematian->umur}} Tahun</td>
-            </tr>
-            <tr>
-                <td class="template">Pekerjaan</td>
-                <td>:</td>
-                <td>{{$kkematian->pekerjaan}}</td>
-            </tr>
-            <tr>
-                <td class="template">Agama</td>
-                <td>:</td>
-                <td>{{$kkematian->agama}}</td>
+                <td>Kulon Progo / 22-01-2000  </td>
             </tr>
             <tr>
                 <td class="template">Kewarganegaraan</td>
                 <td>:</td>
-                <td>{{$kkematian->kewarganegaraan}}</td>
+                <td>Indonesia</td>
             </tr>
+            <tr>
+                <td class="template">Agama</td>
+                <td>:</td>
+                <td>Islam</td>
             </tr>
             <tr>
                 <td class="template">Status Perkawinan</td>
                 <td>:</td>
-                <td>{{$kkematian->status_perkawinan}}</td>
+                <td>Kawin</td>
+            </tr>
+            <tr>
+                <td class="template" style="vertical-align: top;">Alamat</td>
+                <td style="vertical-align: top;">:</td>
+                <td style="max-width: 405px; word-wrap: break-word;">Padukuhan Gedangan, RT 50 RW 24, Kalurahan Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo</td>
+
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160; Adalah benar-benar warga Kalurahan Sentolo, Kabupaten Kulon Progo dan yang bersangkutan Telah Meninggal Dunia pada hari senin 05
-                        <br>&#160; &#160; &#160; Demikian surat keterangan ini kami buat dengan sebenarnya untuk dapat dipergunakan seperlunya.
+                        &#160; &#160; &#160; Sesuai dengan nama bersangkutan diatas, surat pengantar ini dibuat untuk keperluan Kependudukan
+                        Dan berlaku mulai
+                        &#160; &#160; &#160; &#160; Demikian surat Pernyataan ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
+
                     </p>
                 </td>
             </tr>
@@ -197,14 +185,27 @@
 
         <table class="enam">
             <tr>
-                <p>Sentolo,  {{ \Carbon\Carbon::parse($skkematian['created_at'])->translatedFormat('j F Y') }}</p>
+                <p>
+                    &#160; Sentolo, 1 Januari 2023<br>
+                    CAMAT SENTOLO,
+                </p>
+                <p class="namapernyataan"><br><br><br>
+                    <b>(Takiya genjiah)</b>
+                </p>
             </tr>
         </table>
-        <table  class="tujuh">
+        <table class="tujuh">
             <tr>
-                <td> <P>&#160; &#160; &#160; &#160; &#160; &#160; Lurah Sentolo</P>  <br>  <P class="namadesa"><b>(TEGUH) </b></P></td>
+                <p>
+                    &#160; Mengetahui :
+                    <br>Lurah Sentolo<br>
+                </p>
+                <p class="namadesa"><br>
+                    <b>(TEGUH)</b>
+                </p>
             </tr>
         </table>
+
     </center>
 </body>
 </html>

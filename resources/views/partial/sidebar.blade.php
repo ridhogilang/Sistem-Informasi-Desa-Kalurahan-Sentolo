@@ -35,6 +35,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="/surat-pn" class="{{ ($title == "Surat Pengantar Nikah") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Pengantar Nikah</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="/surat-pektp" class="{{ ($title == "Surat Pengantar E-KTP") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Pengantar E-KTP</span>
                             </a>
@@ -68,13 +73,18 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/surat-tidak-bekerja" class="{{ ($title == "Surat Tidak Bekerja") ? 'active' : '' }}">
+                            <a href="/surat-ktbekerja" class="{{ ($title == "Surat Tidak Bekerja") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Keterangan Tidak Bekerja</span>
                             </a>
                         </li>
                         <li>
                             <a href="/surat-kkematian" class="{{ ($title == "Surat Keterangan Kematian") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Keterangan Kematian</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/surat-pk" class="{{ ($title == "Surat Pengantar Kependudukan") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Pengantar Kependudukan</span>
                             </a>
                         </li>
                     </ul>
