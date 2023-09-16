@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\SkdudaController;
-use App\Http\Controllers\SktmSatuController;
-use App\Http\Controllers\SktmDuaController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SkdController;
+use App\Http\Controllers\SklController;
 use App\Http\Controllers\SkbmController;
-use App\Http\Controllers\SkkematianController;
 use App\Http\Controllers\SpbmController;
+use App\Http\Controllers\SkdudaController;
 use App\Http\Controllers\SpektpController;
 use App\Http\Controllers\SpskckController;
-
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SktmDuaController;
+use App\Http\Controllers\SktmSatuController;
+use App\Http\Controllers\SkkematianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,13 +52,7 @@ Route::get('/login', function () {
     ]);
 });
 
-Route::get('/surat-domisili', function () {
-    return view('page.accordion',[
-        'dropdown1' => 'Surat Keluar',
-        'dropdown2' => 'Pemerintahan',
-        'title' => 'Surat Keterangan Domisili',
-    ]);
-});
+
 
 // SKTM Satu Orang
 Route::get('/surat-ktm', [SktmSatuController::class, 'index']);
@@ -106,3 +101,15 @@ Route::post('/surat-kkematian', [SkkematianController::class, 'store']);
 Route::put('/surat-kkematian{id}/edit', [SkkematianController::class, 'update']);
 Route::get('/surat-kkematian/{id}/view', [SkkematianController::class, 'show']);
 Route::get('/contoh-surat-kkematian/view', [SkkematianController::class, 'contoh']);
+// Surat keterangan Domisili
+Route::get('/surat-kdomisili', [SkdController::class, 'index']);
+Route::post('/surat-kdomisili', [SkdController::class, 'store']);
+Route::put('/surat-kdomisili/{id}', [SkdController::class, 'update']);
+Route::get('/surat-kdomisili/{id}/view', [SkdController::class, 'show']);
+Route::get('/contoh-surat-kdomisili/view', [SkdController::class, 'contoh']);
+// Surat keterangan Kelahiran
+Route::get('/surat-kkelahiran', [SklController::class, 'index']);
+Route::post('/surat-kkelahiran', [SklController::class, 'store']);
+Route::put('/surat-kkelahiran/{id}', [SklController::class, 'update']);
+Route::get('/surat-kkelahiran/{id}/view', [SklController::class, 'show']);
+Route::get('/contoh-surat-kkelahiran/view', [SklController::class, 'contoh']);

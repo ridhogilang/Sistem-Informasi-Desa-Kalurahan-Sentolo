@@ -52,11 +52,17 @@
                     </a>
                     <ul id="pemerintahan-nav" class="nav-content collapse {{ ($dropdown2 == "Pemerintahan" && $dropdown1 == "Surat Keluar") ? 'show' : '' }}" data-bs-parent="#surat-nav">
                         <li>
-                            <a href="/surat-domisili" class="{{ ($title == "Surat Keterangan Domisili") ? 'active' : '' }}">
+                            <a href="/surat-kdomisili" class="{{ ($title == "Surat Keterangan Domisili") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Keterangan Domisili</span>
                             </a>
                         </li>
                         <li>
+                            <li>
+                                <a href="/surat-kkelahiran" class="{{ ($title == "Surat Keterangan Kelahiran") ? 'active' : '' }}">
+                                    <i class="bi bi-circle"></i><span>Keterangan Kelahiran</span>
+                                </a>
+                            </li>
+                            <li>
                             <a href="/surat-kduda" class="{{ ($title == "Surat Keterangan Duda / Janda") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Keterangan Duda / Janda</span>
                             </a>
