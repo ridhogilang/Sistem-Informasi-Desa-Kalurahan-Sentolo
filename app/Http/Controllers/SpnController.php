@@ -14,7 +14,7 @@ use Illuminate\Validation\Rule;
 
 class SpnController extends Controller
 {
-   public function __construct() 
+   public function __construct()
    {
     Carbon::setLocale('id');
    }
@@ -42,7 +42,7 @@ class SpnController extends Controller
         return view('page.surat-pn', [
             'dropdown1' => 'Surat Keluar',
             'dropdown2' => 'Kemasyarakatan',
-            'title' => 'Surat Pernyataan Nikah',
+            'title' => 'Surat Pengantar Nikah',
             'TemplateNoSurat' => $TemplateNoSurat
         ])->with('spn', $spn);
     }
@@ -98,7 +98,7 @@ class SpnController extends Controller
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
     }
 
-  
+
     public function show($id)
     {
         $spn = Spn::findOrFail($id);
@@ -110,7 +110,7 @@ class SpnController extends Controller
         return $pdf->stream();
     }
 
-  
+
     public function update(Request $request,$id)
     {
         $record = $request->validate([

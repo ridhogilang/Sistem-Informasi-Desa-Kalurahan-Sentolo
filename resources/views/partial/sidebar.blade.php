@@ -49,6 +49,16 @@
                                 <i class="bi bi-circle"></i><span>Pengantar SKCK</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="/surat-belum-bekerja" class="{{ ($title == "Surat Pernyataan Belum Bekerja") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Pernyataan Belum Bekerja</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/surat-ket-hasil" class="{{ ($title == "Surat Keterangan Penghasilan") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Keterangan Penghasilan</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -73,7 +83,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/surat-ktbekerja" class="{{ ($title == "Surat Tidak Bekerja") ? 'active' : '' }}">
+                            <a href="/surat-ktbekerja" class="{{ ($title == "Surat Keterangan Tidak Bekerja") ? 'active' : '' }}">
                                 <i class="bi bi-circle"></i><span>Keterangan Tidak Bekerja</span>
                             </a>
                         </li>

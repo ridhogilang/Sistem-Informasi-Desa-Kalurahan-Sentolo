@@ -12,7 +12,7 @@ class SklController extends Controller
 {
     public function __construct()
     {
-        Carbon::setLocale('id');   
+        Carbon::setLocale('id');
     }
     public function index()
     {
@@ -39,7 +39,7 @@ class SklController extends Controller
         return view('page.surat-ket-kelahiran', [
             'dropdown1' => 'Surat Keluar',
             'dropdown2' => 'Pemerintahan',
-            'title' => 'Surat Keterangan Lahir',
+            'title' => 'Surat Keterangan Kelahiran',
             'TemplateNoSurat' => $TemplateNoSurat,
         ])->with('skl', $skl);
     }
@@ -51,7 +51,7 @@ class SklController extends Controller
                 'unique:skl,nomor_surat', // Pastikan nomor surat unik di tabel sktm_satu
             ],
             'nama' => 'required',
-            'status_hubungan' => 'required', 
+            'status_hubungan' => 'required',
             'kalurahan' => 'required',
             'kecamatan' => 'required',
             'kabupaten' => 'required',
@@ -123,7 +123,7 @@ class SklController extends Controller
                 // Pastikan nomor surat unik di tabel skduda, kecuali untuk catatan dengan ID yang sama
             ],
             'nama' => 'required',
-            // 'status_hubungan' => 'required', 
+            // 'status_hubungan' => 'required',
             'kalurahan' => 'required',
             'kecamatan' => 'required',
             'kabupaten' => 'required',
@@ -151,11 +151,11 @@ class SklController extends Controller
             'min' => 'Masukkan 16 Digit NIK.',
             'unique' => 'Nomor Surat sudah digunakan.',
         ]);
-        
+
         Skl::where('id', $id)->update($record);
         return redirect()->back()->with('toast_success', 'Data Diubah!');
-     
+
     }
-    
+
 }
 

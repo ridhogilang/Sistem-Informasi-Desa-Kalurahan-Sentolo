@@ -8,19 +8,13 @@ use App\Http\Controllers\SpbmController;
 use App\Http\Controllers\SkdudaController;
 use App\Http\Controllers\SpektpController;
 use App\Http\Controllers\SpskckController;
-<<<<<<< HEAD
 use App\Http\Controllers\SktmDuaController;
 use App\Http\Controllers\SktmSatuController;
 use App\Http\Controllers\SkkematianController;
-=======
 use App\Http\Controllers\SktbekerjaController;
-<<<<<<< HEAD
 use App\Http\Controllers\SpnController;
-=======
 use App\Http\Controllers\SpkController;
->>>>>>> 3cafc65b35fda682275c31fc63b256e19e7e6180
-use Illuminate\Support\Facades\Route;
->>>>>>> dev
+
 
 /*
 |--------------------------------------------------------------------------
@@ -61,8 +55,6 @@ Route::get('/login', function () {
         'title' => 'Login',
     ]);
 });
-
-
 
 // SKTM Satu Orang
 Route::get('/surat-ktm', [SktmSatuController::class, 'index']);
@@ -117,7 +109,6 @@ Route::post('/surat-kkematian', [SkkematianController::class, 'store']);
 Route::put('/surat-kkematian/{id}/edit', [SkkematianController::class, 'update']);
 Route::get('/surat-kkematian/{id}/view', [SkkematianController::class, 'show']);
 Route::get('/contoh-surat-kkematian/view', [SkkematianController::class, 'contoh']);
-<<<<<<< HEAD
 // Surat keterangan Domisili
 Route::get('/surat-kdomisili', [SkdController::class, 'index']);
 Route::post('/surat-kdomisili', [SkdController::class, 'store']);
@@ -130,7 +121,6 @@ Route::post('/surat-kkelahiran', [SklController::class, 'store']);
 Route::put('/surat-kkelahiran/{id}', [SklController::class, 'update']);
 Route::get('/surat-kkelahiran/{id}/view', [SklController::class, 'show']);
 Route::get('/contoh-surat-kkelahiran/view', [SklController::class, 'contoh']);
-=======
 // Surat Keterangan Tidak Bekerja
 Route::get('/surat-ktbekerja', [SktbekerjaController::class, 'index']);
 Route::post('/surat-ktbekerja', [SktbekerjaController::class, 'store']);
@@ -143,4 +133,15 @@ Route::post('/surat-pk', [SpkController::class, 'store']);
 Route::put('/surat-pk/{id}/edit', [SpkController::class, 'update']);
 Route::get('/surat-pk/{id}/view', [SpkController::class, 'show']);
 Route::get('/contoh-surat-pk/view', [SpkController::class, 'contoh']);
->>>>>>> dev
+// Surat Pernyataan Belum Bekerja
+Route::get('/surat-belum-bekerja', [SpbbekerjaController::class, 'index']);
+Route::post('/surat-belum-bekerja', [SpbbekerjaController::class, 'store']);
+Route::put('/surat-belum-bekerja/{id}', [SpbbekerjaController::class, 'update']);
+Route::get('/surat-belum-bekerja/{id}/view', [SpbbekerjaController::class, 'show']);
+Route::get('/contoh-surat-belum-bekerja/view', [SpbbekerjaController::class, 'contoh']);
+// Surat Keterangan Penghasilan
+Route::get('/surat-ket-hasil', [SkpenghasilanController::class, 'index']);
+Route::post('/surat-ket-hasil', [SkpenghasilanController::class, 'store']);
+Route::put('/surat-ket-hasil/{id}', [SkpenghasilanController::class, 'update']);
+Route::get('/surat-ket-hasil/{id}/view', [SkpenghasilanController::class, 'show']);
+Route::get('/contoh-surat-ket-hasil/view', [SkpenghasilanController::class, 'contoh']);
