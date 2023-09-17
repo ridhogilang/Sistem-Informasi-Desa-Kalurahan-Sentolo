@@ -14,7 +14,8 @@ use App\Http\Controllers\SkkematianController;
 use App\Http\Controllers\SktbekerjaController;
 use App\Http\Controllers\SpnController;
 use App\Http\Controllers\SpkController;
-
+use App\Http\Controllers\SkpenghasilanController;
+use App\Http\Controllers\SpbbekerjaController;
 
 /*
 |--------------------------------------------------------------------------
