@@ -4,21 +4,21 @@ use App\Http\Controllers\PermisiionController;
 use App\Http\Controllers\bo\Auth\LoginController;
 use App\Http\Controllers\bo\Pegawai\UserManagementController;
 use App\Http\Controllers\bo\Pegawai\roleManagementController;
-use App\Http\Controllers\bo\Surat\SktmSatuController;
-use App\Http\Controllers\bo\Surat\SktmDuaController;
-use App\Http\Controllers\bo\Surat\SkbmController;
-use App\Http\Controllers\bo\Surat\SkkematianController;
-use App\Http\Controllers\bo\Surat\SpbmController;
-use App\Http\Controllers\bo\Surat\SpektpController;
-use App\Http\Controllers\bo\Surat\SpskckController;
-use App\Http\Controllers\bo\Surat\SpnController;
-use App\Http\Controllers\bo\Surat\SpkController;
-use App\Http\Controllers\bo\Surat\SktbekerjaController;
-use App\Http\Controllers\bo\Surat\SkdudaController;
-use App\Http\Controllers\bo\Surat\SkdController;
-use App\Http\Controllers\bo\Surat\SklController;
-use App\Http\Controllers\bo\Surat\SkpenghasilanController;
-use App\Http\Controllers\bo\Surat\SpbbekerjaController;
+use App\Http\Controllers\bo\Surat\keluar\SktmSatuController;
+use App\Http\Controllers\bo\Surat\keluar\SktmDuaController;
+use App\Http\Controllers\bo\Surat\keluar\SkbmController;
+use App\Http\Controllers\bo\Surat\keluar\SkkematianController;
+use App\Http\Controllers\bo\Surat\keluar\SpbmController;
+use App\Http\Controllers\bo\Surat\keluar\SpektpController;
+use App\Http\Controllers\bo\Surat\keluar\SpskckController;
+use App\Http\Controllers\bo\Surat\keluar\SpnController;
+use App\Http\Controllers\bo\Surat\keluar\SpkController;
+use App\Http\Controllers\bo\Surat\keluar\SktbekerjaController;
+use App\Http\Controllers\bo\Surat\keluar\SkdudaController;
+use App\Http\Controllers\bo\Surat\keluar\SkdController;
+use App\Http\Controllers\bo\Surat\keluar\SklController;
+use App\Http\Controllers\bo\Surat\keluar\SkpenghasilanController;
+use App\Http\Controllers\bo\Surat\keluar\SpbbekerjaController;
 
 
 
