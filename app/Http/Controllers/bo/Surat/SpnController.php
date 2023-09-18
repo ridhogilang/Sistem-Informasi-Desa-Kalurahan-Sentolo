@@ -1,12 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\bo\Surat;
-
 use Carbon\Carbon;
 use App\Models\Spn;
 use Illuminate\Routing\Controller;
-use App\Http\Requests\StoreSpnRequest;
-use App\Http\Requests\UpdateSpnRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -43,7 +40,7 @@ class SpnController extends Controller
         return view('bo.page.surat.surat-pn', [
             'dropdown1' => 'Surat Keluar',
             'dropdown2' => 'Kemasyarakatan',
-            'title' => 'Surat Pernyataan Nikah',
+            'title' => 'Surat Pengantar Nikah',
             'TemplateNoSurat' => $TemplateNoSurat
         ])->with('spn', $spn);
     }

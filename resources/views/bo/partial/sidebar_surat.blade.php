@@ -30,53 +30,28 @@
                         @endcan
                         @can('surat Pernyataan Belum Menikah')
                         <li>
-<<<<<<< HEAD:resources/views/partial/sidebar.blade.php
-<<<<<<< HEAD
-=======
-                            <a href="/surat-pbm" class="{{ ($title == "Surat Pernyataan Belum Menikah") ? 'active' : '' }}">
-=======
                             <a href="/admin/e-surat/surat-pbm" class="{{ ($title == "Surat Pernyataan Belum Menikah") ? 'active' : '' }}">
->>>>>>> dev:resources/views/bo/partial/sidebar_surat.blade.php
                                 <i class="bi bi-circle"></i><span>Pernyataan Belum Menikah</span>
                             </a>
                         </li>
                         @endcan
                         @can('surat Keterangan Belum Menikah')
                         <li>
-<<<<<<< HEAD:resources/views/partial/sidebar.blade.php
->>>>>>> dev
-                            <a href="/surat-kbm" class="{{ ($title == "Surat Keterangan Belum Menikah") ? 'active' : '' }}">
-=======
                             <a href="/admin/e-surat/surat-kbm" class="{{ ($title == "Surat Keterangan Belum Menikah") ? 'active' : '' }}">
->>>>>>> dev:resources/views/bo/partial/sidebar_surat.blade.php
                                 <i class="bi bi-circle"></i><span>Keterangan  Belum Menikah</span>
                             </a>
                         </li>
                         @endcan
                         @can('surat Pengantar Nikah')
                         <li>
-<<<<<<< HEAD:resources/views/partial/sidebar.blade.php
-<<<<<<< HEAD
-                            <a href="/surat-pbm" class="{{ ($title == "Surat Pernyataan Belum Menikah") ? 'active' : '' }}">
-                                <i class="bi bi-circle"></i><span>Keterangan Pernyataan Belum Menikah</span>
-                            <a href="/p-ektp" class="{{ ($title == "Pengantar E-KTP") ? 'active' : '' }}">
-=======
-                            <a href="/surat-pn" class="{{ ($title == "Surat Pengantar Nikah") ? 'active' : '' }}">
-=======
                             <a href="/admin/e-surat/surat-pn" class="{{ ($title == "Surat Pengantar Nikah") ? 'active' : '' }}">
->>>>>>> dev:resources/views/bo/partial/sidebar_surat.blade.php
                                 <i class="bi bi-circle"></i><span>Pengantar Nikah</span>
                             </a>
                         </li>
                         @endcan
                         @can('surat Pengantar E-KTP')
                         <li>
-<<<<<<< HEAD:resources/views/partial/sidebar.blade.php
-                            <a href="/surat-pektp" class="{{ ($title == "Surat Pengantar E-KTP") ? 'active' : '' }}">
->>>>>>> dev
-=======
                             <a href="/admin/e-surat/surat-pektp" class="{{ ($title == "Surat Pengantar E-KTP") ? 'active' : '' }}">
->>>>>>> dev:resources/views/bo/partial/sidebar_surat.blade.php
                                 <i class="bi bi-circle"></i><span>Pengantar E-KTP</span>
                             </a>
                         </li>
