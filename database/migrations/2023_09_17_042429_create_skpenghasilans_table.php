@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('nomor_surat')->unique();
             $table->string('nama');
             $table->string('nik');
-            $table->string('tempat_lahir');
-            $table->string('tanggal_lahir');
-            $table->string('agama');
+            $table->integer('umur');
             $table->string('jenis_kelamin');
+            $table->string('pekerjaan');
+            $table->string('penghasilan');
+            $table->string('kewarganegaraan');
             $table->string('alamat');
-            $table->string('deskripsi');
             $table->string('jenis_surat');
             $table->string('status_surat');
             $table->timestamps();

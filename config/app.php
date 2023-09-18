@@ -161,6 +161,8 @@ return [
          */
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
+        //spatie
+        Spatie\Permission\PermissionServiceProvider::class,
         /*
          * Application Service Providers...
          */
