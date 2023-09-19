@@ -19,9 +19,7 @@ use App\Http\Controllers\bo\Surat\keluar\SkdController;
 use App\Http\Controllers\bo\Surat\keluar\SklController;
 use App\Http\Controllers\bo\Surat\keluar\SkpenghasilanController;
 use App\Http\Controllers\bo\Surat\keluar\SpbbekerjaController;
-
-
-
+use App\Http\Controllers\ScstmController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -161,6 +159,12 @@ Route::prefix('admin')->group(function () {
             Route::get('/contoh-surat-belum-bekerja/view', [SpbbekerjaController::class, 'contoh'])->middleware('can:lihat contoh surat');
             // Surat Keterangan Penghasilan
             Route::get('/surat-ket-hasil', [SkpenghasilanController::class, 'index'])->middleware('can:list surat');
+            Route::post('/surat-ket-hasil', [SkpenghasilanController::class, 'store'])->middleware('can:input surat');
+            Route::put('/surat-ket-hasil/{id}', [SkpenghasilanController::class, 'update'])->middleware('can:edit surat');
+            Route::get('/surat-ket-hasil/{id}/view', [SkpenghasilanController::class, 'show'])->middleware('can:lihat surat');
+            Route::get('/contoh-surat-ket-hasil/view', [SkpenghasilanController::class, 'contoh'])->middleware('can:lihat contoh surat');
+            // Surat Custom
+            Route::get('/surat-cstm', [ScstmController::class, 'index'])->middleware('can:list surat');
             Route::post('/surat-ket-hasil', [SkpenghasilanController::class, 'store'])->middleware('can:input surat');
             Route::put('/surat-ket-hasil/{id}', [SkpenghasilanController::class, 'update'])->middleware('can:edit surat');
             Route::get('/surat-ket-hasil/{id}/view', [SkpenghasilanController::class, 'show'])->middleware('can:lihat surat');

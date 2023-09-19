@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
             'surat Pengantar Kependudukan',
             'surat Pernyataan Belum Bekerja',
             'surat Keterangan Penghasilan',
+            'surat Custom',
 
         // 'input surat masuk',
         // 'edit surat masuk',

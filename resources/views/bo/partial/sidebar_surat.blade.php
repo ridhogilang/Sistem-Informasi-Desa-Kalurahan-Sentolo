@@ -77,6 +77,13 @@
                             </a>
                         </li>
                         @endcan
+                        @can('surat Custom')
+                        <li>
+                            <a href="/admin/e-surat/surat-cstm" class="{{ ($title == "Surat Custom") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Surat Custom</span>
+                            </a>
+                        </li>
+                        @endcan
                     </ul>
                 </li>
                 @endcanany
