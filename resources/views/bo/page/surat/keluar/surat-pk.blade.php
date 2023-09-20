@@ -120,14 +120,15 @@
                                                     <input type="text" name="alamat" class="form-control" id="alamat" value="{{ old('alamat') }}" required>
                                                 </div>
                                             </div>
+                                            <h5 class="modal-title mt-2 mb-3"><strong>Masa Berlaku</strong></h5>
                                             <div class="row mb-3">
-                                                <label for="tanggal_awal" class="col-sm-3 col-form-label">tanggal_awal</label>
+                                                <label for="tanggal_awal" class="col-sm-3 col-form-label">Dari Tanggal</label>
                                                 <div class="col-sm-9">
                                                     <input type="date" name="tanggal_awal" class="form-control" id="tanggal_awal" value="{{ old('tanggal_awal') }}" required>
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="tanggal_akhir" class="col-sm-3 col-form-label">tanggal_akhir</label>
+                                                <label for="tanggal_akhir" class="col-sm-3 col-form-label">Sampai Tanggal</label>
                                                 <div class="col-sm-9">
                                                     <input type="date" name="tanggal_akhir" class="form-control" id="tanggal_akhir" value="{{ old('tanggal_akhir') }}" required>
                                                 </div>
@@ -290,14 +291,15 @@
                                                                 <input type="text" name="alamat" class="form-control" id="alamat" value="{{$value->alamat}}" required>
                                                             </div>
                                                         </div>
+                                                        <h5 class="modal-title mt-2 mb-3"><strong>Masa Berlaku</strong></h5>
                                                         <div class="row mb-3">
-                                                            <label for="tanggal_awal" class="col-sm-3 col-form-label">tanggal_awal</label>
+                                                            <label for="tanggal_awal" class="col-sm-3 col-form-label">Dari Tanggal</label>
                                                             <div class="col-sm-9">
                                                                 <input type="date" name="tanggal_awal" class="form-control" id="tanggal_awal" value="{{$value->tanggal_awal}}" required>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="tanggal_akhir" class="col-sm-3 col-form-label">tanggal_akhir</label>
+                                                            <label for="tanggal_akhir" class="col-sm-3 col-form-label">Sampai Tanggal</label>
                                                             <div class="col-sm-9">
                                                                 <input type="date" name="tanggal_akhir" class="form-control" id="tanggal_akhir" value="{{$value->tanggal_akhir}}" required>
                                                             </div>

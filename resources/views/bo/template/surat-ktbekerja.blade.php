@@ -37,9 +37,9 @@
         }
 
         .hrsatu{
-            margin-left:252px;
+            margin-left:204px;
             margin-top:-3px;
-            width:209px
+            width:307px
         }
 
         .tiga{
@@ -182,8 +182,8 @@
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160; Benar nama tersebut diatas warga masyarakat Desa Kalurahan Sentolo Kapanewon Sentolo Kabupaten Kulon Progo dan berdomisili sebagai tercantum diatas <b><u>Tidak Bekerja/Tidak Punya Penghasilan</b></u>
-                        <br>&#160; &#160; &#160; Demikian surat keterangan ini dibuat,untuk mengetahui dan dapat dipergunakan seperlunya.
+                        &#160; &#160; &#160; &#160; Benar nama tersebut diatas warga masyarakat Desa Kalurahan Sentolo Kapanewon Sentolo Kabupaten Kulon Progo dan berdomisili sebagai tercantum diatas <b>Tidak Bekerja / Tidak Punya Penghasilan</b>.
+                        <br>&#160; &#160; &#160; Demikian surat keterangan ini dibuat dengan sebenarnya dan diberikan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>

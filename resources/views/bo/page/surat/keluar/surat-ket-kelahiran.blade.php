@@ -37,7 +37,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row" action="" method="POST">
+                                        <form class="row" action="/admin/e-surat/surat-kkelahiran" method="POST">
                                             @csrf
                                             <div class="row mb-3">
                                                 <label for="nomor_surat" class="col-sm-3 col-form-label">Nomor Surat</label>
@@ -45,6 +45,7 @@
                                                     <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" value="{{$TemplateNoSurat}}" required>
                                                 </div>
                                             </div>
+                                            <h5 class="modal-title mt-2 mb-3"><strong>Data Anak / Bayi</strong></h5>
                                             <div class="row mb-3">
                                                 <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                                                 <div class="col-sm-9">
@@ -54,14 +55,23 @@
                                             <div class="row mb-3">
                                                 <label for="status_hubungan" class="col-sm-3 col-form-label">Status Hubungan</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="status_hubungan" class="form-control" id="status_hubungan" value="{{ old('status_hubungan') }}" required>
+                                                    <select id="status_hubungan" name="status_hubungan" class="form-select" required>
+                                                        <option value="" @if(old('status_hubungan') == '') selected @endif>Pilih Status Hubungan ...</option>
+                                                        <option value="Anak Kandung" @if(old('status_hubungan') == 'Anak Kandung') selected @endif>Anak Kandung</option>
+                                                    </select>
                                                 </div>
                                             </div>
-                                                <div class="row mb-3">
-                                                    <label for="kalurahan" class="col-sm-3 col-form-label">Kelurahan</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="kalurahan" class="form-control" id="kalurahan" value="{{ old('kalurahan') }}" required>
-                                                    </div>
+                                            <div class="row mb-3">
+                                                <label for="dusun" class="col-sm-3 col-form-label">Dusun</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="dusun" class="form-control" id="dusun" value="{{ old('dusun') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="kalurahan" class="col-sm-3 col-form-label">Kalurahan</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="kalurahan" class="form-control" id="kalurahan" value="{{ old('kalurahan') }}" required>
+                                                </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="kecamatan" class="col-sm-3 col-form-label">Kecamatan</label>
@@ -72,62 +82,59 @@
                                             <div class="row mb-3">
                                                 <label for="kabupaten" class="col-sm-3 col-form-label">Kabupaten</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="kabupaten" class="form-control" id="kabupaten" value="{{ old('kecamatan') }}" required>
+                                                    <input type="text" name="kabupaten" class="form-control" id="kabupaten" value="{{ old('kabupaten') }}" required>
                                                 </div>
                                             </div>
-                                                <div class="row mb-3">
-                                                    <label for="provinsi" class="col-sm-3 col-form-label">Provinsi</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="provinsi" class="form-control" id="provinsi" value="{{ old('provinsi') }}" required>
-                                                    </div>
+                                            <div class="row mb-3">
+                                                <label for="provinsi" class="col-sm-3 col-form-label">Provinsi</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="provinsi" class="form-control" id="provinsi" value="{{ old('provinsi') }}" required>
                                                 </div>
-                                                    <div class="row mb-3">
-                                                        <label for="tempat_lahir" class="col-sm-4 col-form-label">Tempat / Tanggal Lahir</label>
-                                                        <div class="col-sm-4">
-                                                            <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir') }}" required>
-                                                        </div>
-                                                        <label for="tanggal_lahir" class="col-sm-1 col-form-label text-center">/</label>
-                                                        <div class="col-sm-3">
-                                                            <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
-                                                        <div class="col-sm-9">
-                                                            <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
-                                                                <option value="" @if(old('jenis_kelamin') == '') selected @endif>Pilih Jenis Kelamin ...</option>
-                                                                <option value="Laki-laki" @if(old('jenis_kelamin') == 'Laki-laki') selected @endif>Laki-laki</option>
-                                                                <option value="Perempuan" @if(old('jenis_kelamin') == 'Perempuan') selected @endif>Perempuan</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <label for="anak_ke" class="col-sm-3 col-form-label">Anak ke</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" name="anak_ke" class="form-control" id="anak_ke" value="{{ old('anak_ke') }}" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <label for="agama" class="col-sm-3 col-form-label">Agama</label>
-                                                        <div class="col-sm-9">
-                                                            <select id="agama" name="agama" class="form-select" required>
-                                                                <option value="" @if(old('agama') == '') selected @endif>Pilih Agama ...</option>
-                                                                <option value="Islam" @if(old('agama') == 'Islam') selected @endif>Islam</option>
-                                                                <option value="Kristen Protestan" @if(old('agama') == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
-                                                                <option value="Kristen Katolik" @if(old('agama') == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
-                                                                <option value="Hindu" @if(old('agama') == 'Hindu') selected @endif>Hindu</option>
-                                                                <option value="Buddha" @if(old('agama') == 'Buddha') selected @endif>Buddha</option>
-                                                                <option value="Konghucu" @if(old('agama') == 'Konghucu') selected @endif>Konghucu</option>
-                                                                <option value="Lainnya" @if(old('agama') == 'Lainnya') selected @endif>Lainnya</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row mb-3">
-                                                        <label for="nama_ayah" class="col-sm-3 col-form-label">Nama Ayah</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" name="nama_ayah" class="form-control" id="nama_ayah" value="{{ old('nama_ayah') }}" required>
-                                                        </div>
-                                                    </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="tanggal_lahir" class="col-sm-3 col-form-label">Tanggal Lahir</label>
+                                                <div class="col-sm-9">
+                                                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                                                <div class="col-sm-9">
+                                                    <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
+                                                        <option value="" @if(old('jenis_kelamin') == '') selected @endif>Pilih Jenis Kelamin ...</option>
+                                                        <option value="Laki-laki" @if(old('jenis_kelamin') == 'Laki-laki') selected @endif>Laki-laki</option>
+                                                        <option value="Perempuan" @if(old('jenis_kelamin') == 'Perempuan') selected @endif>Perempuan</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="anak_ke" class="col-sm-3 col-form-label">Anak ke</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="anak_ke" class="form-control" id="anak_ke" value="{{ old('anak_ke') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="agama" class="col-sm-3 col-form-label">Agama</label>
+                                                <div class="col-sm-9">
+                                                    <select id="agama" name="agama" class="form-select" required>
+                                                        <option value="" @if(old('agama') == '') selected @endif>Pilih Agama ...</option>
+                                                        <option value="Islam" @if(old('agama') == 'Islam') selected @endif>Islam</option>
+                                                        <option value="Kristen Protestan" @if(old('agama') == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
+                                                        <option value="Kristen Katolik" @if(old('agama') == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
+                                                        <option value="Hindu" @if(old('agama') == 'Hindu') selected @endif>Hindu</option>
+                                                        <option value="Buddha" @if(old('agama') == 'Buddha') selected @endif>Buddha</option>
+                                                        <option value="Konghucu" @if(old('agama') == 'Konghucu') selected @endif>Konghucu</option>
+                                                        <option value="Lainnya" @if(old('agama') == 'Lainnya') selected @endif>Lainnya</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <h5 class="modal-title mt-2 mb-3"><strong>Data Ayah</strong></h5>
+                                            <div class="row mb-3">
+                                                <label for="nama_ayah" class="col-sm-3 col-form-label">Nama</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="nama_ayah" class="form-control" id="nama_ayah" value="{{ old('nama_ayah') }}" required>
+                                                </div>
+                                            </div>
                                             <div class="row mb-3">
                                                 <label for="nik_ayah" class="col-sm-3 col-form-label">NIK</label>
                                                 <div class="col-sm-9">
@@ -148,14 +155,14 @@
                                                 <label for="agama_ayah" class="col-sm-3 col-form-label">Agama</label>
                                                 <div class="col-sm-9">
                                                     <select id="agama_ayah" name="agama_ayah" class="form-select" required>
-                                                        <option value="" @if(old('agama') == '') selected @endif>Pilih Agama ...</option>
-                                                        <option value="Islam" @if(old('agama') == 'Islam') selected @endif>Islam</option>
-                                                        <option value="Kristen Protestan" @if(old('agama') == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
-                                                        <option value="Kristen Katolik" @if(old('agama') == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
-                                                        <option value="Hindu" @if(old('agama') == 'Hindu') selected @endif>Hindu</option>
-                                                        <option value="Buddha" @if(old('agama') == 'Buddha') selected @endif>Buddha</option>
-                                                        <option value="Konghucu" @if(old('agama') == 'Konghucu') selected @endif>Konghucu</option>
-                                                        <option value="Lainnya" @if(old('agama') == 'Lainnya') selected @endif>Lainnya</option>
+                                                        <option value="" @if(old('agama_ayah') == '') selected @endif>Pilih Agama ...</option>
+                                                        <option value="Islam" @if(old('agama_ayah') == 'Islam') selected @endif>Islam</option>
+                                                        <option value="Kristen Protestan" @if(old('agama_ayah') == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
+                                                        <option value="Kristen Katolik" @if(old('agama_ayah') == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
+                                                        <option value="Hindu" @if(old('agama_ayah') == 'Hindu') selected @endif>Hindu</option>
+                                                        <option value="Buddha" @if(old('agama_ayah') == 'Buddha') selected @endif>Buddha</option>
+                                                        <option value="Konghucu" @if(old('agama_ayah') == 'Konghucu') selected @endif>Konghucu</option>
+                                                        <option value="Lainnya" @if(old('agama_ayah') == 'Lainnya') selected @endif>Lainnya</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -171,63 +178,58 @@
                                                     <input type="text" name="alamat_ayah" class="form-control" id="alamat_ayah" value="{{ old('alamat_ayah') }}" required>
                                                 </div>
                                             </div>
+                                            <h5 class="modal-title mt-2 mb-3"><strong>Data Ibu</strong></h5>
                                             <div class="row mb-3">
-                                                <label for="nama_ibu" class="col-sm-3 col-form-label">Nama Ibu</label>
+                                                <label for="nama_ibu" class="col-sm-3 col-form-label">Nama</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" name="nama_ibu" class="form-control" id="nama_ibu" value="{{ old('nama_ibu') }}" required>
                                                 </div>
                                             </div>
-                                    <div class="row mb-3">
-                                        <label for="nik_ibu" class="col-sm-3 col-form-label">NIK</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="nik_ibu" class="form-control" id="nik_ibu" value="{{ old('nik_ibu') }}" required>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="tempat_lahir_ibu" class="col-sm-4 col-form-label">Tempat / Tanggal Lahir</label>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control" id="tempat_lahir_ibu" name="tempat_lahir_ibu" value="{{ old('tempat_lahir_ibu') }}" required>
-                                        </div>
-                                        <label for="tanggal_lahir_ibu" class="col-sm-1 col-form-label text-center">/</label>
-                                        <div class="col-sm-3">
-                                            <input type="date" class="form-control" id="tanggal_lahir_ibu" name="tanggal_lahir_ibu" value="{{ old('tanggal_lahir_ibu') }}" required>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="agama_ibu" class="col-sm-3 col-form-label">Agama</label>
-                                        <div class="col-sm-9">
-                                            <select id="agama_ayah" name="agama_ibu" class="form-select" required>
-                                                <option value="" @if(old('agama') == '') selected @endif>Pilih Agama ...</option>
-                                                <option value="Islam" @if(old('agama') == 'Islam') selected @endif>Islam</option>
-                                                <option value="Kristen Protestan" @if(old('agama') == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
-                                                <option value="Kristen Katolik" @if(old('agama') == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
-                                                <option value="Hindu" @if(old('agama') == 'Hindu') selected @endif>Hindu</option>
-                                                <option value="Buddha" @if(old('agama') == 'Buddha') selected @endif>Buddha</option>
-                                                <option value="Konghucu" @if(old('agama') == 'Konghucu') selected @endif>Konghucu</option>
-                                                <option value="Lainnya" @if(old('agama') == 'Lainnya') selected @endif>Lainnya</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="pekerjaan_ibu" class="col-sm-3 col-form-label">Pekerjaan</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="pekerjaan_ibu" class="form-control" id="pekerjaan_ibu" value="{{ old('pekerjaan_ibu') }}" required>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="alamat_ibu" class="col-sm-3 col-form-label">Alamat</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" name="alamat_ibu" class="form-control" id="alamat_ibu" value="{{ old('alamat_ibu') }}" required>
-                                        </div>
-                                    </div>
                                             <div class="row mb-3">
-                                                <label for="deskripsi" class="col-sm-3 col-form-label">Deskripsi</label>
+                                                <label for="nik_ibu" class="col-sm-3 col-form-label">NIK</label>
                                                 <div class="col-sm-9">
-                                                    <textarea type="text" name="deskripsi" class="form-control" id="deskripsi" rows="3" required>Surat Keterangan ini dibuat sebagai kelengkapan pengurusan surat perpindahan</textarea>
+                                                    <input type="text" name="nik_ibu" class="form-control" id="nik_ibu" value="{{ old('nik_ibu') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="tempat_lahir_ibu" class="col-sm-4 col-form-label">Tempat / Tanggal Lahir</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" id="tempat_lahir_ibu" name="tempat_lahir_ibu" value="{{ old('tempat_lahir_ibu') }}" required>
+                                                </div>
+                                                <label for="tanggal_lahir_ibu" class="col-sm-1 col-form-label text-center">/</label>
+                                                <div class="col-sm-3">
+                                                    <input type="date" class="form-control" id="tanggal_lahir_ibu" name="tanggal_lahir_ibu" value="{{ old('tanggal_lahir_ibu') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="agama_ibu" class="col-sm-3 col-form-label">Agama</label>
+                                                <div class="col-sm-9">
+                                                    <select id="agama_ibu" name="agama_ibu" class="form-select" required>
+                                                        <option value="" @if(old('agama_ibu') == '') selected @endif>Pilih Agama ...</option>
+                                                        <option value="Islam" @if(old('agama_ibu') == 'Islam') selected @endif>Islam</option>
+                                                        <option value="Kristen Protestan" @if(old('agama_ibu') == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
+                                                        <option value="Kristen Katolik" @if(old('agama_ibu') == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
+                                                        <option value="Hindu" @if(old('agama_ibu') == 'Hindu') selected @endif>Hindu</option>
+                                                        <option value="Buddha" @if(old('agama_ibu') == 'Buddha') selected @endif>Buddha</option>
+                                                        <option value="Konghucu" @if(old('agama_ibu') == 'Konghucu') selected @endif>Konghucu</option>
+                                                        <option value="Lainnya" @if(old('agama_ibu') == 'Lainnya') selected @endif>Lainnya</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="pekerjaan_ibu" class="col-sm-3 col-form-label">Pekerjaan</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="pekerjaan_ibu" class="form-control" id="pekerjaan_ibu" value="{{ old('pekerjaan_ibu') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="alamat_ibu" class="col-sm-3 col-form-label">Alamat</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="alamat_ibu" class="form-control" id="alamat_ibu" value="{{ old('alamat_ibu') }}" required>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <input type="hidden" name="jenis_surat" class="form-control" value="skl" >
+                                                <input type="hidden" name="jenis_surat" class="form-control" value="skkelahiran" >
                                             </div>
                                             <div class="row">
                                                 <input type="hidden" name="status_surat" class="form-control" value="Pending" >
@@ -257,11 +259,9 @@
                                 <tr>
                                     <th scope="col">No.</th>
                                     <th scope="col">Nomor Surat</th>
-                                    <th scope="col">Nama </th>
+                                    <th scope="col">Nama Anak</th>
                                     <th scope="col">Nama Ayah</th>
                                     <th scope="col">NIK Ayah</th>
-                                    <th scope="col">Nama Ibu</th>
-                                    <th scope="col">NIK Ibu</th>
                                     <th scope="col">Status</th>
                                     @canany(['edit surat', 'lihat surat'])
                                     <th scope="col" class="text-center">Action</th>
@@ -276,10 +276,9 @@
                                     <tr>
                                         <th scope="row">{{ $no++ }}.</th>
                                         <td>{{ $value->nomor_surat }}</td>
+                                        <td>{{ $value->nama }}</td>
                                         <td>{{ $value->nama_ayah }}</td>
                                         <td>{{ $value->nik_ayah }}</td>
-                                        <td>{{ $value->nama_ibu }}</td>
-                                        <td>{{ $value->nik_ibu }}</td>
                                         <td>{{ $value->status_surat }}</td>
                                         @canany(['edit surat', 'lihat surat'])
                                         <td class="text-center">
@@ -307,185 +306,194 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="row mb-3">
-                                                            <label for="nomor_surat" class="col-sm-3 col-form-label">Nomor Surat</label>
+                                                            <label for="nomor_surat3" class="col-sm-3 col-form-label">Nomor Surat</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" class="form-control" id="nomor_surat" name="nomor_surat" value="{{$value->nomor_surat}}" required>
+                                                                <input type="text" class="form-control" id="nomor_surat3" name="nomor_surat" value="{{$value->nomor_surat}}" required>
+                                                            </div>
+                                                        </div>
+                                                        <h5 class="modal-title mt-2 mb-3"><strong>Data Anak / Bayi</strong></h5>
+                                                        <div class="row mb-3">
+                                                            <label for="nama3" class="col-sm-3 col-form-label">Nama</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="nama" class="form-control" id="nama3" value="{{$value->nama}}" required>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="nama" class="col-sm-3 col-form-label">Nama</label>
+                                                            <label for="status_hubungan3" class="col-sm-3 col-form-label">Status Hubungan</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <label for="status_hubungan" class="col-sm-3 col-form-label">Status Hubungan</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" name="nama" class="form-control" id="status_hubungan" value="{{ old('status_hubungan') }}" required>
-                                                            </div>
-                                                        </div>
-                                                            <div class="row mb-3">
-                                                                <label for="kalurahan" class="col-sm-3 col-form-label">Kelurahan</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" name="kalurahan" class="form-control" id="kalurahan" value="{{ old('kalurahan') }}" required>
-                                                                </div>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <label for="kecamatan" class="col-sm-3 col-form-label">Kecamatan</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" name="kecamatan" class="form-control" id="kecamatan" value="{{ old('kecamatan') }}" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <label for="kabupaten" class="col-sm-3 col-form-label">Kabupaten</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" name="kabupaten" class="form-control" id="kabupaten" value="{{ old('kabupaten') }}" required>
-                                                            </div>
-                                                        </div>
-                                                            <div class="row mb-3">
-                                                                <label for="provinsi" class="col-sm-3 col-form-label">Provinsi</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" name="provinsi" class="form-control" id="provinsi" value="{{ old('provinsi') }}" required>
-                                                                </div>
-                                                            </div>
-                                                                <div class="row mb-3">
-                                                                    <label for="tempat_lahir" class="col-sm-4 col-form-label">Tempat / Tanggal Lahir</label>
-                                                                    <div class="col-sm-4">
-                                                                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir') }}" required>
-                                                                    </div>
-                                                                    <label for="tanggal_lahir" class="col-sm-1 col-form-label text-center">/</label>
-                                                                    <div class="col-sm-3">
-                                                                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" required>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mb-3">
-                                                                    <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
-                                                                    <div class="col-sm-9">
-                                                                        <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
-                                                                            <option value="" @if(old('jenis_kelamin') == '') selected @endif>Pilih Jenis Kelamin ...</option>
-                                                                            <option value="Laki-laki" @if(old('jenis_kelamin') == 'Laki-laki') selected @endif>Laki-laki</option>
-                                                                            <option value="Perempuan" @if(old('jenis_kelamin') == 'Perempuan') selected @endif>Perempuan</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mb-3">
-                                                                    <label for="anak_ke" class="col-sm-3 col-form-label">Anak ke</label>
-                                                                    <div class="col-sm-9">
-                                                                        <input type="text" name="anak_ke" class="form-control" id="anak_ke" value="{{ old('anak_ke') }}" required>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mb-3">
-                                                                    <label for="agama" class="col-sm-3 col-form-label">Agama</label>
-                                                                    <div class="col-sm-9">
-                                                                        <select id="agama" name="agama" class="form-select" required>
-                                                                            <option value="" @if(old('agama') == '') selected @endif>Pilih Agama ...</option>
-                                                                            <option value="Islam" @if(old('agama') == 'Islam') selected @endif>Islam</option>
-                                                                            <option value="Kristen Protestan" @if(old('agama') == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
-                                                                            <option value="Kristen Katolik" @if(old('agama') == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
-                                                                            <option value="Hindu" @if(old('agama') == 'Hindu') selected @endif>Hindu</option>
-                                                                            <option value="Buddha" @if(old('agama') == 'Buddha') selected @endif>Buddha</option>
-                                                                            <option value="Konghucu" @if(old('agama') == 'Konghucu') selected @endif>Konghucu</option>
-                                                                            <option value="Lainnya" @if(old('agama') == 'Lainnya') selected @endif>Lainnya</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row mb-3">
-                                                                    <label for="nama_ayah" class="col-sm-3 col-form-label">Nama Ayah</label>
-                                                                    <div class="col-sm-9">
-                                                                        <input type="text" name="nama_ayah" class="form-control" id="nama_ayah" value="{{ old('nama_ayah') }}" required>
-                                                                    </div>
-                                                                </div>
-                                                        <div class="row mb-3">
-                                                            <label for="nik_ayah" class="col-sm-3 col-form-label">NIK</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" name="nik_ayah" class="form-control" id="nik_ayah" value="{{ old('nik_ayah') }}" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <label for="tempat_lahir_ayah" class="col-sm-4 col-form-label">Tempat / Tanggal Lahir</label>
-                                                            <div class="col-sm-4">
-                                                                <input type="text" class="form-control" id="tempat_lahir_ayah" name="tempat_lahir_ayah" value="{{ old('tempat_lahir_ayah') }}" required>
-                                                            </div>
-                                                            <label for="tanggal_lahir_ayah" class="col-sm-1 col-form-label text-center">/</label>
-                                                            <div class="col-sm-3">
-                                                                <input type="date" class="form-control" id="tanggal_lahir_ayah" name="tanggal_lahir_ayah" value="{{ old('tanggal_lahir_ayah') }}" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <label for="agama_ayah" class="col-sm-3 col-form-label">Agama</label>
-                                                            <div class="col-sm-9">
-                                                                <select id="agama_ayah" name="agama_ayah" class="form-select" required>
-                                                                    <option value="" @if(old('agama') == '') selected @endif>Pilih Agama ...</option>
-                                                                    <option value="Islam" @if(old('agama') == 'Islam') selected @endif>Islam</option>
-                                                                    <option value="Kristen Protestan" @if(old('agama') == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
-                                                                    <option value="Kristen Katolik" @if(old('agama') == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
-                                                                    <option value="Hindu" @if(old('agama') == 'Hindu') selected @endif>Hindu</option>
-                                                                    <option value="Buddha" @if(old('agama') == 'Buddha') selected @endif>Buddha</option>
-                                                                    <option value="Konghucu" @if(old('agama') == 'Konghucu') selected @endif>Konghucu</option>
-                                                                    <option value="Lainnya" @if(old('agama') == 'Lainnya') selected @endif>Lainnya</option>
+                                                                <select id="status_hubungan3" name="status_hubungan" class="form-select" required>
+                                                                    <option value="" {{ ($value->status_hubungan == "") ? 'selected' : '' }}>Pilih Status Hubungan ...</option>
+                                                                    <option value="Anak Kandung" {{ ($value->status_hubungan == "Anak Kandung") ? 'selected' : '' }}>Anak Kandung</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="pekerjaan_ayah" class="col-sm-3 col-form-label">Pekerjaan</label>
+                                                            <label for="dusun3" class="col-sm-3 col-form-label">Dusun</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" name="pekerjaan_ayah" class="form-control" id="pekerjaan_ayah" value="{{ old('pekerjaan_ayah') }}" required>
+                                                                <input type="text" name="dusun" class="form-control" id="dusun3" value="{{$value->dusun}}" required>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="alamat_ayah" class="col-sm-3 col-form-label">Alamat</label>
+                                                            <label for="kalurahan3" class="col-sm-3 col-form-label">Kalurahan</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" name="alamat_ayah" class="form-control" id="alamat_ayah" value="{{ old('alamat_ayah') }}" required>
+                                                                <input type="text" name="kalurahan" class="form-control" id="kalurahan3" value="{{$value->kalurahan}}" required>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="nama_ibu" class="col-sm-3 col-form-label">Nama Ibu</label>
+                                                            <label for="kecamatan3" class="col-sm-3 col-form-label">Kecamatan</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" name="nama_ibu" class="form-control" id="nama_ibu" value="{{ old('nama_ibu') }}" required>
+                                                                <input type="text" name="kecamatan" class="form-control" id="kecamatan3" value="{{$value->kecamatan}}" required>
                                                             </div>
                                                         </div>
-                                                <div class="row mb-3">
-                                                    <label for="nik_ibu" class="col-sm-3 col-form-label">NIK</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="nik_ibu" class="form-control" id="nik_ibu" value="{{ old('nik_ibu') }}" required>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="tempat_lahir_ibu" class="col-sm-4 col-form-label">Tempat / Tanggal Lahir</label>
-                                                    <div class="col-sm-4">
-                                                        <input type="text" class="form-control" id="tempat_lahir_ibu" name="tempat_lahir_ibu" value="{{ old('tempat_lahir_ibu') }}" required>
-                                                    </div>
-                                                    <label for="tanggal_lahir_ibu" class="col-sm-1 col-form-label text-center">/</label>
-                                                    <div class="col-sm-3">
-                                                        <input type="date" class="form-control" id="tanggal_lahir_ibu" name="tanggal_lahir_ibu" value="{{ old('tanggal_lahir_ibu') }}" required>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="agama_ibu" class="col-sm-3 col-form-label">Agama</label>
-                                                    <div class="col-sm-9">
-                                                        <select id="agama_ayah" name="agama_ibu" class="form-select" required>
-                                                            <option value="" @if(old('agama') == '') selected @endif>Pilih Agama ...</option>
-                                                            <option value="Islam" @if(old('agama') == 'Islam') selected @endif>Islam</option>
-                                                            <option value="Kristen Protestan" @if(old('agama') == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
-                                                            <option value="Kristen Katolik" @if(old('agama') == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
-                                                            <option value="Hindu" @if(old('agama') == 'Hindu') selected @endif>Hindu</option>
-                                                            <option value="Buddha" @if(old('agama') == 'Buddha') selected @endif>Buddha</option>
-                                                            <option value="Konghucu" @if(old('agama') == 'Konghucu') selected @endif>Konghucu</option>
-                                                            <option value="Lainnya" @if(old('agama') == 'Lainnya') selected @endif>Lainnya</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="pekerjaan_ibu" class="col-sm-3 col-form-label">Pekerjaan</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="pekerjaan_ibu" class="form-control" id="pekerjaan_ibu" value="{{ old('pekerjaan_ibu') }}" required>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="alamat_ibu" class="col-sm-3 col-form-label">Alamat</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="alamat_ibu" class="form-control" id="alamat_ibu" value="{{ old('alamat_ibu') }}" required>
-                                                    </div>
+                                                        <div class="row mb-3">
+                                                            <label for="kabupaten3" class="col-sm-3 col-form-label">Kabupaten</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="kabupaten" class="form-control" id="kabupaten3" value="{{$value->kabupaten}}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="provinsi3" class="col-sm-3 col-form-label">Provinsi</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="provinsi" class="form-control" id="provinsi3" value="{{$value->provinsi}}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="tanggal_lahir3" class="col-sm-3 col-form-label">Tanggal Lahir</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="date" class="form-control" id="tanggal_lahir3" name="tanggal_lahir" value="{{ $value->tanggal_lahir }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="jenis_kelamin3" class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                                                            <div class="col-sm-9">
+                                                                <select id="jenis_kelamin3" name="jenis_kelamin" class="form-select" required>
+                                                                    <option value="" >Pilih Jenis Kelamin ...</option>
+                                                                    <option value="Laki-laki" {{ ($value->jenis_kelamin == "Laki-laki") ? 'selected' : '' }}>Laki-laki</option>
+                                                                    <option value="Perempuan" {{ ($value->jenis_kelamin == "Perempuan") ? 'selected' : '' }}>Perempuan</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="anak_ke3" class="col-sm-3 col-form-label">Anak ke</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="anak_ke" class="form-control" id="anak_ke3" value="{{ $value->anak_ke }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="agama3" class="col-sm-3 col-form-label">Agama</label>
+                                                            <div class="col-sm-9">
+                                                                <select id="agama3" name="agama" class="form-select" required>
+                                                                    <option value="">Pilih Agama ...</option>
+                                                                    <option value="Islam" {{ ($value->agama == "Islam") ? 'selected' : '' }}>Islam</option>
+                                                                    <option value="Kristen Protestan" {{ ($value->agama == "Kristen Protestan") ? 'selected' : '' }}>Kristen Protestan</option>
+                                                                    <option value="Kristen Katolik" {{ ($value->agama == "Kristen Katolik") ? 'selected' : '' }}>Kristen Katolik</option>
+                                                                    <option value="Hindu" {{ ($value->agama == "Hindu") ? 'selected' : '' }}>Hindu</option>
+                                                                    <option value="Buddha" {{ ($value->agama == "Buddha") ? 'selected' : '' }}>Buddha</option>
+                                                                    <option value="Konghucu" {{ ($value->agama == "Konghucu") ? 'selected' : '' }}>Konghucu</option>
+                                                                    <option value="Lainnya" {{ ($value->agama == "Lainnya") ? 'selected' : '' }}>Lainnya</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <h5 class="modal-title mt-2 mb-3"><strong>Data Ayah</strong></h5>
+                                                        <div class="row mb-3">
+                                                            <label for="nama_ayah3" class="col-sm-3 col-form-label">Nama</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="nama_ayah" class="form-control" id="nama_ayah3" value="{{ $value->nama_ayah }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="nik_ayah3" class="col-sm-3 col-form-label">NIK</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="nik_ayah" class="form-control" id="nik_ayah3" value="{{ $value->nik_ayah }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="tempat_lahir_ayah3" class="col-sm-4 col-form-label">Tempat / Tanggal Lahir</label>
+                                                            <div class="col-sm-4">
+                                                                <input type="text" class="form-control" id="tempat_lahir_ayah3" name="tempat_lahir_ayah" value="{{ $value->tempat_lahir_ayah }}" required>
+                                                            </div>
+                                                            <label for="tanggal_lahir_ayah3" class="col-sm-1 col-form-label text-center">/</label>
+                                                            <div class="col-sm-3">
+                                                                <input type="date" class="form-control" id="tanggal_lahir_ayah3" name="tanggal_lahir_ayah" value="{{ $value->tanggal_lahir_ayah }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="agama_ayah3" class="col-sm-3 col-form-label">Agama</label>
+                                                            <div class="col-sm-9">
+                                                                <select id="agama_ayah3" name="agama_ayah" class="form-select" required>
+                                                                    <option value="">Pilih Agama ...</option>
+                                                                    <option value="Islam" {{ ($value->agama_ayah == "Islam") ? 'selected' : '' }}>Islam</option>
+                                                                    <option value="Kristen Protestan" {{ ($value->agama_ayah == "Kristen Protestan") ? 'selected' : '' }}>Kristen Protestan</option>
+                                                                    <option value="Kristen Katolik" {{ ($value->agama_ayah == "Kristen Katolik") ? 'selected' : '' }}>Kristen Katolik</option>
+                                                                    <option value="Hindu" {{ ($value->agama_ayah == "Hindu") ? 'selected' : '' }}>Hindu</option>
+                                                                    <option value="Buddha" {{ ($value->agama_ayah == "Buddha") ? 'selected' : '' }}>Buddha</option>
+                                                                    <option value="Konghucu" {{ ($value->agama_ayah == "Konghucu") ? 'selected' : '' }}>Konghucu</option>
+                                                                    <option value="Lainnya" {{ ($value->agama_ayah == "Lainnya") ? 'selected' : '' }}>Lainnya</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="pekerjaan_ayah3" class="col-sm-3 col-form-label">Pekerjaan</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="pekerjaan_ayah" class="form-control" id="pekerjaan_ayah3" value="{{ $value->pekerjaan_ayah }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="alamat_ayah3" class="col-sm-3 col-form-label">Alamat</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="alamat_ayah" class="form-control" id="alamat_ayah3" value="{{ $value->alamat_ayah }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <h5 class="modal-title mt-2 mb-3"><strong>Data Ibu</strong></h5>
+                                                        <div class="row mb-3">
+                                                            <label for="nama_ibu3" class="col-sm-3 col-form-label">Nama</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="nama_ibu" class="form-control" id="nama_ibu3" value="{{ $value->nama_ibu }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="nik_ibu3" class="col-sm-3 col-form-label">NIK</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="nik_ibu" class="form-control" id="nik_ibu3" value="{{ $value->nik_ibu }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="tempat_lahir_ibu3" class="col-sm-4 col-form-label">Tempat / Tanggal Lahir</label>
+                                                            <div class="col-sm-4">
+                                                                <input type="text" class="form-control" id="tempat_lahir_ibu3" name="tempat_lahir_ibu" value="{{ $value->tempat_lahir_ibu }}" required>
+                                                            </div>
+                                                            <label for="tanggal_lahir_ibu3" class="col-sm-1 col-form-label text-center">/</label>
+                                                            <div class="col-sm-3">
+                                                                <input type="date" class="form-control" id="tanggal_lahir_ibu3" name="tanggal_lahir_ibu" value="{{ $value->tanggal_lahir_ibu }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="agama_ibu3" class="col-sm-3 col-form-label">Agama</label>
+                                                            <div class="col-sm-9">
+                                                                <select id="agama_ibu3" name="agama_ibu" class="form-select" required>
+                                                                    <option value="" {{ ($value->agama_ibu == "") ? 'selected' : '' }}>Pilih Agama ...</option>
+                                                                    <option value="Islam" {{ ($value->agama_ibu == "Islam") ? 'selected' : '' }}>Islam</option>
+                                                                    <option value="Kristen Protestan" {{ ($value->agama_ibu == "Kristen Protestan") ? 'selected' : '' }}>Kristen Protestan</option>
+                                                                    <option value="Kristen Katolik" {{ ($value->agama_ibu == "Kristen Katolik") ? 'selected' : '' }}>Kristen Katolik</option>
+                                                                    <option value="Hindu" {{ ($value->agama_ibu == "Hindu") ? 'selected' : '' }}>Hindu</option>
+                                                                    <option value="Buddha" {{ ($value->agama_ibu == "Buddha") ? 'selected' : '' }}>Buddha</option>
+                                                                    <option value="Konghucu" {{ ($value->agama_ibu == "Konghucu") ? 'selected' : '' }}>Konghucu</option>
+                                                                    <option value="Lainnya" {{ ($value->agama_ibu == "Lainnya") ? 'selected' : '' }}>Lainnya</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="pekerjaan_ibu3" class="col-sm-3 col-form-label">Pekerjaan</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="pekerjaan_ibu" class="form-control" id="pekerjaan_ibu3" value="{{ $value->pekerjaan_ibu }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="alamat_ibu3" class="col-sm-3 col-form-label">Alamat</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="alamat_ibu" class="form-control" id="alamat_ibu3" value="{{ $value->alamat_ibu }}" required>
+                                                            </div>
+                                                        </div>
                                                         <div class="row">
                                                             <input type="hidden" name="jenis_surat" class="form-control" value="{{$value->jenis_surat}}" >
                                                         </div>

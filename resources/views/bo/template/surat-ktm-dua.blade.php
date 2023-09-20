@@ -37,9 +37,9 @@
         }
 
         .hrsatu{
-            margin-left:199px;
+            margin-left:201px;
             margin-top:-3px;
-            width:314px
+            width:313px
         }
 
         .tiga{
@@ -213,7 +213,7 @@
                 <td>
                     <p>
                         &#160; &#160; &#160; &#160; {{$sktm->deskripsi}}
-                        Demikian Surat Keterangan ini dibuat agar dapat dipergunakan untuk sebagaimana mestinya.
+                        Demikian surat keterangan ini dibuat dengan sebenarnya dan diberikan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>

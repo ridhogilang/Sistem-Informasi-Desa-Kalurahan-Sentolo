@@ -7,7 +7,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item">Surat Keluar</li>
-                <li class="breadcrumb-item active">Penganar  Nikah</li>
+                <li class="breadcrumb-item active">Pengantar  Nikah</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -25,7 +25,7 @@
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#spn"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Buat Surat</button>
                         @endcan
                         @can('lihat contoh surat')
-                        <a class="btn btn-success btn-sm" type="submit" target="blank" href="/admin/e-surat/contoh-surat-pbm/view"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat</a>
+                        <a class="btn btn-success btn-sm" type="submit" target="blank" href="/admin/e-surat/contoh-surat-pn/view"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat</a>
                         @endcan
                         @can('input surat')
                         <!-- Modal Form SPN -->
@@ -404,9 +404,9 @@
                                                             <label for="jenis_kelaminayah" class="col-sm-3 col-form-label">Jenis Kelamin </label>
                                                             <div class="col-sm-9">
                                                                 <select id="jenis_kelaminayah" name="jenis_kelaminayah" class="form-select" required>
-                                                                    <option value="" @if(old('jenis_kelaminayah') == '') selected @endif>Pilih Jenis Kelamin ...</option>
-                                                                    <option value="Laki-laki" @if( $value->jenis_kelaminayah == "Laki-laki") selected @endif>Laki-laki</option>
-                                                                    <option value="Perempuan" @if($value->jenis_kelaminayah == "Laki-laki") selected @endif>Perempuan</option>
+                                                                    <option value="" >Pilih Jenis Kelamin ...</option>
+                                                                    <option value="Laki-laki" {{ ($value->jenis_kelaminayah == "Laki-laki") ? 'selected' : '' }}>Laki-laki</option>
+                                                                    <option value="Perempuan" {{ ($value->jenis_kelaminayah == "Perempuan") ? 'selected' : '' }}>Perempuan</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -465,9 +465,9 @@
                                                             <label for="jenis_kelaminibu" class="col-sm-3 col-form-label">Jenis Kelamin </label>
                                                             <div class="col-sm-9">
                                                                 <select id="jenis_kelaminibu" name="jenis_kelaminibu" class="form-select" required>
-                                                                    <option value="" @if(old('jenis_kelaminibu') == '') selected @endif>Pilih Jenis Kelamin ...</option>
-                                                                    <option value="Laki-laki" @if( $value->jenis_kelaminibu == "Laki-laki") selected @endif>Laki-laki</option>
-                                                                    <option value="Perempuan" @if($value->jenis_kelaminibu == "Laki-laki") selected @endif>Perempuan</option>
+                                                                    <option value="" >Pilih Jenis Kelamin ...</option>
+                                                                    <option value="Laki-laki" {{ ($value->jenis_kelaminibu == "Laki-laki") ? 'selected' : '' }}>Laki-laki</option>
+                                                                    <option value="Perempuan" {{ ($value->jenis_kelaminibu == "Perempuan") ? 'selected' : '' }}>Perempuan</option>
                                                                 </select>
                                                             </div>
                                                         </div>

@@ -107,7 +107,7 @@
                                             <div class="row mb-3">
                                                 <label for="deskripsi" class="col-sm-3 col-form-label">Deskripsi</label>
                                                 <div class="col-sm-9">
-                                                    <textarea type="text" name="deskripsi" class="form-control" id="deskripsi" rows="3" required>Perawan / Belum Pernah Menikah.</textarea>
+                                                    <textarea type="text" name="deskripsi" class="form-control" id="deskripsi" rows="3" required>Belum Pernah Menikah</textarea>
                                                 </div>
                                             </div>
                                             <div class="row">

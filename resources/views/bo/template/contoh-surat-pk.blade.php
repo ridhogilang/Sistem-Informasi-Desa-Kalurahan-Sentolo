@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>SURAT PENGANTAR KEPENDUDUKAN | 3401032201000090</title>
+    <title>SURAT PENGANTAR KEPENDUDUKAN | 3401030101200001</title>
     <style>
         table tr td {
             font-size: 13px;
@@ -37,9 +37,9 @@
         }
 
         .hrsatu{
-            margin-left:199px;
-            margin-top:-3px;
-            width:314px
+            margin-left:208px;
+            margin-top:-2px;
+            width:298px
         }
 
         .tiga{
@@ -47,7 +47,7 @@
             margin-bottom: 20px;
         }
         .nosurat{
-            margin-top:-12px;
+            margin-top:-33px;
         }
 
         .empat p {
@@ -88,13 +88,13 @@
         }
 
          .tujuh{
-            margin-left: 100px;
+            margin-left: 90px;
             margin-top: -180px;
             line-height: 1.5;
          }
 
          .namadesa{
-             margin-left: 10px;
+             margin-left: -15px;
              margin-top:50px;
          }
          .namapernyataan{
@@ -111,12 +111,26 @@
 
 <body>
     <center>
-        <br>
+        <table class="satu">
+            <tr >
+                <td><img src="{{ public_path('template/img/kop_surat.jpg') }}" style="width: 97%; height:auto"></td>
+            </tr>
+        </table>
         <table class="tiga">
             <tr>
                 <td width="538">
                     <center>
                         <font size="3"><b>SURAT PENGANTAR KEPENDUDUKAN </b></font><br>
+                        <hr class="hrsatu">
+                    </center>
+                </td>
+            </tr>
+        </table>
+        <table class="nosurat">
+            <tr>
+                <td width="537">
+                    <center>
+                        <font size="2">Nomor : 000/KET/PEM/IX/2023</font>
                     </center>
                 </td>
             </tr>
@@ -124,19 +138,28 @@
 
         <table class="empat">
             <tr>
-                <td><p> &#160; &#160; &#160; &#160; &#160; Yang Bertanda Tangan di bawah ini :</p></td>
+                <td>
+                    <p>
+                        &#160; &#160; &#160; &#160; Yang bertanda tangan dibawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo, menerangkan bahwa ;
+                    </p>
+                </td>
             </tr>
         </table>
         <table  class="lima">
             <tr>
-                <td class="template"> Nama</td>
+                <td class="template">Nama</td>
                 <td>:</td>
-                <td>Takiya Genjiah</td>
+                <td>John Doe</td>
             </tr>
             <tr>
-                <td class="template"> NIK</td>
+                <td class="template">NIK</td>
                 <td>:</td>
-                <td>3401032201000001</td>
+                <td>3401030101200001</td>
+            </tr>
+            <tr>
+                <td class="template">Tempat / Tanggal Lahir</td>
+                <td>:</td>
+                <td>Kulon Progo / 01-01-2020 </td>
             </tr>
             <tr>
                 <td class="template">Jenis Kelamin</td>
@@ -144,9 +167,9 @@
                 <td>Laki-laki</td>
             </tr>
             <tr>
-                <td class="template">Tempat / Tanggal Lahir</td>
+                <td class="template">Agama</td>
                 <td>:</td>
-                <td>Kulon Progo / 22-01-2000  </td>
+                <td>Islam</td>
             </tr>
             <tr>
                 <td class="template">Kewarganegaraan</td>
@@ -154,30 +177,17 @@
                 <td>Indonesia</td>
             </tr>
             <tr>
-                <td class="template">Agama</td>
-                <td>:</td>
-                <td>Islam</td>
-            </tr>
-            <tr>
-                <td class="template">Status Perkawinan</td>
-                <td>:</td>
-                <td>Kawin</td>
-            </tr>
-            <tr>
                 <td class="template" style="vertical-align: top;">Alamat</td>
                 <td style="vertical-align: top;">:</td>
                 <td style="max-width: 405px; word-wrap: break-word;">Padukuhan Gedangan, RT 50 RW 24, Kalurahan Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo</td>
-
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; Sesuai dengan nama bersangkutan diatas, surat pengantar ini dibuat untuk keperluan Kependudukan
-                        Dan berlaku mulai
-                        &#160; &#160; &#160; &#160; Demikian surat Pernyataan ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
-
+                        &#160; &#160; &#160; Sesuai dengan nama bersangkutan diatas, surat Pengantar ini dibuat untuk keperluan Pengantar Kependudukan. Dan berlaku mulai tanggal 1 Januari 2023 dan 3 Januari 2023.
+                        <br>&#160; &#160; &#160; &#160; Demikian surat Pengantar ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>
@@ -186,11 +196,11 @@
         <table class="enam">
             <tr>
                 <p>
-                    &#160; Sentolo, 1 Januari 2023<br>
-                    CAMAT SENTOLO,
+                    &#160; Sentolo, 1 September 2023<br>
+                    &#160; &#160; &#160; &#160; &#160; &#160; Camat Sentolo,
                 </p>
                 <p class="namapernyataan"><br><br><br>
-                    <b>(Takiya genjiah)</b>
+                    <b>&#160; &#160;(..............................)</b>
                 </p>
             </tr>
         </table>
@@ -201,11 +211,10 @@
                     <br>Lurah Sentolo<br>
                 </p>
                 <p class="namadesa"><br>
-                    <b>(TEGUH)</b>
+                    <b>&#160; &#160; &#160; &#160;(TEGUH)</b>
                 </p>
             </tr>
         </table>
-
     </center>
 </body>
 </html>

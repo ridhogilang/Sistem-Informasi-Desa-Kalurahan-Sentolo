@@ -169,7 +169,7 @@
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; Dengan ini saya menyatakan bahwa saya sampai saat ini berstatus <strong>{{$spbm->deskripsi}}</strong>
+                        &#160; &#160; &#160; Dengan ini saya menyatakan bahwa saya sampai saat ini berstatus <strong>{{$spbm->deskripsi}}</strong>.
                         Apabila pernyataan ini tidak benar saya siap menanggung segala akibat dan bersedia dituntut dimuka hukum sesuai dengan peraturan  perundangan yang berlaku.
                         <br>
                         &#160; &#160; &#160; &#160; Surat ini saya buat dengan kesadaran sendiri tanpa ada paksaan dan atau tekanan dari pihak
