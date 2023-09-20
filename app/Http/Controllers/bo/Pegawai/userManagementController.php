@@ -4,12 +4,15 @@ namespace App\Http\Controllers\bo\Pegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\VerifyMail as VerifyMailModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Illuminate\Validation\Rule;
+use App\Mail\VerifyMail;
+use Illuminate\Support\Facades\Mail;
 // use DataTables;
 
 class userManagementController extends Controller
@@ -61,10 +64,16 @@ class userManagementController extends Controller
         $input = $request->all();
         // $input['jabatan'] = $input['roles'];
         $input['password'] = Hash::make($input['password']);
-
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
+        //proses membuat verify email
+        $verimail['id'] = date('Ymdhis').'-'.substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 75);
+        $verimail['email'] =  $input['email'];
+        VerifyMailModel::create($verimail);
+        Mail::to($verimail['email'])->send(new VerifyMail($verimail));
+
+        //redirect
         return redirect()->route('bo.pegawai.user_management.index')
                         ->with('success','User created successfully');
     }

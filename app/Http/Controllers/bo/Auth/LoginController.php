@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Password;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -23,11 +24,22 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'username' => ['required'],
+            'email' => ['required'],
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            //mengecek verifikasi email
+            $user = User::where('email', $credentials['email'])->first();
+            if($user->email_verified_at == null){
+                Auth::logout();
+               return back()->with('error', config('error','mohon verifikasi email terlebih dahulu')); 
+            }
+            //mengecek aktivasi user
+
+            //jika user telah dihapus
+            
+            //proses login
             $request->session()->regenerate();
             return redirect()->route('bo.home')->with('success', 'Halo selamat datang '.auth()->user()->username);
         }
@@ -38,7 +50,7 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('admin/login');
+        return redirect()->route('login');
     }
 
 }
