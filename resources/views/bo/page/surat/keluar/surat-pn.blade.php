@@ -5,9 +5,9 @@
         <h1>Surat Pengantar Nikah </h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/admin/e-surat/dashboard">Home</a></li>
                 <li class="breadcrumb-item">Surat Keluar</li>
-                <li class="breadcrumb-item active">Pengantar  Nikah</li>
+                <li class="breadcrumb-item active">Pengantar Nikah</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->

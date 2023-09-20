@@ -5,7 +5,7 @@
         <h1>Surat Keterangan Penghasilan</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/admin/e-surat/dashboard">Home</a></li>
                 <li class="breadcrumb-item">Surat Keluar</li>
                 <li class="breadcrumb-item active">Keterangan Penghasilan</li>
             </ol>
