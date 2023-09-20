@@ -38,7 +38,7 @@ class SkdController extends Controller
             12 => 'XII',
         ];
         $bulanRomawi = $angkaRomawi[$bulanSekarang];
-        $TemplateNoSurat = "000/KMS/{$bulanRomawi}/" . date('Y');
+        $TemplateNoSurat = "000/KET/PEM/{$bulanRomawi}/" . date('Y');
 
         return view('bo.page.surat.keluar.surat-kdom', [
             'dropdown1' => 'Surat Keluar',
@@ -125,7 +125,7 @@ class SkdController extends Controller
         ]);
         Skd::where('id', $id)->update($record);
         return redirect()->back()->with('toast_success', 'Data Diubah!');
-     
+
     }
-    
+
 }

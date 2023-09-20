@@ -5,7 +5,7 @@
         <h1>Surat Keterangan Domisili</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/admin/e-surat/dashboard">Home</a></li>
                 <li class="breadcrumb-item">Surat Keluar</li>
                 <li class="breadcrumb-item active">Keterangan Domisili</li>
             </ol>
@@ -107,10 +107,10 @@
                                                 <div class="col-sm-9">
                                                     <select id="status_perkawinan" name="status_perkawinan" class="form-select" required>
                                                         <option value="" @if(old('status_perkawinan') == '') selected @endif>Pilih Status Perkawinan ...</option>
+                                                        <option value="Belum Menikah" @if(old('status_perkawinan') == 'Belum Menikah') selected @endif>Belum Menikah</option>
+                                                        <option value="Sudah Menikah" @if(old('status_perkawinan') == 'Sudah Menikah') selected @endif>Sudah Menikah</option>
                                                         <option value="Duda" @if(old('status_perkawinan') == 'Duda') selected @endif>Duda</option>
                                                         <option value="Janda" @if(old('status_perkawinan') == 'Janda') selected @endif>Janda</option>
-                                                        <option value="Sudah Menikah" @if(old('status_perkawinan') == 'Sudah Menikah') selected @endif>Sudah Menikah</option>
-                                                        <option value="Belum Menikah" @if(old('status_perkawinan') == 'Belum Menikah') selected @endif>Belum Menikah</option>
                                                     </select>
                                                 </div>
                                             </div>

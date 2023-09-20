@@ -37,9 +37,9 @@
         }
 
         .hrsatu{
-            margin-left:213px;
+            margin-left:230px;
             margin-top:-3px;
-            width:289px
+            width:255px;
         }
 
         .tiga{
@@ -139,56 +139,55 @@
             <tr>
                 <td class="template">Nama</td>
                 <td>:</td>
-                <td></td>
+                <td>John Doe</td>
             </tr>
             <tr>
                 <td class="template">NIK</td>
                 <td>:</td>
-                <td></td>
+                <td>3401032201000001</td>
             </tr>
             <tr>
                 <td class="template">Jenis Kelamin</td>
                 <td>:</td>
-                <td></td>
+                <td>Laki-laki</td>
             </tr>
             <tr>
                 <td class="template">Tempat / Tanggal Lahir</td>
                 <td>:</td>
-                <td> </td>
+                <td>Kulon Progo / 01-09-2023</td>
             </tr>
             <tr>
                 <td class="template">Kewarganegaraan</td>
                 <td>:</td>
-                <td></td>
+                <td>Indonesia</td>
             </tr>
             <tr>
                 <td class="template">Agama</td>
                 <td>:</td>
-                <td></td>
+                <td>Islam</td>
             </tr>
             <tr>
                 <td class="template">Status Perkawinan</td>
                 <td>:</td>
-                <td></td>
+                <td>Belum Menikah</td>
             </tr>
             <tr>
                 <td class="template">Pekerjaan</td>
                 <td>:</td>
-                <td></td>
+                <td>Wiraswasta</td>
             </tr>
             <tr>
                 <td class="template" style="vertical-align: top;">Alamat</td>
                 <td style="vertical-align: top;">:</td>
-                <td style="max-width: 400px; word-wrap: break-word;"></td>
+                <td style="max-width: 400px; word-wrap: break-word;">Padukuhan Gedangan, RT 50 RW 24, Kalurahan Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo</td>
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160; Orang tersebut diatas, adalah benar-benar warga kami dan berdomisili di 
-
-                        &#160; &#160; &#160; &#160; Demikian surat keterangan ini kami buat, untuk dapat dipergunakan sebagaimana mestinya
+                        &#160; &#160; &#160; &#160; Orang tersebut diatas, adalah benar-benar warga kami dan berdomisili di Padukuhan Gedangan, RT 50 RW 24, Kalurahan Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo. Surat Keterangan ini dibuat sebagai kelengkapan pengurusan surat perpindahan.
+                        <br>&#160; &#160; &#160; &#160; Demikian surat keterangan ini dibuat dengan sebenarnya dan diberikan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>
@@ -196,7 +195,7 @@
 
         <table class="enam">
             <tr>
-                <p>Sentolo, </p>
+                <p>Sentolo, 19 Januari 2023</p>
             </tr>
         </table>
         <table  class="tujuh">

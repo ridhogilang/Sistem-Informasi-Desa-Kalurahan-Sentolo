@@ -37,9 +37,9 @@
         }
 
         .hrsatu{
-            margin-left:199px;
-            margin-top:-3px;
-            width:314px
+            margin-left:208px;
+            margin-top:-2px;
+            width:298px
         }
 
         .tiga{
@@ -47,7 +47,7 @@
             margin-bottom: 20px;
         }
         .nosurat{
-            margin-top:-12px;
+            margin-top:-33px;
         }
 
         .empat p {
@@ -89,7 +89,7 @@
 
          .tujuh{
             margin-left: 90px;
-            margin-top: -170px;
+            margin-top: -180px;
             line-height: 1.5;
          }
 
@@ -186,9 +186,9 @@
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160; Sesuai dengan nama bersangkutan diatas, surat Pengantar ini dibuat untuk keperluan Pengantar Kependudukan.
+                        &#160; &#160; &#160; Sesuai dengan nama bersangkutan diatas, surat Pengantar ini dibuat untuk keperluan Pengantar Kependudukan.
                         Dan berlaku mulai tanggal {{ \Carbon\Carbon::parse($spk['tanggal_awal'])->translatedFormat('j F Y') }} dan {{ \Carbon\Carbon::parse($spk['tanggal_akhir'])->translatedFormat('j F Y') }}.
-                        <br>&#160; &#160; &#160; Demikian surat Pengantar ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
+                        <br>&#160; &#160; &#160; &#160; Demikian surat Pengantar ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>
@@ -198,10 +198,10 @@
             <tr>
                 <p>
                     &#160; Sentolo, {{ \Carbon\Carbon::parse($spk['created_at'])->translatedFormat('j F Y') }}<br>
-                    Lurah Sentolo,
+                    &#160; &#160; &#160; &#160; &#160; &#160;Camat Sentolo,
                 </p>
                 <p class="namapernyataan"><br><br><br>
-                    <b>(TEGUH)</b>
+                    <b>&#160; (..............................)</b>
                 </p>
             </tr>
         </table>
@@ -209,10 +209,10 @@
             <tr>
                 <p>
                     &#160; Mengetahui :
-                    <br>Camat Sentolo<br>
+                    <br>Lurah Sentolo<br>
                 </p>
                 <p class="namadesa"><br>
-                    <b>(..............................)</b>
+                    <b>&#160; &#160; &#160; &#160;(TEGUH)</b>
                 </p>
             </tr>
         </table>

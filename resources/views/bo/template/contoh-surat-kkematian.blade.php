@@ -37,9 +37,9 @@
         }
 
         .hrsatu{
-            margin-left:252px;
+            margin-left:225px;
             margin-top:-3px;
-            width:209px
+            width:265px
         }
 
         .tiga{
@@ -187,8 +187,8 @@
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160; Adalah benar-benar warga Kalurahan Sentolo, Kabupaten Kulon Progo dan yang bersangkutan Telah Meninggal Dunia pada hari senin 05
-                        <br>&#160; &#160; &#160; Demikian surat keterangan ini kami buat dengan sebenarnya untuk dapat dipergunakan seperlunya.
+                        &#160; &#160; &#160; &#160; Adalah benar-benar warga Padukuhan Gedangan, RT 50 RW 24, Kalurahan Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo dan yang bersangkutan Telah Meninggal Dunia pada tanggal 20 September 2023 jam 13:59 WIB dan akan di Makamkan dipemakaman Pondok Indah.
+                        <br>&#160; &#160; &#160; &#160; &#160; Demikian surat Pengantar ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>

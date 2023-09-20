@@ -49,8 +49,6 @@ class SkkematianController extends Controller
         'TemplateNoSurat' => $TemplateNoSurat
     ])->with('kkematian', $kkematian);
     }
-
-
     public function store(Request $request)
     {
         $record = $request->validate([
@@ -66,8 +64,11 @@ class SkkematianController extends Controller
             'agama' => 'required',
             'kewarganegaraan' => 'required',
             'status_perkawinan' => 'required',
-            'deskripsi' => 'required',
-            'jenis_kkematian' => 'required',
+            'tanggal_meninggal' => 'required',
+            'waktu' => 'required',
+            'tempat_pemakaman' => 'required',
+            'alamat' => 'required',
+            'jenis_surat' => 'required',
             'status_surat' => 'required',
         ], [
             'unique' => 'Nomor Surat sudah digunakan.',
@@ -125,8 +126,11 @@ class SkkematianController extends Controller
             'agama' => 'required',
             'kewarganegaraan' => 'required',
             'status_perkawinan' => 'required',
-            'deskripsi' => 'required',
-            'jenis_kkematian' => 'required',
+            'tanggal_meninggal' => 'required',
+            'waktu' => 'required',
+            'tempat_pemakaman' => 'required',
+            'alamat' => 'required',
+            'jenis_surat' => 'required',
             'status_surat' => 'required',
         ], [
             'unique' => 'Nomor Surat sudah digunakan.',

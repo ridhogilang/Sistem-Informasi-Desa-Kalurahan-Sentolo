@@ -21,8 +21,11 @@ class Skkematian extends Model
         'agama',
         'kewarganegaraan',
         'status_perkawinan',
-        'deskripsi',
-        'jenis_kkematian',
+        'tanggal_meninggal',
+        'waktu',
+        'alamat',
+        'tempat_pemakaman',
+        'jenis_surat',
         'status_surat'
     ];
 }

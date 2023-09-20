@@ -22,8 +22,11 @@ return new class extends Migration
             $table->string('agama');
             $table->string('kewarganegaraan');
             $table->string('status_perkawinan');
-            $table->string('deskripsi');
-            $table->string('jenis_kkematian');
+            $table->string('tanggal_meninggal');
+            $table->string('waktu');
+            $table->string('alamat');
+            $table->string('tempat_pemakaman');
+            $table->string('jenis_surat');
             $table->string('status_surat');
             $table->timestamps();
         });

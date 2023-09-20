@@ -37,9 +37,9 @@
         }
 
         .hrsatu{
-            margin-left:252px;
+            margin-left:225px;
             margin-top:-3px;
-            width:209px
+            width:265px
         }
 
         .tiga{
@@ -175,20 +175,20 @@
             <tr>
                 <td class="template">Kewarganegaraan</td>
                 <td>:</td>
-                <td>Indoensia</td>
+                <td>{{$kkematian->kewarganegaraan}}</td>
             </tr>
             <tr>
                 <td class="template">Status Perkawinan</td>
                 <td>:</td>
-                <td>Kawin</td>
+                <td>{{$kkematian->status_perkawinan}}</td>
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160; Adalah benar-benar warga Kalurahan Sentolo, Kabupaten Kulon Progo dan yang bersangkutan Telah Meninggal Dunia pada hari senin 05
-                        <br>&#160; &#160; &#160; Demikian surat keterangan ini kami buat dengan sebenarnya untuk dapat dipergunakan seperlunya.
+                        &#160; &#160; &#160; &#160; Adalah benar-benar warga {{$kkematian->alamat}} dan yang bersangkutan Telah Meninggal Dunia pada tanggal {{ \Carbon\Carbon::parse($kkematian['tanggal_meninggal'])->translatedFormat('j F Y') }} jam {{$kkematian->waktu}} WIB dan akan di Makamkan dipemakaman {{$kkematian->tempat_pemakaman}}.
+                        <br>&#160; &#160; &#160; &#160; &#160; Demikian surat Pengantar ini dibuat dan diberikan kepada yang bersangkutan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>
@@ -196,7 +196,7 @@
 
         <table class="enam">
             <tr>
-                <p>Sentolo, 1 Januari 2023</p>
+                <p>Sentolo, {{ \Carbon\Carbon::parse($kkematian['created_at'])->translatedFormat('j F Y') }}</p>
             </tr>
         </table>
         <table  class="tujuh">

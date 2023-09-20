@@ -39,7 +39,7 @@
         .hrsatu{
             margin-left:230px;
             margin-top:-3px;
-            width:255px
+            width:255px;
         }
 
         .tiga{
@@ -186,8 +186,7 @@
                 <td>
                     <p>
                         &#160; &#160; &#160; &#160; Orang tersebut diatas, adalah benar-benar warga kami dan berdomisili di {{$skd->alamat}}. {{$skd->deskripsi}}.
-
-                        &#160; &#160; &#160; &#160; Demikian surat keterangan ini kami buat, untuk dapat dipergunakan sebagaimana mestinya
+                        <br>&#160; &#160; &#160; &#160; Demikian surat keterangan ini dibuat dengan sebenarnya dan diberikan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>
