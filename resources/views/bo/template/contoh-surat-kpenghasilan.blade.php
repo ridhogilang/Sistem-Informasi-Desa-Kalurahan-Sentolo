@@ -37,9 +37,9 @@
         }
 
         .hrsatu{
-            margin-left:199px;
+            margin-left:211px;
             margin-top:-3px;
-            width:314px
+            width:293px
         }
 
         .tiga{

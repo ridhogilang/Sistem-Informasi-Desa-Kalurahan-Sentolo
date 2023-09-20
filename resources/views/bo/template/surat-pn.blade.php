@@ -171,7 +171,10 @@
         </table>
         <table  class="lima">
             <tr>
-                <td class="template"><strong>I.</strong> Nama Lengkap</td>
+                <td class="template"><strong>I. Data Diri</strong></td>
+            </tr>
+            <tr>
+                <td class="template">Nama Lengkap</td>
                 <td>:</td>
                 <td>{{$spn->nama}}</td>
             </tr>
@@ -294,39 +297,17 @@
         <table class="empat">
             <tr>
                 <td>
-                    <p>{{$spn->deskripsi2}}</p>
-                    <p>Demikian surat keterangan ini dibuat dengan sebenarnya dan diberikan untuk dapat dipergunakan sebagaimana mestinya.</p>
+                    <p>{{$spn->deskripsi2}} Demikian surat keterangan ini dibuat dengan sebenarnya dan diberikan untuk dapat dipergunakan sebagaimana mestinya.</p>
                 </td>
             </tr>
         </table>
 
-        {{-- <table class="enam">
-            <tr>
-                <p>
-                    Sentolo, {{ \Carbon\Carbon::parse($spn['created_at'])->translatedFormat('j F Y') }}<br>
-                    Yang membuat pernyataan,
-                </p>
-                <p class="namapernyataan"><br><br><br>
-                    <b>({{$spn->nama}})</b>
-                </p>
-            </tr>
-        </table>
-        <table class="tujuh">
-            <tr>
-                <p>
-                    &#160; Mengetahui :
-                    <br>Lurah Sentolo<br>
-                </p>
-                <p class="namadesa"><br>
-                    <b>(TEGUH)</b>
-                </p>
-            </tr>
-        </table> --}}
         <div class="signature">
             &#160; Mengetahui,
-            <br>Lurah Sentolo<br>
+            <br>Lurah Sentolo<br><br><br><br>
+            <b>(TEGUH)</b>
         </div>
-    
+
         <!-- Area tanda tangan kedua -->
         <div class="signature">
             Sentolo, {{ \Carbon\Carbon::parse($spn['created_at'])->translatedFormat('j F Y') }}<br><br><br><br><br>

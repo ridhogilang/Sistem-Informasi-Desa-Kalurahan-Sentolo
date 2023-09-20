@@ -175,8 +175,8 @@
             <tr>
                 <td>
                     <p>
-                        &#160; &#160; &#160; &#160; Orang tersebut di atas sampai saat ini betul-betul berstatus <strong>{{$skbm->deskripsi}}</strong>
-                        Demikian Surat Keterangan ini diberikan, kemudian untuk dapat dipergunakan sebagaimana mestinya.
+                        &#160; &#160; &#160; &#160; Orang tersebut di atas sampai saat ini betul-betul berstatus <strong>{{$skbm->deskripsi}}</strong>.
+                        Demikian surat keterangan ini dibuat dengan sebenarnya dan diberikan untuk dapat dipergunakan sebagaimana mestinya.
                     </p>
                 </td>
             </tr>

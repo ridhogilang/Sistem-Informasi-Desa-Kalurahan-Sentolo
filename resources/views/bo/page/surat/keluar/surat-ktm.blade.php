@@ -5,8 +5,8 @@
         <h1>Surat Keterangan Tidak Mampu</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item">Surat</li>
+                <li class="breadcrumb-item"><a href="/admin/e-surat/dashboard">Home</a></li>
+                <li class="breadcrumb-item">Surat Keluar</li>
                 <li class="breadcrumb-item active">Keterangan Tidak Mampu</li>
             </ol>
         </nav>
@@ -22,7 +22,7 @@
                         <h5 class="card-title">Pilih Jenis Surat Keterangan Tidak Mampu</h5>
 
                         <div class="d-flex justify-content-between">
-                            
+
                             <div>
                                 @can('input surat')
                                 <!-- Button trigger modal -->
@@ -32,7 +32,7 @@
                                 <a class="btn btn-success btn-sm" type="submit" target="blank" href="/admin/e-surat/contoh-surat-ktm-satu/view"><i class="fa-solid fa-print" style="margin-right: 5px"></i>Contoh Surat 1 Orang</a>
                                 @endcan
                             </div>
-                            
+
                             <div>
                                 @can('input surat')
                                 <!-- Button trigger modal -->
@@ -625,7 +625,7 @@
                                         </div>
                                     </div>
                                     @endcan
-                                    
+
                                 @endforeach
                             </tbody>
                         </table>

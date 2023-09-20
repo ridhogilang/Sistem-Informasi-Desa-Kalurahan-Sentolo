@@ -5,8 +5,8 @@
         <h1>Surat Keterangan Kematian</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item">Surat</li>
+                <li class="breadcrumb-item"><a href="/admin/e-surat/dashboard">Home</a></li>
+                <li class="breadcrumb-item">Surat Keluar</li>
                 <li class="breadcrumb-item active">Keterangan Kematian</li>
             </ol>
         </nav>
@@ -122,13 +122,31 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="deskripsi" class="col-sm-3 col-form-label">Deskripsi</label>
+                                                <label for="tanggal_meninggal" class="col-sm-3 col-form-label">Tanggal Meninggal</label>
                                                 <div class="col-sm-9">
-                                                    <textarea type="text" name="deskripsi" class="form-control" id="deskripsi" rows="3" required>Adalah benar-benar warga Kalurahan Sentolo, Kabupaten Kulon Progo dan yang bersangkutan Telah Meninggal Dunia pada hari... , tanggal..., jam...di Desa... </textarea>
+                                                    <input type="date" name="tanggal_meninggal" class="form-control" id="tanggal_meninggal" value="{{ old('tanggal_meninggal') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="waktu" class="col-sm-3 col-form-label">Waktu Meninggal</label>
+                                                <div class="col-sm-9">
+                                                    <input type="time" name="waktu" class="form-control" id="waktu" value="{{ old('waktu') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="tempat_pemakaman" class="col-sm-3 col-form-label">Tempat Pemakaman</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="tempat_pemakaman" class="form-control" id="tempat_pemakaman" value="{{ old('tempat_pemakaman') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                                                <div class="col-sm-9">
+                                                    <textarea type="text" name="alamat" class="form-control" id="alamat" rows="2" required></textarea>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <input type="hidden" name="jenis_kkematian" class="form-control" value="kkematian" >
+                                                <input type="hidden" name="jenis_surat" class="form-control" value="Surat Keterangan Kematian" >
                                             </div>
                                             <div class="row">
                                                 <input type="hidden" name="status_surat" class="form-control" value="Pending" >
@@ -249,7 +267,7 @@
                                                             <label for="agama3" class="col-sm-3 col-form-label">Agama</label>
                                                             <div class="col-sm-9">
                                                                 <select id="agama3" name="agama" class="form-select" required>
-                                                                    <option value="">Pilih Agama ...</option>
+                                                                    <option value="" {{ ($value->agama == "") ? 'selected' : '' }}>Pilih Agama ...</option>
                                                                     <option value="Islam" {{ ($value->agama == "Islam") ? 'selected' : '' }}>Islam</option>
                                                                     <option value="Kristen Protestan" {{ ($value->agama == "Kristen Protestan") ? 'selected' : '' }}>Kristen Protestan</option>
                                                                     <option value="Kristen Katolik" {{ ($value->agama == "Kristen Katolik") ? 'selected' : '' }}>Kristen Katolik</option>
@@ -260,12 +278,12 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                
+
                                                         <div class="row mb-3">
                                                             <label for="kewarganegaraan" class="col-sm-3 col-form-label">Kewarganegaraan</label>
                                                             <div class="col-sm-9">
                                                                 <select id="kewarganegaraan" name="kewarganegaraan" class="form-select" required>
-                                                                    <option value="" >Pilih Kewarganegaraan ...</option>
+                                                                    <option value="" {{ ($value->kewarganegaraan == "") ? 'selected' : '' }}>Pilih Kewarganegaraan ...</option>
                                                                     <option value="Indonesia" {{ ($value->kewarganegaraan == "Indonesia") ? 'selected' : '' }}>Indonesia</option>
                                                                     <option value="Asing" {{ ($value->kewarganegaraan == "Asing") ? 'selected' : '' }}>Asing</option>
                                                                 </select>
@@ -275,7 +293,7 @@
                                                             <label for="status_perkawinan3" class="col-sm-3 col-form-label">Status Perkawinan</label>
                                                             <div class="col-sm-9">
                                                                 <select id="status_perkawinan3" name="status_perkawinan" class="form-select" required>
-                                                                    <option value="">Pilih Status Perkawinan ...</option>
+                                                                    <option value="" {{ ($value->status_perkawinan == "") ? 'selected' : '' }}>Pilih Status Perkawinan ...</option>
                                                                     <option value="Belum Menikah" {{ ($value->status_perkawinan == "Belum Menikah") ? 'selected' : '' }}>Belum Menikah</option>
                                                                     <option value="Sudah Menikah" {{ ($value->status_perkawinan == "Sudah Menikah") ? 'selected' : '' }}>Sudah Menikah</option>
                                                                     <option value="Janda" {{ ($value->status_perkawinan == "Janda") ? 'selected' : '' }}>Janda</option>
@@ -284,16 +302,31 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="deskripsi" class="col-sm-3 col-form-label">Deskripsi</label>
+                                                            <label for="tanggal_meninggal" class="col-sm-3 col-form-label">Tanggal Meninggal</label>
                                                             <div class="col-sm-9">
-                                                                <textarea type="text" name="deskripsi" class="form-control" id="deskripsi" rows="3" required>{{$value->deskripsi}}</textarea>
+                                                                <input type="date" name="tanggal_meninggal" class="form-control" id="tanggal_meninggal" value="{{ $value->tanggal_meninggal }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="waktu" class="col-sm-3 col-form-label">Waktu Meninggal</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="time" name="waktu" class="form-control" id="waktu" value="{{ $value->waktu }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="tempat_pemakaman" class="col-sm-3 col-form-label">Tempat Pemakaman</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" name="tempat_pemakaman" class="form-control" id="tempat_pemakaman" value="{{ $value->tempat_pemakaman }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
+                                                            <div class="col-sm-9">
+                                                                <textarea type="text" name="alamat" class="form-control" id="alamat" rows="3" required>{{$value->alamat}}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <input type="hidden" name="jenis_kkematian" class="form-control" value="kkematian" >
-                                                        </div>
-                                                        <div class="row">
-                                                            <input type="hidden" name="jenis_pektp" class="form-control" value="{{$value->jenis_pektp}}" >
+                                                            <input type="hidden" name="jenis_surat" class="form-control" value="{{$value->jenis_surat}}" >
                                                         </div>
                                                         <div class="row">
                                                             <input type="hidden" name="status_surat" class="form-control" value="{{$value->status_surat}}" >

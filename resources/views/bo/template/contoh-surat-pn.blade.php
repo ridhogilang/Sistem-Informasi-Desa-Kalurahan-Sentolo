@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>SURAT KETERANGAN KELAHIRAN | {{$skl->nik}}</title>
+    <title>SURAT PENGANTAR NIKAH | 3401032201000001</title>
     <style>
         table tr td {
             font-size: 13px;
@@ -38,9 +38,9 @@
         }
 
         .hrsatu{
-            margin-left:220px;
+            margin-left:247px;
             margin-top:-3px;
-            width:274px
+            width:217px
         }
 
         .tiga{
@@ -118,20 +118,20 @@
              margin-top:-23px;
          }
          p {
-            text-indent: 40px; /* Menjorokkan teks sejauh 40px dari kiri */
-            margin-top: 0px; /* Jarak atas antara paragraf */
-            margin-bottom: 0px; /* Jarak bawah antara paragraf */
+        text-indent: 40px; /* Menjorokkan teks sejauh 40px dari kiri */
+        margin-top: 0px; /* Jarak atas antara paragraf */
+        margin-bottom: 0px; /* Jarak bawah antara paragraf */
         }
          .signature {
-            width: 630px; /* Lebar area tanda tangan */
+            width: 300px; /* Lebar area tanda tangan */
             height: 100px; /* Tinggi area tanda tangan */
             /* border: 1px solid #000; Garis tepi */
-            /* margin-top: 5px; Jarak atas */
+            margin-top: 50px; /* Jarak atas */
             padding: 10px; /* Ruang dalam */
-            text-align: right; /* Pusatkan teks di dalam area tanda tangan */
+            text-align: center; /* Pusatkan teks di dalam area tanda tangan */
             font-size: 16px; /* Ukuran font */
             display: inline-block; /* Tampilkan tanda tangan secara berdampingan */
-            /* margin-right: 20px; Jarak antara tanda tangan */
+            margin-right: 20px; /* Jarak antara tanda tangan */
         }
     </style>
 </head>
@@ -148,7 +148,7 @@
             <tr>
                 <td width="538">
                     <center>
-                        <font size="3"><b>SURAT KETERANGAN KELAHIRAN</b></font>
+                        <font size="3"><b>SURAT PENGANTAR NIKAH </b></font>
                         <hr class="hrsatu">
                     </center>
                 </td>
@@ -158,7 +158,7 @@
             <tr>
                 <td width="537">
                     <center>
-                        <font size="3">Nomor : {{$skl->nomor_surat}}</font><br>
+                        <font size="3">Nomor : 001/KMS/IX/2023</font><br>
                     </center>
                 </td>
             </tr>
@@ -166,56 +166,48 @@
 
         <table class="empat">
             <tr>
-                <td>
-                    <p>
-                        Yang Bertanda Tangan di bawah ini Lurah Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo menerangkan dengan sebenernya bahwa :
-                    </p>
-                </td>
+                <td><p>Yang bertanda tangan di bawah ini Ketua RT 09, Kalurahan Sentolo, Kecamatan Sentolo menerangakan dengan sesungguhnya bahwa :</p></td>
             </tr>
         </table>
         <table  class="lima">
             <tr>
-                <td class="template"><strong>I. Data Anak / Bayi</strong></td>
+                <td class="template"><strong>I. Data Diri</strong></td>
             </tr>
             <tr>
-                <td class="template">Nama</td>
+                <td class="template">Nama Lengkap</td>
                 <td>:</td>
-                <td>{{$skl->nama}}</td>
+                <td>John Doe</td>
             </tr>
             <tr>
-                <td class="template">Status Hubungan</td>
+                <td class="template"> NIK</td>
                 <td>:</td>
-                <td>{{$skl->status_hubungan}}</td>
-            </tr>
-            <tr>
-                <td class="template">Tempat Lahir</td>
-                <td>:</td>
-                <td>{{$skl->dusun}}, {{$skl->kalurahan}}, {{$skl->kecamatan}}, {{$skl->kabupaten}}, {{$skl->provinsi}}</td>
-            </tr>
-            <tr>
-                <td class="template">Tanggal Lahir</td>
-                <td>:</td>
-                <td>{{ \Carbon\Carbon::parse($skl['tanggal_lahir'])->translatedFormat('j F Y') }} </td>
+                <td>3401032201000001</td>
             </tr>
             <tr>
                 <td class="template">Jenis Kelamin</td>
                 <td>:</td>
-                <td>{{$skl->jenis_kelamin}}</td>
+                <td>Laki-laki</td>
             </tr>
             <tr>
-                <td class="template">Anak Ke</td>
+                <td class="template">Tempat / Tanggal Lahir</td>
                 <td>:</td>
-                <td>{{$skl->anak_ke}}</td>
+                <td>Kulon Progo / 01-09-2023</td>
             </tr>
             <tr>
                 <td class="template">Agama</td>
                 <td>:</td>
-                <td>{{$skl->agama}}</td>
+                <td>Islam</td>
             </tr>
             <tr>
-                <td class="template">Nama Kepala Keluarga</td>
+                <td class="template">Pekerjaan</td>
                 <td>:</td>
-                <td>{{$skl->nama_ayah}}</td>
+                <td>Pelajar</td>
+            </tr>
+            <tr>
+                <td class="template" style="vertical-align: top;">Alamat</td>
+                <td style="vertical-align: top;">:</td>
+                <td style="max-width: 405px; word-wrap: break-word;">Padukuhan Gedangan, Sentolo, Sentolo, Kulon Progo</td>
+
             </tr>
         </table>
         {{-- Data Ayah --}}
@@ -226,32 +218,37 @@
             <tr>
                 <td class="template"> Nama</td>
                 <td>:</td>
-                <td>{{$skl->nama_ayah}}</td>
+                <td>Nuryadi</td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td class="template"> NIK</td>
                 <td>:</td>
-                <td>{{$skl->nik_ayah}}</td>
+                <td>{{$spn->nikayah}}</td>
+            </tr> --}}
+            <tr>
+                <td class="template">Jenis Kelamin</td>
+                <td>:</td>
+                <td>Laki-laki</td>
             </tr>
             <tr>
                 <td class="template">Tempat / Tanggal Lahir</td>
                 <td>:</td>
-                <td>{{$skl->tempat_lahir_ayah}} / {{date('d-m-Y',strtotime($skl->tanggal_lahir_ayah))}}  </td>
+                <td>Kulon Progo / 01-09-1960</td>
             </tr>
             <tr>
                 <td class="template">Agama</td>
                 <td>:</td>
-                <td>{{$skl->agama_ayah}}</td>
+                <td>Islam</td>
             </tr>
             <tr>
                 <td class="template">Pekerjaan</td>
                 <td>:</td>
-                <td>{{$skl->pekerjaan_ayah}}</td>
+                <td>Wiraswasta</td>
             </tr>
             <tr>
                 <td class="template" style="vertical-align: top;">Alamat</td>
                 <td style="vertical-align: top;">:</td>
-                <td style="max-width: 405px; word-wrap: break-word;">{{ $skl->alamat_ayah}}</td>
+                <td style="max-width: 405px; word-wrap: break-word;">Padukuhan Gedangan, Sentolo, Sentolo, Kulon Progo</td>
 
             </tr>
         </table>
@@ -263,51 +260,58 @@
             <tr>
                 <td class="template"> Nama</td>
                 <td>:</td>
-                <td>{{$skl->nama_ibu}}</td>
+                <td>Yuli Astuti</td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td class="template"> NIK</td>
                 <td>:</td>
-                <td>{{$skl->nik_ibu}}</td>
+                <td>{{$spn->nikibu}}</td>
+            </tr> --}}
+            <tr>
+                <td class="template">Jenis Kelamin</td>
+                <td>:</td>
+                <td>Perempuan</td>
             </tr>
             <tr>
                 <td class="template">Tempat / Tanggal Lahir</td>
                 <td>:</td>
-                <td>{{$skl->tempat_lahir_ibu}} / {{date('d-m-Y',strtotime($skl->tanggal_lahir_ibu))}}  </td>
+                <td>Kulon Progo /  01-09-1965</td>
             </tr>
             <tr>
                 <td class="template">Agama</td>
                 <td>:</td>
-                <td>{{$skl->agama_ibu}}</td>
+                <td>Islam</td>
             </tr>
             <tr>
                 <td class="template">Pekerjaan</td>
                 <td>:</td>
-                <td>{{$skl->pekerjaan_ibu}}</td>
+                <td>Ibu Rumah Tangga</td>
             </tr>
             <tr>
                 <td class="template" style="vertical-align: top;">Alamat</td>
                 <td style="vertical-align: top;">:</td>
-                <td style="max-width: 405px; word-wrap: break-word;">{{ $skl->alamat_ibu}}</td>
+                <td style="max-width: 405px; word-wrap: break-word;">Padukuhan Gedangan, Sentolo, Sentolo, Kulon Progo</td>
 
             </tr>
         </table>
         <table class="empat">
             <tr>
                 <td>
-                    <p>
-                        Pihak-pihak yang diterangkan diatas benar-benar adalah penduduk Dusun {{$skl->dusun}}, Kalurahan {{$skl->kalurahan}}, Kapanewon {{$skl->kecamatan}},
-                        Kabupaten {{$skl->kabupaten}} yang belum memiliki Akta Kelahiran. Demikian Surat Keterangan ini dibuat dengan benar dan diberikan kepada yang
-                        bersangkutan untuk proses lebih lanjut.
-                    </p>
+                    <p>Pemilik nama tersebut di atas adalah benar warga kami RT 09 kalurahan Sentolo, Kecamatan Sentolo dan sepngetahuan kami yang bersangkutan berkelakuan baik. Surat keterangan pengantar ini diberikan untuk keperluan pengurusan surat nikah. Demikian surat keterangan ini dibuat dengan sebenarnya dan diberikan untuk dapat dipergunakan sebagaimana mestinya.</p>
                 </td>
             </tr>
         </table>
 
         <div class="signature">
-            Sentolo, {{ \Carbon\Carbon::parse($skl['created_at'])->translatedFormat('j F Y') }}
-            <br>Lurah Sentolo &#160; &#160; &#160; &#160; &#160; &#160;<br><br><br><br>
-            <b>(TEGUH)&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;</b>
+            &#160; Mengetahui,
+            <br>Lurah Sentolo<br><br><br><br>
+            <b>(TEGUH)</b>
+        </div>
+
+        <!-- Area tanda tangan kedua -->
+        <div class="signature">
+            Sentolo, 19 September 2023<br><br><br><br><br>
+            <b>(John Doe)</b>
         </div>
 
     </center>

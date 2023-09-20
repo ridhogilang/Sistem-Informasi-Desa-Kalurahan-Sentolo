@@ -5,8 +5,8 @@
         <h1>Surat Keterangan Tidak Bekerja</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item">Surat</li>
+                <li class="breadcrumb-item"><a href="/admin/e-surat/dashboard">Home</a></li>
+                <li class="breadcrumb-item">Surat Keluar</li>
                 <li class="breadcrumb-item active">Keterangan tidak bekerja</li>
             </ol>
         </nav>
@@ -217,48 +217,48 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                                                            <label for="jenis_kelamin3" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                                             <div class="col-sm-9">
-                                                                <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
-                                                                    <option value="" @if(old('jenis_kelamin') == '') selected @endif>Pilih Jenis Kelamin ...</option>
-                                                                    <option value="Laki-laki" @if(old('jenis_kelamin') == 'Laki-laki') selected @endif>Laki-laki</option>
-                                                                    <option value="Perempuan" @if(old('jenis_kelamin') == 'Perempuan') selected @endif>Perempuan</option>
+                                                                <select id="jenis_kelamin3" name="jenis_kelamin" class="form-select" required>
+                                                                    <option value="" >Pilih Jenis Kelamin ...</option>
+                                                                    <option value="Laki-laki" {{ ($value->jenis_kelamin == "Laki-laki") ? 'selected' : '' }}>Laki-laki</option>
+                                                                    <option value="Perempuan" {{ ($value->jenis_kelamin == "Perempuan") ? 'selected' : '' }}>Perempuan</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="agama" class="col-sm-3 col-form-label">Agama</label>
+                                                            <label for="agama3" class="col-sm-3 col-form-label">Agama</label>
                                                             <div class="col-sm-9">
-                                                                <select id="agama" name="agama" class="form-select" required>
-                                                                    <option value="" @if(old('agama') == '') selected @endif>Pilih Agama ...</option>
-                                                                    <option value="Islam" @if(old('agama') == 'Islam') selected @endif>Islam</option>
-                                                                    <option value="Kristen Protestan" @if(old('agama') == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
-                                                                    <option value="Kristen Katolik" @if(old('agama') == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
-                                                                    <option value="Hindu" @if(old('agama') == 'Hindu') selected @endif>Hindu</option>
-                                                                    <option value="Buddha" @if(old('agama') == 'Buddha') selected @endif>Buddha</option>
-                                                                    <option value="Konghucu" @if(old('agama') == 'Konghucu') selected @endif>Konghucu</option>
-                                                                    <option value="Lainnya" @if(old('agama') == 'Lainnya') selected @endif>Lainnya</option>
+                                                                <select id="agama3" name="agama" class="form-select" required>
+                                                                    <option value="">Pilih Agama ...</option>
+                                                                    <option value="Islam" {{ ($value->agama == "Islam") ? 'selected' : '' }}>Islam</option>
+                                                                    <option value="Kristen Protestan" {{ ($value->agama == "Kristen Protestan") ? 'selected' : '' }}>Kristen Protestan</option>
+                                                                    <option value="Kristen Katolik" {{ ($value->agama == "Kristen Katolik") ? 'selected' : '' }}>Kristen Katolik</option>
+                                                                    <option value="Hindu" {{ ($value->agama == "Hindu") ? 'selected' : '' }}>Hindu</option>
+                                                                    <option value="Buddha" {{ ($value->agama == "Buddha") ? 'selected' : '' }}>Buddha</option>
+                                                                    <option value="Konghucu" {{ ($value->agama == "Konghucu") ? 'selected' : '' }}>Konghucu</option>
+                                                                    <option value="Lainnya" {{ ($value->agama == "Lainnya") ? 'selected' : '' }}>Lainnya</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="warga_negara" class="col-sm-3 col-form-label">Warga Negara</label>
+                                                            <label for="warga_negara3" class="col-sm-3 col-form-label">Warga Negara</label>
                                                             <div class="col-sm-9">
-                                                                <select id="warga_negara" name="warga_negara" class="form-select" required>
-                                                                    <option value="" @if(old('warga_negara') == '') selected @endif>Pilih Warga Negara ...</option>
-                                                                    <option value="Indonesia" @if(old('warga_negara') == 'Indonesia') selected @endif>Indonesia</option>
-                                                                    <option value="Asing" @if(old('warga_negara') == 'Asing') selected @endif>Asing</option>
+                                                                <select id="warga_negara3" name="warga_negara" class="form-select" required>
+                                                                    <option value="" {{ ($value->warga_negara == "") ? 'selected' : '' }}>Pilih Jenis Kelamin ...</option>
+                                                                    <option value="Indonesia" {{ ($value->warga_negara == "Indonesia") ? 'selected' : '' }}>Indonesia</option>
+                                                                    <option value="Asing" {{ ($value->warga_negara == "Asing") ? 'selected' : '' }}>Asing</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
                                                             <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                                                             <div class="col-sm-9">
-                                                                <input type="text" name="alamat" class="form-control" id="alamat" value="{{ old('alamat') }}" required>
+                                                                <input type="text" name="alamat" class="form-control" id="alamat" value="{{ $value->alamat }}" required>
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <input type="hidden" name="jenis_ktbekerja" class="form-control" value="sktbekerja" >
+                                                            <input type="hidden" name="jenis_ktbekerja" class="form-control" value="{{$value->jenis_ktbekerja}}" >
                                                         </div>
                                                         <div class="row">
                                                             <input type="hidden" name="status_surat" class="form-control" value="{{$value->status_surat}}" >

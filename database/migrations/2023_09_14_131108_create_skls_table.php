@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('skl', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('nomor_surat')->unique();
-            $table->string('nama'); //bayi
+            $table->string('nama');
             $table->string('status_hubungan');
+            $table->string('dusun');
             $table->string('kalurahan');
             $table->string('kecamatan');
             $table->string('kabupaten');
             $table->string('provinsi');
-            $table->string('tempat_lahir');
             $table->string('tanggal_lahir');
             $table->string('jenis_kelamin');
             $table->string('anak_ke');

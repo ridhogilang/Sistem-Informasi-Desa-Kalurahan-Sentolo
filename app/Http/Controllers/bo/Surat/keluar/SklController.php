@@ -36,7 +36,7 @@ class SklController extends Controller
             12 => 'XII',
         ];
         $bulanRomawi = $angkaRomawi[$bulanSekarang];
-        $TemplateNoSurat = "000/KMS/{$bulanRomawi}/" . date('Y');
+        $TemplateNoSurat = "000/KET/PEM/{$bulanRomawi}/" . date('Y');
 
         return view('bo.page.surat.keluar.surat-ket-kelahiran', [
             'dropdown1' => 'Surat Keluar',
@@ -54,11 +54,11 @@ class SklController extends Controller
             ],
             'nama' => 'required',
             'status_hubungan' => 'required',
+            'dusun' => 'required',
             'kalurahan' => 'required',
             'kecamatan' => 'required',
             'kabupaten' => 'required',
             'provinsi' => 'required',
-            'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
             'anak_ke' => 'required',
@@ -77,21 +77,16 @@ class SklController extends Controller
             'agama_ibu' => 'required',
             'pekerjaan_ibu' => 'required',
             'alamat_ibu' => 'required',
+            'jenis_surat' => 'required',
+            'status_surat' => 'required',
         ], [
             'min' => 'Masukkan 16 Digit NIK.',
             'unique' => 'Nomor Surat sudah digunakan.',
         ]);
         // $nomor = str_replace("/", "-", $record['nomor_surat']);
         $record['id'] = 'SKL-'. date('YmdHis') . '-' . rand(100, 999);
-        // $record['status_hubungan'] = 'Anak kandung';
-        $record['jenis_surat'] = 'Keterangan Kelahiran';
-        $record['status_surat'] = 'Kelahiran';
-
-
-
         // Menggunakan metode create untuk membuat dan menyimpan data
         Skl::create($record);
-
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
     }
         /**
@@ -125,12 +120,12 @@ class SklController extends Controller
                 // Pastikan nomor surat unik di tabel skduda, kecuali untuk catatan dengan ID yang sama
             ],
             'nama' => 'required',
-            // 'status_hubungan' => 'required',
+            'status_hubungan' => 'required',
+            'dusun' => 'required',
             'kalurahan' => 'required',
             'kecamatan' => 'required',
             'kabupaten' => 'required',
             'provinsi' => 'required',
-            'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
             'anak_ke' => 'required',
@@ -149,6 +144,8 @@ class SklController extends Controller
             'agama_ibu' => 'required',
             'pekerjaan_ibu' => 'required',
             'alamat_ibu' => 'required',
+            'jenis_surat' => 'required',
+            'status_surat' => 'required',
         ], [
             'min' => 'Masukkan 16 Digit NIK.',
             'unique' => 'Nomor Surat sudah digunakan.',

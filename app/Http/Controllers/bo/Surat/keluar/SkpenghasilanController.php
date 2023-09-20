@@ -50,7 +50,7 @@ class SkpenghasilanController extends Controller
         $record = $request->validate([
             'nomor_surat' => [
                 'required',
-                'unique:spbbekerja,nomor_surat',
+                'unique:skpenghasilan,nomor_surat',
             ],
             'nama' => 'required',
             'nik' => 'required|min:16',
@@ -68,11 +68,7 @@ class SkpenghasilanController extends Controller
         ]);
 
         // $nomor = str_replace("/", "-", $record['nomor_surat']);
-        $date = new \DateTime();
-        $date->setTimezone(new \DateTimeZone('Asia/Jakarta'));
-        $dateString = $date->format('YmdHis');
-
-        $record['id'] = 'SK-HASIL-'.$dateString.'-'.rand(100, 999);
+        $record['id'] = 'SK-HASIL-'. date('YmdHis') .'-'.rand(100, 999);
         // Menggunakan metode create untuk membuat dan menyimpan data
         Skpenghasilan::create($record);
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
@@ -104,7 +100,7 @@ class SkpenghasilanController extends Controller
         $record = $request->validate([
             'nomor_surat' => [
                 'required',
-                Rule::unique('spbbekerja', 'nomor_surat')->ignore($id),
+                Rule::unique('skpenghasilan', 'nomor_surat')->ignore($id),
             ],
             'nama' => 'required',
             'nik' => 'required|min:16',

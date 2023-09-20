@@ -11,7 +11,7 @@ use Illuminate\Validation\Rule;
 
 class SpnController extends Controller
 {
-    public function __construct() 
+    public function __construct()
     {
         $this->middleware('permission:surat Pengantar Nikah');
         Carbon::setLocale('id');
@@ -53,7 +53,7 @@ class SpnController extends Controller
         $record = $request->validate([
             'nomor_surat' => [
                 'required',
-                'unique:spbm,nomor_surat', // Pastikan nomor surat unik di tabel sktm_satu
+                'unique:spn,nomor_surat', // Pastikan nomor surat unik di tabel sktm_satu
             ],
             'deskripsi1' => 'required',
             'nama' => 'required',
@@ -95,8 +95,6 @@ class SpnController extends Controller
         Spn::create($record);
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
     }
-
-  
     public function show($id)
     {
         $spn = Spn::findOrFail($id);
@@ -107,8 +105,14 @@ class SpnController extends Controller
         // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
         return $pdf->stream();
     }
-
-  
+    public function contoh() {
+        // Menggunakan view untuk mengambil HTML dari template surat-ktm
+        $data = view('bo.template.contoh-surat-pn')->render();
+        // Membuat instance DomPDF
+        $pdf = Pdf::loadHTML($data);
+        // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
+        return $pdf->stream();
+    }
     public function update(Request $request,$id)
     {
         $record = $request->validate([
