@@ -43,7 +43,7 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="row" action="/admin/e-surat/surat-pn" method="POST">
+                                                <form class="row" action="/admin/e-surat/surat-scstm" method="POST">
                                                     @csrf
                                                     <div class="row mb-3">
                                                         <label for="nomor_surat" class="col-sm-3 col-form-label">Nomor Surat</label>
@@ -101,8 +101,8 @@
                                                         <label for="jabatanpenerima" id="label-jabatanpenerima" class="col-sm-3 col-form-label"
                                                             style="display: none">Jabatan Penerima</label>
                                                         <div class="col-sm-9">
-                                                            <textarea name="jabatanpenerima" class="form-control" id="jabatanpenerima" rows="3" style="display: none"
-                                                                required></textarea>
+                                                            <input type="text" name="jabatanpenerima" class="form-control" id="jabatanpenerima" rows="3" style="display: none"
+                                                                required>
                                                         </div>
                                                     </div>
                                                     {{-- Batas Bawah --}}
@@ -132,7 +132,7 @@
                                                         <label for="kotapenerima" id="label-kotapenerima" class="col-sm-3 col-form-label"
                                                             style="display: none">Kota Penerima</label>
                                                         <div class="col-sm-9">
-                                                            <textarea name="kotapenerima" class="form-control" id="kotapenerima" rows="3" style="display: none" required></textarea>
+                                                            <input type="text" name="kotapenerima" class="form-control" id="kotapenerima" rows="3" style="display: none" required>
                                                         </div>
                                                     </div>
                                                     {{-- Batas Bawah --}}
@@ -196,7 +196,7 @@
                                                         <label for="paragraf2" id="label-paragraf2"class="col-sm-3 col-form-label"
                                                             style="display: none">Paragraf 2</label>
                                                         <div class="col-sm-9">
-                                                            <input name="paragraf2" class="form-control" id="paragraf2" rows="3" style="display: none">
+                                                            <textarea name="paragraf2" class="form-control" id="paragraf2" rows="3" style="display: none"></textarea>
                                                         </div>
                                                     </div>
                                                     {{-- Batas Bawah --}}
@@ -226,7 +226,7 @@
                                                         <label for="nik" id="label-nik" class="col-sm-3 col-form-label"
                                                             style="display: none">NIK</label>
                                                         <div class="col-sm-9">
-                                                            <textarea name="nik" class="form-control" id="nik" rows="3" style="display: none"></textarea>
+                                                            <input name="nik" class="form-control" id="nik" rows="3" style="display: none">
                                                         </div>
                                                     </div>
                                                     {{-- Batas Bawah --}}
@@ -437,7 +437,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="card-title">Data Surat Penyataan Belum Menikah</h5>
+                        <h5 class="card-title">Data Surat Custom</h5>
                     </div>
 
                     <!-- Table with hoverable rows -->
@@ -458,7 +458,7 @@
                             @php
                                 $no = 1;
                             @endphp
-                            @foreach ($spn as $value)
+                            @foreach ($scstm as $value)
                                 <tr>
                                     <th scope="row">{{ $no++ }}.</th>
                                     <td>{{ $value->nomor_surat }}</td>
@@ -879,16 +879,16 @@
         });
         //jabaran penerima
         var checkbox3 = document.getElementById('checkbox3');
-        var textarea1 = document.getElementById('jabatanpenerima');
+        var textInput13 = document.getElementById('jabatanpenerima');
         var label3 = document.getElementById('label-jabatanpenerima');
 
         checkbox3.addEventListener('change', function() {
             if (checkbox3.checked) {
-                textarea1.style.display = "block";
+                textInput13.style.display = "block";
                 label3.style.display = "block";
 
             } else {
-                textarea1.style.display = "none";
+                textInput13.style.display = "none";
                 label3.style.display = "none";
 
             }
@@ -911,16 +911,16 @@
         });
         //kota penerima
         var checkbox5 = document.getElementById('checkbox5');
-        var textarea2 = document.getElementById('kotapenerima');
+        var textInput12 = document.getElementById('kotapenerima');
         var label5 = document.getElementById('label-kotapenerima');
 
         checkbox5.addEventListener('change', function() {
             if (checkbox5.checked) {
-                textarea2.style.display = "block";
+                textInput12.style.display = "block";
                 label5.style.display = "block";
 
             } else {
-                textarea2.style.display = "none";
+                textInput12.style.display = "none";
                 label5.style.display = "none";
 
             }
@@ -1007,16 +1007,16 @@
         });
         //nik
         var checkbox11 = document.getElementById('checkbox11');
-        var textInput6 = document.getElementById('nik');
+        var textInput14 = document.getElementById('nik');
         var label11 = document.getElementById('label-nik');
 
         checkbox11.addEventListener('change', function() {
             if (checkbox11.checked) {
-                textInput6.style.display = "block";
+                textInput14.style.display = "block";
                 label11.style.display = "block";
 
             } else {
-                textInput6.style.display = "none";
+                textInput14.style.display = "none";
                 label11.style.display = "none";
 
             }
