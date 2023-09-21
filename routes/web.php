@@ -22,6 +22,7 @@ use App\Http\Controllers\bo\Surat\keluar\SpbbekerjaController;
 
 
 
+use App\Http\Controllers\SMasukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,7 +53,7 @@ Route::prefix('admin')->group(function () {
                 'title' => 'Dashboard',
             ]);
         })->name('bo.home');
-    
+
         //untuk kepegawaian yaitu kebutuhan user dan role tak dewekno marakno riskan
         Route::prefix('pegawai')->middleware('can:enter_kepegawaian')->group(function () {
             Route::get('/dashboard', function () {
@@ -165,10 +166,17 @@ Route::prefix('admin')->group(function () {
             Route::put('/surat-ket-hasil/{id}', [SkpenghasilanController::class, 'update'])->middleware('can:edit surat');
             Route::get('/surat-ket-hasil/{id}/view', [SkpenghasilanController::class, 'show'])->middleware('can:lihat surat');
             Route::get('/contoh-surat-ket-hasil/view', [SkpenghasilanController::class, 'contoh'])->middleware('can:lihat contoh surat');
+            // Surat Masuk
+            Route::get('/surat-masuk', [SMasukController::class, 'index']);
+            Route::post('/surat-masuk', [SMasukController::class, 'store']);
+            Route::put('/surat-masuk/{id}', [SMasukController::class, 'update']);
+            Route::get('/surat-masuk/{id}/view', [SMasukController::class, 'show']);
+            Route::get('/surat-masuk/{id}/document', [SMasukController::class, 'document']);
+            Route::get('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy']);
         });
         //untuk tim sistem informasi
         Route::prefix('sistem-informasi')->group(function () {
-        
+
         });
     });
 });

@@ -135,7 +135,7 @@
         </li><!-- End Nav -->
         @endcanany
         <li class="nav-item">
-            <a class="nav-link {{ ($title == "Surat Masuk") ? '' : 'collapsed' }}" href="/surat-masuk">
+            <a class="nav-link {{ ($title == "Surat Masuk") ? '' : 'collapsed' }}" href="/admin/e-surat/surat-masuk">
                 <i class="fa-regular fa-envelope-open"></i>
                 <span>Surat Masuk</span>
             </a>
