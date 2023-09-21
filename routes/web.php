@@ -164,9 +164,9 @@ Route::prefix('admin')->group(function () {
             Route::get('/surat-ket-hasil/{id}/view', [SkpenghasilanController::class, 'show'])->middleware('can:lihat surat');
             Route::get('/contoh-surat-ket-hasil/view', [SkpenghasilanController::class, 'contoh'])->middleware('can:lihat contoh surat');
             // Surat Custom
-            Route::get('/surat-cstm', [ScstmController::class, 'index'])->middleware('can:list surat');
-            Route::post('/surat-ket-hasil', [SkpenghasilanController::class, 'store'])->middleware('can:input surat');
-            Route::put('/surat-ket-hasil/{id}', [SkpenghasilanController::class, 'update'])->middleware('can:edit surat');
+            Route::get('/surat-cstm', [ScstmController::class, 'index']);
+            Route::post('/surat-scstm', [ScstmController::class, 'store']);
+            Route::put('/surat-scstm/{id}', [ScstmController::class, 'update']);
             Route::get('/surat-ket-hasil/{id}/view', [SkpenghasilanController::class, 'show'])->middleware('can:lihat surat');
             Route::get('/contoh-surat-ket-hasil/view', [SkpenghasilanController::class, 'contoh'])->middleware('can:lihat contoh surat');
         });

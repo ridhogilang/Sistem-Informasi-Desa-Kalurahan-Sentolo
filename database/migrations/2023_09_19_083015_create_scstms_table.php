@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('scstm', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('nomor_surat')->unique();
+            $table->string('judulsurat')->unique();
             $table->string('tanggalsurat')->nullable();
             // Penerima surat
             $table->string('penerimasurat')->nullable();
@@ -35,11 +36,12 @@ return new class extends Migration
             $table->string('agama')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->string('waktu')->nullable();
+            $table->string('acara')->nullable();
             // Paragraf Penutup
             $table->string('paragrafpenutup')->nullable();
             $table->string('kalimatpenutup')->nullable();
             $table->string('namattd')->nullable();
-            $table->string('jenis_scstm')->nullable();
+            $table->string('jenis_surat')->nullable();
             $table->string('status_surat')->nullable();
             $table->timestamps();
         });
