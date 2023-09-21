@@ -108,7 +108,7 @@ class userManagementController extends Controller
         $this->validate($request, [
             'username' => ['required', Rule::unique('users', 'username')->ignore($id)],
             'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'min:6|same:confirm-password',
+            'password' => 'nullable|min:6|same:confirm-password',
             'roles' => 'required'
         ]);
 
@@ -120,6 +120,22 @@ class userManagementController extends Controller
         }
 
         $user = User::find($id);
+
+        if($input['email'] != $user->email){
+            
+            $verify_old = VerifyMailModel::where('email', $user->email)->first();
+            if($verify_old != null){
+               $verify_old->delete();  
+            }
+
+            $input['email_verified_at'] = null;
+
+            $verimail['id'] = date('Ymdhis').'-'.substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 75);
+            $verimail['email'] =  $input['email'];
+            VerifyMailModel::create($verimail);
+            Mail::to($verimail['email'])->send(new VerifyMail($verimail));
+        }
+
         $user->update($input);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
 
