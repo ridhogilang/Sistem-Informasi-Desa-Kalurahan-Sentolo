@@ -19,10 +19,8 @@ use App\Http\Controllers\bo\Surat\keluar\SkdController;
 use App\Http\Controllers\bo\Surat\keluar\SklController;
 use App\Http\Controllers\bo\Surat\keluar\SkpenghasilanController;
 use App\Http\Controllers\bo\Surat\keluar\SpbbekerjaController;
-
-
-
 use App\Http\Controllers\SMasukController;
+use App\Http\Controllers\ScstmController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -173,6 +171,12 @@ Route::prefix('admin')->group(function () {
             Route::get('/surat-masuk/{id}/view', [SMasukController::class, 'show']);
             Route::get('/surat-masuk/{id}/document', [SMasukController::class, 'document']);
             Route::get('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy']);
+            // Surat Custom
+            Route::get('/surat-cstm', [ScstmController::class, 'index']);
+            Route::post('/surat-scstm', [ScstmController::class, 'store']);
+            Route::put('/surat-scstm/{id}', [ScstmController::class, 'update']);
+            Route::get('/surat-ket-hasil/{id}/view', [SkpenghasilanController::class, 'show'])->middleware('can:lihat surat');
+            Route::get('/contoh-surat-ket-hasil/view', [SkpenghasilanController::class, 'contoh'])->middleware('can:lihat contoh surat');
         });
         //untuk tim sistem informasi
         Route::prefix('sistem-informasi')->group(function () {
