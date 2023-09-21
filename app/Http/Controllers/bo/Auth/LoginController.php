@@ -33,12 +33,10 @@ class LoginController extends Controller
             $user = User::where('email', $credentials['email'])->first();
             if($user->email_verified_at == null){
                 Auth::logout();
-               return back()->with('error', config('error','mohon verifikasi email terlebih dahulu')); 
+                return redirect()->route('login')->with('error', config('error','mohon verifikasi email terlebih dahulu')); 
             }
             //mengecek aktivasi user
-
             //jika user telah dihapus
-            
             //proses login
             $request->session()->regenerate();
             return redirect()->route('bo.home')->with('success', 'Halo selamat datang '.auth()->user()->username);

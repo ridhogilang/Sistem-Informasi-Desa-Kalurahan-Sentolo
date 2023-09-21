@@ -3,6 +3,7 @@
 use App\Http\Controllers\PermisiionController;
 use App\Http\Controllers\bo\Auth\LoginController;
 use App\Http\Controllers\bo\Auth\VerifikasiEmailController;
+use App\Http\Controllers\bo\Auth\ForgetPasswordController;
 use App\Http\Controllers\bo\Pegawai\UserManagementController;
 use App\Http\Controllers\bo\Pegawai\roleManagementController;
 use App\Http\Controllers\bo\Surat\keluar\SktmSatuController;
@@ -38,10 +39,11 @@ use Illuminate\Support\Facades\Route;
 
 
 //untuk login
-Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
-Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
 Route::prefix('sitemin-sentolo')->group(function () {
+    Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
+    Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
     Route::get('/verifymail/{id}', [VerifikasiEmailController::class, 'mailverify'])->name('verifymail');
+    Route::resource('/forget_password', ForgetPasswordController::class)->except(['create', 'show', 'destroy']);
 });
 
 Route::prefix('admin')->group(function () {

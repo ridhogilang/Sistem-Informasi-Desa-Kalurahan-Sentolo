@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konfirmasi Email - Aplikasi Desa Kalurahan Sentolo</title>
+    <title>Aplikasi Desa Kalurahan Sentolo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -58,17 +58,17 @@
 </head>
 <body>
     <div class="header">
-        <h1>Konfirmasi Alamat Email Anda</h1>
-        <p>Aplikasi Desa Kalurahan Sentolo</p>
+        <h1>{{ $data['judul'] }}</h1>
+        <p>Aplikasi Kalurahan Sentolo</p>
     </div>
     <div class="container" align="justify">
-        <p>Terima kasih telah mendaftar di Aplikasi Desa Kalurahan Sentolo. Untuk menyelesaikan proses pendaftaran, silakan konfirmasikan alamat email Anda dengan mengklik tautan di bawah ini:</p>
+        <p>{{ $data['kata-kata'] }}</p>
         <br>
         <center>
-	        <p><a href="{{ url('/sitemin-sentolo/verifymail/'.$verimail['id'])}}"><button class="btn-primary">Konfirmasi Email</button></a></p>
+	        <p><a href="{{ $data['tautan'] }}"><button class="btn-primary">{{ $data['tombol'] }}</button></a></p>
         </center>
         <br>
-        <p align="justify">Jika Anda tidak mendaftar di Aplikasi Desa Kalurahan Sentolo, Anda dapat mengabaikan pesan ini.</p>
+        <p align="justify">{{ $data['kata-penutup'] }}</p>
     </div>
 </body>
 </html>

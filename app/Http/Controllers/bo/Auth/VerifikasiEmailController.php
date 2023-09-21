@@ -35,6 +35,7 @@ class VerifikasiEmailController extends Controller
         $user->save();
 
         VerifyMail::find($id)->delete();
+        
         $data['caption'] = 'Terima kasih telah melakukan verifikasi email klik tombol dibawah untuk melanjutkan login';
         return view('bo.page.mail.verifymail', $data);
     }

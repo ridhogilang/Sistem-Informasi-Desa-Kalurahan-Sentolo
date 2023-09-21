@@ -18,15 +18,20 @@ class VerifyMail extends Mailable
      */
     public function __construct($verimail)
     {
-        $this->verimail = $verimail;
+        $this->data = $verimail;
     }
 
     public function build()
     {
-        $verimail = $this->verimail;
-
+        $data = $this->data;
+        $data['judul'] = 'Konfirmasi Alamat Email Anda';
+        $data['kata-kata'] = 'Terima kasih telah mendaftar di Aplikasi Desa Kalurahan Sentolo. Untuk menyelesaikan proses pendaftaran, silakan konfirmasikan alamat email Anda dengan mengklik tautan di bawah ini:';
+        $data['tautan'] = url('/sitemin-sentolo/verifymail/'.$data['id']);
+        $data['tombol'] = 'Konfirmasi Email';
+        $data['kata-penutup'] = 'Jika Anda tidak mendaftar di Aplikasi Desa Kalurahan Sentolo, Anda dapat mengabaikan pesan ini.';
+        
         return $this->view('bo.page.mail.mail')
-                    ->with('verimail', $verimail)
-                    ->subject('Verify Mail');
+                    ->with('data', $data)
+                    ->subject('Verifikasi Email');
     }
 }

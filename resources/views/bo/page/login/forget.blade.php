@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Sentolo | Verifikasi Email</title>
+    <title>Sentolo | Forget Password</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -62,14 +62,27 @@
                                 <div class="card-body">
 
                                     <div class="pt-4 pb-2">
-                                        <h3 class="card-title text-center pb-0 fs-4">Verifikasi Email</h3>
-                                        <p>{{ $caption }}</p>
-                                        @if(null == auth()->user())
-                                        <center><a class="btn btn-primary mb-5 mt-3" href="{{ route('login') }}">Login</a></center>
-                                        @else
-                                        <center><a class="btn btn-primary mb-5 mt-3" href="{{ route('bo.home') }}">Kembali</a></center>
-                                        @endif
+                                        <h5 class="card-title text-center pb-0 fs-4">Lupa Password</h5>
+                                        <p class="small" align="justify">Masukkan alamat email Anda yang terdaftar dalam aplikasi, lalu buka email Anda. Anda akan menerima email baru yang akan membawa Anda ke halaman penggantian kata sandi.</p>
                                     </div>
+
+                                    <form class="row g-3" action="{{ route('forget_password.store')}}" method="POST">
+                                    @csrf
+                                        <div class="col-12">
+                                            <label for="email" class="form-label">Email</label>
+                                            <div class="input-group">
+                                                <input type="email" name="email" class="form-control" id="email" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 mb-3">
+                                            <button class="btn btn-primary w-100" type="submit">Kirim</button>
+                                        </div>
+                                        <div class="col-12 text-end">
+                                            <p class="small mb-0">Kembali ke <a href=" {{ route('login') }}">Login</a></p>
+                                        </div>
+                                    </form>
+
                                 </div>
                             </div>
 

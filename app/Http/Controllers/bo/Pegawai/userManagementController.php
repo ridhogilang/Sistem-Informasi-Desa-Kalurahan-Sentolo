@@ -56,8 +56,8 @@ class userManagementController extends Controller
     {
          $this->validate($request, [
             'username' => 'required|unique:users,username',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
+            'email' => 'required|email|unique:users,email|unique:verify_mails,email',
+            'password' => 'required|min:6|same:confirm-password',
             'roles' => 'required'
         ]);
 
@@ -108,7 +108,7 @@ class userManagementController extends Controller
         $this->validate($request, [
             'username' => ['required', Rule::unique('users', 'username')->ignore($id)],
             'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
+            'password' => 'min:6|same:confirm-password',
             'roles' => 'required'
         ]);
 

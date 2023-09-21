@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Sentolo | Verifikasi Email</title>
+    <title>Sentolo | Forget Password</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -62,14 +62,31 @@
                                 <div class="card-body">
 
                                     <div class="pt-4 pb-2">
-                                        <h3 class="card-title text-center pb-0 fs-4">Verifikasi Email</h3>
-                                        <p>{{ $caption }}</p>
-                                        @if(null == auth()->user())
-                                        <center><a class="btn btn-primary mb-5 mt-3" href="{{ route('login') }}">Login</a></center>
-                                        @else
-                                        <center><a class="btn btn-primary mb-5 mt-3" href="{{ route('bo.home') }}">Kembali</a></center>
-                                        @endif
+                                        <h5 class="card-title text-center pb-0 fs-4">Lupa Password</h5>
+                                        <p class="small" align="justify">Masukkan kata sandi baru anda</p>
                                     </div>
+
+                                    <form class="row g-3" action="{{ route('forget_password.update', $id)}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+
+                                        <div class="col-12">
+                                            <label for="yourPassword" class="form-label">Password</label>
+                                            <input type="password" name="password" class="form-control" id="yourPassword" required>
+                                        </div>
+                                        <div class="col-12 mb-4">
+                                            <label for="confirm-password" class="form-label">Confirm Password</label>
+                                            <input type="password" name="confirm-password" class="form-control" id="confirm-password" required>
+                                        </div>
+
+                                        <div class="col-12 mb-3">
+                                            <button class="btn btn-primary w-100" type="submit">Kirim</button>
+                                        </div>
+                                        <div class="col-12 text-end">
+                                            <p class="small mb-0">Kembali ke <a href=" {{ route('login') }}">Login</a></p>
+                                        </div>
+                                    </form>
+
                                 </div>
                             </div>
 
