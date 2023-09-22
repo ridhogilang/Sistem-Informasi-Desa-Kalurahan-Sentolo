@@ -77,6 +77,13 @@
                             </a>
                         </li>
                         @endcan
+                        @can('surat Custom')
+                        <li>
+                            <a href="/admin/e-surat/surat-cstm" class="{{ ($title == "Surat Custom") ? 'active' : '' }}">
+                                <i class="bi bi-circle"></i><span>Surat Custom</span>
+                            </a>
+                        </li>
+                        @endcan
                     </ul>
                 </li>
                 @endcanany
@@ -135,7 +142,7 @@
         </li><!-- End Nav -->
         @endcanany
         <li class="nav-item">
-            <a class="nav-link {{ ($title == "Surat Masuk") ? '' : 'collapsed' }}" href="/surat-masuk">
+            <a class="nav-link {{ ($title == "Surat Masuk") ? '' : 'collapsed' }}" href="/admin/e-surat/surat-masuk">
                 <i class="fa-regular fa-envelope-open"></i>
                 <span>Surat Masuk</span>
             </a>
