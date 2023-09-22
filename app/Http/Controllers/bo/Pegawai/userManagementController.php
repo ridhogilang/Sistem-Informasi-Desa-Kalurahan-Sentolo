@@ -34,7 +34,7 @@ class userManagementController extends Controller
     public function index()
     {
         $data = $this->data;
-        $data['users'] = User::get();
+        $data['users'] = User::where("is_delete","<>", '1')->get();
         return view($data['view'].'.index', $data);
     }
 
@@ -62,8 +62,11 @@ class userManagementController extends Controller
         ]);
 
         $input = $request->all();
-        // $input['jabatan'] = $input['roles'];
+        // tambahan input
         $input['password'] = Hash::make($input['password']);
+        $input['is_active'] = '1';
+        $input['is_delete'] = '0';
+
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
@@ -150,7 +153,8 @@ class userManagementController extends Controller
      */
     public function destroy(string $id)
     {
-        User::find($id)->delete();
+        $input['is_delete'] = '1';
+        User::find($id)->update($input);
         return redirect()->route('bo.pegawai.user_management.index')
                         ->with('success','User deleted successfully');
     }

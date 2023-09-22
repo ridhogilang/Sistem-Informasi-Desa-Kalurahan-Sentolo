@@ -68,7 +68,9 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'email' => 'admin@mail.com',
             'email_verified_at' => date('Y-m-d H:i:s'),
-            'password' => Hash::make('password')
+            'password' => Hash::make('password'),
+            'is_active' => '1',
+            'is_delete' => '0'
         ]);
         
         $role = Role::create(['name' => 'Admin']);

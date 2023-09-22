@@ -36,7 +36,15 @@ class LoginController extends Controller
                 return redirect()->route('login')->with('error', config('error','mohon verifikasi email terlebih dahulu')); 
             }
             //mengecek aktivasi user
+            if($user->is_active == '0'){
+                Auth::logout();
+                return redirect()->route('login')->with('error', config('error','Akun anda sedang dinonaktifkan oleh admin'));
+            }
             //jika user telah dihapus
+            if($user->is_delete == '1'){
+                Auth::logout();
+                return redirect()->route('login')->with('error', config('error','nama pengguna atau password tidak sesuai'));
+            }
             //proses login
             $request->session()->regenerate();
             return redirect()->route('bo.home')->with('success', 'Halo selamat datang '.auth()->user()->username);
