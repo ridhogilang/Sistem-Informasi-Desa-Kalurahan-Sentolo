@@ -25,6 +25,7 @@ class SkbmController extends Controller
     {
         //ntar ditambahi with
         $skbm = Skbm::with('tandatangan')->with('MengetahuiVerifikasiSurat')->get();
+
         //untuk mengetahui perorangan;
         $pejabat = User::get(['id', 'nama', 'jabatan'])->toArray();
         //untuk romawi
@@ -104,18 +105,20 @@ class SkbmController extends Controller
 
         //proses paraf / verifikasi
         foreach ($record['mengetahui'] as $ttd) {
-            list($id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
-    
-            $mengetahuiData[] = [
-                'id' => 'TTD-' . date('YmdHis') . '-' . rand(100, 999),
-                'id_user' => $id_user,
-                'nama_user' => $nama_user,
-                'jabatan_user' => $jabatan_user,
-                'id_surat' => $record['id'],
-                'nomor_surat' => $record['nomor_surat'],
-                'jenis_surat' => $record['jenis_surat'],
-                'status' => $record['status_surat'],
-            ];
+            if($ttd != null){
+                list($id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
+        
+                $mengetahuiData[] = [
+                    'id' => 'MGTH-' . date('YmdHis') . '-' . rand(100, 999),
+                    'id_user' => $id_user,
+                    'nama_user' => $nama_user,
+                    'jabatan_user' => $jabatan_user,
+                    'id_surat' => $record['id'],
+                    'nomor_surat' => $record['nomor_surat'],
+                    'jenis_surat' => $record['jenis_surat'],
+                    'status' => $record['status_surat'],
+                ];
+            }
         }
         
         MengetahuiVerifikasiSurat::insert($mengetahuiData);
@@ -194,6 +197,8 @@ class SkbmController extends Controller
                 'jenis_surat' => $record['jenis_surat'],
             ];
 
+            $id_record = isset($id_record) ? $id_record : 'TTD-' . date('YmdHis') . '-' . rand(100, 999);
+
             $condition = [
                 'id' => $id_record,
             ];
@@ -204,23 +209,27 @@ class SkbmController extends Controller
 
         //proses paraf / verifikasi
         foreach ($record['mengetahui'] as $ttd) {
-            list($id_record, $id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
-    
-            $mengetahuiData = [
-                'id_user' => $id_user,
-                'id_surat' => $id,
-                'nama_user' => $nama_user,
-                'jabatan_user' => $jabatan_user,
-                'nomor_surat' => $record['nomor_surat'],
-                'jenis_surat' => $record['jenis_surat'],
-                'status' => '1',
-            ];
+            if($ttd != null){
+                list($id_record, $id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
+        
+                $mengetahuiData = [
+                    'id_user' => $id_user,
+                    'id_surat' => $id,
+                    'nama_user' => $nama_user,
+                    'jabatan_user' => $jabatan_user,
+                    'nomor_surat' => $record['nomor_surat'],
+                    'jenis_surat' => $record['jenis_surat'],
+                    'status' => '1',
+                ];
 
-            $condition = [
-                'id' => $id_record,
-            ];
+                $id_record = ($id_record != '-') ? $id_record : 'MGTH-' . date('YmdHis') . '-' . rand(100, 999);
 
-            MengetahuiVerifikasiSurat::updateOrInsert($condition, $mengetahuiData);
+                $condition = [
+                    'id' => $id_record,
+                ];
+
+                MengetahuiVerifikasiSurat::updateOrInsert($condition, $mengetahuiData);
+            }
         }
         unset($record['mengetahui']);
 

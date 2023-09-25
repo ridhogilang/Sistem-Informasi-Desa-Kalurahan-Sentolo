@@ -139,7 +139,7 @@
                                                 </div>
                                                 <div class="col-md-4 mb-3">
                                                     <select id="mengetahui[]" name="mengetahui[]" class="form-select">
-                                                        <option value="" disabled selected>Pilih Pejabat yang Mengetahui</option>
+                                                        <option value="" selected>Pilih Pejabat yang Mengetahui</option>
                                                         @foreach($pejabat as $value)
                                                             <option value="{{ $value['id'].'/'.$value['nama'].'/'.$value['jabatan'] }}">{{ $value['nama'] . ' ( ' . $value['jabatan'] . ' )' }}</option>
                                                         @endforeach
@@ -147,7 +147,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <select id="mengetahui[]" name="mengetahui[]" class="form-select">
-                                                        <option value="" disabled selected>Pilih Pejabat yang Mengetahui</option>
+                                                        <option value="" selected>Pilih Pejabat yang Mengetahui</option>
                                                         @foreach($pejabat as $value)
                                                             <option value="{{ $value['id'].'/'.$value['nama'].'/'.$value['jabatan'] }}">{{ $value['nama'] . ' ( ' . $value['jabatan'] . ' )' }}</option>
                                                         @endforeach
@@ -313,30 +313,28 @@
                                                             <label for="agama" class="col col-form-label">Pejabat Yang mengetahui</label>
                                                         </div>
                                                         <div class="row mb-3">
+                                                            @foreach($value->MengetahuiVerifikasiSurat as $verifikasi)
                                                             <div class="col-md-4 mb-3">
-                                                                <select id="mengetahui[]" name="mengetahui[]" class="form-select" required>
+                                                                <select id="mengetahui[]" name="mengetahui[]" class="form-select">
                                                                     <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
                                                                     @foreach($pejabat as $jabat)
-                                                                        <option value="{{ $value->MengetahuiVerifikasiSurat[0]->id.'/'.$jabat['id'].'/'.$jabat['nama'].'/'.$jabat['jabatan'] }}" {{ ($value->MengetahuiVerifikasiSurat[0]->id_user == $jabat['id'])?'selected':'' }}>{{ $jabat['nama'] . ' ( ' . $jabat['jabatan'] . ' )' }}</option>
+                                                                        <option value="{{ $verifikasi->id.'/'.$jabat['id'].'/'.$jabat['nama'].'/'.$jabat['jabatan'] }}" {{ ($verifikasi->id_user == $jabat['id'])?'selected':'' }}>{{ $jabat['nama'] . ' ( ' . $jabat['jabatan'] . ' )' }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
-                                                            <div class="col-md-4 mb-3">
-                                                                <select id="mengetahui[]" name="mengetahui[]" class="form-select" required>
-                                                                    <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
-                                                                    @foreach($pejabat as $jabat)
-                                                                        <option value="{{ $value->MengetahuiVerifikasiSurat[1]->id.'/'.$jabat['id'].'/'.$jabat['nama'].'/'.$jabat['jabatan'] }}" {{ ($value->MengetahuiVerifikasiSurat[1]->id_user == $jabat['id'])?'selected':'' }}>{{ $jabat['nama'] . ' ( ' . $jabat['jabatan'] . ' )' }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <select id="mengetahui[]" name="mengetahui[]" class="form-select" required>
-                                                                    <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
-                                                                    @foreach($pejabat as $jabat)
-                                                                        <option value="{{ $value->MengetahuiVerifikasiSurat[2]->id.'/'.$jabat['id'].'/'.$jabat['nama'].'/'.$jabat['jabatan'] }}" {{ ($value->MengetahuiVerifikasiSurat[2]->id_user == $jabat['id'])?'selected':'' }}>{{ $jabat['nama'] . ' ( ' . $jabat['jabatan'] . ' )' }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
+                                                            @endforeach
+                                                            @if(count($value->MengetahuiVerifikasiSurat) < 3)
+                                                                @foreach(range(1, 3 - count($value->MengetahuiVerifikasiSurat)) as $index)
+                                                                    <div class="col-md-4 mb-3">
+                                                                        <select id="mengetahui[]" name="mengetahui[]" class="form-select">
+                                                                            <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
+                                                                            @foreach($pejabat as $jabat)
+                                                                                <option value="{{ '-/'.$jabat['id'].'/'.$jabat['nama'].'/'.$jabat['jabatan'] }}">{{ $jabat['nama'] . ' ( ' . $jabat['jabatan'] . ' )' }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                @endforeach
+                                                            @endif
                                                         </div>
                                                         
                                                     </div>
