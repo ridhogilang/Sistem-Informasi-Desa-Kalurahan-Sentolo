@@ -19,7 +19,7 @@ return new class extends Migration
             // Penerima surat
             $table->string('penerimasurat')->nullable();
             $table->string('jabatanpenerima')->nullable();
-            $table->string('alamatpenrima')->nullable();
+            $table->string('alamatpenerima')->nullable();
             $table->string('kotapenerima')->nullable();
             // Salam Pembuka
             $table->string('salampembuka')->nullable();

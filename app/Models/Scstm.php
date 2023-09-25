@@ -18,7 +18,7 @@ class Scstm extends Model
         // Penerima surat
         'penerimasurat',
         'jabatanpenerima',
-        'alamatpenrima',
+        'alamatpenerima',
         'kotapenerima',
         // Salam Pembuka
         'salampembuka',
