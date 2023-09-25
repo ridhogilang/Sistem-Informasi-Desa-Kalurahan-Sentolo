@@ -23,20 +23,20 @@
                         <!-- Button trigger modal -->
 
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#spn"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Buat
+                            data-bs-target="#scstm"><i class="fa-regular fa-square-plus" style="margin-right: 5px"></i>Buat
                             Surat</button>
 
                         <a class="btn btn-success btn-sm" type="submit" target="blank"
-                            href="/admin/e-surat/contoh-surat-pbm/view"><i class="fa-solid fa-print"
+                            href="/admin/e-surat/contoh-surat-cstm/view"><i class="fa-solid fa-print"
                                 style="margin-right: 5px"></i>Contoh Surat</a>
 
                         <!-- Modal Form SCSTM -->
-                        <div class="modal fade" id="spn" data-bs-backdrop="static" data-bs-keyboard="false"
-                            tabindex="-1" aria-labelledby="spn-Label" aria-hidden="true">
+                        <div class="modal fade" id="scstm" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="scstm-Label" aria-hidden="true">
                             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="tambah-spn-Label">Data Surat Custom</h1>
+                                        <h1 class="modal-title fs-5" id="tambah-scstm-Label">Data Surat Custom</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -65,11 +65,11 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="tglsurat" id="tglsurat" class="col-sm-3 col-form-label"
+                                                <label for="tanggalsurat" id="label-tanggalsurat" class="col-sm-3 col-form-label"
                                                     style="display: none">Tanggal Surat</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="tglsurat" class="form-control"
-                                                        id="tglsurat" value="{{ old('tglsurat') }}" style="display: none">
+                                                    <input type="text" name="tanngalsurat" class="form-control"
+                                                        id="tanggalsurat" value="{{ old('tanggalsurat') }}" style="display: none">
                                                 </div>
                                             </div>
                                             {{-- Batas Bawah --}}
@@ -82,7 +82,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="penerimasurat" id="penerimasurat"
+                                                <label for="penerimasurat" id="label-penerimasurat"
                                                     class="col-sm-3 col-form-label" style="display: none">Penerima
                                                     Surat</label>
                                                 <div class="col-sm-9">
@@ -99,7 +99,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="jabatanpenerima" id="jabatanpenerima"
+                                                <label for="jabatanpenerima" id="label-jabatanpenerima"
                                                     class="col-sm-3 col-form-label" style="display: none">Jabatan
                                                     Penerima</label>
                                                 <div class="col-sm-9">
@@ -116,7 +116,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="alamatpenerima" id="alamatpenerima"
+                                                <label for="alamatpenerima" id="label-alamatpenerima"
                                                     class="col-sm-3 col-form-label" style="display: none">Penerima
                                                     Surat</label>
                                                 <div class="col-sm-9">
@@ -133,7 +133,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="kotapenerima" id="kotapenerima"
+                                                <label for="kotapenerima" id="label-kotapenerima"
                                                     class="col-sm-3 col-form-label" style="display: none">Kota
                                                     Penerima</label>
                                                 <div class="col-sm-9">
@@ -151,7 +151,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="salampembuka" id="salampembuka"
+                                                <label for="salampembuka" id="label-salampembuka"
                                                     class="col-sm-3 col-form-label" style="display: none">Salam
                                                     Pembuka</label>
                                                 <div class="col-sm-9">
@@ -169,7 +169,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="paragrafpembuka" id="paragrafpembuka"
+                                                <label for="paragrafpembuka" id="label-paragrafpembuka"
                                                     class="col-sm-3 col-form-label" style="display: none">Paragraf
                                                     Pembuka</label>
                                                 <div class="col-sm-9">
@@ -185,7 +185,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label id="paragraf1" for="paragraf1"
+                                                <label id="label-paragraf1" for="paragraf1"
                                                     class="col-sm-3 col-form-label" style="display: none">Paragraf
                                                     1</label>
                                                 <div class="col-sm-9">
@@ -202,7 +202,7 @@
                                             </div>
                                             <div class="row mb-3">
                                                 <label for="paragraf2"
-                                                    id="paragraf2"class="col-sm-3 col-form-label"
+                                                    id="label-paragraf2"class="col-sm-3 col-form-label"
                                                     style="display: none">Paragraf 2</label>
                                                 <div class="col-sm-9">
                                                     <textarea name="paragraf2" class="form-control" id="paragraf2" rows="3" style="display: none"></textarea>
@@ -217,7 +217,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="nama" id="nama"class="col-sm-3 col-form-label"
+                                                <label for="nama" id="label-nama"class="col-sm-3 col-form-label"
                                                     style="display: none">Nama</label>
                                                 <div class="col-sm-9">
                                                     <input name="nama" class="form-control" id="nama"
@@ -233,7 +233,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="nik" id="nik" class="col-sm-3 col-form-label"
+                                                <label for="nik" id="label-nik" class="col-sm-3 col-form-label"
                                                     style="display: none">NIK</label>
                                                 <div class="col-sm-9">
                                                     <input name="nik" class="form-control" id="nik"
@@ -249,7 +249,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="jenis_kelamin" id="jenis_kelamin"
+                                                <label for="jenis_kelamin" id="label-jenis_kelamin"
                                                     class="col-sm-3 col-form-label" style="display: none">Jenis
                                                     Kelamin</label>
                                                 <div class="col-sm-9">
@@ -276,13 +276,13 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label id="hari" for="hari" class="col-sm-3 col-form-label"
+                                                <label id="label-hari" for="hari" class="col-sm-3 col-form-label"
                                                     style="display: none">Hari / Tanggal</label>
                                                 <div class="col-sm-4">
                                                     <input type="text" class="form-control" id="hari"
                                                         name="hari" value="{{ old('hari') }}" style="display: none">
                                                 </div>
-                                                <label id="tanggal" for="tanggal"
+                                                <label id="label-tanggal" for="tanggal"
                                                     class="col-sm-1 col-form-label text-center"
                                                     style="display: none">/</label>
                                                 <div class="col-sm-3">
@@ -300,7 +300,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label id="alamat" for="alamat" class="col-sm-3 col-form-label"
+                                                <label id="label-alamat" for="alamat" class="col-sm-3 col-form-label"
                                                     style="display: none">Alamat</label>
                                                 <div class="col-sm-9">
                                                     <input name="alamat" class="form-control" id="alamat"
@@ -316,7 +316,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label id="agama" for="agama" class="col-sm-3 col-form-label"
+                                                <label id="label-agama" for="agama" class="col-sm-3 col-form-label"
                                                     style="display: none">Agama</label>
                                                 <div class="col-sm-9">
                                                     <select id="agama" name="agama" class="form-select"
@@ -360,7 +360,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label id="pekerjaan" for="pekerjaan"
+                                                <label id="label-pekerjaan" for="pekerjaan"
                                                     class="col-sm-3 col-form-label"
                                                     style="display: none">Pekerjaan</label>
                                                 <div class="col-sm-9">
@@ -378,7 +378,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label id="waktu" for="waktu" class="col-sm-3 col-form-label"
+                                                <label id="label-waktu" for="waktu" class="col-sm-3 col-form-label"
                                                     style="display: none">Waktu</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" name="waktu" class="form-control"
@@ -395,7 +395,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label id="acara" for="acara" class="col-sm-3 col-form-label"
+                                                <label id="label-acara" for="acara" class="col-sm-3 col-form-label"
                                                     style="display: none">Waktu</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" name="acara" class="form-control"
@@ -413,7 +413,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label id="paragrafpenutup" for="paragrafpenutup"
+                                                <label id="label-paragrafpenutup" for="paragrafpenutup"
                                                     class="col-sm-3 col-form-label" style="display: none">Paragraf
                                                     Penutup</label>
                                                 <div class="col-sm-9">
@@ -430,7 +430,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label id="kalimatpenutup" for="kalimatpenutup"
+                                                <label id="label-kalimatpenutup" for="kalimatpenutup"
                                                     class="col-sm-3 col-form-label" style="display: none">Kalimat
                                                     Penutup</label>
                                                 <div class="col-sm-9">
@@ -446,8 +446,8 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label id="namattd" for="namattd" class="col-sm-3 col-form-label"
-                                                    style="display: none">Waktu</label>
+                                                <label id="label-namattd" for="namattd" class="col-sm-3 col-form-label"
+                                                    style="display: none">Nama TTD</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" name="namattd" class="form-control"
                                                         id="namattd" rows="3" style="display: none"
@@ -510,14 +510,14 @@
                                     <td class="text-center">
 
                                         <a class="btn btn-success" type="submit" target="blank"
-                                            href="/admin/e-surat/surat-pn/{{ $value->id }}/view"><i
+                                            href="/admin/e-surat/surat-cstm/{{ $value->id }}/view"><i
                                                 class="fa-solid fa-print"></i></a>
 
 
                                         <!-- Button trigger modal -->
                                         <a class="btn btn-warning" type="submit" data-bs-toggle="modal"
-                                            data-bs-target="#Modal-Edit-SPN{{ $value->id }}"
-                                            href="/admin/e-surat/edit-surat-pn/{{ $value->id }}"><i
+                                            data-bs-target="#Modal-Edit-SCSTM{{ $value->id }}"
+                                            href="/admin/e-surat/edit-surat-cstm/{{ $value->id }}"><i
                                                 class="fa-solid fa-pen-to-square"></i></a>
 
                                         {{-- <a class="btn btn-danger" type="submit" href="/admin/e-surat/surat-kbm/{{$value->id}}/delete"><i class="fa-regular fa-trash-can"></i></a> --}}
@@ -526,17 +526,17 @@
                                 </tr>
 
                                 <!-- Modal Edit SPBM-->
-                                <div class="modal fade" id="Modal-Edit-SPN{{ $value->id }}" data-bs-backdrop="static"
-                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="Modal-Edit-SPN"
+                                <div class="modal fade" id="Modal-Edit-SCSTM{{ $value->id }}" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="Modal-Edit-SCSTM"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                         <div class="modal-content">
-                                            <form action="/admin/e-surat/surat-scstm/{{ $value->id }}" method="POST">
+                                            <form action="/admin/e-surat/surat-cstm/{{ $value->id }}" method="POST">
                                                 @csrf
                                                 @method('put')
                                                 <div class="modal-header">
                                                     <h1 class="modal-title fs-5" id="Modal-Edit-SPN">Edit Data Surat
-                                                        Pernyataan Belum Menikah {{ $value->nomor_surat }}</h1>
+                                                        Custom {{ $value->nomor_surat }}</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
@@ -560,12 +560,12 @@
                                                     </div>
                                                     {{-- Form Aktif Tanggal Surat Dibuat --}}
                                                     <div class="row mb-3">
-                                                        <label for="tglsurat" id="tglsurat"
+                                                        <label for="tanggalsurat" id="tanggalsurat"
                                                             class="col-sm-3 col-form-label">Tanggal
                                                             Surat</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" name="tglsurat" class="form-control"
-                                                                id="tglsurat" value="{{ $value->tglsurat }}">
+                                                            <input type="text" name="tanggalsurat" class="form-control"
+                                                                id="tanggalsurat" value="{{ $value->tanggalsurat }}">
                                                         </div>
                                                     </div>
                                                     {{-- Batas Bawah --}}
@@ -574,7 +574,7 @@
                                                     {{-- Form Aktif Nama Penerima --}}
                                                    
                                                     <div class="row mb-3">
-                                                        <label for="penerimasurat" id="penerimasurat"
+                                                        <label for="penerimasurat" id="label-penerimasurat"
                                                             class="col-sm-3 col-form-label">Penerima
                                                             Surat</label>
                                                         <div class="col-sm-9">
@@ -601,8 +601,8 @@
                                                    
                                                     <div class="row mb-3">
                                                         <label for="alamatpenerima" id="alamatpenerima"
-                                                            class="col-sm-3 col-form-label">Penerima
-                                                            Surat</label>
+                                                            class="col-sm-3 col-form-label">Alamat Penerima
+                                                            </label>
                                                         <div class="col-sm-9">
                                                             <input type="text" name="alamatpenerima"
                                                                 class="form-control" id="alamatpenerima" rows="3"
@@ -634,7 +634,7 @@
                                                         <div class="col-sm-9">
                                                             <input type="text" name="salampembuka"
                                                                 class="form-control" id="salampembuka" rows="3"
-                                                                style="{{ $value->salampembuka }}">
+                                                                value="{{ $value->salampembuka }}">
                                                         </div>
                                                     </div>
                                                     {{-- Batas Bawah --}}
@@ -657,7 +657,7 @@
                                                             class="col-sm-3 col-form-label">Paragraf
                                                             1</label>
                                                         <div class="col-sm-9">
-                                                            <textarea name="paragraf1" class="form-control" id="paragraf1" rows="3">{{ $value->paragraf }}</textarea>
+                                                            <textarea name="paragraf1" class="form-control" id="paragraf1" rows="3">{{ $value->paragraf1 }}</textarea>
                                                         </div>
                                                     </div>
                                                     {{-- Batas Bawah --}}
@@ -878,8 +878,8 @@
     <script>
         //tgl surat
         var checkbox1 = document.getElementById('checkbox1');
-        var textInput1 = document.getElementById('tglsurat');
-        var label1 = document.getElementById('label-tglsurat'); // Perhatikan perubahan di sini
+        var textInput1 = document.getElementById('tanggalsurat');
+        var label1 = document.getElementById('label-tanggalsurat'); // Perhatikan perubahan di sini
 
         checkbox1.addEventListener('change', function() { // Perhatikan perubahan di sini
             if (checkbox1.checked) {

@@ -174,9 +174,9 @@ Route::prefix('admin')->group(function () {
             // Surat Custom
             Route::get('/surat-cstm', [ScstmController::class, 'index']);
             Route::post('/surat-scstm', [ScstmController::class, 'store']);
-            Route::put('/surat-scstm/{id}', [ScstmController::class, 'update']);
-            Route::get('/surat-ket-hasil/{id}/view', [SkpenghasilanController::class, 'show'])->middleware('can:lihat surat');
-            Route::get('/contoh-surat-ket-hasil/view', [SkpenghasilanController::class, 'contoh'])->middleware('can:lihat contoh surat');
+            Route::put('/surat-cstm/{id}', [ScstmController::class, 'update']);
+            Route::get('/surat-cstm/{id}/view', [ScstmController::class, 'show']);
+            Route::get('/contoh-surat-cstm/view', [SkpenghasilanController::class, 'contoh']);
         });
         //untuk tim sistem informasi
         Route::prefix('sistem-informasi')->group(function () {

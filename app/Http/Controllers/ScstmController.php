@@ -143,7 +143,7 @@ class ScstmController extends Controller
             // Penerima surat
             'penerimasurat' => 'nullable',
             'jabatanpenerima' => 'nullable',
-            'alamatpenrima' => 'nullable',
+            'alamatpenerima' => 'nullable',
             'kotapenerima' => 'nullable',
             // Salam Pembuka
             'salampembuka' => 'nullable',
