@@ -66,10 +66,11 @@ class DatabaseSeeder extends Seeder
 
         //membuat user-baru
         $user = User::create([
-            'username' => 'admin',
+            'nama' => 'admin',
             'email' => 'admin@mail.com',
             'email_verified_at' => date('Y-m-d H:i:s'),
             'password' => Hash::make('password'),
+            'jabatan' => 'Admin',
             'is_active' => '1',
             'is_delete' => '0'
         ]);

@@ -9,6 +9,10 @@ use App\Http\Requests\UpdateSbmRequest;
 use Illuminate\Validation\Rule;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+//tanda tangan dan verifikasi(paraf)
+use App\Models\User;
+use App\Models\MengetahuiVerifikasiSurat;
+use App\Models\TandaTanganSurat;
 
 class SkbmController extends Controller
 {
@@ -19,8 +23,11 @@ class SkbmController extends Controller
     }
     public function index()
     {
-
-        $skbm = Skbm::all();
+        //ntar ditambahi with
+        $skbm = Skbm::with('tandatangan')->with('MengetahuiVerifikasiSurat')->get();
+        //untuk mengetahui perorangan;
+        $pejabat = User::get(['id', 'nama', 'jabatan'])->toArray();
+        //untuk romawi
         $bulanSekarang = date('n');
         $angkaRomawi = [
             1 => 'I',
@@ -43,7 +50,8 @@ class SkbmController extends Controller
             'dropdown1' => 'Surat Keluar',
             'dropdown2' => 'Kemasyarakatan',
             'title' => 'Surat Keterangan Belum Menikah',
-            'TemplateNoSurat' => $TemplateNoSurat
+            'TemplateNoSurat' => $TemplateNoSurat,
+            'pejabat' => $pejabat,
         ])->with('skbm', $skbm);
     }
 
@@ -64,26 +72,69 @@ class SkbmController extends Controller
             'pekerjaan' => 'required',
             'alamat' => 'required',
             'deskripsi' => 'required',
-            'jenis_skbm' => 'required',
-            'status_surat' => 'required',
+            'tanda_tangan' => 'required',
+            'mengetahui' => 'required'
         ], [
             'unique' => 'Nomor Surat sudah digunakan.',
             'min' => 'Masukkan 16 Digit NIK.',
         ]);
-        // $nomor = str_replace("/", "-", $record['nomor_surat']);
+
+        $record['jenis_surat'] = 'Surat Keterangan Belum Menikah';
+        $record['status_surat'] = '1';
         $record['id'] = 'SKBM-'. date('YmdHis') . '-' . rand(100, 999);
-        // Menggunakan metode create untuk membuat dan menyimpan data
+
+
+        //proses tanda tangan
+        foreach ($record['tanda_tangan'] as $ttd) {
+            list($id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
+    
+            $tandatanganData[] = [
+                'id' => 'TTD-' . date('YmdHis') . '-' . rand(100, 999),
+                'id_user' => $id_user,
+                'nama_user' => $nama_user,
+                'jabatan_user' => $jabatan_user,
+                'id_surat' => $record['id'],
+                'nomor_surat' => $record['nomor_surat'],
+                'jenis_surat' => $record['jenis_surat'],
+            ];
+        }
+        
+        TandaTanganSurat::insert($tandatanganData);
+        unset($record['tanda_tangan']);
+
+        //proses paraf / verifikasi
+        foreach ($record['mengetahui'] as $ttd) {
+            list($id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
+    
+            $mengetahuiData[] = [
+                'id' => 'TTD-' . date('YmdHis') . '-' . rand(100, 999),
+                'id_user' => $id_user,
+                'nama_user' => $nama_user,
+                'jabatan_user' => $jabatan_user,
+                'id_surat' => $record['id'],
+                'nomor_surat' => $record['nomor_surat'],
+                'jenis_surat' => $record['jenis_surat'],
+                'status' => $record['status_surat'],
+            ];
+        }
+        
+        MengetahuiVerifikasiSurat::insert($mengetahuiData);
+        unset($record['mengetahui']);
+
+        //membuat surat
         Skbm::create($record);
 
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
 
     }
+
     /**
      * Display the specified resource.
      */
+
     public function show($id)
     {
-        $skbm = Skbm::findOrFail($id);
+        $skbm = Skbm::with('tandatangan')->findOrFail($id);
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
         $data = view('bo.template.surat-kbm', compact('skbm'))->render();
         // Membuat instance DomPDF
@@ -91,6 +142,7 @@ class SkbmController extends Controller
         // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
         return $pdf->stream();
     }
+
     public function contoh() {
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
         $data = view('bo.template.contoh-surat-kbm')->render();
@@ -119,13 +171,60 @@ class SkbmController extends Controller
             'pekerjaan' => 'required',
             'alamat' => 'required',
             'deskripsi' => 'required',
-            'jenis_skbm' => 'required',
-            'status_surat' => 'required',
+            'tanda_tangan' => 'required',
+            'mengetahui' => 'required'
         ], [
             'min' => 'Masukkan 16 Digit NIK.',
             'unique' => 'Nomor Surat sudah digunakan.',
         ]);
 
+        $record['status_surat'] = '1';
+        $record['jenis_surat'] = 'Surat Keterangan Belum Menikah';
+
+        //proses tanda tangan
+        foreach ($record['tanda_tangan'] as $ttd) {
+            list($id_record, $id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
+    
+            $tandatanganData = [
+                'id_user' => $id_user,
+                'nama_user' => $nama_user,
+                'id_surat' => $id,
+                'jabatan_user' => $jabatan_user,
+                'nomor_surat' => $record['nomor_surat'],
+                'jenis_surat' => $record['jenis_surat'],
+            ];
+
+            $condition = [
+                'id' => $id_record,
+            ];
+
+            TandaTanganSurat::updateOrInsert($condition, $tandatanganData);
+        }
+        unset($record['tanda_tangan']);
+
+        //proses paraf / verifikasi
+        foreach ($record['mengetahui'] as $ttd) {
+            list($id_record, $id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
+    
+            $mengetahuiData = [
+                'id_user' => $id_user,
+                'id_surat' => $id,
+                'nama_user' => $nama_user,
+                'jabatan_user' => $jabatan_user,
+                'nomor_surat' => $record['nomor_surat'],
+                'jenis_surat' => $record['jenis_surat'],
+                'status' => '1',
+            ];
+
+            $condition = [
+                'id' => $id_record,
+            ];
+
+            MengetahuiVerifikasiSurat::updateOrInsert($condition, $mengetahuiData);
+        }
+        unset($record['mengetahui']);
+
+        //update surat
         Skbm::where('id', $id)->update($record);
         return redirect()->back()->with('toast_success', 'Data Diubah!');
     }

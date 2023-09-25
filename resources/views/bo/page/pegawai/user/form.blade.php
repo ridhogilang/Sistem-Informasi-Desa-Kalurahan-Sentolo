@@ -45,9 +45,9 @@
             <div class="row">
                 <div class="col-xs-12 mb-3">
                     <div class="form-group">
-                        <strong>Username:</strong>
-                        <input type="text" name="username" value="{{ old('username', isset($user) ? $user->username : '') }}"
-                        class="form-control" placeholder="Username">
+                        <strong>nama:</strong>
+                        <input type="text" name="nama" value="{{ old('nama', isset($user) ? $user->nama : '') }}"
+                        class="form-control" placeholder="nama">
                     </div>
                 </div>
                 <div class="col-xs-12 mb-3">

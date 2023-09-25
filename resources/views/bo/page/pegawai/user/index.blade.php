@@ -31,8 +31,9 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>
-                                    <th scope="col">username</th>
+                                    <th scope="col">nama</th>
                                     <th scope="col">Email</th>
+                                    <th scope="col">jabatan</th>
                                     @canany(['user_edit', 'user_delete'])
                                     <th scope="col">Action</th>
                                     @endcanany
@@ -42,8 +43,9 @@
                                 @foreach($users as $user)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $user['username'] }}</td>
+                                        <td>{{ $user['nama'] }}</td>
                                         <td>{{ $user['email'] }}</td>
+                                        <td>{{ $user['jabatan'] }}</td>
                                         @canany(['user_edit', 'user_delete'])
                                             <td>
                                                 <form action="{{ route('bo.pegawai.user_management.destroy', $user->id) }}" method="POST">

@@ -1,5 +1,9 @@
 @extends('bo.layout.master')
 
+@push('header')
+     <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" /> -->
+@endpush
+
 @section('content')
     <div class="pagetitle">
         <h1>Surat Keterangan Belum Menikah</h1>
@@ -61,7 +65,7 @@
                                                 <label for="jenis_kelamin" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                                 <div class="col-sm-9">
                                                     <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
-                                                        <option value="" @if(old('jenis_kelamin') == '') selected @endif>Pilih Jenis Kelamin ...</option>
+                                                        <option value="" disabled selected>Pilih Jenis Kelamin ...</option>
                                                         <option value="Laki-laki" @if(old('jenis_kelamin') == 'Laki-laki') selected @endif>Laki-laki</option>
                                                         <option value="Perempuan" @if(old('jenis_kelamin') == 'Perempuan') selected @endif>Perempuan</option>
                                                     </select>
@@ -81,7 +85,7 @@
                                                 <label for="agama" class="col-sm-3 col-form-label">Agama</label>
                                                 <div class="col-sm-9">
                                                     <select id="agama" name="agama" class="form-select" required>
-                                                        <option value="" @if(old('agama') == '') selected @endif>Pilih Agama ...</option>
+                                                        <option value="" disabled selected>Pilih Agama ...</option>
                                                         <option value="Islam" @if(old('agama') == 'Islam') selected @endif>Islam</option>
                                                         <option value="Kristen Protestan" @if(old('agama') == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
                                                         <option value="Kristen Katolik" @if(old('agama') == 'Kristen Katolik') selected @endif>Kristen Katolik</option>
@@ -110,12 +114,47 @@
                                                     <textarea type="text" name="deskripsi" class="form-control" id="deskripsi" rows="3" required>Belum Pernah Menikah</textarea>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <input type="hidden" name="jenis_skbm" class="form-control" value="skbm" >
+                                            <div class="row mb-3">
+                                                <label for="tanda_tangan" class="col-sm-3 col-form-label">Tanda Tangan</label>
+                                                <div class="col-sm-9">
+                                                    <select id="tanda_tangan" name="tanda_tangan[]" class="form-select" required>
+                                                        <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
+                                                        @foreach($pejabat as $value)
+                                                            <option value="{{ $value['id'].'/'.$value['nama'].'/'.$value['jabatan'] }}">{{ $value['nama'] . ' ( ' . $value['jabatan'] . ' )' }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="row">
-                                                <input type="hidden" name="status_surat" class="form-control" value="Pending" >
+                                                <label for="agama" class="col col-form-label">Pejabat Yang mengetahui</label>
                                             </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-4 mb-3">
+                                                    <select id="mengetahui[]" name="mengetahui[]" class="form-select" required>
+                                                        <option value="" disabled selected>Pilih Pejabat yang Mengetahui</option>
+                                                        @foreach($pejabat as $value)
+                                                            <option value="{{ $value['id'].'/'.$value['nama'].'/'.$value['jabatan'] }}">{{ $value['nama'] . ' ( ' . $value['jabatan'] . ' )' }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <select id="mengetahui[]" name="mengetahui[]" class="form-select">
+                                                        <option value="" disabled selected>Pilih Pejabat yang Mengetahui</option>
+                                                        @foreach($pejabat as $value)
+                                                            <option value="{{ $value['id'].'/'.$value['nama'].'/'.$value['jabatan'] }}">{{ $value['nama'] . ' ( ' . $value['jabatan'] . ' )' }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <select id="mengetahui[]" name="mengetahui[]" class="form-select">
+                                                        <option value="" disabled selected>Pilih Pejabat yang Mengetahui</option>
+                                                        @foreach($pejabat as $value)
+                                                            <option value="{{ $value['id'].'/'.$value['nama'].'/'.$value['jabatan'] }}">{{ $value['nama'] . ' ( ' . $value['jabatan'] . ' )' }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-primary">Simpan</button>
@@ -209,7 +248,7 @@
                                                             <label for="jenis_kelamin3" class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                                             <div class="col-sm-9">
                                                                 <select id="jenis_kelamin3" name="jenis_kelamin" class="form-select" required>
-                                                                    <option value="" >Pilih Jenis Kelamin ...</option>
+                                                                    <option value="" disabled selected>Pilih Jenis Kelamin ...</option>
                                                                     <option value="Laki-laki" {{ ($value->jenis_kelamin == "Laki-laki") ? 'selected' : '' }}>Laki-laki</option>
                                                                     <option value="Perempuan" {{ ($value->jenis_kelamin == "Perempuan") ? 'selected' : '' }}>Perempuan</option>
                                                                 </select>
@@ -229,7 +268,7 @@
                                                             <label for="agama3" class="col-sm-3 col-form-label">Agama</label>
                                                             <div class="col-sm-9">
                                                                 <select id="agama3" name="agama" class="form-select" required>
-                                                                    <option value="">Pilih Agama ...</option>
+                                                                    <option value="" disabled selected>Pilih Agama ...</option>
                                                                     <option value="Islam" {{ ($value->agama == "Islam") ? 'selected' : '' }}>Islam</option>
                                                                     <option value="Kristen Protestan" {{ ($value->agama == "Kristen Protestan") ? 'selected' : '' }}>Kristen Protestan</option>
                                                                     <option value="Kristen Katolik" {{ ($value->agama == "Kristen Katolik") ? 'selected' : '' }}>Kristen Katolik</option>
@@ -252,18 +291,54 @@
                                                                 <input type="text" name="alamat" class="form-control" id="alamat3" value="{{$value->alamat}}" required>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
+                                                        <div class="row mb-3">
                                                             <label for="deskripsi3" class="col-sm-3 col-form-label">Deskripsi</label>
                                                             <div class="col-sm-9">
                                                                 <textarea type="text" name="deskripsi" class="form-control" id="deskripsi3" rows="3" required>{{$value->deskripsi}}</textarea>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <input type="hidden" name="jenis_skbm" class="form-control" value="{{$value->jenis_skbm}}" >
+                                                        <div class="row mb-3">
+                                                            <label for="tanda_tangan" class="col-sm-3 col-form-label">Tanda Tangan</label>
+                                                            <div class="col-sm-9">
+                                                                <select id="tanda_tangan" name="tanda_tangan[]" class="form-select" required>
+                                                                    <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
+                                                                    @foreach($pejabat as $jabat)
+                                                                        <option value="{{ $value->tandatangan[0]->id.'/'.$jabat['id'].'/'.$jabat['nama'].'/'.$jabat['jabatan'] }}" 
+                                                                        {{ ($value->tandatangan[0]->id_user == $jabat['id'])?'selected':'' }}>{{ $jabat['nama'] . ' ( ' . $jabat['jabatan'] . ' )' }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                         <div class="row">
-                                                            <input type="hidden" name="status_surat" class="form-control" value="{{$value->status_surat}}" >
+                                                            <label for="agama" class="col col-form-label">Pejabat Yang mengetahui</label>
                                                         </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-4 mb-3">
+                                                                <select id="mengetahui[]" name="mengetahui[]" class="form-select" required>
+                                                                    <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
+                                                                    @foreach($pejabat as $jabat)
+                                                                        <option value="{{ $value->MengetahuiVerifikasiSurat[0]->id.'/'.$jabat['id'].'/'.$jabat['nama'].'/'.$jabat['jabatan'] }}" {{ ($value->MengetahuiVerifikasiSurat[0]->id_user == $jabat['id'])?'selected':'' }}>{{ $jabat['nama'] . ' ( ' . $jabat['jabatan'] . ' )' }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-4 mb-3">
+                                                                <select id="mengetahui[]" name="mengetahui[]" class="form-select" required>
+                                                                    <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
+                                                                    @foreach($pejabat as $jabat)
+                                                                        <option value="{{ $value->MengetahuiVerifikasiSurat[1]->id.'/'.$jabat['id'].'/'.$jabat['nama'].'/'.$jabat['jabatan'] }}" {{ ($value->MengetahuiVerifikasiSurat[1]->id_user == $jabat['id'])?'selected':'' }}>{{ $jabat['nama'] . ' ( ' . $jabat['jabatan'] . ' )' }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <select id="mengetahui[]" name="mengetahui[]" class="form-select" required>
+                                                                    <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
+                                                                    @foreach($pejabat as $jabat)
+                                                                        <option value="{{ $value->MengetahuiVerifikasiSurat[2]->id.'/'.$jabat['id'].'/'.$jabat['nama'].'/'.$jabat['jabatan'] }}" {{ ($value->MengetahuiVerifikasiSurat[2]->id_user == $jabat['id'])?'selected':'' }}>{{ $jabat['nama'] . ' ( ' . $jabat['jabatan'] . ' )' }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -287,3 +362,15 @@
         </div>
     </section>
 @endsection
+
+@push('footer')
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <!-- Memuat JavaScript Select2 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script>
+        // Menginisialisasi Select2 pada elemen dengan kelas 'select2'
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script> -->
+@endpush

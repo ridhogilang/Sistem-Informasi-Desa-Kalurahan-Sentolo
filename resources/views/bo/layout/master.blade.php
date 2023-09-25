@@ -8,7 +8,7 @@
     <title>Sentolo | {{$title}} </title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-
+    @stack('header')
     <!-- Favicons -->
     <link href="{{ asset('template/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('template/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
@@ -31,7 +31,6 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <!-- =======================================================
   * Template Name: NiceAdmin - v2.4.1
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/

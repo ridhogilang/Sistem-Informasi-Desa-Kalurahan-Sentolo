@@ -84,6 +84,7 @@
          .tujuh{
             margin-left: 450px;
             margin-top: -30px;
+            width: 200px;
          }
 
          .namadesa{
@@ -94,6 +95,9 @@
              width: 115px;
              margin-left: 470px;
              margin-top:-23px;
+         }
+         .ini_center{
+            text-align: center;
          }
     </style>
 </head>
@@ -189,7 +193,11 @@
         </table>
         <table  class="tujuh">
             <tr>
-                <td> <p>&#160; &#160; &#160; &#160; &#160; &#160; Lurah Sentolo</p>  <br>  <p class="namadesa">&#160; &#160; &#160; &#160; &#160; <b>(TEGUH) </b></p></td>
+                <td align="center"> 
+                    <p>{{ $skbm->tandatangan[0]['jabatan_user'] }}</p><br><br><br><br>  
+                    <p><b>({{ $skbm->tandatangan[0]['nama_user'] }}) </b></p>
+                </td>
+
             </tr>
         </table>
     </center>

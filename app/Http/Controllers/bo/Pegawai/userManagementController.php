@@ -55,13 +55,14 @@ class userManagementController extends Controller
     public function store(Request $request)
     {
          $this->validate($request, [
-            'username' => 'required|unique:users,username',
+            'nama' => 'required',
             'email' => 'required|email|unique:users,email|unique:verify_mails,email',
             'password' => 'required|min:6|same:confirm-password',
             'roles' => 'required'
         ]);
 
         $input = $request->all();
+        $input['jabatan'] = $input['roles'];
         // tambahan input
         $input['password'] = Hash::make($input['password']);
         $input['is_active'] = '1';
@@ -116,6 +117,7 @@ class userManagementController extends Controller
         ]);
 
         $input = $request->all();
+        $input['jabatan'] = $input['roles']; 
         if(!empty($input['password'])){
             $input['password'] = Hash::make($input['password']);
         }else{

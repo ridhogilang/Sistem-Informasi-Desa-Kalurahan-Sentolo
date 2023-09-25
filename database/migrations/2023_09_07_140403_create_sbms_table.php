@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('pekerjaan');
             $table->string('alamat');
             $table->string('deskripsi');
-            $table->string('jenis_skbm');
+            $table->string('jenis_surat');
             $table->string('status_surat');
             $table->timestamps();
         });
