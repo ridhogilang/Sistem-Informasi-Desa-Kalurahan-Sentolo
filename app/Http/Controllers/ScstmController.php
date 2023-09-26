@@ -60,14 +60,14 @@ class ScstmController extends Controller
         $record = $request->validate([
             'nomor_surat' => [
                 'required',
-                'unique:spn,nomor_surat', // Pastikan nomor surat unik di tabel sktm_satu
+                'unique:scstm,nomor_surat', // Pastikan nomor surat unik di tabel sktm_satu
             ],
             'judulsurat' => 'nullable',
             'tanggalsurat' => 'nullable',
             // Penerima surat
             'penerimasurat' => 'nullable',
             'jabatanpenerima' => 'nullable',
-            'alamatpenrima' => 'nullable',
+            'alamatpenerima' => 'nullable',
             'kotapenerima' => 'nullable',
             // Salam Pembuka
             'salampembuka' => 'nullable',
@@ -121,7 +121,7 @@ class ScstmController extends Controller
     public function contoh()
     {
     // Menggunakan view untuk mengambil HTML dari template surat-ktm
-    $data = view('bo.template.contoh-surat-scstm')->render();
+    $data = view('bo.template.contoh-surat-cstm')->render();
     // Membuat instance DomPDF
     $pdf = Pdf::loadHTML($data);
     // Menghasilkan file PDF dan mengirimkannya sebagai respons stream
