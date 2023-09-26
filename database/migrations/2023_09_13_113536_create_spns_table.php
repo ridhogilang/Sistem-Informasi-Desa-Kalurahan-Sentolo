@@ -42,7 +42,7 @@ return new class extends Migration
             $table->string('pekerjaanibu');
             $table->string('alamatibu');
             $table->string('deskripsi2');
-            $table->string('jenis_spn');
+            $table->string('jenis_surat');
             $table->string('status_surat');
             $table->timestamps();
         });

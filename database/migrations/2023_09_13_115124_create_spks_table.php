@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('tanggal_awal');
             $table->string('tanggal_akhir');
-            $table->string('jenis_pk');
+            $table->string('jenis_surat');
             $table->string('status_surat');
             $table->timestamps();
         });

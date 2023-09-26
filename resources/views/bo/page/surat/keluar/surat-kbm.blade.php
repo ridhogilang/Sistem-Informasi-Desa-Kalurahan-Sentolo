@@ -184,7 +184,7 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">NIK</th>
                                     <th scope="col">Status</th>
-                                    @canany(['edit surat', 'lihat surat'])
+                                    @canany(['edit surat', 'lihat surat', 'hapus surat'])
                                     <th scope="col" class="text-center">Action</th>
                                     @endcanany
                                 </tr>
@@ -199,9 +199,43 @@
                                         <td>{{ $value->nomor_surat }}</td>
                                         <td>{{ $value->nama }}</td>
                                         <td>{{ $value->nik }}</td>
-                                        <td>{{ $value->status_surat }}</td>
-                                        @canany(['edit surat', 'lihat surat'])
-                                        <td class="text-center">
+                                        <td>
+                                            <a data-bs-toggle="modal" data-bs-target="#status_{{$value->id}}">
+                                            {!! $badge_status[$value->status_surat] !!}
+                                            </a>
+                                        </td>
+                                        <!-- ini bagian modal badge status verifikasi -->
+                                            <div class="modal fade" id="status_{{$value->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                              <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Status Surat Keterangan Belum Menikah {{$value->nomor_surat}}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <div class="container">
+                                                    @foreach($value->MengetahuiVerifikasiSurat as $verifikasi)
+                                                        <div class="row border-bottom p-3">
+                                                            <div class="col-sm-3">
+                                                                {!! $badge_status[$verifikasi->status]!!} 
+                                                            </div>
+                                                            <div class="col mx-5">
+                                                                {{ $verifikasi->nama_user}} 
+                                                               ( {{ $verifikasi->jabatan_user}} )
+                                                            </div>
+                                                        </div>                                                            
+                                                    @endforeach
+                                                    </div>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        <!-- bagian action -->
+                                        @canany(['edit surat', 'lihat surat', 'hapus surat'])
+                                        <td class="text-center d-flex justify-content-evenly">
                                             @can('lihat surat')
                                             <a class="btn btn-success" type="submit" target="blank" href="/admin/e-surat/surat-kbm/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
                                             @endcan
@@ -209,7 +243,43 @@
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-warning" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-SKBM{{$value->id}}" href="/admin/e-surat/edit-surat-kbm/{{$value->id}}"><i class="fa-solid fa-pen-to-square"></i></a>
                                             @endcan
-                                            {{-- <a class="btn btn-danger" type="submit" href="/admin/e-surat/surat-kbm/{{$value->id}}/delete"><i class="fa-regular fa-trash-can"></i></a> --}}
+                                            @can('hapus surat')
+                                            
+                                                    <a data-bs-toggle="modal" data-bs-target="#kearsip_{{$value->id}}">
+                                                        @if($value->status_surat == '2')
+                                                        <button class="btn btn-success">
+                                                            <i class="bi bi-check-lg"></i>
+                                                        @else
+                                                        <button class="btn btn-danger">
+                                                            <i class="fa-regular fa-trash-can"></i>
+                                                        @endif
+                                                    </button>
+                                                    </a>
+                                                    <!-- modal hapus atau delete -->
+                                                    <div class="modal fade" id="kearsip_{{$value->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                                        <div class="modal-content">
+                                                          <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Status Surat Keterangan Belum Menikah {{$value->nomor_surat}}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                          </div>
+                                                          <div class="modal-body">
+                                                            <div class="container">
+                                                                <p>Apakah Anda yakin untuk {{ ($value->status_surat == '2')?'mengarsipkan':'menghapus' }} surat dengan nomor {{$value->nomor_surat}}</p>
+                                                            </div>
+                                                          </div>
+                                                          <div class="modal-footer">
+                                                            <form action="/admin/e-surat/surat-kbm/{{$value->id}}/{{$value->status_surat}}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn {{ ($value->status_surat == '2')?'btn-success':'btn-danger' }}">{{ ($value->status_surat == '2')?'Arsipkan':'Hapus' }}</button>
+                                                            </form>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                            @endcan
                                         </td>
                                         @endcanany
                                     </tr>

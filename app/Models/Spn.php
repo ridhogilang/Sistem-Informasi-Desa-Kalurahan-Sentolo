@@ -41,7 +41,17 @@ class Spn extends Model
         'pekerjaanibu',
         'alamatibu',
         'deskripsi2',
-        'jenis_spn',
-        'status_surat',
+        'jenis_surat',
+        'status_surat'
     ];
+
+    public function tandatangan()
+    {
+        return $this->hasMany(TandaTanganSurat::class, 'id_surat', 'id');
+    }
+    
+    public function MengetahuiVerifikasiSurat()
+    {
+        return $this->hasMany(MengetahuiVerifikasiSurat::class, 'id_surat', 'id');
+    }
 }

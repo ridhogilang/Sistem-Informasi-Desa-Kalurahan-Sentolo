@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('agama');
             $table->string('warga_negara');
             $table->string('alamat');
-            $table->string('jenis_ktbekerja');
+            $table->string('jenis_surat');
             $table->string('status_surat');
             $table->timestamps();
         });

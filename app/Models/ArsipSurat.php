@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MengetahuiVerifikasiSurat extends Model
+class ArsipSurat extends Model
 {
     use HasFactory;
     protected $casts = ['id' => 'string'];
@@ -14,11 +14,9 @@ class MengetahuiVerifikasiSurat extends Model
         'id_surat',
         'nomor_surat',
         'jenis_surat',
-        'id_user',
-        'nama_user',
-        'jabatan_user',
-        'status',
-        'is_arsip',
+        'jenis_surat_2',
+        'surat_penghapusan',
+        'is_delete',
         'created_at',
         'updated_at',
     ];

@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('pekerjaan_dua');
             $table->string('alamat_dua');
             $table->string('deskripsi');
-            $table->string('jenis_sktm');
+            $table->string('jenis_surat');
             $table->string('status_surat');
             $table->timestamps();
         });

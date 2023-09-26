@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('status_perkawinan');
             $table->string('pekerjaan');
             $table->string('alamat');
-            $table->string('jenis_skduda');
+            $table->string('jenis_surat');
             $table->string('status_surat');
             $table->timestamps();
         });

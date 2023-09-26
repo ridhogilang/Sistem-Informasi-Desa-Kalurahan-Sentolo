@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\MengetahuiVerifikasiSurat;
 use App\Models\TandaTanganSurat;
+//arsip surat
+use App\Models\ArsipSurat;
 
 class SkbmController extends Controller
 {
@@ -23,11 +25,19 @@ class SkbmController extends Controller
     }
     public function index()
     {
-        //ntar ditambahi with
-        $skbm = Skbm::with('tandatangan')->with('MengetahuiVerifikasiSurat')->get();
+        //ditambahi with sama where
+        $skbm = Skbm::with('tandatangan')
+                ->with('MengetahuiVerifikasiSurat')
+                ->where('status_surat', '>=', 1)
+                ->where('status_surat', '<=', 3)
+                ->get();
 
         //untuk mengetahui perorangan;
-        $pejabat = User::get(['id', 'nama', 'jabatan'])->toArray();
+        $pejabat = User::where('jabatan', '<>', null)
+                    ->where('is_active', '=', '1')
+                    ->where('is_delete', '=', '0')
+                    ->get(['id', 'nama', 'jabatan'])
+                    ->toArray();
         //untuk romawi
         $bulanSekarang = date('n');
         $angkaRomawi = [
@@ -44,8 +54,17 @@ class SkbmController extends Controller
             11 => 'XI',
             12 => 'XII',
         ];
+
         $bulanRomawi = $angkaRomawi[$bulanSekarang];
         $TemplateNoSurat = "000/KMS/{$bulanRomawi}/" . date('Y');
+        //badge
+        $badge_status = [
+            '0' => '<span class="badge bg-info"> blanko </span>', 
+            '1' => '<span class="badge bg-secondary"> menunggu verifikasi </span>', 
+            '2' => '<span class="badge bg-success"> terverifikasi </span>', 
+            '3' => '<span class="badge bg-danger"> verifikasi ditolak </span>', 
+            '4' => '<span class="badge bg-primary"> arsip </span>', 
+        ];
 
         return view('bo.page.surat.keluar.surat-kbm', [
             'dropdown1' => 'Surat Keluar',
@@ -53,6 +72,7 @@ class SkbmController extends Controller
             'title' => 'Surat Keterangan Belum Menikah',
             'TemplateNoSurat' => $TemplateNoSurat,
             'pejabat' => $pejabat,
+            'badge_status' => $badge_status,
         ])->with('skbm', $skbm);
     }
 
@@ -117,6 +137,7 @@ class SkbmController extends Controller
                     'nomor_surat' => $record['nomor_surat'],
                     'jenis_surat' => $record['jenis_surat'],
                     'status' => $record['status_surat'],
+                    'is_arsip' => '0',
                 ];
             }
         }
@@ -220,6 +241,7 @@ class SkbmController extends Controller
                     'nomor_surat' => $record['nomor_surat'],
                     'jenis_surat' => $record['jenis_surat'],
                     'status' => '1',
+                    'is_arsip' => '0',
                 ];
 
                 $id_record = ($id_record != '-') ? $id_record : 'MGTH-' . date('YmdHis') . '-' . rand(100, 999);
@@ -239,8 +261,30 @@ class SkbmController extends Controller
     }
 
 
-    public function destroy(Skbm $sbm)
+    public function destroy($id, $status)
     {
-        //
+        $surat = Skbm::findOrFail($id);
+        if($status == '1' || $status == '3'){
+            MengetahuiVerifikasiSurat::where('id_surat', $id)->delete();
+            TandaTanganSurat::where('id_surat', $id)->delete();
+            $surat->delete();
+
+            return redirect()->back()->with('toast_success', 'Data Dihapus!');
+        }
+        if($status == '2'){ 
+            MengetahuiVerifikasiSurat::where('id_surat', $id)->update(['is_arsip' => '1']);
+            ArsipSurat::create([
+                'id' => 'ARSIP-' . date('YmdHis') . '-' . rand(100, 999),
+                'id_surat' => $id,
+                'nomor_surat' => $surat->nomor_surat,
+                'jenis_surat' => 'Surat Keterangan Belum Menikah',
+                'jenis_surat_2' => 'Surat Keluar',
+                'surat_penghapusan' => null,
+                'is_delete' => '0',
+            ]);
+            $surat->update(['status_surat' => '4']);
+
+            return redirect()->back()->with('toast_success', 'Data Telah Diarsipkan!');
+        }   
     }
 }
