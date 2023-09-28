@@ -205,7 +205,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/surat-scstm', [ScstmController::class, 'store']);
             Route::put('/surat-cstm/{id}', [ScstmController::class, 'update']);
             Route::get('/surat-cstm/{id}/view', [ScstmController::class, 'show']);
-            Route::get('/contoh-surat-cstm/view', [SkpenghasilanController::class, 'contoh']);
+            Route::get('/contoh-surat-cstm/view', [ScstmController::class, 'contoh']);
         });
         //untuk tim sistem informasi
         Route::prefix('sistem-informasi')->group(function () {

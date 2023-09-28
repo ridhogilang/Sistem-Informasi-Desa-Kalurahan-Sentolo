@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('scstm', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('nomor_surat')->unique();
-            $table->string('judulsurat')->unique();
+            $table->string('judulsurat')->nullable();
             $table->string('tanggalsurat')->nullable();
             // Penerima surat
             $table->string('penerimasurat')->nullable();

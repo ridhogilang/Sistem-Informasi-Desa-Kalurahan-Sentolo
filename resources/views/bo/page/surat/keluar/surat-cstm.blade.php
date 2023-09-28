@@ -51,7 +51,7 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="nama" class="col-sm-3 col-form-label">Judul Surat</label>
+                                                <label for="judulsurat" class="col-sm-3 col-form-label">Judul Surat</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" name="judulsurat" class="form-control"
                                                         id="judulsurat" value="{{ old('judulsurat') }}">
@@ -68,7 +68,7 @@
                                                 <label for="tanggalsurat" id="label-tanggalsurat" class="col-sm-3 col-form-label"
                                                     style="display: none">Tanggal Surat</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="tanngalsurat" class="form-control"
+                                                    <input type="text" name="tanggalsurat" class="form-control"
                                                         id="tanggalsurat" value="{{ old('tanggalsurat') }}" style="display: none">
                                                 </div>
                                             </div>
@@ -396,7 +396,7 @@
                                             </div>
                                             <div class="row mb-3">
                                                 <label id="label-acara" for="acara" class="col-sm-3 col-form-label"
-                                                    style="display: none">Waktu</label>
+                                                    style="display: none">Acara</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" name="acara" class="form-control"
                                                         id="acara" rows="3" style="display: none"
@@ -703,6 +703,7 @@
                                                         <div class="col-sm-9">
                                                             <select id="jenis_kelamin" name="jenis_kelamin"
                                                                 class="form-select">
+                                                                <option value="">Pilih Jenis Kelamin ...</option>
                                                                 <option value="Laki-laki"
                                                                     {{ $value->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>
                                                                     Laki-laki</option>
@@ -839,7 +840,7 @@
                                                     {{-- Form Aktif Acara --}}
                                                     <div class="row mb-3">
                                                         <label id="namattd" for="namattd"
-                                                            class="col-sm-3 col-form-label">Waktu</label>
+                                                            class="col-sm-3 col-form-label">Nama TTD</label>
                                                         <div class="col-sm-9">
                                                             <input type="text" name="namattd" class="form-control"
                                                                 id="namattd" rows="3"

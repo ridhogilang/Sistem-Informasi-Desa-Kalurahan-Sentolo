@@ -4,7 +4,7 @@
     <title>SURAT PENGANTAR NIKAH | {{ $scstm->nik }}</title>
     <style>
         table tr td {
-            font-size: 13px;
+            font-size: 16px;
         }
 
         table tr .text {
@@ -152,6 +152,20 @@
             margin-right: 20px;
             /* Jarak antara tanda tangan */
         }
+        /* Baru tadi siang*/
+        .tglsurat{
+            margin-top: -45px;
+            display: flex;
+            margin-left: 76%;
+            font-size: 16px;
+            font-family: Arial;
+        }
+
+       .nomorsurat table .atas {
+            font-size: 16px;
+            font-family: Arial;
+            margin-left: 100%;
+        }
     </style>
 </head>
 
@@ -163,38 +177,28 @@
                 <td><img src="{{ public_path('template/img/kop_surat.jpg') }}" style="width: 97%; height: 15%"></td>
             </tr>
         </table>
-        @if ($scstm->judulsurat)
-            <table class="tiga">
-                <tr>
-                    <td width="538">
-                        <center>
-                            <font size="3"><b>{{ $scstm->judulsurat }}</b></font>
-                            <hr class="hrsatu">
-                        </center>
-                    </td>
-                </tr>
-            </table>
-        @endif
-        <table class="nosurat">
-            @if ($scstm->nomor_surat)
-                <tr>
-                    <td width="537">
-                        <center>
-                            <font size="3">Nomor : {{ $scstm->nomor_surat }}</font><br>
-                        </center>
-                    </td>
-                </tr>
-        </table>
-        @endif
     </center>
-    @if ($scstm->tanggalsurat)
-        <div>
-            <p>{{ $scstm->tanggalsurat }}</p>
-            </td>
-        </div>
-    @endif
+    <div class="nomorsurat">
+        <table class="atas">
+            <tr>
+                <td>Nomor</td>
+                <td>:</td>
+                <td>{{ $scstm->nomor_surat }}</td>
+            </tr>
+            <tr>
+                <td>Hal</td>
+                <td>:</td>
+                <td>{{ $scstm->judulsurat }}</td>
+            </tr>
+        </table>
+        @if ($scstm->tanggalsurat)
+        <p class="tglsurat">{{ $scstm->tanggalsurat }}</p><br><br><br>
+        @endif
+    </div>
+
     @if ($scstm->penerimasurat)
         <div class="penerimasurat">
+            <p>Yth</p>
             <p>{{ $scstm->penerimasurat }}</p>
             <p>{{ $scstm->jabatanpenerima }}</p>
             <p>{{ $scstm->alamatpenerima }}</p>
@@ -207,6 +211,7 @@
     @if ($scstm->salampembuka)
         <div class="isisurat">
             <p>{{ $scstm->salampembuka }}</p>
+            <p>{{ $scstm->paragrafpembuka }}</p>
             <p>{{ $scstm->paragraf1 }}</p>
             <p>{{ $scstm->paragraf2 }}</p>
             </td>
@@ -245,7 +250,7 @@
             @endif
             @if ($scstm->alamat)
                 <tr>
-                    <td class="template">alamat</td>
+                    <td class="template">Alamat</td>
                     <td style="vertical-align: top;">:</td>
                     <td style="max-width: 405px; word-wrap: break-word;">{{ $scstm->alamat }}</td>
                 </tr>
