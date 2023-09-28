@@ -78,21 +78,6 @@
              font-family: Arial;
          }
 
-        .enam p{
-            margin-top: 5px;
-            margin-left: 490px;
-            line-height: 1.5;
-        }
-        .enam .namapernyataan{
-            text-align: center;
-        }
-
-         .tujuh{
-            margin-left: 100px;
-            margin-top: -180px;
-            line-height: 1.5;
-         }
-
          .namadesa{
              margin-left: 10px;
              margin-top:50px;
@@ -179,26 +164,26 @@
             </tr>
         </table>
 
-        <table class="enam">
+        <table class="enam" width="100%">
             <tr>
-                <p>
-                    Sentolo, {{ \Carbon\Carbon::parse($spbm['created_at'])->translatedFormat('j F Y') }}<br>
-                    Yang membuat pernyataan,
-                </p>
-                <p class="namapernyataan"><br><br><br>
-                    <b>({{$spbm->nama}})</b>
-                </p>
-            </tr>
-        </table>
-        <table class="tujuh">
-            <tr>
-                <p>
-                    &#160; Mengetahui :
-                    <br>Lurah Sentolo<br>
-                </p>
-                <p class="namadesa"><br>
-                    <b>(TEGUH)</b>
-                </p>
+                <td width="50%" align="center">
+                    <p>
+                        Mengetahui :
+                        <br>{{ $spbm->tandatangan[0]['jabatan_user'] }}<br>
+                    </p>
+                    <p><br><br><br><br>
+                        <b>({{ $spbm->tandatangan[0]['nama_user'] }})</b>
+                    </p>
+                </td>
+                <td align="center">
+                    <p>
+                        Sentolo, {{ \Carbon\Carbon::parse($spbm['created_at'])->translatedFormat('j F Y') }}<br>
+                        Yang membuat pernyataan,
+                    </p>
+                    <p><br><br><br><br>
+                        <b>({{$spbm->nama}})</b>
+                    </p>
+                </td>
             </tr>
         </table>
 

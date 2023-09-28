@@ -85,6 +85,7 @@
          .tujuh{
             margin-left: 450px;
             margin-top: -30px;
+            width: 200px;
          }
 
          .namadesa{
@@ -226,7 +227,10 @@
         </table>
         <table  class="tujuh">
             <tr>
-                <td> <p>&#160; &#160; &#160; &#160; Lurah Sentolo</p>  <br>  <p class="namadesa">&#160; &#160; &#160; <b>(TEGUH) </b></p></td>
+                <td align="center">
+                    <p>{{ $sktm->tandatangan[0]['jabatan_user'] }}</p><br><br><br><br>  
+                    <p><b>({{ $sktm->tandatangan[0]['nama_user'] }}) </b></p>
+                </td>
             </tr>
         </table>
     </center>

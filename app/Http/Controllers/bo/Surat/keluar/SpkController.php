@@ -59,6 +59,14 @@ class SpkController extends Controller
         ];
         $bulanRomawi = $angkaRomawi[$bulanSekarang];
         $TemplateNoSurat = "000/KET/SPK/{$bulanRomawi}/" . date('Y');
+        //badge
+        $badge_status = [
+            '0' => '<span class="badge bg-info"> blanko </span>', 
+            '1' => '<span class="badge bg-secondary"> menunggu verifikasi </span>', 
+            '2' => '<span class="badge bg-success"> terverifikasi </span>', 
+            '3' => '<span class="badge bg-danger"> verifikasi ditolak </span>', 
+            '4' => '<span class="badge bg-primary"> arsip </span>', 
+        ];
 
         return view('bo.page.surat.keluar.surat-pk', [
             'dropdown1' => 'Surat Keluar',

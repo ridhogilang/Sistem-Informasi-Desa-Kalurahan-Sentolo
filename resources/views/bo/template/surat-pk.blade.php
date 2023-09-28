@@ -78,20 +78,6 @@
              font-family: Arial;
          }
 
-        .enam p{
-            margin-top: 5px;
-            margin-left: 490px;
-            line-height: 1.5;
-        }
-        .enam .namapernyataan{
-            text-align: center;
-        }
-
-         .tujuh{
-            margin-left: 90px;
-            margin-top: -180px;
-            line-height: 1.5;
-         }
 
          .namadesa{
              margin-left: -15px;
@@ -194,26 +180,27 @@
             </tr>
         </table>
 
-        <table class="enam">
+        <table class="enam" width="100%">
             <tr>
-                <p>
-                    &#160; Sentolo, {{ \Carbon\Carbon::parse($spk['created_at'])->translatedFormat('j F Y') }}<br>
-                    &#160; &#160; &#160; &#160; &#160; &#160;Camat Sentolo,
-                </p>
-                <p class="namapernyataan"><br><br><br>
-                    <b>&#160; (..............................)</b>
-                </p>
-            </tr>
-        </table>
-        <table class="tujuh">
-            <tr>
-                <p>
-                    &#160; Mengetahui :
-                    <br>Lurah Sentolo<br>
-                </p>
-                <p class="namadesa"><br>
-                    <b>&#160; &#160; &#160; &#160;(TEGUH)</b>
-                </p>
+                <td width="50%" align="center">
+                    <p>
+                         Mengetahui :
+                        <br>{{ $spk->tandatangan[0]['jabatan_user'] }}<br>
+                    </p>
+                    <p><br><br><br>
+                        <b>({{ $spk->tandatangan[0]['nama_user'] }})</b>
+                    </p>
+                </td>
+                <td align="center">
+                    <p>
+                        Sentolo, {{ \Carbon\Carbon::parse($spk['created_at'])->translatedFormat('j F Y') }}<br>
+                        Camat Sentolo,
+                    </p>
+                    <p><br><br><br>
+                        <b>(..............................)</b>
+                    </p>
+                </td>
+                
             </tr>
         </table>
     </center>

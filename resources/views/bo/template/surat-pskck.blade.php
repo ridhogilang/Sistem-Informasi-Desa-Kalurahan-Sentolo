@@ -91,6 +91,7 @@
          .tujuh{
             margin-left: 450px;
             margin-top: -30px;
+            width: 200px;
          }
 
          .namadesa{
@@ -209,7 +210,10 @@
         </table>
         <table  class="tujuh">
             <tr>
-                <td> <P>&#160; &#160; &#160; &#160; &#160; &#160; Lurah Sentolo</P>  <br>  <P class="namadesa"><b>(TEGUH) </b></P></td>
+                 <td align="center">
+                    <p>{{ $pskck->tandatangan[0]['jabatan_user'] }}</p><br><br><br><br>  
+                    <p><b>({{ $pskck->tandatangan[0]['nama_user'] }}) </b></p>
+                </td>
             </tr>
         </table>
     </center>

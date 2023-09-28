@@ -117,21 +117,22 @@
              margin-left: 470px;
              margin-top:-23px;
          }
-         p {
+        p {
         text-indent: 40px; /* Menjorokkan teks sejauh 40px dari kiri */
         margin-top: 0px; /* Jarak atas antara paragraf */
         margin-bottom: 0px; /* Jarak bawah antara paragraf */
         }
-         .signature {
-            width: 300px; /* Lebar area tanda tangan */
-            height: 100px; /* Tinggi area tanda tangan */
+        .signature {
+            width: 100%; /* Lebar area tanda tangan */
             /* border: 1px solid #000; Garis tepi */
             margin-top: 50px; /* Jarak atas */
             padding: 10px; /* Ruang dalam */
             text-align: center; /* Pusatkan teks di dalam area tanda tangan */
-            font-size: 16px; /* Ukuran font */
             display: inline-block; /* Tampilkan tanda tangan secara berdampingan */
             margin-right: 20px; /* Jarak antara tanda tangan */
+        }
+        .signature table tr td{
+            font-size: 16px; /* Ukuran font */
         }
     </style>
 </head>
@@ -303,17 +304,21 @@
         </table>
 
         <div class="signature">
-            &#160; Mengetahui,
-            <br>Lurah Sentolo<br><br><br><br>
-            <b>(TEGUH)</b>
+            <table width="100%">
+                <tr>
+                    <td width="50%" align="center">
+                        Mengetahui,
+                        <br>{{ $spn->tandatangan[0]['jabatan_user'] }}<br><br><br><br>
+                        <b>({{ $spn->tandatangan[0]['nama_user'] }})</b>
+                    </td>
+                    <td align="center">
+                        Sentolo, {{ \Carbon\Carbon::parse($spn['created_at'])->translatedFormat('j F Y') }}<br><br><br><br><br>
+                        <b>({{$spn->nama}})</b>
+                    </td>
+                </tr>
+            </table>
+            
         </div>
-
-        <!-- Area tanda tangan kedua -->
-        <div class="signature">
-            Sentolo, {{ \Carbon\Carbon::parse($spn['created_at'])->translatedFormat('j F Y') }}<br><br><br><br><br>
-            <b>({{$spn->nama}})</b>
-        </div>
-
     </center>
 </body>
 </html>

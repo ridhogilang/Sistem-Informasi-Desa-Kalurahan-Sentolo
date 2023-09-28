@@ -119,7 +119,47 @@ class SpnController extends Controller
         $record['jenis_surat'] = 'Surat Pengantar Nikah';
         $record['status_surat'] = '1';
         $record['id'] = 'SPN-'. date('YmdHis') . '-' . rand(100, 999);
-        // Menggunakan metode create untuk membuat dan menyimpan data
+         //proses tanda tangan
+        foreach ($record['tanda_tangan'] as $ttd) {
+            list($id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
+    
+            $tandatanganData[] = [
+                'id' => 'TTD-' . date('YmdHis') . '-' . rand(100, 999),
+                'id_user' => $id_user,
+                'nama_user' => $nama_user,
+                'jabatan_user' => $jabatan_user,
+                'id_surat' => $record['id'],
+                'nomor_surat' => $record['nomor_surat'],
+                'jenis_surat' => $record['jenis_surat'],
+            ];
+        }
+        
+        TandaTanganSurat::insert($tandatanganData);
+        unset($record['tanda_tangan']);
+
+        //proses paraf / verifikasi
+        foreach ($record['mengetahui'] as $ttd) {
+            if($ttd != null){
+                list($id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
+        
+                $mengetahuiData[] = [
+                    'id' => 'MGTH-' . date('YmdHis') . '-' . rand(100, 999),
+                    'id_user' => $id_user,
+                    'nama_user' => $nama_user,
+                    'jabatan_user' => $jabatan_user,
+                    'id_surat' => $record['id'],
+                    'nomor_surat' => $record['nomor_surat'],
+                    'jenis_surat' => $record['jenis_surat'],
+                    'status' => $record['status_surat'],
+                    'is_arsip' => '0',
+                ];
+            }
+        }
+        
+        MengetahuiVerifikasiSurat::insert($mengetahuiData);
+        unset($record['mengetahui']);
+
+        //membuat surat
         Spn::create($record);
         return redirect()->back()->with('toast_success', 'Data Terkirim!');
     }

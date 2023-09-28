@@ -145,7 +145,7 @@ class SktbekerjaController extends Controller
     }
     public function show($id)
     {
-        $ktbekerja = Sktbekerja:::with('tandatangan')->findOrFail($id);
+        $ktbekerja = Sktbekerja::with('tandatangan')->findOrFail($id);
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
         $data = view('bo.template.surat-ktbekerja', compact('ktbekerja'))->render();
         // Membuat instance DomPDF
