@@ -110,7 +110,7 @@ class userManagementController extends Controller
     public function update(Request $request, string $id)
     {
         $this->validate($request, [
-            'username' => ['required', Rule::unique('users', 'username')->ignore($id)],
+            'nama' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'nullable|min:6|same:confirm-password',
             'roles' => 'required'

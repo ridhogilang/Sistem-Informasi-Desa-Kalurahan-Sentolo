@@ -145,7 +145,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label for="agama" class="col col-form-label">Pejabat Yang mengetahui</label>
+                                                <label for="mengetahui" class="col col-form-label">Pejabat Yang mengetahui</label>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-4 mb-3">
@@ -202,7 +202,7 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">NIK</th>
                                     <th scope="col">Status</th>
-                                    @canany(['edit surat', 'lihat surat'])
+                                    @canany(['edit surat', 'lihat surat', 'hapus surat'])
                                     <th scope="col" class="text-center">Action</th>
                                     @endcanany
                                 </tr>
@@ -252,7 +252,7 @@
                                               </div>
                                             </div>
                                         <!-- bagian action -->
-                                        @canany(['edit surat', 'lihat surat'])
+                                        @canany(['edit surat', 'lihat surat', 'hapus surat'])
                                         <td class="text-center">
                                             @can('lihat surat')
                                             <a class="btn btn-success" type="submit" target="blank" href="/admin/e-surat/surat-kdomisili/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>

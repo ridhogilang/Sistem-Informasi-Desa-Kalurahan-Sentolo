@@ -39,7 +39,7 @@
 
         <form action="{{ $url }}" method="POST">
             @csrf
-            @if(isset($user->username))
+            @if(isset($user->nama))
                 @method('PUT')
             @endif
             <div class="row">

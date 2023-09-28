@@ -133,11 +133,45 @@
                                                     <input type="date" name="tanggal_akhir" class="form-control" id="tanggal_akhir" value="{{ old('tanggal_akhir') }}" required>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <input type="hidden" name="jenis_pk" class="form-control" value="spk">
+                                            <div class="row mb-3">
+                                                <label for="tanda_tangan" class="col-sm-3 col-form-label">Tanda Tangan</label>
+                                                <div class="col-sm-9">
+                                                    <select id="tanda_tangan" name="tanda_tangan[]" class="form-select" required>
+                                                        <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
+                                                        @foreach($pejabat as $value)
+                                                            <option value="{{ $value['id'].'/'.$value['nama'].'/'.$value['jabatan'] }}">{{ $value['nama'] . ' ( ' . $value['jabatan'] . ' )' }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="row">
-                                                <input type="hidden" name="status_surat" class="form-control" value="Pending">
+                                                <label for="mengetahui" class="col col-form-label">Pejabat Yang mengetahui</label>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-4 mb-3">
+                                                    <select id="mengetahui[]" name="mengetahui[]" class="form-select" required>
+                                                        <option value="" disabled selected>Pilih Pejabat yang Mengetahui</option>
+                                                        @foreach($pejabat as $value)
+                                                            <option value="{{ $value['id'].'/'.$value['nama'].'/'.$value['jabatan'] }}">{{ $value['nama'] . ' ( ' . $value['jabatan'] . ' )' }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <select id="mengetahui[]" name="mengetahui[]" class="form-select">
+                                                        <option value="" selected>Pilih Pejabat yang Mengetahui</option>
+                                                        @foreach($pejabat as $value)
+                                                            <option value="{{ $value['id'].'/'.$value['nama'].'/'.$value['jabatan'] }}">{{ $value['nama'] . ' ( ' . $value['jabatan'] . ' )' }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <select id="mengetahui[]" name="mengetahui[]" class="form-select">
+                                                        <option value="" selected>Pilih Pejabat yang Mengetahui</option>
+                                                        @foreach($pejabat as $value)
+                                                            <option value="{{ $value['id'].'/'.$value['nama'].'/'.$value['jabatan'] }}">{{ $value['nama'] . ' ( ' . $value['jabatan'] . ' )' }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -168,7 +202,7 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">NIK</th>
                                     <th scope="col">Status</th>
-                                    @canany(['edit surat', 'lihat surat'])
+                                    @canany(['edit surat', 'lihat surat', 'hapus surat'])
                                     <th scope="col" class="text-center">Action</th>
                                     @endcanany
                                 </tr>
@@ -183,8 +217,42 @@
                                         <td>{{ $value->nomor_surat }}</td>
                                         <td>{{ $value->nama }}</td>
                                         <td>{{ $value->nik }}</td>
-                                        <td>{{ $value->status_surat }}</td>
-                                        @canany(['edit surat', 'lihat surat'])
+                                        <td>
+                                            <a data-bs-toggle="modal" data-bs-target="#status_{{$value->id}}">
+                                            {!! $badge_status[$value->status_surat] !!}
+                                            </a>
+                                        </td>
+                                        <!-- ini bagian modal badge status verifikasi -->
+                                            <div class="modal fade" id="status_{{$value->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                              <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Status Surat Pengantar Kependudukan {{$value->nomor_surat}}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <div class="container">
+                                                    @foreach($value->MengetahuiVerifikasiSurat as $verifikasi)
+                                                        <div class="row border-bottom p-3">
+                                                            <div class="col-sm-3">
+                                                                {!! $badge_status[$verifikasi->status]!!} 
+                                                            </div>
+                                                            <div class="col mx-5">
+                                                                {{ $verifikasi->nama_user}} 
+                                                               ( {{ $verifikasi->jabatan_user}} )
+                                                            </div>
+                                                        </div>                                                            
+                                                    @endforeach
+                                                    </div>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        <!-- bagian action -->
+                                        @canany(['edit surat', 'lihat surat', 'hapus surat'])
                                         <td class="text-center">
                                             @can('lihat surat')
                                             <a class="btn btn-success" type="submit" target="blank" href="/admin/e-surat/surat-pk/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
@@ -193,7 +261,42 @@
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-warning" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-SPK{{$value->id}}" href="/admin/e-surat/edit-surat-pk/{{$value->id}}"><i class="fa-solid fa-pen-to-square"></i></a>
                                             @endcan
-                                            {{-- <a class="btn btn-danger" type="submit" href="/admin/e-surat/surat-kbm/{{$value->id}}/delete"><i class="fa-regular fa-trash-can"></i></a> --}}
+                                            @can('hapus surat')
+                                                    <a data-bs-toggle="modal" data-bs-target="#kearsip_{{$value->id}}">
+                                                        @if($value->status_surat == '2')
+                                                        <button class="btn btn-success">
+                                                            <i class="bi bi-check-lg"></i>
+                                                        @else
+                                                        <button class="btn btn-danger">
+                                                            <i class="fa-regular fa-trash-can"></i>
+                                                        @endif
+                                                    </button>
+                                                    </a>
+                                                    <!-- modal hapus atau delete -->
+                                                    <div class="modal fade" id="kearsip_{{$value->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                                        <div class="modal-content">
+                                                          <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Surat Pengantar Kependudukan {{$value->nomor_surat}}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                          </div>
+                                                          <div class="modal-body">
+                                                            <div class="container">
+                                                                <p>Apakah Anda yakin untuk {{ ($value->status_surat == '2')?'mengarsipkan':'menghapus' }} surat dengan nomor {{$value->nomor_surat}}</p>
+                                                            </div>
+                                                          </div>
+                                                          <div class="modal-footer">
+                                                            <form action="/admin/e-surat/surat-pk/{{$value->id}}/{{$value->status_surat}}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn {{ ($value->status_surat == '2')?'btn-success':'btn-danger' }}">{{ ($value->status_surat == '2')?'Arsipkan':'Hapus' }}</button>
+                                                            </form>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                            @endcan
                                         </td>
                                         @endcanany
                                     </tr>
@@ -304,11 +407,44 @@
                                                                 <input type="date" name="tanggal_akhir" class="form-control" id="tanggal_akhir" value="{{$value->tanggal_akhir}}" required>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <input type="hidden" name="jenis_pk" class="form-control" value="{{$value->jenis_pk}}" >
+                                                        <div class="row mb-3">
+                                                            <label for="tanda_tangan" class="col-sm-3 col-form-label">Tanda Tangan</label>
+                                                            <div class="col-sm-9">
+                                                                <select id="tanda_tangan" name="tanda_tangan[]" class="form-select" required>
+                                                                    <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
+                                                                    @foreach($pejabat as $jabat)
+                                                                        <option value="{{ $value->tandatangan[0]->id.'/'.$jabat['id'].'/'.$jabat['nama'].'/'.$jabat['jabatan'] }}" 
+                                                                        {{ ($value->tandatangan[0]->id_user == $jabat['id'])?'selected':'' }}>{{ $jabat['nama'] . ' ( ' . $jabat['jabatan'] . ' )' }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                         <div class="row">
-                                                            <input type="hidden" name="status_surat" class="form-control" value="{{$value->status_surat}}" >
+                                                            <label for="mengetahui" class="col col-form-label">Pejabat Yang mengetahui</label>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            @foreach($value->MengetahuiVerifikasiSurat as $verifikasi)
+                                                            <div class="col-md-4 mb-3">
+                                                                <select id="mengetahui[]" name="mengetahui[]" class="form-select">
+                                                                    <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
+                                                                    @foreach($pejabat as $jabat)
+                                                                        <option value="{{ $verifikasi->id.'/'.$jabat['id'].'/'.$jabat['nama'].'/'.$jabat['jabatan'] }}" {{ ($verifikasi->id_user == $jabat['id'])?'selected':'' }}>{{ $jabat['nama'] . ' ( ' . $jabat['jabatan'] . ' )' }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            @endforeach
+                                                            @if(count($value->MengetahuiVerifikasiSurat) < 3)
+                                                                @foreach(range(1, 3 - count($value->MengetahuiVerifikasiSurat)) as $index)
+                                                                    <div class="col-md-4 mb-3">
+                                                                        <select id="mengetahui[]" name="mengetahui[]" class="form-select">
+                                                                            <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
+                                                                            @foreach($pejabat as $jabat)
+                                                                                <option value="{{ '-/'.$jabat['id'].'/'.$jabat['nama'].'/'.$jabat['jabatan'] }}">{{ $jabat['nama'] . ' ( ' . $jabat['jabatan'] . ' )' }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                @endforeach
+                                                            @endif
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">

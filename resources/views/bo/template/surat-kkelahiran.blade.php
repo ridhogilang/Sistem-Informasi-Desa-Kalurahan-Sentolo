@@ -122,13 +122,12 @@
             margin-top: 0px; /* Jarak atas antara paragraf */
             margin-bottom: 0px; /* Jarak bawah antara paragraf */
         }
-         .signature {
-            width: 630px; /* Lebar area tanda tangan */
-            height: 100px; /* Tinggi area tanda tangan */
+        .signature {
+            margin: 0px 16px 0px 500px;
+            width: 100%; /* Lebar area tanda tangan */
             /* border: 1px solid #000; Garis tepi */
             /* margin-top: 5px; Jarak atas */
-            padding: 10px; /* Ruang dalam */
-            text-align: right; /* Pusatkan teks di dalam area tanda tangan */
+            text-align: center;
             font-size: 16px; /* Ukuran font */
             display: inline-block; /* Tampilkan tanda tangan secara berdampingan */
             /* margin-right: 20px; Jarak antara tanda tangan */
@@ -306,8 +305,8 @@
 
         <div class="signature">
             Sentolo, {{ \Carbon\Carbon::parse($skl['created_at'])->translatedFormat('j F Y') }}
-            <br>Lurah Sentolo &#160; &#160; &#160; &#160; &#160; &#160;<br><br><br><br>
-            <b>(TEGUH)&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;</b>
+            <p>{{ $skl->tandatangan[0]['jabatan_user'] }}</p><br><br><br><br>  
+            <p><b>({{ $skl->tandatangan[0]['nama_user'] }}) </b></p>
         </div>
 
     </center>
