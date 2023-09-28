@@ -257,9 +257,6 @@ class SpbmController extends Controller
      public function destroy($id, $status)
     {
         $surat = Spbm::findOrFail($id);
-        if($surat->get()[0]['status_surat'] != $status){
-           return redirect()->back()->with('toast_warning', 'Terjadi Kesalahan Data dalam pemrosesan'); 
-        }
         if($status == '1' || $status == '3'){
             MengetahuiVerifikasiSurat::where('id_surat', $id)->delete();
             TandaTanganSurat::where('id_surat', $id)->delete();
