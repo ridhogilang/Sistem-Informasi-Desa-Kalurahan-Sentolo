@@ -230,9 +230,9 @@
                                             </div>
                                         <!-- bagian action -->
                                         @canany(['edit surat', 'lihat surat', 'hapus surat'])
-                                        <td class="text-center">
+                                        <td class="text-center d-flex justify-content-evenly">
                                             @can('lihat surat')
-                                            <a class="btn btn-success" type="submit" target="blank" href="/admin/e-surat/surat-pbm/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
+                                            <a class="btn {{ ($value->status_surat == '2')?'btn-success':'btn-secondary' }}" type="submit" target="blank" href="/admin/e-surat/surat-pbm/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
                                             @endcan
                                             @can('edit surat')
                                             <!-- Button trigger modal -->

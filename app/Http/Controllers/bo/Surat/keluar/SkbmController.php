@@ -159,6 +159,10 @@ class SkbmController extends Controller
     public function show($id)
     {
         $skbm = Skbm::with('tandatangan')->findOrFail($id);
+
+        if($skbm->status_surat != '2'){
+            return redirect()->back()->with('toast_warning', 'Data Tidak Terverifikasi!');
+        }
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
         $data = view('bo.template.surat-kbm', compact('skbm'))->render();
         // Membuat instance DomPDF

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\bo\Surat\masuk;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -136,7 +136,7 @@ class SMasukController extends Controller
     public function destroy($id)
     {
         // Temukan data Surat Masuk berdasarkan ID
-        $smasuk = SMasuk::find($id);
+        $smasuk = SMasuk::findOrFail($id);
         if ($smasuk->dokumen) {
             File::delete(public_path('dokumen/' . $smasuk->dokumen));
         }

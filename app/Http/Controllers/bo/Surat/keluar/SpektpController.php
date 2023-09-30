@@ -154,6 +154,10 @@ class SpektpController extends Controller
     public function show($id)
     {
         $pektp = Spektp::with('tandatangan')->findOrFail($id);
+
+        if($pektp->status_surat != '2'){
+            return redirect()->back()->with('toast_warning', 'Data Tidak Terverifikasi!');
+        }
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
         $data = view('bo.template.surat-pektp', compact('pektp'))->render();
         // Membuat instance DomPDF
@@ -275,7 +279,7 @@ class SpektpController extends Controller
                 'id' => 'ARSIP-' . date('YmdHis') . '-' . rand(100, 999),
                 'id_surat' => $id,
                 'nomor_surat' => $surat->nomor_surat,
-                'jenis_surat' => 'Surat Keterangan Duda / Janda',
+                'jenis_surat' => 'Surat Pengantar E-KTP',
                 'jenis_surat_2' => 'Surat Keluar',
                 'surat_penghapusan' => null,
                 'is_delete' => '0',

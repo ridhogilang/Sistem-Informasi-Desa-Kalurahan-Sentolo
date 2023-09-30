@@ -154,6 +154,10 @@ class SkdController extends Controller
     public function show($id)
     {
         $skd = Skd::with('tandatangan')->findOrFail($id);
+
+        if($skd->status_surat != '2'){
+            return redirect()->back()->with('toast_warning', 'Data Tidak Terverifikasi!');
+        }
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
         $data = view('bo.template.surat-kdomisili', compact('skd'))->render();
         // Membuat instance DomPDF
@@ -269,7 +273,7 @@ class SkdController extends Controller
                 'id' => 'ARSIP-' . date('YmdHis') . '-' . rand(100, 999),
                 'id_surat' => $id,
                 'nomor_surat' => $surat->nomor_surat,
-                'jenis_surat' => 'Surat Keterangan Belum Menikah',
+                'jenis_surat' => 'Surat Keterangan Domisili',
                 'jenis_surat_2' => 'Surat Keluar',
                 'surat_penghapusan' => null,
                 'is_delete' => '0',

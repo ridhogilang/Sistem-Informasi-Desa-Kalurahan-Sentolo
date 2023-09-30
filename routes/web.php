@@ -7,6 +7,8 @@ use App\Http\Controllers\bo\Auth\VerifikasiEmailController;
 use App\Http\Controllers\bo\Auth\ForgetPasswordController;
 use App\Http\Controllers\bo\Pegawai\UserManagementController;
 use App\Http\Controllers\bo\Pegawai\roleManagementController;
+//surat masuk
+use App\Http\Controllers\bo\Surat\masuk\SMasukController;
 //surat keluar
 use App\Http\Controllers\bo\Surat\keluar\SktmSatuController;
 use App\Http\Controllers\bo\Surat\keluar\SktmDuaController;
@@ -25,8 +27,9 @@ use App\Http\Controllers\bo\Surat\keluar\SkpenghasilanController;
 use App\Http\Controllers\bo\Surat\keluar\SpbbekerjaController;
 //validasi surat keluar
 use App\Http\Controllers\bo\Surat\validasi\ValidasiController;
+//arsip
+use App\Http\Controllers\bo\Surat\arsip\ArsipController;
 
-use App\Http\Controllers\SMasukController;
 use App\Http\Controllers\ScstmController;
 use Illuminate\Support\Facades\Route;
 
@@ -87,7 +90,11 @@ Route::prefix('admin')->group(function () {
                 ]);
             })->name('bo.e-surat.dashboard');
             //validasi
-            Route::resource('/validasi', ValidasiController::class, ['as' => 'bo.surat']);
+            Route::resource('/validasi', ValidasiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy'])->middleware('can:verifikasi surat');
+            //arsip
+            Route::resource('/arsip', ArsipController::class, ['as' => 'bo.surat']);
+
+            //disposisi
             // SKTM Satu Orang
             Route::get('/surat-ktm', [SktmSatuController::class, 'index'])->middleware('can:list surat');
             Route::post('/surat-ktm-satu', [SktmSatuController::class, 'store'])->middleware('can:input surat');
@@ -199,7 +206,7 @@ Route::prefix('admin')->group(function () {
             Route::put('/surat-masuk/{id}', [SMasukController::class, 'update']);
             Route::get('/surat-masuk/{id}/view', [SMasukController::class, 'show']);
             Route::get('/surat-masuk/{id}/document', [SMasukController::class, 'document']);
-            Route::get('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy']);
+            Route::delete('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy']);
             // Surat Custom
             Route::get('/surat-cstm', [ScstmController::class, 'index']);
             Route::post('/surat-scstm', [ScstmController::class, 'store']);

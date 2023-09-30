@@ -146,6 +146,10 @@ class SktbekerjaController extends Controller
     public function show($id)
     {
         $ktbekerja = Sktbekerja::with('tandatangan')->findOrFail($id);
+
+        if($ktbekerja->status_surat != '2'){
+            return redirect()->back()->with('toast_warning', 'DData Tidak Terverifikasi!');
+        }
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
         $data = view('bo.template.surat-ktbekerja', compact('ktbekerja'))->render();
         // Membuat instance DomPDF
@@ -272,7 +276,7 @@ class SktbekerjaController extends Controller
                 'id' => 'ARSIP-' . date('YmdHis') . '-' . rand(100, 999),
                 'id_surat' => $id,
                 'nomor_surat' => $surat->nomor_surat,
-                'jenis_surat' => 'Surat Keterangan Duda / Janda',
+                'jenis_surat' => 'Surat Keterangan Tidak Bekerja',
                 'jenis_surat_2' => 'Surat Keluar',
                 'surat_penghapusan' => null,
                 'is_delete' => '0',

@@ -441,10 +441,10 @@
                                             </div>
                                         <!-- bagian action -->
                                         @canany(['edit surat', 'lihat surat', 'hapus surat'])
-                                        <td class="text-center">
+                                        <td class="text-center d-flex justify-content-evenly">
                                             @if ($value->jenis_surat == 'Surat Keterangan Tidak Mampu 1')
                                                 @can('lihat surat')
-                                                <a class="btn btn-success" type="submit" target="blank" href="/admin/e-surat/surat-ktm-satu/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
+                                                <a class="btn {{ ($value->status_surat == '2')?'btn-success':'btn-secondary' }}" type="submit" target="blank" href="/admin/e-surat/surat-ktm-satu/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
                                                 <!-- Button trigger modal -->
                                                 @endcan
                                                 @can('edit surat')
@@ -489,7 +489,7 @@
 
                                             @else
                                                 @can('lihat surat')
-                                                <a class="btn btn-success" type="submit" target="blank" href="/admin/e-surat/surat-ktm-dua/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
+                                                <a class="btn {{ ($value->status_surat == '2')?'btn-success':'btn-secondary' }}" type="submit" target="blank" href="/admin/e-surat/surat-ktm-dua/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
                                                 <!-- Button trigger modal -->
                                                 @endcan
                                                 @can('edit surat')

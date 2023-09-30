@@ -247,6 +247,10 @@ class SktmSatuController extends Controller
     }
     public function show($id) {
         $sktm = SktmSatu::with('tandatangan')->findOrFail($id);
+
+        if($sktm->status_surat != '2'){
+            return redirect()->back()->with('toast_warning', 'Data Tidak Terverifikasi!');
+        }
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
         $data = view('bo.template.surat-ktm-satu', compact('sktm'))->render();
         // Membuat instance DomPDF
@@ -279,7 +283,7 @@ class SktmSatuController extends Controller
                 'id' => 'ARSIP-' . date('YmdHis') . '-' . rand(100, 999),
                 'id_surat' => $id,
                 'nomor_surat' => $surat->nomor_surat,
-                'jenis_surat' => 'Surat Keterangan Duda / Janda',
+                'jenis_surat' => 'Surat Keterangan Tidak Mampu 1',
                 'jenis_surat_2' => 'Surat Keluar',
                 'surat_penghapusan' => null,
                 'is_delete' => '0',

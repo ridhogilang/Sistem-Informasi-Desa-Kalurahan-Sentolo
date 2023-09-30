@@ -267,9 +267,9 @@
                                             </div>
                                         <!-- bagian action -->
                                         @canany(['edit surat', 'lihat surat', 'hapus surat'])
-                                        <td class="text-center">
+                                        <td class="text-center d-flex justify-content-evenly">
                                             @can('lihat surat')
-                                            <a class="btn btn-success" type="submit" target="blank" href="/admin/e-surat/surat-kkematian/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
+                                            <a class="btn {{ ($value->status_surat == '2')?'btn-success':'btn-secondary' }}" type="submit" target="blank" href="/admin/e-surat/surat-kkematian/{{$value->id}}/view"><i class="fa-solid fa-print"></i></a>
                                             @endcan
                                             @can('edit surat')
                                             <!-- Button trigger modal -->
@@ -319,7 +319,7 @@
                                     <div class="modal fade" id="Modal-Edit-KKEMATIAN{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Modal-Edit-KKEMATIAN-Satu-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                             <div class="modal-content">
-                                                <form action="/admin/e-surat/surat-kkematian{{$value->id}}/edit" method="POST" >
+                                                <form action="/admin/e-surat/surat-kkematian/{{$value->id}}/edit" method="POST" >
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-header">

@@ -150,6 +150,10 @@ class SkdudaController extends Controller
     public function show($id)
     {
         $skduda = Skduda::with('tandatangan')->findOrFail($id);
+
+        if($skduda->status_surat != '2'){
+            return redirect()->back()->with('toast_warning', 'Data Tidak Terverifikasi!');
+        }
         // Menggunakan view untuk mengambil HTML dari template surat-ktm
         $data = view('bo.template.surat-kduda', compact('skduda'))->render();
         // Membuat instance DomPDF

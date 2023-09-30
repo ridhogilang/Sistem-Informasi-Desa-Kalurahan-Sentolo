@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\bo\Surat\arsip;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class OldArsipController extends Controller

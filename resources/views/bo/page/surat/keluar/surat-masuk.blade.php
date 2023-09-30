@@ -133,11 +133,15 @@
                                         <td class="text-center">
                                             <a class="btn btn-success" target="blank" type="submit" href="/admin/e-surat/surat-masuk/{{$value->id}}/document"><i class="fa-solid fa-file-arrow-down"></i></a>
                                         </td>
-                                        <td class="text-center">
+                                        <td class="text-center d-flex justify-content-evenly">
                                             {{-- <a class="btn btn-success" type="submit" href="/admin/e-surat/surat-masuk/{{$value->id}}/view"><i class="bi bi-file-earmark-text-fill"></i></a> --}}
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-warning" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-SMasuk{{$value->id}}" href="/admin/e-surat/surat-masuk/{{$value->id}}"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <a class="btn btn-danger" type="submit" href="/admin/e-surat/surat-masuk/{{$value->id}}/delete"><i class="fa-regular fa-trash-can"></i></a>
+                                            <form action="/admin/e-surat/surat-masuk/{{ $value->id }}/delete" method="POST">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-danger" type="submit"><i class="fa-regular fa-trash-can"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
                                     <!-- Modal Edit SPBM-->

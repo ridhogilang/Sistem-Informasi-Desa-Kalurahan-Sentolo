@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('catatan');
             $table->string('lampiran');
             $table->string('dokumen');
-            $table->string('disposisi')->nullable();
+            $table->string('status_surat')->nullable();
             $table->string('jenis_surat');
             $table->timestamps();
         });
