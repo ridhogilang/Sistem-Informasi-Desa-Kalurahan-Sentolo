@@ -30,6 +30,7 @@ class SkbmController extends Controller
                 ->with('MengetahuiVerifikasiSurat')
                 ->where('status_surat', '>=', 1)
                 ->where('status_surat', '<=', 3)
+                // ->where('is_arsip', '<=', 0)
                 ->get();
 
         //untuk mengetahui perorangan;
