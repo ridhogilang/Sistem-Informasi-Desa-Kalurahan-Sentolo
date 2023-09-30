@@ -471,7 +471,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="container">
-                                                        <p>Apakah Anda yakin untuk {{ ($value->status_surat == '2')?'mengarsipkan':'menghapus' }} surat dengan nomor {{$value->nomor_surat}}</p>
+                                                        <p>Apakah Anda yakin untuk mengarsipkan surat dengan nomor {{$value->nomor_surat}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -479,7 +479,7 @@
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn {{ ($value->status_surat == '2')?'btn-success':'btn-danger' }}">{{ ($value->status_surat == '2')?'Arsipkan':'Hapus' }}</button>
+                                                        <button type="submit" class="btn {{ ($value->status_surat == '2')?'btn-success':'btn-danger' }}">Arsipkan</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -516,7 +516,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="container">
-                                                        <p>Apakah Anda yakin untuk {{ ($value->status_surat == '2')?'mengarsipkan':'menghapus' }} surat dengan nomor {{$value->nomor_surat}}</p>
+                                                        <p>Apakah Anda yakin untuk mengarsipkan surat dengan nomor {{$value->nomor_surat}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -524,7 +524,7 @@
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn {{ ($value->status_surat == '2')?'btn-success':'btn-danger' }}">{{ ($value->status_surat == '2')?'Arsipkan':'Hapus' }}</button>
+                                                        <button type="submit" class="btn {{ ($value->status_surat == '2')?'btn-success':'btn-danger' }}">Arsipkan</button>
                                                     </form>
                                                 </div>
                                             </div>
