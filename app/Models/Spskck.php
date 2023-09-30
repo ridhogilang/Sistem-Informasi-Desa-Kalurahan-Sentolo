@@ -23,7 +23,8 @@ class Spskck extends Model
         'pekerjaan',
         'alamat',
         'jenis_surat',
-        'status_surat'
+        'status_surat',
+        'is_arsip'
     ];
 
     public function tandatangan()

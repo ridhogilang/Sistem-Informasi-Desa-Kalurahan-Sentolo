@@ -30,7 +30,8 @@ class SktmDua extends Model
         'alamat_dua',
         'deskripsi',
         'jenis_surat',
-        'status_surat'
+        'status_surat',
+        'is_arsip'
     ];
 
     public function tandatangan()

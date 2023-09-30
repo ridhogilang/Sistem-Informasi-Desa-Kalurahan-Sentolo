@@ -39,7 +39,8 @@ class Skl extends Model
         'pekerjaan_ibu',
         'alamat_ibu',
         'jenis_surat',
-        'status_surat'
+        'status_surat',
+        'is_arsip'
     ];
 
     public function tandatangan()

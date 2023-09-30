@@ -22,7 +22,8 @@ class Sktbekerja extends Model
         'warga_negara',
         'alamat',
         'jenis_surat',
-        'status_surat'
+        'status_surat',
+        'is_arsip'
     ];
 
     public function tandatangan()

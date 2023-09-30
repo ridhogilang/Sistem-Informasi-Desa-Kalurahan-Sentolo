@@ -24,7 +24,8 @@ class SktmSatu extends Model
         'alamat',
         'deskripsi',
         'jenis_surat',
-        'status_surat'
+        'status_surat',
+        'is_arsip'
     ];
 
     public function tandatangan()
