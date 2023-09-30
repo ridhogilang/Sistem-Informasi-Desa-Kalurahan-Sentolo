@@ -268,7 +268,7 @@
                                             <i class="fa-solid fa-circle-up"></i>
                                             @else
                                             <button class="btn btn-danger">
-                                                <i class="fa-regular fa-trash-can"></i>
+                                                <i class="fa-solid fa-circle-up"></i>
                                                 @endif
                                             </button>
                                     </a>
