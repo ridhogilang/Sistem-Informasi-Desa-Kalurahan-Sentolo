@@ -41,6 +41,7 @@ return new class extends Migration
             $table->text('alamat_ibu');
             $table->string('jenis_surat');
             $table->string('status_surat');
+            $table->string('is_arsip')->nullable();
             $table->timestamps();
         });
     }
