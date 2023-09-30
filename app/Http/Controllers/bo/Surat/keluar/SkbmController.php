@@ -30,7 +30,7 @@ class SkbmController extends Controller
                 ->with('MengetahuiVerifikasiSurat')
                 ->where('status_surat', '>=', 1)
                 ->where('status_surat', '<=', 3)
-                // ->where('is_arsip', '<=', 0)
+                ->where('is_arsip', '=', null)
                 ->get();
 
         //untuk mengetahui perorangan;
@@ -269,14 +269,14 @@ class SkbmController extends Controller
     public function destroy($id, $status)
     {
         $surat = Skbm::findOrFail($id);
-        if($status == '1' || $status == '3'){
-            MengetahuiVerifikasiSurat::where('id_surat', $id)->delete();
-            TandaTanganSurat::where('id_surat', $id)->delete();
-            $surat->delete();
+        // if($status == '1' || $status == '3'){
+        //     MengetahuiVerifikasiSurat::where('id_surat', $id)->delete();
+        //     TandaTanganSurat::where('id_surat', $id)->delete();
+        //     $surat->delete();
 
-            return redirect()->back()->with('toast_success', 'Data Dihapus!');
-        }
-        if($status == '2'){ 
+        //     return redirect()->back()->with('toast_success', 'Data Dihapus!');
+        // }
+        if($status == '2' || $status == '3'){ 
             MengetahuiVerifikasiSurat::where('id_surat', $id)->update(['is_arsip' => '1']);
             ArsipSurat::create([
                 'id' => 'ARSIP-' . date('YmdHis') . '-' . rand(100, 999),

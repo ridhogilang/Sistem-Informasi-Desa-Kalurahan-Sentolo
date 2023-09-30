@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('tempat_pemakaman');
             $table->string('jenis_surat');
             $table->string('status_surat');
+            $table->string('is_arsip')->nullable();
             $table->timestamps();
         });
     }
