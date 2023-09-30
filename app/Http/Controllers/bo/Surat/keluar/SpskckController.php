@@ -267,6 +267,7 @@ class SpskckController extends Controller
     public function destroy($id, $status)
     {
         $surat = Spskck::findOrFail($id);
+
         // if($status == '1' || $status == '3'){
         //     MengetahuiVerifikasiSurat::where('id_surat', $id)->delete();
         //     TandaTanganSurat::where('id_surat', $id)->delete();
@@ -274,6 +275,7 @@ class SpskckController extends Controller
 
         //     return redirect()->back()->with('toast_success', 'Data Dihapus!');
         // }
+        
         if($status == '2' || $status == '3'){ 
             MengetahuiVerifikasiSurat::where('id_surat', $id)->update(['is_arsip' => '1']);
             ArsipSurat::create([

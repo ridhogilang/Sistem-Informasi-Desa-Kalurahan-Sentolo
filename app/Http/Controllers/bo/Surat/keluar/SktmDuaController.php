@@ -239,9 +239,10 @@ class SktmDuaController extends Controller
                 'surat_penghapusan' => null,
                 'is_delete' => '0',
             ]);
-            $surat->update(['status_surat' => '4']);
+            $surat->update(['is_arsip' => '1']);
 
             return redirect()->back()->with('toast_success', 'Data Telah Diarsipkan!');
-        }   
+        }
+        return redirect()->back()->with('toast_warning', 'Data menunggu verifikasi');   
     }
 }
