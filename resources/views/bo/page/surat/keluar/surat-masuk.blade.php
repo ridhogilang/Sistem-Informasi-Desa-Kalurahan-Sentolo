@@ -1,5 +1,37 @@
 @extends('bo.layout.master')
 
+@push('scripts')
+    <script type="text/javascript">
+        $(function(){
+            $(document).on('click','#delete', function(e){
+                e.preventDefault();
+                var data_id = $(this).attr("data-id");
+                var data_nomor_surat = $(this).attr("data-nomor-surat");
+
+                Swal.fire({
+                    title: 'Apakah kamu Yakin?',
+                    text: "Ingin menghapus Surat Masuk dengan Nomor Surat " + data_nomor_surat + " ? " + " Jika dihapus, file juga akan terhapus!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus sekarang!'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "/admin/e-surat/surat-masuk/" + data_id + "/delete",
+                        Swal.fire(
+                        'Deleted!',
+                        data_nomor_surat + ' sudah terhapus.',
+                        'success'
+                        )
+                    }
+                    })
+
+            });
+        });
+    </script>
+@endpush
+
 @section('content')
     <div class="pagetitle">
         <h1>Surat Masuk</h1>
@@ -92,9 +124,6 @@
                                                         <input type="file" name="dokumen" class="form-control" id="dokumen" accept=".doc, .docx, .pdf, .xls, .xlsx, .ppt, .pptx" value="{{ old('dokumen') }}" required>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <input type="hidden" name="jenis_surat" class="form-control" value="Surat Masuk" >
-                                                </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                     <button type="submit" class="btn btn-primary">Simpan</button>
@@ -137,11 +166,16 @@
                                             {{-- <a class="btn btn-success" type="submit" href="/admin/e-surat/surat-masuk/{{$value->id}}/view"><i class="bi bi-file-earmark-text-fill"></i></a> --}}
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-warning" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-SMasuk{{$value->id}}" href="/admin/e-surat/surat-masuk/{{$value->id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+<<<<<<< HEAD
                                             <form action="/admin/e-surat/surat-masuk/{{ $value->id }}/delete" method="POST">
                                                 @method('delete')
                                                 @csrf
                                                 <button class="btn btn-danger" type="submit"><i class="fa-regular fa-trash-can"></i></button>
                                             </form>
+=======
+                                            {{-- <a class="btn btn-danger" type="submit" href="/admin/e-surat/surat-masuk/{{$value->id}}/delete"><i class="fa-regular fa-trash-can"></i></a> --}}
+                                            <a class="btn btn-danger" href="/admin/e-surat/surat-masuk/{{$value->id}}/delete" type="submit" id="delete" data-id="{{$value->id}}" data-nomor-surat="{{$value->nomor_surat}}"><i class="fa-regular fa-trash-can"></i></a>
+>>>>>>> dev
                                         </td>
                                     </tr>
                                     <!-- Modal Edit SPBM-->
@@ -168,12 +202,6 @@
                                                                 <input type="date" name="tanggal_surat" class="form-control" id="tanggal_surat3" value="{{$value->tanggal_surat}}" required>
                                                             </div>
                                                         </div>
-                                                        {{-- <div class="row mb-3">
-                                                            <label for="kepada3" class="col-sm-3 col-form-label">Kepada</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" name="kepada" class="form-control" id="kepada3" value="{{$value->kepada}}" required>
-                                                            </div>
-                                                        </div> --}}
                                                         <div class="row mb-3">
                                                             <label for="kepada3" class="col-sm-3 col-form-label">Kepada</label>
                                                             <div class="col-sm-9">

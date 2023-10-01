@@ -221,7 +221,7 @@
 
         <table class="enam">
             <tr>
-                <p>Sentolo, 01-01-2023</p>
+                <p>Sentolo, 01 Januari 2023</p>
             </tr>
         </table>
         <table  class="tujuh">
