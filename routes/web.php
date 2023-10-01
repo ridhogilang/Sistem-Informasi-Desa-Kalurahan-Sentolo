@@ -206,7 +206,7 @@ Route::prefix('admin')->group(function () {
             Route::put('/surat-masuk/{id}', [SMasukController::class, 'update']);
             Route::get('/surat-masuk/{id}/view', [SMasukController::class, 'show']);
             Route::get('/surat-masuk/{id}/document', [SMasukController::class, 'document']);
-            Route::delete('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy']);
+            Route::get('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy']);
             // Surat Custom
             Route::get('/surat-cstm', [ScstmController::class, 'index']);
             Route::post('/surat-scstm', [ScstmController::class, 'store']);

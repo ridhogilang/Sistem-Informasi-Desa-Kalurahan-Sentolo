@@ -136,7 +136,7 @@ class SMasukController extends Controller
     public function destroy($id)
     {
         // Temukan data Surat Masuk berdasarkan ID
-        $smasuk = SMasuk::findOrFail($id);
+        $smasuk = SMasuk::find($id);
         if ($smasuk->dokumen) {
             File::delete(public_path('dokumen/' . $smasuk->dokumen));
         }
@@ -144,3 +144,5 @@ class SMasukController extends Controller
         return redirect()->back()->with('toast_success', 'Data dihapus!');
     }
 }
+
+
