@@ -62,7 +62,6 @@ class SMasukController extends Controller
                 'mimes:doc,docx,pdf,xls,xlsx,ppt,pptx',
             ],
             // 'disposisi' => 'required',
-            'jenis_surat' => 'required',
         ], [
             'unique' => 'Nomor Surat sudah digunakan.',
             'mimes' => 'File tidak valid.',
@@ -74,6 +73,7 @@ class SMasukController extends Controller
         $record['dokumen'] = $namaDokumen;
 
         // $nomor = str_replace("/", "-", $record['nomor_surat']);
+        $record['jenis_surat'] = 'Surat Masuk';
         $record['id'] = 'SM-'. date('YmdHis') . '-' . rand(100, 999);
         // Menggunakan metode create untuk membuat dan menyimpan data
         SMasuk::create($record);

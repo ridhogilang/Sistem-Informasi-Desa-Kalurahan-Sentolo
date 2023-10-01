@@ -107,6 +107,7 @@
             });
         @endif
     </script>
+    @stack('scripts')
     @stack('footer')
 
 </body>
