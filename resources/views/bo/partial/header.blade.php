@@ -94,8 +94,69 @@
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                     data-bs-toggle="dropdown">
+                    <b class="btn fs-3"><i class="bi bi-grid-3x3-gap-fill"></i></b>
+                </a><!-- End Profile Iamge Icon -->
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+                    <li class="dropdown-header">
+                        <h6>Aplikasi Kalurahan</h6>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('bo.home') }}">
+                                <i class="bi bi-house-door"></i>
+                                <span>Beranda</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    @can('enter_e-surat')
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('bo.e-surat.dashboard') }}">
+                                <i class="bi bi-envelope"></i>
+                                <span>E-Surat</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    @endcan
+                    @can('enter_kepegawaian')
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('bo.pegawai.dashboard') }}">
+                                <i class="bi bi-fingerprint"></i>
+                                <span>Kepegawaian</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    @endcan
+                    @can('enter_sistem informasi')
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('bo.pegawai.dashboard') }}">
+                                <i class="bi bi-info-lg"></i>
+                                <span>Sistem Informasi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    @endcan
+
+                </ul><!-- End Profile Dropdown Items -->
+            </li><!-- End Profile Nav -->
+
+            <li class="nav-item dropdown pe-3">
+
+                <a class="nav-link nav-profile d-flex align-items-center pe-0 btn" href="#"
+                    data-bs-toggle="dropdown">
                     <img src="{{ asset('template/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">{{ '@'.auth()->user()->username }}</span>
+                    <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->nama }}</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -107,21 +168,19 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    @can('enter_kepegawaian')
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="{{ route('bo.pegawai.dashboard') }}">
+                        <a class="dropdown-item d-flex align-items-center" href="/profile">
                             <i class="bi bi-person"></i>
-                            <span>Kepegawaian</span>
+                            <span>My Profile</span>
                         </a>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    @endcan
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="/profile">
-                            <i class="bi bi-person"></i>
-                            <span>My Profile</span>
+                        <a class="dropdown-item d-flex align-items-center" href="/admin/bantuan">
+                            <i class="bi bi-question-circle"></i>
+                            <span>Bantuan</span>
                         </a>
                     </li>
                     <li>

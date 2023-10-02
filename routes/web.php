@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PermisiionController;
+use App\Http\Controllers\bo\Bantuan\BantuanController;
 //login dan user
 use App\Http\Controllers\bo\Auth\LoginController;
 use App\Http\Controllers\bo\Auth\VerifikasiEmailController;
@@ -65,6 +65,15 @@ Route::prefix('admin')->group(function () {
                 'title' => 'Dashboard',
             ]);
         })->name('bo.home');
+
+        //halaman bantuan
+        Route::controller(BantuanController::class)->prefix('bantuan')->group(function() {
+            Route::get('/', 'index');
+            Route::get('/e-surat', 'esurat');
+            Route::get('/kepegawaian', 'kepegawaian');
+            Route::get('/sistem_informasi', 'sistem_informasi');
+        });
+
 
         //untuk kepegawaian yaitu kebutuhan user dan role tak dewekno marakno riskan
         Route::prefix('pegawai')->middleware('can:enter_kepegawaian')->group(function () {

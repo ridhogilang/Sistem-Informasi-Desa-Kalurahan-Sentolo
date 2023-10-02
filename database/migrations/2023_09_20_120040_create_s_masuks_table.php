@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('s_masuk', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('nomor_surat')->unique();
-            $table->string('tanggal_surat');
+            $table->date('tanggal_surat');
             $table->string('kepada');
             $table->string('keperluan');
-            $table->string('tanggal_kegiatan');
+            $table->date('tanggal_kegiatan');
             $table->string('catatan');
             $table->string('lampiran');
             $table->string('dokumen');

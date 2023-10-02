@@ -317,9 +317,9 @@
                             <td>{{ $value->nama_ayah }}</td>
                             <td>{{ $value->nik_ayah }}</td>
                             <td>
-                                <a data-bs-toggle="modal" data-bs-target="#status_{{$value->id}}">
-                                    {!! $badge_status[$value->status_surat] !!}
-                                </a>
+                                <a data-bs-toggle="modal" data-bs-target="#status_{{$value->id}}" class="btn btn-primary">
+                                        <i class="bi bi-clock-history"></i> Lihat
+                                    </a>
                             </td>
                             <!-- ini bagian modal badge status verifikasi -->
                             <div class="modal fade" id="status_{{$value->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -327,6 +327,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Surat Keterangan Kelahiran {{$value->nomor_surat}}</h5>
+                                            <div class="mx-3">{!! $badge_status[$value->status_surat] !!}</div>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
