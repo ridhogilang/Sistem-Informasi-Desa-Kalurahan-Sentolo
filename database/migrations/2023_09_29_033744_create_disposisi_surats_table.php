@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('tanggal_kegiatan');
             $table->string('id_user');
             $table->string('jabatan_user');
+            $table->string('is_arsip')->nullable();
             $table->timestamps();
         });
     }

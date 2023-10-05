@@ -14,13 +14,22 @@ class SMasuk extends Model
         'id',
         'nomor_surat',
         'tanggal_surat',
-        'kepada',
+        'kepada_id_user',
+        'kepada_jabatan',
         'keperluan',
         'tanggal_kegiatan',
         'catatan',
         'lampiran',
         'dokumen',
         'disposisi',
-        'jenis_surat'
+        'jenis_surat',
+        'status_surat',
+        'is_arsip',
     ];
+
+    public function kepada_detil()
+    {
+        return $this->hasOne(User::class, 'id', 'kepada_id_user');
+    }
+
 }

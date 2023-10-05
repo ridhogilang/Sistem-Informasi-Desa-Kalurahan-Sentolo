@@ -27,6 +27,8 @@ use App\Http\Controllers\bo\Surat\keluar\SkpenghasilanController;
 use App\Http\Controllers\bo\Surat\keluar\SpbbekerjaController;
 //validasi surat keluar
 use App\Http\Controllers\bo\Surat\validasi\ValidasiController;
+//disposisi surat masuk
+use App\Http\Controllers\bo\Surat\disposisi\DisposisiController;
 //arsip
 use App\Http\Controllers\bo\Surat\arsip\ArsipController;
 
@@ -98,12 +100,12 @@ Route::prefix('admin')->group(function () {
                     'title' => 'Dashboard',
                 ]);
             })->name('bo.e-surat.dashboard');
-            //validasi
+            //validasi surat keluar
             Route::resource('/validasi', ValidasiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy'])->middleware('can:verifikasi surat');
+            //disposisi surat masuk
+            Route::resource('/disposisi', DisposisiController::class, ['as' => 'bo.surat']);
             //arsip
             Route::resource('/arsip', ArsipController::class, ['as' => 'bo.surat']);
-
-            //disposisi
             // SKTM Satu Orang
             Route::get('/surat-ktm', [SktmSatuController::class, 'index'])->middleware('can:list surat');
             Route::post('/surat-ktm-satu', [SktmSatuController::class, 'store'])->middleware('can:input surat');
@@ -230,7 +232,7 @@ Route::prefix('admin')->group(function () {
     });
 });
 Route::get('/profile', function () {
-    return view('page.profile',[
+    return view('bo.page.profile',[
         'dropdown1' => '',
         'dropdown2' => '',
         'title' => 'Profile',

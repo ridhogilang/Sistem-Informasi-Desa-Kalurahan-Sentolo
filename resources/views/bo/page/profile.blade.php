@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('bo.layout.master')
 
 @section('content')
     <div class="pagetitle">

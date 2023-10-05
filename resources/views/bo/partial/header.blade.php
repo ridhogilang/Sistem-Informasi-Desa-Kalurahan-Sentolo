@@ -26,9 +26,12 @@
 
             <li class="nav-item dropdown">
 
-                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                    <i class="bi bi-person"></i>
-                    <span class="badge bg-success badge-number">3</span>
+                <a class="nav-link nav-icon btn fs-3" href="#" data-bs-toggle="dropdown">
+                    <b class="">
+                        <i class="bi bi-person"></i>
+                        <span class="badge bg-success badge-number">3</span>
+                    </b>
+                    
                 </a><!-- End Messages Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">

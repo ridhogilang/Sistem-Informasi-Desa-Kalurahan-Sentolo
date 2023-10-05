@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\bo\Surat\disposisi;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class DisposisiController extends Controller
@@ -11,7 +12,7 @@ class DisposisiController extends Controller
      */
     public function index()
     {
-        //
+        dd('hai ini disposisi');
     }
 
     /**

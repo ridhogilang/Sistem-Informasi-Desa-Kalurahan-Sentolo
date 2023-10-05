@@ -85,12 +85,13 @@
                                                     </div>
                                                 </div> --}}
                                                 <div class="row mb-3">
-                                                    <label for="kepada" class="col-sm-3 col-form-label">Kepada</label>
+                                                    <label for="Kepada" class="col-sm-3 col-form-label">Tanda Tangan</label>
                                                     <div class="col-sm-9">
-                                                        <select id="kepada" name="kepada" class="form-select" required>
-                                                            <option value="" @if(old('kepada') == '') selected @endif>Pilih Kepada ...</option>
-                                                            <option value="Lurah" @if(old('kepada') == 'Lurah') selected @endif>Lurah</option>
-                                                            <option value="Carik" @if(old('kepada') == 'Carik') selected @endif>Carik</option>
+                                                        <select id="Kepada" name="kepada" class="form-select" required>
+                                                            <option value="" disabled selected>Pilih Pejabat yang Menerima Surat</option>
+                                                            @foreach($pejabat as $value)
+                                                            <option value="{{ $value['id'].'/'.$value['jabatan'] }}">{{ $value['nama'] . ' ( ' . $value['jabatan'] . ' )' }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
@@ -144,6 +145,7 @@
                                     <th scope="col">Kepada</th>
                                     <th scope="col">Keperluan</th>
                                     <th scope="col">Tanggal Kegiatan</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col" class="text-center">Dokumen</th>
                                     <th scope="col" class="text-center">Action</th>
                                 </tr>
@@ -156,9 +158,10 @@
                                     <tr>
                                         <th scope="row">{{ $no++ }}.</th>
                                         <td>{{ $value->nomor_surat }}</td>
-                                        <td>{{ $value->kepada }}</td>
+                                        <td>{{ $value->kepada_detil->nama.' ( '. $value->kepada_jabatan .' )'}}</td>
                                         <td>{{ $value->keperluan }}</td>
                                         <td>{{ $value->tanggal_kegiatan }}</td>
+                                        <td></td>
                                         <td class="text-center">
                                             <a class="btn btn-success" target="blank" type="submit" href="/admin/e-surat/surat-masuk/{{$value->id}}/document"><i class="fa-solid fa-file-arrow-down"></i></a>
                                         </td>
@@ -197,12 +200,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="kepada3" class="col-sm-3 col-form-label">Kepada</label>
+                                                            <label for="Kepada" class="col-sm-3 col-form-label">Tanda Tangan</label>
                                                             <div class="col-sm-9">
-                                                                <select id="kepada3" name="kepada" class="form-select" required>
-                                                                    <option value="" {{ ($value->kepada == "") ? 'selected' : '' }}>Dituju Kepada ...</option>
-                                                                    <option value="Lurah" {{ ($value->kepada == "Lurah") ? 'selected' : '' }}>Lurah</option>
-                                                                    <option value="Carik" {{ ($value->kepada == "Carik") ? 'selected' : '' }}>Carik</option>
+                                                                <select id="Kepada" name="kepada" class="form-select" required>
+                                                                    <option value="" disabled selected>Pilih Pejabat yang Menerima Surat</option>
+                                                                    @foreach($pejabat as $pamong)
+                                                                    <option value="{{ $pamong['id'].'/'.$pamong['jabatan'] }}" {{ ($value->kepada_id_user == $pamong['id'])?'selected':''}}>{{ $pamong['nama'] . ' ( ' . $pamong['jabatan'] . ' )' }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -235,9 +239,6 @@
                                                             <div class="col-sm-9">
                                                                 <input type="file" name="dokumen" class="form-control" id="dokumen3" value="{{$value->dokumen}}" >
                                                             </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <input type="hidden" name="jenis_surat" class="form-control" value="{{$value->jenis_surat}}" >
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
