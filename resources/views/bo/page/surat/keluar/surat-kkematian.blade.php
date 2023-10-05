@@ -1,5 +1,70 @@
 @extends('bo.layout.master')
 
+@push('scripts')
+    <script>
+        // Mendapatkan elemen input NIK
+        var nikInput = document.getElementById('nik');
+
+        // Mendapatkan elemen input tanggal_lahir
+        var tanggalLahirInput = document.getElementById('tanggal_lahir');
+
+        // Mendapatkan elemen input umur
+        var umurInput = document.getElementById('umur');
+
+        // Menambahkan event listener ketika nilai input NIK berubah
+        nikInput.addEventListener('input', function() {
+            var nik = this.value;
+
+            // Buat permintaan AJAX untuk mengambil data berdasarkan NIK
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get-penduduk/' + nik, true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    // Daftar elemen form yang ingin Anda isi
+                    var formElements = ['nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'status_perkawinan', 'alamat', 'kewarganegaraan', 'pekerjaan', 'pendidikan_terakhir', 'nomor_telepon', 'penghasilan', 'foto_penduduk', 'nomor_kk', 'nomor_ktp', 'status_nyawa', 'keterangan_kematian', 'kontak_darurat', 'status_migrasi', 'status_pajak'];
+
+                    // Loop melalui elemen form dan isi nilainya jika ada dalam data
+                    formElements.forEach(function(element) {
+                        if (document.getElementById(element)) {
+                            document.getElementById(element).value = data[element] || '';
+                        }
+                    });
+
+                    // Hitung umur dan isi ke elemen umur
+                    if (tanggalLahirInput) {
+                        const tanggalLahir = new Date(data['tanggal_lahir']);
+                        const today = new Date();
+                        const diff = today - tanggalLahir;
+                        const ageDate = new Date(diff);
+                        const umur = Math.abs(ageDate.getUTCFullYear() - 1970);
+                        umurInput.value = umur;
+                    }
+                } else {
+                    // Handle jika NIK tidak ditemukan
+                    formElements.forEach(function(element) {
+                        if (document.getElementById(element)) {
+                            document.getElementById(element).value = '';
+                        }
+                    });
+
+                    // Kosongkan juga elemen umur jika NIK tidak ditemukan
+                    if (tanggalLahirInput) {
+                        tanggalLahirInput.value = '';
+                    }
+
+                    // Kosongkan elemen umur jika NIK tidak ditemukan
+                    umurInput.value = '';
+                }
+            };
+
+            xhr.send();
+        });
+    </script>
+@endpush
+
 @section('content')
 <div class="pagetitle">
     <h1>Surat Keterangan Kematian</h1>
@@ -51,15 +116,15 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="nama" class="col-sm-3 col-form-label">Nama</label>
+                                            <label for="nik" class="col-sm-3 col-form-label">NIK</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}" required>
+                                                <input type="number" name="nik" class="form-control" id="nik" value="{{ old('nik') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="nik" class="col-sm-3 col-form-label">NIK</label>
+                                            <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="nik" class="form-control" id="nik" value="{{ old('nik') }}" required>
+                                                <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -71,6 +136,9 @@
                                                     <option value="Perempuan" @if(old('jenis_kelamin')=='Perempuan' ) selected @endif>Perempuan</option>
                                                 </select>
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            <input type="hidden" id="tanggal_lahir" value="{{ old('tanggal_lahir') }}">
                                         </div>
                                         <div class="row mb-3">
                                             <label for="umur" class="col-sm-3 col-form-label">Umur</label>
@@ -104,8 +172,8 @@
                                             <div class="col-sm-9">
                                                 <select id="kewarganegaraan" name="kewarganegaraan" class="form-select" required>
                                                     <option value="" @if(old('kewarganegaraan')=='' ) selected @endif>Pilih Kewarganegaraan ...</option>
-                                                    <option value="Indonesia" @if(old('kewarganegaraan')=='Indonesia' ) selected @endif>Indonesia</option>
-                                                    <option value="Asing" @if(old('kewarganegaraan')=='Asing' ) selected @endif>Asing</option>
+                                                    <option value="WNI" @if(old('kewarganegaraan')=='WNI' ) selected @endif>WNI</option>
+                                                    <option value="WNA" @if(old('kewarganegaraan')=='WNA' ) selected @endif>WNA</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -389,8 +457,8 @@
                                                     <div class="col-sm-9">
                                                         <select id="kewarganegaraan" name="kewarganegaraan" class="form-select" required>
                                                             <option value="" {{ ($value->kewarganegaraan == "") ? 'selected' : '' }}>Pilih Kewarganegaraan ...</option>
-                                                            <option value="Indonesia" {{ ($value->kewarganegaraan == "Indonesia") ? 'selected' : '' }}>Indonesia</option>
-                                                            <option value="Asing" {{ ($value->kewarganegaraan == "Asing") ? 'selected' : '' }}>Asing</option>
+                                                            <option value="WNI" {{ ($value->kewarganegaraan == "WNI") ? 'selected' : '' }}>WNI</option>
+                                                            <option value="WNA" {{ ($value->kewarganegaraan == "WNA") ? 'selected' : '' }}>WNA</option>
                                                         </select>
                                                     </div>
                                                 </div>

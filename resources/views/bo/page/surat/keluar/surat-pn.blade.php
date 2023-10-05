@@ -1,5 +1,148 @@
 @extends('bo.layout.master')
 
+@push('scripts')
+    <script>
+        // Mendapatkan elemen input NIK
+        var nikInput = document.getElementById('nik');
+        // Mendapatkan elemen input NIK Data Ayah
+        var nik_ayahInput = document.getElementById('nikayah');
+        // Mendapatkan elemen input NIK Data Ibu
+        var nik_ibuInput = document.getElementById('nikibu');
+
+        // Menambahkan event listener ketika nilai input NIK berubah
+        nikInput.addEventListener('input', function() {
+            var nik = this.value;
+
+            // Buat permintaan AJAX untuk mengambil data berdasarkan NIK
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get-penduduk/' + nik, true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    // Daftar elemen form yang ingin Anda isi
+                    var formElements = ['nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'status_perkawinan', 'alamat', 'kewarganegaraan', 'pekerjaan', 'pendidikan_terakhir', 'nomor_telepon', 'penghasilan', 'foto_penduduk', 'nomor_kk', 'nomor_ktp', 'status_nyawa', 'keterangan_kematian', 'kontak_darurat', 'status_migrasi', 'status_pajak'];
+
+                    // Loop melalui elemen form dan isi nilainya jika ada dalam data
+                    formElements.forEach(function(element) {
+                        if (document.getElementById(element)) {
+                            document.getElementById(element).value = data[element] || '';
+                        }
+                    });
+                } else {
+                    // Handle jika NIK tidak ditemukan
+                    formElements.forEach(function(element) {
+                        if (document.getElementById(element)) {
+                            document.getElementById(element).value = '';
+                        }
+                    });
+                }
+            };
+
+            xhr.send();
+        });
+
+        // Menambahkan event listener ketika nilai input NIK berubah Orang 1
+        nik_ayahInput.addEventListener('input', function() {
+            var nikayah = this.value;
+
+            // Buat permintaan AJAX untuk mengambil data berdasarkan NIK
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get-penduduk/' + nikayah, true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    // Isi input dengan data yang diterima
+                    if (document.getElementById('namaayah')) {
+                        document.getElementById('namaayah').value = data.nama || '';
+                    }
+                    if (document.getElementById('jenis_kelaminayah')) {
+                        document.getElementById('jenis_kelaminayah').value = data.jenis_kelamin || '';
+                    }
+                    if (document.getElementById('tempat_lahirayah')) {
+                        document.getElementById('tempat_lahirayah').value = data.tempat_lahir || '';
+                    }
+                    if (document.getElementById('tanggal_lahirayah')) {
+                        document.getElementById('tanggal_lahirayah').value = data.tanggal_lahir || '';
+                    }
+                    if (document.getElementById('agamaayah')) {
+                        document.getElementById('agamaayah').value = data.agama || '';
+                    }
+                    if (document.getElementById('pekerjaanayah')) {
+                        document.getElementById('pekerjaanayah').value = data.pekerjaan || '';
+                    }
+                    if (document.getElementById('alamatayah')) {
+                        document.getElementById('alamatayah').value = data.alamat || '';
+                    }
+                } else {
+                    // Handle jika NIK tidak ditemukan
+                    document.getElementById('namaayah').value = '';
+                    document.getElementById('jenis_kelaminayah').value = '';
+                    document.getElementById('tempat_lahirayah').value = '';
+                    document.getElementById('tanggal_lahirayah').value = '';
+                    document.getElementById('agamaayah').value = '';
+                    document.getElementById('pekerjaanayah').value = '';
+                    document.getElementById('alamatayah').value = '';
+                }
+            };
+
+            xhr.send();
+        });
+
+        // Menambahkan event listener ketika nilai input NIK berubah Orang 1
+        nik_ibuInput.addEventListener('input', function() {
+            var nikibu = this.value;
+
+            // Buat permintaan AJAX untuk mengambil data berdasarkan NIK
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get-penduduk/' + nikibu, true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    // Isi input dengan data yang diterima
+                    if (document.getElementById('namaibu')) {
+                        document.getElementById('namaibu').value = data.nama || '';
+                    }
+                    if (document.getElementById('jenis_kelaminibu')) {
+                        document.getElementById('jenis_kelaminibu').value = data.jenis_kelamin || '';
+                    }
+                    if (document.getElementById('tempat_lahiribu')) {
+                        document.getElementById('tempat_lahiribu').value = data.tempat_lahir || '';
+                    }
+                    if (document.getElementById('tanggal_lahiribu')) {
+                        document.getElementById('tanggal_lahiribu').value = data.tanggal_lahir || '';
+                    }
+                    if (document.getElementById('agamaibu')) {
+                        document.getElementById('agamaibu').value = data.agama || '';
+                    }
+                    if (document.getElementById('pekerjaanibu')) {
+                        document.getElementById('pekerjaanibu').value = data.pekerjaan || '';
+                    }
+                    if (document.getElementById('alamatibu')) {
+                        document.getElementById('alamatibu').value = data.alamat || '';
+                    }
+                } else {
+                    // Handle jika NIK tidak ditemukan
+                    document.getElementById('namaibu').value = '';
+                    document.getElementById('jenis_kelaminibu').value = '';
+                    document.getElementById('tempat_lahiribu').value = '';
+                    document.getElementById('tanggal_lahiribu').value = '';
+                    document.getElementById('agamaibu').value = '';
+                    document.getElementById('pekerjaanibu').value = '';
+                    document.getElementById('alamatibu').value = '';
+                }
+            };
+
+            xhr.send();
+        });
+    </script>
+@endpush
+
 @section('content')
 <div class="pagetitle">
     <h1>Surat Pengantar Nikah </h1>
@@ -46,21 +189,22 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="deskripsi1" class="col-sm-3 col-form-label">Deskripsi 1</label>
+                                            <label for="deskripsi1" class="col-sm-3 col-form-label">Deskripsi Atas</label>
                                             <div class="col-sm-9">
-                                                <textarea type="text" name="deskripsi1" class="form-control" id="deskripsi1" rows="3" required>Yang bertanda tangan di bawah ini Ketua RT 09, Kalurahan Sentolo, Kecamatan Sentolo menerangakan dengan sesungguhnya bahwa :</textarea>
+                                                <textarea type="text" name="deskripsi1" class="form-control" id="deskripsi1" rows="3" required>Yang bertanda tangan di bawah ini Dukuh Siwalan, Kalurahan Sentolo, Kecamatan Sentolo menerangkan dengan sesungguhnya bahwa :</textarea>
+                                            </div>
+                                        </div>
+                                        <h5 class="modal-title mt-2 mb-3"><strong> Data Diri</strong></h5>
+                                        <div class="row mb-3">
+                                            <label for="nik" class="col-sm-3 col-form-label">NIK</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" name="nik" class="form-control" id="nik" value="{{ old('nik') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                                             <div class="col-sm-9">
                                                 <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}" required>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="nik" class="col-sm-3 col-form-label">NIK</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="nik" class="form-control" id="nik" value="{{ old('nik') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -113,15 +257,15 @@
                                         {{-- Data Ayah --}}
                                         <h5 class="modal-title mt-2 mb-3"><strong> Data Ayah</strong></h5>
                                         <div class="row mb-3">
-                                            <label for="nama" class="col-sm-3 col-form-label">Nama</label>
+                                            <label for="nikayah" class="col-sm-3 col-form-label">NIK</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="namaayah" class="form-control" id="namaayah" value="{{ old('namaayah') }}" required>
+                                                <input type="number" name="nikayah" class="form-control" id="nikayah" value="{{ old('nikayah') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="nikayah" class="col-sm-3 col-form-label">NIK</label>
+                                            <label for="namaayah" class="col-sm-3 col-form-label">Nama</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="nikayah" class="form-control" id="nikayah" value="{{ old('nikayah') }}" required>
+                                                <input type="text" name="namaayah" class="form-control" id="namaayah" value="{{ old('namaayah') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -145,10 +289,10 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="agama" class="col-sm-3 col-form-label">Agama</label>
+                                            <label for="agamaayah" class="col-sm-3 col-form-label">Agama</label>
                                             <div class="col-sm-9">
                                                 <select id="agamaayah" name="agamaayah" class="form-select" required>
-                                                    <option value="" @if(old('agamaayah')=='' ) selected @endif>Pilih agamaayah ...</option>
+                                                    <option value="" @if(old('agamaayah')=='' ) selected @endif>Pilih Agama Ayah ...</option>
                                                     <option value="Islam" @if(old('agamaayah')=='Islam' ) selected @endif>Islam</option>
                                                     <option value="Kristen Protestan" @if(old('agamaayah')=='Kristen Protestan' ) selected @endif>Kristen Protestan</option>
                                                     <option value="Kristen Katolik" @if(old('agamaayah')=='Kristen Katolik' ) selected @endif>Kristen Katolik</option>
@@ -160,7 +304,7 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="pekerjaan" class="col-sm-3 col-form-label">Pekerjaan</label>
+                                            <label for="pekerjaanayah" class="col-sm-3 col-form-label">Pekerjaan</label>
                                             <div class="col-sm-9">
                                                 <input type="text" name="pekerjaanayah" class="form-control" id="pekerjaanayah" value="{{ old('pekerjaanayah') }}" required>
                                             </div>
@@ -174,15 +318,15 @@
                                         {{-- Data Ibu --}}
                                         <h5 class="modal-title mt-2 mb-3"><strong>Data Ibu</strong></h5>
                                         <div class="row mb-3">
-                                            <label for="nama" class="col-sm-3 col-form-label">Nama</label>
+                                            <label for="nikibu" class="col-sm-3 col-form-label">NIK</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="namaibu" class="form-control" id="namaibu" value="{{ old('namaibu') }}" required>
+                                                <input type="number" name="nikibu" class="form-control" id="nikibu" value="{{ old('nikibu') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="nikibu" class="col-sm-3 col-form-label">NIK</label>
+                                            <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="nikibu" class="form-control" id="nikibu" value="{{ old('nikibu') }}" required>
+                                                <input type="text" name="namaibu" class="form-control" id="namaibu" value="{{ old('namaibu') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -235,7 +379,7 @@
                                         <div class="row mb-3">
                                             <label for="deskripsi2" class="col-sm-3 col-form-label">Deskripsi 2</label>
                                             <div class="col-sm-9">
-                                                <textarea type="text" name="deskripsi2" class="form-control" id="deskripsi2" rows="3" required>Pemilik nama tersebut di atas adalah benar warga kami RT 09 kalurahan Sentolo, Kecamatan Sentolo dan sepngetahuan kami yang bersangkutan berkelakuan baik. Surat keterangan pengantar ini diberikan untuk keperluan pengurusan surat nikah.</textarea>
+                                                <textarea type="text" name="deskripsi2" class="form-control" id="deskripsi2" rows="3" required>Pemilik nama tersebut di atas adalah benar warga kami RT 09 kalurahan Sentolo, Kecamatan Sentolo dan sepengetahuan kami yang bersangkutan berkelakuan baik. Surat keterangan pengantar ini diberikan untuk keperluan pengurusan surat nikah.</textarea>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -253,7 +397,7 @@
                                             <label for="mengetahui" class="col col-form-label">Pejabat Yang mengetahui</label>
                                         </div>
                                         <div class="row mb-3">
-                                            <div class="col-md-4 mb-3">
+                                            <div class="col-md-4">
                                                 <select id="mengetahui[]" name="mengetahui[]" class="form-select" required>
                                                     <option value="" disabled selected>Pilih Pejabat yang Mengetahui</option>
                                                     @foreach($pejabat as $value)
@@ -261,7 +405,7 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="col-md-4 mb-3">
+                                            <div class="col-md-4">
                                                 <select id="mengetahui[]" name="mengetahui[]" class="form-select">
                                                     <option value="" selected>Pilih Pejabat yang Mengetahui</option>
                                                     @foreach($pejabat as $value)

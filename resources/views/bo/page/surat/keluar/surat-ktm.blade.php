@@ -1,5 +1,140 @@
 @extends('bo.layout.master')
 
+@push('scripts')
+    <script>
+        // Mendapatkan elemen input NIK
+        var nikInput = document.getElementById('nik');
+        // Mendapatkan elemen input NIK Orang 1
+        var nik_satuInput = document.getElementById('nik_satu');
+        // Mendapatkan elemen input NIK Orang 2
+        var nik_duaInput = document.getElementById('nik_dua');
+
+        // Menambahkan event listener ketika nilai input NIK berubah
+        nikInput.addEventListener('input', function() {
+            var nik = this.value;
+
+            // Buat permintaan AJAX untuk mengambil data berdasarkan NIK
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get-penduduk/' + nik, true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    // Daftar elemen form yang ingin Anda isi
+                    var formElements = ['nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'status_perkawinan', 'alamat', 'kewarganegaraan', 'pekerjaan', 'pendidikan_terakhir', 'nomor_telepon', 'penghasilan', 'foto_penduduk', 'nomor_kk', 'nomor_ktp', 'status_nyawa', 'keterangan_kematian', 'kontak_darurat', 'status_migrasi', 'status_pajak'];
+
+                    // Loop melalui elemen form dan isi nilainya jika ada dalam data
+                    formElements.forEach(function(element) {
+                        if (document.getElementById(element)) {
+                            document.getElementById(element).value = data[element] || '';
+                        }
+                    });
+                } else {
+                    // Handle jika NIK tidak ditemukan
+                    formElements.forEach(function(element) {
+                        if (document.getElementById(element)) {
+                            document.getElementById(element).value = '';
+                        }
+                    });
+                }
+            };
+
+            xhr.send();
+        });
+
+        // Menambahkan event listener ketika nilai input NIK berubah Orang 1
+        nik_satuInput.addEventListener('input', function() {
+            var nik_satu = this.value;
+
+            // Buat permintaan AJAX untuk mengambil data berdasarkan NIK
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get-penduduk/' + nik_satu, true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    // Isi input dengan data yang diterima
+                    if (document.getElementById('nama_satu')) {
+                        document.getElementById('nama_satu').value = data.nama || '';
+                    }
+                    if (document.getElementById('tempat_lahir_satu')) {
+                        document.getElementById('tempat_lahir_satu').value = data.tempat_lahir || '';
+                    }
+                    if (document.getElementById('tanggal_lahir_satu')) {
+                        document.getElementById('tanggal_lahir_satu').value = data.tanggal_lahir || '';
+                    }
+                    if (document.getElementById('agama_satu')) {
+                        document.getElementById('agama_satu').value = data.agama || '';
+                    }
+                    if (document.getElementById('pekerjaan_satu')) {
+                        document.getElementById('pekerjaan_satu').value = data.pekerjaan || '';
+                    }
+                    if (document.getElementById('alamat_satu')) {
+                        document.getElementById('alamat_satu').value = data.alamat || '';
+                    }
+                } else {
+                    // Handle jika NIK tidak ditemukan
+                    document.getElementById('nama_satu').value = '';
+                    document.getElementById('tempat_lahir_satu').value = '';
+                    document.getElementById('tanggal_lahir_satu').value = '';
+                    document.getElementById('agama_satu').value = '';
+                    document.getElementById('pekerjaan_satu').value = '';
+                    document.getElementById('alamat_satu').value = '';
+                }
+            };
+
+            xhr.send();
+        });
+
+        // Menambahkan event listener ketika nilai input NIK berubah Orang 2
+        nik_duaInput.addEventListener('input', function() {
+            var nik_dua = this.value;
+
+            // Buat permintaan AJAX untuk mengambil data berdasarkan NIK
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get-penduduk/' + nik_dua, true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    // Isi input dengan data yang diterima
+                    if (document.getElementById('nama_dua')) {
+                        document.getElementById('nama_dua').value = data.nama || '';
+                    }
+                    if (document.getElementById('tempat_lahir_dua')) {
+                        document.getElementById('tempat_lahir_dua').value = data.tempat_lahir || '';
+                    }
+                    if (document.getElementById('tanggal_lahir_dua')) {
+                        document.getElementById('tanggal_lahir_dua').value = data.tanggal_lahir || '';
+                    }
+                    if (document.getElementById('agama_dua')) {
+                        document.getElementById('agama_dua').value = data.agama || '';
+                    }
+                    if (document.getElementById('pekerjaan_dua')) {
+                        document.getElementById('pekerjaan_dua').value = data.pekerjaan || '';
+                    }
+                    if (document.getElementById('alamat_dua')) {
+                        document.getElementById('alamat_dua').value = data.alamat || '';
+                    }
+                } else {
+                    // Handle jika NIK tidak ditemukan
+                    document.getElementById('nama_dua').value = '';
+                    document.getElementById('tempat_lahir_dua').value = '';
+                    document.getElementById('tanggal_lahir_dua').value = '';
+                    document.getElementById('agama_dua').value = '';
+                    document.getElementById('pekerjaan_dua').value = '';
+                    document.getElementById('alamat_dua').value = '';
+                }
+            };
+
+            xhr.send();
+        });
+    </script>
+@endpush
+
 @section('content')
 <div class="pagetitle">
     <h1>Surat Keterangan Tidak Mampu</h1>
@@ -64,15 +199,15 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="nama" class="col-sm-3 col-form-label">Nama</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}" required>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
                                             <label for="nik" class="col-sm-3 col-form-label">NIK</label>
                                             <div class="col-sm-9">
                                                 <input type="number" name="nik" class="form-control" id="nik" minlength="16" value="{{ old('nik') }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="nama" class="col-sm-3 col-form-label">Nama</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -210,15 +345,15 @@
                                         </div>
                                         <h5 class="modal-title mt-2 mb-3">Data Orang ke-1</h5>
                                         <div class="row mb-3">
-                                            <label for="nama_satu" class="col-sm-3 col-form-label">Nama</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="nama" class="form-control" id="nama_satu" value="{{ old('nama') }}" required>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
                                             <label for="nik_satu" class="col-sm-3 col-form-label">NIK</label>
                                             <div class="col-sm-9">
                                                 <input type="number" name="nik" class="form-control" id="nik_satu" value="{{ old('nik') }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="nama_satu" class="col-sm-3 col-form-label">Nama</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="nama" class="form-control" id="nama_satu" value="{{ old('nama') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -232,9 +367,9 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="agama" class="col-sm-3 col-form-label">Agama</label>
+                                            <label for="agama_satu" class="col-sm-3 col-form-label">Agama</label>
                                             <div class="col-sm-9">
-                                                <select id="agama" name="agama" class="form-select" required>
+                                                <select id="agama_satu" name="agama" class="form-select" required>
                                                     <option value="" @if(old('agama')=='' ) selected @endif>Pilih Agama ...</option>
                                                     <option value="Islam" @if(old('agama')=='Islam' ) selected @endif>Islam</option>
                                                     <option value="Kristen Protestan" @if(old('agama')=='Kristen Protestan' ) selected @endif>Kristen Protestan</option>
@@ -271,15 +406,15 @@
                                         </div>
                                         <h5 class="modal-title mt-2 mb-3">Data Orang ke-2</h5>
                                         <div class="row mb-3">
-                                            <label for="nama_dua" class="col-sm-3 col-form-label">Nama</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="nama_dua" class="form-control" id="nama_dua" value="{{ old('nama_dua') }}" required>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
                                             <label for="nik_dua" class="col-sm-3 col-form-label">NIK</label>
                                             <div class="col-sm-9">
                                                 <input type="text" name="nik_dua" class="form-control" id="nik_dua" value="{{ old('nik_dua') }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="nama_dua" class="col-sm-3 col-form-label">Nama</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="nama_dua" class="form-control" id="nama_dua" value="{{ old('nama_dua') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -627,7 +762,7 @@
                                                         <input type="text" name="alamat" class="form-control" id="alamat3" value="{{$value->alamat}}" required>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <div class="row mb-3">
                                                     <label for="deskripsi3" class="col-sm-3 col-form-label">Deskripsi</label>
                                                     <div class="col-sm-9">
                                                         <textarea type="text" name="deskripsi" class="form-control" id="deskripsi3" rows="3" required>{{$value->deskripsi}}</textarea>
@@ -647,9 +782,9 @@
                                                 <div class="row">
                                                     <label for="mengetahui" class="col col-form-label">Pejabat Yang mengetahui</label>
                                                 </div>
-                                                <div class="row mb-3">
+                                                <div class="row">
                                                     @foreach($value->MengetahuiVerifikasiSurat as $verifikasi)
-                                                    <div class="col-md-4 mb-3">
+                                                    <div class="col-md-4">
                                                         <select id="mengetahui[]" name="mengetahui[]" class="form-select">
                                                             <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
                                                             @foreach($pejabat as $jabat)
@@ -659,7 +794,7 @@
                                                     </div>
                                                     @endforeach
                                                     @if(count($value->MengetahuiVerifikasiSurat) < 3) @foreach(range(1, 3 - count($value->MengetahuiVerifikasiSurat)) as $index)
-                                                        <div class="col-md-4 mb-3">
+                                                        <div class="col-md-4">
                                                             <select id="mengetahui[]" name="mengetahui[]" class="form-select">
                                                                 <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
                                                                 @foreach($pejabat as $jabat)
@@ -809,7 +944,7 @@
                                                         <input type="text" name="alamat_dua" class="form-control" id="alamat_dua4" value="{{$value->alamat_dua}}" required>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <div class="row mb-3">
                                                     <label for="deskripsi4" class="col-sm-3 col-form-label">Deskripsi</label>
                                                     <div class="col-sm-9">
                                                         <textarea type="text" name="deskripsi" class="form-control" id="deskripsi4" rows="3" required>{{$value->deskripsi}}</textarea>
@@ -829,9 +964,9 @@
                                                 <div class="row">
                                                     <label for="mengetahui" class="col col-form-label">Pejabat Yang mengetahui</label>
                                                 </div>
-                                                <div class="row mb-3">
+                                                <div class="row">
                                                     @foreach($value->MengetahuiVerifikasiSurat as $verifikasi)
-                                                    <div class="col-md-4 mb-3">
+                                                    <div class="col-md-4">
                                                         <select id="mengetahui[]" name="mengetahui[]" class="form-select">
                                                             <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
                                                             @foreach($pejabat as $jabat)
@@ -841,7 +976,7 @@
                                                     </div>
                                                     @endforeach
                                                     @if(count($value->MengetahuiVerifikasiSurat) < 3) @foreach(range(1, 3 - count($value->MengetahuiVerifikasiSurat)) as $index)
-                                                        <div class="col-md-4 mb-3">
+                                                        <div class="col-md-4">
                                                             <select id="mengetahui[]" name="mengetahui[]" class="form-select">
                                                                 <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
                                                                 @foreach($pejabat as $jabat)

@@ -4,6 +4,47 @@
 <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" /> -->
 @endpush
 
+@push('scripts')
+    <script>
+        // Mendapatkan elemen input NIK
+        var nikInput = document.getElementById('nik');
+
+        // Menambahkan event listener ketika nilai input NIK berubah
+        nikInput.addEventListener('input', function() {
+            var nik = this.value;
+
+            // Buat permintaan AJAX untuk mengambil data berdasarkan NIK
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get-penduduk/' + nik, true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    // Daftar elemen form yang ingin Anda isi
+                    var formElements = ['nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'status_perkawinan', 'alamat', 'kewarganegaraan', 'pekerjaan', 'pendidikan_terakhir', 'nomor_telepon', 'penghasilan', 'foto_penduduk', 'nomor_kk', 'nomor_ktp', 'status_nyawa', 'keterangan_kematian', 'kontak_darurat', 'status_migrasi', 'status_pajak'];
+
+                    // Loop melalui elemen form dan isi nilainya jika ada dalam data
+                    formElements.forEach(function(element) {
+                        if (document.getElementById(element)) {
+                            document.getElementById(element).value = data[element] || '';
+                        }
+                    });
+                } else {
+                    // Handle jika NIK tidak ditemukan
+                    formElements.forEach(function(element) {
+                        if (document.getElementById(element)) {
+                            document.getElementById(element).value = '';
+                        }
+                    });
+                }
+            };
+
+            xhr.send();
+        });
+    </script>
+@endpush
+
 @section('content')
 <div class="pagetitle">
     <h1>Surat Keterangan Belum Menikah</h1>
@@ -50,15 +91,15 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="nama" class="col-sm-3 col-form-label">Nama</label>
+                                            <label for="nik" class="col-sm-3 col-form-label">NIK</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}" required>
+                                                <input type="number" name="nik" class="form-control" id="nik" value="{{ old('nik') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="nik" class="col-sm-3 col-form-label">NIK</label>
+                                            <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="nik" class="form-control" id="nik" value="{{ old('nik') }}" required>
+                                                <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -381,9 +422,9 @@
                                                 <div class="row">
                                                     <label for="agama" class="col col-form-label">Pejabat Yang mengetahui</label>
                                                 </div>
-                                                <div class="row mb-3">
+                                                <div class="row ">
                                                     @foreach($value->MengetahuiVerifikasiSurat as $verifikasi)
-                                                    <div class="col-md-4 mb-3">
+                                                    <div class="col-md-4 ">
                                                         <select id="mengetahui[]" name="mengetahui[]" class="form-select">
                                                             <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
                                                             @foreach($pejabat as $jabat)
@@ -393,7 +434,7 @@
                                                     </div>
                                                     @endforeach
                                                     @if(count($value->MengetahuiVerifikasiSurat) < 3) @foreach(range(1, 3 - count($value->MengetahuiVerifikasiSurat)) as $index)
-                                                        <div class="col-md-4 mb-3">
+                                                        <div class="col-md-4 ">
                                                             <select id="mengetahui[]" name="mengetahui[]" class="form-select">
                                                                 <option value="" disabled selected>Pilih Pejabat yang Bertanda tangan</option>
                                                                 @foreach($pejabat as $jabat)
@@ -402,7 +443,7 @@
                                                             </select>
                                                         </div>
                                                         @endforeach
-                                                        @endif
+                                                    @endif
                                                 </div>
 
                                             </div>
