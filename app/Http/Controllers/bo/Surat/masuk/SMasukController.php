@@ -106,6 +106,7 @@ class SMasukController extends Controller
         //disposisi
         $disposisi['id'] =  'DISPOSISI-'. date('YmdHis') . '-' . rand(100, 999);
         $disposisi['id_surat'] = $record['id'];
+        $disposisi['nomor_surat'] = $record['nomor_surat'];
         $disposisi['tanggal_kegiatan'] = $record['tanggal_kegiatan'];
         $disposisi['id_user'] = $record['kepada_id_user'];
         $disposisi['jabatan_user'] = $record['kepada_jabatan'];

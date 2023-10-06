@@ -12,6 +12,7 @@ class DisposisiSurat extends Model
     protected $fillable = [
         'id',
         'id_surat',
+        'nomor_surat',
         'tanggal_kegiatan',
         'id_user',
         'jabatan_user',

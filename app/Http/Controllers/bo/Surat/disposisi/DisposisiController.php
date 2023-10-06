@@ -4,6 +4,12 @@ namespace App\Http\Controllers\bo\Surat\disposisi;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+//model
+use App\Models\User;
+use App\Models\DisposisiSurat;
+use App\Models\DetailDisposisiSurat;
+use App\Models\ArsipSurat;
+use App\Models\SMasuk;
 
 class DisposisiController extends Controller
 {
@@ -12,7 +18,15 @@ class DisposisiController extends Controller
      */
     public function index()
     {
-        dd('hai ini disposisi');
+        $surat = DisposisiSurat::all();
+
+        return view('bo.page.surat.disposisi.index',[
+            'dropdown1' => '',
+            'dropdown2' => '',
+            'title' => 'Disposisi Surat Masuk',
+            // 'badge_status' => $badge_status,
+            'surat' => $surat
+        ]);
     }
 
     /**
@@ -28,7 +42,7 @@ class DisposisiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //kone mrene
     }
 
     /**
