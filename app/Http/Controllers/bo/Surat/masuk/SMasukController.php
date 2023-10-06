@@ -14,6 +14,8 @@ use App\Models\User;
 use App\Models\DisposisiSurat;
 use App\Models\DetailDisposisiSurat;
 use App\Models\ArsipSurat;
+use Yaza\LaravelGoogleDriveStorage\Gdrive;
+use Storage;
 
 class SMasukController extends Controller
 {
@@ -92,14 +94,15 @@ class SMasukController extends Controller
             'mimes' => 'File tidak valid.',
         ]);
 
-        // Generate nama unik untuk file dokumen
-        $namaDokumen = 'SM-' . time() . '.' . $request->file('dokumen')->getClientOriginalExtension();
-        $request->file('dokumen')->move(public_path('dokumen'), $namaDokumen);
-        $record['dokumen'] = $namaDokumen;
+        // Upload file ke Google Drive
+        $file = $request->file('dokumen');
+        $fileName = 'SM-' . time() . '.' . $file->getClientOriginalExtension();
+        Storage::disk('google')->put('Surat Masuk/' .$fileName, file_get_contents($file));
+        $record['dokumen'] = $fileName;
 
-        // $nomor = str_replace("/", "-", $record['nomor_surat']);
         $record['jenis_surat'] = 'Surat Masuk';
         $record['id'] = 'SM-'. date('YmdHis') . '-' . rand(100, 999);
+
         list($record['kepada_id_user'], $record['kepada_jabatan']) = explode("/", $record['kepada']);
         unset($record['kepada']);
         $record['status_surat'] = '1';
@@ -122,6 +125,7 @@ class SMasukController extends Controller
         $dtlDisposisi['status_disposisi'] = '1';
         DetailDisposisiSurat::create($dtlDisposisi);
         //menginputkan surat masuk
+
         SMasuk::create($record);
         return redirect()->back()->with('toast_success', 'Data Disimpan!');
     }
@@ -134,15 +138,16 @@ class SMasukController extends Controller
             abort(404);
         }
         // Tentukan nama file dan jalur lengkapnya
-        $filePath = public_path('dokumen/' . $smasuk->dokumen);
+        // $filePath = 'Surat Masuk/' . $smasuk->dokumen;
+        $publicUrl = Storage::disk('google')->url('Surat Masuk/' . $smasuk->dokumen);
 
-        if (file_exists($filePath)) {
-            // Tampilkan file jika ada
-            return response()->file($filePath);
-        } else {
-            // Handle jika file tidak ditemukan
-            abort(404);
-        }
+        // if (file_exists($filePath)) {
+        //     // Tampilkan file jika ada
+        //     return response()->file($filePath);
+        // } else {
+        //     // Handle jika file tidak ditemukan
+        //     abort(404);
+        // }
     }
     public function update(Request $request, $id)
     {
@@ -207,12 +212,20 @@ class SMasukController extends Controller
     {
         // Temukan data Surat Masuk berdasarkan ID
         $smasuk = SMasuk::find($id);
+
         //dokumen masuk ntar ndak di delete hanya diarsipkan dan mengendap jadi sudahlah ntar dipikir belakangan jadi bagai
         if ($smasuk->dokumen) {
             File::delete(public_path('dokumen/' . $smasuk->dokumen));
+
+        // Hapus file dari Google Drive
+        $filePath = 'Surat Masuk/' . $smasuk->dokumen;
+        // Periksa apakah file ada di Google Drive dan hapus jika ada
+        if (Storage::disk('google')->exists($filePath)) {
+            Storage::disk('google')->delete($filePath);
+
         }
         $smasuk->delete();
-        return redirect()->back()->with('toast_success', 'Data dihapus!');
+        return redirect()->back()->with('toast_success', 'Data Dihapus!');
     }
 }
 

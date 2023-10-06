@@ -33,6 +33,9 @@ use App\Http\Controllers\bo\Surat\disposisi\DisposisiController;
 use App\Http\Controllers\bo\Surat\arsip\ArsipController;
 
 use App\Http\Controllers\ScstmController;
+//penduduk
+use App\Http\Controllers\PendudukController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -118,7 +121,6 @@ Route::prefix('admin')->group(function () {
             Route::put('/surat-ktm-dua/{id}', [SktmDuaController::class, 'update'])->middleware('can:edit surat');
             Route::get('/surat-ktm-dua/{id}/view', [SktmDuaController::class, 'show'])->middleware('can:lihat surat');
             Route::delete('/surat-ktm-dua/{id}/{status}', [SktmDuaController::class, 'destroy'])->middleware('can:hapus surat');
-
             Route::get('/contoh-surat-ktm-dua/view', [SktmDuaController::class, 'contoh'])->middleware('can:lihat contoh surat');
             // SK Duda / Janda
             Route::get('/surat-kduda', [SkdudaController::class, 'index'])->middleware('can:list surat');
@@ -231,6 +233,10 @@ Route::prefix('admin')->group(function () {
         });
     });
 });
+
+// Get data penduduk
+Route::get('/get-penduduk/{nik}', [PendudukController::class, 'info']);
+
 Route::get('/profile', function () {
     return view('bo.page.profile',[
         'dropdown1' => '',

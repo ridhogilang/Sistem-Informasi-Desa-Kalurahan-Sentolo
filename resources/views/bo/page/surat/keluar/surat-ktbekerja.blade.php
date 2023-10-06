@@ -1,5 +1,61 @@
 @extends('bo.layout.master')
 
+@push('scripts')
+    <script>
+        // Mendapatkan elemen input NIK Data Ayah
+        var nikInput = document.getElementById('nik');
+
+        // Menambahkan event listener ketika nilai input NIK berubah Orang 1
+        nikInput.addEventListener('input', function() {
+            var nik = this.value;
+
+            // Buat permintaan AJAX untuk mengambil data berdasarkan NIK
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get-penduduk/' + nik, true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    // Isi input dengan data yang diterima
+                    if (document.getElementById('nama')) {
+                        document.getElementById('nama').value = data.nama || '';
+                    }
+                    if (document.getElementById('tempat_lahir')) {
+                        document.getElementById('tempat_lahir').value = data.tempat_lahir || '';
+                    }
+                    if (document.getElementById('tanggal_lahir')) {
+                        document.getElementById('tanggal_lahir').value = data.tanggal_lahir || '';
+                    }
+                    if (document.getElementById('jenis_kelamin')) {
+                        document.getElementById('jenis_kelamin').value = data.jenis_kelamin || '';
+                    }
+                    if (document.getElementById('agama')) {
+                        document.getElementById('agama').value = data.agama || '';
+                    }
+                    if (document.getElementById('warga_negara')) {
+                        document.getElementById('warga_negara').value = data.kewarganegaraan || '';
+                    }
+                    if (document.getElementById('alamat')) {
+                        document.getElementById('alamat').value = data.alamat || '';
+                    }
+                } else {
+                    // Handle jika NIK tidak ditemukan
+                    document.getElementById('nama').value = '';
+                    document.getElementById('tempat_lahir').value = '';
+                    document.getElementById('tanggal_lahir').value = '';
+                    document.getElementById('jenis_kelamin').value = '';
+                    document.getElementById('agama').value = '';
+                    document.getElementById('warga_negara').value = '';
+                    document.getElementById('alamat').value = '';
+                }
+            };
+
+            xhr.send();
+        });
+    </script>
+@endpush
+
 @section('content')
 <div class="pagetitle">
     <h1>Surat Keterangan Tidak Bekerja</h1>
@@ -51,15 +107,15 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="nama" class="col-sm-3 col-form-label">Nama</label>
+                                            <label for="nik" class="col-sm-3 col-form-label">NIK</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}" required>
+                                                <input type="number" name="nik" class="form-control" id="nik" value="{{ old('nik') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="nik" class="col-sm-3 col-form-label">NIK</label>
+                                            <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="nik" class="form-control" id="nik" value="{{ old('nik') }}" required>
+                                                <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -102,8 +158,8 @@
                                             <div class="col-sm-9">
                                                 <select id="warga_negara" name="warga_negara" class="form-select" required>
                                                     <option value="" @if(old('warga_negara')=='' ) selected @endif>Pilih Warga Negara ...</option>
-                                                    <option value="Indonesia" @if(old('warga_negara')=='Indonesia' ) selected @endif>Indonesia</option>
-                                                    <option value="Asing" @if(old('warga_negara')=='Asing' ) selected @endif>Asing</option>
+                                                    <option value="WNI" @if(old('warga_negara')=='WNI' ) selected @endif>WNI</option>
+                                                    <option value="WNA" @if(old('warga_negara')=='WNA' ) selected @endif>WNA</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -350,9 +406,9 @@
                                                     <label for="warga_negara3" class="col-sm-3 col-form-label">Warga Negara</label>
                                                     <div class="col-sm-9">
                                                         <select id="warga_negara3" name="warga_negara" class="form-select" required>
-                                                            <option value="" {{ ($value->warga_negara == "") ? 'selected' : '' }}>Pilih Jenis Kelamin ...</option>
-                                                            <option value="Indonesia" {{ ($value->warga_negara == "Indonesia") ? 'selected' : '' }}>Indonesia</option>
-                                                            <option value="Asing" {{ ($value->warga_negara == "Asing") ? 'selected' : '' }}>Asing</option>
+                                                            <option value="" {{ ($value->warga_negara == "") ? 'selected' : '' }}>Pilih Warga Negara ...</option>
+                                                            <option value="WNI" {{ ($value->warga_negara == "WNI") ? 'selected' : '' }}>WNI</option>
+                                                            <option value="WNA" {{ ($value->warga_negara == "WNA") ? 'selected' : '' }}>WNA</option>
                                                         </select>
                                                     </div>
                                                 </div>

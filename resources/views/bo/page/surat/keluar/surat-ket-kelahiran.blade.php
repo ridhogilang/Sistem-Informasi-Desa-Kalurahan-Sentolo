@@ -1,5 +1,104 @@
 @extends('bo.layout.master')
 
+@push('scripts')
+    <script>
+        // Mendapatkan elemen input NIK Data Ayah
+        var nik_ayahInput = document.getElementById('nik_ayah');
+        // Mendapatkan elemen input NIK Data Ibu
+        var nik_ibuInput = document.getElementById('nik_ibu');
+
+        // Menambahkan event listener ketika nilai input NIK berubah Orang 1
+        nik_ayahInput.addEventListener('input', function() {
+            var nik_ayah = this.value;
+
+            // Buat permintaan AJAX untuk mengambil data berdasarkan NIK
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get-penduduk/' + nik_ayah, true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    // Isi input dengan data yang diterima
+                    if (document.getElementById('nama_ayah')) {
+                        document.getElementById('nama_ayah').value = data.nama || '';
+                    }
+                    if (document.getElementById('tempat_lahir_ayah')) {
+                        document.getElementById('tempat_lahir_ayah').value = data.tempat_lahir || '';
+                    }
+                    if (document.getElementById('tanggal_lahir_ayah')) {
+                        document.getElementById('tanggal_lahir_ayah').value = data.tanggal_lahir || '';
+                    }
+                    if (document.getElementById('agama_ayah')) {
+                        document.getElementById('agama_ayah').value = data.agama || '';
+                    }
+                    if (document.getElementById('pekerjaan_ayah')) {
+                        document.getElementById('pekerjaan_ayah').value = data.pekerjaan || '';
+                    }
+                    if (document.getElementById('alamat_ayah')) {
+                        document.getElementById('alamat_ayah').value = data.alamat || '';
+                    }
+                } else {
+                    // Handle jika NIK tidak ditemukan
+                    document.getElementById('nama_ayah').value = '';
+                    document.getElementById('tempat_lahir_ayah').value = '';
+                    document.getElementById('tanggal_lahir_ayah').value = '';
+                    document.getElementById('agama_ayah').value = '';
+                    document.getElementById('pekerjaan_ayah').value = '';
+                    document.getElementById('alamat_ayah').value = '';
+                }
+            };
+
+            xhr.send();
+        });
+
+        // Menambahkan event listener ketika nilai input NIK berubah Orang 1
+        nik_ibuInput.addEventListener('input', function() {
+            var nik_ibu = this.value;
+
+            // Buat permintaan AJAX untuk mengambil data berdasarkan NIK
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get-penduduk/' + nik_ibu, true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    // Isi input dengan data yang diterima
+                    if (document.getElementById('nama_ibu')) {
+                        document.getElementById('nama_ibu').value = data.nama || '';
+                    }
+                    if (document.getElementById('tempat_lahir_ibu')) {
+                        document.getElementById('tempat_lahir_ibu').value = data.tempat_lahir || '';
+                    }
+                    if (document.getElementById('tanggal_lahir_ibu')) {
+                        document.getElementById('tanggal_lahir_ibu').value = data.tanggal_lahir || '';
+                    }
+                    if (document.getElementById('agama_ibu')) {
+                        document.getElementById('agama_ibu').value = data.agama || '';
+                    }
+                    if (document.getElementById('pekerjaan_ibu')) {
+                        document.getElementById('pekerjaan_ibu').value = data.pekerjaan || '';
+                    }
+                    if (document.getElementById('alamat_ibu')) {
+                        document.getElementById('alamat_ibu').value = data.alamat || '';
+                    }
+                } else {
+                    // Handle jika NIK tidak ditemukan
+                    document.getElementById('nama_ibu').value = '';
+                    document.getElementById('tempat_lahir_ibu').value = '';
+                    document.getElementById('tanggal_lahir_ibu').value = '';
+                    document.getElementById('agama_ibu').value = '';
+                    document.getElementById('pekerjaan_ibu').value = '';
+                    document.getElementById('alamat_ibu').value = '';
+                }
+            };
+
+            xhr.send();
+        });
+    </script>
+@endpush
+
 @section('content')
 <div class="pagetitle">
     <h1>Surat Keterangan Kelahiran</h1>
@@ -130,15 +229,15 @@
                                         </div>
                                         <h5 class="modal-title mt-2 mb-3"><strong>Data Ayah</strong></h5>
                                         <div class="row mb-3">
-                                            <label for="nama_ayah" class="col-sm-3 col-form-label">Nama</label>
+                                            <label for="nik_ayah" class="col-sm-3 col-form-label">NIK</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="nama_ayah" class="form-control" id="nama_ayah" value="{{ old('nama_ayah') }}" required>
+                                                <input type="number" name="nik_ayah" class="form-control" id="nik_ayah" value="{{ old('nik_ayah') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="nik_ayah" class="col-sm-3 col-form-label">NIK</label>
+                                            <label for="nama_ayah" class="col-sm-3 col-form-label">Nama</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="nik_ayah" class="form-control" id="nik_ayah" value="{{ old('nik_ayah') }}" required>
+                                                <input type="text" name="nama_ayah" class="form-control" id="nama_ayah" value="{{ old('nama_ayah') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -180,15 +279,15 @@
                                         </div>
                                         <h5 class="modal-title mt-2 mb-3"><strong>Data Ibu</strong></h5>
                                         <div class="row mb-3">
-                                            <label for="nama_ibu" class="col-sm-3 col-form-label">Nama</label>
+                                            <label for="nik_ibu" class="col-sm-3 col-form-label">NIK</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="nama_ibu" class="form-control" id="nama_ibu" value="{{ old('nama_ibu') }}" required>
+                                                <input type="number" name="nik_ibu" class="form-control" id="nik_ibu" value="{{ old('nik_ibu') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="nik_ibu" class="col-sm-3 col-form-label">NIK</label>
+                                            <label for="nama_ibu" class="col-sm-3 col-form-label">Nama</label>
                                             <div class="col-sm-9">
-                                                <input type="text" name="nik_ibu" class="form-control" id="nik_ibu" value="{{ old('nik_ibu') }}" required>
+                                                <input type="text" name="nama_ibu" class="form-control" id="nama_ibu" value="{{ old('nama_ibu') }}" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
