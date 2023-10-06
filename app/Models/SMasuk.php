@@ -13,6 +13,7 @@ class SMasuk extends Model
     protected $fillable = [
         'id',
         'nomor_surat',
+        'judul_surat',
         'tanggal_surat',
         'kepada_id_user',
         'kepada_jabatan',
@@ -21,6 +22,7 @@ class SMasuk extends Model
         'catatan',
         'lampiran',
         'dokumen',
+        'link',
         'disposisi',
         'jenis_surat',
         'status_surat',

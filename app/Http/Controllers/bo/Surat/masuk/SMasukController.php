@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\File;
-//model 
+//model
 use App\Models\SMasuk;
 use App\Models\User;
 use App\Models\DisposisiSurat;
@@ -53,13 +53,13 @@ class SMasukController extends Controller
         $TemplateNoSurat = "000/KET/PEM/{$bulanRomawi}/" . date('Y');
         //badge
         $badge_disposisi = [
-            '0' => '<span class="badge bg-info"> Posisi Surat </span>', 
-            '1' => '<span class="badge bg-secondary"> menunggu </span>', 
-            '2' => '<span class="badge bg-success"> diterima </span>', 
-            '3' => '<span class="badge bg-success"> dilanjutkan </span>', 
-            '4' => '<span class="badge bg-warning"> dikembalikan </span>', 
-            '5' => '<span class="badge bg-primary"> dilaksanakan </span>', 
-            '6' => '<span class="badge bg-danger"> terlambat </span>', 
+            '0' => '<span class="badge bg-info"> Posisi Surat </span>',
+            '1' => '<span class="badge bg-secondary"> menunggu </span>',
+            '2' => '<span class="badge bg-success"> diterima </span>',
+            '3' => '<span class="badge bg-success"> dilanjutkan </span>',
+            '4' => '<span class="badge bg-warning"> dikembalikan </span>',
+            '5' => '<span class="badge bg-primary"> dilaksanakan </span>',
+            '6' => '<span class="badge bg-danger"> terlambat </span>',
         ];
 
         return view('bo.page.surat.masuk.surat-masuk', [
@@ -78,6 +78,7 @@ class SMasukController extends Controller
                 'required',
                 'unique:s_masuk,nomor_surat', // Pastikan nomor surat unik di tabel
             ],
+            'judul_surat' => 'required',
             'tanggal_surat' => 'required',
             'kepada' => 'required',
             'keperluan' => 'required',
@@ -96,9 +97,12 @@ class SMasukController extends Controller
 
         // Upload file ke Google Drive
         $file = $request->file('dokumen');
-        $fileName = 'SM-' . time() . '.' . $file->getClientOriginalExtension();
+        $fileName = 'SM-' . $request->judul_surat . '-' . date('d-m-Y') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
         Storage::disk('google')->put('Surat Masuk/' .$fileName, file_get_contents($file));
         $record['dokumen'] = $fileName;
+
+        $publicUrl = Storage::disk('google')->url('Surat Masuk/' . $fileName);
+        $record['link'] = $publicUrl;
 
         $record['jenis_surat'] = 'Surat Masuk';
         $record['id'] = 'SM-'. date('YmdHis') . '-' . rand(100, 999);
@@ -133,21 +137,15 @@ class SMasukController extends Controller
     {
         // Temukan data surat masuk berdasarkan ID
         $smasuk = SMasuk::find($id);
+        // Tentukan nama file dan jalur lengkapnya
         if (!$smasuk) {
             // Handle jika data tidak ditemukan
             abort(404);
         }
-        // Tentukan nama file dan jalur lengkapnya
-        // $filePath = 'Surat Masuk/' . $smasuk->dokumen;
+        // Dapatkan URL publik ke file di Google Drive
         $publicUrl = Storage::disk('google')->url('Surat Masuk/' . $smasuk->dokumen);
-
-        // if (file_exists($filePath)) {
-        //     // Tampilkan file jika ada
-        //     return response()->file($filePath);
-        // } else {
-        //     // Handle jika file tidak ditemukan
-        //     abort(404);
-        // }
+        // Redirect pengguna ke URL file di Google Drive
+        return redirect($publicUrl);
     }
     public function update(Request $request, $id)
     {
@@ -157,6 +155,7 @@ class SMasukController extends Controller
                 'required',
                 Rule::unique('s_masuk', 'nomor_surat')->ignore($id),
             ],
+            'judul_surat' => 'required',
             'tanggal_surat' => 'required',
             'kepada' => 'required',
             'keperluan' => 'required',
@@ -170,15 +169,17 @@ class SMasukController extends Controller
         ]);
 
         if ($request->hasFile('dokumen')) {
-            // Hapus file dokumen lama jika ada
-            File::delete(public_path('dokumen/' . $smasuk->dokumen));
+            // Hapus file dokumen lama di Google Drive jika ada
+            Storage::disk('google')->delete('Surat Masuk/' . $smasuk->dokumen);
 
-            // Generate nama unik untuk file dokumen baru
-            $namaDokumen = 'SM-' . time() . '.' . $request->file('dokumen')->getClientOriginalExtension();
-            $request->file('dokumen')->move(public_path('dokumen'), $namaDokumen);
-            $record['dokumen'] = $namaDokumen;
+            $file = $request->file('dokumen');
+            $fileName = 'SM-' . $request->judul_surat . '-' . date('d-m-Y') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('google')->put('Surat Masuk/' . $fileName, file_get_contents($file));
+            $record['dokumen'] = $fileName;
+            // Dapatkan URL publik ke file di Google Drive
+            $publicUrl = Storage::disk('google')->url('Surat Masuk/' . $fileName);
+            $record['link'] = $publicUrl;
         }
-
 
         $record['jenis_surat'] = 'Surat Masuk';
         list($record['kepada_id_user'], $record['kepada_jabatan']) = explode("/", $record['kepada']);
@@ -213,20 +214,13 @@ class SMasukController extends Controller
         // Temukan data Surat Masuk berdasarkan ID
         $smasuk = SMasuk::find($id);
 
-        //dokumen masuk ntar ndak di delete hanya diarsipkan dan mengendap jadi sudahlah ntar dipikir belakangan jadi bagai
-        if ($smasuk->dokumen) {
-            File::delete(public_path('dokumen/' . $smasuk->dokumen));
-
         // Hapus file dari Google Drive
         $filePath = 'Surat Masuk/' . $smasuk->dokumen;
         // Periksa apakah file ada di Google Drive dan hapus jika ada
         if (Storage::disk('google')->exists($filePath)) {
             Storage::disk('google')->delete($filePath);
-
         }
         $smasuk->delete();
         return redirect()->back()->with('toast_success', 'Data Dihapus!');
     }
 }
-
-

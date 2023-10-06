@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('s_masuk', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('nomor_surat')->unique();
+            $table->string('judul_surat');
             $table->date('tanggal_surat');
             $table->string('kepada_id_user');
             $table->string('kepada_jabatan');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->string('catatan');
             $table->string('lampiran');
             $table->string('dokumen');
+            $table->string('link');
             $table->string('status_surat')->nullable();
             $table->string('jenis_surat');
             $table->string('is_arsip')->nullable();

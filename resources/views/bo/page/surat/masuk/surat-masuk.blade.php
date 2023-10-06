@@ -73,17 +73,17 @@
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
+                                                    <label for="judul_surat" class="col-sm-3 col-form-label">Judul Surat</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" id="judul_surat" name="judul_surat" value="{{ old('judul_surat') }}" required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
                                                     <label for="tanggal_surat" class="col-sm-3 col-form-label">Tanggal Surat</label>
                                                     <div class="col-sm-9">
                                                         <input type="date" class="form-control" id="tanggal_surat" name="tanggal_surat" value="{{ old('tanggal_surat') }}" required>
                                                     </div>
                                                 </div>
-                                                {{-- <div class="row mb-3">
-                                                    <label for="kepada" class="col-sm-3 col-form-label">Kepada</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="kepada" name="kepada" value="{{ old('kepada') }}" required>
-                                                    </div>
-                                                </div> --}}
                                                 <div class="row mb-3">
                                                     <label for="Kepada" class="col-sm-3 col-form-label">Tanda Tangan</label>
                                                     <div class="col-sm-9">
@@ -191,6 +191,12 @@
                                                             <label for="nomor_surat3" class="col-sm-3 col-form-label">Nomor Surat</label>
                                                             <div class="col-sm-9">
                                                                 <input type="text" class="form-control" id="nomor_surat3" name="nomor_surat" value="{{$value->nomor_surat}}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="judul_surat3" class="col-sm-3 col-form-label">Judul Surat</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" id="judul_surat3" name="judul_surat" value="{{$value->judul_surat}}" required>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
