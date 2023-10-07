@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('dilanjutkan_ke_disposisi')->nullable();
             $table->string('tgl_dilanjutkan_ke_disposisi')->nullable();
             $table->string('jenis_disposisi');
-            //menunggu, dikembali, dilanjutkan, dilaksanakan, gagal/terlamat 
+            //1 menunggu, 2 dilanjutkan, 3 dikembalikan, 4 dilaksanakan, 5 gagal/terlamat 
             $table->string('status_disposisi');
-            //Pertama atau penerima dari PU (nanti bisa menjadi pelaksana juga atau mengoper untuk di disposisikan serta menolak), DSS(hanya menolak melaksanakan dan mungkin jika terlambat hanya bisa mengisi alasan keterlambatan adeh kok tambah akeh yo), PLK(pelaksana nanti juga bisa menolak tetapi ini akan masuk dalam menu acara walaupun ini akan rada ribet hmmm ntahlah iyolah ngono sikik) 
+            //Pertama atau penerima dari PU (nanti bisa menjadi pelaksana juga atau mengoper untuk di disposisikan serta menolak), TRS(hanya menolak melaksanakan dan mungkin jika terlambat hanya bisa mengisi alasan keterlambatan adeh kok tambah akeh yo), PLK(pelaksana nanti juga bisa menolak tetapi ini akan masuk dalam menu acara walaupun ini akan rada ribet hmmm ntahlah iyolah ngono sikik) 
 
             //koyone pode si
             $table->string('catatan')->nullable();

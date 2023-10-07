@@ -12,10 +12,17 @@ class DisposisiSurat extends Model
     protected $fillable = [
         'id',
         'id_surat',
-        'nomor_surat',
-        'tanggal_kegiatan',
         'id_user',
         'jabatan_user',
         'is_arsip',
     ];
+
+    public function suratMasuk(){
+      return $this->hasOne(SMasuk::class, 'id', 'id_surat');   
+    }
+
+    public function detilDisposisi()
+    {
+        return $this->hasMany(DetailDisposisiSurat::class, 'id_surat', 'id_surat');
+    }
 }

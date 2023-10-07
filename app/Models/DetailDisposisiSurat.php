@@ -22,4 +22,8 @@ class DetailDisposisiSurat extends Model
         'status_disposisi',
         'catatan',
     ];
+
+    public function pamongDPSS(){
+      return $this->hasOne(User::class, 'id', 'id_user');   
+    }
 }

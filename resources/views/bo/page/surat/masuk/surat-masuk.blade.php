@@ -85,7 +85,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="Kepada" class="col-sm-3 col-form-label">Tanda Tangan</label>
+                                                    <label for="Kepada" class="col-sm-3 col-form-label">Kepada</label>
                                                     <div class="col-sm-9">
                                                         <select id="Kepada" name="kepada" class="form-select" required>
                                                             <option value="" disabled selected>Pilih Pejabat yang Menerima Surat</option>
@@ -206,7 +206,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="Kepada" class="col-sm-3 col-form-label">Tanda Tangan</label>
+                                                            <label for="Kepada" class="col-sm-3 col-form-label">Kepada</label>
                                                             <div class="col-sm-9">
                                                                 <select id="Kepada" name="kepada" class="form-select" required>
                                                                     <option value="" disabled selected>Pilih Pejabat yang Menerima Surat</option>

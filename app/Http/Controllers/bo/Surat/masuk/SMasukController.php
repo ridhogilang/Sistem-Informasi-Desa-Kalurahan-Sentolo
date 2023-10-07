@@ -113,8 +113,6 @@ class SMasukController extends Controller
         //disposisi
         $disposisi['id'] =  'DISPOSISI-'. date('YmdHis') . '-' . rand(100, 999);
         $disposisi['id_surat'] = $record['id'];
-        $disposisi['nomor_surat'] = $record['nomor_surat'];
-        $disposisi['tanggal_kegiatan'] = $record['tanggal_kegiatan'];
         $disposisi['id_user'] = $record['kepada_id_user'];
         $disposisi['jabatan_user'] = $record['kepada_jabatan'];
         DisposisiSurat::create($disposisi);
@@ -124,7 +122,7 @@ class SMasukController extends Controller
         $dtlDisposisi['id_user'] = $record['kepada_id_user'];
         $dtlDisposisi['jabatan_user'] = $record['kepada_jabatan'];
         $dtlDisposisi['diterima_dari_disposisi'] = $record['id'];
-        $dtlDisposisi['tgl_diterima_dari_disposisi'] = Carbon::now()->timestamp;
+        $dtlDisposisi['tgl_diterima_dari_disposisi'] = Carbon::now();
         $dtlDisposisi['jenis_disposisi'] = 'PTRM';
         $dtlDisposisi['status_disposisi'] = '1';
         DetailDisposisiSurat::create($dtlDisposisi);
@@ -190,18 +188,17 @@ class SMasukController extends Controller
         DetailDisposisiSurat::where('id_surat', '=', $id)->delete();
         //membuat disposisi baru
         $disposisi['id'] =  'DISPOSISI-'. date('YmdHis') . '-' . rand(100, 999);
-        $disposisi['id_surat'] = $record['id'];
-        $disposisi['tanggal_kegiatan'] = $record['tanggal_kegiatan'];
+        $disposisi['id_surat'] = $id;
         $disposisi['id_user'] = $record['kepada_id_user'];
         $disposisi['jabatan_user'] = $record['kepada_jabatan'];
         DisposisiSurat::create($disposisi);
         //detail disposisi
         $dtlDisposisi['id'] = 'DTL-DISPOSISI-'. date('YmdHis') . '-' . rand(100, 999);
-        $dtlDisposisi['id_surat'] = $record['id'];
+        $dtlDisposisi['id_surat'] = $id;
         $dtlDisposisi['id_user'] = $record['kepada_id_user'];
         $dtlDisposisi['jabatan_user'] = $record['kepada_jabatan'];
-        $dtlDisposisi['diterima_dari_disposisi'] = $record['id'];
-        $dtlDisposisi['tgl_diterima_dari_disposisi'] = Carbon::now()->timestamp;
+        $dtlDisposisi['diterima_dari_disposisi'] = $id;
+        $dtlDisposisi['tgl_diterima_dari_disposisi'] = Carbon::now();
         $dtlDisposisi['jenis_disposisi'] = 'PTRM';
         $dtlDisposisi['status_disposisi'] = '1';
         DetailDisposisiSurat::create($dtlDisposisi);

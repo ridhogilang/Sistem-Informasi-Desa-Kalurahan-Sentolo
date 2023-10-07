@@ -25,14 +25,14 @@ use App\Http\Controllers\bo\Surat\keluar\SkdController;
 use App\Http\Controllers\bo\Surat\keluar\SklController;
 use App\Http\Controllers\bo\Surat\keluar\SkpenghasilanController;
 use App\Http\Controllers\bo\Surat\keluar\SpbbekerjaController;
+use App\Http\Controllers\ScstmController;
 //validasi surat keluar
 use App\Http\Controllers\bo\Surat\validasi\ValidasiController;
 //disposisi surat masuk
 use App\Http\Controllers\bo\Surat\disposisi\DisposisiController;
+use App\Http\Controllers\bo\Surat\disposisi\AcaraController;
 //arsip
 use App\Http\Controllers\bo\Surat\arsip\ArsipController;
-
-use App\Http\Controllers\ScstmController;
 //penduduk
 use App\Http\Controllers\PendudukController;
 
@@ -104,9 +104,10 @@ Route::prefix('admin')->group(function () {
                 ]);
             })->name('bo.e-surat.dashboard');
             //validasi surat keluar
-            Route::resource('/validasi', ValidasiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy'])->middleware('can:verifikasi surat');
+            Route::resource('/validasi', ValidasiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
             //disposisi surat masuk
             Route::resource('/disposisi', DisposisiController::class, ['as' => 'bo.surat']);
+            
             //arsip
             Route::resource('/arsip', ArsipController::class, ['as' => 'bo.surat']);
             // SKTM Satu Orang
