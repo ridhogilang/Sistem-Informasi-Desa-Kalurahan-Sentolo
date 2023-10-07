@@ -27,7 +27,7 @@
                                     <th scope="col" class="text-center">No.</th>
                                     <th scope="col" class="text-center">Nomor Surat</th>
                                     <th scope="col" class="text-center">Tanggal Kegiatan</th>
-                                    <th scope="col" class="text-center">Status</th>
+                                    <th scope="col" class="text-center">Riwayat</th>
                                     <th scope="col" class="text-center">Isi Surat</th>
                                     <th scope="col" class="text-center">Action</th>
                                 </tr>
@@ -48,7 +48,7 @@
                                             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Status Surat {{ $value->suratMasuk->nomor_surat }}</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Riwayat Surat {{ $value->suratMasuk->nomor_surat }}</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -67,24 +67,30 @@
                                                                     @endif
                                                                     <!-- memilih status -->
                                                                     @if($detildis->status_disposisi == '1' || $detildis->status_disposisi == '4')
+                                                                        {!! ($detildis->jenis_disposisi == 'PLK')?$badge_disposisi_status['4']:''!!}
+
                                                                         {!! $badge_disposisi_status[$detildis->status_disposisi] !!}
+            
                                                                     @else
                                                                     Tindakan : {{ $detildis->tgl_dilanjutkan_ke_disposisi }}<br>
+                                                                        {!! ($detildis->jenis_disposisi == 'PLK')?$badge_disposisi_status['4']:''!!}
                                                                         {!! $badge_disposisi_status[$detildis->status_disposisi] !!} {{ $detildis->catatan }}
                                                                     @endif
+
                                                                 </div>
                                                             </div>
                                                             <?php 
-                                                                $pamongDpsCR[$value->id] = array_search($detildis->id_user, $pamongDps[$value->id]);
-                                                                if ($pamongDpsCR[$value->id] !== false) 
-                                                                {
-                                                                    if($detildis->jenis_disposisi == 'KMB'){
-                                                                        array_splice($pamongDps[$value->id], $pamongDpsCR[$value->id], 1);
+                                                                if (!in_array($detildis->id_user, $pamongDps[$value->id])) {
+                                                                    if ($detildis->status_disposisi != '3') {
+                                                                        $pamongDps[$value->id][] = $detildis->id_user;
                                                                     }
-                                                                }else
-                                                                {
-                                                                    $pamongDps[$value->id][] = $detildis->id_user;
+                                                                } else {
+                                                                    $index = array_search($detildis->id_user, $pamongDps[$value->id]);
+                                                                    if ($detildis->status_disposisi == '3' && $index !== false) {
+                                                                        array_splice($pamongDps[$value->id], $index, 1);
+                                                                    }
                                                                 }
+
 
                                                                 if(auth()->user()->id == $detildis->id_user && $detildis->status_disposisi == '4')
                                                                 {
@@ -92,7 +98,10 @@
                                                                 }
 
                                                                 $id_dtl[$value->id] = $detildis->id;
-                                                            ?> 
+
+
+                                                            ?>
+
                                                             @endforeach
                                                         </div>
                                                     </div>

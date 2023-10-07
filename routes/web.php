@@ -1,5 +1,5 @@
 <?php
-
+//bantuan (FAQ)
 use App\Http\Controllers\bo\Bantuan\BantuanController;
 //login dan user
 use App\Http\Controllers\bo\Auth\LoginController;
@@ -107,7 +107,7 @@ Route::prefix('admin')->group(function () {
             Route::resource('/validasi', ValidasiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
             //disposisi surat masuk
             Route::resource('/disposisi', DisposisiController::class, ['as' => 'bo.surat']);
-            
+            Route::get('/disposisi/laksana/{id}', [ DisposisiController::class, 'executor_imp']);
             //arsip
             Route::resource('/arsip', ArsipController::class, ['as' => 'bo.surat']);
             // SKTM Satu Orang

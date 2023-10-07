@@ -39,6 +39,8 @@ class DisposisiController extends Controller
             '2' => '<span class="badge bg-success"> diteruskan </span>', 
             '3' => '<span class="badge bg-danger"> dikembalikan </span>', 
             '4' => '<span class="badge bg-primary"> pelaksana </span>', 
+            '5' => '<span class="badge bg-success"> terlaksana </span>', 
+            '6' => '<span class="badge bg-danger"> gagal dilaksanakan </span>', 
         ];
 
         //untuk mengetahui perorangan;
@@ -206,4 +208,11 @@ class DisposisiController extends Controller
 
         return redirect()->back()->with('toast_success', 'Surat Berhasil di teruskan');
     }
+
+    public function executor_imp(Request $request, string $id)
+    {
+        //nanti buat meletakkan acaara
+        dd('woke '.$id);
+    }
+    
 }
