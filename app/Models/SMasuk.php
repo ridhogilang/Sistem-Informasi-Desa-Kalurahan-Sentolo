@@ -34,4 +34,9 @@ class SMasuk extends Model
         return $this->hasOne(User::class, 'id', 'kepada_id_user');
     }
 
+    public function detilDisposisi()
+    {
+        return $this->hasMany(DetailDisposisiSurat::class, 'id_surat', 'id');
+    }
+
 }

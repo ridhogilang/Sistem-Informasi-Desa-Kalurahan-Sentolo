@@ -39,8 +39,10 @@ class DisposisiController extends Controller
             '2' => '<span class="badge bg-success"> diteruskan </span>', 
             '3' => '<span class="badge bg-danger"> dikembalikan </span>', 
             '4' => '<span class="badge bg-primary"> pelaksana </span>', 
+            //bagian hasil surat
             '5' => '<span class="badge bg-success"> terlaksana </span>', 
             '6' => '<span class="badge bg-danger"> gagal dilaksanakan </span>', 
+            '7' => '<span class="badge bg-warning"> terlambat dilaksanakan </span>', 
         ];
 
         //untuk mengetahui perorangan;
@@ -110,21 +112,26 @@ class DisposisiController extends Controller
         $dtldpss = DetailDisposisiSurat::findOrFail($id);
         $id_surat = $dtldpss->id_surat;
 
+        if($dtldpss->jenis_disposisi == 'PLK')
+        {
+            return redirect()->back()->with('toast_warning', 'Anda tidak bisa meneruskan surat ini'); 
+        }
+
         $record = $request->validate([
             'kepada' => 'required',
             'jenis_disposisi' => 'required',
             'catatan' => 'nullable',
         ]);
-
+        //kepada disposisi surat
         list($record['id_user'], $record['jabatan_user']) = explode("/", $record['kepada']);
         unset($record['kepada']);
-
+        //record tambahan
         $record['id'] = 'DTL-DISPOSISI-'. date('YmdHis') . '-' . rand(100, 999);
         $record['id_surat'] = $id_surat;
         $record['diterima_dari_disposisi'] = $id;
         $record['tgl_diterima_dari_disposisi'] = Carbon::now();
         $record['status_disposisi'] = '1';
-
+        //update detail disposisi lama
         DetailDisposisiSurat::where('id', $id)
             ->update([
                 'dilanjutkan_ke_disposisi' =>  $record['id'],
@@ -134,14 +141,15 @@ class DisposisiController extends Controller
             ]);
 
         unset($record['catatan']);
+        //menambahkan disposisi surat yang baru
         DetailDisposisiSurat::create($record);
-
+        //mengupdate posisi disposisi
         DisposisiSurat::where('id_surat', '=', $id_surat)
             ->update([
                 'id_user' => $record['id_user'],
                 'jabatan_user' => $record['jabatan_user']
             ]);
-
+        //mengupdate status surat masuk 
         SMasuk::where('id', '=', $id_surat)->update(['status_surat' => '2']);
 
         return redirect()->back()->with('toast_success', 'Surat Berhasil di teruskan');
@@ -156,7 +164,6 @@ class DisposisiController extends Controller
         $dtldpss = DetailDisposisiSurat::findOrFail($id);
         $id_surat = $dtldpss->id_surat;
 
-        // dd($dpssSblm->diterima_dari_disposisi);
         $record = $request->validate([
             'catatan' => 'required',
         ]);
@@ -192,7 +199,7 @@ class DisposisiController extends Controller
                 ]);
         }
 
-
+        //mengupdat disposisi surat lama
         DetailDisposisiSurat::where('id', $id)
             ->update([
                 'dilanjutkan_ke_disposisi' =>  $dtldpss->diterima_dari_disposisi,
@@ -201,18 +208,106 @@ class DisposisiController extends Controller
                 'status_disposisi' => '3'
             ]);
         unset($record['catatan']);
-
+        //membuat disposisi surat yang baru
         DetailDisposisiSurat::create($record);
 
 
 
-        return redirect()->back()->with('toast_success', 'Surat Berhasil di teruskan');
+        return redirect()->back()->with('toast_success', 'Surat Berhasil di Kembalikan');
     }
 
     public function executor_imp(Request $request, string $id)
     {
-        //nanti buat meletakkan acaara
-        dd('woke '.$id);
+        $dtldpss = DetailDisposisiSurat::findOrFail($id);
+        $id_surat = $dtldpss->id_surat;
+
+        $record = $request->validate([
+            'catatan' => 'required',
+        ]);
+
+
+        $surat = SMasuk::find($id_surat);
+
+        $record['tgl_dilanjutkan_ke_disposisi'] = Carbon::now();
+        $record['dilanjutkan_ke_disposisi'] = 'ARSIP';
+        
+
+        //mengecek apakah surat sudah terlambat atau belum
+        if(Carbon::now() > $surat->tanggal_kegiatan)
+            {
+                $record['status_disposisi'] = '7';
+            }
+        else
+            {
+                $record['status_disposisi'] = '5';
+            }
+        //jika pelaksana hanya update
+        if($dtldpss->jenis_disposisi == 'PLK')
+        {
+            //update disposisi
+            $dtldpss->update($record); 
+            //proses pengarsipan surat masuk           
+            DisposisiSurat::where('id_surat', '=', $id_surat)
+                ->update(['is_arsip' => '1']);
+
+           $surat->update([
+                    'is_arsip' => '1',
+                    'status_surat' => $record['status_disposisi'],
+                ]);
+
+            ArsipSurat::create([
+                'id' => 'ARSIP-' . date('YmdHis') . '-' . rand(100, 999),
+                'id_surat' => $id_surat,
+                'nomor_surat' => $surat->nomor_surat,
+                'jenis_surat' => $surat->keperluan,
+                'jenis_surat_2' => 'Surat Masuk',
+                'surat_penghapusan' => null,
+                'is_delete' => '0',
+            ]);
+            return redirect()->back()->with('toast_success', 'Surat Berhasil di Laksanakan');
+        }
+        else
+        {
+            $record['id'] = 'DTL-DISPOSISI-'. date('YmdHis') . '-' . rand(100, 999);
+            $record['id_surat'] = $id_surat;
+            $record['id_user'] = auth()->user()->id;
+            $record['jabatan_user'] = auth()->user()->roles[0]['name'];
+            $record['jenis_disposisi'] = 'PLK';
+            $record['tgl_diterima_dari_disposisi'] = $record['tgl_dilanjutkan_ke_disposisi'];
+            $record['diterima_dari_disposisi'] = $id;
+
+
+            //diupdate dulu 
+            $dtldpss->update([
+                'tgl_dilanjutkan_ke_disposisi' => $record['tgl_dilanjutkan_ke_disposisi'],
+                'dilanjutkan_ke_disposisi' => $record['id'],
+                'status_disposisi' => '2',
+            ]);
+
+            //buat baru
+            DetailDisposisiSurat::create($record);
+
+            //proses pengarsipan surat masuk
+            DisposisiSurat::where('id_surat', '=', $id_surat)
+                ->update(['is_arsip' => '1']);
+
+            $surat->update([
+                    'is_arsip' => '1',
+                    'status_surat' => $record['status_disposisi'],
+                ]);
+
+            ArsipSurat::create([
+                'id' => 'ARSIP-' . date('YmdHis') . '-' . rand(100, 999),
+                'id_surat' => $id_surat,
+                'nomor_surat' => $surat->nomor_surat,
+                'jenis_surat' => $surat->keperluan,
+                'jenis_surat_2' => 'Surat Masuk',
+                'surat_penghapusan' => null,
+                'is_delete' => '0',
+            ]);
+
+            return redirect()->back()->with('toast_success', 'Surat Berhasil di Laksanakan');
+        }
     }
     
 }

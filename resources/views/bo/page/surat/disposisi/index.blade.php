@@ -62,11 +62,15 @@
                                                                     Diterima : {{ $detildis->tgl_diterima_dari_disposisi }}<br>
                                                                     @if(auth()->user()->id == $detildis->id_user)
                                                                         Anda <br>
+                                                                    @elseif($detildis->id_user == 'PU')
+                                                                        ( {{ $detildis->jabatan_user }} )<br>
                                                                     @else
                                                                         {{ $detildis->pamongDPSS->nama }} ( {{ $detildis->jabatan_user }} )<br>
                                                                     @endif
                                                                     <!-- memilih status -->
-                                                                    @if($detildis->status_disposisi == '1' || $detildis->status_disposisi == '4')
+                                                                    @if($detildis->id_user == 'PU')
+                                                                        Surat Dianalisis ulang oleh Pelayanan Umum
+                                                                    @elseif($detildis->status_disposisi == '1' || $detildis->status_disposisi == '4')
                                                                         {!! ($detildis->jenis_disposisi == 'PLK')?$badge_disposisi_status['4']:''!!}
 
                                                                         {!! $badge_disposisi_status[$detildis->status_disposisi] !!}
@@ -92,12 +96,8 @@
                                                                 }
 
 
-                                                                if(auth()->user()->id == $detildis->id_user && $detildis->status_disposisi == '4')
-                                                                {
-                                                                    // bagian pelaksanaan dan hanya true dan false untuk memunculkan modal yang berbeda
-                                                                }
-
                                                                 $id_dtl[$value->id] = $detildis->id;
+                                                                $id_jns[$value->id] = $detildis->jenis_disposisi;
 
 
                                                             ?>
@@ -111,6 +111,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <td class="text-center">
                                             <a href="{{ route('bo.surat.disposisi.show', $value['id_surat']) }}" target="blank" class="btn btn-primary">
                                                 <i class="bi bi-file-earmark"></i>
@@ -141,11 +142,17 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button data-bs-toggle="modal" data-bs-target="#kembalikan_{{$value->id}}" type="button" class="btn btn-warning">
+                                                                <button data-bs-toggle="modal" data-bs-target="#kembalikan_{{$value->id}}" type="button" class="btn btn-danger">
                                                                     Kembalikan
                                                                 </button>
+                                                                @if($id_jns[$value->id] != 'PLK')
                                                                 <button data-bs-toggle="modal" data-bs-target="#teruskan_{{$value->id}}" type="button" class="btn btn-success">
                                                                     Teruskan
+                                                                </button>
+                                                                @endif
+
+                                                                <button data-bs-toggle="modal" data-bs-target="#laksanakan_{{$value->id}}" type="button" class="btn btn-primary">
+                                                                    Laksanakan
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -198,16 +205,12 @@
                                                                         </div>
                                                                     </div>
 
-
-
-
-                                                                        
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary">
-                                                                    Simpan
+                                                                <button type="submit" class="btn btn-success">
+                                                                    Teruskan
                                                                 </button>
                                                             </div>
                                                         </form>
@@ -215,7 +218,8 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- modal disposisi teruskan-->
+                                                @if($id_jns[$value->id] != 'PLK')
+                                                <!-- modal disposisi kembalikan-->
                                                 <div class="modal fade" id="kembalikan_{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                                         <div class="modal-content">
@@ -242,17 +246,53 @@
                                                                             <textarea name="catatan" class="form-control" id="catatan" rows="5" required></textarea>
                                                                         </div>
                                                                     </div>
-
-
-
-
                                                                         
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-danger">
+                                                                    Kembalikan
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @endif
+
+                                                <!-- modal disposisi laksanakan-->
+                                                <div class="modal fade" id="laksanakan_{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Laporan Pelaksanaan Surat {{ $value->suratMasuk->nomor_surat }}</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <form method="POST" action="{{ route('bo.surat.disposisi.executor_imp', $id_dtl[$value->id]) }}">
+                                                                @method('PUT')
+                                                                @csrf
+                                                            <div class="modal-body">
+                                                                <div class="container">
+                                                                            
+                                                                    <div class="row mb-3">
+                                                                        <div class="col">
+                                                                            <p>Berikan catatan mengapa Anda mengembalikan Surat {{ $value->suratMasuk->nomor_surat }}</p>
+                                                                        </div>
+                                                                    </div>
+                                            
+                                                                    <div class="row mb-3">
+                                                                        <label for="catatan" class="col-sm-3 col-form-label">Catatan</label>
+                                                                        <div class="col-sm-9">
+                                                                            <textarea name="catatan" class="form-control" id="catatan" rows="5" required></textarea>
+                                                                        </div>
+                                                                    </div>                                           
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                 <button type="submit" class="btn btn-primary">
-                                                                    Simpan
+                                                                    Laksanakan
                                                                 </button>
                                                             </div>
                                                         </form>

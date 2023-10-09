@@ -106,8 +106,8 @@ Route::prefix('admin')->group(function () {
             //validasi surat keluar
             Route::resource('/validasi', ValidasiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
             //disposisi surat masuk
-            Route::resource('/disposisi', DisposisiController::class, ['as' => 'bo.surat']);
-            Route::get('/disposisi/laksana/{id}', [ DisposisiController::class, 'executor_imp']);
+            Route::resource('/disposisi', DisposisiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
+            Route::put('/disposisi/laksana/{id}', [ DisposisiController::class, 'executor_imp'])->name('bo.surat.disposisi.executor_imp');
             //arsip
             Route::resource('/arsip', ArsipController::class, ['as' => 'bo.surat']);
             // SKTM Satu Orang
@@ -220,7 +220,7 @@ Route::prefix('admin')->group(function () {
             Route::put('/surat-masuk/{id}', [SMasukController::class, 'update']);
             Route::get('/surat-masuk/{id}/view', [SMasukController::class, 'show']);
             Route::get('/surat-masuk/{id}/document', [SMasukController::class, 'document']);
-            Route::get('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy']);
+            Route::delete('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy']);
             // Surat Custom
             Route::get('/surat-cstm', [ScstmController::class, 'index']);
             Route::post('/surat-scstm', [ScstmController::class, 'store']);

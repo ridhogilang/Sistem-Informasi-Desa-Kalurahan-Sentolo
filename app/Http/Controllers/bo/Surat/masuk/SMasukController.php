@@ -26,7 +26,12 @@ class SMasukController extends Controller
     public function index()
     {
         //menyeleksi surat masuk
-        $smasuk= SMasuk::with('kepada_detil')->get();
+        $smasuk= SMasuk::with('kepada_detil')
+            ->with('detilDisposisi.pamongDPSS')
+            ->where('is_arsip', '=', null)
+            ->get();
+
+        // dd($smasuk[0]->detilDisposisi);
         //untuk mengetahui perorangan;
         $pejabat = User::where('jabatan', '<>', null)
                     ->where('is_active', '=', '1')
@@ -51,15 +56,18 @@ class SMasukController extends Controller
         ];
         $bulanRomawi = $angkaRomawi[$bulanSekarang];
         $TemplateNoSurat = "000/KET/PEM/{$bulanRomawi}/" . date('Y');
+        //tgl hari ini
+        $tgl_hr_ini = date('Y-m-d');
         //badge
-        $badge_disposisi = [
-            '0' => '<span class="badge bg-info"> Posisi Surat </span>',
-            '1' => '<span class="badge bg-secondary"> menunggu </span>',
-            '2' => '<span class="badge bg-success"> diterima </span>',
-            '3' => '<span class="badge bg-success"> dilanjutkan </span>',
-            '4' => '<span class="badge bg-warning"> dikembalikan </span>',
-            '5' => '<span class="badge bg-primary"> dilaksanakan </span>',
-            '6' => '<span class="badge bg-danger"> terlambat </span>',
+        $badge_disposisi_status = [
+            '1' => '<span class="badge bg-secondary"> menunggu tindakan </span>', 
+            '2' => '<span class="badge bg-success"> diteruskan </span>', 
+            '3' => '<span class="badge bg-danger"> dikembalikan </span>', 
+            '4' => '<span class="badge bg-primary"> pelaksana </span>', 
+            //bagian hasil surat
+            '5' => '<span class="badge bg-success"> terlaksana </span>', 
+            '6' => '<span class="badge bg-danger"> gagal dilaksanakan </span>', 
+            '7' => '<span class="badge bg-warning"> terlambat dilaksanakan </span>', 
         ];
 
         return view('bo.page.surat.masuk.surat-masuk', [
@@ -67,8 +75,9 @@ class SMasukController extends Controller
             'dropdown2' => '',
             'title' => 'Surat Masuk',
             'pejabat' => $pejabat,
-            'badge_disposisi' => $badge_disposisi,
-            'TemplateNoSurat' => $TemplateNoSurat
+            'badge_disposisi_status' => $badge_disposisi_status,
+            'TemplateNoSurat' => $TemplateNoSurat,
+            'tgl_hr_ini' => $tgl_hr_ini
         ])->with('smasuk',$smasuk);
     }
     public function store(Request $request)
@@ -97,7 +106,7 @@ class SMasukController extends Controller
 
         // Upload file ke Google Drive
         $file = $request->file('dokumen');
-        $fileName = 'SM-' . $request->judul_surat . '-' . date('d-m-Y') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
+        $fileName = 'SM-' . $request->judul_surat . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
         Storage::disk('google')->put('Surat Masuk/' .$fileName, file_get_contents($file));
         $record['dokumen'] = $fileName;
 
@@ -148,6 +157,11 @@ class SMasukController extends Controller
     public function update(Request $request, $id)
     {
         $smasuk = SMasuk::find($id);
+        if(!($smasuk->status_surat == '3' || $smasuk->status_surat == '1'))
+        {
+            return redirect()->back()->with('toast_warning', 'Anda Tidak Bisa Mengubah Surat Masuk'); 
+        }
+
         $record = $request->validate([
             'nomor_surat' => [
                 'required',
@@ -171,7 +185,7 @@ class SMasukController extends Controller
             Storage::disk('google')->delete('Surat Masuk/' . $smasuk->dokumen);
 
             $file = $request->file('dokumen');
-            $fileName = 'SM-' . $request->judul_surat . '-' . date('d-m-Y') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
+            $fileName = 'SM-' . $request->judul_surat . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
             Storage::disk('google')->put('Surat Masuk/' . $fileName, file_get_contents($file));
             $record['dokumen'] = $fileName;
             // Dapatkan URL publik ke file di Google Drive
@@ -185,7 +199,6 @@ class SMasukController extends Controller
         $record['status_surat'] = '1';
         //menghapus disposisi
         DisposisiSurat::where('id_surat', '=', $id)->delete();
-        DetailDisposisiSurat::where('id_surat', '=', $id)->delete();
         //membuat disposisi baru
         $disposisi['id'] =  'DISPOSISI-'. date('YmdHis') . '-' . rand(100, 999);
         $disposisi['id_surat'] = $id;
@@ -206,18 +219,52 @@ class SMasukController extends Controller
         SMasuk::where('id', $id)->update($record);
         return redirect()->back()->with('toast_success', 'Data Diubah!');
     }
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        // Temukan data Surat Masuk berdasarkan ID
         $smasuk = SMasuk::find($id);
 
-        // Hapus file dari Google Drive
-        $filePath = 'Surat Masuk/' . $smasuk->dokumen;
-        // Periksa apakah file ada di Google Drive dan hapus jika ada
-        if (Storage::disk('google')->exists($filePath)) {
-            Storage::disk('google')->delete($filePath);
+        $record = $request->validate([
+            'catatan' => 'required',
+        ]);
+
+
+        if($smasuk->status_surat = '3' || Carbon::now() > $smasuk->tanggal_kegiatan){
+            //membuat detail disposisi dari pu
+            $record['tgl_dilanjutkan_ke_disposisi'] = Carbon::now();
+            $record['dilanjutkan_ke_disposisi'] = 'ARSIP';
+            $record['id'] = 'DTL-DISPOSISI-'. date('YmdHis') . '-' . rand(100, 999);
+            $record['id_surat'] = $id;
+            $record['id_user'] = auth()->user()->id;
+            $record['jabatan_user'] = 'Pelayanan Umum';
+            $record['jenis_disposisi'] = 'GGL';
+            $record['tgl_diterima_dari_disposisi'] = $record['tgl_dilanjutkan_ke_disposisi'];
+            $record['diterima_dari_disposisi'] = 'PU';
+            $record['status_disposisi'] = '6';
+
+            DetailDisposisiSurat::create($record);
+
+            //arsip surat
+            DisposisiSurat::where('id_surat', '=', $id)
+                ->update(['is_arsip' => '1']);
+
+            $smasuk->update([
+                    'is_arsip' => '1',
+                    'status_surat' => '6',
+                ]);
+
+            ArsipSurat::create([
+                'id' => 'ARSIP-' . date('YmdHis') . '-' . rand(100, 999),
+                'id_surat' => $id,
+                'nomor_surat' => $smasuk->nomor_surat,
+                'jenis_surat' => $smasuk->keperluan,
+                'jenis_surat_2' => 'Surat Masuk',
+                'surat_penghapusan' => null,
+                'is_delete' => '0',
+            ]);
+
+            return redirect()->back()->with('toast_success', 'Data Telah Berhasil diarsipkan!');
         }
-        $smasuk->delete();
-        return redirect()->back()->with('toast_success', 'Data Dihapus!');
+
+        return redirect()->back()->with('toast_warning', 'Surat tidak Berada dalam wewenang Pelayanan Umum!');
     }
 }
