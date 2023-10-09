@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 //model arsip
 use App\Models\ArsipSurat;
 //model surat keluar
+
 //model surat masuk
 use App\Models\SMasuk;
 
@@ -57,7 +58,13 @@ class ArsipController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $arsip_surat = ArsipSurat::findOrFail($id);
+        dd($id);
+        //ini bagian penampilan surat 
+
+        //memilih surat masuk apakah surat keluar
+        if()
+
     }
 
     /**

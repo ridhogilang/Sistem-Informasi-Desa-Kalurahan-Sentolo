@@ -147,30 +147,24 @@
                 <span>Surat Masuk</span>
             </a>
         </li><!-- End Surat Masuk Nav -->
-
-        <li class="nav-heading">Pages</li>
-
         <li class="nav-item">
-            <a class="nav-link {{ ($title == "Profile") ? '' : 'collapsed' }}" href="/profile">
-                <i class="bi bi-person"></i>
-                <span>Profile</span>
+            <a class="nav-link {{ ($title == "Verifikasi Surat Keluar") ? '' : 'collapsed' }}" href="/admin/e-surat/validasi">
+                <i class="bi bi-file-earmark-check"></i>
+                <span>Verifikasi Surat</span>
             </a>
-        </li><!-- End Profile Page Nav -->
-
+        </li><!-- End Validasi Nav -->
         <li class="nav-item">
-            <a class="nav-link {{ ($title == "Register") ? '' : 'collapsed' }}" href="/register">
-                <i class="bi bi-card-list"></i>
-                <span>Register</span>
+            <a class="nav-link {{ ($title == "Disposisi Surat Masuk") ? '' : 'collapsed' }}" href="/admin/e-surat/disposisi">
+                <i class="bi bi-mailbox"></i>
+                <span>Disposisi Surat</span>
             </a>
-        </li><!-- End Register Page Nav -->
-
+        </li><!-- End Disposisi Nav -->
         <li class="nav-item">
-            <a class="nav-link {{ ($title == "Login") ? '' : 'collapsed' }}" href="/login">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Login</span>
+            <a class="nav-link {{ ($title == "Arsip Desa") ? '' : 'collapsed' }}" href="/admin/e-surat/arsip">
+                <i class="bi bi-archive"></i>
+                <span>Arsip Surat</span>
             </a>
-        </li><!-- End Login Page Nav -->
-
+        </li><!-- End Validasi Nav -->
     </ul>
 
 </aside>
