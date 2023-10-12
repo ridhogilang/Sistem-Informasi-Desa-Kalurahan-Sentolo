@@ -187,7 +187,7 @@ class ValidasiController extends Controller
             }
             if($jenis_surat == 'Surat Pengantar SKCK')
             {
-                $pskck = Spskck::with('tandatangan')->findOrFail($id);
+                $pskck = Spskck::with('tandatangan')->findOrFail($id_surat);
                 $data = view('bo.template.surat-pskck', compact('pskck'))->render();
                 $pdf = Pdf::loadHTML($data);
                 return $pdf->stream();

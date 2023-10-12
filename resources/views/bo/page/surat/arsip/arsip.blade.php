@@ -29,7 +29,6 @@
                                     <th scope="col" class="text-center">Jenis Surat</th>
                                     <th scope="col" class="text-center">Riwayat</th>
                                     <th scope="col" class="text-center">Isi Surat</th>
-                                    <th scope="col" class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,12 +37,91 @@
                                      <td>{{ $loop->iteration  }}</td>
                                      <td>{{ $value['nomor_surat'] }}</td>
                                      <td>{{ $value['jenis_surat_2'] .' ( '. $value['jenis_surat'] .' )'}}</td>
-                                     <td>
-                                        <div >Lihat Riwayat {{ ($value['jenis_surat_2'] == 'Surat Keluar')?'':'' }}</div>
+                                     <td class="text-center">
+                                        <a data-bs-toggle="modal" data-bs-target="#riwayat_surat_{{$value->id}}" class="btn btn-primary">
+                                            <i class="bi bi-clock-history"></i> Lihat Riwayat
+                                        </a>
                                      </td>
                                      <!-- ini modal riwayat surat -->
-                                     <td>{{ $value['id'] }}</td>
-                                     <td></td>
+                                     <div class="modal fade" id="riwayat_surat_{{$value->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Riwayat Surat {{ $value->nomor_surat }}</h5>
+                                                        @if($value['jenis_surat_2'] == 'Surat Keluar')
+                                                            <div class="mx-3">{!! $badge_status_mengetahui[$value->status_riwayat_surat] !!}</div>
+                                                        @else
+                                                            <div class="mx-3">{!! $badge_disposisi_status[$value->status_riwayat_surat] !!}</div>
+                                                        @endif
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    @if($value['jenis_surat_2'] == 'Surat Keluar')
+                                                    <div class="modal-body">
+                                                        <div class="container">
+                                                            @foreach($value->dtlVerifikasiKeluar as $verifikasi)
+                                                            <div class="row border-bottom p-3">
+                                                                <div class="col-sm-3">
+                                                                    {!! $badge_status_mengetahui[$verifikasi->status]!!}
+                                                                    {{ $verifikasi->updated_at }}
+                                                                </div>
+                                                                <div class="col mx-5">
+                                                                    {{ $verifikasi->nama_user}}
+                                                                    ( {{ $verifikasi->jabatan_user}} )
+                                                                </div>
+                                                            </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                    @else
+                                                    <div class="modal-body">
+                                                        <div class="container">
+                                                            @foreach($value->detilDisposisi as $detildis)
+                                                            <div class="row border-bottom p-3">
+                                                                <div class="col">
+                                                                    Diterima : {{ $detildis->tgl_diterima_dari_disposisi }}<br>
+                                                                    @if(auth()->user()->id == $detildis->id_user)
+                                                                        Anda <br>
+                                                                    @elseif($detildis->id_user == 'PU')
+                                                                        ( {{ $detildis->jabatan_user }} )<br>
+                                                                    @else
+                                                                        {{ $detildis->pamongDPSS->nama }} ( {{ $detildis->jabatan_user }} )<br>
+                                                                    @endif
+                                                                    <!-- memilih status -->
+                                                                    @if($detildis->id_user == 'PU')
+                                                                        Surat Dianalisis ulang oleh Pelayanan Umum
+                                                                    @elseif($detildis->status_disposisi == '1' || $detildis->status_disposisi == '4')
+                                                                        {!! ($detildis->jenis_disposisi == 'PLK')?$badge_disposisi_status['4']:''!!}
+
+                                                                        {!! $badge_disposisi_status[$detildis->status_disposisi] !!}
+            
+                                                                    @else
+                                                                    Tindakan : {{ $detildis->tgl_dilanjutkan_ke_disposisi }}<br>
+                                                                        {!! ($detildis->jenis_disposisi == 'PLK')?$badge_disposisi_status['4']:''!!}
+                                                                        {!! $badge_disposisi_status[$detildis->status_disposisi] !!} {{ $detildis->catatan }}
+                                                                    @endif
+
+                                                                </div>
+                                                            </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                    @endif
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                     <td class="text-center">
+                                         <a href="{{ route('bo.surat.arsip.show', $value['id']) }}" target="blank" class="btn btn-primary">
+                                                <i class="bi bi-file-earmark"></i>
+                                        </a>
+                                     </td>
                                  </tr>
                                 @endforeach
                             </tbody>

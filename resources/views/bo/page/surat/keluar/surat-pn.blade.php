@@ -486,6 +486,7 @@
                                                     <div class="row border-bottom p-3">
                                                         <div class="col-sm-3">
                                                             {!! $badge_status[$verifikasi->status]!!}
+                                                            {{ $verifikasi->updated_at }}
                                                         </div>
                                                         <div class="col mx-5">
                                                             {{ $verifikasi->nama_user}}

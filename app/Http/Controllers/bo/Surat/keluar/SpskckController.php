@@ -284,6 +284,7 @@ class SpskckController extends Controller
                 'nomor_surat' => $surat->nomor_surat,
                 'jenis_surat' => 'Surat Pengantar SKCK',
                 'jenis_surat_2' => 'Surat Keluar',
+                'status_riwayat_surat' => $status,
                 'surat_penghapusan' => null,
                 'is_delete' => '0',
             ]);

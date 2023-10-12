@@ -261,6 +261,7 @@ class DisposisiController extends Controller
                 'nomor_surat' => $surat->nomor_surat,
                 'jenis_surat' => $surat->keperluan,
                 'jenis_surat_2' => 'Surat Masuk',
+                'status_riwayat_surat' => $record['status_disposisi'],
                 'surat_penghapusan' => null,
                 'is_delete' => '0',
             ]);
@@ -301,6 +302,7 @@ class DisposisiController extends Controller
                 'id_surat' => $id_surat,
                 'nomor_surat' => $surat->nomor_surat,
                 'jenis_surat' => $surat->keperluan,
+                'status_riwayat_surat' => $record['status_disposisi'],
                 'jenis_surat_2' => 'Surat Masuk',
                 'surat_penghapusan' => null,
                 'is_delete' => '0',

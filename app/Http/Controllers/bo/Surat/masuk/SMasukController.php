@@ -8,14 +8,15 @@ use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\File;
+use Yaza\LaravelGoogleDriveStorage\Gdrive;
+use Storage;
 //model
 use App\Models\SMasuk;
 use App\Models\User;
 use App\Models\DisposisiSurat;
 use App\Models\DetailDisposisiSurat;
 use App\Models\ArsipSurat;
-use Yaza\LaravelGoogleDriveStorage\Gdrive;
-use Storage;
+
 
 class SMasukController extends Controller
 {
@@ -258,6 +259,7 @@ class SMasukController extends Controller
                 'nomor_surat' => $smasuk->nomor_surat,
                 'jenis_surat' => $smasuk->keperluan,
                 'jenis_surat_2' => 'Surat Masuk',
+                'status_riwayat_surat' => '6',
                 'surat_penghapusan' => null,
                 'is_delete' => '0',
             ]);
