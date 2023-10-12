@@ -22,7 +22,7 @@ class SktmDuaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:surat KTM');
+        $this->middleware('permission:Surat Keluar');
     }
     public function store(Request $request)
     {

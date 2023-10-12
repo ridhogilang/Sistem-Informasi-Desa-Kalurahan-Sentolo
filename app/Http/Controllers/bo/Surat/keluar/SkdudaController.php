@@ -19,7 +19,7 @@ class SkdudaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:surat Ket Duda / Janda');
+        $this->middleware('permission:Surat Keluar');
         Carbon::setLocale('id');
     }
     public function index()

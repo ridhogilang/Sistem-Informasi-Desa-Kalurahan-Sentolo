@@ -21,7 +21,7 @@ class SpkController extends Controller
 {
     public function __construct() 
    {
-        $this->middleware('permission:surat Pengantar Kependudukan');
+        $this->middleware('permission:Surat Keluar');
         Carbon::setLocale('id');
    }
     /**

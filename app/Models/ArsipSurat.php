@@ -36,4 +36,9 @@ class ArsipSurat extends Model
     {
       return $this->hasMany(MengetahuiVerifikasiSurat::class, 'id_surat', 'id_surat');   
     }
+
+    public function dtlPenghapusan()
+    {
+      return $this->hasOne(PenghapusanArsip::class, 'id', 'surat_penghapusan');   
+    }
 }

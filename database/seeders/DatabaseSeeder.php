@@ -25,28 +25,9 @@ class DatabaseSeeder extends Seeder
             //permission surat
             'list surat', 'lihat surat',  'lihat contoh surat', 'input surat', 'edit surat', 'hapus surat', 'verifikasi surat', 'disposisi surat',
             //surat surat yang dibuat
-            'surat KTM',
-            'surat Ket Duda / Janda',
-            'surat Pernyataan Belum Menikah',
-            'surat Keterangan Belum Menikah',
-            'surat Pengantar Nikah',
-            'surat Pengantar SKCK',
-            'surat Pengantar E-KTP',
-            'surat Keterangan Kematian',
-            'surat keterangan Domisili',
-            'surat keterangan Kelahiran',
-            'surat Keterangan Tidak Bekerja',
-            'surat Pengantar Kependudukan',
-            'surat Pernyataan Belum Bekerja',
-            'surat Keterangan Penghasilan',
-            'surat Custom',
-
-        // 'input surat masuk',
-        // 'edit surat masuk',
-        // 'lihat surat masuk',
-        // 'hapus surat masuk',
-        // 'disposisi surat masuk',
-
+            'Surat Masuk','Surat Keluar',
+            //Arsip
+            'Arsip Surat', 'Menghapus Arsip', 'Arsip Dihapus',
         //sistem informasi
         'enter_sistem informasi',
         

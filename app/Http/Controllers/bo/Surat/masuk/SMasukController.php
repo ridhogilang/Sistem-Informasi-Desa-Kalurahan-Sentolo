@@ -22,6 +22,7 @@ class SMasukController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('permission:Surat Masuk');
         Carbon::setLocale('id');
     }
     public function index()

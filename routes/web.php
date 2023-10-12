@@ -30,9 +30,10 @@ use App\Http\Controllers\ScstmController;
 use App\Http\Controllers\bo\Surat\validasi\ValidasiController;
 //disposisi surat masuk
 use App\Http\Controllers\bo\Surat\disposisi\DisposisiController;
-use App\Http\Controllers\bo\Surat\disposisi\AcaraController;
+// use App\Http\Controllers\bo\Surat\disposisi\AcaraController;
 //arsip
 use App\Http\Controllers\bo\Surat\arsip\ArsipController;
+use App\Http\Controllers\bo\Surat\arsip\OldArsipController;
 //penduduk
 use App\Http\Controllers\PendudukController;
 
@@ -109,7 +110,11 @@ Route::prefix('admin')->group(function () {
             Route::resource('/disposisi', DisposisiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
             Route::put('/disposisi/laksana/{id}', [ DisposisiController::class, 'executor_imp'])->name('bo.surat.disposisi.executor_imp');
             //arsip
-            Route::resource('/arsip', ArsipController::class, ['as' => 'bo.surat']);
+            Route::resource('/arsip', ArsipController::class, ['as' => 'bo.surat'])->only(['index', 'show']);
+            Route::delete('/arsip/delete', [ ArsipController::class, 'destroy_arsip'])->name('bo.surat.arsip.delete');
+            Route::resource('/arsip_dihapus', OldArsipController::class, ['as' => 'bo.surat'])->only(['index', 'show']);
+            Route::get('/arsip_dihapus/doc/{id}', [ OldArsipController::class, 'document_hps'])->name('bo.surat.arsip.doc');
+
             // SKTM Satu Orang
             Route::get('/surat-ktm', [SktmSatuController::class, 'index'])->middleware('can:list surat');
             Route::post('/surat-ktm-satu', [SktmSatuController::class, 'store'])->middleware('can:input surat');

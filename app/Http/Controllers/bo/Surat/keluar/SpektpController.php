@@ -19,7 +19,7 @@ class SpektpController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:surat Pengantar E-KTP');
+        $this->middleware('permission:Surat Keluar');
         Carbon::setLocale('id');
     }
     /**
