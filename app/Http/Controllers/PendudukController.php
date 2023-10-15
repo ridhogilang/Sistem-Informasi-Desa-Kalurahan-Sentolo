@@ -124,10 +124,10 @@ class PendudukController extends Controller
     }
     public function destroy($id)
     {
-        // Temukan data Surat Masuk berdasarkan ID
+        // Temukan data Foto Penduduk berdasarkan ID
         $penduduk = Penduduk::find($id);
         // Hapus file dari Google Drive
-        $filePath = 'Surat Masuk/' . $penduduk->dokumen;
+        $filePath = 'Foto Penduduk/' . $penduduk->dokumen;
         // Periksa apakah file ada di Google Drive dan hapus jika ada
         if (Storage::disk('google')->exists($filePath)) {
             Storage::disk('google')->delete($filePath);
