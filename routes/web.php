@@ -242,6 +242,13 @@ Route::prefix('admin')->group(function () {
 
 // Get data penduduk
 Route::get('/get-penduduk/{nik}', [PendudukController::class, 'info']);
+// Crud data penduduk
+Route::get('/penduduk', [PendudukController::class, 'index']);
+Route::get('/penduduk/tambah-data', [PendudukController::class, 'create'])->defaults('action', 'Tambah');
+Route::post('/penduduk', [PendudukController::class, 'store']);
+Route::get('/penduduk/{id}/edit', [PendudukController::class, 'edit'])->defaults('action', 'Edit');
+Route::put('/penduduk/{id}', [PendudukController::class, 'update']);
+Route::delete('/penduduk/{id}/delete', [PendudukController::class, 'destroy']);
 
 Route::get('/profile', function () {
     return view('bo.page.profile',[

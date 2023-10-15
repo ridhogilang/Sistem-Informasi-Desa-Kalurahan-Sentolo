@@ -28,10 +28,11 @@ class PendudukSeeder extends Seeder
                 'alamat' => $faker->address,
                 'kewarganegaraan' => $faker->randomElement(['WNI', 'WNA']),
                 'pekerjaan' => $faker->jobTitle,
-                'pendidikan_terakhir' => $faker->randomElement(['SD', 'SMP', 'SMA', 'D3', 'S1', 'S2', 'S3']),
+                'pendidikan_terakhir' => $faker->randomElement(['SD', 'SMP', 'SMK', 'D3', 'S1', 'S2', 'S3']),
                 'nomor_telepon' => $faker->phoneNumber,
-                'penghasilan' => $faker->numberBetween(1000000, 5000000),
+                'penghasilan' => $faker->randomElement(['< Rp. 500.000', 'Rp. 500.000 - Rp. 1.000.000', 'Rp. 1.000.000 - Rp. 3.000.000', 'Rp. 3.000.000 - Rp. 5.000.000', '> Rp. 5.000.000']),
                 'foto_penduduk' => null, // Foto dapat diisi dengan path ke file foto
+                'link_foto' => null,
                 'nomor_kk' => $faker->unique()->numerify('################'),
                 'nomor_ktp' => $faker->unique()->numerify('################'),
                 'status_nyawa' => $faker->randomElement(['Hidup', 'Meninggal']),
