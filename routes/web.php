@@ -7,6 +7,9 @@ use App\Http\Controllers\bo\Auth\VerifikasiEmailController;
 use App\Http\Controllers\bo\Auth\ForgetPasswordController;
 use App\Http\Controllers\bo\Pegawai\UserManagementController;
 use App\Http\Controllers\bo\Pegawai\roleManagementController;
+
+//e-surat
+use App\Http\Controllers\bo\Surat\dashboard\DashboardSuratController;
 //surat masuk
 use App\Http\Controllers\bo\Surat\masuk\SMasukController;
 //surat keluar
@@ -84,12 +87,12 @@ Route::prefix('admin')->group(function () {
         //untuk kepegawaian yaitu kebutuhan user dan role tak dewekno marakno riskan
         Route::prefix('pegawai')->middleware('can:enter_kepegawaian')->group(function () {
             Route::get('/dashboard', function () {
-                return view('bo.page.dashboard',[
-                    'dropdown1' => '',
-                    'dropdown2' => '',
-                    'title' => 'Dashboard',
-                ]);
-            })->name('bo.pegawai.dashboard');
+                    return view('bo.page.dashboard',[
+                        'dropdown1' => '',
+                        'dropdown2' => '',
+                        'title' => 'Dashboard',
+                    ]);
+                })->name('bo.pegawai.dashboard');
 
                 Route::resource('/user_management', UserManagementController::class, ['as' => 'bo.pegawai'])->except(['show']);
                 Route::resource('/role_management', roleManagementController::class, ['as' => 'bo.pegawai'])->except(['show']);
@@ -97,13 +100,7 @@ Route::prefix('admin')->group(function () {
 
         //untuk tim PU dan Arsip (e-surat)
         Route::prefix('e-surat')->middleware('can:enter_e-surat')->group(function () {
-            Route::get('/dashboard', function () {
-                return view('bo.page.dashboard',[
-                    'dropdown1' => '',
-                    'dropdown2' => '',
-                    'title' => 'Dashboard',
-                ]);
-            })->name('bo.e-surat.dashboard');
+            Route::get('/dashboard', [ DashboardSuratController::class, 'index'])->name('bo.e-surat.dashboard');
             //validasi surat keluar
             Route::resource('/validasi', ValidasiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
             //disposisi surat masuk

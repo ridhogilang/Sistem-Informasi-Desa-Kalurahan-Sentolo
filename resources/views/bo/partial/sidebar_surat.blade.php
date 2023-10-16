@@ -135,6 +135,14 @@
             </a>
         </li><!-- End Validasi Nav -->
         @endcan
+        @can('Arsip Dihapus')
+        <li class="nav-item">
+            <a class="nav-link {{ ($title == 'Arsip Desa Telah Dihapus') ? '' : 'collapsed' }}" href="/admin/e-surat/arsip_dihapus">
+                <i class="bi bi-archive-fill"></i>
+                <span>Arsip Sudah Dihapus</span>
+            </a>
+        </li><!-- End Validasi Nav -->
+        @endcan
     </ul>
 
 </aside>

@@ -35,7 +35,7 @@ class ArsipController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:Surat Keluar');
+        $this->middleware('permission:Arsip Surat');
         $this->middleware(['permission:Menghapus Arsip'], ['only' => ['destroy_arsip']]);
         Carbon::setLocale('id');
     }
