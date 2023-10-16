@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('nomor_telepon');
             $table->string('penghasilan')->nullable();
             $table->string('foto_penduduk')->nullable();
+            $table->string('link_foto')->nullable();
             $table->string('nomor_kk');
             $table->string('nomor_ktp');
             $table->string('status_nyawa');
