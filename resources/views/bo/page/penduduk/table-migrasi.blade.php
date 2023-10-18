@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Data Penduduk</h1>
+        <h1>Data Penduduk Migrasi</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                <li class="breadcrumb-item active">Data Penduduk</li>
+                <li class="breadcrumb-item active">Data Penduduk Migrasi</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -18,10 +18,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Data Penduduk</h5>
-                        <div class="d-grid gap-2 mb-2">
-                            <a class="btn btn-primary" type="button" href="/penduduk/tambah-data"><i class="fa-solid fa-plus"></i> Tambah Data</a>
-                        </div>
+                        <h5 class="card-title">Data Penduduk Migrasi</h5>
 
                         <!-- Table with hoverable rows -->
                         <table class="table table-hover datatable">

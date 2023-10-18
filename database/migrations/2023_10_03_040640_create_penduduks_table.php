@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('kontak_darurat');
             $table->string('status_migrasi')->nullable();
             $table->string('status_pajak')->nullable();
+            $table->string('is_active');
             $table->timestamps();
         });
     }

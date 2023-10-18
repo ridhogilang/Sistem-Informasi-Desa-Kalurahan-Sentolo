@@ -241,6 +241,7 @@ Route::prefix('admin')->group(function () {
 Route::get('/get-penduduk/{nik}', [PendudukController::class, 'info']);
 // Crud data penduduk
 Route::get('/penduduk', [PendudukController::class, 'index']);
+Route::get('/penduduk-migrasi', [PendudukController::class, 'migrasi']);
 Route::get('/penduduk/tambah-data', [PendudukController::class, 'create'])->defaults('action', 'Tambah');
 Route::post('/penduduk', [PendudukController::class, 'store']);
 Route::get('/penduduk/{id}/edit', [PendudukController::class, 'edit'])->defaults('action', 'Edit');

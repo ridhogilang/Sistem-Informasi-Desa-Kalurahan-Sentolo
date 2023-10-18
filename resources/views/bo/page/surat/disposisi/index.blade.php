@@ -40,7 +40,7 @@
                                         <td>{{ date("d F Y", strtotime($value->suratMasuk->tanggal_kegiatan)) }}</td>
                                         <td class="text-center">
                                             <a data-bs-toggle="modal" data-bs-target="#status_{{$value->id}}" class="btn btn-primary">
-                                                <i class="bi bi-clock-history"></i> Lihat
+                                                <i class="bi bi-eye"></i>
                                             </a>
                                         </td>
                                         <!-- ini bagian modal badge status verifikasi -->
@@ -74,7 +74,7 @@
                                                                         {!! ($detildis->jenis_disposisi == 'PLK')?$badge_disposisi_status['4']:''!!}
 
                                                                         {!! $badge_disposisi_status[$detildis->status_disposisi] !!}
-            
+
                                                                     @else
                                                                     Tindakan : {{ $detildis->tgl_dilanjutkan_ke_disposisi }}<br>
                                                                         {!! ($detildis->jenis_disposisi == 'PLK')?$badge_disposisi_status['4']:''!!}
@@ -83,7 +83,7 @@
 
                                                                 </div>
                                                             </div>
-                                                            <?php 
+                                                            <?php
                                                                 if (!in_array($detildis->id_user, $pamongDps[$value->id])) {
                                                                     if ($detildis->status_disposisi != '3') {
                                                                         $pamongDps[$value->id][] = $detildis->id_user;
@@ -118,7 +118,7 @@
                                             </a>
                                         </td>
                                         <td class="text-center">
-                                            <div class="d-flex justify-content-evenly"> 
+                                            <div class="d-flex justify-content-evenly">
                                                 <button data-bs-toggle="modal" data-bs-target="#dispos_{{$value->id}}" class="btn btn-success" type="submit">
                                                     <i class="bi bi-diagram-2"></i> Disposisikan
                                                 </button>
@@ -172,7 +172,7 @@
                                                                 @csrf
                                                             <div class="modal-body">
                                                                 <div class="container">
-                                                                            
+
 
                                                                     <div class="row mb-3">
                                                                         <label for="Kepada" class="col-sm-3 col-form-label">Kepada</label>
@@ -232,21 +232,21 @@
                                                                 @csrf
                                                             <div class="modal-body">
                                                                 <div class="container">
-                                                                            
+
 
                                                                     <div class="row mb-3">
                                                                         <div class="col">
                                                                             <p>Berikan catatan mengapa Anda mengembalikan Surat {{ $value->suratMasuk->nomor_surat }}</p>
                                                                         </div>
                                                                     </div>
-                                            
+
                                                                     <div class="row mb-3">
                                                                         <label for="catatan" class="col-sm-3 col-form-label">Catatan</label>
                                                                         <div class="col-sm-9">
                                                                             <textarea name="catatan" class="form-control" id="catatan" rows="5" required></textarea>
                                                                         </div>
                                                                     </div>
-                                                                        
+
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
@@ -274,19 +274,19 @@
                                                                 @csrf
                                                             <div class="modal-body">
                                                                 <div class="container">
-                                                                            
+
                                                                     <div class="row mb-3">
                                                                         <div class="col">
                                                                             <p>Berikan catatan mengapa Anda mengembalikan Surat {{ $value->suratMasuk->nomor_surat }}</p>
                                                                         </div>
                                                                     </div>
-                                            
+
                                                                     <div class="row mb-3">
                                                                         <label for="catatan" class="col-sm-3 col-form-label">Catatan</label>
                                                                         <div class="col-sm-9">
                                                                             <textarea name="catatan" class="form-control" id="catatan" rows="5" required></textarea>
                                                                         </div>
-                                                                    </div>                                           
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">

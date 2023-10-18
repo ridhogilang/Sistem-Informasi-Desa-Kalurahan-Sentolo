@@ -40,6 +40,7 @@ class PendudukSeeder extends Seeder
                 'kontak_darurat' => $faker->phoneNumber,
                 'status_migrasi' => $faker->randomElement(['Migrasi Masuk', 'Migrasi Keluar', 'Tidak Migrasi']),
                 'status_pajak' => $faker->randomElement(['Terdaftar', 'Belum Terdaftar']),
+                'is_active' => '1',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

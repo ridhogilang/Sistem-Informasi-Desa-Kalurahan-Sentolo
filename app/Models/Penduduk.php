@@ -32,5 +32,6 @@ class Penduduk extends Model
         'kontak_darurat',
         'status_migrasi',
         'status_pajak',
+        'is_active',
     ];
 }
