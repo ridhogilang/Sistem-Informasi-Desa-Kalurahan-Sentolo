@@ -11,119 +11,120 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
-        <div class="row">
+    <section class="section dashboard">
+        <div class="col-lg-12">
+          <div class="row">
+              <div class="col-xxl-4 col-md-4">
+                  <div class="card info-card sales-card">
 
-            <div class="col-xxl-4 col-md-4">
-                <div class="card info-card sales-card">
+                  <div class="card-body">
+                      <h5 class="card-title">Jumlah Surat Keluar <span>| {{ $thn_ini }}</span></h5>
 
-                <div class="card-body">
-                    <h5 class="card-title">Jumlah Surat Keluar <span>| {{ $thn_ini }}</span></h5>
+                      <div class="d-flex align-items-center">
+                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                          <i class="bi bi-envelope fs-2"></i>
+                      </div>
+                      <div class="ps-3">
+                          <h3>{{ $data_graf['jum_surat_keluar'] }}</h3>
+                      </div>
+                      </div>
+                  </div>
 
-                    <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle px-3 py-2 text-bg-info d-flex align-items-center justify-content-center">
-                        <i class="bi bi-envelope fs-2"></i>
-                    </div>
-                    <div class="ps-3">
-                        <h3>{{ $data_graf['jum_surat_keluar'] }}</h3>
-                    </div>
-                    </div>
-                </div>
+                  </div>
+              </div>
 
-                </div>
-            </div>
+              <div class="col-xxl-4 col-md-4">
+                  <div class="card info-card revenue-card">
 
-            <div class="col-xxl-4 col-md-4">
-                <div class="card info-card sales-card">
+                  <div class="card-body">
+                      <h5 class="card-title">Jumlah Surat Masuk <span>| {{ $thn_ini }}</span></h5>
 
-                <div class="card-body">
-                    <h5 class="card-title">Jumlah Surat Masuk <span>| {{ $thn_ini }}</span></h5>
+                      <div class="d-flex align-items-center">
+                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                          <i class="bi bi-envelope-open fs-2"></i>
+                      </div>
+                      <div class="ps-3">
+                          <h3>{{ $data_graf['jum_surat_masuk'] }}</h3>
+                      </div>
+                      </div>
+                  </div>
 
-                    <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle px-3 py-2 text-bg-success d-flex align-items-center justify-content-center">
-                        <i class="bi bi-envelope-open fs-2"></i>
-                    </div>
-                    <div class="ps-3">
-                        <h3>{{ $data_graf['jum_surat_masuk'] }}</h3>
-                    </div>
-                    </div>
-                </div>
+                  </div>
+              </div>
 
-                </div>
-            </div>
+              <div class="col-xxl-4 col-md-4">
+                  <div class="card info-card customers-card">
 
-            <div class="col-xxl-4 col-md-4">
-                <div class="card info-card sales-card">
+                  <div class="card-body">
+                      <h5 class="card-title">Jumlah Penduduk <span>| {{ $thn_ini }}</span></h5>
 
-                <div class="card-body">
-                    <h5 class="card-title">Jumlah Penduduk <span>| {{ $thn_ini }}</span></h5>
+                      <div class="d-flex align-items-center">
+                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                          <i class="bi bi-people fs-2"></i>
+                      </div>
+                      <div class="ps-3">
+                          <h3>{{ $data_graf['jum_penduduk'] }}</h3>
+                      </div>
+                      </div>
+                  </div>
 
-                    <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle px-3 py-2 text-bg-primary d-flex align-items-center justify-content-center">
-                        <i class="bi bi-people fs-2"></i>
-                    </div>
-                    <div class="ps-3">
-                        <h3>{{ $data_graf['jum_penduduk'] }}</h3>
-                    </div>
-                    </div>
-                </div>
-
-                </div>
-            </div>
-        </div>
-
-
-        <!-- ini bagian chart -->
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Surat Keluar Diproses</h5>
-                    <canvas id="surat_keluar" style="max-height: 400px;"></canvas>
-                    <!-- End Bar CHart -->
-                </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Surat Masuk</h5>
-                    <canvas id="surat_masuk" style="max-height: 400px;"></canvas>
-                    <!-- End Bar CHart -->
-                </div>
-                </div>
-            </div>
+                  </div>
+              </div>
+          </div>
 
 
-            <div class="col-lg-6">
-                <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Data Penduduk</h5>
+          <!-- ini bagian chart -->
+          <div class="row">
+              <div class="col-lg-6">
+                  <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Surat Keluar Diproses</h5>
+                      <canvas id="surat_keluar" style="max-height: 400px;"></canvas>
+                      <!-- End Bar CHart -->
+                  </div>
+                  </div>
+              </div>
 
-                    <!-- Pie Chart -->
-                    <canvas id="data_penduduk" style="max-height: 400px;"></canvas>
-                    <!-- End Pie CHart -->
+              <div class="col-lg-6">
+                  <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Surat Masuk</h5>
+                      <canvas id="surat_masuk" style="max-height: 400px;"></canvas>
+                      <!-- End Bar CHart -->
+                  </div>
+                  </div>
+              </div>
 
-                </div>
-                </div>
-            </div>
+
+              <div class="col-lg-6">
+                  <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Data Penduduk</h5>
+
+                      <!-- Pie Chart -->
+                      <canvas id="data_penduduk" style="max-height: 400px;"></canvas>
+                      <!-- End Pie CHart -->
+
+                  </div>
+                  </div>
+              </div>
 
 
-            @can('Arsip Surat')
-            <div class="col-lg-6">
-                <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Data Arsip {{ $thn_ini }}</h5>
-                    <!-- Pie Chart -->
-                    <canvas id="arsip_thn_ini" style="max-height: 400px;"></canvas>
-                    <!-- End Pie CHart -->
-                </div>
-                </div>
-            </div>
-            @endcan
+              @can('Arsip Surat')
+              <div class="col-lg-6">
+                  <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Data Arsip {{ $thn_ini }}</h5>
+                      <!-- Pie Chart -->
+                      <canvas id="arsip_thn_ini" style="max-height: 400px;"></canvas>
+                      <!-- End Pie CHart -->
+                  </div>
+                  </div>
+              </div>
+              @endcan
 
-        </div>
+          </div>
+      </div>
     </section>
 
 
