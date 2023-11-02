@@ -22,9 +22,9 @@ return new class extends Migration
             $table->string('pekerjaan');
             $table->string('agama');
             $table->string('alamat');
-            $table->string('deskripsi');
-            $table->string('jenis_pektp');
+            $table->string('jenis_surat');
             $table->string('status_surat');
+            $table->string('is_arsip')->nullable();
             $table->timestamps();
         });
     }

@@ -22,7 +22,18 @@ class Spskck extends Model
         'status_perkawinan',
         'pekerjaan',
         'alamat',
-        'jenis_skck',
-        'status_surat'
+        'jenis_surat',
+        'status_surat',
+        'is_arsip'
     ];
+
+    public function tandatangan()
+    {
+        return $this->hasMany(TandaTanganSurat::class, 'id_surat', 'id');
+    }
+    
+    public function MengetahuiVerifikasiSurat()
+    {
+        return $this->hasMany(MengetahuiVerifikasiSurat::class, 'id_surat', 'id');
+    }
 }
