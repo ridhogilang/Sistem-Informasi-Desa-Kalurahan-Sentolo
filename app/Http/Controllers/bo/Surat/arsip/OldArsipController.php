@@ -36,7 +36,6 @@ class OldArsipController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:Arsip Dihapus');
         Carbon::setLocale('id');
     }
     /**
