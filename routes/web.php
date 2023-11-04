@@ -42,6 +42,19 @@ use App\Http\Controllers\PendudukController;
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ApbdesController;
+use App\Http\Controllers\BaganController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\HeaderController;
+use App\Http\Controllers\KomentarController;
+use App\Http\Controllers\KomponenController;
+use App\Http\Controllers\PamongController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,6 +73,129 @@ Route::prefix('sitemin-sentolo')->group(function () {
     Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
     Route::get('/verifymail/{id}', [VerifikasiEmailController::class, 'mailverify'])->name('verifymail');
     Route::resource('/forget_password', ForgetPasswordController::class)->except(['create', 'show', 'destroy']);
+});
+
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::get('/captcha', 'captcha');
+    Route::get('/captcha/reload', 'reloadCaptcha');
+    Route::get('/berita/{year}/{month}/{day}/{slug}', 'berita');
+    Route::get('/artikel/{year}/{month}/{day}/{slug}', 'artikel');
+    Route::get('/get-highlight', 'beritautama');
+    Route::get('/get-pamong', 'datapamong');
+    Route::get('/berita/kategori/semua-berita', 'semuaberita');
+    Route::get('/berita/kategori/berita-desa', 'beritadesa');
+    Route::get('/berita/kategori/berita-lokal', 'beritalokal');
+    Route::get('/berita/kategori/program-kerja', 'programkerja');
+    Route::get('/berita/kategori/cari-berita', 'cariberita');
+    Route::get('/galeri-sentolo', 'galeri');
+    Route::get('/galeri/{year}/{month}/{day}/{nama}', 'show_galeri');
+
+});
+
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/dashboard', 'index');
+});
+
+Route::controller(KomentarController::class)->group(function () {
+    Route::post('/komentar', 'store');
+    Route::put('/approvecomment/{id}', 'approveComment');
+    Route::get('/hapus-komentar/{id}', 'destroy');
+});
+
+Route::controller(KomponenController::class)->group(function () {
+    Route::get('/admin/komponen', 'index');
+    Route::put('/edit-text/{id}', 'update');
+    Route::put('/edit-text/{id}', 'update');
+});
+//Poster Pamong
+Route::controller(PamongController::class)->group(function () {
+    Route::get('/admin/pamong', 'index');
+    Route::get('/hapus-pamong/{id}', 'destroy');
+    Route::post('/tambah-pamong', 'create');
+    Route::put('/edit-pamong/{id}', 'update');
+});
+//Galeri
+Route::controller(GaleriController::class)->group(function() {
+    Route::get('/admin/galeri', 'index');
+    Route::get('/hapus-galeri/{id}', 'destroy');
+    Route::post('/tambah-galeri', 'create');
+    Route::put('/edit-galeri/{id}', 'update');
+
+});
+
+//Bagan
+Route::controller(BaganController::class)->group(function () {
+    Route::get('/admin/bagan', 'index');
+    //Tambah
+    Route::post('/tambah-agenda', 'createagenda');
+    Route::post('/tambah-jadwal', 'createjadwal');
+    Route::post('/tambah-sinergi', 'createsinergi');
+    Route::post('/tambah-statistik', 'createstatistik');
+    //Edit
+    Route::put('/edit-agenda/{id}', 'updateagenda');
+    Route::put('/edit-jadwal/{id}', 'updatejadwal');
+    Route::put('/edit-sinergi/{id}', 'updatesinergi');
+    Route::put('/edit-statistik/{id}', 'updatestatistik');
+    //Hapus
+    Route::get('/hapus-jadwal/{id}', 'destroyjadwal');
+    Route::get('/hapus-agenda/{id}', 'destroyagenda');
+    Route::get('/hapus-sinergi/{id}', 'destroysinergi');
+    Route::get('/hapus-statistiki/{id}', 'destroystatistik');
+});
+
+//APBDes
+Route::controller(ApbdesController::class)->group(function () {
+    Route::get('/admin/apbdes', 'index');
+    //Tambah
+    Route::post('/tambah-apbdes', 'create');
+   
+    //Edit
+    Route::put('/edit-apbdes-pelaksanaan/{id}', 'updatepelaksanaan');
+    Route::put('/edit-apbdes-pendapatan/{id}', 'updatependapatan');
+    Route::put('/edit-apbdes-pembelanjaan/{id}', 'updatepembelanjaan');
+   
+    //Hapus
+    Route::get('/hapus-apbdes/{id}', 'destroy');
+    
+});
+
+Route::controller(BeritaController::class)->group(function () {
+    //berita
+    Route::get('/admin/berita', 'index');
+    Route::get('/admin/berita/komentar', 'indexkomentar');
+    Route::post('/berita', 'store');
+    Route::put('/berita/{id}', 'update');
+    Route::get('/showberita/{id}', 'show');
+    Route::get('/deleteberita/{id}', 'destroy');
+    Route::put('/update-status/{id}', 'updateStatus');
+    Route::put('/update-sideberita/{id}', 'updateSideBerita');
+    
+    //Artikel
+    Route::get('/admin/artikel', 'artikel');
+    Route::get('/admin/artikel/komentar', 'komentarartikel');
+    Route::post('/artikel', 'tambah_artikel');
+    Route::get('/showartikel/{id}', 'show_artikel');
+    Route::put('/updateartikel/{id}', 'update_artikel');
+    Route::get('/deleteartikel/{id}', 'destroy_artikel');
+});
+
+Route::controller(MenuController::class)->group(function () {
+    Route::get('/menu', 'index');
+    Route::post('/menu', 'store');
+    Route::put('/menu/{id}', 'update');
+    Route::get('/deletemenu/{id}', 'destroy');
+});
+
+Route::controller(HeaderController::class)->group(function () {
+    Route::get('/admin/header', 'index');
+    Route::post('/header', 'create');
+    Route::post('/subheader', 'createsub');
+    Route::put('/header/{id}', 'update');
+    Route::put('/subheader/{id}', 'updatesub');
+    Route::get('/deleteheader/{id}', 'hapus');
+    Route::get('/deletesubheader/{id}', 'destroysub');
+    Route::get('/checkSubheaders/{id}', 'checkSubheaders');
 });
 
 Route::prefix('admin')->group(function () {
