@@ -70,6 +70,7 @@ class PendudukController extends Controller
             $record['link_foto'] = $publicUrl;
         }
         $record['status_nyawa'] = 'Hidup';
+        $record['is_active'] = '1';
 
         //menginputkan data penduduk
         Penduduk::create($record);

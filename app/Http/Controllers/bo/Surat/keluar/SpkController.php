@@ -21,7 +21,6 @@ class SpkController extends Controller
 {
     public function __construct() 
    {
-        $this->middleware('permission:Surat Keluar');
         Carbon::setLocale('id');
    }
     /**

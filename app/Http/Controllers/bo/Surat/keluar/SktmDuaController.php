@@ -22,7 +22,7 @@ class SktmDuaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:Surat Keluar');
+        Carbon::setLocale('id');
     }
     public function store(Request $request)
     {
