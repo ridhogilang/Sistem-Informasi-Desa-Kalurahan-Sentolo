@@ -128,9 +128,64 @@
                         </table>
                         <!-- End Table with hoverable rows -->
 
+
+
                     </div>
                 </div>
             </div>
         </div>
+        @can('Menghapus Arsip')
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Pengapusan Arsip Desa</h5>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#skduda"><i class="bi bi-trash3" style="margin-right: 5px"></i>Hapus Arsip</button>
+                    <!-- Modal Form 1 Orang -->
+                    <div class="modal fade" id="skduda" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="skduda-Label" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="tambah-skduda-Label">Pengapusan Arsip Desa</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                    <form action="{{ route('bo.surat.arsip.delete') }}" method="POST" enctype="multipart/form-data">
+                                        @method('delete')
+                                        @csrf
+                                        <div class="modal-body">
+                                            <div class="row mb-3">
+                                                <label for="tanggal_surat" class="col-sm-3 col-form-label">Arsip</label>
+                                                <div class="col-sm-9 d-flex">
+                                                    <div class="col-sm">
+                                                        <input type="date" class="form-control col-6" id="tanggal_surat" name="dari" value="{{ old('dari') }}" required>
+                                                    </div>
+                                                    <div class="col-sm-2 text-center p-3"> -</div>
+                                                    <div class="col-sm">
+                                                        <input type="date" class="form-control" id="sampai" name="sampai" value="{{ old('sampai') }}" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="dokumen" class="col-sm-3 col-form-label">Surat Penghapusan</label>
+                                                <div class="col-sm-9">
+                                                    <input type="file" name="surat_penghapusan" class="form-control" id="dokumen" accept=".doc, .docx, .pdf, .xls, .xlsx, .ppt, .pptx" value="{{ old('surat_penghapusan') }}" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        @endcan
     </section>
 @endsection

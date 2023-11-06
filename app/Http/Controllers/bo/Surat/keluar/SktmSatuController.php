@@ -21,7 +21,6 @@ class SktmSatuController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:surat KTM');
         Carbon::setLocale('id');
     }
     public function index()

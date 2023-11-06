@@ -1,0 +1,12 @@
+/* Ubah warna tema */
+/* Warna di bawah ini adalah tema ubahan, silakan diubah nilai warnanya sesuai selera */
+/* [data-theme=custom] {
+    --primary-color: #155e75;
+    --secondary-color: #0891b2;
+    --accent-color: #ca8a04;
+} */
+[data-theme=custom] {
+    --primary-color: #064635;
+    --secondary-color: #519259;
+    --accent-color: #ca8a04;
+}

@@ -19,7 +19,6 @@ class SktbekerjaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:surat Keterangan Tidak Bekerja');
         Carbon::setLocale('id');
     }
     public function index()

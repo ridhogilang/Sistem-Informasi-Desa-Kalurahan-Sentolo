@@ -19,7 +19,6 @@ class SpskckController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:surat Pengantar SKCK');
         Carbon::setLocale('id');
     }
     public function index()

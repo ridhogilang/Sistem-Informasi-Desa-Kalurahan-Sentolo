@@ -132,7 +132,7 @@
                                         </td>
                                         <td class="text-center">
                                             <a data-bs-toggle="modal" data-bs-target="#status_{{$value->id}}" class="btn btn-primary">
-                                                <i class="bi bi-clock-history"></i> Lihat
+                                                <i class="bi bi-eye"></i>
                                             </a>
                                         </td>
                                         <!-- ini bagian modal riwayat surat -->
@@ -167,7 +167,7 @@
                                                                         {!! ($detildis->jenis_disposisi == 'PLK')?$badge_disposisi_status['4']:''!!}
 
                                                                         {!! $badge_disposisi_status[$detildis->status_disposisi] !!}
-            
+
                                                                     @else
                                                                     Tindakan : {{ $detildis->tgl_dilanjutkan_ke_disposisi }}<br>
                                                                         {!! ($detildis->jenis_disposisi == 'PLK')?$badge_disposisi_status['4']:''!!}
@@ -176,7 +176,7 @@
 
                                                                 </div>
                                                             </div>
-                                                            <?php 
+                                                            <?php
 
                                                                 $id_dtl[$value->id] = $detildis->id;
                                                                 $id_jns[$value->id] = $detildis->jenis_disposisi;
@@ -197,21 +197,22 @@
                                             <a class="btn btn-success" target="blank" type="submit" href="/admin/e-surat/surat-masuk/{{$value->id}}/document"><i class="fa-solid fa-file-arrow-down"></i></a>
                                         </td>
                                         <td class="text-center">
-
-                                            <!-- Button trigger modal -->
-                                            @if(($value->status_surat == '3' || $value->status_surat == '1'))
-                                                <a class="btn btn-warning" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-SMasuk{{$value->id}}" href="/admin/e-surat/surat-masuk/{{$value->id}}"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            @else
-                                                <a class="btn btn-secondary" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            @endif
-                                            <!-- untuk methode delete lebih baik menggunakan put / delete jangan menggunakan get -->
-                                            @if(($tgl_hr_ini > $value->tanggal_kegiatan) || ($value->status_surat == '3'))
-                                                <button data-bs-toggle="modal" data-bs-target="#arsip_sm_{{$value->id}}" type="button" class="btn btn-danger">
-                                                                    <i class="fa-solid fa-circle-up"></i>
-                                                                </button>
-                                            @else
-                                                <a class="btn btn-secondary"><i class="fa-solid fa-circle-up"></i></a>
-                                            @endif
+                                            <div class="d-flex">
+                                                <!-- Button trigger modal -->
+                                                @if(($value->status_surat == '3' || $value->status_surat == '1'))
+                                                    <a class="btn btn-warning mx-1" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-SMasuk{{$value->id}}" href="/admin/e-surat/surat-masuk/{{$value->id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                @else
+                                                    <a class="btn btn-secondary mx-1" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                @endif
+                                                <!-- untuk methode delete lebih baik menggunakan put / delete jangan menggunakan get -->
+                                                @if(($tgl_hr_ini > $value->tanggal_kegiatan) || ($value->status_surat == '3'))
+                                                    <button data-bs-toggle="modal" data-bs-target="#arsip_sm_{{$value->id}}" type="button" class="btn btn-danger mx-1">
+                                                        <i class="fa-solid fa-circle-up"></i>
+                                                    </button>
+                                                @else
+                                                    <a class="btn btn-secondary mx-1"><i class="fa-solid fa-circle-up"></i></a>
+                                                @endif
+                                            </div>
                                         </td>
                                     </tr>
                                     @if(($value->status_surat == '3' || $value->status_surat == '1'))
@@ -298,47 +299,46 @@
                                     @endif
 
                                     @if(($tgl_hr_ini > $value->tanggal_kegiatan) || ($value->status_surat == '3'))
-                                         <!-- Modal Arsip SURAT MASUK-->
-                                         <div class="modal fade" id="arsip_sm_{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Arsipkan Surat {{ $value->nomor_surat }}</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <form method="POST" action="/admin/e-surat/surat-masuk/{{$value->id}}/delete">
-                                                                @method('delete')
-                                                                @csrf
-                                                            <div class="modal-body">
-                                                                <div class="container">
-                                                                            
+                                        <!-- Modal Arsip SURAT MASUK-->
+                                        <div class="modal fade" id="arsip_sm_{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Arsipkan Surat {{ $value->nomor_surat }}</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <form method="POST" action="/admin/e-surat/surat-masuk/{{$value->id}}/delete">
+                                                        @method('delete')
+                                                        @csrf
+                                                    <div class="modal-body">
+                                                        <div class="container">
 
-                                                                    <div class="row mb-3">
-                                                                        <div class="col">
-                                                                            <p>Berikan catatan mengapa Surat {{ $value->nomor_surat }} gagal dilaksanakan</p>
-                                                                        </div>
-                                                                    </div>
-                                            
-                                                                    <div class="row mb-3">
-                                                                        <label for="catatan" class="col-sm-3 col-form-label">Catatan</label>
-                                                                        <div class="col-sm-9">
-                                                                            <textarea name="catatan" class="form-control" id="catatan" rows="5" required></textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                        
+
+                                                            <div class="row mb-3">
+                                                                <div class="col">
+                                                                    <p>Berikan catatan mengapa Surat {{ $value->nomor_surat }} gagal dilaksanakan</p>
                                                                 </div>
                                                             </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-danger">
-                                                                    Arsipkan
-                                                                </button>
+
+                                                            <div class="row mb-3">
+                                                                <label for="catatan" class="col-sm-3 col-form-label">Catatan</label>
+                                                                <div class="col-sm-9">
+                                                                    <textarea name="catatan" class="form-control" id="catatan" rows="5" required></textarea>
+                                                                </div>
                                                             </div>
-                                                        </form>
+
                                                         </div>
                                                     </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-danger">
+                                                            Arsipkan
+                                                        </button>
+                                                    </div>
+                                                </form>
                                                 </div>
-
+                                            </div>
+                                        </div>
                                     @endif
                                 @endforeach
                             </tbody>

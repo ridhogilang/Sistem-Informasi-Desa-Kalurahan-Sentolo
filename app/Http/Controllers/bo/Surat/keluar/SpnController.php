@@ -18,7 +18,6 @@ class SpnController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:surat Pengantar Nikah');
         Carbon::setLocale('id');
     }
     public function index()

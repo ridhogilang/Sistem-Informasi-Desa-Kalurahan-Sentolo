@@ -13,10 +13,10 @@ use Svg\Tag\Rect;
 
 class ScstmController extends Controller
 {
-    
-    public function __construct() 
+
+    public function __construct()
     {
-        $this->middleware('permission:surat Custom');
+        $this->middleware('permission:Surat Keluar');
         Carbon::setLocale('id');
     }
     public function index()
@@ -167,7 +167,7 @@ class ScstmController extends Controller
             'namattd' =>'nullable',
             'jenis_surat' => 'required',
             'status_surat' => 'required',
-            
+
         ], [
             'min' => 'Masukkan 16 Digit NIK.',
             'unique' => 'Nomor Surat sudah digunakan.',

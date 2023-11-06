@@ -20,7 +20,6 @@ class SkbmController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:surat Keterangan Belum Menikah');
         Carbon::setLocale('id');
     }
     public function index()

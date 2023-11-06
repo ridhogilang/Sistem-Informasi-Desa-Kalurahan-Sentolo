@@ -5,11 +5,13 @@ namespace App\Http\Controllers\bo\Surat\arsip;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\File;
 use Yaza\LaravelGoogleDriveStorage\Gdrive;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Storage;
 //model arsip
 use App\Models\ArsipSurat;
+use App\Models\PenghapusanArsip;
 //model surat keluar
 use App\Models\Skbm;
 use App\Models\Skd;
@@ -26,12 +28,15 @@ use App\Models\Spektp;
 use App\Models\Spk;
 use App\Models\Spn;
 use App\Models\Spskck;
-
 //model surat masuk
 use App\Models\SMasuk;
 
 class ArsipController extends Controller
 {
+    public function __construct()
+    {
+        Carbon::setLocale('id');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -40,6 +45,7 @@ class ArsipController extends Controller
         $arsip = ArsipSurat::with('detilDisposisi')
                 ->with('dtlSuratMasuk')
                 ->with('dtlVerifikasiKeluar')
+                ->where('is_delete', '=', '0')
                 ->get();
 
         $badge_status_mengetahui = [
@@ -242,5 +248,40 @@ class ArsipController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function destroy_arsip(Request $request)
+    {
+        $record = $request->validate([
+            'sampai' => 'required',
+            'dari' => 'required',
+            'surat_penghapusan' => [
+                'required',
+                'mimes:doc,docx,pdf,xls,xlsx,ppt,pptx',
+            ],
+        ], [
+            'required' => 'data ada yang kosong',
+            'mimes' => 'File tidak valid.',
+        ]);
+
+        $file = $request->file('surat_penghapusan');
+        $fileName = 'ARSIP-HPS-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
+        Storage::disk('google')->put('Penghapusan Arsip/' .$fileName, file_get_contents($file));
+        $phps_arsip['link'] = Storage::disk('google')->url('Penghapusan Arsip/' . $fileName);
+        $phps_arsip['id']           = 'ARSIP-HPS-'. date('YmdHis') . '-' . rand(100, 999);
+        $phps_arsip['delete_by']    = auth()->user()->id;
+        $phps_arsip['waktu_penghapusan'] = Carbon::now();
+        $phps_arsip['document'] = $fileName;
+        
+
+        ArsipSurat::whereBetween('created_at', [$record['dari'], $record['sampai']])
+            ->where('is_delete', '=', '0')
+            ->update([
+                'is_delete' => '1',
+                'surat_penghapusan' => $phps_arsip['id'],
+            ]);
+
+        PenghapusanArsip::create($phps_arsip);
+        return redirect()->back()->with('toast_success', 'Arsip Berhasil Dihapus');
     }
 }

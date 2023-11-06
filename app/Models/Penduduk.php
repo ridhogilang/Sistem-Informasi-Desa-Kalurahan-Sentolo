@@ -24,6 +24,7 @@ class Penduduk extends Model
         'nomor_telepon',
         'penghasilan',
         'foto_penduduk',
+        'link_foto',
         'nomor_kk',
         'nomor_ktp',
         'status_nyawa',
@@ -31,5 +32,6 @@ class Penduduk extends Model
         'kontak_darurat',
         'status_migrasi',
         'status_pajak',
+        'is_active',
     ];
 }
