@@ -25,12 +25,14 @@
                     <h3 class="accordion-header">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
                         <span class="num">1.</span>
-                        Non consectetur a erat nam at lectus urna duis?
+                          <strong style="margin-left: 10px;">
+                          Apa itu sistem informasi E-Surat Kalurahan Sentolo?
+                          </strong>
                       </button>
                     </h3>
                     <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                       <div class="accordion-body">
-                        Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                      Sistem informasi E-Surat Kalurahan Sentolo adalah platform yang digunakan untuk mengelola surat-menyurat secara elektronik di dalam proses pemerintahan Kalurahan Sentolo
                       </div>
                     </div>
                   </div><!-- # Faq item-->
@@ -38,13 +40,15 @@
                   <div class="accordion-item  px-3">
                     <h3 class="accordion-header">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
-                        <span class="num">2.</span>
-                        Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?
+                        <span class="num">2. </span>
+                          <strong style="margin-left: 10px;">
+                          Apa manfaat menggunakan sistem informasi E-Surat?
+                          </strong>
                       </button>
                     </h3>
                     <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                       <div class="accordion-body">
-                        Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                        Manfaat utama menggunakan sistem e-surat adalah efisiensi, kecepatan, dan transparansi dalam pengelolaan surat-menyurat. Ini juga membantu dan memudahkan akses terhadap arsip surat.
                       </div>
                     </div>
                   </div><!-- # Faq item-->
@@ -53,12 +57,14 @@
                     <h3 class="accordion-header">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
                         <span class="num">3.</span>
-                        Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi?
+                          <strong style="margin-left: 10px;">
+                          Bagaimana sistem informasi E-Surat membantu produktivitas?
+                          </strong>
                       </button>
                     </h3>
                     <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                       <div class="accordion-body">
-                        Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                        E-surat memungkinkan akses cepat ke surat-menyurat, pencarian mudah, tindak lanjut yang efisien, dan kolaborasi yang lebih baik antara pengguna.
                       </div>
                     </div>
                   </div><!-- # Faq item-->
@@ -67,12 +73,37 @@
                     <h3 class="accordion-header">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
                         <span class="num">4.</span>
-                        Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?
+                          <strong style="margin-left: 10px;">
+                          Bagaimana cara membuat sebuah surat pada sistem informasi E-Surat?
+                          </strong>
                       </button>
                     </h3>
                     <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                       <div class="accordion-body">
-                        Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                        <ul>
+                          <li>Proses pembuatan surat hanya dapat dilakukan oleh staf pelayanan umum, hal ini dikarenakan pembuatan dan input surat masuk merupakan tugas dari Staf Pelayanan Umum.</li>
+                          <li>Buka browser dan kunjungi alamat berikut: …………………………………</li>
+                          <li>Login, masukkan email dan password
+                              <br><img src="/template/img/login.jpg" height="400">
+                          </li>
+                          <li>Setelah Anda berhasil login, maka akan masuk ke halaman dashboard sistem informasi Kalurahan Sentolo</li>
+                          <li>Lihat pada sidebar (sisi kiri), kemudian pilih <b>E-Surat</b></li>
+                              <br><img src="/template/img/sidebar.jpg" height="300">
+                          <li>Pilih E-Surat, maka Anda akan diarahkan ke halaman Dashboard E-Surat</li>
+                          <li>Untuk membuat surat baru, pilih menu <b>Surat Keluar</b></li>
+                          <li>Maka akan muncul 2 pilihan kategori surat yaitu <b>Kemasyarakatan</b> dan <b>Pemerintahan</b></li>
+                          <li>Saat Anda pilih salah satu dari kategori tersebut maka akan muncul beberapa jenis surat di dalamnya</li>
+                              <br><img src="/template/img/side_surat.jpg" height="450">
+                          <li>Pilih salah satu surat yang akan Anda buat</li>
+                          <li>Untuk memastikan surat sesuai dengan yang dibutuhkan, Anda dapat melakukan pengecekan terlebih dahulu dengan melihat contoh surat menggunakan tombol <img src="/template/img/contoh.jpg" height="30"></li>
+                          <li>Untuk membuat surat baru, tekan tombol <img src="/template/img/baru.jpg" height="30"></li>
+                          <li>Masukkan nomor surat sesuai dengan urutan nomor surat yang ada</li>
+                          <li>Masukkan NIK pemohon, apabila NIK sudah terdaftar maka identitas akan terisi secara otomatis, apabila belum terdaftar maka staf perlu memasukkan data secara manual</li>
+                          <li>Pilih pamong dan atau dukuh untuk melakukan verifikasi data</li>
+                          <li>Pilih pamong untuk melakukan tanda tangan pengesahan pada surat yang dibuat</li>
+                          <li>Tekan tombol <img src="/template/img/simpan.jpg" height="30"> , maka data akan tersimpan dan terkirim ke dukuh dan atau pamong yang dipilih untuk melakukan verifikasi</li>
+                          <li>Sampai pada langkah ini draf surat sudah jadi, menunggu hasil verifkikasi dari dukuh dan atau pamong terkait</li>
+                        </ul>
                       </div>
                     </div>
                   </div><!-- # Faq item-->
@@ -81,16 +112,21 @@
                     <h3 class="accordion-header">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
                         <span class="num">5.</span>
-                        Tempus quam pellentesque nec nam aliquam sem et tortor consequat?
+                          <strong style="margin-left: 10px;">
+                          Bagaimana cara menggunakan E-Surat untuk membuat sebuah surat?
+                          </strong>
                       </button>
                     </h3>
                     <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                       <div class="accordion-body">
-                        Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
+                        <ul>
+                          <li>Setelah Anda berhasil masuk ke halaman E-Surat, pilih surat yang akan dibuat</li>
+                          <li>Anda dapat melihat terlebih dahulu contoh surat yang anda buat dengan menekan tombol berikut</li>
+                          <li>Untuk membuat surat baru pilih (tombol) buat surat baru</li>
+                        </ul>
                       </div>
                     </div>
                   </div><!-- # Faq item-->
-
                 </div>
             </div>
             <div class="row">
