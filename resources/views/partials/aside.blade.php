@@ -1,5 +1,5 @@
 <aside class="sidebar">
-    <form action="https://preview.silirdev.com/layanan-mandiri/cek" method="post"
+    <form action="" method="post"
         class="shadow rounded-lg bg-primary dark:bg-dark-secondary overflow-hidden relative">
         <h3 class="py-4 text-center bg-secondary text-white font-bold font-heading text-lg absolute top-0 left-0 w-full">
             Layanan Mandiri</h3>

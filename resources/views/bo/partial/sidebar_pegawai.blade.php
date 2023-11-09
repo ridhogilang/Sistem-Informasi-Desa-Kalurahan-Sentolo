@@ -8,7 +8,88 @@
                 <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
+        <li class="nav-item">
+            <a class="nav-link {{ ($dropdown1 == "Komponen Website") ? '' : 'collapsed' }}" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-menu-button-wide"></i><span>Komponen Website</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav" class="nav-content collapse {{ ($dropdown1 == "Komponen Website") ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/admin/header" class="{{ ($title == "Header") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Header</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/menu" class="{{ ($title == "Menu") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Menu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/komponen" class="{{ ($title == "Komponen Halaman Utama") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Komponen Halaman Utama</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/pamong" class="{{ ($title == "Poster Pamong") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Poster Pamong</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/bagan" class="{{ ($title == "Bagan") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Bagan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/galeri" class="{{ ($title == "Gambar Galeri") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Galeri</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/apbdes" class="{{ ($title == "APBDes") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>APBDes</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Components Nav -->
 
+        <li class="nav-item">
+            <a class="nav-link {{ ($dropdown1 == "Komponen Berita") ? '' : 'collapsed' }}" data-bs-target="#berita-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-person"></i>
+                <span>Berita</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="berita-nav" class="nav-content collapse {{ ($dropdown1 == "Komponen Berita") ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/admin/berita" class="{{ ($title == "Berita") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Tambah Berita</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/berita/komentar" class="{{ ($title == "Komentar Berita") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Komentar Berita</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ ($dropdown1 == "Komponen Artikel") ? '' : 'collapsed' }}" data-bs-target="#artikel-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-person"></i>
+                <span>Artikel</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="artikel-nav" class="nav-content collapse {{ ($dropdown1 == "Komponen Artikel") ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/admin/artikel" class="{{ ($title == "Artikel") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Tambah Artikel</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/artikel/komentar" class="{{ ($title == "Komentar Artikel") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Komentar Artikel</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
         </li><!-- End Nav -->
         @canany(['user_list', 'user_create', 'user_edit', 'user_delete'])
         <li class="nav-item">
