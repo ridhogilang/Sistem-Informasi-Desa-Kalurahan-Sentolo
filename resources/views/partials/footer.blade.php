@@ -201,32 +201,32 @@
 <section
     class="fixed inset-x-0 bottom-0 left-0 max-w-screen right-0 z-40 bg-white dark:bg-dark-secondary shadow-xl lg:hidden lg:invisible bottom-nav">
     <div class="flex justify-between">
-        <a href="https://preview.silirdev.com/"
+        <a href=""
             class="flex flex-col items-center w-full pt-2 pb-1 active:text-secondary " data-mdb-ripple="true"
             data-mdb-ripple-color="light">
             <i class="fa-solid fa-house text-lg"></i>
             <span class="text-xs">Beranda</span>
         </a>
-        <a href="https://preview.silirdev.com/peta"
+        <a href=""
             class="flex flex-col items-center w-full pt-2 pb-1 active:text-secondary " data-mdb-ripple="true"
             data-mdb-ripple-color="light">
             <i class="fa-solid fa-location-dot text-lg"></i>
             <span class="text-xs">Peta</span>
         </a>
-        <a href="http://127.0.0.1:8000/#"
+        <a href=""
             class="flex flex-col items-center w-full pt-2 pb-1 active:text-secondary bg-primary text-white"
             data-mdb-ripple="true" data-mdb-ripple-color="light" @click="drawer = !drawer">
             <i class="fa-solid fa-bars text-lg"></i>
             <span class="text-xs">Menu</span>
         </a>
-        <a href="https://preview.silirdev.com/first/#"
+        <a href=""
             class="flex flex-col items-center w-full pt-2 pb-1 active:text-secondary " data-mdb-ripple="true"
             data-mdb-ripple-color="light" data-bs-target="#modal-login" data-bs-toggle="modal"
             @click="drawer = false">
             <i class="fa-regular fa-user text-lg"></i>
             <span class="text-xs">Login</span>
         </a>
-        <a href="https://preview.silirdev.com/galeri"
+        <a href=""
             class="flex flex-col items-center w-full pt-2 pb-1 active:text-secondary " data-mdb-ripple="true"
             data-mdb-ripple-color="light">
             <i class="fa-solid fa-images text-lg"></i>
@@ -248,13 +248,13 @@
                     data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body relative p-4 flex flex-col space-y-3">
-                <a href="https://preview.silirdev.com/layanan-mandiri"
+                <a href=""
                     class="button button-primary text-center px-5 py-3 text-sm" data-mdb-ripple="true"
                     data-md-ripple-color="light">Login Layanan Mandiri</a>
-                <a href="https://preview.silirdev.com/siteman"
+                <a href=""
                     class="button button-secondary text-center px-5 py-3 text-sm" data-mdb-ripple="true"
                     data-md-ripple-color="light">Login Admin</a>
-                <a href="https://preview.silirdev.com/kehadiran/masuk"
+                <a href=""
                     class="button button-tertiary text-center px-5 py-3 text-sm" data-mdb-ripple="true"
                     data-md-ripple-color="light">Login Kehadiran Perangkat</a>
             </div>
@@ -276,22 +276,22 @@
                     Kabupaten Kulon Progo </p>
                 <ul class="footer-smed">
                     <li title="Facebook" class="mr-2 rounded-full border-2 transition-all duration-200 hover:bg-secondary">
-                        <a href="https://web.facebook.com/groups/OpenSID" target="_blank" class="inline-flex items-center justify-center p-2 w-10 h-10">
+                        <a href="https://www.facebook.com/DsSentolo" target="_blank" class="inline-flex items-center justify-center p-2 w-10 h-10">
                             <i class="fa fa-facebook-square text-2xl"></i>
                         </a>
                     </li>
                     <li title="Twitter" class="mr-2 rounded-full border-2 transition-all duration-200 hover:bg-secondary">
-                        <a href="https://twitter.com/opendesa" target="_blank" class="inline-flex items-center justify-center p-2 w-10 h-10">
+                        <a href="https://twitter.com/" target="_blank" class="inline-flex items-center justify-center p-2 w-10 h-10">
                             <i class="fa fa-twitter text-2xl"></i>
                         </a>
                     </li>
                     <li title="YouTube" class="mr-2 rounded-full border-2 transition-all duration-200 hover:bg-secondary">
-                        <a href="https://www.youtube.com/channel//" target="_blank" class="inline-flex items-center justify-center p-2 w-10 h-10">
+                        <a href="https://www.youtube.com/@pemdessentolo8151/videos" target="_blank" class="inline-flex items-center justify-center p-2 w-10 h-10">
                             <i class="fa fa-youtube text-2xl"></i>
                         </a>
                     </li>
                     <li title="Instagram" class="mr-2 rounded-full border-2 transition-all duration-200 hover:bg-secondary">
-                        <a href="https://www.instagram.com///" target="_blank" class="inline-flex items-center justify-center p-2 w-10 h-10">
+                        <a href="https://www.instagram.com/kalurahan_sentolo/" target="_blank" class="inline-flex items-center justify-center p-2 w-10 h-10">
                             <i class="fa fa-instagram text-2xl"></i>
                         </a>
                     </li>
@@ -336,7 +336,7 @@
             </div>
         </div>
         <div class="footer-copyright">
-            <span>Hak cipta © 2023 - Pemerintah <a href="https://preview.silirdev.com/">Kalurahan Sentolo</a>
+            <span>Hak cipta © 2023 - Pemerintah <a href="{{ config('app.url') }}">Kalurahan Sentolo</a>
         </div>
     </div>
 </footer>

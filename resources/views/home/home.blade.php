@@ -110,8 +110,7 @@
                     class="newsticker-title">Sekilas Info</span></h3>
             <ul class="newsticker-list py-1"style="padding: 0px; margin: 0px; position: relative; list-style-type: none;">
                 <li class="newsticker-item" style="left: 50%; white-space: nowrap;">
-                    <marquee behavior="" direction="">{!! $text->textrunning !!}</marquee><a
-                        href="https://preview.silirdev.com/artikel/2020/6/8/profil-desa" class="newsticker-link"></a>
+                    <marquee behavior="" direction="">{!! $text->textrunning !!}</marquee><a class="newsticker-link"></a>
                 </li>
 
             </ul>
@@ -1341,7 +1340,7 @@
                 </svg>
             </div>
             <div class="w-full lg:w-5/12">
-                <form action="https://preview.silirdev.com/layanan-mandiri/cek" method="post"
+                <form action="" method="post"
                     class="shadow rounded-lg bg-primary dark:bg-dark-secondary overflow-hidden relative">
                     <h3
                         class="py-4 text-center bg-secondary text-white font-bold font-heading text-lg absolute top-0 left-0 w-full">

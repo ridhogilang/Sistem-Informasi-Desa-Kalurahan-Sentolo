@@ -18,7 +18,7 @@
                     class="header-top-right-link py-0">
                     <span class="fa mx-1 text-lg fa-brands fa-facebook" style="color: #ffffff;"></span>
                 </a>
-                <a href="https://twitter.com/opendesa" target="_blank" rel="noopener"
+                <a href="https://twitter.com/" target="_blank" rel="noopener"
                     class="header-top-right-link py-0">
                     <span class="fa mx-1 text-lg fa-brands fa-twitter" style="color: #ffffff;"></span>
                 </a>

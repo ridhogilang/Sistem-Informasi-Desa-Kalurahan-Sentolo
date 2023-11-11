@@ -32,7 +32,8 @@
 <body>
 
     {{-- Sidebar --}}
-    @include('partials.sidebar')
+    @include('bo.partial.header')
+    @include('bo.partial.sidebar_pegawai')
 
     {{-- Main --}}
     <main id="main" class="main">

@@ -53,6 +53,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $baseUrl = getenv('APP_URL');
+
         foreach ($this->permissions as $permission) {
             Permission::create(['name' => $permission]);
         }
@@ -78,67 +80,67 @@ class DatabaseSeeder extends Seeder
         //Database Header
         Header::create([
             'header' => 'Profil',
-            'link' => 'http://127.0.0.1:8000/#',
+            'link' => config('app.url') .'/#',
             'urutan' => '1',
         ]);
 
         Header::create([
             'header' => 'Pemerintahan',
-            'link' => 'http://127.0.0.1:8000/#',
+            'link' => config('app.url') .'/#',
             'urutan' => '2',
         ]);
 
         Header::create([
             'header' => 'BPK',
-            'link' => 'http://127.0.0.1:8000/#',
+            'link' => config('app.url') .'/#',
             'urutan' => '3',
         ]);
 
         Header::create([
             'header' => 'Data',
-            'link' => 'http://127.0.0.1:8000/#',
+            'link' => config('app.url') .'/#',
             'urutan' => '4',
         ]);
 
         Header::create([
             'header' => 'Pelayanan',
-            'link' => 'http://127.0.0.1:8000/#',
+            'link' => config('app.url') .'/#',
             'urutan' => '5',
         ]);
 
         Header::create([
             'header' => 'Blangko',
-            'link' => 'http://127.0.0.1:8000/#',
+            'link' => config('app.url') .'/#',
             'urutan' => '6',
         ]);
 
         Header::create([
             'header' => 'PPID',
-            'link' => 'http://127.0.0.1:8000/#',
+            'link' => config('app.url') .'/#',
             'urutan' => '7',
         ]);
 
         Header::create([
             'header' => 'Pembangunan',
-            'link' => 'http://127.0.0.1:8000/#',
+            'link' => config('app.url') .'/#',
             'urutan' => '8',
         ]);
 
         Header::create([
             'header' => 'Peraturan',
-            'link' => 'http://127.0.0.1:8000/#',
+            'link' => config('app.url') .'/#',
             'urutan' => '9',
         ]);
 
         Header::create([
             'header' => 'PBB',
-            'link' => 'http://127.0.0.1:8000/#',
+            'link' => config('app.url') .'/#',
             'urutan' => '10',
         ]);
 
         Header::create([
             'header' => 'Peraturan',
-            'link' => 'http://127.0.0.1:8000/#',
+            'link' => config('app.url') .'/#',
             'urutan' => '11',
         ]);
 
@@ -146,35 +148,35 @@ class DatabaseSeeder extends Seeder
         //Sub Header 1
         SubHeader::create([
             'subheader' => 'Sejarah',
-            'link' => 'http://127.0.0.1:8000/artikel/2019/03/06/sejarah-kalurahan-sentolo',
+            'link' => config('app.url') .'/artikel/2019/03/06/sejarah-kalurahan-sentolo',
             'urutan' => '1',
             'header_id' => '1',
         ]);
 
         SubHeader::create([
             'subheader' => 'Profil Wilayah',
-            'link' => 'http://127.0.0.1:8000/artikel/2019/03/06/profil-wilayah-desa',
+            'link' => config('app.url') .'/artikel/2019/03/06/profil-wilayah-desa',
             'urutan' => '2',
             'header_id' => '1',
         ]);
 
         SubHeader::create([
             'subheader' => 'Profil Masyarakat',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/01/01/profil-masyarakat-kalurahan-sentolo',
+            'link' => config('app.url') .'/artikel/2023/01/01/profil-masyarakat-kalurahan-sentolo',
             'urutan' => '3',
             'header_id' => '1',
         ]);
 
         SubHeader::create([
             'subheader' => 'Profil Potensi',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/02/09/profil-potensi-kalurahan-sentolo',
+            'link' => config('app.url') .'/artikel/2023/02/09/profil-potensi-kalurahan-sentolo',
             'urutan' => '4',
             'header_id' => '1',
         ]);
 
         SubHeader::create([
             'subheader' => 'Profil Kalurahan',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/profil-kelurahan-sentolo',
+            'link' => config('app.url') .'/artikel/2023/10/18/profil-kelurahan-sentolo',
             'urutan' => '5',
             'header_id' => '1',
         ]);
@@ -182,42 +184,42 @@ class DatabaseSeeder extends Seeder
         //SubHeader 2
         SubHeader::create([
             'subheader' => 'Pemerintah Kalurahan',
-            'link' => 'http://127.0.0.1:8000/artikel/2019/03/06/pemerintah-kalurahan-sentolo',
+            'link' => config('app.url') .'/artikel/2019/03/06/pemerintah-kalurahan-sentolo',
             'urutan' => '1',
             'header_id' => '2',
         ]);
 
         SubHeader::create([
             'subheader' => 'Visi Misi',
-            'link' => 'http://127.0.0.1:8000/artikel/2019/03/06/visi-misi-kalurahan-sentolo',
+            'link' => config('app.url') .'/artikel/2019/03/06/visi-misi-kalurahan-sentolo',
             'urutan' => '2',
             'header_id' => '2',
         ]);
 
         SubHeader::create([
             'subheader' => 'Struktur Organisasi dan Tata Kerja',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/struktur-organisasi-dan-tata-kerja-pemerintah',
+            'link' => config('app.url') .'/artikel/2023/10/18/struktur-organisasi-dan-tata-kerja-pemerintah',
             'urutan' => '3',
             'header_id' => '2',
         ]);
 
         SubHeader::create([
             'subheader' => 'Tugas Pokok dan Fungsi Pemerintah',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/tugas-pokok-dan-fungsi-kalurahan-sentolo',
+            'link' => config('app.url') .'/artikel/2023/10/18/tugas-pokok-dan-fungsi-kalurahan-sentolo',
             'urutan' => '4',
             'header_id' => '2',
         ]);
 
         SubHeader::create([
             'subheader' => 'Badan Permusyawatan Kelurahan',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/02/09/badan-permusyawaratan-desa',
+            'link' => config('app.url') .'/artikel/2023/02/09/badan-permusyawaratan-desa',
             'urutan' => '5',
             'header_id' => '2',
         ]);
 
         SubHeader::create([
             'subheader' => 'Produk Hukum Kalurahan',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/17/produk-hukum',
+            'link' => config('app.url') .'/artikel/2023/10/17/produk-hukum',
             'urutan' => '6',
             'header_id' => '2',
         ]);
@@ -225,14 +227,14 @@ class DatabaseSeeder extends Seeder
         //SubHeader 3
         SubHeader::create([
             'subheader' => 'Struktur Organisasi BPKAL',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/struktur-organisasi-bpkal',
+            'link' => config('app.url') .'/artikel/2023/10/18/struktur-organisasi-bpkal',
             'urutan' => '1',
             'header_id' => '3',
         ]);
 
         SubHeader::create([
             'subheader' => 'Profil BPKAL Sentolo',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/profil-bpkal-sentolo',
+            'link' => config('app.url') .'/artikel/2023/10/18/profil-bpkal-sentolo',
             'urutan' => '2',
             'header_id' => '3',
         ]);
@@ -240,112 +242,112 @@ class DatabaseSeeder extends Seeder
         //SubHeader 4
         SubHeader::create([
             'subheader' => 'Data Wilayah Administratif ',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/12/data-penduduk-menurut-populasi-per-wilayah',
+            'link' => config('app.url') .'/artikel/2023/10/12/data-penduduk-menurut-populasi-per-wilayah',
             'urutan' => '1',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Menurut Jenis Kelamin',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/10/menurut-jenis-kelamin',
+            'link' => config('app.url') .'/artikel/2023/10/10/menurut-jenis-kelamin',
             'urutan' => '2',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Menurut Pendidikan',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/menurut-pendidikan',
+            'link' => config('app.url') .'/artikel/2023/10/19/menurut-pendidikan',
             'urutan' => '3',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Menurut Pekerjaan',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/01/01/menurut-pekerjaan',
+            'link' => config('app.url') .'/artikel/2023/01/01/menurut-pekerjaan',
             'urutan' => '4',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Data Pendidikan ',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/menurut-pendidikan',
+            'link' => config('app.url') .'/artikel/2023/10/19/menurut-pendidikan',
             'urutan' => '5',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Menurut Dusun',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/01/01/menurut-dusun',
+            'link' => config('app.url') .'/artikel/2023/01/01/menurut-dusun',
             'urutan' => '6',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Menurut Agama',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/menurut-agama',
+            'link' => config('app.url') .'/artikel/2023/10/19/menurut-agama',
             'urutan' => '7',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Data Umur',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/data-umur',
+            'link' => config('app.url') .'/artikel/2023/10/19/data-umur',
             'urutan' => '8',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Menurut Status Hubungan Keluarga',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/data-penduduk-menurut-hubungan-dalam-kk',
+            'link' => config('app.url') .'/artikel/2023/10/19/data-penduduk-menurut-hubungan-dalam-kk',
             'urutan' => '9',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Menurut Status Perkawinan',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/data-penduduk-menurut-status-perkawinan',
+            'link' => config('app.url') .'/artikel/2023/10/19/data-penduduk-menurut-status-perkawinan',
             'urutan' => '10',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Menurut Kategori Umur',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/data-umur',
+            'link' => config('app.url') .'/artikel/2023/10/19/data-umur',
             'urutan' => '11',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Menurut KK Jenis Kelamin',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/data-penduduk-menurut-jenis-kelamin',
+            'link' => config('app.url') .'/artikel/2023/10/19/data-penduduk-menurut-jenis-kelamin',
             'urutan' => '12',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Menurut KK Pekerjaan',
-            'link' => 'http://127.0.0.1:8000/',
+            'link' => config('app.url') .'/',
             'urutan' => '13',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Menurut KK Pendidikan',
-            'link' => 'http://127.0.0.1:8000/',
+            'link' => config('app.url') .'/',
             'urutan' => '14',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Menurut KK Umur',
-            'link' => 'http://127.0.0.1:8000/',
+            'link' => config('app.url') .'/',
             'urutan' => '15',
             'header_id' => '4',
         ]);
 
         SubHeader::create([
             'subheader' => 'Menurut Jenis Kelamin',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/10/menurut-jenis-kelamin',
+            'link' => config('app.url') .'/artikel/2023/10/10/menurut-jenis-kelamin',
             'urutan' => '16',
             'header_id' => '4',
         ]);
@@ -353,70 +355,70 @@ class DatabaseSeeder extends Seeder
         //SubHeader 5
         SubHeader::create([
             'subheader' => 'Pakta Integritas',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/pakta-integritas',
+            'link' => config('app.url') .'/artikel/2023/10/18/pakta-integritas',
             'urutan' => '1',
             'header_id' => '5',
         ]);
 
         SubHeader::create([
             'subheader' => 'Alur Pelayanan Pengantar E-KTP',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/alur-pelayanan-pengantar-e-ktp',
+            'link' => config('app.url') .'/artikel/2023/10/18/alur-pelayanan-pengantar-e-ktp',
             'urutan' => '2',
             'header_id' => '5',
         ]);
 
         SubHeader::create([
             'subheader' => 'Alur Pelayanan Pembuatan Surat Ket. Usaha',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/alur-pelayanan-pembuatan-surat-keterangan-usaha',
+            'link' => config('app.url') .'/artikel/2023/10/18/alur-pelayanan-pembuatan-surat-keterangan-usaha',
             'urutan' => '3',
             'header_id' => '5',
         ]);
 
         SubHeader::create([
             'subheader' => 'Alur Pelayanan Pengantar SKCK',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/alur-pelayanan-pengantar-skck',
+            'link' => config('app.url') .'/artikel/2023/10/18/alur-pelayanan-pengantar-skck',
             'urutan' => '4',
             'header_id' => '5',
         ]);
 
         SubHeader::create([
             'subheader' => 'Alur Pelayanan SKTM',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/alur-pelayanan-sktm',
+            'link' => config('app.url') .'/artikel/2023/10/18/alur-pelayanan-sktm',
             'urutan' => '5',
             'header_id' => '5',
         ]);
 
         SubHeader::create([
             'subheader' => 'Alur Pelayanan Akta Kematian',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/alur-pelayanan-akta-kematian',
+            'link' => config('app.url') .'/artikel/2023/10/18/alur-pelayanan-akta-kematian',
             'urutan' => '6',
             'header_id' => '5',
         ]);
 
         SubHeader::create([
             'subheader' => 'Alur Pelayanan Akta Kelahiran',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/alur-pelayanan-akta-kelahiran',
+            'link' => config('app.url') .'/artikel/2023/10/18/alur-pelayanan-akta-kelahiran',
             'urutan' => '7',
             'header_id' => '5',
         ]);
 
         SubHeader::create([
             'subheader' => 'Alur Pelayanan Pindah Penduduk',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/alur-pelayanan-pindah-penduduk',
+            'link' => config('app.url') .'/artikel/2023/10/18/alur-pelayanan-pindah-penduduk',
             'urutan' => '8',
             'header_id' => '5',
         ]);
 
         SubHeader::create([
             'subheader' => 'Alur Pelayanan Masuk Penduduk',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/alur-pelayanan-masuk-penduduk',
+            'link' => config('app.url') .'/artikel/2023/10/18/alur-pelayanan-masuk-penduduk',
             'urutan' => '9',
             'header_id' => '5',
         ]);
 
         SubHeader::create([
             'subheader' => 'Alur Pelayanan Pengantar Nikah',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/alur-pelayanan-pengantar-nikah',
+            'link' => config('app.url') .'/artikel/2023/10/18/alur-pelayanan-pengantar-nikah',
             'urutan' => '10',
             'header_id' => '5',
         ]);
@@ -424,70 +426,70 @@ class DatabaseSeeder extends Seeder
         //SubHeader 6
         SubHeader::create([
             'subheader' => 'Blangko SPTJM Kematian',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/blangko-sptjm-kematian',
+            'link' => config('app.url') .'/artikel/2023/10/18/blangko-sptjm-kematian',
             'urutan' => '1',
             'header_id' => '6',
         ]);
 
         SubHeader::create([
             'subheader' => 'Blangko SPTJM Kelahiran',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/blangko-sptjm-kelahiran',
+            'link' => config('app.url') .'/artikel/2023/10/18/blangko-sptjm-kelahiran',
             'urutan' => '2',
             'header_id' => '6',
         ]);
 
         SubHeader::create([
             'subheader' => 'Blangko Pelaporan Kelahiran ',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/blangko-pelaporan-kelahiran',
+            'link' => config('app.url') .'/artikel/2023/10/18/blangko-pelaporan-kelahiran',
             'urutan' => '3',
             'header_id' => '6',
         ]);
 
         SubHeader::create([
             'subheader' => 'Blangko Pelaporan Kematian',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/blangko-pelaporan-kematian',
+            'link' => config('app.url') .'/artikel/2023/10/18/blangko-pelaporan-kematian',
             'urutan' => '4',
             'header_id' => '6',
         ]);
 
         SubHeader::create([
             'subheader' => 'Blangko Pelaporan ke Dukcapil',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/blangko-pelaporan-ke-dukcapil',
+            'link' => config('app.url') .'/artikel/2023/10/18/blangko-pelaporan-ke-dukcapil',
             'urutan' => '5',
             'header_id' => '6',
         ]);
 
         SubHeader::create([
             'subheader' => 'Blangko Pindah Penduduk F103',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/blangko-pindah-penduduk-f1-03',
+            'link' => config('app.url') .'/artikel/2023/10/18/blangko-pindah-penduduk-f1-03',
             'urutan' => '6',
             'header_id' => '6',
         ]);
 
         SubHeader::create([
             'subheader' => 'Surat Pernyataan Umum',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/surat-pernyataan-umum',
+            'link' => config('app.url') .'/artikel/2023/10/18/surat-pernyataan-umum',
             'urutan' => '7',
             'header_id' => '6',
         ]);
 
         SubHeader::create([
             'subheader' => 'Surat Pernyataan Penghasilan',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/surat-pernyataan-penghasilan',
+            'link' => config('app.url') .'/artikel/2023/10/18/surat-pernyataan-penghasilan',
             'urutan' => '8',
             'header_id' => '6',
         ]);
 
         SubHeader::create([
             'subheader' => 'Surat Pernyataan Izin Berkerja',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/surat-pernyataan-izin-bekerja',
+            'link' => config('app.url') .'/artikel/2023/10/18/surat-pernyataan-izin-bekerja',
             'urutan' => '9',
             'header_id' => '6',
         ]);
 
         SubHeader::create([
             'subheader' => 'Surat Pernyataan Belum Menikah',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/surat-pernyataan-belum-menikah',
+            'link' => config('app.url') .'/artikel/2023/10/18/surat-pernyataan-belum-menikah',
             'urutan' => '10',
             'header_id' => '6',
         ]);
@@ -495,63 +497,63 @@ class DatabaseSeeder extends Seeder
         //SubHeader 7
         SubHeader::create([
             'subheader' => 'Peraturan Kalurahan',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/18/peraturan-kalurahan-sentolo',
+            'link' => config('app.url') .'/artikel/2023/10/18/peraturan-kalurahan-sentolo',
             'urutan' => '1',
             'header_id' => '7',
         ]);
         
         SubHeader::create([
             'subheader' => 'SK Tim PPID',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/sk-tim-ppid',
+            'link' => config('app.url') .'/artikel/2023/10/19/sk-tim-ppid',
             'urutan' => '2',
             'header_id' => '7',
         ]);
 
         SubHeader::create([
             'subheader' => 'Maklumat PPID',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/maklumat-ppid',
+            'link' => config('app.url') .'/artikel/2023/10/19/maklumat-ppid',
             'urutan' => '3',
             'header_id' => '7',
         ]);
 
         SubHeader::create([
             'subheader' => 'Dasar Hukum PPID',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/dasar-hukum-ppid',
+            'link' => config('app.url') .'/artikel/2023/10/19/dasar-hukum-ppid',
             'urutan' => '4',
             'header_id' => '7',
         ]);
 
         SubHeader::create([
             'subheader' => 'Mekanisme Layanan PPID',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/mekanisme-layanan-ppid',
+            'link' => config('app.url') .'/artikel/2023/10/19/mekanisme-layanan-ppid',
             'urutan' => '5',
             'header_id' => '7',
         ]);
 
         SubHeader::create([
             'subheader' => 'Daftar Informasi Publik',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/daftar-informasi-publik',
+            'link' => config('app.url') .'/artikel/2023/10/19/daftar-informasi-publik',
             'urutan' => '6',
             'header_id' => '7',
         ]);
         
         SubHeader::create([
             'subheader' => 'Daftar Informasi Publik yang Dikecualikan',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/daftar-informasi-publik-yang-dikecualikan',
+            'link' => config('app.url') .'/artikel/2023/10/19/daftar-informasi-publik-yang-dikecualikan',
             'urutan' => '7',
             'header_id' => '7',
         ]);
 
         SubHeader::create([
             'subheader' => 'Permohonan Informasi',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/07/08/permohonan-informasi',
+            'link' => config('app.url') .'/artikel/2023/07/08/permohonan-informasi',
             'urutan' => '8',
             'header_id' => '7',
         ]);
 
         SubHeader::create([
             'subheader' => 'Aduan',
-            'link' => 'http://127.0.0.1:8000/artikel/2019/07/08/aduan',
+            'link' => config('app.url') .'/artikel/2019/07/08/aduan',
             'urutan' => '9',
             'header_id' => '7',
         ]);
@@ -559,14 +561,14 @@ class DatabaseSeeder extends Seeder
         //SubHeader 8
         SubHeader::create([
             'subheader' => 'RPJM Kalurahan Sentolo Tahun 2021-2027',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/rp-jm-kalurahan-sentolo-tahun-2021-2027',
+            'link' => config('app.url') .'/artikel/2023/10/19/rp-jm-kalurahan-sentolo-tahun-2021-2027',
             'urutan' => '1',
             'header_id' => '8',
         ]);
 
         SubHeader::create([
             'subheader' => 'Rencana Kerja Kalurahan Sentolo Tahun 2022',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/rencana-kerja-pemerintah-kalurahan-tahun-2022',
+            'link' => config('app.url') .'/artikel/2023/10/19/rencana-kerja-pemerintah-kalurahan-tahun-2022',
             'urutan' => '2',
             'header_id' => '8',
         ]);
@@ -574,21 +576,21 @@ class DatabaseSeeder extends Seeder
         //SubHeader 9
         SubHeader::create([
             'subheader' => 'Daftar Peraturan Pemerintah Kalurahan Tahun 2021',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/daftar-peraturan-pemerintah-kalurahan-tahun-2021',
+            'link' => config('app.url') .'/artikel/2023/10/19/daftar-peraturan-pemerintah-kalurahan-tahun-2021',
             'urutan' => '1',
             'header_id' => '9',
         ]);
         
         SubHeader::create([
             'subheader' => 'Daftar Peraturan Pemerintah Kalurahan Tahun 2022',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/daftar-peraturan-pemerintah-kalurahan-tahun-2022',
+            'link' => config('app.url') .'/artikel/2023/10/19/daftar-peraturan-pemerintah-kalurahan-tahun-2022',
             'urutan' => '2',
             'header_id' => '9',
         ]);
 
         SubHeader::create([
             'subheader' => 'Daftar Peraturan Pemerintah Kalurahan Tahun 2023',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/daftar-peraturan-pemerintah-kalurahan-tahun-2023',
+            'link' => config('app.url') .'/artikel/2023/10/19/daftar-peraturan-pemerintah-kalurahan-tahun-2023',
             'urutan' => '3',
             'header_id' => '9',
         ]);
@@ -618,28 +620,28 @@ class DatabaseSeeder extends Seeder
         //SubHeader 11
         SubHeader::create([
             'subheader' => 'Realisasi Pelaksanaan APBKAL Tahun 2019',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/realisasi-apbkal-tahun-2019',
+            'link' => config('app.url') .'/artikel/2023/10/19/realisasi-apbkal-tahun-2019',
             'urutan' => '1',
             'header_id' => '11',
         ]);
         
         SubHeader::create([
             'subheader' => 'Realisasi APBKAL Tahun 2020',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/realisasi-pelaksanaan-apbkal-tahun-2020',
+            'link' => config('app.url') .'/artikel/2023/10/19/realisasi-pelaksanaan-apbkal-tahun-2020',
             'urutan' => '2',
             'header_id' => '11',
         ]);
 
         SubHeader::create([
             'subheader' => 'Laporan Penyelenggaraan Pemerintahan Kalurahan',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/laporan-penyelenggaraan-pemerintah-kalurahan',
+            'link' => config('app.url') .'/artikel/2023/10/19/laporan-penyelenggaraan-pemerintah-kalurahan',
             'urutan' => '3',
             'header_id' => '11',
         ]);
 
         SubHeader::create([
             'subheader' => 'Informasi Peyelenggaraan Pemerintahan Kalurahan',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/informasi-penyelenggaraan-pemerintahan-kalurahan',
+            'link' => config('app.url') .'/artikel/2023/10/19/informasi-penyelenggaraan-pemerintahan-kalurahan',
             'urutan' => '4',
             'header_id' => '11',
         ]);
@@ -647,7 +649,7 @@ class DatabaseSeeder extends Seeder
         //Menu
         Menu::create([
             'menu' => 'Produk Hukum',
-            'link' => 'http://127.0.0.1:8000',
+            'link' => config('app.url') .'',
             'gambar' => '/gambar-menu/hukum.png',
             'urutan' => '1',
         ]);
@@ -659,32 +661,32 @@ class DatabaseSeeder extends Seeder
         ]);
         Menu::create([
             'menu' => 'Bantuan Sosial',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/bantuan-sosial',
+            'link' => config('app.url') . '/artikel/2023/10/19/bantuan-sosial',
             'gambar' => '/gambar-menu/bantuan.png',
             'urutan' => '3',
         ]);
         Menu::create([
             'menu' => 'Lem. Masyarakat',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/11/01/lembaga-masyarakat',
+            'link' => config('app.url') .'/artikel/2023/11/01/lembaga-masyarakat',
             'gambar' => '/gambar-menu/lembaga.png',
             'urutan' => '4',
         ]);
         Menu::create([
             'menu' => 'Anggaran',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/anggaran-kalurahan',
+            'link' => config('app.url') .'/artikel/2023/10/19/anggaran-kalurahan',
             'gambar' => '/gambar-menu/anggaran.png',
             'urutan' => '5',
         ]);
         Menu::create([
             'menu' => 'Galeri',
-            'link' => 'http://127.0.0.1:8000/galeri-sentolo',
+            'link' => config('app.url') .'/galeri-sentolo',
             'gambar' => '/gambar-menu/galery.png',
             'urutan' => '6',
         ]);
 
         Menu::create([
             'menu' => 'Perpus Online',
-            'link' => 'http://127.0.0.1:8000',
+            'link' => config('app.url') .'',
             'gambar' => '/gambar-menu/perpus.png',
             'urutan' => '7',
         ]);
@@ -698,7 +700,7 @@ class DatabaseSeeder extends Seeder
 
         Menu::create([
             'menu' => 'Bumdes',
-            'link' => 'http://127.0.0.1:8000/artikel/2023/10/19/perkal-no-1-tahun-2022-tentang-bumdes',
+            'link' => config('app.url') .'/artikel/2023/10/19/perkal-no-1-tahun-2022-tentang-bumdes',
             'gambar' => '/gambar-menu/bumdes.png',
             'urutan' => '9',
         ]);
@@ -882,6 +884,8 @@ class DatabaseSeeder extends Seeder
             "kategoriberita_id" => "2",
             "artikel" => "<p style=&quot;border-width: 0px; border-style: solid; border-color: rgb(229, 231, 235); --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse))); margin-right: 0px; margin-bottom: calc(0.5rem * var(--tw-space-y-reverse)); margin-left: 0px; --tw-space-y-reverse: 0; color: rgb(75, 85, 99); font-family: Poppins, sans-serif; text-align: justify; overflow-wrap: break-word !important;&quot;>KALURAHAN SENTOLO- Dinas Kebudayaan (Kundha Kabudayan) Kabupaten Kulon Progo&nbsp; menyelenggarakan Gelar Potensi Rintisan Kalurahan Budaya Kategori Berkembang yang dilaksanakan pada tanggal 07-13 Agustus 2023. Bertempat di Auditorium Taman Budaya Kulon Progo dengan menampilkan 35 Kesenian Unggulan Rintisan Kalurahan Budaya Kategori Berkembang dan Produk Kerajinan, Kuliner Khas dari Wilayah masing-masing Kalurahan.</p><p style=&quot;border-width: 0px; border-style: solid; border-color: rgb(229, 231, 235); --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse))); margin-right: 0px; margin-bottom: calc(0.5rem * var(--tw-space-y-reverse)); margin-left: 0px; --tw-space-y-reverse: 0; color: rgb(75, 85, 99); font-family: Poppins, sans-serif; text-align: justify; overflow-wrap: break-word !important;&quot;>Begitupun dengan Kalurahan Sentolo yang menampilkan persembahan unggulan dari Kelompok Kesenian Kalurahan Sentolo. Adapun tarian yang dibawakan adalah &quot;Jathilan Rekso Jati Budaya&quot; yang dipimpin oleh Bapak Teguh Hascaryo. Kesenian Jathilan ini menggambarkan Prajurit Mataram yang tengah mengadakan latian perang di bawah pimpinan Sultan Hamengkubuwono I untuk menghadapi Kolonial Belanda.&nbsp;Jathilan ini dikenang sebagai gambaran era perang Jawa.</p><p style=&quot;border-width: 0px; border-style: solid; border-color: rgb(229, 231, 235); --tw-translate_x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-scroll-snap-strictness: proximity; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgb(59 130 246 / 0.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000; margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse))); margin-right: 0px; margin-bottom: calc(0.5rem * var(--tw-space-y-reverse)); margin-left: 0px; --tw-space-y-reverse: 0; color: rgb(75, 85, 99); font-family: Poppins, sans-serif; text-align: justify; overflow-wrap: break-word !important;&quot;>Hingga saat ini, kesenian jathilan sudah banyak dipentaskan oleh masyarakat dengan menggunakan properti kuda tiruan yang berbuat dari bambu. Kesenian ini merupakan salah satu sarana tontonan dan tntunan untuk menyatukan rakyat dalam melawan penindasan.</p>",
             "ringkasan" => "KALURAHAN SENTOLO- Dinas Kebudayaan (Kundha Kabudayan) Kabupaten Kulon Progo&nbsp; menyelenggarakan...",
+            "status" => true,
+            "sideberita" => true,
             "slug" => "gelar-potensi-rintisan-kalurahan-budaya",
         ]);
 
@@ -908,6 +912,7 @@ class DatabaseSeeder extends Seeder
             
             Aneka makanan tradisional seperti tumpeng, ingkung dan jajanan pasar juga turut serta sebagai pelengkap hidangan dalam acara tersebut.</span><br></p>",
             "ringkasan" => "KALURAHAN SENTOLO - Mertri Padukuhan Gunung Rawas dilaksanakan pada hari Minggu...",
+            "status" => true,
             "slug" => "merti-dusun-gunung-rawas-nunggal-sedya",
         ]);
 
