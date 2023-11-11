@@ -1,6 +1,6 @@
-@extends('layout.admin')
+@extends('bo.layout.master')
 
-@section('main')
+@section('content')
     <div class="pagetitle">
         <h1>{{ $title }}</h1>
         <nav>

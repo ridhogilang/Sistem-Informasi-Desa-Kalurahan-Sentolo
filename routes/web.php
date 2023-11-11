@@ -44,16 +44,16 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MenuController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ApbdesController;
-use App\Http\Controllers\BaganController;
-use App\Http\Controllers\BeritaController;
-use App\Http\Controllers\GaleriController;
-use App\Http\Controllers\HeaderController;
-use App\Http\Controllers\KomentarController;
-use App\Http\Controllers\KomponenController;
-use App\Http\Controllers\PamongController;
+use App\Http\Controllers\bo\Sid\MenuController;
+use App\Http\Controllers\bo\Sid\AdminController;
+use App\Http\Controllers\bo\Sid\ApbdesController;
+use App\Http\Controllers\bo\Sid\BaganController;
+use App\Http\Controllers\bo\Sid\BeritaController;
+use App\Http\Controllers\bo\Sid\GaleriController;
+use App\Http\Controllers\bo\Sid\HeaderController;
+use App\Http\Controllers\bo\Sid\KomentarController;
+use App\Http\Controllers\bo\Sid\KomponenController;
+use App\Http\Controllers\bo\Sid\PamongController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,15 +66,7 @@ use App\Http\Controllers\PamongController;
 |
 */
 
-
-//untuk login
-Route::prefix('sitemin-sentolo')->group(function () {
-    Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
-    Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
-    Route::get('/verifymail/{id}', [VerifikasiEmailController::class, 'mailverify'])->name('verifymail');
-    Route::resource('/forget_password', ForgetPasswordController::class)->except(['create', 'show', 'destroy']);
-});
-
+//front office (halaman depan)
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('/captcha', 'captcha');
@@ -90,12 +82,17 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/berita/kategori/cari-berita', 'cariberita');
     Route::get('/galeri-sentolo', 'galeri');
     Route::get('/galeri/{year}/{month}/{day}/{nama}', 'show_galeri');
-
 });
 
-Route::controller(AdminController::class)->group(function () {
-    Route::get('/dashboard', 'index');
+//untuk login
+Route::prefix('sitemin-sentolo')->group(function () {
+    Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
+    Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
+    Route::get('/verifymail/{id}', [VerifikasiEmailController::class, 'mailverify'])->name('verifymail');
+    Route::resource('/forget_password', ForgetPasswordController::class)->except(['create', 'show', 'destroy']);
 });
+
+
 
 Route::controller(KomentarController::class)->group(function () {
     Route::post('/komentar', 'store'); //iki njobo
@@ -103,11 +100,6 @@ Route::controller(KomentarController::class)->group(function () {
     Route::get('/hapus-komentar/{id}', 'destroy');
 });
 
-Route::controller(KomponenController::class)->group(function () {
-    Route::get('/admin/komponen', 'index'); //iki njobo
-    Route::put('/edit-text/{id}', 'update');
-    Route::put('/edit-text/{id}', 'update');
-});
 //Poster Pamong
 Route::controller(PamongController::class)->group(function () {
     Route::get('/admin/pamong', 'index');
@@ -198,7 +190,7 @@ Route::controller(HeaderController::class)->group(function () {
     Route::get('/deletesubheader/{id}', 'destroysub');
     Route::get('/checkSubheaders/{id}', 'checkSubheaders');
 });
-
+//back office (halaman admin)
 Route::prefix('admin')->group(function () {
     Route::group(['middleware' => ['web', 'auth']], function () {
         //logout
@@ -380,7 +372,14 @@ Route::prefix('admin')->group(function () {
         });
         //untuk tim sistem informasi
         Route::prefix('sistem-informasi')->group(function () {
-
+            Route::controller(AdminController::class)->group(function () {
+                Route::get('/dashboard', 'index')->name('bo.sid.dashboard');
+            });
+            //running text
+            Route::controller(KomponenController::class)->group(function () {
+                Route::get('/komponen', 'index');
+                Route::put('/edit-text/{id}', 'update');
+            });
         });
     });
 });

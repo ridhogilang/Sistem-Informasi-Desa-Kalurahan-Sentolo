@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\bo\Sid;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApbdesRequest;
 use App\Http\Requests\UpdateApbdesRequest;
 use App\Models\Apbdes;
@@ -16,7 +17,7 @@ class ApbdesController extends Controller
     {
         $apbdes = Apbdes::first();
 
-        return view('admin.apbdes', [
+        return view('bo.page.sid.apbdes', [
             "title" => "APBDes",
             "dropdown1" => "Komponen Website",
             "apbdes" => $apbdes,

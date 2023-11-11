@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\bo\Sid;
 
+use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -20,7 +21,7 @@ class MenuController extends Controller
         
         $data = Menu::all();
 
-        return view('admin.menu', [
+        return view('bo.page.sid.menu', [
             "title" => "Menu",
             "dropdown1" => "Komponen Website",
             "menu" => $data,

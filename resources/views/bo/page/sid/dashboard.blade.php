@@ -1,6 +1,6 @@
-@extends('layout.admin')
+@extends('bo.layout.master')
 
-@section('main')
+@section('content')
     <main id="main" class="main">
 
         <div class="pagetitle">

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\bo\Sid;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Header;
 use App\Models\SubHeader;
@@ -22,7 +23,7 @@ class HeaderController extends Controller
         $data = Header::all();
         $subdata = SubHeader::all();
 
-        return view('admin.header', [
+        return view('bo.page.sid.header', [
             "title" => "Header",
             "dropdown1" => "Komponen Website",
             "header" => $data,

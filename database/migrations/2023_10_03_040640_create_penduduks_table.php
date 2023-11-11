@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('penduduk', function (Blueprint $table) {
             $table->id();
-            $table->string('nik');
-            $table->string('nama');
-            $table->string('jenis_kelamin');
-            $table->string('tempat_lahir');
-            $table->string('tanggal_lahir');
+            $table->string('nik')->index();
+            $table->string('nama')->index();
+            $table->string('jenis_kelamin')->index();
+            $table->string('tempat_lahir')->index();
+            $table->string('tanggal_lahir')->index();
             $table->string('agama');
             $table->string('status_perkawinan');
             $table->text('alamat');
@@ -28,8 +28,8 @@ return new class extends Migration
             $table->string('penghasilan')->nullable();
             $table->string('foto_penduduk')->nullable();
             $table->string('link_foto')->nullable();
-            $table->string('nomor_kk');
-            $table->string('nomor_ktp');
+            $table->string('nomor_kk')->index();
+            $table->string('nomor_ktp')->index();
             $table->string('status_nyawa');
             $table->string('keterangan_kematian')->nullable();
             $table->string('kontak_darurat');

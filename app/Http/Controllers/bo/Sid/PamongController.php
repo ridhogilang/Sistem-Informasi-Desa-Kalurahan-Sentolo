@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\bo\Sid;
 
+use App\Http\Controllers\Controller;
 use App\Models\Pamong;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,7 @@ class PamongController extends Controller
     {
         $pamong = Pamong::all();
 
-        return view('admin.pamong', [
+        return view('bo.page.sid.pamong', [
             "title" => "Poster Pamong",
             "dropdown1" => "Komponen Website",
             "pamong" => $pamong,

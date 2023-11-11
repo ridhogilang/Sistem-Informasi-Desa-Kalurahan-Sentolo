@@ -51,6 +51,8 @@
         @include('bo.partial.sidebar_pegawai')
     @elseif(request()->is('admin/e-surat*'))
         @include('bo.partial.sidebar_surat')
+    @elseif(request()->is('admin/sistem-informasi*'))
+        @include('bo.partial.sidebar_sid')
     @else
         @include('bo.partial.sidebar')
     @endif
