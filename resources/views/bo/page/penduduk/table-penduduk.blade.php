@@ -68,7 +68,7 @@
             serverSide: true,
             ajax: "{{ route('bo.penduduk.aktif') }}",
             columns: [
-                {data: 'id', name: 'id'},
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'nik', name: 'nik'},
                 {data: 'nama', name: 'nama'},
                 {data: 'jenis_kelamin', name: 'jenis_kelamin'},
