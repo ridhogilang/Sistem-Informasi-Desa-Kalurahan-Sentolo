@@ -39,7 +39,9 @@ class PendudukController extends Controller
                                                             ' . method_field("DELETE") . '
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title">Basic Modal</h5>
+                                                                    <h5 class="modal-title">
+                                                                    '.$row["nama"].' ('.$row["nik"].')
+                                                                    </h5>
                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
@@ -72,10 +74,59 @@ class PendudukController extends Controller
     }
     public function migrasi()
     {
-        $penduduk = Penduduk::where('is_active', '=' , '0')->get();
         return view('bo.page.penduduk.table-migrasi', [
             'title' => 'Data Penduduk Migrasi'
-        ])->with('penduduk', $penduduk);
+        ]);
+    }
+    public function datasnonaktif()
+    {
+        $penduduk = Penduduk::select('id', 'nik', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir')
+                    ->where('is_active', '=', '0')
+                    ->get();
+        return Datatables::of($penduduk)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<div class="d-flex"><a class="btn btn-warning mx-1" type="button" href="/penduduk/'.$row["id"].'/edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#migrasi_penduduk'.$row["id"].'"><i class="fa-solid fa-trash-can"></i></button>
+                            <div class="modal fade" id="migrasi_penduduk'.$row["id"].'" tabindex="-1">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <form action="/penduduk/'.$row["id"].'/delete" method="POST" enctype="multipart/form-data">
+                                                            ' . csrf_field() . '
+                                                            ' . method_field("DELETE") . '
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">
+                                                                    '.$row["nama"].' ('.$row["nik"].')
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row mb-3">
+                                                                        <label for="catatan" class="col-sm-3 col-form-label">Catatan</label>
+                                                                        <div class="col-sm-9">
+                                                                            <textarea type="text" name="catatan" class="form-control" id="catatan" rows="2" required></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row ">
+                                                                        <label for="dokumen" class="col-sm-3 col-form-label">Dokumen</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="file" name="dokumen" class="form-control" id="dokumen" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                    </div>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
     }
     public function create($action) {
         return view('bo.page.penduduk.form-penduduk', [

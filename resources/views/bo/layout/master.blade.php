@@ -8,6 +8,7 @@
     <title>Sentolo | {{$title}} </title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
     @stack('header')
     <!-- Favicons -->
     <link href="{{ asset('template/img/favicon.png') }}" rel="icon">
