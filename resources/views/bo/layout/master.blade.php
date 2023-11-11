@@ -83,7 +83,7 @@
     <script src="{{ asset('template/js/main.js') }}"></script>
 
     <!-- SweetAlert -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @include('sweetalert::alert')
 

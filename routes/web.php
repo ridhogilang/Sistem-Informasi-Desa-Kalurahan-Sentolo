@@ -98,13 +98,13 @@ Route::controller(AdminController::class)->group(function () {
 });
 
 Route::controller(KomentarController::class)->group(function () {
-    Route::post('/komentar', 'store');
+    Route::post('/komentar', 'store'); //iki njobo
     Route::put('/approvecomment/{id}', 'approveComment');
     Route::get('/hapus-komentar/{id}', 'destroy');
 });
 
 Route::controller(KomponenController::class)->group(function () {
-    Route::get('/admin/komponen', 'index');
+    Route::get('/admin/komponen', 'index'); //iki njobo
     Route::put('/edit-text/{id}', 'update');
     Route::put('/edit-text/{id}', 'update');
 });
@@ -115,6 +115,7 @@ Route::controller(PamongController::class)->group(function () {
     Route::post('/tambah-pamong', 'create');
     Route::put('/edit-pamong/{id}', 'update');
 });
+
 //Galeri
 Route::controller(GaleriController::class)->group(function() {
     Route::get('/admin/galeri', 'index');
@@ -388,6 +389,7 @@ Route::prefix('admin')->group(function () {
 Route::get('/get-penduduk/{nik}', [PendudukController::class, 'info']);
 // Crud data penduduk
 Route::get('/penduduk', [PendudukController::class, 'index']);
+Route::get('/data-penduduk', [PendudukController::class, 'datasaktif'])->name('bo.penduduk.aktif');
 Route::get('/penduduk-migrasi', [PendudukController::class, 'migrasi']);
 Route::get('/penduduk/tambah-data', [PendudukController::class, 'create'])->defaults('action', 'Tambah');
 Route::post('/penduduk', [PendudukController::class, 'store']);

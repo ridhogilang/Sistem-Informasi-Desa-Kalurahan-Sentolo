@@ -6,6 +6,7 @@ use App\Models\Penduduk;
 use App\Models\PenghapusanPenduduk;
 use Illuminate\Http\Request;
 use Storage;
+use Yajra\DataTables\Facades\Datatables;
 
 class PendudukController extends Controller
 {
@@ -16,10 +17,24 @@ class PendudukController extends Controller
     }
     public function index()
     {
-        $penduduk = Penduduk::where('is_active', '=' , '1')->get();
+        // $penduduk = Penduduk::where('is_active', '=' , '1')->get();
         return view('bo.page.penduduk.table-penduduk', [
             'title' => 'Data Penduduk'
-        ])->with('penduduk', $penduduk);
+        ]);
+    } 
+    public function datasaktif()
+    {
+        $penduduk = Penduduk::select('id', 'nik', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir')
+                    ->where('is_active', '=', '1')
+                    ->get();
+        return Datatables::of($penduduk)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
     }
     public function migrasi()
     {
