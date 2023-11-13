@@ -46,7 +46,7 @@
                                         <td class="text-center">
                                             <a class="btn btn-warning" type="submit" data-bs-toggle="modal"
                                                 data-bs-target="#Modal-Show-komentar-{{ $value->id }}"
-                                                href="/komentar/{{ $value->id }}/show"><i
+                                                href="/admin/sistem-informasi/komentar/{{ $value->id }}/show"><i
                                                     class="fa-regular fa-eye"></i></a>
                                             <a class="btn btn-success" id="SetujuiKomentar" data-id="{{ $value->id }}"
                                                 href="#">
@@ -54,7 +54,7 @@
                                             </a>
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-danger" type="submit" id="deletekomentar"
-                                                data-id="{{ $value->id }}" href="/hapus-komentar/{{ $value->id }}"><i
+                                                data-id="{{ $value->id }}" href="/admin/sistem-informasi/hapus-komentar/{{ $value->id }}"><i
                                                     class="fa-regular fa-trash-can"></i></a>
                                         </td>
                                     </tr>
@@ -165,7 +165,7 @@
                                         <td class="text-center">
                                             <a class="btn btn-danger" type="submit" id="deletekomentar"
                                                 data-id="{{ $value->id }}"
-                                                href="/hapus-komentar/{{ $value->id }}"><i
+                                                href="/admin/sistem-informasi/hapus-komentar/{{ $value->id }}"><i
                                                     class="fa-regular fa-trash-can"></i></a>
                                         </td>
                                     </tr>
@@ -197,7 +197,7 @@
                     confirmButtonText: 'Ya, hapus sekarang!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/hapus-komentar/" + data_id,
+                        window.location = "/admin/sistem-informasi/hapus-komentar/" + data_id,
                             Swal.fire(
                                 'Deleted!',
                                 'Data sudah terhapus.',

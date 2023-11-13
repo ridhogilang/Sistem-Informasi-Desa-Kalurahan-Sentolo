@@ -4,7 +4,6 @@ namespace App\Http\Controllers\bo\Sid;
 
 use App\Http\Controllers\Controller;
 use App\Models\Galeri;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 

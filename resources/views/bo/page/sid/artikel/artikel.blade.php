@@ -46,7 +46,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/artikel" method="POST"
+                                        <form class="row g-3" action="/admin/sistem-informasi/artikel" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="col-md-12">
@@ -150,12 +150,12 @@
                                             </a>
                                         </td>
                                         <td class="text-center">
-                                            <a class="btn btn-warning" href="/showartikel/{{ $value->id }}"><i
+                                            <a class="btn btn-warning" href="/admin/sistem-informasi/showartikel/{{ $value->id }}"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-danger" type="submit" id="deleteartikel"
                                                 data-id="{{ $value->id }}"
-                                                href="/deleteartikel/{{ $value->id }}"><i
+                                                href="/admin/sistem-informasi/deleteartikel/{{ $value->id }}"><i
                                                     class="fa-regular fa-trash-can"></i></a>
                                         </td>
                                     </tr>
@@ -187,7 +187,7 @@
                     confirmButtonText: 'Ya, hapus sekarang!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/deleteartikel/" + data_id,
+                        window.location = "/admin/sistem-informasi/deleteartikel/" + data_id,
                             Swal.fire(
                                 'Deleted!',
                                 'Data sudah terhapus.',

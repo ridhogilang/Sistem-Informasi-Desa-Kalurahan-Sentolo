@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/menu" class="{{ ($title == "Menu") ? 'active' : '' }}">
+                    <a href="/admin/sistem-informasi/menu" class="{{ ($title == "Menu") ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Menu</span>
                     </a>
                 </li>

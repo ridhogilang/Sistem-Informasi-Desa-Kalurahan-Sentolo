@@ -67,7 +67,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/berita" method="POST" enctype="multipart/form-data">
+                                        <form class="row g-3" action="/admin/sistem-informasi/berita" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="col-md-12">
                                                 <label for="judul" class="form-label">Judul</label>
@@ -172,12 +172,12 @@
                                             </form>
                                         </td>
                                         <td class="text-center">
-                                            <a class="btn btn-warning" href="/showberita/{{ $value->id }}"><i
+                                            <a class="btn btn-warning" href="/admin/sistem-informasi/showberita/{{ $value->id }}"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-danger" type="submit" id="deleteberita"
                                                 data-id="{{ $value->id }}"
-                                                href="/deleteberita/{{ $value->id }}"><i
+                                                href="/admin/sistem-informasi/deleteberita/{{ $value->id }}"><i
                                                     class="fa-regular fa-trash-can"></i></a>
                                         </td>
                                     </tr>
@@ -209,7 +209,7 @@
                     confirmButtonText: 'Ya, hapus sekarang!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/deleteberita/" + data_id,
+                        window.location = "/admin/sistem-informasi/deleteberita/" + data_id,
                             Swal.fire(
                                 'Deleted!',
                                 'Data sudah terhapus.',

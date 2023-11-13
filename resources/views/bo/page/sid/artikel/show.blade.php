@@ -26,7 +26,7 @@
                         <h5 class="card-title">Edit Artikel</h5>
 
                         <!-- Multi Columns Form -->
-                        <form class="row g-3" action="/updateartikel/{{ $artikel->id }}" method="POST"
+                        <form class="row g-3" action="/admin/sistem-informasi/updateartikel/{{ $artikel->id }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('put')

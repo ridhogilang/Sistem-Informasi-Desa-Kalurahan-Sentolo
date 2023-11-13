@@ -47,7 +47,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/tambah-galeri" method="POST"
+                                        <form class="row g-3" action="/admin/sistem-informasi/tambah-galeri" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="row mb-3">
@@ -106,11 +106,11 @@
                                         <td class="text-center">
                                             <a class="btn btn-warning" type="button" data-bs-toggle="modal"
                                                 data-bs-target="#Modal-Edit-Galeri-{{ $item->id }}"
-                                                href="/edit-text/{{ $item->id }}">
+                                                href="/admin/sistem-informasi/edit-text/{{ $item->id }}">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                             <a class="btn btn-danger" type="submit" id="deletegaleri"
-                                                data-id="{{ $item->id }}" href="/hapus-galeri/{{ $item->id }}"><i
+                                                data-id="{{ $item->id }}" href="/admin/sistem-informasi/hapus-galeri/{{ $item->id }}"><i
                                                     class="fa-regular fa-trash-can"></i>
                                             </a>
                                         </td>
@@ -121,7 +121,7 @@
                                         aria-labelledby="Modal-Edit-Galeri-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
                                             <div class="modal-content">
-                                                <form action="/edit-galeri/{{ $item->id }}" method="POST"
+                                                <form action="/admin/sistem-informasi/edit-galeri/{{ $item->id }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     @method('put')
@@ -192,7 +192,7 @@
                     confirmButtonText: 'Ya, hapus sekarang!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/hapus-galeri/" + data_id,
+                        window.location = "/admin/sistem-informasi/hapus-galeri/" + data_id,
                             Swal.fire(
                                 'Deleted!',
                                 'Data sudah terhapus.',
