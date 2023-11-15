@@ -1,6 +1,6 @@
-@extends('layout.admin')
+@extends('bo.layout.master')
 
-@section('main')
+@section('content')
     <div class="pagetitle">
         <h1>Header</h1>
         <nav>
@@ -44,7 +44,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row" action="/header" method="POST">
+                                        <form class="row" action="/admin/sistem-informasi/header" method="POST">
                                             @csrf
                                             <div class="row mb-3">
                                                 <label for="header2" class="col-sm-3 col-form-label">Header</label>
@@ -88,7 +88,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row" action="/subheader" method="POST">
+                                        <form class="row" action="/admin/sistem-informasi/subheader" method="POST">
                                             @csrf
                                             <div class="row mb-3">
                                                 <label for="subheader" class="col-sm-3 col-form-label">SubHeader</label>
@@ -167,11 +167,11 @@
                                         <td class="text-center">
                                             <a class="btn btn-warning" type="submit" data-bs-toggle="modal"
                                                 data-bs-target="#Modal-Edit-header-{{ $value->id }}"
-                                                href="/header/{{ $value->id }}/edit"><i
+                                                href="/admin/sistem-informasi/header/{{ $value->id }}/edit"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-danger" type="submit" id="deleteheader"
-                                                data-id="{{ $value->id }}" href="/deleteheader/{{ $value->id }}"><i
+                                                data-id="{{ $value->id }}" href="/admin/sistem-informasi/deleteheader/{{ $value->id }}"><i
                                                     class="fa-regular fa-trash-can"></i></a>
                                         </td>
                                     </tr>
@@ -182,7 +182,7 @@
                                         aria-labelledby="Modal-Edit-header-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                                             <div class="modal-content">
-                                                <form action="/header/{{ $value->id }}" method="POST">
+                                                <form action="/admin/sistem-informasi/header/{{ $value->id }}" method="POST">
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-header">
@@ -262,12 +262,12 @@
                                         <td class="text-center">
                                             <a class="btn btn-warning" type="submit" data-bs-toggle="modal"
                                                 data-bs-target="#Modal-Edit-subheader-{{ $value->id }}"
-                                                href="/header/{{ $value->id }}/edit"><i
+                                                href="/admin/sistem-informasi/header/{{ $value->id }}/edit"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-danger" type="submit" id="deletesubheader"
                                                 data-id="{{ $value->id }}"
-                                                href="/deletesubheader/{{ $value->id }}"><i
+                                                href="/admin/sistem-informasi/deletesubheader/{{ $value->id }}"><i
                                                     class="fa-regular fa-trash-can"></i></a>
                                         </td>
                                     </tr>
@@ -278,7 +278,7 @@
                                         aria-labelledby="Modal-Edit-header-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                                             <div class="modal-content">
-                                                <form action="/subheader/{{ $value->id }}" method="POST">
+                                                <form action="/admin/sistem-informasi/subheader/{{ $value->id }}" method="POST">
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-header">
@@ -373,7 +373,7 @@
                         // Check if the header has subheaders
                         $.ajax({
                             type: "GET",
-                            url: "/checkSubheaders/" + data_id,
+                            url: "/admin/sistem-informasi/checkSubheaders/" + data_id,
                             success: function(response) {
                                 if (response.hasSubheaders) {
                                     Swal.fire(
@@ -383,7 +383,7 @@
                                     );
                                 } else {
                                     // If no subheaders, proceed with deletion
-                                    window.location = "/deleteheader/" + data_id;
+                                    window.location = "/admin/sistem-informasi/deleteheader/" + data_id;
                                     Swal.fire(
                                         'Deleted!',
                                         'Data sudah terhapus.',
@@ -413,7 +413,7 @@
                     confirmButtonText: 'Ya, hapus sekarang!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/deletesubheader/" + data_id,
+                        window.location = "/admin/sistem-informasi/deletesubheader/" + data_id,
                             Swal.fire(
                                 'Deleted!',
                                 'Data sudah terhapus.',

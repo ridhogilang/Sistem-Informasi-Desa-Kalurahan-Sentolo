@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\bo\Sid;
 
+use App\Http\Controllers\Controller;
 use App\Models\Runningtext;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -18,7 +19,7 @@ class KomponenController extends Controller
     {
         $text = Runningtext::all();
 
-        return view('admin.komponen', [
+        return view('bo.page.sid.komponen', [
             "title" => "Komponen Halaman Utama",
             "dropdown1" => "Komponen Website",
             "text" => $text,

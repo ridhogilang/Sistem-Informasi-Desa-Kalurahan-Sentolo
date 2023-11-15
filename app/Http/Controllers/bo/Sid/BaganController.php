@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\bo\Sid;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBaganRequest;
 use App\Models\Agenda;
 use App\Models\Jadwal;
@@ -22,7 +23,7 @@ class BaganController extends Controller
         $agenda = Agenda::all();
         $statistik = Statistik::all();
 
-        return view('admin.bagan', [
+        return view('bo.page.sid.bagan', [
             "title" => "Bagan",
             "dropdown1" => "Komponen Website",
             "jadwal" => $jadwal,

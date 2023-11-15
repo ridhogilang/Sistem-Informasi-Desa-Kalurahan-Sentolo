@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\bo\Sid;
 
+use App\Http\Controllers\Controller;
 use App\Models\Artikel;
 use App\Models\Berita;
 use App\Models\KategoriBerita;
@@ -27,7 +28,7 @@ class BeritaController extends Controller
         $data = Berita::whereIn('kategoriberita_id', [1, 2, 3])->get();
         $kategori = KategoriBerita::whereIn('id', [1, 2, 3])->get();
 
-        return view('admin.berita.berita', [
+        return view('bo.page.sid.berita.berita', [
             "title" => "Berita",
             "dropdown1" => "Komponen Berita",
             "berita" => $data,
@@ -40,7 +41,7 @@ class BeritaController extends Controller
         $artikel = Berita::where('kategoriberita_id', 4)->get();
         $kategori = KategoriBerita::whereIn('id', [4])->get();
 
-        return view('admin.artikel.artikel', [
+        return view('bo.page.sid.artikel.artikel', [
             "title" => "Artikel",
             "artikel" => $artikel,
             "kategori" => $kategori,
@@ -59,7 +60,7 @@ class BeritaController extends Controller
             ->get();
 
 
-        return view('admin.berita.komentar', [
+        return view('bo.page.sid.berita.komentar', [
             "title" => "Komentar Berita",
             "dropdown1" => "Komponen Berita",
             "komentar" => $data,
@@ -78,7 +79,7 @@ class BeritaController extends Controller
             ->get();
 
 
-        return view('admin.berita.komentar', [
+        return view('bo.page.sid.berita.komentar', [
             "title" => "Komentar Artikel",
             "dropdown1" => "Komponen Artikel",
             "komentar" => $data,
@@ -218,7 +219,7 @@ class BeritaController extends Controller
         $data = Berita::find($id);
         $kategori = KategoriBerita::all();
 
-        return view('admin.berita.show', [
+        return view('bo.page.sid.berita.show', [
             "title" => "Berita",
             "dropdown1" => "Komponen Website",
             "berita" => $data,
@@ -231,7 +232,7 @@ class BeritaController extends Controller
         $data = Berita::find($id);
         $kategori = KategoriBerita::all();
 
-        return view('admin.artikel.show', [
+        return view('bo.page.sid.artikel.show', [
             "title" => "Artikel",
             "dropdown1" => "Komponen Website",
             "artikel" => $data,

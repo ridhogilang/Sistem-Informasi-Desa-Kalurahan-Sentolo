@@ -141,7 +141,7 @@
                     @endcan
                     @can('enter_sistem informasi')
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('bo.pegawai.dashboard') }}">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('bo.sid.dashboard') }}">
                                 <i class="bi bi-info-lg"></i>
                                 <span>Sistem Informasi</span>
                             </a>

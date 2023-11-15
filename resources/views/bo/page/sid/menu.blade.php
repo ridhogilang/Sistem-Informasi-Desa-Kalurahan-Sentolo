@@ -1,6 +1,6 @@
-@extends('layout.admin')
+@extends('bo.layout.master')
 
-@section('main')
+@section('content')
     <div class="pagetitle">
         <h1>Menu</h1>
         <nav>
@@ -41,7 +41,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row" action="/menu" method="POST" enctype="multipart/form-data" >
+                                        <form class="row" action="/admin/sistem-informasi/menu" method="POST" enctype="multipart/form-data" >
                                             @csrf
                                             <div class="row mb-3">
                                                 <label for="menu2" class="col-sm-3 col-form-label">Menu</label>
@@ -115,11 +115,11 @@
                                         <td class="text-center">
                                             <a class="btn btn-warning" type="submit" data-bs-toggle="modal"
                                                 data-bs-target="#Modal-Edit-menu-{{ $value->id }}"
-                                                href="/menu/{{ $value->id }}/edit"><i
+                                                href="/admin/sistem-informasi/menu/{{ $value->id }}/edit"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-danger" type="submit" id="deletemenu"
-                                                data-id="{{ $value->id }}" href="/deletemenu/{{ $value->id }}"><i
+                                                data-id="{{ $value->id }}" href="/admin/sistem-informasi/deletemenu/{{ $value->id }}"><i
                                                     class="fa-regular fa-trash-can"></i></a>
                                         </td>
                                     </tr>
@@ -130,7 +130,7 @@
                                         aria-labelledby="Modal-Edit-menu-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                                             <div class="modal-content">
-                                                <form action="/menu/{{ $value->id }}" method="POST"  enctype="multipart/form-data" >
+                                                <form action="/admin/sistem-informasi/menu/{{ $value->id }}" method="POST"  enctype="multipart/form-data" >
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-header">
@@ -210,7 +210,7 @@
                     confirmButtonText: 'Ya, hapus sekarang!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/deletemenu/" + data_id,
+                        window.location = "/admin/sistem-informasi/deletemenu/" + data_id,
                             Swal.fire(
                                 'Deleted!',
                                 'Data sudah terhapus.',

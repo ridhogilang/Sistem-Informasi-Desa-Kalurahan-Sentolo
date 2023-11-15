@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\bo\Sid;
 
-use App\Models\Galeri;
 use App\Http\Controllers\Controller;
+use App\Models\Galeri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,7 +13,7 @@ class GaleriController extends Controller
     {
         $galeri = Galeri::all();
 
-        return view('admin.galeri', [
+        return view('bo.page.sid.galeri', [
             "title" => "Gambar Galeri",
             "dropdown1" => "Komponen Website"
         ], compact('galeri'));

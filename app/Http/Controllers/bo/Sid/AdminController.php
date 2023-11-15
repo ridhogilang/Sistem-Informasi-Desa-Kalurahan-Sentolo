@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\bo\Sid;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -15,7 +16,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.dashboard', [
+        return view('bo.page.sid.dashboard', [
             "title" => "Dashboard - Kalurahan Sentolo",
             "dropdown1" => "Dashboard",
         ]);

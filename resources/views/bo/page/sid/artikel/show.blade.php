@@ -1,18 +1,18 @@
-@extends('layout.admin')
+@extends('bo.layout.master')
 
 @push('header')
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 @endpush
 
-@section('main')
+@section('content')
     <div class="pagetitle">
-        <h1>Berita</h1>
+        <h1>Artikel</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item">Komponen Website</li>
-                <li class="breadcrumb-item active">Berita</li>
+                <li class="breadcrumb-item active">Artikel</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -23,58 +23,53 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Edit Berita</h5>
+                        <h5 class="card-title">Edit Artikel</h5>
 
                         <!-- Multi Columns Form -->
-                        <form class="row g-3" action="/berita/{{ $berita->id }}" method="POST"
+                        <form class="row g-3" action="/admin/sistem-informasi/updateartikel/{{ $artikel->id }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="col-md-12">
                                 <label for="judul" class="form-label">Judul</label>
-                                <input type="text" name="judul" value="{{ $berita->judul }}" class="form-control"
+                                <input type="text" name="judul" value="{{ $artikel->judul }}" class="form-control"
                                     id="judul">
                             </div>
-                            <div class="col-md-6" style="display: none;">
-                                <label for="slug" class="form-label">Url</label>
-                                <input type="text" name="slug" class="form-control" id="slug" value="{{ $berita->slug }}" disabled>
+                            <div class="col-md-6">
+                                <label for="slug" class="form-label">Slug</label>
+                                <input type="text" name="slug" value="{{ $artikel->slug }}" class="form-control"
+                                    id="slug" disabled>
                             </div>
                             <div class="col-md-6">
                                 <label for="penulis" class="form-label">Penulis</label>
-                                <input type="text" name="penulis" value="{{ $berita->penulis }}" class="form-control"
+                                <input type="text" name="penulis" value="{{ $artikel->penulis }}" class="form-control"
                                     id="penulis">
                             </div>
                             <div class="col-md-6">
                                 <label for="tanggal" class="form-label">Tanggal</label>
-                                <input type="date" name="tanggal" value="{{ $berita->tanggal }}" class="form-control"
+                                <input type="date" name="tanggal" value="{{ $artikel->tanggal }}" class="form-control"
                                     id="tanggal">
                             </div>
                             <div class="col-md-6">
                                 <label for="gambar" class="form-label">File Upload</label>
                                 <div class="col-sm-12">
                                     <input class="form-control" name="gambar" type="file" id="gambar">
-                                    <input type="hidden" name="gambar_existing" value="{{ $berita->gambar }}">
-                                    @if ($berita->gambar)
+                                    <input type="hidden" name="gambar_existing" value="{{ $artikel->gambar }}">
+                                    @if ($artikel->gambar)
                                         <br><label for="show" class="form-label">Gambar Sebelumnya</label><br>
-                                        <img src="{{ Storage::url($berita->gambar) }}" alt="Gambar Berita"
+                                        <img src="{{ Storage::url($artikel->gambar) }}" alt="Gambar Artikel"
                                             style="max-width: 20%;">
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="display: none;">
                                 <label for="kategoriberita_id" class="form-label">Kategori Artikel</label>
                                 <select id="kategoriberita_id" name="kategoriberita_id" class="form-select">
-                                    <option value="">Choose...</option>
-                                    @foreach ($kategori as $item)
-                                        <option value="{{ $item->id }}"
-                                            {{ old('kategoriberita_id', $berita->kategoriberita_id) == $item->id ? 'selected' : '' }}>
-                                            {{ $item->kategori }}
-                                        </option>
-                                    @endforeach
+                                    <option value="4">Artikel</option>
                                 </select>
                             </div>
                             <label for="artikel" class="form-label">Artikel</label>
-                            <textarea name="artikel" id="summernote">{{ $berita->artikel }}</textarea>
+                            <textarea name="artikel" id="summernote">{{ $artikel->artikel }}</textarea>
                             <div class="modal-footer">
                                 <a href="javascript:history.back()" class="btn btn-secondary"
                                     style="margin-right: 10px;">Back</a>
@@ -105,7 +100,7 @@
             ]
         });
     </script>
-     <script>
+    <script>
         const judul = document.querySelector('#judul');
         const slug = document.querySelector('#slug');
 

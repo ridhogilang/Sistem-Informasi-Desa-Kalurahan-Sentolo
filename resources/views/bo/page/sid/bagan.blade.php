@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('bo.layout.master')
 
 @push('header')
     {{-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> --}}
@@ -6,9 +6,9 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 @endpush
 
-@section('main')
+@section('content')
     <div class="pagetitle">
-        <h1>Berita</h1>
+        <h1>Bagan</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -64,7 +64,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/tambah-agenda" method="POST"
+                                        <form class="row g-3" action="/admin/sistem-informasi/tambah-agenda" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="row mb-3">
@@ -126,7 +126,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/tambah-jadwal" method="POST"
+                                        <form class="row g-3" action="/admin/sistem-informasi/tambah-jadwal" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="row mb-3">
@@ -175,7 +175,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/tambah-sinergi" method="POST"
+                                        <form class="row g-3" action="/admin/sistem-informasi/tambah-sinergi" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="row mb-3">
@@ -218,7 +218,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/tambah-statistik" method="POST"
+                                        <form class="row g-3" action="/admin/sistem-informasi/tambah-statistik" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="row mb-3">
@@ -285,11 +285,11 @@
                                         <td class="text-center">
                                             <a class="btn btn-warning" type="button" data-bs-toggle="modal"
                                                 data-bs-target="#Modal-Edit-Agenda-{{ $item->id }}"
-                                                href="/edit-agenda/{{ $item->id }}">
+                                                href="/admin/sistem-informasi/edit-agenda/{{ $item->id }}">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                             <a class="btn btn-danger" type="submit" id="deleteAgenda"
-                                                data-id="{{ $item->id }}" href="/hapus-agenda/{{ $item->id }}"><i
+                                                data-id="{{ $item->id }}" href="/admin/sistem-informasi/hapus-agenda/{{ $item->id }}"><i
                                                     class="fa-regular fa-trash-can"></i>
                                             </a>
                                         </td>
@@ -300,7 +300,7 @@
                                         aria-labelledby="Modal-Edit-Agenda-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                                             <div class="modal-content">
-                                                <form action="/edit-agenda/{{ $item->id }}" method="POST"
+                                                <form action="/admin/sistem-informasi/edit-agenda/{{ $item->id }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     @method('put')
@@ -401,12 +401,12 @@
                                         <td class="text-center">
                                             <a class="btn btn-warning" type="button" data-bs-toggle="modal"
                                                 data-bs-target="#Modal-Edit-Jadwal-{{ $item->id }}"
-                                                href="/edit-jadwal/{{ $item->id }}">
+                                                href="/admin/sistem-informasi/edit-jadwal/{{ $item->id }}">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                             <a class="btn btn-danger" type="submit" id="deleteJadwal"
                                                 data-id="{{ $item->id }}"
-                                                href="/hapus-jadwal/{{ $item->id }}"><i
+                                                href="/admin/sistem-informasi/hapus-jadwal/{{ $item->id }}"><i
                                                     class="fa-regular fa-trash-can"></i>
                                             </a>
                                         </td>
@@ -417,7 +417,7 @@
                                         aria-labelledby="Modal-Edit-Jadwal-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                                             <div class="modal-content">
-                                                <form action="/edit-jadwal/{{ $item->id }}" method="POST"
+                                                <form action="/admin/sistem-informasi/edit-jadwal/{{ $item->id }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     @method('put')
@@ -503,12 +503,12 @@
                                         <td class="text-center">
                                             <a class="btn btn-warning" type="button" data-bs-toggle="modal"
                                                 data-bs-target="#Modal-Edit-Sinergi-{{ $item->id }}"
-                                                href="/edit-sinergi/{{ $item->id }}">
+                                                href="/admin/sistem-informasi/edit-sinergi/{{ $item->id }}">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                             <a class="btn btn-danger" type="submit" id="deleteSinergi"
                                                 data-id="{{ $item->id }}"
-                                                href="/hapus-sinergi/{{ $item->id }}"><i
+                                                href="/admin/sistem-informasi/hapus-sinergi/{{ $item->id }}"><i
                                                     class="fa-regular fa-trash-can"></i>
                                             </a>
                                         </td>
@@ -519,7 +519,7 @@
                                         aria-labelledby="Modal-Edit-Sinergi-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                                             <div class="modal-content">
-                                                <form action="/edit-sinergi/{{ $item->id }}" method="POST"
+                                                <form action="/admin/sistem-informasi/edit-sinergi/{{ $item->id }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     @method('put')
@@ -611,12 +611,12 @@
                                         <td class="text-center">
                                             <a class="btn btn-warning" type="button" data-bs-toggle="modal"
                                                 data-bs-target="#Modal-Edit-Statistik-{{ $item->id }}"
-                                                href="/edit-statistik/{{ $item->id }}">
+                                                href="/admin/sistem-informasi/edit-statistik/{{ $item->id }}">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                             {{-- <a class="btn btn-danger" type="submit" id="deletestatistik"
                                                 data-id="{{ $item->id }}"
-                                                href="/hapus-statistik/{{ $item->id }}"><i
+                                                href="/admin/sistem-informasi/hapus-statistik/{{ $item->id }}"><i
                                                     class="fa-regular fa-trash-can"></i>
                                             </a> --}}
                                         </td>
@@ -627,7 +627,7 @@
                                         aria-labelledby="Modal-Edit-Statistik-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                                             <div class="modal-content">
-                                                <form action="/edit-statistik/{{ $item->id }}" method="POST"
+                                                <form action="/admin/sistem-informasi/edit-statistik/{{ $item->id }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     @method('put')
@@ -669,7 +669,7 @@
                                         aria-labelledby="Modal-Edit-Statistik-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                                             <div class="modal-content">
-                                                <form action="/edit-statistik/{{ $item->id }}" method="POST"
+                                                <form action="/admin/sistem-informasi/edit-statistik/{{ $item->id }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     @method('put')
@@ -732,7 +732,7 @@
                     confirmButtonText: 'Ya, hapus sekarang!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/hapus-agenda/" + data_id,
+                        window.location = "/admin/sistem-informasi/hapus-agenda/" + data_id,
                             Swal.fire(
                                 'Deleted!',
                                 'Data sudah terhapus.',
@@ -760,7 +760,7 @@
                     confirmButtonText: 'Ya, hapus sekarang!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/hapus-jadwal/" + data_id,
+                        window.location = "/admin/sistem-informasi/hapus-jadwal/" + data_id,
                             Swal.fire(
                                 'Deleted!',
                                 'Data sudah terhapus.',
@@ -788,7 +788,7 @@
                     confirmButtonText: 'Ya, hapus sekarang!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/hapus-sinergi/" + data_id,
+                        window.location = "/admin/sistem-informasi/hapus-sinergi/" + data_id,
                             Swal.fire(
                                 'Deleted!',
                                 'Data sudah terhapus.',
