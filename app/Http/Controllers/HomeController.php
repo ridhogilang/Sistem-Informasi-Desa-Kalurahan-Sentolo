@@ -22,6 +22,7 @@ use Mews\Captcha\Facades\Captcha;
 use Illuminate\Contracts\Cache\Store;
 use PhpParser\Node\Expr\FuncCall;
 use App\Http\Controllers\Controller;
+use App\Models\AgendaGOR;
 use App\Models\Komentar;
 use Illuminate\Support\Facades\Session;
 
@@ -74,12 +75,18 @@ class HomeController extends Controller
         $text = Runningtext::where('id', 1)->first();
 
         $pamong = Pamong::all();
-
+        //agenda
         $agenda_hari_ini = Agenda::where('tanggal', $today)->get();
         $agenda_yangakandatang = Agenda::where('tanggal', '>', $today)->get();
         $agenda_yangLalu = Agenda::where('tanggal', '>=', $oneMonthAgo)
             ->where('tanggal', '<', $today)
             ->get();
+        //agenda gor
+        $agendagor_hari_ini = AgendaGOR::where('tanggal', $today)->get();
+        $agendagor_yangakandatang = AgendaGOR::where('tanggal', '>', $today)->get();
+        $agendagor_yangLalu = AgendaGOR::where('tanggal', '>=', $oneMonthAgo)
+            ->where('tanggal', '<', $today)
+            ->get();    
         $jadwal = Jadwal::all();
         $sinergi = Sinergi::all();
         $statistik = Statistik::first();
@@ -104,9 +111,14 @@ class HomeController extends Controller
             "highlight" => $highlight,
             "text" => $text,
             "pamong" => $pamong,
+            //agenda
             "agendahariini" => $agenda_hari_ini,
             "agendaakandatang" => $agenda_yangakandatang,
             "agendalalu" => $agenda_yangLalu,
+            //agenda gor
+            "agendagorhariini" => $agendagor_hari_ini,
+            "agendagorakandatang" => $agendagor_yangakandatang,
+            "agendagorlalu" => $agendagor_yangLalu,
             "jadwal" => $jadwal,
             "sinergi" => $sinergi,
             "statistik" => $statistik,
