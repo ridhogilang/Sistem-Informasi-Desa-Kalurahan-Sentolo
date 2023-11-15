@@ -150,15 +150,15 @@ Route::controller(ApbdesController::class)->group(function () {
     Route::get('/admin/apbdes', 'index');
     //Tambah
     Route::post('/tambah-apbdes', 'create');
-   
+
     //Edit
     Route::put('/edit-apbdes-pelaksanaan/{id}', 'updatepelaksanaan');
     Route::put('/edit-apbdes-pendapatan/{id}', 'updatependapatan');
     Route::put('/edit-apbdes-pembelanjaan/{id}', 'updatepembelanjaan');
-   
+
     //Hapus
     Route::get('/hapus-apbdes/{id}', 'destroy');
-    
+
 });
 
 Route::controller(BeritaController::class)->group(function () {
@@ -171,7 +171,7 @@ Route::controller(BeritaController::class)->group(function () {
     Route::get('/deleteberita/{id}', 'destroy');
     Route::put('/update-status/{id}', 'updateStatus');
     Route::put('/update-sideberita/{id}', 'updateSideBerita');
-    
+
     //Artikel
     Route::get('/admin/artikel', 'artikel');
     Route::get('/admin/artikel/komentar', 'komentarartikel');
@@ -238,14 +238,14 @@ Route::prefix('admin')->group(function () {
         //untuk tim PU dan Arsip (e-surat)
         Route::prefix('e-surat')->middleware('can:enter_e-surat')->group(function () {
             Route::get('/dashboard', [ DashboardSuratController::class, 'index'])->name('bo.e-surat.dashboard');
-            
+
             //validasi surat keluar
             Route::resource('/validasi', ValidasiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
-            
+
             //disposisi surat masuk
             Route::resource('/disposisi', DisposisiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
             Route::put('/disposisi/laksana/{id}', [ DisposisiController::class, 'executor_imp'])->name('bo.surat.disposisi.executor_imp');
-            
+
             //arsip
             Route::resource('/arsip', ArsipController::class, ['as' => 'bo.surat'])->only(['index', 'show'])
                         ->middleware('can:Arsip Surat');
@@ -255,7 +255,7 @@ Route::prefix('admin')->group(function () {
                         ->middleware('can:Arsip Dihapus');
             Route::get('/arsip_dihapus/doc/{id}', [ OldArsipController::class, 'document_hps'])->name('bo.surat.arsip.doc')
                         ->middleware('can:Arsip Dihapus');
-            
+
             Route::middleware('can:Surat Keluar')->group(function () {
                 // SKTM Satu Orang
                 Route::get('/surat-ktm', [SktmSatuController::class, 'index'])->middleware('can:list surat');
@@ -368,7 +368,7 @@ Route::prefix('admin')->group(function () {
                 Route::get('/surat-cstm/{id}/view', [ScstmController::class, 'show']);
                 Route::get('/contoh-surat-cstm/view', [ScstmController::class, 'contoh']);
             });
-            
+
             // Surat Masuk
             Route::get('/surat-masuk', [SMasukController::class, 'index'])->middleware('can:Surat Masuk');
             Route::post('/surat-masuk', [SMasukController::class, 'store'])->middleware('can:Surat Masuk');
@@ -376,7 +376,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/surat-masuk/{id}/view', [SMasukController::class, 'show'])->middleware('can:Surat Masuk');
             Route::get('/surat-masuk/{id}/document', [SMasukController::class, 'document'])->middleware('can:Surat Masuk');
             Route::delete('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy'])->middleware('can:Surat Masuk');
-            
+
         });
         //untuk tim sistem informasi
         Route::prefix('sistem-informasi')->group(function () {
@@ -397,6 +397,7 @@ Route::post('/penduduk', [PendudukController::class, 'store']);
 Route::get('/penduduk/{id}/edit', [PendudukController::class, 'edit'])->defaults('action', 'Edit');
 Route::put('/penduduk/{id}', [PendudukController::class, 'update']);
 Route::delete('/penduduk/{id}/delete', [PendudukController::class, 'destroy']);
+Route::delete('/penduduk-migrasi/{id}/delete', [PendudukController::class, 'destroymigrasi']);
 
 Route::get('/profile', function () {
     return view('bo.page.profile',[
