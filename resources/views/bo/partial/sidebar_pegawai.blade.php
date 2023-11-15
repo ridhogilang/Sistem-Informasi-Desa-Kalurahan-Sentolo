@@ -8,8 +8,6 @@
                 <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
-
-        </li><!-- End Nav -->
         @canany(['user_list', 'user_create', 'user_edit', 'user_delete'])
         <li class="nav-item">
             <a class="nav-link {{ request()->is('admin/pegawai/user_management*') ? '' : 'collapsed' }}" href="{{ route('bo.pegawai.user_management.index') }}">

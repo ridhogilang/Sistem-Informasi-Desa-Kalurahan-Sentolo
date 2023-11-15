@@ -8,6 +8,7 @@
     <title>Sentolo | {{$title}} </title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
     @stack('header')
     <!-- Favicons -->
     <link href="{{ asset('template/img/favicon.png') }}" rel="icon">
@@ -50,6 +51,8 @@
         @include('bo.partial.sidebar_pegawai')
     @elseif(request()->is('admin/e-surat*'))
         @include('bo.partial.sidebar_surat')
+    @elseif(request()->is('admin/sistem-informasi*'))
+        @include('bo.partial.sidebar_sid')
     @else
         @include('bo.partial.sidebar')
     @endif
@@ -83,7 +86,7 @@
     <script src="{{ asset('template/js/main.js') }}"></script>
 
     <!-- SweetAlert -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @include('sweetalert::alert')
 

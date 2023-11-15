@@ -19,10 +19,6 @@ class userManagementController extends Controller
 {
     function __construct()
     {
-        $this->middleware(['permission:user_list|user_create|user_edit|user_delete'], ['only' => ['index', 'store']]);
-        $this->middleware(['permission:user_create'], ['only' => ['create', 'store']]);
-        $this->middleware(['permission:user_edit'], ['only' => ['edit', 'update']]);
-        $this->middleware(['permission:user_delete'], ['only' => ['destroy']]);
         $this->data['title'] = 'Pegawai';
         $this->data['dropdown1'] = null;
         $this->data['dropdown2'] = null;
@@ -33,6 +29,10 @@ class userManagementController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->can('user_list') == false) {
+        return redirect()->route('bo.pegawai.dashboard');
+        }
+
         $data = $this->data;
         $data['users'] = User::where("is_delete","<>", '1')->get();
         return view($data['view'].'.index', $data);
@@ -43,6 +43,10 @@ class userManagementController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->can('user_create') == false) {
+        return redirect()->route('bo.pegawai.dashboard');
+        }
+
         $data = $this->data;
         $data['roles'] = Role::pluck('name','name')->all();
         $data['url'] = route('bo.pegawai.user_management.store');
@@ -54,6 +58,10 @@ class userManagementController extends Controller
      */
     public function store(Request $request)
     {
+        if (auth()->user()->can('user_create') == false) {
+        return redirect()->route('bo.pegawai.dashboard');
+        }
+
          $this->validate($request, [
             'nama' => 'required',
             'email' => 'required|email|unique:users,email|unique:verify_mails,email',
@@ -95,6 +103,10 @@ class userManagementController extends Controller
      */
     public function edit(string $id)
     {
+        if (auth()->user()->can('user_edit') == false) {
+        return redirect()->route('bo.pegawai.dashboard');
+        }
+
         $data = $this->data;
         $data['user'] = User::find($id);
         $data['roles'] = Role::pluck('name','name')->all();
@@ -109,6 +121,10 @@ class userManagementController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if (auth()->user()->can('user_edit') == false) {
+        return redirect()->route('bo.pegawai.dashboard');
+        }
+
         $this->validate($request, [
             'nama' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
@@ -155,6 +171,10 @@ class userManagementController extends Controller
      */
     public function destroy(string $id)
     {
+        if (auth()->user()->can('user_delete') == false) {
+        return redirect()->route('bo.pegawai.dashboard');
+        }
+
         $input['is_delete'] = '1';
         User::find($id)->update($input);
         return redirect()->route('bo.pegawai.user_management.index')
