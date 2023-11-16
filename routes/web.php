@@ -365,10 +365,10 @@ Route::prefix('admin')->group(function () {
             Route::controller(AgendaGORController::class)->group(function () {
                 Route::get('/agendagor', 'index');
                 //Tambah
-                Route::post('/tambah-agendagor', 'createagenda');
+                Route::post('/tambah-agendagor', 'create');
                
                 //Edit
-                Route::put('/edit-agendagor/{id}', 'updateagenda');
+                Route::put('/edit-agendagor/{id}', 'edit');
                
                 //Hapus
                 Route::get('/hapus-agendagor/{id}', 'destroy');

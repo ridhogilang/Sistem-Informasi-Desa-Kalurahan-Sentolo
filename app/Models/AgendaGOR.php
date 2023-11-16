@@ -13,6 +13,8 @@ class AgendaGOR extends Model
         'kegiatan',
         'tanggal',
         'waktu',
+        'selesai',
         'koordinator',
+        'nomorhp',
     ];
 }

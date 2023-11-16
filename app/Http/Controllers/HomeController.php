@@ -60,6 +60,11 @@ class HomeController extends Controller
         $today = Carbon::today()->toDateString();
         $todayy = Carbon::today();
         $oneMonthAgo = $todayy->copy()->subMonth(); // Menghitung satu bulan yang lalu dari tanggal saat ini
+        //
+        $nextDay = $todayy->copy()->addDay();
+        $startOfWeek = $todayy->startOfWeek();
+        $endOfWeek = $todayy->copy()->addWeek()->startOfWeek();
+        //
         $todayVisitor = Visitor::where('date', $today)->first();
         $todayCount = $todayVisitor ? $todayVisitor->count : 0;
 
@@ -83,10 +88,11 @@ class HomeController extends Controller
             ->get();
         //agenda gor
         $agendagor_hari_ini = AgendaGOR::where('tanggal', $today)->get();
-        $agendagor_yangakandatang = AgendaGOR::where('tanggal', '>', $today)->get();
-        $agendagor_yangLalu = AgendaGOR::where('tanggal', '>=', $oneMonthAgo)
-            ->where('tanggal', '<', $today)
-            ->get();    
+        $agendagor_yangakandatang = AgendaGOR::whereDate('tanggal', '=', $nextDay->toDateString())
+            ->get();
+        $agendagor_mingguini = AgendaGOR::where('tanggal', '>=', $startOfWeek)
+            ->where('tanggal', '<', $endOfWeek)
+            ->get();
         $jadwal = Jadwal::all();
         $sinergi = Sinergi::all();
         $statistik = Statistik::first();
@@ -118,7 +124,7 @@ class HomeController extends Controller
             //agenda gor
             "agendagorhariini" => $agendagor_hari_ini,
             "agendagorakandatang" => $agendagor_yangakandatang,
-            "agendagorlalu" => $agendagor_yangLalu,
+            "agendagormingguini" => $agendagor_mingguini,
             "jadwal" => $jadwal,
             "sinergi" => $sinergi,
             "statistik" => $statistik,
@@ -348,7 +354,7 @@ class HomeController extends Controller
             ->whereDay('created_at', $day)
             ->where('nama', $nama)
             ->first();
-            $statistik = Statistik::first();
+        $statistik = Statistik::first();
         $sinergi = Sinergi::all();
 
 

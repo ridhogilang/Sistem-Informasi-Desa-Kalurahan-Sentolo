@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('kegiatan');
             $table->string('tanggal')->nullable();
             $table->string('waktu');
+            $table->string('selesai');
             $table->string('koordinator');
+            $table->string('nomorhp');
             $table->timestamps();
         });
     }

@@ -25,15 +25,15 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Tambah</h5>
-                        <div class="d-flex justify-content-between">
-                            {{-- <div>
+                        {{-- <h5 class="card-title">Tambah</h5> --}}
+                        {{-- <div class="d-flex justify-content-between">
+                            <div>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#modalAgendaGOR"><i class="fa-regular fa-square-plus"
                                         style="margin-right: 5px"></i>Tambah Agenda GOR</button>
-                            </div> --}}
-                        </div>
+                            </div>
+                        </div> --}}
 
                         <!-- Modal Form Tambah Agenda -->
                         <div class="modal fade" id="modalAgendaGOR" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -46,13 +46,13 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/admin/sistem-informasi/tambah-agendagor" method="POST"
-                                            enctype="multipart/form-data">
+                                        <form class="row g-3" action="/admin/sistem-informasi/tambah-agendagor"
+                                            method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="row mb-3">
-                                                <label for="judul" class="col-sm-3 col-form-label">Kegiatan</label>
+                                                <label for="kegiatan" class="col-sm-3 col-form-label">Kegiatan</label>
                                                 <div class="col-sm-9">
-                                                    <input name="judul" id="judul" class="form-control">
+                                                    <input name="kegiatan" id="kegiatan" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -63,15 +63,28 @@
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="waktu" class="col-sm-3 col-form-label">Waktu</label>
+                                                <label for="inputTime" class="col-sm-3 col-form-label">Waktu</label>
                                                 <div class="col-sm-9">
-                                                    <input name="waktu" id="waktu" class="form-control">
+                                                    <input type="time" name="waktu" id="waktu" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
-                                                <label for="koordinator" class="col-sm-3 col-form-label">Koordinator</label>
+                                                <label for="inputTime" class="col-sm-3 col-form-label">Selesai</label>
+                                                <div class="col-sm-9">
+                                                    <input type="time" name="selesai" id="selesai" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="koordinator" class="col-sm-3 col-form-label">Penanggung
+                                                    Jawab</label>
                                                 <div class="col-sm-9">
                                                     <input name="koordinator" id="koordinator" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="nomorhp" class="col-sm-3 col-form-label">Nomer HP</label>
+                                                <div class="col-sm-9">
+                                                    <input name="nomorhp" id="nomorhp" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -106,7 +119,8 @@
                                     <th scope="col">Kegiatan</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Waktu</th>
-                                    <th scope="col">Koordinator</th>
+                                    <th scope="col">Selesai</th>
+                                    <th scope="col">Penanggung Jawab</th>
                                     <th scope="col" class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -120,6 +134,7 @@
                                         <td>{!! $item->kegiatan !!}</td>
                                         <td>{!! $item->tanggal !!}</td>
                                         <td>{!! $item->waktu !!}</td>
+                                        <td>{!! $item->selesai !!}</td>
                                         <td>{!! $item->koordinator !!}</td>
                                         <td class="text-center">
                                             <a class="btn btn-warning" type="button" data-bs-toggle="modal"
@@ -128,7 +143,8 @@
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
                                             <a class="btn btn-danger" type="submit" id="deleteAgendagor"
-                                                data-id="{{ $item->id }}" href="/admin/sistem-informasi/destroy/{{ $item->id }}"><i
+                                                data-id="{{ $item->id }}"
+                                                href="/admin/sistem-informasi/hapus-agendagor/{{ $item->id }}"><i
                                                     class="fa-regular fa-trash-can"></i>
                                             </a>
                                         </td>
@@ -139,8 +155,8 @@
                                         aria-labelledby="Modal-Edit-Agenda-Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                                             <div class="modal-content">
-                                                <form action="/admin/sistem-informasi/edit-agendagor/{{ $item->id }}" method="POST"
-                                                    enctype="multipart/form-data">
+                                                <form action="/admin/sistem-informasi/edit-agendagor/{{ $item->id }}"
+                                                    method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     @method('put')
                                                     <div class="modal-header">
@@ -151,11 +167,11 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="row mb-3">
-                                                            <label for="artikel"
-                                                                class="col-sm-3 col-form-label">Judul</label>
+                                                            <label for="kegiatan"
+                                                                class="col-sm-3 col-form-label">Kegiatan</label>
                                                             <div class="col-sm-9">
-                                                                <input class="form-control" name="judul" id="judul"
-                                                                    value="{{ $item->judul }}">
+                                                                <input class="form-control" name="kegiatan" id="kegiatan"
+                                                                    value="{{ $item->kegiatan }}">
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
@@ -167,27 +183,31 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="artikel"
-                                                                class="col-sm-3 col-form-label">Waktu</label>
+                                                            <label for="inputTime" class="col-sm-3 col-form-label">Waktu</label>
                                                             <div class="col-sm-9">
-                                                                <input class="form-control" name="waktu" id="waktu"
-                                                                    value="{{ $item->waktu }}">
+                                                                <input type="time" name="waktu" id="waktu" class="form-control" value="{{ $item->waktu }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="inputTime" class="col-sm-3 col-form-label">Selesai</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="time" id="selesai" name="selesai" class="form-control" value="{{ $item->selesai }}">
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
                                                             <label for="artikel"
-                                                                class="col-sm-3 col-form-label">Lokasi</label>
-                                                            <div class="col-sm-9">
-                                                                <input class="form-control" name="lokasi" id="lokasi"
-                                                                    value="{{ $item->lokasi }}">
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <label for="artikel"
-                                                                class="col-sm-3 col-form-label">Koordinator</label>
+                                                                class="col-sm-3 col-form-label">Penanggung Jawab</label>
                                                             <div class="col-sm-9">
                                                                 <input class="form-control" name="koordinator"
                                                                     id="koordinator" value="{{ $item->koordinator }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="artikel"
+                                                                class="col-sm-3 col-form-label">Nomo HP</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control" name="nomorhp"
+                                                                    id="nomorhp" value="{{ $item->nomorhp }}">
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -226,7 +246,7 @@
                     confirmButtonText: 'Ya, hapus sekarang!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/admin/sistem-informasi/destroy/" + data_id,
+                        window.location = "/admin/sistem-informasi/hapus-agendagor/" + data_id,
                             Swal.fire(
                                 'Deleted!',
                                 'Data sudah terhapus.',
@@ -238,5 +258,4 @@
             });
         });
     </script>
-    
 @endpush
