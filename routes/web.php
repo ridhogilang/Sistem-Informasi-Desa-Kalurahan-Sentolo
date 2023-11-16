@@ -68,7 +68,7 @@ use App\Http\Controllers\bo\Sid\PamongController;
 
 //front office (halaman depan)
 Route::controller(HomeController::class)->group(function () {
-    Route::get('/', 'index');
+    Route::get('/', 'index')->name('home');
     Route::get('/captcha', 'captcha');
     Route::get('/captcha/reload', 'reloadCaptcha');
     Route::get('/berita/{year}/{month}/{day}/{slug}', 'berita');
