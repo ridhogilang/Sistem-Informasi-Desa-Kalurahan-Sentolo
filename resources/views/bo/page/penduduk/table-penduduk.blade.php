@@ -26,8 +26,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Data Penduduk</h5>
-                        <div class="d-grid gap-2 mb-2">
-                            <a class="btn btn-primary" type="button" href="/penduduk/tambah-data"><i class="fa-solid fa-plus"></i> Tambah Data</a>
+                        <div class="mb-3">
+                            <a class="btn btn-primary btn-sm" type="button" href="/penduduk/tambah-data"><i class="fa-solid fa-plus"></i> Tambah Data</a>
+                            <a class="btn btn-success btn-sm" type="button" href="#"><i class="fa-regular fa-file"></i> Tambah Data Excel</a>
                         </div>
 
                         <!-- Table with hoverable rows -->
@@ -59,7 +60,7 @@
 @push('footer')
     <script type="text/javascript">
       $(function () {
-          
+
         var table = $('.data-table-penduduk').DataTable({
             processing: true,
             serverSide: true,
@@ -75,7 +76,7 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
-          
+
       });
     </script>
 @endpush
