@@ -436,6 +436,9 @@ Route::get('/penduduk/{id}/edit', [PendudukController::class, 'edit'])->defaults
 Route::put('/penduduk/{id}', [PendudukController::class, 'update']);
 Route::delete('/penduduk/{id}/delete', [PendudukController::class, 'destroy']);
 Route::delete('/penduduk-migrasi/{id}/delete', [PendudukController::class, 'destroymigrasi']);
+// Import / Export Penduduk
+Route::get('/penduduk-export', [PendudukController::class, 'pendudukexport']);
+Route::post('/penduduk-import', [PendudukController::class, 'pendudukimport']);
 
 Route::get('/profile', function () {
     return view('bo.page.profile',[
