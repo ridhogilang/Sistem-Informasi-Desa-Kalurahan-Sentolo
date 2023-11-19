@@ -46,6 +46,7 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\bo\Sid\MenuController;
 use App\Http\Controllers\bo\Sid\AdminController;
+use App\Http\Controllers\bo\Sid\AgendaGORController;
 use App\Http\Controllers\bo\Sid\ApbdesController;
 use App\Http\Controllers\bo\Sid\BaganController;
 use App\Http\Controllers\bo\Sid\BeritaController;
@@ -398,6 +399,19 @@ Route::prefix('admin')->group(function () {
                 Route::get('/hapus-agenda/{id}', 'destroyagenda');
                 Route::get('/hapus-sinergi/{id}', 'destroysinergi');
                 Route::get('/hapus-statistiki/{id}', 'destroystatistik');
+            });
+            //Agenda GOR
+            Route::controller(AgendaGORController::class)->group(function () {
+                Route::get('/agendagor', 'index');
+                //Tambah
+                Route::post('/tambah-agendagor', 'create');
+               
+                //Edit
+                Route::put('/edit-agendagor/{id}', 'edit');
+               
+                //Hapus
+                Route::get('/hapus-agendagor/{id}', 'destroy');
+               
             });
             //berita dan artikel
             Route::controller(BeritaController::class)->group(function () {
