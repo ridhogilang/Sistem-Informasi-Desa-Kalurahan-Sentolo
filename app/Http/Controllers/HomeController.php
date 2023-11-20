@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agenda;
+use App\Models\AgendaGOR;
 use App\Models\Apbdes;
 use App\Models\Berita;
 use App\Models\Galeri;
@@ -22,7 +23,6 @@ use Mews\Captcha\Facades\Captcha;
 use Illuminate\Contracts\Cache\Store;
 use PhpParser\Node\Expr\FuncCall;
 use App\Http\Controllers\Controller;
-use App\Models\AgendaGOR;
 use App\Models\Komentar;
 use Illuminate\Support\Facades\Session;
 
@@ -373,4 +373,49 @@ class HomeController extends Controller
             ]
         );
     }
+
+    //AGENDA GOR
+
+    public function hlmnbooking()
+    {
+        $agendagor = AgendaGOR::all();
+        return view('home.booking_gor', [
+            "title" => "Agenda GOR",
+            "agendagor" => $agendagor,
+
+        ]);
+    }
+    public function booking_gor(Request $request)
+    {
+        $createData = $request->validate([
+            'kegiatan' => 'required',
+            'tanggal' => 'required',
+            'waktu' => 'required',
+            'selesai' => 'required',
+            'koordinator' => 'required',
+            'nomorhp' => 'required',
+        ]);
+
+        // Validasi tambahan
+        $existingAgendas = AgendaGOR::where('tanggal', $createData['tanggal'])
+            ->where(function ($query) use ($createData) {
+                $query->whereBetween('waktu', [$createData['waktu'], $createData['selesai']])
+                    ->orWhereBetween('selesai', [$createData['waktu'], $createData['selesai']])
+                    ->orWhere(function ($query) use ($createData) {
+                        $query->where('waktu', '<=', $createData['waktu'])
+                            ->where('selesai', '>=', $createData['selesai']);
+                    });
+            })
+            ->get();
+
+        if ($existingAgendas->count() > 0) {
+            // Jika terdapat konflik waktu, kembalikan ke halaman sebelumnya dengan pesan kesalahan
+            return redirect()->back()->with('toast_error', 'Konflik waktu! Agenda pada rentang waktu tersebut sudah terdaftar.');
+        }
+
+        AgendaGOR::create($createData);
+
+        return redirect()->back()->with('toast_success', 'Agenda GOR Berhasil dibuat!');
+    }
+
 }

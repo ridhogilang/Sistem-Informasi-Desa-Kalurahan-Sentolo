@@ -1019,8 +1019,8 @@
                     </style>
                     <div class="box box-primary box-solid">
                         <div class="box-header">
-                            <h3 class="box-title"><a href=""><i
-                                        class="ti ti-chart-histogram mr-1"></i> Statistik Kalurahan Sentolo</a></h3>
+                            <h3 class="box-title"><a href=""><i class="ti ti-chart-histogram mr-1"></i> Statistik
+                                    Kalurahan Sentolo</a></h3>
                         </div>
                         <div class="box-body">
                             <div id="statistik_kalurahan" style="width: 100%; height: 300px; margin: 0 auto"></div>
@@ -1247,40 +1247,40 @@
                         </div>
                     </div>
                 </div>
-                    <style type="text/css">
-                        button.btn {
-                            margin-left: 0px;
-                        }
+                <style type="text/css">
+                    button.btn {
+                        margin-left: 0px;
+                    }
 
-                        #collapse2 {
-                            margin-top: 5px;
-                        }
+                    #collapse2 {
+                        margin-top: 5px;
+                    }
 
-                        button[aria-expanded=true] .fa-chevron-down {
-                            display: none;
-                        }
+                    button[aria-expanded=true] .fa-chevron-down {
+                        display: none;
+                    }
 
-                        button[aria-expanded=false] .fa-chevron-up {
-                            display: none;
-                        }
+                    button[aria-expanded=false] .fa-chevron-up {
+                        display: none;
+                    }
 
-                        .tabel-info {
-                            width: 100%;
-                        }
+                    .tabel-info {
+                        width: 100%;
+                    }
 
-                        .tabel-info,
-                        tr {
-                            border-bottom: 1px;
-                            border: 0px solid;
-                        }
+                    .tabel-info,
+                    tr {
+                        border-bottom: 1px;
+                        border: 0px solid;
+                    }
 
-                        .tabel-info,
-                        td {
-                            border: 0px solid;
-                            height: 30px;
-                            padding: 5px;
-                        }
-                    </style>
+                    .tabel-info,
+                    td {
+                        border: 0px solid;
+                        height: 30px;
+                        padding: 5px;
+                    }
+                </style>
                 </div>
                 {{-- Agenda GOR --}}
                 <div class="sidebar-item">
@@ -1365,6 +1365,11 @@
                                             </p>
                                         @endif
                                     </ul>
+                                    <button class="btn btn-success btn-block" type="button"><a href="/booking_gor" style="color:#fff;"
+                                            target="_blank">Booking GOR</a></button>
+
+                                    <!-- Modal Form Tambah Agenda -->
+                                    
                                 </div>
                                 <div id="yad-gor" class="">
                                     <ul class="sidebar-latest">
@@ -1439,7 +1444,8 @@
                                             @endforeach
                                         @else
                                             <p class="text-heading lg:text-lg text-center mt-5"
-                                                style="font-weight: bold; padding-top: 50px;">Tidak ada Kegiatan Minggu ini.
+                                                style="font-weight: bold; padding-top: 50px;">Tidak ada Kegiatan Minggu
+                                                ini.
                                             </p>
                                         @endif
                                     </ul>

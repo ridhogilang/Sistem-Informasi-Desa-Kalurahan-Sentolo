@@ -83,6 +83,9 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/berita/kategori/cari-berita', 'cariberita');
     Route::get('/galeri-sentolo', 'galeri');
     Route::get('/galeri/{year}/{month}/{day}/{nama}', 'show_galeri');
+    Route::get('/booking_gor', 'hlmnbooking');
+    Route::post('/booking-gor', 'booking_gor');
+    
 });
 
 
@@ -103,22 +106,22 @@ Route::controller(KomentarController::class)->group(function () {
 
 
 
-//APBDes
-//iki crud e pie pak
-Route::controller(ApbdesController::class)->group(function () {
-    Route::get('/admin/apbdes', 'index');
-    //Tambah
-    Route::post('/tambah-apbdes', 'create');
+// //APBDes
+// //iki crud e pie pak
+// Route::controller(ApbdesController::class)->group(function () {
+//     Route::get('/admin/apbdes', 'index');
+//     //Tambah
+//     Route::post('/tambah-apbdes', 'create');
 
-    //Edit
-    Route::put('/edit-apbdes-pelaksanaan/{id}', 'updatepelaksanaan');
-    Route::put('/edit-apbdes-pendapatan/{id}', 'updatependapatan');
-    Route::put('/edit-apbdes-pembelanjaan/{id}', 'updatepembelanjaan');
+//     //Edit
+//     Route::put('/edit-apbdes-pelaksanaan/{id}', 'updatepelaksanaan');
+//     Route::put('/edit-apbdes-pendapatan/{id}', 'updatependapatan');
+//     Route::put('/edit-apbdes-pembelanjaan/{id}', 'updatepembelanjaan');
 
-    //Hapus
-    Route::get('/hapus-apbdes/{id}', 'destroy');
+//     //Hapus
+//     Route::get('/hapus-apbdes/{id}', 'destroy');
 
-});
+// });
 
 Route::controller(BeritaController::class)->group(function () {
     //berita
@@ -165,7 +168,7 @@ Route::prefix('admin')->group(function () {
         Route::post('logout', [LoginController::class, 'logout'])->name('logout');
         //dashboard
         Route::get('/dashboard', function () {
-            return view('bo.page.dashboard',[
+            return view('bo.page.dashboard', [
                 'dropdown1' => '',
                 'dropdown2' => '',
                 'title' => 'Dashboard',
@@ -173,7 +176,7 @@ Route::prefix('admin')->group(function () {
         })->name('bo.home');
 
         //halaman bantuan
-        Route::controller(BantuanController::class)->prefix('bantuan')->group(function() {
+        Route::controller(BantuanController::class)->prefix('bantuan')->group(function () {
             Route::get('/', 'index');
             Route::get('/e-surat', 'esurat');
             Route::get('/kepegawaian', 'kepegawaian');
@@ -184,37 +187,37 @@ Route::prefix('admin')->group(function () {
         //untuk kepegawaian yaitu kebutuhan user dan role tak dewekno marakno riskan
         Route::prefix('pegawai')->middleware('can:enter_kepegawaian')->group(function () {
             Route::get('/dashboard', function () {
-                    return view('bo.page.dashboard',[
-                        'dropdown1' => '',
-                        'dropdown2' => '',
-                        'title' => 'Dashboard',
-                    ]);
-                })->name('bo.pegawai.dashboard');
+                return view('bo.page.dashboard', [
+                    'dropdown1' => '',
+                    'dropdown2' => '',
+                    'title' => 'Dashboard',
+                ]);
+            })->name('bo.pegawai.dashboard');
 
-                Route::resource('/user_management', UserManagementController::class, ['as' => 'bo.pegawai'])->except(['show']);
-                Route::resource('/role_management', roleManagementController::class, ['as' => 'bo.pegawai'])->except(['show']);
-         });
+            Route::resource('/user_management', UserManagementController::class, ['as' => 'bo.pegawai'])->except(['show']);
+            Route::resource('/role_management', roleManagementController::class, ['as' => 'bo.pegawai'])->except(['show']);
+        });
 
         //untuk tim PU dan Arsip (e-surat)
         Route::prefix('e-surat')->middleware('can:enter_e-surat')->group(function () {
-            Route::get('/dashboard', [ DashboardSuratController::class, 'index'])->name('bo.e-surat.dashboard');
+            Route::get('/dashboard', [DashboardSuratController::class, 'index'])->name('bo.e-surat.dashboard');
 
             //validasi surat keluar
             Route::resource('/validasi', ValidasiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
 
             //disposisi surat masuk
             Route::resource('/disposisi', DisposisiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
-            Route::put('/disposisi/laksana/{id}', [ DisposisiController::class, 'executor_imp'])->name('bo.surat.disposisi.executor_imp');
+            Route::put('/disposisi/laksana/{id}', [DisposisiController::class, 'executor_imp'])->name('bo.surat.disposisi.executor_imp');
 
             //arsip
             Route::resource('/arsip', ArsipController::class, ['as' => 'bo.surat'])->only(['index', 'show'])
-                        ->middleware('can:Arsip Surat');
-            Route::delete('/arsip/delete', [ ArsipController::class, 'destroy_arsip'])->name('bo.surat.arsip.delete')
-                        ->middleware('can:Menghapus Arsip');
+                ->middleware('can:Arsip Surat');
+            Route::delete('/arsip/delete', [ArsipController::class, 'destroy_arsip'])->name('bo.surat.arsip.delete')
+                ->middleware('can:Menghapus Arsip');
             Route::resource('/arsip_dihapus', OldArsipController::class, ['as' => 'bo.surat'])->only(['index', 'show'])
-                        ->middleware('can:Arsip Dihapus');
-            Route::get('/arsip_dihapus/doc/{id}', [ OldArsipController::class, 'document_hps'])->name('bo.surat.arsip.doc')
-                        ->middleware('can:Arsip Dihapus');
+                ->middleware('can:Arsip Dihapus');
+            Route::get('/arsip_dihapus/doc/{id}', [OldArsipController::class, 'document_hps'])->name('bo.surat.arsip.doc')
+                ->middleware('can:Arsip Dihapus');
 
             Route::middleware('can:Surat Keluar')->group(function () {
                 // SKTM Satu Orang
@@ -336,7 +339,6 @@ Route::prefix('admin')->group(function () {
             Route::get('/surat-masuk/{id}/view', [SMasukController::class, 'show'])->middleware('can:Surat Masuk');
             Route::get('/surat-masuk/{id}/document', [SMasukController::class, 'document'])->middleware('can:Surat Masuk');
             Route::delete('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy'])->middleware('can:Surat Masuk');
-
         });
         //untuk tim sistem informasi
         Route::prefix('sistem-informasi')->group(function () {
@@ -357,7 +359,7 @@ Route::prefix('admin')->group(function () {
                 Route::put('/edit-pamong/{id}', 'update');
             });
             //Galeri
-            Route::controller(GaleriController::class)->group(function() {
+            Route::controller(GaleriController::class)->group(function () {
                 Route::get('/galeri', 'index');
                 Route::get('/hapus-galeri/{id}', 'destroy');
                 Route::post('/tambah-galeri', 'create');
@@ -400,18 +402,32 @@ Route::prefix('admin')->group(function () {
                 Route::get('/hapus-sinergi/{id}', 'destroysinergi');
                 Route::get('/hapus-statistiki/{id}', 'destroystatistik');
             });
+            //APBDes
+            //iki crud e pie pak
+            Route::controller(ApbdesController::class)->group(function () {
+                Route::get('/apbdes', 'index');
+                //Tambah
+                Route::post('/tambah-apbdes', 'create');
+
+                //Edit
+                Route::put('/edit-apbdes-pelaksanaan/{id}', 'updatepelaksanaan');
+                Route::put('/edit-apbdes-pendapatan/{id}', 'updatependapatan');
+                Route::put('/edit-apbdes-pembelanjaan/{id}', 'updatepembelanjaan');
+
+                //Hapus
+                Route::get('/hapus-apbdes/{id}', 'destroy');
+            });
             //Agenda GOR
             Route::controller(AgendaGORController::class)->group(function () {
                 Route::get('/agendagor', 'index');
                 //Tambah
                 Route::post('/tambah-agendagor', 'create');
-               
+
                 //Edit
                 Route::put('/edit-agendagor/{id}', 'edit');
-               
+
                 //Hapus
                 Route::get('/hapus-agendagor/{id}', 'destroy');
-               
             });
             //berita dan artikel
             Route::controller(BeritaController::class)->group(function () {
@@ -452,14 +468,14 @@ Route::delete('/penduduk/{id}/delete', [PendudukController::class, 'destroy']);
 Route::delete('/penduduk-migrasi/{id}/delete', [PendudukController::class, 'destroymigrasi']);
 
 Route::get('/profile', function () {
-    return view('bo.page.profile',[
+    return view('bo.page.profile', [
         'dropdown1' => '',
         'dropdown2' => '',
         'title' => 'Profile',
     ]);
 });
 Route::get('/register', function () {
-    return view('page.register',[
+    return view('page.register', [
         'dropdown1' => '',
         'dropdown2' => '',
         'title' => 'Register',

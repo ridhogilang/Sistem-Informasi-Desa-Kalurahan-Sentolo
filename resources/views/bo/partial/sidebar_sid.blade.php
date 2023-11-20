@@ -49,6 +49,11 @@
                         <i class="bi bi-circle"></i><span>APBDes</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/admin/sistem-informasi/agendagor" class="{{ ($title == "Agenda GOR") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Agenda GOR</span>
+                    </a>
+                </li>
             </ul>
         </li><!-- End Components Nav -->
 
