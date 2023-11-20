@@ -7,6 +7,9 @@ use App\Models\PenghapusanPenduduk;
 use Illuminate\Http\Request;
 use Storage;
 use Yajra\DataTables\Facades\Datatables;
+use App\Exports\PendudukExport;
+use App\Imports\PendudukImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PendudukController extends Controller
 {
@@ -299,5 +302,16 @@ class PendudukController extends Controller
         PenghapusanPenduduk::create($record);
         Penduduk::where('id', $id)->update(['is_active'=> '1']);
         return redirect('/penduduk-migrasi')->with('toast_success', 'Data Dihapus dari Migrasi!');
+    }
+    public function pendudukexport(){
+        return Excel::download(new PendudukExport, 'Penduduk.xlsx');
+    }
+    public function pendudukimport(Request $request){
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('FileImportPenduduk', $namaFile);
+
+        Excel::import(new PendudukImport, public_path('/FileImportPenduduk/'.$namaFile));
+        return redirect('/penduduk')->with('toast_success', 'Data Berhasil Diimport!');
     }
 }

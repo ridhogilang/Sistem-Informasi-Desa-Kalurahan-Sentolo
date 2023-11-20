@@ -868,166 +868,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- Agenda GOR --}}
-                <div class="sidebar-item">
-                    <!-- widget Sinergi Program-->
-                    <!-- TODO: Pindahkan ke external css -->
-                    <style>
-                        #sinergi_program {
-                            text-align: center;
-                        }
-
-                        #sinergi_program table {
-                            margin: auto;
-                        }
-
-                        #sinergi_program img {
-                            max-width: 100%;
-                            max-height: 100%;
-                            transition: all 0.5s;
-                            -o-transition: all 0.5s;
-                            -moz-transition: all 0.5s;
-                            -webkit-transition: all 0.5s;
-                        }
-
-                        #sinergi_program img:hover {
-                            transition: all 0.3s;
-                            -o-transition: all 0.3s;
-                            -moz-transition: all 0.3s;
-                            -webkit-transition: all 0.3s;
-                            transform: scale(1.5);
-                            -moz-transform: scale(1.5);
-                            -o-transform: scale(1.5);
-                            -webkit-transform: scale(1.5);
-                            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
-                        }
-                    </style>
-                    <div class="box box-primary box-solid">
-                        <div class="box-header">
-                            <h3 class="box-title"><i class="fa fa-external-link"></i>Agenda</h3>
-                        </div>
-                        <div id="agenda" class="box-body">
-                            <ul class="nav nav-tabs" id="nav-gor">
-                                <li class="active"><a data-toggle="tab" href="#hari-inigor">Hari ini</a></li>
-                                <li class=""><a data-toggle="tab" href="#yad-gor">Besok</a></li>
-                                <li class=""><a data-toggle="tab" href="#minggu">Minggu ini</a></li>
-                            </ul>
-                            <div class="tab-content" id="tab-gor">
-                                <div id="hari-inigor" class="">
-                                    <ul class="sidebar-latest">
-                                        @if ($agendahariini->count())
-                                            @foreach ($agendahariini as $value)
-                                                <table id="table-agenda" width="100%">
-                                                    <tbody>
-                                                        <tr>
-                                                            {{-- <th width="40%">Kegiatan</th> --}}
-                                                            <th colspan="3"><a href="">{{ $value->judul }}</a>
-                                                            </th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th width="40%">Waktu</th>
-                                                            <td width="100%">
-                                                                {{ date('j F Y', strtotime($value->tanggal)) }}
-                                                                <br>{{ $value->waktu }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Lokasi</th>
-                                                            <td>{{ $value->lokasi }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Koordinator</th>
-                                                            <td>{{ $value->koordinator }}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <br>
-                                            @endforeach
-                                        @else
-                                            <p class="text-heading lg:text-lg text-center mt-5"
-                                                style="font-weight: bold; padding-top: 50px;">Hari ini Tidak ada Agenda.
-                                            </p>
-                                        @endif
-                                    </ul>
-                                </div>
-                                <div id="yad-gor" class="">
-                                    <ul class="sidebar-latest">
-                                        @if ($agendaakandatang->count())
-                                            @foreach ($agendaakandatang as $value)
-                                                <table id="table-agenda" width="100%">
-                                                    <tbody>
-                                                        <tr>
-                                                            {{-- <th width="40%">Kegiatan</th> --}}
-                                                            <th colspan="3"><a href="">{{ $value->judul }}</a>
-                                                            </th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th width="40%">Waktu</th>
-                                                            <td width="100%">
-                                                                {{ date('j F Y', strtotime($value->tanggal)) }}
-                                                                <br>{{ $value->waktu }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Lokasi</th>
-                                                            <td>{{ $value->lokasi }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Koordinator</th>
-                                                            <td>{{ $value->koordinator }}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <br>
-                                            @endforeach
-                                        @else
-                                            <p class="text-heading lg:text-lg text-center mt-5"
-                                                style="font-weight: bold; padding-top: 50px;">Yang Akan Datang Tidak ada
-                                                Agenda.</p>
-                                        @endif
-                                    </ul>
-                                </div>
-                                <div id="minggu" class="">
-                                    <ul class="sidebar-latest">
-                                        @if ($agendalalu->count())
-                                            @foreach ($agendalalu as $value)
-                                                <table id="table-agenda" width="100%">
-                                                    <tbody>
-                                                        <tr>
-                                                            {{-- <th width="40%">Kegiatan</th> --}}
-                                                            <th colspan="3"><a href="">{{ $value->judul }}</a>
-                                                            </th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th width="40%">Waktu</th>
-                                                            <td width="100%">
-                                                                {{ date('j F Y', strtotime($value->tanggal)) }}
-                                                                <br>{{ $value->waktu }}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Lokasi</th>
-                                                            <td>{{ $value->lokasi }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Koordinator</th>
-                                                            <td>{{ $value->koordinator }}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <br>
-                                            @endforeach
-                                        @else
-                                            <p class="text-heading lg:text-lg text-center mt-5"
-                                                style="font-weight: bold; padding-top: 50px;">Tidak ada agenda sebelumnya
-                                            </p>
-                                        @endif
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="sidebar-item">
                     <style type="text/css">
                         button.btn {
@@ -1179,8 +1019,8 @@
                     </style>
                     <div class="box box-primary box-solid">
                         <div class="box-header">
-                            <h3 class="box-title"><a href=""><i
-                                        class="ti ti-chart-histogram mr-1"></i> Statistik Kalurahan Sentolo</a></h3>
+                            <h3 class="box-title"><a href=""><i class="ti ti-chart-histogram mr-1"></i> Statistik
+                                    Kalurahan Sentolo</a></h3>
                         </div>
                         <div class="box-body">
                             <div id="statistik_kalurahan" style="width: 100%; height: 300px; margin: 0 auto"></div>
@@ -1407,41 +1247,212 @@
                         </div>
                     </div>
                 </div>
+                <style type="text/css">
+                    button.btn {
+                        margin-left: 0px;
+                    }
+
+                    #collapse2 {
+                        margin-top: 5px;
+                    }
+
+                    button[aria-expanded=true] .fa-chevron-down {
+                        display: none;
+                    }
+
+                    button[aria-expanded=false] .fa-chevron-up {
+                        display: none;
+                    }
+
+                    .tabel-info {
+                        width: 100%;
+                    }
+
+                    .tabel-info,
+                    tr {
+                        border-bottom: 1px;
+                        border: 0px solid;
+                    }
+
+                    .tabel-info,
+                    td {
+                        border: 0px solid;
+                        height: 30px;
+                        padding: 5px;
+                    }
+                </style>
+                </div>
+                {{-- Agenda GOR --}}
                 <div class="sidebar-item">
-                    <style type="text/css">
-                        button.btn {
-                            margin-left: 0px;
+                    <!-- widget Sinergi Program-->
+                    <!-- TODO: Pindahkan ke external css -->
+                    <style>
+                        #sinergi_program {
+                            text-align: center;
                         }
 
-                        #collapse2 {
-                            margin-top: 5px;
+                        #sinergi_program table {
+                            margin: auto;
                         }
 
-                        button[aria-expanded=true] .fa-chevron-down {
-                            display: none;
+                        #sinergi_program img {
+                            max-width: 100%;
+                            max-height: 100%;
+                            transition: all 0.5s;
+                            -o-transition: all 0.5s;
+                            -moz-transition: all 0.5s;
+                            -webkit-transition: all 0.5s;
                         }
 
-                        button[aria-expanded=false] .fa-chevron-up {
-                            display: none;
-                        }
-
-                        .tabel-info {
-                            width: 100%;
-                        }
-
-                        .tabel-info,
-                        tr {
-                            border-bottom: 1px;
-                            border: 0px solid;
-                        }
-
-                        .tabel-info,
-                        td {
-                            border: 0px solid;
-                            height: 30px;
-                            padding: 5px;
+                        #sinergi_program img:hover {
+                            transition: all 0.3s;
+                            -o-transition: all 0.3s;
+                            -moz-transition: all 0.3s;
+                            -webkit-transition: all 0.3s;
+                            transform: scale(1.5);
+                            -moz-transform: scale(1.5);
+                            -o-transform: scale(1.5);
+                            -webkit-transform: scale(1.5);
+                            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
                         }
                     </style>
+                    <div class="box box-primary box-solid">
+                        <div class="box-header">
+                            <h3 class="box-title"><i class="fa fa-external-link"></i>Agenda Kegiatan GOR</h3>
+                        </div>
+                        <div id="agenda" class="box-body">
+                            <ul class="nav nav-tabs" id="nav-gor">
+                                <li class="active"><a data-toggle="tab" href="#hari-inigor">Hari ini</a></li>
+                                <li class=""><a data-toggle="tab" href="#yad-gor">Besok</a></li>
+                                <li class=""><a data-toggle="tab" href="#minggu">Minggu ini</a></li>
+                            </ul>
+                            <div class="tab-content" id="tab-gor">
+                                <div id="hari-inigor" class="">
+                                    <ul class="sidebar-latest">
+                                        @if ($agendagorhariini->count())
+                                            @foreach ($agendagorhariini as $value)
+                                                <table id="table-agenda" width="100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th width="40%">Kegiatan</th>
+                                                            <td width="100%">{{ $value->kegiatan }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="40%">Tanggal</th>
+                                                            <td width="100%">
+                                                                {{ date('j F Y', strtotime($value->tanggal)) }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Waktu</th>
+                                                            <td>{{ $value->waktu }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Selesai</th>
+                                                            <td>{{ $value->selesai }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Penanggung Jawab</th>
+                                                            <td>{{ $value->koordinator }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <br>
+                                            @endforeach
+                                        @else
+                                            <p class="text-heading lg:text-lg text-center mt-5"
+                                                style="font-weight: bold; padding-top: 50px;">Hari ini Tidak ada Kegiatan.
+                                            </p>
+                                        @endif
+                                    </ul>
+                                    <button class="btn btn-success btn-block" type="button"><a href="/booking_gor" style="color:#fff;"
+                                            target="_blank">Booking GOR</a></button>
+
+                                    <!-- Modal Form Tambah Agenda -->
+                                    
+                                </div>
+                                <div id="yad-gor" class="">
+                                    <ul class="sidebar-latest">
+                                        @if ($agendagorakandatang->count())
+                                            @foreach ($agendagorakandatang as $value)
+                                                <table id="table-agenda" width="100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th width="40%">Kegiatan</th>
+                                                            <td width="100%">{{ $value->kegiatan }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="40%">Tanggal</th>
+                                                            <td width="100%">
+                                                                {{ date('j F Y', strtotime($value->tanggal)) }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Waktu</th>
+                                                            <td>{{ $value->waktu }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Selesai</th>
+                                                            <td>{{ $value->selesai }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Penanggung Jawab</th>
+                                                            <td>{{ $value->koordinator }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <br>
+                                            @endforeach
+                                        @else
+                                            <p class="text-heading lg:text-lg text-center mt-5"
+                                                style="font-weight: bold; padding-top: 50px;">Yang Akan Datang Tidak ada
+                                                Kegiatan.</p>
+                                        @endif
+                                    </ul>
+                                </div>
+                                <div id="minggu" class="">
+                                    <ul class="sidebar-latest">
+                                        @if ($agendagormingguini->count())
+                                            @foreach ($agendagormingguini as $value)
+                                                <table id="table-agenda" width="100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th width="40%">Kegiatan</th>
+                                                            <td width="100%">{{ $value->kegiatan }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th width="40%">Tanggal</th>
+                                                            <td width="100%">
+                                                                {{ date('j F Y', strtotime($value->tanggal)) }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Waktu</th>
+                                                            <td>{{ $value->waktu }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Selesai</th>
+                                                            <td>{{ $value->selesai }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Penanggung Jawab</th>
+                                                            <td>{{ $value->koordinator }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <br>
+                                            @endforeach
+                                        @else
+                                            <p class="text-heading lg:text-lg text-center mt-5"
+                                                style="font-weight: bold; padding-top: 50px;">Tidak ada Kegiatan Minggu
+                                                ini.
+                                            </p>
+                                        @endif
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </aside>
         </section>
