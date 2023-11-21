@@ -49,6 +49,7 @@ class userManagementController extends Controller
 
         $data = $this->data;
         $data['roles'] = Role::pluck('name','name')->all();
+        dd($data['roles']);
         $data['url'] = route('bo.pegawai.user_management.store');
         return view($data['view'].'.form', $data);
     }
@@ -122,7 +123,7 @@ class userManagementController extends Controller
     public function update(Request $request, string $id)
     {
         if (auth()->user()->can('user_edit') == false) {
-        return redirect()->route('bo.pegawai.dashboard');
+            return redirect()->route('bo.pegawai.dashboard');
         }
 
         $this->validate($request, [
