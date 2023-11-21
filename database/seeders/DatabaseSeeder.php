@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
 {
     private $permissions = [
         //kepegawaian
-        'enter_kepegawaian',
+        'enter_pengguna',
             //user
             'user_list', 'user_create', 'user_edit', 'user_delete',
             //role

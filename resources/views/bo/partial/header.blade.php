@@ -128,11 +128,11 @@
                             <hr class="dropdown-divider">
                         </li>
                     @endcan
-                    @can('enter_kepegawaian')
+                    @can('enter_pengguna')
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('bo.pegawai.dashboard') }}">
                                 <i class="bi bi-fingerprint"></i>
-                                <span>Kepegawaian</span>
+                                <span>Pengguna</span>
                             </a>
                         </li>
                         <li>

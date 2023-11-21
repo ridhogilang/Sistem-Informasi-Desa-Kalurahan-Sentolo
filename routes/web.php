@@ -5,8 +5,8 @@ use App\Http\Controllers\bo\Bantuan\BantuanController;
 use App\Http\Controllers\bo\Auth\LoginController;
 use App\Http\Controllers\bo\Auth\VerifikasiEmailController;
 use App\Http\Controllers\bo\Auth\ForgetPasswordController;
-use App\Http\Controllers\bo\Pegawai\UserManagementController;
-use App\Http\Controllers\bo\Pegawai\roleManagementController;
+use App\Http\Controllers\bo\Pengguna\UserManagementController;
+use App\Http\Controllers\bo\Pengguna\roleManagementController;
 
 //e-surat
 use App\Http\Controllers\bo\Surat\dashboard\DashboardSuratController;
@@ -185,7 +185,7 @@ Route::prefix('admin')->group(function () {
 
 
         //untuk kepegawaian yaitu kebutuhan user dan role tak dewekno marakno riskan
-        Route::prefix('pegawai')->middleware('can:enter_kepegawaian')->group(function () {
+        Route::prefix('pengguna')->middleware('can:enter_pengguna')->group(function () {
             Route::get('/dashboard', function () {
                 return view('bo.page.dashboard', [
                     'dropdown1' => '',

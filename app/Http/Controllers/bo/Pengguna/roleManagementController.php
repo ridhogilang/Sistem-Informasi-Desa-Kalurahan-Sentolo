@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\bo\Pegawai;
+namespace App\Http\Controllers\bo\Pengguna;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

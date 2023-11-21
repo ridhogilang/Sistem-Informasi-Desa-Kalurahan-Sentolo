@@ -47,8 +47,8 @@
     <!-- End Header -->
 
     <!-- ======= Sidebar ======= -->
-    @if(request()->is('admin/pegawai*'))
-        @include('bo.partial.sidebar_pegawai')
+    @if(request()->is('admin/pengguna*'))
+        @include('bo.partial.sidebar_pengguna')
     @elseif(request()->is('admin/e-surat*'))
         @include('bo.partial.sidebar_surat')
     @elseif(request()->is('admin/sistem-informasi*'))

@@ -12,7 +12,15 @@
         <li class="nav-item">
             <a class="nav-link {{ request()->is('admin/pegawai/user_management*') ? '' : 'collapsed' }}" href="{{ route('bo.pegawai.user_management.index') }}">
                 <i class="fa-regular fa-envelope-open"></i>
-                <span>Pegawai</span>
+                <span>Akun Penduduk</span>
+            </a>
+        </li>
+        @endcanany
+        @canany(['user_list', 'user_create', 'user_edit', 'user_delete'])
+        <li class="nav-item">
+            <a class="nav-link {{ request()->is('admin/pegawai/user_management*') ? '' : 'collapsed' }}" href="{{ route('bo.pegawai.user_management.index') }}">
+                <i class="fa-regular fa-envelope-open"></i>
+                <span>Akun Pamong</span>
             </a>
         </li>
         @endcanany
@@ -21,34 +29,11 @@
         <li class="nav-item">
             <a class="nav-link  {{ request()->is('admin/pegawai/role_management*') ? '' : 'collapsed' }}" href="{{ route('bo.pegawai.role_management.index') }}">
                 <i class="bx bx-lock"></i>
-                <span>Role</span>
+                <span>Hak Akses Pamong</span>
             </a>
         </li>
         @endcanany
         <!-- End Surat Masuk Nav -->
-
-        <li class="nav-heading">Pages</li>
-
-        <li class="nav-item">
-            <a class="nav-link {{ ($title == "Profile") ? '' : 'collapsed' }}" href="/profile">
-                <i class="bi bi-person"></i>
-                <span>Profile</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link {{ ($title == "Register") ? '' : 'collapsed' }}" href="/register">
-                <i class="bi bi-card-list"></i>
-                <span>Register</span>
-            </a>
-        </li><!-- End Register Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link {{ ($title == "Login") ? '' : 'collapsed' }}" href="/login">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Login</span>
-            </a>
-        </li><!-- End Login Page Nav -->
 
     </ul>
 
