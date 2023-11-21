@@ -7,6 +7,7 @@ use App\Http\Controllers\bo\Auth\VerifikasiEmailController;
 use App\Http\Controllers\bo\Auth\ForgetPasswordController;
 use App\Http\Controllers\bo\Pengguna\UserManagementController;
 use App\Http\Controllers\bo\Pengguna\roleManagementController;
+use App\Http\Controllers\bo\Pengguna\AkunPendudukController;
 
 //e-surat
 use App\Http\Controllers\bo\Surat\dashboard\DashboardSuratController;
@@ -123,43 +124,43 @@ Route::controller(KomentarController::class)->group(function () {
 
 // });
 
-Route::controller(BeritaController::class)->group(function () {
-    //berita
-    Route::get('/admin/berita', 'index');
-    Route::get('/admin/berita/komentar', 'indexkomentar');
-    Route::post('/berita', 'store');
-    Route::put('/berita/{id}', 'update');
-    Route::get('/showberita/{id}', 'show');
-    Route::get('/deleteberita/{id}', 'destroy');
-    Route::put('/update-status/{id}', 'updateStatus');
-    Route::put('/update-sideberita/{id}', 'updateSideBerita');
+// Route::controller(BeritaController::class)->group(function () {
+//     //berita
+//     Route::get('/admin/berita', 'index');
+//     Route::get('/admin/berita/komentar', 'indexkomentar');
+//     Route::post('/berita', 'store');
+//     Route::put('/berita/{id}', 'update');
+//     Route::get('/showberita/{id}', 'show');
+//     Route::get('/deleteberita/{id}', 'destroy');
+//     Route::put('/update-status/{id}', 'updateStatus');
+//     Route::put('/update-sideberita/{id}', 'updateSideBerita');
 
-    //Artikel
-    Route::get('/admin/artikel', 'artikel');
-    Route::get('/admin/artikel/komentar', 'komentarartikel');
-    Route::post('/artikel', 'tambah_artikel');
-    Route::get('/showartikel/{id}', 'show_artikel');
-    Route::put('/updateartikel/{id}', 'update_artikel');
-    Route::get('/deleteartikel/{id}', 'destroy_artikel');
-});
+//     //Artikel
+//     Route::get('/admin/artikel', 'artikel');
+//     Route::get('/admin/artikel/komentar', 'komentarartikel');
+//     Route::post('/artikel', 'tambah_artikel');
+//     Route::get('/showartikel/{id}', 'show_artikel');
+//     Route::put('/updateartikel/{id}', 'update_artikel');
+//     Route::get('/deleteartikel/{id}', 'destroy_artikel');
+// });
 
-Route::controller(MenuController::class)->group(function () {
-    Route::get('/menu', 'index');
-    Route::post('/menu', 'store');
-    Route::put('/menu/{id}', 'update');
-    Route::get('/deletemenu/{id}', 'destroy');
-});
+// Route::controller(MenuController::class)->group(function () {
+//     Route::get('/menu', 'index');
+//     Route::post('/menu', 'store');
+//     Route::put('/menu/{id}', 'update');
+//     Route::get('/deletemenu/{id}', 'destroy');
+// });
 
-Route::controller(HeaderController::class)->group(function () {
-    Route::get('/admin/header', 'index');
-    Route::post('/header', 'create');
-    Route::post('/subheader', 'createsub');
-    Route::put('/header/{id}', 'update');
-    Route::put('/subheader/{id}', 'updatesub');
-    Route::get('/deleteheader/{id}', 'hapus');
-    Route::get('/deletesubheader/{id}', 'destroysub');
-    Route::get('/checkSubheaders/{id}', 'checkSubheaders');
-});
+// Route::controller(HeaderController::class)->group(function () {
+//     Route::get('/admin/header', 'index');
+//     Route::post('/header', 'create');
+//     Route::post('/subheader', 'createsub');
+//     Route::put('/header/{id}', 'update');
+//     Route::put('/subheader/{id}', 'updatesub');
+//     Route::get('/deleteheader/{id}', 'hapus');
+//     Route::get('/deletesubheader/{id}', 'destroysub');
+//     Route::get('/checkSubheaders/{id}', 'checkSubheaders');
+// });
 
 //back office (halaman admin)
 Route::prefix('admin')->group(function () {
@@ -185,7 +186,7 @@ Route::prefix('admin')->group(function () {
 
 
         //untuk kepegawaian yaitu kebutuhan user dan role tak dewekno marakno riskan
-        Route::prefix('pengguna')->middleware('can:enter_pengguna')->group(function () {
+        Route::prefix('pengguna')->middleware('can:Menejemen Pengguna')->group(function () {
             Route::get('/dashboard', function () {
                 return view('bo.page.dashboard', [
                     'dropdown1' => '',
@@ -193,13 +194,27 @@ Route::prefix('admin')->group(function () {
                     'title' => 'Dashboard',
                 ]);
             })->name('bo.pegawai.dashboard');
+            //akun penduduk untuk pelayanan umum
+            //bo.pengguna.akun_penduduk_management
+            Route::resource('/akun_penduduk_management', AkunPendudukController::class, ['as' => 'bo.pengguna'])
+                ->except(['show'])
+                ->middleware('can:Kelola Akun Penduduk');
+            Route::get('/akun_penduduk_management_data', [AkunPendudukController::class, 'datas'])->name('bo.pengguna.data.akun_penduduk');
 
-            Route::resource('/user_management', UserManagementController::class, ['as' => 'bo.pegawai'])->except(['show']);
-            Route::resource('/role_management', roleManagementController::class, ['as' => 'bo.pegawai'])->except(['show']);
+            //akun pamong untuk mengelola website
+            Route::resource('/user_management', UserManagementController::class, ['as' => 'bo.pegawai'])
+                ->except(['show'])
+                ->middleware('can:Kelola Akun Pamong');
+            Route::get('/user_management_data', [UserManagementController::class, 'datas'])->name('bo.pengguna.data.akun_pamong');
+
+            //hak akses pamong
+            Route::resource('/role_management', roleManagementController::class, ['as' => 'bo.pegawai'])
+                ->except(['show'])
+                ->middleware('can:Kelola Hak Akses Pamong');
         });
 
         //untuk tim PU dan Arsip (e-surat)
-        Route::prefix('e-surat')->middleware('can:enter_e-surat')->group(function () {
+        Route::prefix('e-surat')->middleware('can:Menejemen E-Surat')->group(function () {
             Route::get('/dashboard', [DashboardSuratController::class, 'index'])->name('bo.e-surat.dashboard');
 
             //validasi surat keluar
@@ -341,7 +356,7 @@ Route::prefix('admin')->group(function () {
             Route::delete('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy'])->middleware('can:Surat Masuk');
         });
         //untuk tim sistem informasi
-        Route::prefix('sistem-informasi')->group(function () {
+        Route::prefix('sistem-informasi')->middleware('can:Menejemen Sistem Informasi')->group(function () {
             Route::controller(AdminController::class)->group(function () {
                 Route::get('/dashboard', 'index')->name('bo.sid.dashboard');
             });

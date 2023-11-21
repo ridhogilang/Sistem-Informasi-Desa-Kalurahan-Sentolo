@@ -27,16 +27,16 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title">Data Pegawai Kalurahan</h5>
-                            <a class="btn btn-primary" href="{{ route('bo.pegawai.user_management.create')}}">Tambah</a>
+                            <a class="btn btn-primary" href="{{ route('bo.pengguna.akun_penduduk_management.create')}}">Tambah</a>
                         </div>
 
                         <!-- Table with hoverable rows -->
-                        <table id="user_table" class="table table-hover content_table datatable_akun_pamong">
+                        <table id="user_table" class="table table-hover content_table datatable_akun_penduduk">
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Jabatan</th>
+                                    <th scope="col">nama</th>
+                                    <th scope="col">NIK</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -58,14 +58,14 @@
     <script type="text/javascript">
       $(function () {
           
-        var table = $('.datatable_akun_pamong').DataTable({
+        var table = $('.datatable_akun_penduduk').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('bo.pengguna.data.akun_pamong') }}",
+            ajax: "{{ route('bo.pengguna.data.akun_penduduk') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'nama', name: 'nama'},
-                {data: 'jabatan', name: 'jabatan'},
+                {data: 'nama', name: 'nama'},
                 {data: 'email', name: 'email'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]

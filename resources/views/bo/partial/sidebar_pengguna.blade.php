@@ -8,31 +8,32 @@
                 <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
-        @canany(['user_list', 'user_create', 'user_edit', 'user_delete'])
+        <!-- ini nanti can kelola akun penduduk, kelola akun pamong, kelola hak akses dahlah itu bisa crud semua dan semuanya bisa aku puuyeng middleware pasang no route mbuh nopo nek pasang kui kudune pie -->
+        @can('Kelola Akun Penduduk')
         <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/pegawai/user_management*') ? '' : 'collapsed' }}" href="{{ route('bo.pegawai.user_management.index') }}">
+            <a class="nav-link {{ request()->is('admin/pengguna/akun_penduduk_management*') ? '' : 'collapsed' }}" href="{{ route('bo.pengguna.akun_penduduk_management.index') }}">
                 <i class="fa-regular fa-envelope-open"></i>
                 <span>Akun Penduduk</span>
             </a>
         </li>
-        @endcanany
-        @canany(['user_list', 'user_create', 'user_edit', 'user_delete'])
+        @endcan
+        @can('Kelola Akun Pamong')
         <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/pegawai/user_management*') ? '' : 'collapsed' }}" href="{{ route('bo.pegawai.user_management.index') }}">
+            <a class="nav-link {{ request()->is('admin/pengguna/user_management*') ? '' : 'collapsed' }}" href="{{ route('bo.pegawai.user_management.index') }}">
                 <i class="fa-regular fa-envelope-open"></i>
                 <span>Akun Pamong</span>
             </a>
         </li>
-        @endcanany
+        @endcan
         <!-- End Surat Masuk Nav -->
-        @canany(['role_list', 'role_create', 'role_edit', 'role_delete'])
+        @can('Kelola Hak Akses Pamong')
         <li class="nav-item">
-            <a class="nav-link  {{ request()->is('admin/pegawai/role_management*') ? '' : 'collapsed' }}" href="{{ route('bo.pegawai.role_management.index') }}">
+            <a class="nav-link  {{ request()->is('admin/pengguna/role_management*') ? '' : 'collapsed' }}" href="{{ route('bo.pegawai.role_management.index') }}">
                 <i class="bx bx-lock"></i>
                 <span>Hak Akses Pamong</span>
             </a>
         </li>
-        @endcanany
+        @endcan
         <!-- End Surat Masuk Nav -->
 
     </ul>
