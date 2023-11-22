@@ -10,11 +10,11 @@
 @section('content')
 
     <div class="pagetitle">
-        <h1>Pegawai</h1>
+        <h1>Akun Penduduk</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Kepegawaian</a></li>
-                <li class="breadcrumb-item active">Pegawai</li>
+                <li class="breadcrumb-item"><a href="/">Pengguna</a></li>
+                <li class="breadcrumb-item active">Akun Penduduk</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -65,7 +65,7 @@
             columns: [
                 {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'nama', name: 'nama'},
-                {data: 'nama', name: 'nama'},
+                {data: 'nik', name: 'nik'},
                 {data: 'email', name: 'email'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]

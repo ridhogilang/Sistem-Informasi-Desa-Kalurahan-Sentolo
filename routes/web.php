@@ -197,9 +197,13 @@ Route::prefix('admin')->group(function () {
             //akun penduduk untuk pelayanan umum
             //bo.pengguna.akun_penduduk_management
             Route::resource('/akun_penduduk_management', AkunPendudukController::class, ['as' => 'bo.pengguna'])
-                ->except(['show'])
+                ->except(['show', 'edit', 'update'])
                 ->middleware('can:Kelola Akun Penduduk');
-            Route::get('/akun_penduduk_management_data', [AkunPendudukController::class, 'datas'])->name('bo.pengguna.data.akun_penduduk');
+            Route::get('/akun_penduduk_management_data', [AkunPendudukController::class, 'datas'])
+                ->name('bo.pengguna.data.akun_penduduk')
+                ->middleware('can:Kelola Akun Penduduk');
+            Route::get('/dapatkan_data_penduduk', [AkunPendudukController::class, 'penduduk'])
+                ->name('bo.pengguna.data.kependudukan');
 
             //akun pamong untuk mengelola website
             Route::resource('/user_management', UserManagementController::class, ['as' => 'bo.pegawai'])

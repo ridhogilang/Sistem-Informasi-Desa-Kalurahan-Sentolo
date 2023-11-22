@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\bo\Pengguna;
 
 use App\Http\Controllers\Controller;
+use App\Models\Penduduk;
 use App\Models\User;
 use App\Models\VerifyMail as VerifyMailModel;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class AkunPendudukController extends Controller
 
     public function datas()
     {
-        $data = User::where("is_delete","<>", '1')->get();
+        $data = User::where("is_delete","<>", '1')->where("jabatan","=", null)->get();
         return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -42,8 +43,6 @@ class AkunPendudukController extends Controller
                     <form action="'. route('bo.pengguna.akun_penduduk_management.destroy', $row["id"]) .'" method="POST"> 
                                 ' . csrf_field() . '
                                 ' . method_field("DELETE") . '
-                                <a class="btn btn-warning" href="'. route('bo.pengguna.akun_penduduk_management.edit', $row["id"]) .'">
-                                <i class="fa-solid fa-pen-to-square"></i></a>
                                 <button class="btn btn-danger" type="submit" href="/surat-kbm/'.$row["id"].'/delete"><i class="fa-regular fa-trash-can"></i></button>
                                  </form>
                     ';
@@ -51,6 +50,27 @@ class AkunPendudukController extends Controller
                 })
                 ->rawColumns(['action'])
                 ->make(true);
+    }
+
+    public function penduduk(Request $request)
+    {
+        $searchTerm = $request->input('q');
+
+        $datas  = Penduduk::select('nik', 'nama')
+                    ->where('nama', 'like', "%$searchTerm%")
+                    ->orwhere('nik', 'like', "%$searchTerm%")
+                    ->where('is_active', '=', '1')
+                    ->get();
+
+         return DataTables::of($datas)
+            ->addColumn('select_display', function ($data) {
+                return $data->nik . ' - ' . $data->nama;
+            })
+            ->addColumn('select_value', function ($data) {
+                return $data->nik;
+            })
+            ->rawColumns(['select_display', 'select_value'])
+            ->make(true);
     }
 
     /**
@@ -69,23 +89,23 @@ class AkunPendudukController extends Controller
     public function store(Request $request)
     {
          $this->validate($request, [
-            'nama' => 'required',
+            'nik' => 'required',
             'email' => 'required|email|unique:users,email|unique:verify_mails,email',
             'password' => 'required|min:6|same:confirm-password',
         ]);
 
         $input = $request->all();
         // tambahan input
+        $input['nama'] = Penduduk::where('nik', '=', $input['nik'])->first()->nama;
         $input['password'] = Hash::make($input['password']);
         $input['is_active'] = '1';
         $input['is_delete'] = '0';
-
-        $user = User::create($input);
 
         //proses membuat verify email
         $verimail['id'] = date('Ymdhis').'-'.substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 75);
         $verimail['email'] =  $input['email'];
         
+        $user = User::create($input);
         VerifyMailModel::create($verimail);
         Mail::to($verimail['email'])->send(new VerifyMail($verimail));
 
@@ -109,8 +129,10 @@ class AkunPendudukController extends Controller
     {
         $data = $this->data;
         $data['user'] = User::find($id);
-        $data['roles'] = Role::pluck('name','name')->all();
-        $data['userRole'] = $data['user']->roles->pluck('name','name')->all();
+        if($data['user']->jabatan != null)
+        {
+             return redirect()->route('bo.pegawai.user_management.edit', $id);
+        }
         $data['url'] = route('bo.pengguna.akun_penduduk_management.update', $id);
 
         return view($data['view'].'.form', $data);

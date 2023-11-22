@@ -25,11 +25,18 @@ class PendudukController extends Controller
             'title' => 'Data Penduduk'
         ]);
     }
-    public function datasaktif()
+    public function datasaktif(Request $request)
     {
+        $searchTerm = $request->input('q');
         $penduduk = Penduduk::select('id', 'nik', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir')
+                    ->where('nama', 'like', "%$searchTerm%")
+                    ->orwhere('nik', 'like', "%$searchTerm%")
+                    ->orwhere('jenis_kelamin', 'like', "%$searchTerm%")
+                    ->orwhere('tempat_lahir', 'like', "%$searchTerm%")
+                    ->orwhere('tanggal_lahir', 'like', "%$searchTerm%")
                     ->where('is_active', '=', '1')
                     ->get();
+
         return Datatables::of($penduduk)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){

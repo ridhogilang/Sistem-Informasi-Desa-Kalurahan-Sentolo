@@ -167,7 +167,12 @@
 
                     <li class="dropdown-header">
                         <h6>Kevin Anderson</h6>
-                        <span>{{ auth()->user()->roles[0]['name'] }}</span>
+                        <span>
+                            @if(isset(auth()->user()->roles[0]['name']))
+                                {{ auth()->user()->roles[0]['name'] }}
+                            @endif
+                        </span>
+
                     </li>
                     <li>
                         <hr class="dropdown-divider">
