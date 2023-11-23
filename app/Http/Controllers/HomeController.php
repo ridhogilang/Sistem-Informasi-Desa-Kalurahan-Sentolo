@@ -23,6 +23,7 @@ use Mews\Captcha\Facades\Captcha;
 use Illuminate\Contracts\Cache\Store;
 use PhpParser\Node\Expr\FuncCall;
 use App\Http\Controllers\Controller;
+use App\Models\AgendaBalai;
 use App\Models\Komentar;
 use Illuminate\Support\Facades\Session;
 
@@ -80,17 +81,24 @@ class HomeController extends Controller
         $text = Runningtext::where('id', 1)->first();
 
         $pamong = Pamong::all();
-        //agenda
+        //Agenda
         $agenda_hari_ini = Agenda::where('tanggal', $today)->get();
         $agenda_yangakandatang = Agenda::where('tanggal', '>', $today)->get();
         $agenda_yangLalu = Agenda::where('tanggal', '>=', $oneMonthAgo)
             ->where('tanggal', '<', $today)
             ->get();
-        //agenda gor
+        //Agenda GOR
         $agendagor_hari_ini = AgendaGOR::where('tanggal', $today)->get();
         $agendagor_yangakandatang = AgendaGOR::whereDate('tanggal', '=', $nextDay->toDateString())
             ->get();
         $agendagor_mingguini = AgendaGOR::where('tanggal', '>=', $startOfWeek)
+            ->where('tanggal', '<', $endOfWeek)
+            ->get();
+        //Agenda BALAI
+        $agendabalai_hari_ini = AgendaBalai::where('tanggal', $today)->get();
+        $agendabalai_yangakandatang = AgendaBalai::whereDate('tanggal', '=', $nextDay->toDateString())
+            ->get();
+        $agendabalai_mingguini = AgendaBalai::where('tanggal', '>=', $startOfWeek)
             ->where('tanggal', '<', $endOfWeek)
             ->get();
         $jadwal = Jadwal::all();
@@ -125,6 +133,10 @@ class HomeController extends Controller
             "agendagorhariini" => $agendagor_hari_ini,
             "agendagorakandatang" => $agendagor_yangakandatang,
             "agendagormingguini" => $agendagor_mingguini,
+            //Agenda BALAI
+            "agendabalaihariini" => $agendabalai_hari_ini,
+            "agendabalaiakandatang" => $agendabalai_yangakandatang,
+            "agendabalaimingguini" => $agendabalai_mingguini,
             "jadwal" => $jadwal,
             "sinergi" => $sinergi,
             "statistik" => $statistik,

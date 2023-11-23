@@ -46,6 +46,7 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\bo\Sid\MenuController;
 use App\Http\Controllers\bo\Sid\AdminController;
+use App\Http\Controllers\bo\Sid\AgendaBalaiController;
 use App\Http\Controllers\bo\Sid\AgendaGORController;
 use App\Http\Controllers\bo\Sid\ApbdesController;
 use App\Http\Controllers\bo\Sid\BaganController;
@@ -55,6 +56,7 @@ use App\Http\Controllers\bo\Sid\HeaderController;
 use App\Http\Controllers\bo\Sid\KomentarController;
 use App\Http\Controllers\bo\Sid\KomponenController;
 use App\Http\Controllers\bo\Sid\PamongController;
+use App\Models\AgendaBalai;
 
 /*
 |--------------------------------------------------------------------------
@@ -341,7 +343,7 @@ Route::prefix('admin')->group(function () {
             Route::delete('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy'])->middleware('can:Surat Masuk');
         });
         //untuk tim sistem informasi
-        Route::prefix('sistem-informasi')->group(function () {
+        Route::prefix('sistem-informasi')->middleware('can:enter_sistem informasi')->group(function () {
             Route::controller(AdminController::class)->group(function () {
                 Route::get('/dashboard', 'index')->name('bo.sid.dashboard');
             });
@@ -429,10 +431,21 @@ Route::prefix('admin')->group(function () {
                 //Hapus
                 Route::get('/hapus-agendagor/{id}', 'destroy');
             });
+            //Agenda Balai
+            Route::controller(AgendaBalaiController::class)->group(function () {
+                //Tambah
+                Route::post('/tambah-agendabalai', 'create');
+
+                //Edit
+                Route::put('/edit-agendabalai/{id}', 'edit');
+
+                //Hapus
+                Route::get('/hapus-agendabalai/{id}', 'destroy');
+            });
             //berita dan artikel
             Route::controller(BeritaController::class)->group(function () {
                 //berita
-                Route::get('/berita', 'index');
+                Route::get('/berita', 'index')->middleware('can:list surat');
                 Route::get('/berita/komentar', 'indexkomentar');
                 Route::post('/berita', 'store');
                 Route::put('/berita/{id}', 'update');

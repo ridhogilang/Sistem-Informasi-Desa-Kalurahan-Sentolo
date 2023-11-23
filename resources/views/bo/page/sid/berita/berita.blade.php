@@ -141,7 +141,9 @@
                                     <th scope="col">Kategori</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Berita Utama</th>
+                                    @canany(['edit berita', 'hapus berita'])
                                     <th scope="col" class="text-center">Action</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
@@ -155,6 +157,7 @@
                                         <td>{{ $value->penulis }}</td>
                                         <td>{{ $value->kategori->kategori }}</td>
                                         <td>{{ $value->tanggal }}</td>
+                                        @canany(['edit berita', 'hapus berita'])
                                         <td>
                                             <form action="/update-status/{{ $value->id }}" method="POST"
                                                 id="statusForm{{ $value->id }}" class="form-check form-switch">
@@ -171,6 +174,8 @@
                                                 </div>
                                             </form>
                                         </td>
+                                        @endcanany
+                                        @can('hapus berita')
                                         <td class="text-center">
                                             <a class="btn btn-warning" href="/admin/sistem-informasi/showberita/{{ $value->id }}"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
@@ -180,6 +185,7 @@
                                                 href="/admin/sistem-informasi/deleteberita/{{ $value->id }}"><i
                                                     class="fa-regular fa-trash-can"></i></a>
                                         </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                             </tbody>

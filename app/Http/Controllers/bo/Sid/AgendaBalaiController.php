@@ -3,30 +3,28 @@
 namespace App\Http\Controllers\bo\Sid;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\AgendaBalai;
-use App\Models\AgendaGOR;
-use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
 
-
-class AgendaGORController extends Controller
+class AgendaBalaiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $agendagor = AgendaGOR::all();
-        $agendabalai = AgendaBalai::all();
-        return view('bo.page.sid.agenda_gor', [
-            "title" => "Agenda GOR & Balai",
-            "dropdown1" => "Komponen Website",
-            "agendagor" => $agendagor,
-            "agendabalai" => $agendabalai,
+    // public function index()
+    // {
+    //     $agendabalai = AgendaBalai::all();
+    //     return view('bo.page.sid.agenda_gor', [
+    //         "title" => "Bagan",
+    //         "dropdown1" => "Komponen Website",
+    //         "agendabalai" => $agendabalai,
 
-        ]);
-    }
+    //     ]);
+    // }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create(Request $request)
     {
         $createData = $request->validate([
@@ -39,7 +37,7 @@ class AgendaGORController extends Controller
         ]);
 
         // Validasi tambahan
-        $existingAgendas = AgendaGOR::where('tanggal', $createData['tanggal'])
+        $existingAgendas = AgendaBalai::where('tanggal', $createData['tanggal'])
             ->where(function ($query) use ($createData) {
                 $query->whereBetween('waktu', [$createData['waktu'], $createData['selesai']])
                     ->orWhereBetween('selesai', [$createData['waktu'], $createData['selesai']])
@@ -54,22 +52,13 @@ class AgendaGORController extends Controller
             // Jika terdapat konflik waktu, kembalikan ke halaman sebelumnya dengan pesan kesalahan
             return redirect()->back()->with('toast_error', 'Konflik waktu! Agenda pada rentang waktu tersebut sudah terdaftar.');
         }
+        AgendaBalai::create($createData);
+       
 
-        AgendaGOR::create($createData);
+        return redirect()->back()->with('toast_success', 'Agenda Balai Berhasil dibuat!');
 
-        return redirect()->back()->with('toast_success', 'Agenda GOR Berhasil dibuat!');
     }
 
-
-
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Request $request, $id)
     {
         $request->validate([
@@ -81,10 +70,10 @@ class AgendaGORController extends Controller
             'nomorhp' => 'required',
         ]);
     
-        $agendagor = AgendaGOR::find($id);
+        $agendabalai = AgendaBalai::find($id);
     
         // Validasi tambahan
-        $existingAgendas = AgendaGOR::where('tanggal', $request->input('tanggal'))
+        $existingAgendas = AgendaBalai::where('tanggal', $request->input('tanggal'))
             ->where(function ($query) use ($request) {
                 $query->whereBetween('waktu', [$request->input('waktu'), $request->input('selesai')])
                       ->orWhereBetween('selesai', [$request->input('waktu'), $request->input('selesai')])
@@ -101,31 +90,31 @@ class AgendaGORController extends Controller
             return redirect()->back()->with('toast_error', 'Konflik waktu! Agenda pada rentang waktu tersebut sudah terdaftar.');
         }
     
-        $agendagor->kegiatan = $request->input('kegiatan');
-        $agendagor->tanggal = $request->input('tanggal');
-        $agendagor->waktu = $request->input('waktu');
-        $agendagor->selesai = $request->input('selesai');
-        $agendagor->koordinator = $request->input('koordinator');
-        $agendagor->nomorhp = $request->input('nomorhp');
+        $agendabalai->kegiatan = $request->input('kegiatan');
+        $agendabalai->tanggal = $request->input('tanggal');
+        $agendabalai->waktu = $request->input('waktu');
+        $agendabalai->selesai = $request->input('selesai');
+        $agendabalai->koordinator = $request->input('koordinator');
+        $agendabalai->nomorhp = $request->input('nomorhp');
     
         // Simpan perubahan
-        $agendagor->save();
+        $agendabalai->save();
     
-        return redirect()->back()->with('toast_success', 'Data Agenda GOR Berhasil diubah!');
+        return redirect()->back()->with('toast_success', 'Data Agenda Balai Berhasil diubah!');
     }
-    
 
+    
     public function destroy($id)
     {
-        $agendagor = AgendaGOR::find($id);
+        $agendabalai = AgendaBalai::find($id);
 
-        if (!$agendagor) {
-            return redirect()->back()->with('toast_success', 'Data Agenda GOR Tidak Ditemukan!');
+        if (!$agendabalai) {
+            return redirect()->back()->with('toast_success', 'Data Agenda Balai Tidak Ditemukan!');
         }
 
         // Hapus data dari database
-        $agendagor->delete();
+        $agendabalai->delete();
 
-        return redirect()->back()->with('toast_success', 'Data GOR Berhasil dihapus!');
+        return redirect()->back()->with('toast_success', 'Data Balai Berhasil dihapus!');
     }
 }

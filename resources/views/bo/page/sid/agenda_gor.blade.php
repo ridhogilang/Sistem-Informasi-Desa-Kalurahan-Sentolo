@@ -35,7 +35,7 @@
                             </div>
                         </div> --}}
 
-                        <!-- Modal Form Tambah Agenda -->
+                        <!-- Modal Form Tambah Agenda GOR-->
                         <div class="modal fade" id="modalAgendaGOR" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="Agenda-Label" aria-hidden="true">
                             <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
@@ -97,8 +97,72 @@
                                 </div>
                             </div>
                         </div>
+
+                          <!-- Modal Form Tambah Agenda BALAI -->
+                          <div class="modal fade" id="modalAgendaBalai" data-bs-backdrop="static" data-bs-keyboard="false"
+                          tabindex="-1" aria-labelledby="Agenda-Label" aria-hidden="true">
+                          <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="Agenda-Label">Tambah Agenda Balai</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                          aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <form class="row g-3" action="/admin/sistem-informasi/tambah-agendabalai"
+                                          method="POST" enctype="multipart/form-data">
+                                          @csrf
+                                          <div class="row mb-3">
+                                              <label for="kegiatan" class="col-sm-3 col-form-label">Kegiatan</label>
+                                              <div class="col-sm-9">
+                                                  <input name="kegiatan" id="kegiatan" class="form-control">
+                                              </div>
+                                          </div>
+                                          <div class="row mb-3">
+                                              <label for="waktu" class="col-sm-3 col-form-label">Tanggal</label>
+                                              <div class="col-sm-9">
+                                                  <input type="date" name="tanggal" id="tanggal"
+                                                      class="form-control">
+                                              </div>
+                                          </div>
+                                          <div class="row mb-3">
+                                              <label for="inputTime" class="col-sm-3 col-form-label">Waktu</label>
+                                              <div class="col-sm-9">
+                                                  <input type="time" name="waktu" id="waktu" class="form-control">
+                                              </div>
+                                          </div>
+                                          <div class="row mb-3">
+                                              <label for="inputTime" class="col-sm-3 col-form-label">Selesai</label>
+                                              <div class="col-sm-9">
+                                                  <input type="time" name="selesai" id="selesai" class="form-control">
+                                              </div>
+                                          </div>
+                                          <div class="row mb-3">
+                                              <label for="koordinator" class="col-sm-3 col-form-label">Penanggung
+                                                  Jawab</label>
+                                              <div class="col-sm-9">
+                                                  <input name="koordinator" id="koordinator" class="form-control">
+                                              </div>
+                                          </div>
+                                          <div class="row mb-3">
+                                              <label for="nomorhp" class="col-sm-3 col-form-label">Nomer HP</label>
+                                              <div class="col-sm-9">
+                                                  <input name="nomorhp" id="nomorhp" class="form-control">
+                                              </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary"
+                                                  data-bs-dismiss="modal">Close</button>
+                                              <button type="submit" class="btn btn-primary">Simpan</button>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
                     </div>
                 </div>
+                {{-- Agenda Balai --}}
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
@@ -162,6 +226,133 @@
                                                     <div class="modal-header">
                                                         <h1 class="modal-title fs-5" id="Modal-Edit-Agenda-">Edit
                                                             Agenda Kegiatan</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row mb-3">
+                                                            <label for="kegiatan"
+                                                                class="col-sm-3 col-form-label">Kegiatan</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control" name="kegiatan" id="kegiatan"
+                                                                    value="{{ $item->kegiatan }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="artikel"
+                                                                class="col-sm-3 col-form-label">Tanggal</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="date" class="form-control" name="tanggal"
+                                                                    id="tanggal" value="{{ $item->tanggal }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="inputTime" class="col-sm-3 col-form-label">Waktu</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="time" name="waktu" id="waktu" class="form-control" value="{{ $item->waktu }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="inputTime" class="col-sm-3 col-form-label">Selesai</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="time" id="selesai" name="selesai" class="form-control" value="{{ $item->selesai }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="artikel"
+                                                                class="col-sm-3 col-form-label">Penanggung Jawab</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control" name="koordinator"
+                                                                    id="koordinator" value="{{ $item->koordinator }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <label for="artikel"
+                                                                class="col-sm-3 col-form-label">Nomo HP</label>
+                                                            <div class="col-sm-9">
+                                                                <input class="form-control" name="nomorhp"
+                                                                    id="nomorhp" value="{{ $item->nomorhp }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                                        </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title">Agenda Balai</h5>
+                            <div>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#modalAgendaBalai"><i class="fa-regular fa-square-plus"
+                                        style="margin-right: 5px"></i>Tambah Agenda Balai</button>
+                            </div>
+                        </div>
+
+                        <!-- Table with hoverable rows -->
+                        <table class="table table-hover datatable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Kegiatan</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Waktu</th>
+                                    <th scope="col">Selesai</th>
+                                    <th scope="col">Penanggung Jawab</th>
+                                    <th scope="col">Nomor Hp</th>
+                                    <th scope="col" class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $no = 1;
+                                @endphp
+                                @foreach ($agendabalai as $item)
+                                    <tr>
+                                        <th scope="row">{{ $no++ }}.</th>
+                                        <td>{!! $item->kegiatan !!}</td>
+                                        <td>{!! $item->tanggal !!}</td>
+                                        <td>{!! $item->waktu !!}</td>
+                                        <td>{!! $item->selesai !!}</td>
+                                        <td>{!! $item->koordinator !!}</td>
+                                        <td>{!! $item->nomorhp !!}</td>
+                                        <td class="text-center">
+                                            <a class="btn btn-warning" type="button" data-bs-toggle="modal"
+                                                data-bs-target="#Modal-Edit-AgendaBalai-{{ $item->id }}"
+                                                href="/admin/sistem-informasi/edit-agendabalai/{{ $item->id }}">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <a class="btn btn-danger" type="submit" id="deleteAgendabalai"
+                                                data-id="{{ $item->id }}"
+                                                href="/admin/sistem-informasi/hapus-agendabalai/{{ $item->id }}"><i
+                                                    class="fa-regular fa-trash-can"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <!-- Modal Edit Agenda BALAI -->
+                                    <div class="modal fade" id="Modal-Edit-AgendaBalai-{{ $item->id }}"
+                                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                        aria-labelledby="Modal-Edit-AgendaBalai-Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <form action="/admin/sistem-informasi/edit-agendabalai/{{ $item->id }}"
+                                                    method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('put')
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="Modal-Edit-AgendaBalai-">Edit
+                                                            Agenda Kegiatan Balai</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>

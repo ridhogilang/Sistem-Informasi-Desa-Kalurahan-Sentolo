@@ -108,82 +108,16 @@
                                           <input type="text" name="nomorhp" class="form-control" id="nomorhp" required>
                                           <div class="invalid-feedback">Masukan Nomor HP Anda</div>
                                         </div>
-                    
-                                        {{-- <div class="col-12">
-                                          <div class="form-check">
-                                            <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                                            <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
-                                            <div class="invalid-feedback">You must agree before submitting.</div>
-                                          </div>
-                                        </div> --}}
                                         <div class="col-12">
                                           <button class="btn btn-primary w-100" type="submit">BOOKING</button>
                                         </div>
                                         <div class="col-12">
-                                          <p class="small mb-0"><a href="pages-login.html">Kembali</a></p>
+                                          <p class="small mb-0"><a href="{{ url()->previous() }}">Kembali</a></p>
                                         </div>
                                       </form>
                     
                                     </div>
                                   </div>
-
-                                    {{-- <form class="row g-3" action="/admin/sistem-informasi/tambah-agendagor"
-                                        method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="row mb-3">
-                                            <label for="kegiatan"
-                                                class="col-sm-3 col-form-label">Kegiatan</label>
-                                            <div class="col-sm-9">
-                                                <input name="kegiatan" id="kegiatan" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="waktu"
-                                                class="col-sm-3 col-form-label">Tanggal</label>
-                                            <div class="col-sm-9">
-                                                <input type="date" name="tanggal" id="tanggal"
-                                                    class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="inputTime"
-                                                class="col-sm-3 col-form-label">Waktu</label>
-                                            <div class="col-sm-9">
-                                                <input type="time" name="waktu" id="waktu"
-                                                    class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="inputTime"
-                                                class="col-sm-3 col-form-label">Selesai</label>
-                                            <div class="col-sm-9">
-                                                <input type="time" name="selesai" id="selesai"
-                                                    class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="koordinator"
-                                                class="col-sm-3 col-form-label">Penanggung
-                                                Jawab</label>
-                                            <div class="col-sm-9">
-                                                <input name="koordinator" id="koordinator"
-                                                    class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="nomorhp" class="col-sm-3 col-form-label">Nomer
-                                                HP</label>
-                                            <div class="col-sm-9">
-                                                <input name="nomorhp" id="nomorhp"
-                                                    class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Simpan</button>
-                                        </div>
-                                    </form> --}}
                             </div>
                         </div>
                     </div>
