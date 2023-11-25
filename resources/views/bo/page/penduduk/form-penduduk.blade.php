@@ -5,7 +5,7 @@
         <h1>Data Penduduk</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
                 <li class="breadcrumb-item"><a href="/penduduk">Data Penduduk</a></li>
                 <li class="breadcrumb-item active">{{ $action }} Data Penduduk</li>
             </ol>

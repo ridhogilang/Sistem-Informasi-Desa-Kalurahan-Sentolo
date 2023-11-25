@@ -5,7 +5,7 @@
         <h1>Dashboard</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/admin/e-surat/dashboard">Home</a></li>
+                <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
         </nav>
@@ -115,7 +115,7 @@
                     </div><!-- End Revenue Card -->
 
                     <!-- Customers Card -->
-                    <div class="col-xxl-4 col-xl-6">
+                    <div class="col-xxl-6 col-xl-6">
 
                         <div class="card info-card customers-card">
 
@@ -141,7 +141,7 @@
                     </div><!-- End Customers Card -->
 
                     <!-- Customers Card -->
-                    <div class="col-xxl-4 col-xl-6">
+                    <div class="col-xxl-6 col-xl-6">
 
                         <div class="card info-card customers-card">
 
@@ -167,7 +167,7 @@
                     </div><!-- End Customers Card -->
 
                     <!-- Customers Card -->
-                    <div class="col-xxl-4 col-xl-6">
+                    <div class="col-xxl-6 col-xl-6">
 
                         <div class="card info-card customers-card">
 
@@ -193,7 +193,7 @@
                     </div><!-- End Customers Card -->
 
                     <!-- Customers Card -->
-                    <div class="col-xxl-4 col-xl-6">
+                    <div class="col-xxl-6 col-xl-6">
 
                         <div class="card info-card customers-card">
 
