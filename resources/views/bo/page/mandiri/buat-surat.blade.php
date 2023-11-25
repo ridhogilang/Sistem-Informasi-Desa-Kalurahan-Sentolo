@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Profile Penduduk</h1>
+        <h1>Buat Surat</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-                <li class="breadcrumb-item active">Profile Penduduk</li>
+                <li class="breadcrumb-item active">Buat Surat</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
