@@ -44,6 +44,8 @@ class DatabaseSeeder extends Seeder
             'Arsip Surat', 'Menghapus Arsip', 'Arsip Dihapus',
         //sistem informasi
         'Menejemen Sistem Informasi',
+            //berita
+            'lihat berita', 'edit berita', 'hapus berita',
         
         
     ];

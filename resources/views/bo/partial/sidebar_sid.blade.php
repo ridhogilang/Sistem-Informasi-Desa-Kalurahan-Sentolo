@@ -50,8 +50,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/sistem-informasi/agendagor" class="{{ ($title == "Agenda GOR") ? 'active' : '' }}">
-                        <i class="bi bi-circle"></i><span>Agenda GOR</span>
+                    <a href="/admin/sistem-informasi/agendagor" class="{{ ($title == "Agenda GOR & Balai") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Agenda GOR & Balai</span>
                     </a>
                 </li>
             </ul>
