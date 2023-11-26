@@ -1840,65 +1840,6 @@
         // Tampilkan tab konten pertama saat halaman dimuat
         showTabContentGor('hari-inigor');
     </script>
-    {{-- <script type="text/javascript">
-        $(function() {
-            var chart_widget;
-            $(document).ready(function() {
-                // Build the chart
-                chart_widget = new Highcharts.Chart({
-                    chart: {
-                        renderTo: 'container_widget',
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false
-                    },
-                    title: {
-                        text: 'Jumlah Penduduk'
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Jumlah'
-                        }
-                    },
-                    xAxis: {
-                        categories: [
-                            @foreach ($statistik as $item)
-                                [{{ $item->lk }}, 'LAKI-LAKI'],
-                                [{{ $item->pr }}, 'PEREMPUAN'],
-                                [{{ $item->lk + $item->pr }}, 'TOTAL'],
-                            @endforeach
-                        ]
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        series: {
-                            colorByPoint: true
-                        },
-                        column: {
-                            pointPadding: 0,
-                            borderWidth: 0
-                        }
-                    },
-                    series: [{
-                        type: 'column',
-                        name: 'Populasi',
-                        data: [
-                            @foreach ($statistik as $item)
-                                ['LAKI-LAKI', {{ $item->lk }}],
-                                ['PEREMPUAN', {{ $item->pr }}],
-                                ['TOTAL', {{ $item->lk + $item->pr }}],
-                            @endforeach
-                            // ['LAKI-LAKI', 4000],
-                            // ['PEREMPUAN', 3000],
-                            // ['TOTAL', 7000],
-                        ]
-                    }]
-                });
-            });
-        });
-    </script> --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const beritaTerbaruLink = document.querySelector('a[href="#beritaterbaru"]');
