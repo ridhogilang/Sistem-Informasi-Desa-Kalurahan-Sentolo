@@ -58,7 +58,7 @@
                                     @if($value->name == 'surat KTM')</ul><b>Jenis Surat Yang dibuat</b><br><ul>@endif
                                 @if($value->name == 'enter_sistem informasi')</ul></ul><b>Aplikasi Sistem Informasi</b><br><ul>@endif
                                     <label>
-                                    <input type="checkbox" name="permission[]" value="{{ $value->id }}" class="name">
+                                    <input type="checkbox" name="permission[]" value="{{ $value->name }}" class="name">
                                     {{ $value->name }}</label>
                                 <br />
                             @endforeach

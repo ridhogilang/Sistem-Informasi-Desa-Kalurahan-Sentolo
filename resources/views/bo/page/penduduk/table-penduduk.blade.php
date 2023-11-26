@@ -12,7 +12,7 @@
         <h1>Data Penduduk</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
                 <li class="breadcrumb-item active">Data Penduduk</li>
             </ol>
         </nav>
@@ -26,8 +26,40 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Data Penduduk</h5>
-                        <div class="d-grid gap-2 mb-2">
-                            <a class="btn btn-primary" type="button" href="/penduduk/tambah-data"><i class="fa-solid fa-plus"></i> Tambah Data</a>
+                        <div class="mb-3">
+                            <a class="btn btn-primary btn-sm" type="button" href="/penduduk/tambah-data"><i class="fa-solid fa-plus"></i> Tambah Data</a>
+                            <!-- Import -->
+                            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#importModal">
+                                <i class="fa-solid fa-file-import"></i> Import Excel
+                            </button>
+                            <div class="modal fade" id="importModal" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form action="/penduduk-import" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Masukkan file </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-12">
+                                                        <input type="file" name="file" class="form-control" id="file" accept=".xls, .xlsx" required>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <i>*masukkan data dengan extensi .xls atau .xlsx</i>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Upload</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div><!-- End Import-->
+                            <a class="btn btn-success btn-sm" type="button" href="/penduduk-export"><i class="fa-solid fa-file-export"></i> Export Excel</a>
                         </div>
 
                         <!-- Table with hoverable rows -->
@@ -59,7 +91,7 @@
 @push('footer')
     <script type="text/javascript">
       $(function () {
-          
+
         var table = $('.data-table-penduduk').DataTable({
             processing: true,
             serverSide: true,
@@ -75,7 +107,7 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
-          
+
       });
     </script>
 @endpush

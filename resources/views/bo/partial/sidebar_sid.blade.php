@@ -3,7 +3,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link {{ ($title == "Dashboard") ? '' : 'collapsed' }}" href="/">
+            <a class="nav-link {{ ($title == "Dashboard") ? '' : 'collapsed' }}" href="/admin/sistem-informasi/dashboard">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
@@ -47,6 +47,11 @@
                 <li>
                     <a href="/admin/sistem-informasi/apbdes" class="{{ ($title == "APBDes") ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>APBDes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/sistem-informasi/agendagor" class="{{ ($title == "Agenda GOR & Balai") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Agenda GOR & Balai</span>
                     </a>
                 </li>
             </ul>

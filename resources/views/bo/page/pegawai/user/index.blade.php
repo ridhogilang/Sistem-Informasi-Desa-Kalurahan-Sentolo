@@ -1,5 +1,12 @@
 @extends('bo.layout.master')
 
+@push('header')
+    <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+@endpush
+
 @section('content')
 
     <div class="pagetitle">
@@ -20,50 +27,21 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title">Data Pegawai Kalurahan</h5>
-                            
-                            @can('user_create')
                             <a class="btn btn-primary" href="{{ route('bo.pegawai.user_management.create')}}">Tambah</a>
-                            @endcan
                         </div>
 
                         <!-- Table with hoverable rows -->
-                        <table id="user_table" class="table table-hover content_table datatable">
+                        <table id="user_table" class="table table-hover content_table datatable_akun_pamong">
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>
-                                    <th scope="col">nama</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Jabatan</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">jabatan</th>
-                                    @canany(['user_edit', 'user_delete'])
                                     <th scope="col">Action</th>
-                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($users as $user)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $user['nama'] }}</td>
-                                        <td>{{ $user['email'] }}</td>
-                                        <td>{{ $user['jabatan'] }}</td>
-                                        @canany(['user_edit', 'user_delete'])
-                                            <td>
-                                                <form action="{{ route('bo.pegawai.user_management.destroy', $user->id) }}" method="POST">
-                                                    
-                                                @method('DELETE')
-                                                @csrf
-
-                                                @can('user_edit')
-                                                <a class="btn btn-warning" href="{{ route('bo.pegawai.user_management.edit', $user->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                @endcan
-                                                @can('user_delete')
-                                                 <button class="btn btn-danger" type="submit" href="/surat-kbm/{{$user->id}}/delete"><i class="fa-regular fa-trash-can"></i></button>
-                                                @endcan
-                                                 </form>
-                                            </td>
-                                        @endcanany
-                                    </tr>
-                                @endforeach 
                             </tbody>
                         </table>
                         <!-- End Table with hoverable rows -->
@@ -76,3 +54,23 @@
     </section>
 @endsection
 
+@push('footer')
+    <script type="text/javascript">
+      $(function () {
+          
+        var table = $('.datatable_akun_pamong').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('bo.pengguna.data.akun_pamong') }}",
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                {data: 'nama', name: 'nama'},
+                {data: 'jabatan', name: 'jabatan'},
+                {data: 'email', name: 'email'},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+            ]
+        });
+          
+      });
+    </script>
+@endpush

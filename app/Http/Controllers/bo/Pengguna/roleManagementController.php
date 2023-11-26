@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\bo\Pegawai;
+namespace App\Http\Controllers\bo\Pengguna;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -22,10 +23,6 @@ class roleManagementController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->can('role_list') == false) {
-        return redirect()->route('bo.pegawai.dashboard');
-        }
-
         $data = $this->data;
         $data['roles'] = Role::orderBy('id', 'DESC')->get();
         return view($data['view'].'.index', $data);
@@ -36,10 +33,6 @@ class roleManagementController extends Controller
      */
     public function create()
     {
-        if (auth()->user()->can('role_create') == false) {
-        return redirect()->route('bo.pegawai.dashboard');
-        }
-
         $data = $this->data;
         $data['permission'] = Permission::get();
         return view($data['view'].'.form', $data);
@@ -50,17 +43,27 @@ class roleManagementController extends Controller
      */
     public function store(Request $request)
     {
-        if (auth()->user()->can('role_create') == false) {
-        return redirect()->route('bo.pegawai.dashboard');
-        }
-
         $this->validate($request, [
             'name' => 'required|unique:roles,name',
             'permission' => 'required',
         ]);
 
-        $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permission'));
+
+        try {
+            DB::beginTransaction();
+
+            $role = Role::create(['name' => $request->input('name')]);
+            $role->syncPermissions($request->input('permission'));
+
+            DB::commit(); // Jika sampai di sini tanpa error, transaksi akan di-commit ke database
+        } catch (\Exception $e) {
+            DB::rollback(); // Jika terjadi error, transaksi akan di-rollback
+            return redirect()->back()->with('toast_warning', 'Gagal membuat dan menyinkronkan role.');
+        }
+
+        //ini perintah lama yang satu satu
+        // $role = Role::create(['name' => $request->input('name')]);
+        // $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('bo.pegawai.role_management.index')
             ->with('success', 'Role created successfully');
@@ -84,10 +87,6 @@ class roleManagementController extends Controller
      */
     public function edit(string $id)
     {
-        if (auth()->user()->can('role_edit') == false) {
-        return redirect()->route('bo.pegawai.dashboard');
-        }
-
         $data = $this->data;
         $data['role'] = Role::find($id);
         $data['permission'] = Permission::get();
@@ -102,20 +101,28 @@ class roleManagementController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (auth()->user()->can('role_edit') == false) {
-        return redirect()->route('bo.pegawai.dashboard');
-        }
-
         $this->validate($request, [
             'name' => 'required',
             'permission' => 'required',
         ]);
 
         $role = Role::find($id);
+        $nama_role_lama = $role->name;
         $role->name = $request->input('name');
-        $role->save();
+        
 
-        $role->syncPermissions($request->input('permission'));
+        try {
+            DB::beginTransaction();
+
+            $role->save();
+            User::where('jabatan', '=', $nama_role_lama)->update(['jabatan' => $request->input('name')]);
+            $role->syncPermissions($request->input('permission'));
+
+            DB::commit(); // Jika sampai di sini tanpa error, transaksi akan di-commit ke database
+        } catch (\Exception $e) {
+            DB::rollback(); // Jika terjadi error, transaksi akan di-rollback
+            return redirect()->back()->with('toast_warning', 'Gagal membuat dan menyinkronkan role.');
+        }
 
         return redirect()->route('bo.pegawai.role_management.index')
             ->with('success', 'Role updated successfully');
@@ -126,10 +133,6 @@ class roleManagementController extends Controller
      */
     public function destroy(string $id)
     {
-        if (auth()->user()->can('role_delete') == false) {
-        return redirect()->route('bo.pegawai.dashboard');
-        }
-
         DB::table("roles")->where('id', $id)->delete();
         return redirect()->route('bo.pegawai.role_management.index')
             ->with('success', 'Role deleted successfully');

@@ -117,7 +117,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                    @can('enter_e-surat')
+                    @can('Menejemen E-Surat')
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('bo.e-surat.dashboard') }}">
                                 <i class="bi bi-envelope"></i>
@@ -128,18 +128,7 @@
                             <hr class="dropdown-divider">
                         </li>
                     @endcan
-                    @can('enter_kepegawaian')
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('bo.pegawai.dashboard') }}">
-                                <i class="bi bi-fingerprint"></i>
-                                <span>Kepegawaian</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                    @endcan
-                    @can('enter_sistem informasi')
+                    @can('Menejemen Sistem Informasi')
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="{{ route('bo.sid.dashboard') }}">
                                 <i class="bi bi-info-lg"></i>
@@ -150,6 +139,18 @@
                             <hr class="dropdown-divider">
                         </li>
                     @endcan
+                    @can('Menejemen Pengguna')
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('bo.pegawai.dashboard') }}">
+                                <i class="bi bi-fingerprint"></i>
+                                <span>Pengguna</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    @endcan
+                    
 
                 </ul><!-- End Profile Dropdown Items -->
             </li><!-- End Profile Nav -->
@@ -166,7 +167,12 @@
 
                     <li class="dropdown-header">
                         <h6>Kevin Anderson</h6>
-                        <span>{{ auth()->user()->roles[0]['name'] }}</span>
+                        <span>
+                            @if(isset(auth()->user()->roles[0]['name']))
+                                {{ auth()->user()->roles[0]['name'] }}
+                            @endif
+                        </span>
+
                     </li>
                     <li>
                         <hr class="dropdown-divider">

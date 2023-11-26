@@ -7,6 +7,9 @@ use App\Models\PenghapusanPenduduk;
 use Illuminate\Http\Request;
 use Storage;
 use Yajra\DataTables\Facades\Datatables;
+use App\Exports\PendudukExport;
+use App\Imports\PendudukImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PendudukController extends Controller
 {
@@ -21,12 +24,19 @@ class PendudukController extends Controller
         return view('bo.page.penduduk.table-penduduk', [
             'title' => 'Data Penduduk'
         ]);
-    } 
-    public function datasaktif()
+    }
+    public function datasaktif(Request $request)
     {
+        $searchTerm = $request->input('q');
         $penduduk = Penduduk::select('id', 'nik', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir')
+                    ->where('nama', 'like', "%$searchTerm%")
+                    ->orwhere('nik', 'like', "%$searchTerm%")
+                    ->orwhere('jenis_kelamin', 'like', "%$searchTerm%")
+                    ->orwhere('tempat_lahir', 'like', "%$searchTerm%")
+                    ->orwhere('tanggal_lahir', 'like', "%$searchTerm%")
                     ->where('is_active', '=', '1')
                     ->get();
+
         return Datatables::of($penduduk)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -90,7 +100,7 @@ class PendudukController extends Controller
                         <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#migrasi_penduduk'.$row["id"].'"><i class="fa-solid fa-trash-can"></i></button>
                             <div class="modal fade" id="migrasi_penduduk'.$row["id"].'" tabindex="-1">
                                                     <div class="modal-dialog modal-lg">
-                                                        <form action="/penduduk/'.$row["id"].'/delete" method="POST" enctype="multipart/form-data">
+                                                        <form action="/penduduk-migrasi/'.$row["id"].'/delete" method="POST" enctype="multipart/form-data">
                                                             ' . csrf_field() . '
                                                             ' . method_field("DELETE") . '
                                                             <div class="modal-content">
@@ -272,5 +282,43 @@ class PendudukController extends Controller
         PenghapusanPenduduk::create($record);
         Penduduk::where('id', $id)->update(['is_active'=> '0']);
         return redirect('/penduduk')->with('toast_success', 'Data Dihapus!');
+    }
+    public function destroymigrasi(Request $request, $id)
+    {
+        $record = $request->validate([
+            'catatan' => 'required',
+            'dokumen' => 'required|mimes:doc,docx,pdf,xls,xlsx,ppt,pptx',
+        ], [
+            'mimes' => 'File tidak valid.',
+        ]);
+
+        if ($request->hasFile('dokumen')) {
+            $file = $request->file('dokumen');
+            $fileName = 'DPBP-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
+            Storage::disk('google')->put('Dokumen Penduduk/' .$fileName, file_get_contents($file));
+            $record['dokumen'] = $fileName;
+
+            $publicUrl = Storage::disk('google')->url('Dokumen Penduduk/' . $fileName);
+            $record['link'] = $publicUrl;
+        }
+        $record['id'] = 'DPBP-'. date('YmdHis') . '-' . rand(100, 999);
+        $record['id_penduduk'] = $id;
+        $record['delete_by'] = auth()->user()->id;
+
+        // dd($record);
+        PenghapusanPenduduk::create($record);
+        Penduduk::where('id', $id)->update(['is_active'=> '1']);
+        return redirect('/penduduk-migrasi')->with('toast_success', 'Data Dihapus dari Migrasi!');
+    }
+    public function pendudukexport(){
+        return Excel::download(new PendudukExport, 'Penduduk.xlsx');
+    }
+    public function pendudukimport(Request $request){
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('FileImportPenduduk', $namaFile);
+
+        Excel::import(new PendudukImport, public_path('/FileImportPenduduk/'.$namaFile));
+        return redirect('/penduduk')->with('toast_success', 'Data Berhasil Diimport!');
     }
 }

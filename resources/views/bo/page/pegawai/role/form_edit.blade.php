@@ -62,7 +62,7 @@
                                 @if($value->name == 'enter_sistem informasi')</ul></ul><b>Aplikasi Sistem Informasi</b><br><ul>@endif
                                 <label>
                                     <input type="checkbox" @if (in_array($value->id, $rolePermissions)) checked @endif name="permission[]"
-                                        value="{{ $value->id }}" class="name">
+                                        value="{{ $value->name }}" class="name">
                                     {{ $value->name }}</label>
                                 <br />
                             @endforeach

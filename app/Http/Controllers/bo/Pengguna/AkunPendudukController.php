@@ -1,41 +1,76 @@
 <?php
 
-namespace App\Http\Controllers\bo\Pegawai;
+namespace App\Http\Controllers\bo\Pengguna;
 
 use App\Http\Controllers\Controller;
+use App\Models\Penduduk;
 use App\Models\User;
 use App\Models\VerifyMail as VerifyMailModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
-use Illuminate\Validation\Rule;
 use App\Mail\VerifyMail;
 use Illuminate\Support\Facades\Mail;
-// use DataTables;
+use Yajra\DataTables\Facades\Datatables;
 
-class userManagementController extends Controller
+class AkunPendudukController extends Controller
 {
     function __construct()
     {
         $this->data['title'] = 'Pegawai';
         $this->data['dropdown1'] = null;
         $this->data['dropdown2'] = null;
-        $this->data['view'] = 'bo.page.pegawai.user';
+        $this->data['view'] = 'bo.page.pengguna.akun_penduduk';
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        if (auth()->user()->can('user_list') == false) {
-        return redirect()->route('bo.pegawai.dashboard');
-        }
-
         $data = $this->data;
-        $data['users'] = User::where("is_delete","<>", '1')->get();
+        // $data['users'] = User::where("is_delete","<>", '1')->get();
         return view($data['view'].'.index', $data);
+    }
+
+    public function datas()
+    {
+        $data = User::where("is_delete","<>", '1')->where("jabatan","=", null)->get();
+        return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '
+                    <form action="'. route('bo.pengguna.akun_penduduk_management.destroy', $row["id"]) .'" method="POST"> 
+                                ' . csrf_field() . '
+                                ' . method_field("DELETE") . '
+                                <button class="btn btn-danger" type="submit" href="/surat-kbm/'.$row["id"].'/delete"><i class="fa-regular fa-trash-can"></i></button>
+                                 </form>
+                    ';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+    }
+
+    public function penduduk(Request $request)
+    {
+        $searchTerm = $request->input('q');
+
+        $datas  = Penduduk::select('nik', 'nama')
+                    ->where('nama', 'like', "%$searchTerm%")
+                    ->orwhere('nik', 'like', "%$searchTerm%")
+                    ->where('is_active', '=', '1')
+                    ->get();
+
+         return DataTables::of($datas)
+            ->addColumn('select_display', function ($data) {
+                return $data->nik . ' - ' . $data->nama;
+            })
+            ->addColumn('select_value', function ($data) {
+                return $data->nik;
+            })
+            ->rawColumns(['select_display', 'select_value'])
+            ->make(true);
     }
 
     /**
@@ -43,13 +78,8 @@ class userManagementController extends Controller
      */
     public function create()
     {
-        if (auth()->user()->can('user_create') == false) {
-        return redirect()->route('bo.pegawai.dashboard');
-        }
-
         $data = $this->data;
-        $data['roles'] = Role::pluck('name','name')->all();
-        $data['url'] = route('bo.pegawai.user_management.store');
+        $data['url'] = route('bo.pengguna.akun_penduduk_management.store');
         return view($data['view'].'.form', $data);
     }
 
@@ -58,35 +88,29 @@ class userManagementController extends Controller
      */
     public function store(Request $request)
     {
-        if (auth()->user()->can('user_create') == false) {
-        return redirect()->route('bo.pegawai.dashboard');
-        }
-
          $this->validate($request, [
-            'nama' => 'required',
+            'nik' => 'required',
             'email' => 'required|email|unique:users,email|unique:verify_mails,email',
             'password' => 'required|min:6|same:confirm-password',
-            'roles' => 'required'
         ]);
 
         $input = $request->all();
-        $input['jabatan'] = $input['roles'];
         // tambahan input
+        $input['nama'] = Penduduk::where('nik', '=', $input['nik'])->first()->nama;
         $input['password'] = Hash::make($input['password']);
         $input['is_active'] = '1';
         $input['is_delete'] = '0';
 
-        $user = User::create($input);
-        $user->assignRole($request->input('roles'));
-
         //proses membuat verify email
         $verimail['id'] = date('Ymdhis').'-'.substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 75);
         $verimail['email'] =  $input['email'];
+        
+        $user = User::create($input);
         VerifyMailModel::create($verimail);
         Mail::to($verimail['email'])->send(new VerifyMail($verimail));
 
         //redirect
-        return redirect()->route('bo.pegawai.user_management.index')
+        return redirect()->route('bo.pengguna.akun_penduduk_management.index')
                         ->with('success','User created successfully');
     }
 
@@ -103,15 +127,13 @@ class userManagementController extends Controller
      */
     public function edit(string $id)
     {
-        if (auth()->user()->can('user_edit') == false) {
-        return redirect()->route('bo.pegawai.dashboard');
-        }
-
         $data = $this->data;
         $data['user'] = User::find($id);
-        $data['roles'] = Role::pluck('name','name')->all();
-        $data['userRole'] = $data['user']->roles->pluck('name','name')->all();
-        $data['url'] = route('bo.pegawai.user_management.update', $id);
+        if($data['user']->jabatan != null)
+        {
+             return redirect()->route('bo.pegawai.user_management.edit', $id);
+        }
+        $data['url'] = route('bo.pengguna.akun_penduduk_management.update', $id);
 
         return view($data['view'].'.form', $data);
     }
@@ -121,9 +143,7 @@ class userManagementController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (auth()->user()->can('user_edit') == false) {
-        return redirect()->route('bo.pegawai.dashboard');
-        }
+        
 
         $this->validate($request, [
             'nama' => 'required',
@@ -162,7 +182,7 @@ class userManagementController extends Controller
 
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('bo.pegawai.user_management.index')
+        return redirect()->route('bo.pengguna.akun_penduduk_management.index')
                         ->with('success','User updated successfully');
     }
 
@@ -171,13 +191,9 @@ class userManagementController extends Controller
      */
     public function destroy(string $id)
     {
-        if (auth()->user()->can('user_delete') == false) {
-        return redirect()->route('bo.pegawai.dashboard');
-        }
-
         $input['is_delete'] = '1';
         User::find($id)->update($input);
-        return redirect()->route('bo.pegawai.user_management.index')
+        return redirect()->route('bo.pengguna.akun_penduduk_management.index')
                         ->with('success','User deleted successfully');
     }
 }

@@ -29,14 +29,13 @@ class DatabaseSeeder extends Seeder
 {
     private $permissions = [
         //kepegawaian
-        'enter_kepegawaian',
-            //user
-            'user_list', 'user_create', 'user_edit', 'user_delete',
-            //role
-            'role_list', 'role_create', 'role_edit', 'role_delete',
+        'Menejemen Pengguna',
+            'Kelola Akun Penduduk',
+            'Kelola Akun Pamong',
+            'Kelola Hak Akses Pamong',
 
         //e-surat
-        'enter_e-surat',
+        'Menejemen E-Surat',
             //permission surat
             'list surat', 'lihat surat',  'lihat contoh surat', 'input surat', 'edit surat', 'hapus surat', 'verifikasi surat', 'disposisi surat',
             //surat surat yang dibuat
@@ -44,7 +43,9 @@ class DatabaseSeeder extends Seeder
             //Arsip
             'Arsip Surat', 'Menghapus Arsip', 'Arsip Dihapus',
         //sistem informasi
-        'enter_sistem informasi',
+        'Menejemen Sistem Informasi',
+            //berita
+            'lihat berita', 'edit berita', 'hapus berita',
         
         
     ];

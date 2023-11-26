@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agenda;
+use App\Models\AgendaGOR;
 use App\Models\Apbdes;
 use App\Models\Berita;
 use App\Models\Galeri;
@@ -22,6 +23,7 @@ use Mews\Captcha\Facades\Captcha;
 use Illuminate\Contracts\Cache\Store;
 use PhpParser\Node\Expr\FuncCall;
 use App\Http\Controllers\Controller;
+use App\Models\AgendaBalai;
 use App\Models\Komentar;
 use Illuminate\Support\Facades\Session;
 
@@ -59,6 +61,11 @@ class HomeController extends Controller
         $today = Carbon::today()->toDateString();
         $todayy = Carbon::today();
         $oneMonthAgo = $todayy->copy()->subMonth(); // Menghitung satu bulan yang lalu dari tanggal saat ini
+        //
+        $nextDay = $todayy->copy()->addDay();
+        $startOfWeek = $todayy->startOfWeek();
+        $endOfWeek = $todayy->copy()->addWeek()->startOfWeek();
+        //
         $todayVisitor = Visitor::where('date', $today)->first();
         $todayCount = $todayVisitor ? $todayVisitor->count : 0;
 
@@ -74,11 +81,25 @@ class HomeController extends Controller
         $text = Runningtext::where('id', 1)->first();
 
         $pamong = Pamong::all();
-
+        //Agenda
         $agenda_hari_ini = Agenda::where('tanggal', $today)->get();
         $agenda_yangakandatang = Agenda::where('tanggal', '>', $today)->get();
         $agenda_yangLalu = Agenda::where('tanggal', '>=', $oneMonthAgo)
             ->where('tanggal', '<', $today)
+            ->get();
+        //Agenda GOR
+        $agendagor_hari_ini = AgendaGOR::where('tanggal', $today)->get();
+        $agendagor_yangakandatang = AgendaGOR::whereDate('tanggal', '=', $nextDay->toDateString())
+            ->get();
+        $agendagor_mingguini = AgendaGOR::where('tanggal', '>=', $startOfWeek)
+            ->where('tanggal', '<', $endOfWeek)
+            ->get();
+        //Agenda BALAI
+        $agendabalai_hari_ini = AgendaBalai::where('tanggal', $today)->get();
+        $agendabalai_yangakandatang = AgendaBalai::whereDate('tanggal', '=', $nextDay->toDateString())
+            ->get();
+        $agendabalai_mingguini = AgendaBalai::where('tanggal', '>=', $startOfWeek)
+            ->where('tanggal', '<', $endOfWeek)
             ->get();
         $jadwal = Jadwal::all();
         $sinergi = Sinergi::all();
@@ -104,9 +125,18 @@ class HomeController extends Controller
             "highlight" => $highlight,
             "text" => $text,
             "pamong" => $pamong,
+            //agenda
             "agendahariini" => $agenda_hari_ini,
             "agendaakandatang" => $agenda_yangakandatang,
             "agendalalu" => $agenda_yangLalu,
+            //agenda gor
+            "agendagorhariini" => $agendagor_hari_ini,
+            "agendagorakandatang" => $agendagor_yangakandatang,
+            "agendagormingguini" => $agendagor_mingguini,
+            //Agenda BALAI
+            "agendabalaihariini" => $agendabalai_hari_ini,
+            "agendabalaiakandatang" => $agendabalai_yangakandatang,
+            "agendabalaimingguini" => $agendabalai_mingguini,
             "jadwal" => $jadwal,
             "sinergi" => $sinergi,
             "statistik" => $statistik,
@@ -336,7 +366,7 @@ class HomeController extends Controller
             ->whereDay('created_at', $day)
             ->where('nama', $nama)
             ->first();
-            $statistik = Statistik::first();
+        $statistik = Statistik::first();
         $sinergi = Sinergi::all();
 
 
@@ -355,4 +385,49 @@ class HomeController extends Controller
             ]
         );
     }
+
+    //AGENDA GOR
+
+    public function hlmnbooking()
+    {
+        $agendagor = AgendaGOR::all();
+        return view('home.booking_gor', [
+            "title" => "Agenda GOR",
+            "agendagor" => $agendagor,
+
+        ]);
+    }
+    public function booking_gor(Request $request)
+    {
+        $createData = $request->validate([
+            'kegiatan' => 'required',
+            'tanggal' => 'required',
+            'waktu' => 'required',
+            'selesai' => 'required',
+            'koordinator' => 'required',
+            'nomorhp' => 'required',
+        ]);
+
+        // Validasi tambahan
+        $existingAgendas = AgendaGOR::where('tanggal', $createData['tanggal'])
+            ->where(function ($query) use ($createData) {
+                $query->whereBetween('waktu', [$createData['waktu'], $createData['selesai']])
+                    ->orWhereBetween('selesai', [$createData['waktu'], $createData['selesai']])
+                    ->orWhere(function ($query) use ($createData) {
+                        $query->where('waktu', '<=', $createData['waktu'])
+                            ->where('selesai', '>=', $createData['selesai']);
+                    });
+            })
+            ->get();
+
+        if ($existingAgendas->count() > 0) {
+            // Jika terdapat konflik waktu, kembalikan ke halaman sebelumnya dengan pesan kesalahan
+            return redirect()->back()->with('toast_error', 'Konflik waktu! Agenda pada rentang waktu tersebut sudah terdaftar.');
+        }
+
+        AgendaGOR::create($createData);
+
+        return redirect()->back()->with('toast_success', 'Agenda GOR Berhasil dibuat!');
+    }
+
 }
