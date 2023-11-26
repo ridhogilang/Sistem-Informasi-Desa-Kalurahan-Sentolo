@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Buat Surat</h1>
+        <h1>Buat Pesan</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-                <li class="breadcrumb-item active">Buat Surat</li>
+                <li class="breadcrumb-item active">Buat Pesan</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -21,34 +21,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Jenis Surat</h5>
-
-                        <form action="#" method="POST">
-                            @csrf
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Select</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-12 text-center">
-                                    <button type="submit" class="btn btn-primary">Submit Form</button>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Buat Surat</h5>
+                        <h5 class="card-title">Buat Pesan</h5>
 
                         <form action="#" method="POST">
                             @csrf
@@ -76,8 +49,14 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
+                                <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
+                                <div class="col-sm-10">
+                                    <textarea id="keterangan" name="keterangan" class="form-control" style="height: 100px"></textarea>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col-sm-12 text-center">
-                                    <button type="submit" class="btn btn-primary">Submit Form</button>
+                                    <button type="submit" class="btn btn-primary">Kirim</button>
                                 </div>
                             </div>
                         </form>

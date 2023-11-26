@@ -18,4 +18,16 @@ class MandiriController extends Controller
             'title' => 'Buat Surat Mandiri'
         ]);
     }
+    public function pesan()
+    {
+        return view('bo.page.mandiri.buat-pesan', [
+            'title' => 'Buat Pesan'
+        ]);
+    }
+    public function bantuan()
+    {
+        return view('bo.page.mandiri.bantuan', [
+            'title' => 'Bantuan Penduduk'
+        ]);
+    }
 }

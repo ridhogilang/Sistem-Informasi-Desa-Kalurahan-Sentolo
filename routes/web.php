@@ -89,7 +89,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/galeri/{year}/{month}/{day}/{nama}', 'show_galeri');
     Route::get('/booking_gor', 'hlmnbooking');
     Route::post('/booking-gor', 'booking_gor');
-    
+
 });
 
 
@@ -506,6 +506,8 @@ Route::post('/penduduk-import', [PendudukController::class, 'pendudukimport']);
 // Mandiri
 Route::get('/profile-penduduk', [MandiriController::class, 'index']);
 Route::get('/buat-surat', [MandiriController::class, 'surat']);
+Route::get('/buat-pesan', [MandiriController::class, 'pesan']);
+Route::get('/bantuan', [MandiriController::class, 'bantuan']);
 
 Route::get('/profile', function () {
     return view('bo.page.profile', [

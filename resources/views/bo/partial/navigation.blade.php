@@ -51,10 +51,10 @@
 
                 <!-- Sales Card -->
                 <div class="col-xxl-3 col-md-3">
-                    <div class="card info-card customers-card {{ ($title == "Pesan") ? 'active-warning' : '' }}">
+                    <div class="card info-card customers-card {{ ($title == "Buat Pesan") ? 'active-warning' : '' }}">
 
                         <div class="card-body">
-                            <h5 class="card-title">Pesan</h5>
+                            <h5 class="card-title">Buat Pesan</h5>
 
                             <div class="d-flex align-items-center">
                                 <a class="d-flex align-items-center" href="/buat-pesan">
@@ -73,10 +73,10 @@
 
                 <!-- Revenue Card -->
                 <div class="col-xxl-3 col-md-3">
-                    <div class="card info-card sales-card {{ ($title == "Bantuan") ? 'active-info' : '' }}">
+                    <div class="card info-card sales-card {{ ($title == "Bantuan Penduduk") ? 'active-info' : '' }}">
 
                         <div class="card-body">
-                            <h5 class="card-title">Bantuan</h5>
+                            <h5 class="card-title">Bantuan Penduduk</h5>
 
                             <div class="d-flex align-items-center">
                                 <a class="d-flex align-items-center" href="/bantuan">
