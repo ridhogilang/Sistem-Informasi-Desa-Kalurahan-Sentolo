@@ -63,7 +63,7 @@
                         </div>
 
                         <!-- Table with hoverable rows -->
-                        <table class="table table-hover data-table-penduduk">
+                        <table class="table table-hover data-table-penduduk w-100">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
