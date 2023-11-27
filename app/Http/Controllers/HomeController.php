@@ -399,6 +399,7 @@ class HomeController extends Controller
     }
     public function booking_gor(Request $request)
     {
+        // dd($request);
         $createData = $request->validate([
             'kegiatan' => 'required',
             'tanggal' => 'required',
@@ -406,10 +407,19 @@ class HomeController extends Controller
             'selesai' => 'required',
             'koordinator' => 'required',
             'nomorhp' => 'required',
+        ],[
+            'required' => 'Lengkapi Data!',
         ]);
 
-        // Validasi tambahan
-        $existingAgendas = AgendaGOR::where('tanggal', $createData['tanggal'])
+        
+        // Ambil num1, num2, dan jawaban CAPTCHA dari input
+        $num1 = intval($request->input('num1'));
+        $num2 = intval($request->input('num2'));
+        $captchaAnswer = intval($request->input('captcha'));
+
+        if ($captchaAnswer === ($num1 + $num2)) {
+
+            $existingAgendas = AgendaGOR::where('tanggal', $createData['tanggal'])
             ->where(function ($query) use ($createData) {
                 $query->whereBetween('waktu', [$createData['waktu'], $createData['selesai']])
                     ->orWhereBetween('selesai', [$createData['waktu'], $createData['selesai']])
@@ -419,15 +429,20 @@ class HomeController extends Controller
                     });
             })
             ->get();
+            if ($existingAgendas->count() > 0) {
+                // Jika terdapat konflik waktu, kembalikan ke halaman sebelumnya dengan pesan kesalahan
+                return redirect()->back()->with('error', 'Konflik waktu! Agenda pada rentang waktu tersebut sudah terdaftar.');
+            } else {
 
-        if ($existingAgendas->count() > 0) {
-            // Jika terdapat konflik waktu, kembalikan ke halaman sebelumnya dengan pesan kesalahan
-            return redirect()->back()->with('toast_error', 'Konflik waktu! Agenda pada rentang waktu tersebut sudah terdaftar.');
+                AgendaGOR::create($createData);
+
+                return redirect()->back()->with('toast_success', 'Booking GOR Berhasil!');
+            }
+           
+        } else {
+            // Jawaban CAPTCHA salah, tampilkan pesan kesalahan
+            return redirect()->back()->with('error', 'Jawaban CAPTCHA salah');
         }
-
-        AgendaGOR::create($createData);
-
-        return redirect()->back()->with('toast_success', 'Agenda GOR Berhasil dibuat!');
     }
 
 }

@@ -1364,11 +1364,11 @@
                                                 style="font-weight: bold; padding-top: 50px;">Hari ini tidak ada booking
                                                 GOR.
                                             </p>
+                                            <br><br><br>
                                         @endif
                                     </ul>
                                 </div>
-                                <button class="btn btn-success btn-block" type="button"><a href="/booking_gor"
-                                        style="color:#fff;" target="_blank">Booking GOR</a></button>
+                              
                                 <div id="yad-gor" class="">
                                     <ul class="sidebar-latest">
                                         @if ($agendagorakandatang->count())
@@ -1405,6 +1405,7 @@
                                             <p class="text-heading lg:text-lg text-center mt-5"
                                                 style="font-weight: bold; padding-top: 50px;">Besok belum ada booking GOR
                                             </p>
+                                            <br><br><br>
                                         @endif
                                     </ul>
                                 </div>
@@ -1445,9 +1446,12 @@
                                                 style="font-weight: bold; padding-top: 50px;">Tidak ada booking GOR Minggu
                                                 ini.
                                             </p>
+                                            <br><br><br>
                                         @endif
                                     </ul>
                                 </div>
+                                <button class="btn btn-success btn-block" type="button"><a href="/booking_gor"
+                                    style="color:#fff;" target="_blank">Booking GOR</a></button>
                             </div>
                         </div>
                     </div>
@@ -1830,7 +1834,7 @@
                         }, {
                             breakpoint: 520,
                             settings: {
-                                slidesToShow: 3
+                                slidesToShow: 1
                             }
                         }]
                     });
@@ -1911,7 +1915,7 @@
                         }, {
                             breakpoint: 520,
                             settings: {
-                                slidesToShow: 3
+                                slidesToShow: 1
                             }
                         }]
                     });
