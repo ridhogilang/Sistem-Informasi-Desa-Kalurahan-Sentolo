@@ -1620,6 +1620,8 @@
                                         @endif
                                     </ul>
                                 </div>
+                                <button class="btn btn-success btn-block" type="button"><a href="/booking-balai"
+                                    style="color:#fff;" target="_blank">Booking Balai</a></button>
                             </div>
                         </div>
                     </div>

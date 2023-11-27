@@ -397,9 +397,18 @@ class HomeController extends Controller
 
         ]);
     }
+
+    public function hlmnbooking_balai()
+    {
+        $agendabalai = AgendaBalai::all();
+        return view('home.booking_balai', [
+            "title" => "Agenda Balai",
+            "agendabalai" => $agendabalai,
+
+        ]);
+    }
     public function booking_gor(Request $request)
     {
-        // dd($request);
         $createData = $request->validate([
             'kegiatan' => 'required',
             'tanggal' => 'required',
@@ -436,12 +445,60 @@ class HomeController extends Controller
 
                 AgendaGOR::create($createData);
 
-                return redirect()->back()->with('toast_success', 'Booking GOR Berhasil!');
+                return redirect()->back()->with('toast_success', 'Anda Telah Berhasil Mengajukan Booking GOR!!');
             }
            
         } else {
             // Jawaban CAPTCHA salah, tampilkan pesan kesalahan
-            return redirect()->back()->with('error', 'Jawaban CAPTCHA salah');
+            return redirect()->back()->with('error', '!!Jawaban CAPTCHA ANDA SALAH!!');
+        }
+    }
+
+    //Booking Balai Controller
+    public function booking_balai(Request $request)
+    {
+        $createData = $request->validate([
+            'kegiatan' => 'required',
+            'tanggal' => 'required',
+            'waktu' => 'required',
+            'selesai' => 'required',
+            'koordinator' => 'required',
+            'nomorhp' => 'required',
+        ],[
+            'required' => 'Lengkapi Data!',
+        ]);
+
+        
+        // Ambil num1, num2, dan jawaban CAPTCHA dari input
+        $num1 = intval($request->input('num1'));
+        $num2 = intval($request->input('num2'));
+        $captchaAnswer = intval($request->input('captcha'));
+
+        if ($captchaAnswer === ($num1 + $num2)) {
+
+            $existingAgendas = AgendaBalai::where('tanggal', $createData['tanggal'])
+            ->where(function ($query) use ($createData) {
+                $query->whereBetween('waktu', [$createData['waktu'], $createData['selesai']])
+                    ->orWhereBetween('selesai', [$createData['waktu'], $createData['selesai']])
+                    ->orWhere(function ($query) use ($createData) {
+                        $query->where('waktu', '<=', $createData['waktu'])
+                            ->where('selesai', '>=', $createData['selesai']);
+                    });
+            })
+            ->get();
+            if ($existingAgendas->count() > 0) {
+                // Jika terdapat konflik waktu, kembalikan ke halaman sebelumnya dengan pesan kesalahan
+                return redirect()->back()->with('error', 'Konflik waktu! Agenda pada rentang waktu tersebut sudah terdaftar.');
+            } else {
+
+                AgendaBalai::create($createData);
+
+                return redirect()->back()->with('toast_success', 'Anda Telah Berhasil Mengajukan Booking Balai!');
+            }
+           
+        } else {
+            // Jawaban CAPTCHA salah, tampilkan pesan kesalahan
+            return redirect()->back()->with('error', '!!Jawaban CAPTCHA ANDA SALAH!!');
         }
     }
 

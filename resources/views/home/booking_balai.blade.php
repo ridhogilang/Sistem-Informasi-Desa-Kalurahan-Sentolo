@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Sentolo | Booking GOR</title>
+    <title>Sentolo | Booking Balai</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -52,15 +52,14 @@
                                     <div class="card mb-3">
                                         <div class="card-body">
                                             <div class="pt-4 pb-2">
-                                                <h5 class="card-title text-center pb-0 fs-4">Halaman Booking Gedung
-                                                    Olahraha
+                                                <h5 class="card-title text-center pb-0 fs-4">Halaman Booking Balai Desa
                                                     Kalurahan Sentolo</h5>
                                                 <p class="text-center small">Silahkan Mengisi Form Di Bawah ini Untuk
                                                     Melakukan Booking GOR</p>
-                                                    <p class="text-center small">!! Setelah Mengisi Form Di Bawah ini, Maka Admin dari kalurahan akan menghubngi anda untuk melakukan konfirmasi !!</p>
+                                                <p class="text-center small">!! Setelah Mengisi Form Di Bawah ini, Maka Admin dari kalurahan akan menghubngi anda untuk melakukan konfirmasi !!</p>
                                             </div>
 
-                                            <form class="row g-3 needs-validation" action="/booking-gor" method="POST">
+                                            <form class="row g-3 needs-validation" action="/booking-balai" method="POST">
                                                 @csrf
                                                 @method('post')
                                                 <div class="col-12">

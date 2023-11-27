@@ -89,7 +89,8 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/galeri/{year}/{month}/{day}/{nama}', 'show_galeri');
     Route::get('/booking_gor', 'hlmnbooking');
     Route::post('/booking-gor', 'booking_gor');
-
+    Route::get('/booking-balai', 'hlmnbooking_balai');
+    Route::post('/booking-balai', 'booking_balai');
 });
 
 

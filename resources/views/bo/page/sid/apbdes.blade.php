@@ -64,7 +64,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/tambah-agenda" method="POST"
+                                        <form class="row" action="/tambah-agenda" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="row mb-3">
