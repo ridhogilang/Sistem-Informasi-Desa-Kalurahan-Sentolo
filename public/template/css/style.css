@@ -841,6 +841,19 @@ h6 {
   flex-grow: 0;
 }
 
+.dashboard .active-primary{
+  background: #0d6dfd3b;
+}
+.dashboard .active-success{
+  background: #20ef8e38;
+}
+.dashboard .active-warning{
+  background: #ffbc2059;
+}
+.dashboard .active-info{
+  background: #48e3fb38;
+}
+
 .dashboard .sales-card .card-icon {
   color: #4154f1;
   background: #f6f6fe;

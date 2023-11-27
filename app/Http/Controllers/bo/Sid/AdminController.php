@@ -17,8 +17,8 @@ class AdminController extends Controller
     public function index()
     {
         return view('bo.page.sid.dashboard', [
-            "title" => "Dashboard - Kalurahan Sentolo",
-            "dropdown1" => "Dashboard",
+            "title" => "Dashboard",
+            "dropdown1" => "",
         ]);
     }
 }
