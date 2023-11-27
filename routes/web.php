@@ -29,7 +29,6 @@ use App\Http\Controllers\bo\Surat\keluar\SkdController;
 use App\Http\Controllers\bo\Surat\keluar\SklController;
 use App\Http\Controllers\bo\Surat\keluar\SkpenghasilanController;
 use App\Http\Controllers\bo\Surat\keluar\SpbbekerjaController;
-use App\Http\Controllers\MandiriController;
 use App\Http\Controllers\ScstmController;
 //validasi surat keluar
 use App\Http\Controllers\bo\Surat\validasi\ValidasiController;
@@ -502,10 +501,6 @@ Route::delete('/penduduk-migrasi/{id}/delete', [PendudukController::class, 'dest
 // Import / Export Penduduk
 Route::get('/penduduk-export', [PendudukController::class, 'pendudukexport']);
 Route::post('/penduduk-import', [PendudukController::class, 'pendudukimport']);
-
-// Mandiri
-Route::get('/profile-penduduk', [MandiriController::class, 'index']);
-Route::get('/buat-surat', [MandiriController::class, 'surat']);
 
 Route::get('/profile', function () {
     return view('bo.page.profile', [
