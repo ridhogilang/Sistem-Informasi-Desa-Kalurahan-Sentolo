@@ -12,6 +12,11 @@
                             style="color: #ffffff;"></span>
                         <span> baldessentolo@gmail.com</span>
                     </div>
+                    <div class="contact-item">
+                        <a class="icon icon-sm pr-1 text-secondary fa-solid fa-right-to-bracket" href="/sitemin-sentolo/login" target="_blank"
+                            style="color: #ffffff;"></a>
+                        <a href="/sitemin-sentolo/login" target="_blank"> Administrator</a>
+                    </div>
                 </div>
             </div>
             <div class="header-top-right">

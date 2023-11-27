@@ -5287,6 +5287,7 @@ textarea.form-control.is-invalid {
 .loading {
     visibility: visible;
     position: fixed;
+    /* background-image: url('/home/img/batikloading.png'); */
     top: 0;
     left: 0;
     right: 0;
