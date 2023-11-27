@@ -134,30 +134,39 @@
     <div class="sidebar-item">
         <style type="text/css">
             button.btn {
-                margin-left: 0
+                margin-left: 0px;
             }
 
             #collapse2 {
-                margin-top: 5px
+                margin-top: 5px;
+            }
+
+            button[aria-expanded=true] .fa-chevron-down {
+                display: none;
+            }
+
+            button[aria-expanded=false] .fa-chevron-up {
+                display: none;
             }
 
             .tabel-info {
-                width: 100%
+                width: 100%;
             }
 
             .tabel-info,
             tr {
                 border-bottom: 1px;
-                border: 0 solid
+                border: 0px solid;
             }
 
             .tabel-info,
             td {
-                border: 0 solid;
+                border: 0px solid;
                 height: 30px;
-                padding: 5px
+                padding: 5px;
             }
         </style>
+        <!-- widget Peta Lokasi Kantor Desa -->
         <div class="box box-primary box-solid">
             <div class="box-header">
                 <h3 class="box-title">
@@ -225,5 +234,25 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            //Jika posisi kantor desa belum ada, maka posisi peta akan menampilkan seluruh Indonesia
+            var posisi = [-7.869267369142893, 110.40032299159996];
+            var zoom = 14;
+
+            var lokasi_kantor = L.map('map_canvas').setView(posisi, zoom);
+
+            //Menampilkan BaseLayers Peta
+            var baseLayers = getBaseLayers(lokasi_kantor,
+                'pk.eyJ1IjoicHBpZHBsZXJldCIsImEiOiJjbDAzbGU0Z3oxM2ptM2NxZ3dvZHM5bzNtIn0.9IekgDvhS-fGVRbjE7oeeg');
+
+            L.control.layers(baseLayers, null, {
+                position: 'topright',
+                collapsed: true
+            }).addTo(lokasi_kantor);
+
+            //Jika posisi kantor desa belum ada, maka posisi peta akan menampilkan seluruh Indonesia
+            var kantor_desa = L.marker(posisi).addTo(lokasi_kantor);
+        </script>
     </div>
 </aside>
