@@ -63,6 +63,24 @@
             overflow-x: auto;
         }
 
+        #hari-inibalai {
+            max-height: 300px;
+            /* Sesuaikan dengan tinggi maksimum yang Anda inginkan */
+            overflow-x: auto;
+        }
+
+        #yad-balai {
+            max-height: 300px;
+            /* Sesuaikan dengan tinggi maksimum yang Anda inginkan */
+            overflow-x: auto;
+        }
+
+        #minggubalai {
+            max-height: 300px;
+            /* Sesuaikan dengan tinggi maksimum yang Anda inginkan */
+            overflow-x: auto;
+        }
+        
         .note-red {
             color: red;
         }
@@ -709,6 +727,89 @@
                 </div>
                 </div>
                 </div>
+
+                {{-- Jadwal Layanan --}}
+                <div class="sidebar-item">
+                    <style type="text/css">
+                        button.btn {
+                            margin-left: 0px;
+                        }
+
+                        #collapse2 {
+                            margin-top: 5px;
+                        }
+
+                        button[aria-expanded=true] .fa-chevron-down {
+                            display: none;
+                        }
+
+                        button[aria-expanded=false] .fa-chevron-up {
+                            display: none;
+                        }
+
+                        .tabel-info {
+                            width: 100%;
+                        }
+
+                        .tabel-info,
+                        tr {
+                            border-bottom: 1px;
+                            border: 0px solid;
+                        }
+
+                        .tabel-info,
+                        td {
+                            border: 0px solid;
+                            height: 30px;
+                            padding: 5px;
+                        }
+                    </style>
+                    <div class="box box-primary box-solid">
+                        <div class="box-header">
+                            <h3 class="box-title">
+                                <i class="fa-solid fa-clock"></i> Jadwal Layanan
+                            </h3>
+                        </div>
+                        <div class="box-body">
+                            @foreach ($jadwal as $item)
+                                <table id="table-agenda" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <th width="40%">{{ $item->hari }}</th>
+                                            <td width="100%" @if ($item->waktu === 'Libur') class="note-red" @endif>
+                                                {{ $item->waktu }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p class="note-red">{{ $item->note }}</p>
+                            @endforeach
+                            <br>
+                            <p class="note-red">* Tanggal Merah dan Hari Besar Lbur</p>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+                {{-- Statistik Kalurahan Sentolo --}}
+                <div class="sidebar-item">
+                    <style type="text/css">
+                        .highcharts-xaxis-labels tspan {
+                            font-size: 8px;
+                        }
+                    </style>
+                    <div class="box box-primary box-solid">
+                        <div class="box-header">
+                            <h3 class="box-title"><a href=""><i class="ti ti-chart-histogram mr-1"></i> Statistik
+                                    Kalurahan Sentolo</a></h3>
+                        </div>
+                        <div class="box-body">
+                            <div id="statistik_kalurahan" style="width: 100%; height: 300px; margin: 0 auto"></div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                {{-- Agenda Kalurahan --}}
                 <div class="sidebar-item">
                     <!-- widget Sinergi Program-->
                     <!-- TODO: Pindahkan ke external css -->
@@ -868,420 +969,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="sidebar-item">
-                    <style type="text/css">
-                        button.btn {
-                            margin-left: 0px;
-                        }
-
-                        #collapse2 {
-                            margin-top: 5px;
-                        }
-
-                        button[aria-expanded=true] .fa-chevron-down {
-                            display: none;
-                        }
-
-                        button[aria-expanded=false] .fa-chevron-up {
-                            display: none;
-                        }
-
-                        .tabel-info {
-                            width: 100%;
-                        }
-
-                        .tabel-info,
-                        tr {
-                            border-bottom: 1px;
-                            border: 0px solid;
-                        }
-
-                        .tabel-info,
-                        td {
-                            border: 0px solid;
-                            height: 30px;
-                            padding: 5px;
-                        }
-                    </style>
-                    <!-- widget Peta Lokasi Kantor Desa -->
-                    <div class="box box-primary box-solid">
-                        <div class="box-header">
-                            <h3 class="box-title">
-                                <i class="fa-solid fa-clock"></i> Jadwal Layanan
-                            </h3>
-                        </div>
-                        <div class="box-body">
-                            @foreach ($jadwal as $item)
-                                <table id="table-agenda" width="100%">
-                                    <tbody>
-                                        <tr>
-                                            <th width="40%">{{ $item->hari }}</th>
-                                            <td width="100%" @if ($item->waktu === 'Libur') class="note-red" @endif>
-                                                {{ $item->waktu }}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <p class="note-red">{{ $item->note }}</p>
-                            @endforeach
-                            <br>
-                            <p class="note-red">* Tanggal Merah dan Hari Besar Lbur</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <style type="text/css">
-                        button.btn {
-                            margin-left: 0px;
-                        }
-
-                        #collapse2 {
-                            margin-top: 5px;
-                        }
-
-                        button[aria-expanded=true] .fa-chevron-down {
-                            display: none;
-                        }
-
-                        button[aria-expanded=false] .fa-chevron-up {
-                            display: none;
-                        }
-
-                        .tabel-info {
-                            width: 100%;
-                        }
-
-                        .tabel-info,
-                        tr {
-                            border-bottom: 1px;
-                            border: 0px solid;
-                        }
-
-                        .tabel-info,
-                        td {
-                            border: 0px solid;
-                            height: 30px;
-                            padding: 5px;
-                        }
-                    </style>
-                    <!-- widget Peta Lokasi Kantor Desa -->
-                    <div class="box box-primary box-solid">
-                        <div class="box-header">
-                            <h3 class="box-title">
-                                <i class="fa-solid fa-people-line" style="color: #ffffff;"></i> Jumlah Pengunjung
-                            </h3>
-                        </div>
-                        <div class="box-body">
-                            <div id="container" align="center">
-                                <table cellpadding="0" cellspacing="0" class="counter">
-                                    <tr>
-                                        <td> Hari ini</td>
-                                        <td id="todayCounter"></td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="middle" height="20">Kemarin</td>
-                                        <td valign="middle" id="yesterdayCounter"></td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="middle" height="20">Jumlah pengunjung</td>
-                                        <td valign="middle" id="totalCounter"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <script>
-                    //Jika posisi kantor desa belum ada, maka posisi peta akan menampilkan seluruh Indonesia
-                    var posisi = [-7.869267369142893, 110.40032299159996];
-                    var zoom = 14;
-
-                    var lokasi_kantor = L.map('map_canvas').setView(posisi, zoom);
-
-                    //Menampilkan BaseLayers Peta
-                    var baseLayers = getBaseLayers(lokasi_kantor,
-                        'pk.eyJ1IjoicHBpZHBsZXJldCIsImEiOiJjbDAzbGU0Z3oxM2ptM2NxZ3dvZHM5bzNtIn0.9IekgDvhS-fGVRbjE7oeeg');
-
-                    L.control.layers(baseLayers, null, {
-                        position: 'topright',
-                        collapsed: true
-                    }).addTo(lokasi_kantor);
-
-                    //Jika posisi kantor desa belum ada, maka posisi peta akan menampilkan seluruh Indonesia
-                    var kantor_desa = L.marker(posisi).addTo(lokasi_kantor);
-                </script>
-                </div>
-                <div class="sidebar-item">
-                    <style type="text/css">
-                        .highcharts-xaxis-labels tspan {
-                            font-size: 8px;
-                        }
-                    </style>
-                    <div class="box box-primary box-solid">
-                        <div class="box-header">
-                            <h3 class="box-title"><a href=""><i class="ti ti-chart-histogram mr-1"></i> Statistik
-                                    Kalurahan Sentolo</a></h3>
-                        </div>
-                        <div class="box-body">
-                            <div id="statistik_kalurahan" style="width: 100%; height: 300px; margin: 0 auto"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <!-- widget Sinergi Program-->
-                    <!-- TODO: Pindahkan ke external css -->
-                    <style>
-                        #sinergi_program {
-                            text-align: center;
-                        }
-
-                        #sinergi_program table {
-                            margin: auto;
-                        }
-
-                        #sinergi_program img {
-                            max-width: 100%;
-                            max-height: 100%;
-                            transition: all 0.5s;
-                            -o-transition: all 0.5s;
-                            -moz-transition: all 0.5s;
-                            -webkit-transition: all 0.5s;
-                        }
-
-                        #sinergi_program img:hover {
-                            transition: all 0.3s;
-                            -o-transition: all 0.3s;
-                            -moz-transition: all 0.3s;
-                            -webkit-transition: all 0.3s;
-                            transform: scale(1.5);
-                            -moz-transform: scale(1.5);
-                            -o-transform: scale(1.5);
-                            -webkit-transform: scale(1.5);
-                            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
-                        }
-                    </style>
-                    <div class="box box-primary box-solid">
-                        <div class="box-header">
-                            <h3 class="box-title"><i class="fa fa-external-link"></i> Sinergi Program</h3>
-                        </div>
-                        <div id="sinergi_program" class="box-body">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            @foreach ($sinergi as $item)
-                                                <span style="display: inline-block; width: 30.333333333333%">
-                                                    <a href="{{ $item->link }}" target="_blank"><img
-                                                            src="{{ Storage::url($item->gambar) }}"
-                                                            alt="{{ $item->nama }}"></a>
-                                                </span>
-                                            @endforeach
-                                        </td>
-                                    </tr>
-                                    {{-- <tr>
-                                            <td>
-                                                <span style="display: inline-block; width: 30.333333333333%">
-                                                    <a href="https://bantulkab.go.id/" target="_blank"><img
-                                                            src="/home/img/yogyakarta.svg" alt="DIY"></a>
-                                                </span>
-                                                <span style="display: inline-block; width: 30.333333333333%">
-                                                    <a href="https://kec-pleret.bantulkab.go.id/" target="_blank"><img
-                                                            src="/home/img/kulonprogo.png" alt="Kapanewon Sentolo"></a>
-                                                </span>
-
-                                            </td>
-                                        </tr> --}}
-                                </tbody>
-
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-item">
-                    <style type="text/css">
-                        button.btn {
-                            margin-left: 0px;
-                        }
-
-                        #collapse2 {
-                            margin-top: 5px;
-                        }
-
-                        button[aria-expanded=true] .fa-chevron-down {
-                            display: none;
-                        }
-
-                        button[aria-expanded=false] .fa-chevron-up {
-                            display: none;
-                        }
-
-                        .tabel-info {
-                            width: 100%;
-                        }
-
-                        .tabel-info,
-                        tr {
-                            border-bottom: 1px;
-                            border: 0px solid;
-                        }
-
-                        .tabel-info,
-                        td {
-                            border: 0px solid;
-                            height: 30px;
-                            padding: 5px;
-                        }
-                    </style>
-                    <!-- widget Peta Lokasi Kantor Desa -->
-                    <div class="box box-primary box-solid">
-                        <div class="box-header">
-                            <h3 class="box-title">
-                                <i class="fa fa-map-marker"></i>Lokasi Kantor Kalurahan
-                            </h3>
-                        </div>
-                        <div class="box-body">
-                            <div style="height:200px;"><iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31620.672824268557!2d110.1989283066177!3d-7.833764499978429!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7afa312dfde719%3A0x5b3c901e524d10eb!2sPemerintah%20Kalurahan%20Sentolo!5e0!3m2!1sid!2sid!4v1695217882732!5m2!1sid!2sid"
-                                    width="100%" height="200px" style="border:0;" allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe></div>
-                            <button class="btn btn-success btn-block"><a href="https://maps.app.goo.gl/Gbwj6uU2V6Y7LNxX6"
-                                    style="color:#fff;" target="_blank">Buka Peta</a></button>
-                            <button class="btn btn-success btn-block" data-toggle="collapse" data-target="#collapse2"
-                                aria-expanded="false">
-                                Detail
-                                <i class="fa fa-chevron-up pull-right"></i>
-                                <i class="fa fa-chevron-down pull-right"></i>
-                            </button>
-                            <div id="collapse2" class="panel-collapse collapse">
-                                <br>
-                                <img class="img-responsive" src="" alt="Kantor Desa">
-                                <hr>
-                                <div class="info-desa">
-                                    <table class="table-info">
-                                        <tbody>
-                                            <tr>
-                                                <td width="25%">Alamat</td>
-                                                <td>:</td>
-                                                <td width="70%">Kerto, Pleret, Pleret, Bantul</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="25%">Kalurahan </td>
-                                                <td>:</td>
-                                                <td width="70%">Pleret</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="25%">Kapanewon</td>
-                                                <td>:</td>
-                                                <td width="70%">Pleret</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="25%">Kabupaten</td>
-                                                <td>:</td>
-                                                <td width="70%">Bantul</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="25%">Kodepos</td>
-                                                <td>:</td>
-                                                <td width="70%">55791</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="25%">Telepon</td>
-                                                <td>:</td>
-                                                <td width="70%">02744415147</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="25%">Email</td>
-                                                <td>:</td>
-                                                <td width="70%">desa.pleret@bantulkab.go.id</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <script>
-                        //Jika posisi kantor desa belum ada, maka posisi peta akan menampilkan seluruh Indonesia
-                        var posisi = [-7.869267369142893, 110.40032299159996];
-                        var zoom = 14;
-
-                        var lokasi_kantor = L.map('map_canvas').setView(posisi, zoom);
-
-                        //Menampilkan BaseLayers Peta
-                        var baseLayers = getBaseLayers(lokasi_kantor,
-                            'pk.eyJ1IjoicHBpZHBsZXJldCIsImEiOiJjbDAzbGU0Z3oxM2ptM2NxZ3dvZHM5bzNtIn0.9IekgDvhS-fGVRbjE7oeeg');
-
-                        L.control.layers(baseLayers, null, {
-                            position: 'topright',
-                            collapsed: true
-                        }).addTo(lokasi_kantor);
-
-                        //Jika posisi kantor desa belum ada, maka posisi peta akan menampilkan seluruh Indonesia
-                        var kantor_desa = L.marker(posisi).addTo(lokasi_kantor);
-                    </script>
-                </div>
-                <div class="sidebar-item">
-                    <div class="box box-primary box-solid">
-                        <div class="box-header">
-                            <h3 class="box-title"><i class="fa-regular fa-images mr-2"></i> Galeri Sentolo </h3>
-                        </div>
-                        <div id="sinergi_program" class="box-body">
-                            <table>
-
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            @foreach ($galeri as $item)
-                                                <span style="display: inline-block; width: 30.333333333333%">
-                                                    <a
-                                                        href="/galeri/{{ date('Y', strtotime($item->created_at)) }}/{{ date('m', strtotime($item->created_at)) }}/{{ date('d', strtotime($item->created_at)) }}/{{ $item->nama }}"><img
-                                                            src="{{ Storage::url($item->gambar) }}"
-                                                            alt="{{ $item->nama }}"></a>
-                                                </span>
-                                            @endforeach
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <style type="text/css">
-                    button.btn {
-                        margin-left: 0px;
-                    }
-
-                    #collapse2 {
-                        margin-top: 5px;
-                    }
-
-                    button[aria-expanded=true] .fa-chevron-down {
-                        display: none;
-                    }
-
-                    button[aria-expanded=false] .fa-chevron-up {
-                        display: none;
-                    }
-
-                    .tabel-info {
-                        width: 100%;
-                    }
-
-                    .tabel-info,
-                    tr {
-                        border-bottom: 1px;
-                        border: 0px solid;
-                    }
-
-                    .tabel-info,
-                    td {
-                        border: 0px solid;
-                        height: 30px;
-                        padding: 5px;
-                    }
-                </style>
-                </div>
                 {{-- Agenda GOR --}}
                 <div class="sidebar-item">
                     <!-- widget Sinergi Program-->
@@ -1368,7 +1055,7 @@
                                         @endif
                                     </ul>
                                 </div>
-                              
+
                                 <div id="yad-gor" class="">
                                     <ul class="sidebar-latest">
                                         @if ($agendagorakandatang->count())
@@ -1451,7 +1138,7 @@
                                     </ul>
                                 </div>
                                 <button class="btn btn-success btn-block" type="button"><a href="/booking_gor"
-                                    style="color:#fff;" target="_blank">Booking GOR</a></button>
+                                        style="color:#fff;" target="_blank">Booking GOR</a></button>
                             </div>
                         </div>
                     </div>
@@ -1537,7 +1224,7 @@
                                             <p class="text-heading lg:text-lg text-center mt-5"
                                                 style="font-weight: bold; padding-top: 50px;">Hari ini tidak ada Kegiatan
                                                 Balai.
-                                            </p>
+                                            </p><br><br><br>
                                         @endif
                                     </ul>
                                 </div>
@@ -1575,8 +1262,9 @@
                                             @endforeach
                                         @else
                                             <p class="text-heading lg:text-lg text-center mt-5"
-                                                style="font-weight: bold; padding-top: 50px;">Besok Belum Ada Kegiatan Balai
-                                            </p>
+                                                style="font-weight: bold; padding-top: 50px;">Besok Belum Ada Kegiatan
+                                                Balai
+                                            </p><br><br><br>
                                         @endif
                                     </ul>
                                 </div>
@@ -1614,18 +1302,220 @@
                                             @endforeach
                                         @else
                                             <p class="text-heading lg:text-lg text-center mt-5"
-                                                style="font-weight: bold; padding-top: 50px;">Tidak ada Kegiatan Balai Minggu
+                                                style="font-weight: bold; padding-top: 50px;">Tidak ada Kegiatan Balai
+                                                Minggu
                                                 ini.
-                                            </p>
+                                            </p><br><br><br>
                                         @endif
                                     </ul>
                                 </div>
                                 <button class="btn btn-success btn-block" type="button"><a href="/booking-balai"
-                                    style="color:#fff;" target="_blank">Booking Balai</a></button>
+                                        style="color:#fff;" target="_blank">Booking Balai</a></button>
                             </div>
                         </div>
                     </div>
                 </div>
+                {{-- Jumlah Pengunjung --}}
+                <div class="sidebar-item">
+                    <style type="text/css">
+                        button.btn {
+                            margin-left: 0px;
+                        }
+
+                        #collapse2 {
+                            margin-top: 5px;
+                        }
+
+                        button[aria-expanded=true] .fa-chevron-down {
+                            display: none;
+                        }
+
+                        button[aria-expanded=false] .fa-chevron-up {
+                            display: none;
+                        }
+
+                        .tabel-info {
+                            width: 100%;
+                        }
+
+                        .tabel-info,
+                        tr {
+                            border-bottom: 1px;
+                            border: 0px solid;
+                        }
+
+                        .tabel-info,
+                        td {
+                            border: 0px solid;
+                            height: 30px;
+                            padding: 5px;
+                        }
+                    </style>
+                    <!-- widget Peta Lokasi Kantor Desa -->
+                    <div class="box box-primary box-solid">
+                        <div class="box-header">
+                            <h3 class="box-title">
+                                <i class="fa-solid fa-people-line" style="color: #ffffff;"></i> Jumlah Pengunjung
+                            </h3>
+                        </div>
+                        <div class="box-body">
+                            <div id="container" align="center">
+                                <table cellpadding="0" cellspacing="0" class="counter">
+                                    <tr>
+                                        <td> Hari ini</td>
+                                        <td id="todayCounter"></td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="middle" height="20">Kemarin</td>
+                                        <td valign="middle" id="yesterdayCounter"></td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="middle" height="20">Jumlah pengunjung</td>
+                                        <td valign="middle" id="totalCounter"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    //Jika posisi kantor desa belum ada, maka posisi peta akan menampilkan seluruh Indonesia
+                    var posisi = [-7.869267369142893, 110.40032299159996];
+                    var zoom = 14;
+
+                    var lokasi_kantor = L.map('map_canvas').setView(posisi, zoom);
+
+                    //Menampilkan BaseLayers Peta
+                    var baseLayers = getBaseLayers(lokasi_kantor,
+                        'pk.eyJ1IjoicHBpZHBsZXJldCIsImEiOiJjbDAzbGU0Z3oxM2ptM2NxZ3dvZHM5bzNtIn0.9IekgDvhS-fGVRbjE7oeeg');
+
+                    L.control.layers(baseLayers, null, {
+                        position: 'topright',
+                        collapsed: true
+                    }).addTo(lokasi_kantor);
+
+                    //Jika posisi kantor desa belum ada, maka posisi peta akan menampilkan seluruh Indonesia
+                    var kantor_desa = L.marker(posisi).addTo(lokasi_kantor);
+                </script>
+                {{-- Sinergi Program --}}
+                <div class="sidebar-item">
+                    <!-- widget Sinergi Program-->
+                    <!-- TODO: Pindahkan ke external css -->
+                    <style>
+                        #sinergi_program {
+                            text-align: center;
+                        }
+
+                        #sinergi_program table {
+                            margin: auto;
+                        }
+
+                        #sinergi_program img {
+                            max-width: 100%;
+                            max-height: 100%;
+                            transition: all 0.5s;
+                            -o-transition: all 0.5s;
+                            -moz-transition: all 0.5s;
+                            -webkit-transition: all 0.5s;
+                        }
+
+                        #sinergi_program img:hover {
+                            transition: all 0.3s;
+                            -o-transition: all 0.3s;
+                            -moz-transition: all 0.3s;
+                            -webkit-transition: all 0.3s;
+                            transform: scale(1.5);
+                            -moz-transform: scale(1.5);
+                            -o-transform: scale(1.5);
+                            -webkit-transform: scale(1.5);
+                            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+                        }
+                    </style>
+                    <div class="box box-primary box-solid">
+                        <div class="box-header">
+                            <h3 class="box-title"><i class="fa fa-external-link"></i> Sinergi Program</h3>
+                        </div>
+                        <div id="sinergi_program" class="box-body">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            @foreach ($sinergi as $item)
+                                                <span style="display: inline-block; width: 30.333333333333%">
+                                                    <a href="{{ $item->link }}" target="_blank"><img
+                                                            src="{{ Storage::url($item->gambar) }}"
+                                                            alt="{{ $item->nama }}"></a>
+                                                </span>
+                                            @endforeach
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {{-- Galeri Sentolo --}}
+                <div class="sidebar-item">
+                    <div class="box box-primary box-solid">
+                        <div class="box-header">
+                            <h3 class="box-title"><i class="fa-regular fa-images mr-2"></i> Galeri Sentolo </h3>
+                        </div>
+                        <div id="sinergi_program" class="box-body">
+                            <table>
+
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            @foreach ($galeri as $item)
+                                                <span style="display: inline-block; width: 30.333333333333%">
+                                                    <a
+                                                        href="/galeri/{{ date('Y', strtotime($item->created_at)) }}/{{ date('m', strtotime($item->created_at)) }}/{{ date('d', strtotime($item->created_at)) }}/{{ $item->nama }}"><img
+                                                            src="{{ Storage::url($item->gambar) }}"
+                                                            alt="{{ $item->nama }}"></a>
+                                                </span>
+                                            @endforeach
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <style type="text/css">
+                    button.btn {
+                        margin-left: 0px;
+                    }
+
+                    #collapse2 {
+                        margin-top: 5px;
+                    }
+
+                    button[aria-expanded=true] .fa-chevron-down {
+                        display: none;
+                    }
+
+                    button[aria-expanded=false] .fa-chevron-up {
+                        display: none;
+                    }
+
+                    .tabel-info {
+                        width: 100%;
+                    }
+
+                    .tabel-info,
+                    tr {
+                        border-bottom: 1px;
+                        border: 0px solid;
+                    }
+
+                    .tabel-info,
+                    td {
+                        border: 0px solid;
+                        height: 30px;
+                        padding: 5px;
+                    }
+                </style>
             </aside>
         </section>
         <section class="flex flex-row-reverse py-5" id="self-service">
@@ -1976,103 +1866,103 @@
         // Tampilkan tab konten pertama saat halaman dimuat
         showTabContentAgenda('hari-ini-agenda');
     </script>
-   {{-- Agenda GOR --}}
-<script>
-    // Fungsi untuk mengatur kelas active pada tab yang diklik
-    function setActiveTabGor(tabId) {
-        // Dapatkan semua elemen tab
-        var tabLinks = document.querySelectorAll('#nav-gor li');
+    {{-- Agenda GOR --}}
+    <script>
+        // Fungsi untuk mengatur kelas active pada tab yang diklik
+        function setActiveTabGor(tabId) {
+            // Dapatkan semua elemen tab
+            var tabLinks = document.querySelectorAll('#nav-gor li');
 
-        // Loop melalui semua elemen tab
-        tabLinks.forEach(function(tab) {
-            // Hapus kelas active dari semua elemen tab
-            tab.classList.remove('active');
+            // Loop melalui semua elemen tab
+            tabLinks.forEach(function(tab) {
+                // Hapus kelas active dari semua elemen tab
+                tab.classList.remove('active');
 
-            // Jika tab saat ini memiliki href yang sesuai dengan tabId, tambahkan kelas active
-            if (tab.querySelector('a').getAttribute('href') === '#' + tabId) {
-                tab.classList.add('active');
-            }
-        });
-    }
-
-    // Fungsi untuk menampilkan konten tab yang sesuai saat tab diklik
-    function showTabContentGor(tabId) {
-        // Semua konten tab dianggap sembunyi
-        var tabContents = document.querySelectorAll('#tab-gor > div');
-        tabContents.forEach(function(content) {
-            content.style.display = 'none'; // Sembunyikan semua konten tab
-        });
-
-        // Tampilkan konten tab yang sesuai
-        var selectedTabContent = document.getElementById(tabId);
-        if (selectedTabContent) {
-            selectedTabContent.style.display = 'block'; // Tampilkan konten tab yang sesuai
+                // Jika tab saat ini memiliki href yang sesuai dengan tabId, tambahkan kelas active
+                if (tab.querySelector('a').getAttribute('href') === '#' + tabId) {
+                    tab.classList.add('active');
+                }
+            });
         }
-    }
 
-    // Event listener untuk setiap tab yang diklik
-    var tabLinksGor = document.querySelectorAll('#nav-gor a');
-    tabLinksGor.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            var tabId = this.getAttribute('href').substring(1); // Mendapatkan ID tab dari href
-            setActiveTabGor(tabId); // Atur kelas active pada tab yang diklik
-            showTabContentGor(tabId); // Tampilkan konten tab yang sesuai
+        // Fungsi untuk menampilkan konten tab yang sesuai saat tab diklik
+        function showTabContentGor(tabId) {
+            // Semua konten tab dianggap sembunyi
+            var tabContents = document.querySelectorAll('#tab-gor > div');
+            tabContents.forEach(function(content) {
+                content.style.display = 'none'; // Sembunyikan semua konten tab
+            });
+
+            // Tampilkan konten tab yang sesuai
+            var selectedTabContent = document.getElementById(tabId);
+            if (selectedTabContent) {
+                selectedTabContent.style.display = 'block'; // Tampilkan konten tab yang sesuai
+            }
+        }
+
+        // Event listener untuk setiap tab yang diklik
+        var tabLinksGor = document.querySelectorAll('#nav-gor a');
+        tabLinksGor.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                var tabId = this.getAttribute('href').substring(1); // Mendapatkan ID tab dari href
+                setActiveTabGor(tabId); // Atur kelas active pada tab yang diklik
+                showTabContentGor(tabId); // Tampilkan konten tab yang sesuai
+            });
         });
-    });
 
-    // Tampilkan tab konten pertama saat halaman dimuat
-    showTabContentGor('hari-inigor');
-</script>
+        // Tampilkan tab konten pertama saat halaman dimuat
+        showTabContentGor('hari-inigor');
+    </script>
 
     {{-- Agenda Balai --}}
-<script>
-    // Fungsi untuk mengatur kelas active pada tab yang diklik
-    function setActiveTabBalai(tabId) {
-        // Dapatkan semua elemen tab
-        var tabLinks = document.querySelectorAll('#nav-balai li');
+    <script>
+        // Fungsi untuk mengatur kelas active pada tab yang diklik
+        function setActiveTabBalai(tabId) {
+            // Dapatkan semua elemen tab
+            var tabLinks = document.querySelectorAll('#nav-balai li');
 
-        // Loop melalui semua elemen tab
-        tabLinks.forEach(function(tab) {
-            // Hapus kelas active dari semua elemen tab
-            tab.classList.remove('active');
+            // Loop melalui semua elemen tab
+            tabLinks.forEach(function(tab) {
+                // Hapus kelas active dari semua elemen tab
+                tab.classList.remove('active');
 
-            // Jika tab saat ini memiliki href yang sesuai dengan tabId, tambahkan kelas active
-            if (tab.querySelector('a').getAttribute('href') === '#' + tabId) {
-                tab.classList.add('active');
-            }
-        });
-    }
-
-    // Fungsi untuk menampilkan konten tab yang sesuai saat tab diklik
-    function showTabContentBalai(tabId) {
-        // Semua konten tab dianggap sembunyi
-        var tabContents = document.querySelectorAll('#tab-balai > div');
-        tabContents.forEach(function(content) {
-            content.style.display = 'none'; // Sembunyikan semua konten tab
-        });
-
-        // Tampilkan konten tab yang sesuai
-        var selectedTabContent = document.getElementById(tabId);
-        if (selectedTabContent) {
-            selectedTabContent.style.display = 'block'; // Tampilkan konten tab yang sesuai
+                // Jika tab saat ini memiliki href yang sesuai dengan tabId, tambahkan kelas active
+                if (tab.querySelector('a').getAttribute('href') === '#' + tabId) {
+                    tab.classList.add('active');
+                }
+            });
         }
-    }
 
-    // Event listener untuk setiap tab yang diklik
-    var tabLinksBalai = document.querySelectorAll('#nav-balai a');
-    tabLinksBalai.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            var tabId = this.getAttribute('href').substring(1); // Mendapatkan ID tab dari href
-            setActiveTabBalai(tabId); // Atur kelas active pada tab yang diklik
-            showTabContentBalai(tabId); // Tampilkan konten tab yang sesuai
+        // Fungsi untuk menampilkan konten tab yang sesuai saat tab diklik
+        function showTabContentBalai(tabId) {
+            // Semua konten tab dianggap sembunyi
+            var tabContents = document.querySelectorAll('#tab-balai > div');
+            tabContents.forEach(function(content) {
+                content.style.display = 'none'; // Sembunyikan semua konten tab
+            });
+
+            // Tampilkan konten tab yang sesuai
+            var selectedTabContent = document.getElementById(tabId);
+            if (selectedTabContent) {
+                selectedTabContent.style.display = 'block'; // Tampilkan konten tab yang sesuai
+            }
+        }
+
+        // Event listener untuk setiap tab yang diklik
+        var tabLinksBalai = document.querySelectorAll('#nav-balai a');
+        tabLinksBalai.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                var tabId = this.getAttribute('href').substring(1); // Mendapatkan ID tab dari href
+                setActiveTabBalai(tabId); // Atur kelas active pada tab yang diklik
+                showTabContentBalai(tabId); // Tampilkan konten tab yang sesuai
+            });
         });
-    });
 
-    // Tampilkan tab konten pertama saat halaman dimuat
-    showTabContentBalai('hari-inibalai');
-</script>
+        // Tampilkan tab konten pertama saat halaman dimuat
+        showTabContentBalai('hari-inibalai');
+    </script>
 
     {{-- <script type="text/javascript">
         $(function() {
