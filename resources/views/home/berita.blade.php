@@ -313,33 +313,6 @@
             });
         });
     </script>
-    {{-- <script>
-        function onSubmit(token) {
-            document.getElementById("kolom-komentar").submit();
-        }
-    </script> --}}
-    {{-- <script>
-        // Fungsi untuk memperbarui gambar captcha
-        function reloadCaptchaImage() {
-            const captchaImgContainer = document.getElementById('captcha-img-container');
-            const newCaptchaImg = document.createElement('img');
-            newCaptchaImg.src = '/captcha?' + new Date().getTime(); // Menambahkan timestamp
-            newCaptchaImg.alt = 'Captcha Image';
-            captchaImgContainer.innerHTML = ''; // Hapus gambar captcha yang lama
-            captchaImgContainer.appendChild(newCaptchaImg);
-        }
-    
-        // Event listener untuk tombol "Reload"
-        const reloadButton = document.getElementById('reload');
-        reloadButton.addEventListener('click', function() {
-            reloadCaptchaImage(); // Memanggil fungsi untuk memperbarui gambar captcha
-        });
-    
-        // Memanggil fungsi reloadCaptchaImage() saat halaman dimuat
-        window.onload = function() {
-            reloadCaptchaImage();
-        };
-    </script> --}}
     <script>
         // Fungsi untuk menghasilkan dua angka acak antara 1 dan 10
         function generateRandomNumbers() {

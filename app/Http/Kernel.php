@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \RealRashid\SweetAlert\ToSweetAlert::class,
             \App\Http\Middleware\TrackVisitor::class,
+            \App\Http\Middleware\LogUserAgent::class,
         ],
 
         'api' => [

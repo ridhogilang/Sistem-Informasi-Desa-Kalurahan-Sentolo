@@ -28,7 +28,7 @@
                         <h5 class="card-title">Data Penduduk Migrasi</h5>
 
                         <!-- Table with hoverable rows -->
-                        <table class="table table-hover data-table-penduduk-migrasi">
+                        <table class="table table-hover data-table-penduduk-migrasi w-100">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
@@ -56,7 +56,7 @@
 @push('footer')
     <script type="text/javascript">
       $(function () {
-          
+
         var table = $('.data-table-penduduk-migrasi').DataTable({
             processing: true,
             serverSide: true,
@@ -71,7 +71,7 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
-          
+
       });
     </script>
 @endpush

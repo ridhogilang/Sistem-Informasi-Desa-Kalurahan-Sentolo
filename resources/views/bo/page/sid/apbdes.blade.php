@@ -54,7 +54,7 @@
                         </div> --}}
 
                         <!-- Modal Form Tambah Agenda -->
-                        <div class="modal fade" id="modalAgenda" data-bs-backdrop="static" data-bs-keyboard="false"
+                        {{-- <div class="modal fade" id="modalAgenda" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="Agenda-Label" aria-hidden="true">
                             <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                                 <div class="modal-content">
@@ -64,7 +64,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/tambah-agenda" method="POST"
+                                        <form class="row" action="/tambah-agenda" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="row mb-3">
@@ -98,13 +98,7 @@
                                                     <input name="koordinator" id="koordinator" class="form-control">
                                                 </div>
                                             </div>
-                                            {{-- <div class="row mb-3">
-                                                <label for="gambar" class="col-sm-3 col-form-label">File Upload</label>
-                                                <div class="col-sm-9">
-                                                    <input class="form-control" name="gambar" type="file" id="gambar"
-                                                        accept=".png, .jpg, .jpeg">
-                                                </div>
-                                            </div> --}}
+                                            </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Close</button>
@@ -114,19 +108,19 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title">Pelaksanaan</h5>
-                            <div>
+                            {{-- <div>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#modalAgenda"><i class="fa-regular fa-square-plus"
                                         style="margin-right: 5px"></i>Tambah Pelaksanaan</button>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <!-- Table with hoverable rows -->

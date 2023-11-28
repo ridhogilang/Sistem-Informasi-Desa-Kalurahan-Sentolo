@@ -4,10 +4,8 @@ namespace App\Http\Controllers\bo\Sid;
 
 use App\Http\Controllers\Controller;
 use App\Models\Komentar;
-use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Validator;
 
 
 class KomentarController extends Controller

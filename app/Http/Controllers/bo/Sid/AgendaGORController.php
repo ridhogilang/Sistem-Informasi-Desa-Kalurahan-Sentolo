@@ -36,6 +36,8 @@ class AgendaGORController extends Controller
             'selesai' => 'required',
             'koordinator' => 'required',
             'nomorhp' => 'required',
+        ],[
+            'required' => 'Lengkapi Data!',
         ]);
 
         // Validasi tambahan

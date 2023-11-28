@@ -88,7 +88,8 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/galeri/{year}/{month}/{day}/{nama}', 'show_galeri');
     Route::get('/booking_gor', 'hlmnbooking');
     Route::post('/booking-gor', 'booking_gor');
-
+    Route::get('/booking-balai', 'hlmnbooking_balai');
+    Route::post('/booking-balai', 'booking_balai');
 });
 
 
@@ -357,14 +358,17 @@ Route::prefix('admin')->group(function () {
             Route::get('/surat-masuk', [SMasukController::class, 'index'])->middleware('can:Surat Masuk');
             Route::post('/surat-masuk', [SMasukController::class, 'store'])->middleware('can:Surat Masuk');
             Route::put('/surat-masuk/{id}', [SMasukController::class, 'update'])->middleware('can:Surat Masuk');
-            Route::get('/surat-masuk/{id}/view', [SMasukController::class, 'show'])->middleware('can:Surat Masuk');
-            Route::get('/surat-masuk/{id}/document', [SMasukController::class, 'document'])->middleware('can:Surat Masuk');
+            Route::get('/surat-masuk/{id}/document', [SMasukController::class, 'show'])->middleware('can:Surat Masuk');
+            // Route::get('/surat-masuk/{id}/document', [SMasukController::class, 'document'])->middleware('can:Surat Masuk');
             Route::delete('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy'])->middleware('can:Surat Masuk');
         });
         //untuk tim sistem informasi
+        // routes/web.php
+
         Route::prefix('sistem-informasi')->middleware('can:Menejemen Sistem Informasi')->group(function () {
             Route::controller(AdminController::class)->group(function () {
                 Route::get('/dashboard', 'index')->name('bo.sid.dashboard');
+                Route::get('/ipuser', 'ip');
             });
             //running text
             Route::controller(KomponenController::class)->group(function () {

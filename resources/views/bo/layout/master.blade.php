@@ -11,8 +11,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
     @stack('header')
     <!-- Favicons -->
-    <link href="{{ asset('template/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('template/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('home/img/kulonprogo.png') }}" rel="icon"> 
+    <link href="{{ asset('home/img/kulonprogo.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">

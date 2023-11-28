@@ -64,7 +64,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/admin/sistem-informasi/tambah-agenda" method="POST"
+                                        <form class="row" action="/admin/sistem-informasi/tambah-agenda" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="row mb-3">
@@ -126,7 +126,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/admin/sistem-informasi/tambah-jadwal" method="POST"
+                                        <form class="row" action="/admin/sistem-informasi/tambah-jadwal" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="row mb-3">
@@ -175,7 +175,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/admin/sistem-informasi/tambah-sinergi" method="POST"
+                                        <form class="row" action="/admin/sistem-informasi/tambah-sinergi" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="row mb-3">
@@ -218,7 +218,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/admin/sistem-informasi/tambah-statistik" method="POST"
+                                        <form class="row" action="/admin/sistem-informasi/tambah-statistik" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="row mb-3">

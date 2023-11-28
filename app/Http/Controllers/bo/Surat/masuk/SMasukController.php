@@ -61,14 +61,14 @@ class SMasukController extends Controller
         $tgl_hr_ini = date('Y-m-d');
         //badge
         $badge_disposisi_status = [
-            '1' => '<span class="badge bg-secondary"> menunggu tindakan </span>', 
-            '2' => '<span class="badge bg-success"> diteruskan </span>', 
-            '3' => '<span class="badge bg-danger"> dikembalikan </span>', 
-            '4' => '<span class="badge bg-primary"> pelaksana </span>', 
+            '1' => '<span class="badge bg-secondary"> menunggu tindakan </span>',
+            '2' => '<span class="badge bg-success"> diteruskan </span>',
+            '3' => '<span class="badge bg-danger"> dikembalikan </span>',
+            '4' => '<span class="badge bg-primary"> pelaksana </span>',
             //bagian hasil surat
-            '5' => '<span class="badge bg-success"> terlaksana </span>', 
-            '6' => '<span class="badge bg-danger"> gagal dilaksanakan </span>', 
-            '7' => '<span class="badge bg-warning"> terlambat dilaksanakan </span>', 
+            '5' => '<span class="badge bg-success"> terlaksana </span>',
+            '6' => '<span class="badge bg-danger"> gagal dilaksanakan </span>',
+            '7' => '<span class="badge bg-warning"> terlambat dilaksanakan </span>',
         ];
 
         return view('bo.page.surat.masuk.surat-masuk', [
@@ -106,12 +106,22 @@ class SMasukController extends Controller
         ]);
 
         // Upload file ke Google Drive
+        // $file = $request->file('dokumen');
+        // $fileName = 'SM-' . $request->judul_surat . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
+        // Storage::disk('google')->put('Surat Masuk/' .$fileName, file_get_contents($file));
+        // $record['dokumen'] = $fileName;
+
+        // $publicUrl = Storage::disk('google')->url('Surat Masuk/' . $fileName);
+        // $record['link'] = $publicUrl;
+
+        // Simpan file di storage lokal
         $file = $request->file('dokumen');
         $fileName = 'SM-' . $request->judul_surat . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
-        Storage::disk('google')->put('Surat Masuk/' .$fileName, file_get_contents($file));
+        $file->storeAs('public/surat_masuk', $fileName);
         $record['dokumen'] = $fileName;
 
-        $publicUrl = Storage::disk('google')->url('Surat Masuk/' . $fileName);
+        // Set URL file lokal
+        $publicUrl = asset('storage/surat_masuk/' . $fileName);
         $record['link'] = $publicUrl;
 
         $record['jenis_surat'] = 'Surat Masuk';
@@ -141,18 +151,37 @@ class SMasukController extends Controller
         SMasuk::create($record);
         return redirect()->back()->with('toast_success', 'Data Disimpan!');
     }
-    public function document($id)
+    // public function show($id)
+    // {
+    //     // Temukan data surat masuk berdasarkan ID
+    //     $smasuk = SMasuk::find($id);
+    //     // Tentukan nama file dan jalur lengkapnya
+    //     if (!$smasuk) {
+    //         // Handle jika data tidak ditemukan
+    //         abort(404);
+    //     }
+    //     // Dapatkan URL publik ke file di Google Drive
+    //     $publicUrl = Storage::disk('google')->url('Surat Masuk/' . $smasuk->dokumen);
+    //     // Redirect pengguna ke URL file di Google Drive
+    //     return redirect($publicUrl);
+    // }
+    public function show($id)
     {
         // Temukan data surat masuk berdasarkan ID
         $smasuk = SMasuk::find($id);
-        // Tentukan nama file dan jalur lengkapnya
         if (!$smasuk) {
             // Handle jika data tidak ditemukan
             abort(404);
         }
-        // Dapatkan URL publik ke file di Google Drive
-        $publicUrl = Storage::disk('google')->url('Surat Masuk/' . $smasuk->dokumen);
-        // Redirect pengguna ke URL file di Google Drive
+        // Path ke file dalam penyimpanan lokal
+        $filePath = storage_path("app/public/surat_masuk/{$smasuk->dokumen}");
+        // Cek apakah file ada
+        if (!file_exists($filePath)) {
+            abort(404);
+        }
+        // Dapatkan URL publik ke file lokal
+        $publicUrl = asset("storage/surat_masuk/{$smasuk->dokumen}");
+        // Redirect pengguna ke URL file lokal
         return redirect($publicUrl);
     }
     public function update(Request $request, $id)
@@ -160,7 +189,7 @@ class SMasukController extends Controller
         $smasuk = SMasuk::find($id);
         if(!($smasuk->status_surat == '3' || $smasuk->status_surat == '1'))
         {
-            return redirect()->back()->with('toast_warning', 'Anda Tidak Bisa Mengubah Surat Masuk'); 
+            return redirect()->back()->with('toast_warning', 'Anda Tidak Bisa Mengubah Surat Masuk');
         }
 
         $record = $request->validate([
@@ -227,7 +256,6 @@ class SMasukController extends Controller
         $record = $request->validate([
             'catatan' => 'required',
         ]);
-
 
         if($smasuk->status_surat = '3' || Carbon::now() > $smasuk->tanggal_kegiatan){
             //membuat detail disposisi dari pu
