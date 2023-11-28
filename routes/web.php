@@ -364,9 +364,12 @@ Route::prefix('admin')->group(function () {
             Route::delete('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy'])->middleware('can:Surat Masuk');
         });
         //untuk tim sistem informasi
+        // routes/web.php
+
         Route::prefix('sistem-informasi')->middleware('can:Menejemen Sistem Informasi')->group(function () {
             Route::controller(AdminController::class)->group(function () {
                 Route::get('/dashboard', 'index')->name('bo.sid.dashboard');
+                Route::get('/ipuser', 'ip');
             });
             //running text
             Route::controller(KomponenController::class)->group(function () {
