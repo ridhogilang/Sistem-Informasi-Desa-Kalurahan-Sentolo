@@ -11,7 +11,7 @@
         @can('Menejemen E-Surat')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/admin/e-surat/dashboard">
-                    <i class="fa-regular fa-envelope-open"></i>
+                    <<i class="bi bi-envelope"></i>
                     <span>E-surat</span>
                 </a>
             </li><!-- End Surat Masuk Nav -->
@@ -19,7 +19,7 @@
         @can('Menejemen Sistem Informasi')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/admin/sistem-informasi/dashboard">
-                    <i class="fa-regular fa-envelope-open"></i>
+                    <i class="bi bi-info-lg"></i>
                     <span>Sistem Informasi</span>
                 </a>
             </li><!-- End Surat Masuk Nav -->
@@ -27,24 +27,19 @@
         @can('Menejemen Pengguna')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/admin/pengguna/dashboard">
-                    <i class="fa-regular fa-envelope-open"></i>
+                    <i class="bi bi-fingerprint"></i>
                     <span>Pengguna</span>
                 </a>
             </li><!-- End Surat Masuk Nav -->
         @endcan
+        @can('Menejemen Kependudukan')
         <li class="nav-item">
-            <a class="nav-link {{ ($title == "Data Penduduk") ? '' : 'collapsed' }}" href="/penduduk">
+            <a class="nav-link href="{{ route('bo.penduduk.dashboard') }}">
                 <i class="bi bi-person"></i>
-                <span>Penduduk</span>
+                <span>Kependudukan</span>
             </a>
         </li><!-- End Penduduk Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link {{ ($title == "Data Penduduk Migrasi") ? '' : 'collapsed' }}" href="/penduduk-migrasi">
-                <i class="bi bi-person"></i>
-                <span>Penduduk Migrasi</span>
-            </a>
-        </li><!-- End Penduduk Migrasi Page Nav -->
+        @endcan
 
     </ul>
 

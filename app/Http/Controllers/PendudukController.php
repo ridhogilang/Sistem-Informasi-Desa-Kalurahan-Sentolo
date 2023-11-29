@@ -40,11 +40,11 @@ class PendudukController extends Controller
         return Datatables::of($penduduk)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $actionBtn = '<div class="d-flex"><a class="btn btn-warning mx-1" type="button" href="/penduduk/'.$row["id"].'/edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                    $actionBtn = '<div class="d-flex"><a class="btn btn-warning mx-1" type="button" href="/admin/kependudukan/penduduk/'.$row["id"].'/edit"><i class="fa-solid fa-pen-to-square"></i></a>
                         <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#migrasi_penduduk'.$row["id"].'"><i class="fa-solid fa-trash-can"></i></button>
                             <div class="modal fade" id="migrasi_penduduk'.$row["id"].'" tabindex="-1">
                                                     <div class="modal-dialog modal-lg">
-                                                        <form action="/penduduk/'.$row["id"].'/delete" method="POST" enctype="multipart/form-data">
+                                                        <form action="/admin/kependudukan/penduduk/'.$row["id"].'/delete" method="POST" enctype="multipart/form-data">
                                                             ' . csrf_field() . '
                                                             ' . method_field("DELETE") . '
                                                             <div class="modal-content">
@@ -96,11 +96,11 @@ class PendudukController extends Controller
         return Datatables::of($penduduk)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $actionBtn = '<div class="d-flex"><a class="btn btn-warning mx-1" type="button" href="/penduduk/'.$row["id"].'/edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                    $actionBtn = '<div class="d-flex"><a class="btn btn-warning mx-1" type="button" href="/admin/kependudukan/penduduk/'.$row["id"].'/edit"><i class="fa-solid fa-pen-to-square"></i></a>
                         <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#migrasi_penduduk'.$row["id"].'"><i class="fa-solid fa-trash-can"></i></button>
                             <div class="modal fade" id="migrasi_penduduk'.$row["id"].'" tabindex="-1">
                                                     <div class="modal-dialog modal-lg">
-                                                        <form action="/penduduk-migrasi/'.$row["id"].'/delete" method="POST" enctype="multipart/form-data">
+                                                        <form action="/admin/kependudukan/penduduk-migrasi/'.$row["id"].'/delete" method="POST" enctype="multipart/form-data">
                                                             ' . csrf_field() . '
                                                             ' . method_field("DELETE") . '
                                                             <div class="modal-content">

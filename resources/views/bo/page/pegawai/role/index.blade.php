@@ -20,9 +20,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title">Data Hak Akses</h5>
-                            @can('role_create')
                             <a class="btn btn-primary" href="{{ route('bo.pegawai.role_management.create')}}">Tambah</a>
-                            @endcan
                         </div>
 
                         <!-- Table with hoverable rows -->
@@ -31,9 +29,7 @@
                                 <tr>
                                     <th scope="col">No.</th>
                                     <th scope="col">Role</th>
-                                    @canany(['role_edit', 'role_delete'])
                                     <th scope="col">Action</th>
-                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,22 +37,15 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $role['name'] }}</td>
-                                        @canany(['role_edit', 'role_delete'])
                                         <td>
                                             <form action="{{ route('bo.pegawai.role_management.destroy', $role->id) }}" method="POST">
                                             
                                             @method('DELETE')
                                             @csrf
-
-                                            @can('role_edit')
                                             <a class="btn btn-warning" href="{{ route('bo.pegawai.role_management.edit', $role->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            @endcan
-                                            @can('role_delete')
                                              <button class="btn btn-danger" type="submit" href="/surat-kbm/{{$role->id}}/delete"><i class="fa-regular fa-trash-can"></i></button>
                                              </form>
-                                             @endcan
                                         </td>
-                                        @endcanany
                                     </tr>
                                 @endforeach 
                             </tbody>
