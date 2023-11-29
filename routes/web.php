@@ -108,63 +108,6 @@ Route::controller(KomentarController::class)->group(function () {
     Route::get('/hapus-komentar/{id}', 'destroy');
 });
 
-
-
-// //APBDes
-// //iki crud e pie pak
-// Route::controller(ApbdesController::class)->group(function () {
-//     Route::get('/admin/apbdes', 'index');
-//     //Tambah
-//     Route::post('/tambah-apbdes', 'create');
-
-//     //Edit
-//     Route::put('/edit-apbdes-pelaksanaan/{id}', 'updatepelaksanaan');
-//     Route::put('/edit-apbdes-pendapatan/{id}', 'updatependapatan');
-//     Route::put('/edit-apbdes-pembelanjaan/{id}', 'updatepembelanjaan');
-
-//     //Hapus
-//     Route::get('/hapus-apbdes/{id}', 'destroy');
-
-// });
-
-// Route::controller(BeritaController::class)->group(function () {
-//     //berita
-//     Route::get('/admin/berita', 'index');
-//     Route::get('/admin/berita/komentar', 'indexkomentar');
-//     Route::post('/berita', 'store');
-//     Route::put('/berita/{id}', 'update');
-//     Route::get('/showberita/{id}', 'show');
-//     Route::get('/deleteberita/{id}', 'destroy');
-//     Route::put('/update-status/{id}', 'updateStatus');
-//     Route::put('/update-sideberita/{id}', 'updateSideBerita');
-
-//     //Artikel
-//     Route::get('/admin/artikel', 'artikel');
-//     Route::get('/admin/artikel/komentar', 'komentarartikel');
-//     Route::post('/artikel', 'tambah_artikel');
-//     Route::get('/showartikel/{id}', 'show_artikel');
-//     Route::put('/updateartikel/{id}', 'update_artikel');
-//     Route::get('/deleteartikel/{id}', 'destroy_artikel');
-// });
-
-// Route::controller(MenuController::class)->group(function () {
-//     Route::get('/menu', 'index');
-//     Route::post('/menu', 'store');
-//     Route::put('/menu/{id}', 'update');
-//     Route::get('/deletemenu/{id}', 'destroy');
-// });
-
-// Route::controller(HeaderController::class)->group(function () {
-//     Route::get('/admin/header', 'index');
-//     Route::post('/header', 'create');
-//     Route::post('/subheader', 'createsub');
-//     Route::put('/header/{id}', 'update');
-//     Route::put('/subheader/{id}', 'updatesub');
-//     Route::get('/deleteheader/{id}', 'hapus');
-//     Route::get('/deletesubheader/{id}', 'destroysub');
-//     Route::get('/checkSubheaders/{id}', 'checkSubheaders');
-// });
-
 //back office (halaman admin)
 Route::prefix('admin')->group(function () {
     Route::group(['middleware' => ['web', 'auth']], function () {
@@ -356,10 +299,11 @@ Route::prefix('admin')->group(function () {
 
             // Surat Masuk
             Route::get('/surat-masuk', [SMasukController::class, 'index'])->middleware('can:Surat Masuk');
+            Route::get('/surat-masuk-datas', [SMasukController::class, 'datas'])->name('bo.surat-masuk.data')->middleware('can:Surat Masuk');
+            Route::get('/surat-masuk-status/{id}', [SMasukController::class, 'status'])->name('bo.surat-masuk.status')->middleware('can:Surat Masuk');
             Route::post('/surat-masuk', [SMasukController::class, 'store'])->middleware('can:Surat Masuk');
             Route::put('/surat-masuk/{id}', [SMasukController::class, 'update'])->middleware('can:Surat Masuk');
             Route::get('/surat-masuk/{id}/document', [SMasukController::class, 'show'])->middleware('can:Surat Masuk');
-            // Route::get('/surat-masuk/{id}/document', [SMasukController::class, 'document'])->middleware('can:Surat Masuk');
             Route::delete('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy'])->middleware('can:Surat Masuk');
         });
         //untuk tim sistem informasi

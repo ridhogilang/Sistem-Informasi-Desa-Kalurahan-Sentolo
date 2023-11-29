@@ -16,6 +16,8 @@ use App\Models\User;
 use App\Models\DisposisiSurat;
 use App\Models\DetailDisposisiSurat;
 use App\Models\ArsipSurat;
+//datatable
+use Yajra\DataTables\Facades\Datatables;
 
 
 class SMasukController extends Controller
@@ -60,6 +62,57 @@ class SMasukController extends Controller
         //tgl hari ini
         $tgl_hr_ini = date('Y-m-d');
         //badge
+
+        return view('bo.page.surat.masuk.surat-masuk', [
+            'dropdown1' => 'Surat Masuk',
+            'dropdown2' => '',
+            'title' => 'Surat Masuk',
+            'pejabat' => $pejabat,
+            'badge_disposisi_status' => $badge_disposisi_status,
+            'TemplateNoSurat' => $TemplateNoSurat,
+            'tgl_hr_ini' => $tgl_hr_ini
+        ])->with('smasuk',$smasuk);
+    }
+
+    public function datas()
+    {
+        //menyeleksi surat masuk
+        $smasuk= SMasuk::with('kepada_detil')
+            ->with('detilDisposisi.pamongDPSS')
+            ->where('is_arsip', '=', null)
+            ->get();
+
+        return Datatables::of($smasuk)
+                ->addIndexColumn()
+                ->addColumn('kepada', function($row){
+                    $marang_sopo = $row['kepada_detil']['nama'].' ( '.$row['kepada_detil']['jabatan'].' )';
+                    return $marang_sopo;
+                })
+                ->addColumn('status', function($row){
+                    $statusBtn = '<a class="btn btn-primary" href="/admin/e-surat/surat-masuk-status/'.$row['id'].'"><i class="bi bi-eye"></i></a>';
+                    return $statusBtn;
+                })
+                ->addColumn('dokumen', function($row){
+                    $dokumenBtn = '<a class="btn btn-success" target="blank" type="submit" href="/admin/e-surat/surat-masuk/'.$row["id"].'/document"><i class="fa-solid fa-file-arrow-down"></i></a>';
+                    return $dokumenBtn;
+                })
+                ->addColumn('action', function($row){
+                    $actionBtn = '';
+                    return $actionBtn;
+                })
+                ->rawColumns(['kepada','action', 'status', 'dokumen'])
+                ->make(true);
+
+    }
+
+    public function status($id)
+    {
+        $smasuk= SMasuk::with('kepada_detil')
+            ->with('detilDisposisi.pamongDPSS')
+            ->where('is_arsip', '=', null)
+            ->where('id', '=', $id)
+            ->first();
+
         $badge_disposisi_status = [
             '1' => '<span class="badge bg-secondary"> menunggu tindakan </span>',
             '2' => '<span class="badge bg-success"> diteruskan </span>',
@@ -71,15 +124,14 @@ class SMasukController extends Controller
             '7' => '<span class="badge bg-warning"> terlambat dilaksanakan </span>',
         ];
 
-        return view('bo.page.surat.masuk.surat-masuk', [
-            'dropdown1' => 'Surat Masuk',
-            'dropdown2' => '',
-            'title' => 'Surat Masuk',
-            'pejabat' => $pejabat,
-            'badge_disposisi_status' => $badge_disposisi_status,
-            'TemplateNoSurat' => $TemplateNoSurat,
-            'tgl_hr_ini' => $tgl_hr_ini
-        ])->with('smasuk',$smasuk);
+        return view('bo.page.surat.masuk.surat-masuk-status',
+            [
+                'title' => 'Surat Masuk',
+                'dropdown1' => 'Surat Masuk',
+                'dropdown2' => '',
+                'suratM' => $smasuk, 
+                'badge_disposisi_status' => $badge_disposisi_status
+            ]);
     }
     public function store(Request $request)
     {
