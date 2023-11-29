@@ -47,18 +47,19 @@
                 display: none;
             }
 
+            .responsive-table .responsive-column {
+                border-bottom: 1px solid #ddd;
+                display: flex;
+                flex-direction: column;
+            }
 
-            .responsive-table td {
+
+            .responsive-table td{
                 display: block;
                 width: 100%;
                 box-sizing: border-box;
             }
 
-            .responsive-table td muncul{
-                display: block;
-                width: 100%;
-                box-sizing: border-box;
-            }
 
             /* Membuat tampilan daftar yang lebih baik */
             .responsive-table td {

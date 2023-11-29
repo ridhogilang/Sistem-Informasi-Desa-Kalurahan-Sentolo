@@ -83,17 +83,15 @@ class DisposisiController extends Controller
      */
     public function show(string $id)
     {
-        // Temukan data surat masuk berdasarkan ID
-        $smasuk = SMasuk::find($id);
-        // Tentukan nama file dan jalur lengkapnya
+        $smasuk = SMasuk::findOrFail($id);
         if (!$smasuk) {
-            // Handle jika data tidak ditemukan
             abort(404);
         }
-        // Dapatkan URL publik ke file di Google Drive
-        $publicUrl = Storage::disk('google')->url('Surat Masuk/' . $smasuk->dokumen);
-        // Redirect pengguna ke URL file di Google Drive
-        return redirect($publicUrl);
+        $filePath = storage_path("app/public/surat_masuk/{$smasuk->dokumen}");
+        if (!file_exists($filePath)) {
+            abort(404);
+        }
+        return response()->file($filePath);
     }
 
     /**

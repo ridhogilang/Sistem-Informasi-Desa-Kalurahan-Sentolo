@@ -300,9 +300,10 @@ Route::prefix('admin')->group(function () {
             });
 
             // Surat Masuk
-            Route::get('/surat-masuk', [SMasukController::class, 'index'])->middleware('can:Surat Masuk');
+            Route::get('/surat-masuk', [SMasukController::class, 'index'])->name('bo.e-surat.suratmasuk.index')->middleware('can:Surat Masuk');
             Route::get('/surat-masuk-datas', [SMasukController::class, 'datas'])->name('bo.surat-masuk.data')->middleware('can:Surat Masuk');
             Route::get('/surat-masuk-status/{id}', [SMasukController::class, 'status'])->name('bo.surat-masuk.status')->middleware('can:Surat Masuk');
+            Route::get('/surat-masuk/{id}/edit', [SMasukController::class, 'edit'])->name('bo.surat-masuk.status')->middleware('can:Surat Masuk');
             Route::post('/surat-masuk', [SMasukController::class, 'store'])->middleware('can:Surat Masuk');
             Route::put('/surat-masuk/{id}', [SMasukController::class, 'update'])->middleware('can:Surat Masuk');
             Route::get('/surat-masuk/{id}/document', [SMasukController::class, 'show'])->middleware('can:Surat Masuk');
