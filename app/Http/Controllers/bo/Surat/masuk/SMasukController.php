@@ -172,7 +172,7 @@ class SMasukController extends Controller
         $file->storeAs('public/surat_masuk', $fileName);
         $record['dokumen'] = $fileName;
 
-        // Set URL file lokal
+        // Set URL file lokal, tidak usah pakai link
         $publicUrl = asset('storage/surat_masuk/' . $fileName);
         $record['link'] = $publicUrl;
 
@@ -219,22 +219,15 @@ class SMasukController extends Controller
     // }
     public function show($id)
     {
-        // Temukan data surat masuk berdasarkan ID
         $smasuk = SMasuk::find($id);
         if (!$smasuk) {
-            // Handle jika data tidak ditemukan
             abort(404);
         }
-        // Path ke file dalam penyimpanan lokal
         $filePath = storage_path("app/public/surat_masuk/{$smasuk->dokumen}");
-        // Cek apakah file ada
         if (!file_exists($filePath)) {
             abort(404);
         }
-        // Dapatkan URL publik ke file lokal
-        $publicUrl = asset("storage/surat_masuk/{$smasuk->dokumen}");
-        // Redirect pengguna ke URL file lokal
-        return redirect($publicUrl);
+        return response()->file($filePath);
     }
     public function update(Request $request, $id)
     {
