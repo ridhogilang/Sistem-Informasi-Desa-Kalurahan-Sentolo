@@ -72,7 +72,7 @@ class BaganController extends Controller
 
         // Upload dan simpan file gambar
         $gambar = $request->file('gambar');
-        $gambarPath = $gambar->store('gambar-sinergi'); // Ganti 'folder-tujuan' dengan direktori penyimpanan yang sesuai
+        $gambarPath = $gambar->store('public/gambar-sinergi'); // Ganti 'folder-tujuan' dengan direktori penyimpanan yang sesuai
 
         $validateData['gambar'] = $gambarPath;
 
@@ -160,7 +160,7 @@ class BaganController extends Controller
 
             // Upload gambar baru
             $gambar = $request->file('gambar');
-            $gambarPath = $gambar->store('gambar-sinergi');
+            $gambarPath = $gambar->store('public/gambar-sinergi');
 
             // Update kolom 'gambar' dengan path gambar baru
             $sinergi->gambar = $gambarPath;

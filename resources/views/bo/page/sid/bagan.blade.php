@@ -404,11 +404,11 @@
                                                 href="/admin/sistem-informasi/edit-jadwal/{{ $item->id }}">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                            <a class="btn btn-danger" type="submit" id="deleteJadwal"
+                                            {{-- <a class="btn btn-danger" type="submit" id="deleteJadwal"
                                                 data-id="{{ $item->id }}"
                                                 href="/admin/sistem-informasi/hapus-jadwal/{{ $item->id }}"><i
                                                     class="fa-regular fa-trash-can"></i>
-                                            </a>
+                                            </a> --}}
                                         </td>
                                     </tr>
                                     <!-- Modal Edit Jadwal -->
