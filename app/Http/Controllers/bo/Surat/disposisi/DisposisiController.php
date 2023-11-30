@@ -35,14 +35,14 @@ class DisposisiController extends Controller
             ->get();
 
         $badge_disposisi_status = [
-            '1' => '<span class="badge bg-secondary"> menunggu tindakan </span>', 
-            '2' => '<span class="badge bg-success"> diteruskan </span>', 
-            '3' => '<span class="badge bg-danger"> dikembalikan </span>', 
-            '4' => '<span class="badge bg-primary"> pelaksana </span>', 
+            '1' => '<span class="badge bg-secondary"> menunggu tindakan </span>',
+            '2' => '<span class="badge bg-success"> diteruskan </span>',
+            '3' => '<span class="badge bg-danger"> dikembalikan </span>',
+            '4' => '<span class="badge bg-primary"> pelaksana </span>',
             //bagian hasil surat
-            '5' => '<span class="badge bg-success"> terlaksana </span>', 
-            '6' => '<span class="badge bg-danger"> gagal dilaksanakan </span>', 
-            '7' => '<span class="badge bg-warning"> terlambat dilaksanakan </span>', 
+            '5' => '<span class="badge bg-success"> terlaksana </span>',
+            '6' => '<span class="badge bg-danger"> gagal dilaksanakan </span>',
+            '7' => '<span class="badge bg-warning"> terlambat dilaksanakan </span>',
         ];
 
         //untuk mengetahui perorangan;
@@ -83,17 +83,15 @@ class DisposisiController extends Controller
      */
     public function show(string $id)
     {
-        // Temukan data surat masuk berdasarkan ID
         $smasuk = SMasuk::find($id);
-        // Tentukan nama file dan jalur lengkapnya
         if (!$smasuk) {
-            // Handle jika data tidak ditemukan
             abort(404);
         }
-        // Dapatkan URL publik ke file di Google Drive
-        $publicUrl = Storage::disk('google')->url('Surat Masuk/' . $smasuk->dokumen);
-        // Redirect pengguna ke URL file di Google Drive
-        return redirect($publicUrl);
+        $filePath = storage_path("app/public/surat_masuk/{$smasuk->dokumen}");
+        if (!file_exists($filePath)) {
+            abort(404);
+        }
+        return response()->file($filePath);
     }
 
     /**
@@ -114,7 +112,7 @@ class DisposisiController extends Controller
 
         if($dtldpss->jenis_disposisi == 'PLK')
         {
-            return redirect()->back()->with('toast_warning', 'Anda tidak bisa meneruskan surat ini'); 
+            return redirect()->back()->with('toast_warning', 'Anda tidak bisa meneruskan surat ini');
         }
 
         $record = $request->validate([
@@ -149,7 +147,7 @@ class DisposisiController extends Controller
                 'id_user' => $record['id_user'],
                 'jabatan_user' => $record['jabatan_user']
             ]);
-        //mengupdate status surat masuk 
+        //mengupdate status surat masuk
         SMasuk::where('id', '=', $id_surat)->update(['status_surat' => '2']);
 
         return redirect()->back()->with('toast_success', 'Surat Berhasil di teruskan');
@@ -160,7 +158,7 @@ class DisposisiController extends Controller
      */
     public function destroy(Request $request, string $id)
     {
-        
+
         $dtldpss = DetailDisposisiSurat::findOrFail($id);
         $id_surat = $dtldpss->id_surat;
 
@@ -230,7 +228,7 @@ class DisposisiController extends Controller
 
         $record['tgl_dilanjutkan_ke_disposisi'] = Carbon::now();
         $record['dilanjutkan_ke_disposisi'] = 'ARSIP';
-        
+
 
         //mengecek apakah surat sudah terlambat atau belum
         if(Carbon::now() > $surat->tanggal_kegiatan)
@@ -245,8 +243,8 @@ class DisposisiController extends Controller
         if($dtldpss->jenis_disposisi == 'PLK')
         {
             //update disposisi
-            $dtldpss->update($record); 
-            //proses pengarsipan surat masuk           
+            $dtldpss->update($record);
+            //proses pengarsipan surat masuk
             DisposisiSurat::where('id_surat', '=', $id_surat)
                 ->update(['is_arsip' => '1']);
 
@@ -278,7 +276,7 @@ class DisposisiController extends Controller
             $record['diterima_dari_disposisi'] = $id;
 
 
-            //diupdate dulu 
+            //diupdate dulu
             $dtldpss->update([
                 'tgl_dilanjutkan_ke_disposisi' => $record['tgl_dilanjutkan_ke_disposisi'],
                 'dilanjutkan_ke_disposisi' => $record['id'],
@@ -311,5 +309,5 @@ class DisposisiController extends Controller
             return redirect()->back()->with('toast_success', 'Surat Berhasil di Laksanakan');
         }
     }
-    
+
 }

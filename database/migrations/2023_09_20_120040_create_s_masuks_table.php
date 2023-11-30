@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('catatan');
             $table->string('lampiran');
             $table->string('dokumen');
-            $table->string('link');
             $table->string('status_surat')->nullable();
             $table->string('jenis_surat');
             $table->string('is_arsip')->nullable();

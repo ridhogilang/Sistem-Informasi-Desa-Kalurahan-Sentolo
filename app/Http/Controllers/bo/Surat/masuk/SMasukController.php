@@ -68,7 +68,6 @@ class SMasukController extends Controller
             'dropdown2' => '',
             'title' => 'Surat Masuk',
             'pejabat' => $pejabat,
-            'badge_disposisi_status' => $badge_disposisi_status,
             'TemplateNoSurat' => $TemplateNoSurat,
             'tgl_hr_ini' => $tgl_hr_ini
         ])->with('smasuk',$smasuk);
@@ -129,7 +128,7 @@ class SMasukController extends Controller
                 'title' => 'Surat Masuk',
                 'dropdown1' => 'Surat Masuk',
                 'dropdown2' => '',
-                'suratM' => $smasuk, 
+                'suratM' => $smasuk,
                 'badge_disposisi_status' => $badge_disposisi_status
             ]);
     }
@@ -171,10 +170,6 @@ class SMasukController extends Controller
         $fileName = 'SM-' . $request->judul_surat . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
         $file->storeAs('public/surat_masuk', $fileName);
         $record['dokumen'] = $fileName;
-
-        // Set URL file lokal, tidak usah pakai link
-        $publicUrl = asset('storage/surat_masuk/' . $fileName);
-        $record['link'] = $publicUrl;
 
         $record['jenis_surat'] = 'Surat Masuk';
         $record['id'] = 'SM-'. date('YmdHis') . '-' . rand(100, 999);
@@ -255,17 +250,21 @@ class SMasukController extends Controller
             'mimes' => 'File tidak valid.',
         ]);
 
-        if ($request->hasFile('dokumen')) {
-            // Hapus file dokumen lama di Google Drive jika ada
-            Storage::disk('google')->delete('Surat Masuk/' . $smasuk->dokumen);
+        // if ($request->hasFile('dokumen')) {
+        //     Storage::disk('google')->delete('Surat Masuk/' . $smasuk->dokumen);
 
+        //     $file = $request->file('dokumen');
+        //     $fileName = 'SM-' . $request->judul_surat . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
+        //     Storage::disk('google')->put('Surat Masuk/' . $fileName, file_get_contents($file));
+        //     $record['dokumen'] = $fileName;
+        // }
+
+        if ($request->hasFile('dokumen')) {
+            Storage::delete('public/surat_masuk/' . $smasuk->dokumen);
             $file = $request->file('dokumen');
             $fileName = 'SM-' . $request->judul_surat . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
-            Storage::disk('google')->put('Surat Masuk/' . $fileName, file_get_contents($file));
+            $file->storeAs('public/surat_masuk', $fileName);
             $record['dokumen'] = $fileName;
-            // Dapatkan URL publik ke file di Google Drive
-            $publicUrl = Storage::disk('google')->url('Surat Masuk/' . $fileName);
-            $record['link'] = $publicUrl;
         }
 
         $record['jenis_surat'] = 'Surat Masuk';

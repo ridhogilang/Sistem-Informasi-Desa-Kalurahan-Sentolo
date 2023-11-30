@@ -22,7 +22,6 @@ class SMasuk extends Model
         'catatan',
         'lampiran',
         'dokumen',
-        'link',
         'disposisi',
         'jenis_surat',
         'status_surat',
