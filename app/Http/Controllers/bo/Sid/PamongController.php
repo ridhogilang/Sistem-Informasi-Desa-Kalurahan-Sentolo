@@ -38,7 +38,7 @@ class PamongController extends Controller
         
         // Upload dan simpan file gambar
         $gambar = $request->file('gambar');
-        $gambarPath = $gambar->store('gambar-pamong'); // Ganti 'folder-tujuan' dengan direktori penyimpanan yang sesuai
+        $gambarPath = $gambar->store('public/gambar-pamong'); // Ganti 'folder-tujuan' dengan direktori penyimpanan yang sesuai
 
         $validateData['gambar'] = $gambarPath;
 
@@ -85,7 +85,7 @@ class PamongController extends Controller
     
             // Upload gambar baru
             $gambar = $request->file('gambar');
-            $gambarPath = $gambar->store('gambar-pamong');
+            $gambarPath = $gambar->store('public/gambar-pamong');
     
             // Update kolom 'gambar' dengan path gambar baru
             $pamong->gambar = $gambarPath;

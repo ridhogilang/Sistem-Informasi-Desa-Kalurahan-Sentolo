@@ -34,7 +34,7 @@ class GaleriController extends Controller
         
         // Upload dan simpan file gambar
         $gambar = $request->file('gambar');
-        $gambarPath = $gambar->store('gambar-galeri'); // Ganti 'folder-tujuan' dengan direktori penyimpanan yang sesuai
+        $gambarPath = $gambar->store('public/gambar-galeri'); // Ganti 'folder-tujuan' dengan direktori penyimpanan yang sesuai
 
         $validateData['gambar'] = $gambarPath;
         dd($validateData);
@@ -81,13 +81,13 @@ class GaleriController extends Controller
     
             // Upload gambar baru
             $gambar = $request->file('gambar');
-            $gambarPath = $gambar->store('gambar-galeri');
+            $gambarPath = $gambar->store('public/gambar-galeri');
     
             // Update kolom 'gambar' dengan path gambar baru
             $galeri->gambar = $gambarPath;
         } else {
             // Jika tidak ada pembaruan pada gambar, gunakan gambar yang sudah ada
-            $galeri->gambar = $request->input('gambar_existing');
+            $galeri->gambar = $request->input('public/gambar_existing');
         }
 
         $galeri->nama = $request->input('nama');
