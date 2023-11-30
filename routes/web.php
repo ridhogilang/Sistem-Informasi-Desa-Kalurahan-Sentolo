@@ -57,6 +57,8 @@ use App\Http\Controllers\bo\Sid\HeaderController;
 use App\Http\Controllers\bo\Sid\KomentarController;
 use App\Http\Controllers\bo\Sid\KomponenController;
 use App\Http\Controllers\bo\Sid\PamongController;
+
+use App\Http\Controllers\MandiriController;
 use App\Models\AgendaBalai;
 
 /*
@@ -298,13 +300,38 @@ Route::prefix('admin')->group(function () {
             });
 
             // Surat Masuk
-            Route::get('/surat-masuk', [SMasukController::class, 'index'])->middleware('can:Surat Masuk');
+            Route::get('/surat-masuk', [SMasukController::class, 'index'])->name('bo.e-surat.suratmasuk.index')->middleware('can:Surat Masuk');
             Route::get('/surat-masuk-datas', [SMasukController::class, 'datas'])->name('bo.surat-masuk.data')->middleware('can:Surat Masuk');
             Route::get('/surat-masuk-status/{id}', [SMasukController::class, 'status'])->name('bo.surat-masuk.status')->middleware('can:Surat Masuk');
+            Route::get('/surat-masuk/{id}/edit', [SMasukController::class, 'edit'])->name('bo.surat-masuk.status')->middleware('can:Surat Masuk');
             Route::post('/surat-masuk', [SMasukController::class, 'store'])->middleware('can:Surat Masuk');
             Route::put('/surat-masuk/{id}', [SMasukController::class, 'update'])->middleware('can:Surat Masuk');
             Route::get('/surat-masuk/{id}/document', [SMasukController::class, 'show'])->middleware('can:Surat Masuk');
             Route::delete('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy'])->middleware('can:Surat Masuk');
+        });
+        //kependudukan
+        Route::prefix('kependudukan')->group(function () {
+            Route::get('/dashboard', function () {
+                return view('bo.page.dashboard', [
+                    'dropdown1' => '',
+                    'dropdown2' => '',
+                    'title' => 'Dashboard',
+                ]);
+            })->name('bo.penduduk.dashboard');
+            Route::get('/penduduk', [PendudukController::class, 'index']);
+            Route::get('/data-penduduk', [PendudukController::class, 'datasaktif'])->name('bo.penduduk.data.aktif');
+            // Crud data penduduk
+            Route::get('/penduduk-migrasi', [PendudukController::class, 'migrasi']);
+            Route::get('/data-penduduk-migrasi', [PendudukController::class, 'datasnonaktif'])->name('bo.penduduk.data.migrasi');
+            Route::get('/penduduk/tambah-data', [PendudukController::class, 'create'])->defaults('action', 'Tambah');
+            Route::post('/penduduk', [PendudukController::class, 'store']);
+            Route::get('/penduduk/{id}/edit', [PendudukController::class, 'edit'])->defaults('action', 'Edit');
+            Route::put('/penduduk/{id}', [PendudukController::class, 'update']);
+            Route::delete('/penduduk/{id}/delete', [PendudukController::class, 'destroy']);
+            Route::delete('/penduduk-migrasi/{id}/delete', [PendudukController::class, 'destroymigrasi']);
+            // Import / Export Penduduk
+            Route::get('/penduduk-export', [PendudukController::class, 'pendudukexport']);
+            Route::post('/penduduk-import', [PendudukController::class, 'pendudukimport']);
         });
         //untuk tim sistem informasi
         // routes/web.php
@@ -434,21 +461,8 @@ Route::prefix('admin')->group(function () {
 });
 
 // Get data penduduk
-Route::get('/get-penduduk/{nik}', [PendudukController::class, 'info']);
-// Crud data penduduk
-Route::get('/penduduk', [PendudukController::class, 'index']);
-Route::get('/data-penduduk', [PendudukController::class, 'datasaktif'])->name('bo.penduduk.data.aktif');
-Route::get('/penduduk-migrasi', [PendudukController::class, 'migrasi']);
-Route::get('/data-penduduk-migrasi', [PendudukController::class, 'datasnonaktif'])->name('bo.penduduk.data.migrasi');
-Route::get('/penduduk/tambah-data', [PendudukController::class, 'create'])->defaults('action', 'Tambah');
-Route::post('/penduduk', [PendudukController::class, 'store']);
-Route::get('/penduduk/{id}/edit', [PendudukController::class, 'edit'])->defaults('action', 'Edit');
-Route::put('/penduduk/{id}', [PendudukController::class, 'update']);
-Route::delete('/penduduk/{id}/delete', [PendudukController::class, 'destroy']);
-Route::delete('/penduduk-migrasi/{id}/delete', [PendudukController::class, 'destroymigrasi']);
-// Import / Export Penduduk
-Route::get('/penduduk-export', [PendudukController::class, 'pendudukexport']);
-Route::post('/penduduk-import', [PendudukController::class, 'pendudukimport']);
+Route::get('/get-penduduk/{nik}', [PendudukController::class, 'info'])->middleware(['web', 'auth']);
+
 
 
 // Mandiri

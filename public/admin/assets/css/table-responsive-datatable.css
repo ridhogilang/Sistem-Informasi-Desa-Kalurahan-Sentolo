@@ -1,0 +1,69 @@
+<style> 
+        /* Styles untuk tampilan desktop/tablet */
+        .table-container table {
+            width: 100%;
+        }
+
+        .table-container th, .table-container td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        /* Styles untuk tampilan ponsel */
+        @media (max-width: 600px) {
+            .table-container table {
+                border: 0;
+            }
+
+            .table-container th, .table-container td {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* Membuat tampilan daftar yang lebih baik */
+            .table-container td {
+                border-bottom: 1px solid #ddd;
+            }
+        }
+
+        /* Styles untuk tampilan desktop/tablet */
+        .responsive-table table {
+            width: 100%;
+        }
+
+        .responsive-table th, .responsive-table td {
+            padding: 8px;
+            text-align: left;
+        }
+        /* Styles untuk tampilan ponsel */
+        @media (max-width: 860px) {
+            .responsive-table table {
+                border: 0;
+            }
+
+            .responsive-table th{
+                display: none;
+            }
+
+            .responsive-table .responsive-column {
+                border-bottom: 1px solid #ddd;
+                display: flex;
+                flex-direction: column;
+            }
+
+
+            .responsive-table td{
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+
+            /* Membuat tampilan daftar yang lebih baik */
+            .responsive-table td {
+                border-bottom: 1px solid #ddd;
+            }
+        }
+    </style>

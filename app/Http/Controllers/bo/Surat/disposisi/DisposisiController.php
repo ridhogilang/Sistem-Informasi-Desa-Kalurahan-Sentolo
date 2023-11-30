@@ -83,7 +83,7 @@ class DisposisiController extends Controller
      */
     public function show(string $id)
     {
-        $smasuk = SMasuk::find($id);
+        $smasuk = SMasuk::findOrFail($id);
         if (!$smasuk) {
             abort(404);
         }

@@ -5,6 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+    <link href="{{ asset('admin/assets/css/table-responsive-datatable.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -27,7 +28,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Data Penduduk</h5>
                         <div class="mb-3">
-                            <a class="btn btn-primary btn-sm" type="button" href="/penduduk/tambah-data"><i class="fa-solid fa-plus"></i> Tambah Data</a>
+                            <a class="btn btn-primary btn-sm" type="button" href="/admin/kependudukan/penduduk/tambah-data"><i class="fa-solid fa-plus"></i> Tambah Data</a>
                             <!-- Import -->
                             <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#importModal">
                                 <i class="fa-solid fa-file-import"></i> Import Excel
@@ -35,7 +36,7 @@
                             <div class="modal fade" id="importModal" tabindex="-1">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <form action="/penduduk-import" method="POST" enctype="multipart/form-data">
+                                        <form action="/admin/kependudukan/penduduk-import" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="modal-header">
                                                 <h5 class="modal-title">Masukkan file </h5>
@@ -59,11 +60,11 @@
                                     </div>
                                 </div>
                             </div><!-- End Import-->
-                            <a class="btn btn-success btn-sm" type="button" href="/penduduk-export"><i class="fa-solid fa-file-export"></i> Export Excel</a>
+                            <a class="btn btn-success btn-sm" type="button" href="/admin/kependudukan/penduduk-export"><i class="fa-solid fa-file-export"></i> Export Excel</a>
                         </div>
 
                         <!-- Table with hoverable rows -->
-                        <table class="table table-hover data-table-penduduk w-100">
+                        <table class="table table-hover responsive-table data-table-penduduk w-100">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
@@ -105,6 +106,13 @@
                 {data: 'tempat_lahir', name: 'tempat_lahir'},
                 {data: 'tanggal_lahir', name: 'tanggal_lahir'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
+            ],
+            columnDefs: [
+                    {
+                        "targets": 0,
+                        "className": "text-center align-middle text-sm font-weight-normal hilang-nan",
+                        "width": "4%"
+                    },
             ]
         });
 

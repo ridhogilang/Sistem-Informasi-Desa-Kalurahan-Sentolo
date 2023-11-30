@@ -105,12 +105,15 @@ class ArsipController extends Controller
         //memilih surat masuk apakah surat keluar
         if($arsip_surat->jenis_surat_2 == 'Surat Masuk')
         {
-            $smasuk = SMasuk::find($arsip_surat->id_surat);
+            $smasuk = SMasuk::findOrFail($arsip_surat->id_surat);
             if (!$smasuk) {
                 abort(404);
             }
-            $publicUrl = Storage::disk('google')->url('Surat Masuk/' . $smasuk->dokumen);
-            return redirect($publicUrl);
+            $filePath = storage_path("app/public/surat_masuk/{$smasuk->dokumen}");
+            if (!file_exists($filePath)) {
+                abort(404);
+            }
+            return response()->file($filePath);
         }
 
         if($arsip_surat->jenis_surat_2 == 'Surat Keluar')

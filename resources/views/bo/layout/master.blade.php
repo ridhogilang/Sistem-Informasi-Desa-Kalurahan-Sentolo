@@ -53,6 +53,8 @@
         @include('bo.partial.sidebar_surat')
     @elseif(request()->is('admin/sistem-informasi*'))
         @include('bo.partial.sidebar_sid')
+    @elseif(request()->is('admin/kependudukan*'))
+        @include('bo.partial.sidebar-kependudukan')
     @else
         @include('bo.partial.sidebar')
     @endif

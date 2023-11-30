@@ -5,6 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+    <link href="{{ asset('admin/assets/css/table-responsive-datatable.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -112,7 +113,7 @@
                         </div>
 
                         <!-- Table with hoverable rows -->
-                        <table class="table table-hover data-table-surat-masuk w-100">
+                        <table class="table table-hover responsive-table data-table-surat-masuk w-100">
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>
@@ -155,6 +156,7 @@
                 {data: 'tanggal_kegiatan', name: 'tanggal_kegiatan'},
                 {data: 'status', name: 'status', orderable: false, searchable: false},
                 {data: 'dokumen', name: 'dokumen', orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             columnDefs: [
                     {
@@ -183,16 +185,16 @@
                     {
                         "targets": 5,
                         "defaultContent" : "-",
-                        "className": "text-center text-sm font-weight-normal",
+                        "className": "text-center text-sm font-weight-normal ",
                     },
-                    // {
-                    //     "targets": 6,
-                    //     "defaultContent" : "-",
-                    //     "className": "upc ps-3 pt-0 pb-0 align-middle text-sm font-weight-normal",
-                    // },
                     {
                         "targets": 6,
-                        "className": "text-center text-sm font-weight-normal",
+                        "defaultContent" : "-",
+                        "className": "text-center text-sm font-weight-normal ",
+                    },
+                    {
+                        "targets": 7,
+                        "className": "text-center text-sm font-weight-normal ",
                     }
                 ]
         });

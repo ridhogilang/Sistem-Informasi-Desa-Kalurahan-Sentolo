@@ -6,7 +6,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="/penduduk">Data Penduduk</a></li>
+                <li class="breadcrumb-item"><a href="/admin/kependudukan/penduduk">Data Penduduk</a></li>
                 <li class="breadcrumb-item active">{{ $action }} Data Penduduk</li>
             </ol>
         </nav>
@@ -23,7 +23,7 @@
                             <h5 class="card-title">Tambah Data</h5>
 
                             <!-- Tambah Data -->
-                            <form class="row g-3" action="/penduduk" method="POST" enctype="multipart/form-data">
+                            <form class="row g-3" action="/admin/kependudukan/penduduk" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-md-6">
                                     <label for="nik" class="form-label">NIK<i style="color: #ff0000;">*</i></label>
@@ -151,7 +151,7 @@
                             <h5 class="card-title">Edit Data</h5>
 
                             <!-- Edit Data -->
-                            <form class="row g-3" action="/penduduk/{{$penduduk->id}}" method="POST" enctype="multipart/form-data">
+                            <form class="row g-3" action="/admin/kependudukan/penduduk/{{$penduduk->id}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="col-md-6">
@@ -291,7 +291,7 @@
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                    <a type="submit" href="/penduduk" class="btn btn-secondary">Kembali</a>
+                                    <a type="submit" href="/admin/kependudukan/penduduk" class="btn btn-secondary">Kembali</a>
                                 </div>
                             </form><!-- End Multi Columns Form -->
 
