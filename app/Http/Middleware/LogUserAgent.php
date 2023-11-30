@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Jenssegers\Agent\Agent;
+use Illuminate\Support\Facades\Cache;
 
 class LogUserAgent
 {
@@ -15,13 +16,16 @@ class LogUserAgent
         $operatingSystem = $agent->platform();
         $browser = $agent->browser();
         $deviceName = $agent->device();
-    
-        // Menyimpan informasi ke dalam session flash
-        session()->flash('ip_address', $ipAddress);
-        session()->flash('operating_system', $operatingSystem);
-        session()->flash('browser', $browser);
-        session()->flash('device_name', $deviceName);
-    
+
+        // Simpan informasi ke cache
+        $userKey = 'user_' . $ipAddress;
+        Cache::put($userKey, [
+            'deviceName' => $deviceName,
+            'ipAddress' => $ipAddress,
+            'operatingSystem' => $operatingSystem,
+            'browser' => $browser,
+        ], 1); // Simpan selama 1 menit
+
         return $next($request);
     }
 }

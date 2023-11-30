@@ -876,6 +876,28 @@ class DatabaseSeeder extends Seeder
             'jabatan'=> 'Dukuh Siwalan',
             'gambar'=> '/gambar-pamong/Agus Sumarno (Dukuh Siwalan).jpg',
         ]);
+
+        $pamongs = Pamong::all();
+
+        foreach ($pamongs as $pamong) {
+            // Mendapatkan nama untuk User
+            $userName = $pamong->nama;
+
+            // Menghapus spasi dan mengubah menjadi huruf kecil untuk email
+            $userEmail = strtolower(str_replace(' ', '', $userName)) . '@mail.com';
+
+            // Membuat data User
+            User::create([
+                'nama' => $userName,
+                'email' => $userEmail,
+                'email_verified_at' => now(),
+                'password' => Hash::make('password'),
+                'jabatan' => 'Pamong',
+                'foto_resmi' => $pamong->gambar,
+                'is_active' => '1',
+                'is_delete' => '0'
+            ]);
+        }
         
         Berita::create([
             "judul" => "GELAR POTENSI RINTISAN KALURAHAN BUDAYA",

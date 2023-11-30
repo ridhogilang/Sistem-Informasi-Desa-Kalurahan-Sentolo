@@ -58,6 +58,7 @@ use App\Http\Controllers\bo\Sid\HeaderController;
 use App\Http\Controllers\bo\Sid\KomentarController;
 use App\Http\Controllers\bo\Sid\KomponenController;
 use App\Http\Controllers\bo\Sid\PamongController;
+use App\Http\Controllers\PresensiController;
 use App\Models\AgendaBalai;
 
 /*
@@ -97,7 +98,9 @@ Route::controller(HomeController::class)->group(function () {
 //untuk login
 Route::prefix('sitemin-sentolo')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
+    Route::get('/login-absen', [LoginController::class, 'absen'])->middleware('guest')->name('loginabsen');
     Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
+    Route::post('/login-absen', [LoginController::class, 'loginabsen'])->middleware('guest')->name('login.absen');
     Route::get('/verifymail/{id}', [VerifikasiEmailController::class, 'mailverify'])->name('verifymail');
     Route::resource('/forget_password', ForgetPasswordController::class)->except(['create', 'show', 'destroy']);
 });
@@ -179,6 +182,12 @@ Route::prefix('admin')->group(function () {
                 'title' => 'Dashboard',
             ]);
         })->name('bo.home');
+
+        Route::get('/absen-pamong', [HomeController::class, 'absen'])->name('bo.presensi');
+        Route::post('/absen', [PresensiController::class, 'checkIn'])->name('kehadiran.check-in');
+        Route::patch('/absen/{kehadiran}',[PresensiController::class, 'checkOut'])->name('kehadiran.check-out');
+        Route::get('/daftar-hadir', [PresensiController::class, 'index'])->name('daftar-hadir');
+        Route::get('/daftar-hadir/cari', [PresensiController::class, 'cariDaftarHadir'])->name('daftar-hadir.cari');
 
         //halaman bantuan
         Route::controller(BantuanController::class)->prefix('bantuan')->group(function () {
@@ -370,6 +379,7 @@ Route::prefix('admin')->group(function () {
             Route::controller(AdminController::class)->group(function () {
                 Route::get('/dashboard', 'index')->name('bo.sid.dashboard');
                 Route::get('/ipuser', 'ip');
+                Route::get('/online-users', 'getOnlineUsers')->name('bo.sid.onlineuser');
             });
             //running text
             Route::controller(KomponenController::class)->group(function () {

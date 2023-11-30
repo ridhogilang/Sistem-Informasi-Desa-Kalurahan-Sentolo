@@ -15,6 +15,7 @@ class ArtikelSeeder extends Seeder
     {
         //DATA KALURAHAN
         //1. Data Penduduk Menurut Populasi Per Wilayah
+        
         Berita::create([
             "judul" => "Data Penduduk Menurut Populasi Per Wilayah",
             "penulis" => "Admin",

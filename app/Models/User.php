@@ -50,4 +50,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function present()
+    {
+        return $this->hasMany(Present::class);
+    }
 }

@@ -23,7 +23,7 @@
                         </div>
 
                         <!-- Table with hoverable rows -->
-                        <table class="table table-hover datatable">
+                        <table class="table table-hover datatable" id="online-users-table">
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>
@@ -33,18 +33,7 @@
                                     <th scope="col">Browser</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @php
-                                    $no = 1;
-                                @endphp
-                                <tr>
-                                    <th scope="row">{{ $no++ }}.</th>
-                                    <td>{{ $deviceName }}</td>
-                                    <td>{{ $ipAddress }}</td>
-                                    <td>{{ $operatingSystem }}</td>
-                                    <td>{{ $browser }}</td>
-                                </tr>
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -55,31 +44,32 @@
 @endsection
 
 @push('footer')
-    <script type="text/javascript">
-        $(function() {
-            $(document).on('click', '#deletemenu', function(e) {
-                e.preventDefault();
-                var data_id = $(this).attr("data-id");
-
-                Swal.fire({
-                    title: 'Apakah kamu Yakin?',
-                    text: "Kamu ingin menghapus data ini ?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, hapus sekarang!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location = "/admin/sistem-informasi/deletemenu/" + data_id,
-                            Swal.fire(
-                                'Deleted!',
-                                'Data sudah terhapus.',
-                                'success'
-                            )
+    <script>
+        $(document).ready(function() {
+            $('#online-users-table').DataTable({
+                ajax: '{{ route("bo.sid.onlineuser") }}',
+                columns: [{
+                        data: 'no',
+                        name: 'no',
+                        searchable: false,
+                        orderable: false
+                    },
+                    {
+                        data: 'ipAddress'
+                    },
+                    {
+                        data: 'browser'
+                    },
+                    {
+                        data: 'os'
+                    },
+                    {
+                        data: 'device'
                     }
-                })
-
+                ],
+                rowCallback: function(row, data, index) {
+                    $('td:eq(0)', row).html(index + 1);
+                }
             });
         });
     </script>

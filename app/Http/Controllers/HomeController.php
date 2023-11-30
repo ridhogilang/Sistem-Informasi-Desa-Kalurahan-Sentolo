@@ -25,6 +25,7 @@ use PhpParser\Node\Expr\FuncCall;
 use App\Http\Controllers\Controller;
 use App\Models\AgendaBalai;
 use App\Models\Komentar;
+use App\Models\Present;
 use Illuminate\Support\Facades\Session;
 
 
@@ -500,6 +501,28 @@ class HomeController extends Controller
             // Jawaban CAPTCHA salah, tampilkan pesan kesalahan
             return redirect()->back()->with('error', '!!Jawaban CAPTCHA ANDA SALAH!!');
         }
+    }
+
+    public function absen()
+    {
+        $present = Present::whereUserId(auth()->user()->id)->whereTanggal(date('Y-m-d'))->first();
+        $url = 'https://kalenderindonesia.com/api/YZ35u6a7sFWN/libur/masehi/'.date('Y/m');
+        $kalender = file_get_contents($url);
+        $kalender = json_decode($kalender, true);
+        $libur = false;
+        $holiday = null;
+        if ($kalender['data'] != false) {
+            if ($kalender['data']['holiday']['data']) {
+                foreach ($kalender['data']['holiday']['data'] as $key => $value) {
+                    if ($value['date'] == date('Y-m-d')) {
+                        $holiday = $value['name'];
+                        $libur = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return view('bo.page.absen.presensi', compact('present','libur','holiday'));
     }
 
 }

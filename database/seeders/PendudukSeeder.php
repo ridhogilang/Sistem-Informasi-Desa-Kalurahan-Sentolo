@@ -16,7 +16,7 @@ class PendudukSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1, 10000) as $index) {
+        foreach (range(1, 100) as $index) {
             DB::table('penduduk')->insert([
                 'nik' => $faker->unique()->numerify('3401############'),
                 'nama' => $faker->name,

@@ -12,11 +12,37 @@
                             style="color: #ffffff;"></span>
                         <span> baldessentolo@gmail.com</span>
                     </div>
-                    <div class="contact-item">
-                        <a class="icon icon-sm pr-1 text-secondary fa-solid fa-right-to-bracket" href="/sitemin-sentolo/login" target="_blank"
-                            style="color: #ffffff;"></a>
-                        <a href="/sitemin-sentolo/login" target="_blank"> Administrator</a>
-                    </div>
+                    @auth
+                        <ul class="navigation">
+                            <li class="navigation-item">
+                                <a class="navigation-link" href="3" target="_blank">
+                                    <i class="fa-solid mr-2 fa-right-to-bracket" style="color: #ffffff;"></i>
+                                    Hai... {{ auth()->user()->nama }}
+                                    <i class="fa-solid ml-2 fa-angle-down"></i>
+                                </a>                               
+                                <ul class="navigation-dropdown">
+                                    <li class="navigation-dropdown-item">
+                                        <a href="/admin/dashboard"
+                                            class="navigation-dropdown-link">Dashboard</a>
+                                    </li>
+                                    <li class="navigation-dropdown-item">
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button class="navigation-dropdown-link" href="#">
+                                                <span>Sign Out</span>
+                                            </button>    
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        @else
+                            <div class="contact-item">
+                                <a class="icon icon-sm pr-1 text-secondary fa-solid fa-right-to-bracket"
+                                    href="/sitemin-sentolo/login" target="_blank" style="color: #ffffff;"></a>
+                                <a href="/sitemin-sentolo/login" target="_blank"> Administrator</a>
+                            </div>
+                        @endauth
                 </div>
             </div>
             <div class="header-top-right">
@@ -64,9 +90,10 @@
             </a>
             <form action="/berita/kategori/cari-berita" method="GET" class="form mt-4 lg:mt-0">
                 <div class="form-search">
-                    <input type="search" name="cari" id="cari" class="form-search-input" placeholder="Cari..."
-                        value="{{ isset($keyword) ? $keyword : '' }}">
-                    <button class="form-search-button"><span class="fa-solid fa-magnifying-glass mx-2"></span></button>
+                    <input type="search" name="cari" id="cari" class="form-search-input"
+                        placeholder="Cari..." value="{{ isset($keyword) ? $keyword : '' }}">
+                    <button class="form-search-button"><span
+                            class="fa-solid fa-magnifying-glass mx-2"></span></button>
                 </div>
             </form>
         </div>
@@ -75,7 +102,8 @@
 <nav class="main-nav is-sticky hidden lg:block">
     <div class="main-nav-inner">
         <ul class="navigation">
-            <div class="navigation-item inline-block lg:hidden uppercase pt-3 pb-1 tracking-wide font-bold text-lg">Menu
+            <div class="navigation-item inline-block lg:hidden uppercase pt-3 pb-1 tracking-wide font-bold text-lg">
+                Menu
             </div>
             <li class="navigation-item is-active lg:inline-block">
                 <a href="/" class="navigation-link"><span class="fa-solid fa-house"></span></a>
