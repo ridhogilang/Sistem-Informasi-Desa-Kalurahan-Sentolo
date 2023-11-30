@@ -150,6 +150,17 @@
                             <hr class="dropdown-divider">
                         </li>
                     @endcan
+                    @can('Menejemen Kependudukan')
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('bo.penduduk.dashboard') }}">
+                                <i class="bi bi-person"></i>
+                                <span>Kependudukan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    @endcan
                     
 
                 </ul><!-- End Profile Dropdown Items -->
@@ -166,7 +177,7 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 
                     <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
+                        <h6>{{ auth()->user()->nama }}</h6>
                         <span>
                             @if(isset(auth()->user()->roles[0]['name']))
                                 {{ auth()->user()->roles[0]['name'] }}

@@ -46,6 +46,8 @@ class DatabaseSeeder extends Seeder
         'Menejemen Sistem Informasi',
             //berita
             'lihat berita', 'edit berita', 'hapus berita',
+        //kependudukan
+        'Menejemen Kependudukan',
         
         
     ];

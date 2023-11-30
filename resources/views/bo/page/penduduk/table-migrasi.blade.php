@@ -5,6 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+    <link href="{{ asset('admin/assets/css/table-responsive-datatable.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -28,7 +29,7 @@
                         <h5 class="card-title">Data Penduduk Migrasi</h5>
 
                         <!-- Table with hoverable rows -->
-                        <table class="table table-hover data-table-penduduk-migrasi">
+                        <table class="table table-hover responsive-table data-table-penduduk-migrasi w-100">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
@@ -56,7 +57,7 @@
 @push('footer')
     <script type="text/javascript">
       $(function () {
-          
+
         var table = $('.data-table-penduduk-migrasi').DataTable({
             processing: true,
             serverSide: true,
@@ -71,7 +72,7 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
-          
+
       });
     </script>
 @endpush
