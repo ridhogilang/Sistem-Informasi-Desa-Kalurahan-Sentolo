@@ -57,12 +57,9 @@ use App\Http\Controllers\bo\Sid\HeaderController;
 use App\Http\Controllers\bo\Sid\KomentarController;
 use App\Http\Controllers\bo\Sid\KomponenController;
 use App\Http\Controllers\bo\Sid\PamongController;
-<<<<<<< HEAD
 use App\Http\Controllers\PresensiController;
-=======
 
 use App\Http\Controllers\MandiriController;
->>>>>>> 8fb3b7bfbdf0c47930be219f8e3a4633e4751678
 use App\Models\AgendaBalai;
 
 /*
