@@ -11,7 +11,7 @@
         @can('Menejemen E-Surat')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/admin/e-surat/dashboard">
-                    <<i class="bi bi-envelope"></i>
+                    <i class="bi bi-envelope"></i>
                     <span>E-surat</span>
                 </a>
             </li><!-- End Surat Masuk Nav -->
@@ -34,7 +34,7 @@
         @endcan
         @can('Menejemen Kependudukan')
         <li class="nav-item">
-            <a class="nav-link href="{{ route('bo.penduduk.dashboard') }}">
+            <a class="nav-link collapsed" href="{{ route('bo.penduduk.dashboard') }}">
                 <i class="bi bi-person"></i>
                 <span>Kependudukan</span>
             </a>

@@ -13,7 +13,7 @@
                             <h5 class="card-title">Profile Penduduk</h5>
 
                             <div class="d-flex align-items-center">
-                                <a class="d-flex align-items-center" href="/profile-penduduk">
+                                <a class="d-flex align-items-center w-100" href="/profile-penduduk">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-person"></i>
                                     </div>
@@ -35,7 +35,7 @@
                             <h5 class="card-title">Buat Surat</h5>
 
                             <div class="d-flex align-items-center">
-                                <a class="d-flex align-items-center" href="/buat-surat">
+                                <a class="d-flex align-items-center w-100" href="/buat-surat">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="fa-regular fa-file"></i>
                                     </div>
@@ -57,7 +57,7 @@
                             <h5 class="card-title">Buat Pesan</h5>
 
                             <div class="d-flex align-items-center">
-                                <a class="d-flex align-items-center" href="/buat-pesan">
+                                <a class="d-flex align-items-center w-100" href="/buat-pesan">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="fa-regular fa-message"></i>
                                     </div>
@@ -79,7 +79,7 @@
                             <h5 class="card-title">Bantuan Penduduk</h5>
 
                             <div class="d-flex align-items-center">
-                                <a class="d-flex align-items-center" href="/bantuan">
+                                <a class="d-flex align-items-center w-100" href="/bantuan">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="fa-regular fa-handshake"></i>
                                     </div>

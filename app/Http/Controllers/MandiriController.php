@@ -12,12 +12,6 @@ class MandiriController extends Controller
             'title' => 'Profile Penduduk'
         ]);
     }
-    public function surat()
-    {
-        return view('bo.page.mandiri.buat-surat', [
-            'title' => 'Buat Surat Mandiri'
-        ]);
-    }
     public function pesan()
     {
         return view('bo.page.mandiri.buat-pesan', [

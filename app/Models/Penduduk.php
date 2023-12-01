@@ -24,7 +24,6 @@ class Penduduk extends Model
         'nomor_telepon',
         'penghasilan',
         'foto_penduduk',
-        'link_foto',
         'nomor_kk',
         'nomor_ktp',
         'status_nyawa',

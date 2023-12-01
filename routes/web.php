@@ -29,7 +29,6 @@ use App\Http\Controllers\bo\Surat\keluar\SkdController;
 use App\Http\Controllers\bo\Surat\keluar\SklController;
 use App\Http\Controllers\bo\Surat\keluar\SkpenghasilanController;
 use App\Http\Controllers\bo\Surat\keluar\SpbbekerjaController;
-use App\Http\Controllers\ScstmController;
 //validasi surat keluar
 use App\Http\Controllers\bo\Surat\validasi\ValidasiController;
 //disposisi surat masuk
@@ -59,7 +58,10 @@ use App\Http\Controllers\bo\Sid\KomponenController;
 use App\Http\Controllers\bo\Sid\PamongController;
 use App\Http\Controllers\PresensiController;
 
+use App\Http\Controllers\ScstmController;
+use App\Http\Controllers\ValidasimandiriController;
 use App\Http\Controllers\MandiriController;
+use App\Http\Controllers\BuatsuratController;
 use App\Models\AgendaBalai;
 
 /*
@@ -473,11 +475,12 @@ Route::prefix('admin')->group(function () {
 // Get data penduduk
 Route::get('/get-penduduk/{nik}', [PendudukController::class, 'info'])->middleware(['web', 'auth']);
 
-
+// validasi mandiri
+Route::get('/validasi-mandiri', [ValidasimandiriController::class, 'index']);
 
 // Mandiri
 Route::get('/profile-penduduk', [MandiriController::class, 'index']);
-Route::get('/buat-surat', [MandiriController::class, 'surat']);
+Route::get('/buat-surat', [BuatsuratController::class, 'index']);
 Route::get('/buat-pesan', [MandiriController::class, 'pesan']);
 Route::get('/bantuan', [MandiriController::class, 'bantuan']);
 

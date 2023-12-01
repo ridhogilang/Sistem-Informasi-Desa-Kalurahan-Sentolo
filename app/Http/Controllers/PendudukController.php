@@ -173,18 +173,19 @@ class PendudukController extends Controller
         if ($request->hasFile('foto_penduduk')) {
             $file = $request->file('foto_penduduk');
             $fileName = 'FOTO-' . $request->nama . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
-            Storage::disk('google')->put('Foto Penduduk/' .$fileName, file_get_contents($file));
+            // Storage::disk('google')->put('Foto Penduduk/' .$fileName, file_get_contents($file));
+            $file->storeAs('public/foto_penduduk', $fileName);
             $record['foto_penduduk'] = $fileName;
 
-            $publicUrl = Storage::disk('google')->url('Foto Penduduk/' . $fileName);
-            $record['link_foto'] = $publicUrl;
+            // $publicUrl = Storage::disk('google')->url('Foto Penduduk/' . $fileName);
+            // $record['link_foto'] = $publicUrl;
         }
         $record['status_nyawa'] = 'Hidup';
         $record['is_active'] = '1';
 
         //menginputkan data penduduk
         Penduduk::create($record);
-        return redirect('/penduduk')->with('toast_success', 'Data Disimpan!');
+        return redirect('/admin/kependudukan/penduduk')->with('toast_success', 'Data Disimpan!');
     }
     public function edit($id, $action)
     {
@@ -226,36 +227,21 @@ class PendudukController extends Controller
         ]);
 
         if ($request->hasFile('foto_penduduk')) {
-            // Hapus file foto_penduduk lama di Google Drive jika ada
-            Storage::disk('google')->delete('Foto Penduduk/' . $penduduk->foto_penduduk);
+            // Hapus file foto_penduduk lama jika ada
+            Storage::delete('public/foto_penduduk/' . $penduduk->foto_penduduk);
 
             $file = $request->file('foto_penduduk');
             $fileName = 'FOTO-' . $request->nama . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
-            Storage::disk('google')->put('Foto Penduduk/' . $fileName, file_get_contents($file));
+            $file->storeAs('public/foto_penduduk', $fileName);
             $record['foto_penduduk'] = $fileName;
-            // Dapatkan URL publik ke file di Google Drive
-            $publicUrl = Storage::disk('google')->url('Foto Penduduk/' . $fileName);
-            $record['link_foto'] = $publicUrl;
+
+            // $publicUrl = Storage::disk('google')->url('Foto Penduduk/' . $fileName);
+            // $record['link_foto'] = $publicUrl;
         }
 
         Penduduk::where('id', $id)->update($record);
-        return redirect('/penduduk')->with('toast_success', 'Data Diubah!');
+        return redirect('/admin/kependudukan/penduduk')->with('toast_success', 'Data Diubah!');
     }
-    // public function destroy($id)
-    // {
-    //     // Temukan data Foto Penduduk berdasarkan ID
-    //     $penduduk = Penduduk::find($id);
-    //     // Hapus file dari Google Drive
-    //     $filePath = 'Foto Penduduk/' . $penduduk->dokumen;
-    //     // Periksa apakah file ada di Google Drive dan hapus jika ada
-    //     if (Storage::disk('google')->exists($filePath)) {
-    //         Storage::disk('google')->delete($filePath);
-    //     }
-    //     // Hapus record dari database
-    //     $penduduk->delete();
-
-    //     return redirect('/penduduk')->with('toast_success', 'Data Dihapus!');
-    // }
     public function destroy(Request $request, $id)
     {
         $record = $request->validate([
@@ -268,11 +254,12 @@ class PendudukController extends Controller
         if ($request->hasFile('dokumen')) {
             $file = $request->file('dokumen');
             $fileName = 'DPBP-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
-            Storage::disk('google')->put('Dokumen Penduduk/' .$fileName, file_get_contents($file));
+            // Storage::disk('google')->put('Dokumen Penduduk/' .$fileName, file_get_contents($file));
+            $file->storeAs('public/dokumen_penduduk_migrasi', $fileName);
             $record['dokumen'] = $fileName;
 
-            $publicUrl = Storage::disk('google')->url('Dokumen Penduduk/' . $fileName);
-            $record['link'] = $publicUrl;
+            // $publicUrl = Storage::disk('google')->url('Dokumen Penduduk/' . $fileName);
+            // $record['link'] = $publicUrl;
         }
         $record['id'] = 'DPBP-'. date('YmdHis') . '-' . rand(100, 999);
         $record['id_penduduk'] = $id;
@@ -281,7 +268,7 @@ class PendudukController extends Controller
         // dd($record);
         PenghapusanPenduduk::create($record);
         Penduduk::where('id', $id)->update(['is_active'=> '0']);
-        return redirect('/penduduk')->with('toast_success', 'Data Dihapus!');
+        return redirect('/admin/kependudukan/penduduk')->with('toast_success', 'Data Dihapus!');
     }
     public function destroymigrasi(Request $request, $id)
     {
@@ -295,11 +282,12 @@ class PendudukController extends Controller
         if ($request->hasFile('dokumen')) {
             $file = $request->file('dokumen');
             $fileName = 'DPBP-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
-            Storage::disk('google')->put('Dokumen Penduduk/' .$fileName, file_get_contents($file));
+            // Storage::disk('google')->put('Dokumen Penduduk/' .$fileName, file_get_contents($file));
+            $file->storeAs('public/dokumen_penduduk', $fileName);
             $record['dokumen'] = $fileName;
 
-            $publicUrl = Storage::disk('google')->url('Dokumen Penduduk/' . $fileName);
-            $record['link'] = $publicUrl;
+            // $publicUrl = Storage::disk('google')->url('Dokumen Penduduk/' . $fileName);
+            // $record['link'] = $publicUrl;
         }
         $record['id'] = 'DPBP-'. date('YmdHis') . '-' . rand(100, 999);
         $record['id_penduduk'] = $id;
@@ -308,17 +296,21 @@ class PendudukController extends Controller
         // dd($record);
         PenghapusanPenduduk::create($record);
         Penduduk::where('id', $id)->update(['is_active'=> '1']);
-        return redirect('/penduduk-migrasi')->with('toast_success', 'Data Dihapus dari Migrasi!');
+        return redirect('/admin/kependudukan/penduduk-migrasi')->with('toast_success', 'Data Dihapus dari Migrasi!');
     }
-    public function pendudukexport(){
-        return Excel::download(new PendudukExport, 'Penduduk.xlsx');
+    public function pendudukexport()
+    {
+        $namaFile = 'Penduduk-' . date('Y-m-d H-i-s') . '.xlsx';
+        return Excel::download(new PendudukExport, $namaFile);
     }
-    public function pendudukimport(Request $request){
+    public function pendudukimport(Request $request)
+    {
         $file = $request->file('file');
         $namaFile = $file->getClientOriginalName();
-        $file->move('FileImportPenduduk', $namaFile);
+        $path = Storage::putFileAs('public/import_penduduk', $file, $namaFile);
 
-        Excel::import(new PendudukImport, public_path('/FileImportPenduduk/'.$namaFile));
-        return redirect('/penduduk')->with('toast_success', 'Data Berhasil Diimport!');
+        Excel::import(new PendudukImport, storage_path('app/' . $path));
+        Storage::delete($path);
+        return redirect('/admin/kependudukan/penduduk')->with('toast_success', 'Data Berhasil Diimport!');
     }
 }

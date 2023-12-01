@@ -116,9 +116,9 @@
         </li><!-- End Surat Masuk Nav -->
         @endcan
         <li class="nav-item">
-            <a class="nav-link {{ ($title == "Verifikasi Surat Keluar") ? '' : 'collapsed' }}" href="/admin/e-surat/validasi">
+            <a class="nav-link {{ ($title == "Verifikasi Surat Keluar") ? '' : 'collapsed' }}" href="/admin/e-surat/validasi-mandiri">
                 <i class="bi bi-file-earmark-check"></i>
-                <span>Verifikasi Surat  Pelayanan Mandiri</span>
+                <span>Verifikasi Surat P. Mandiri</span>
             </a>
         </li><!-- End Validasi Nav -->
         <li class="nav-item">

@@ -29,15 +29,14 @@ class PendudukImport implements ToModel
             'nomor_telepon' => $row[12],
             'penghasilan' => $row[13],
             'foto_penduduk' => $row[14],
-            'link_foto' => $row[15],
-            'nomor_kk' => $row[16],
-            'nomor_ktp' => $row[17],
-            'status_nyawa' => $row[18],
-            'keterangan_kematian' => $row[19],
-            'kontak_darurat' => $row[20],
-            'status_migrasi' => $row[21],
-            'status_pajak' => $row[22],
-            'is_active' => $row[23],
+            'nomor_kk' => $row[15],
+            'nomor_ktp' => $row[16],
+            'status_nyawa' => $row[17],
+            'keterangan_kematian' => $row[18],
+            'kontak_darurat' => $row[19],
+            'status_migrasi' => $row[20],
+            'status_pajak' => $row[21],
+            'is_active' => $row[22],
         ]);
     }
 }
