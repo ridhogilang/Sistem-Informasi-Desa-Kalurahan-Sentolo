@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\bo\Surat\validasi;
+
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
@@ -11,7 +13,7 @@ class ValidasimandiriController extends Controller
         return view('bo.page.surat.validasi.mandiri',[
             'dropdown1' => '',
             'dropdown2' => '',
-            'title' => 'Verifikasi Surat Mandiri'
+            'title' => 'Verifikasi Surat Pelayanan Mandiri'
         ]);
     }
 }
