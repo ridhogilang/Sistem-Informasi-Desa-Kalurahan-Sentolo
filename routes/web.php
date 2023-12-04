@@ -396,9 +396,9 @@ Route::prefix('admin')->group(function () {
                 Route::get('/bagan', 'index')->middleware(['can:list agenda', 'can:list jadwal', 'can:list sinergi', 'can:list statistik']);
                 //Tambah
                 Route::post('/tambah-agenda', 'createagenda')->middleware('can:tambah agenda');
-                Route::post('/tambah-jadwal', 'createjadwal')->middleware('can:tambah jadwal');
+                // Route::post('/tambah-jadwal', 'createjadwal')->middleware('can:tambah jadwal');
                 Route::post('/tambah-sinergi', 'createsinergi')->middleware('can:tambah sinergi');
-                Route::post('/tambah-statistik', 'createstatistik')->middleware('can:tambah statistik');
+                // Route::post('/tambah-statistik', 'createstatistik')->middleware('can:tambah statistik');
                 //Edit
                 Route::put('/edit-agenda/{id}', 'updateagenda')->middleware('can:edit agenda');
                 Route::put('/edit-jadwal/{id}', 'updatejadwal')->middleware('can:edit jadwal');
