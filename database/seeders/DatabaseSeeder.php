@@ -44,8 +44,38 @@ class DatabaseSeeder extends Seeder
             'Arsip Surat', 'Menghapus Arsip', 'Arsip Dihapus',
         //sistem informasi
         'Menejemen Sistem Informasi',
+            //ip user
+            'lihat ip user', 'ip online user',
+            //komponen
+            'lihat komponen', 'edit komponen',
+            //pamong
+            'list pamong', 'tambah pamong', 'edit pamong', 'hapus pamong',
+            //galeri
+            'list galeri', 'tambah galeri', 'edit galeri', 'hapus galeri',
+            //menu
+            'list menu', 'tambah menu', 'edit menu', 'hapus menu',
+            //header & subheader
+            'list header', 'tambah header', 'edit header', 'hapus header',
+            'list subheader', 'tambah subheader', 'edit subheader', 'hapus subheader',
+            //bagan
+                // agenda
+                'list agenda', 'tambah agenda', 'edit agenda', 'hapus agenda',
+                // jadwal
+                'list jadwal', 'tambah jadwal', 'edit jadwal', 'hapus jadwal',
+                // sinergi
+                'list sinergi', 'tambah sinergi', 'edit sinergi', 'hapus sinergi',
+                // statistik
+                'list statistik', 'tambah statistik', 'edit statistik', 'hapus statistik',
+            //apdes
+                'list apdes', 'tambah apdes', 'edit apdes', 'hapus apdes',
+            //agenda gor
+                'list agenda gor', 'tambah agenda gor', 'edit agenda gor', 'hapus agenda gor',
+            //agenda balai
+                'list agenda balai', 'tambah agenda balai', 'edit agenda balai', 'hapus agenda balai',
             //berita
-            'lihat berita', 'edit berita', 'hapus berita',
+            'list berita', 'lihat berita', 'tambah berita', 'edit berita', 'aktivasi berita', 'hapus berita', 'komentar berita',
+            //artikel
+            'list artikel', 'lihat artikel', 'tambah artikel', 'edit artikel', 'aktivasi artikel', 'hapus artikel', 'komentar artikel',
         //kependudukan
         'Menejemen Kependudukan',
         

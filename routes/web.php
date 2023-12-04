@@ -321,7 +321,7 @@ Route::prefix('admin')->group(function () {
             Route::delete('/surat-masuk/{id}/delete', [SMasukController::class, 'destroy'])->middleware('can:Surat Masuk');
         });
         //kependudukan
-        Route::prefix('kependudukan')->group(function () {
+        Route::prefix('kependudukan')->middleware('can:Menejemen Kependudukan')->group(function () {
             Route::get('/dashboard', function () {
                 return view('bo.page.dashboard', [
                     'dropdown1' => '',
@@ -350,123 +350,123 @@ Route::prefix('admin')->group(function () {
         Route::prefix('sistem-informasi')->middleware('can:Menejemen Sistem Informasi')->group(function () {
             Route::controller(AdminController::class)->group(function () {
                 Route::get('/dashboard', 'index')->name('bo.sid.dashboard');
-                Route::get('/ipuser', 'ip');
-                Route::get('/online-users', 'getOnlineUsers')->name('bo.sid.onlineuser');
+                Route::get('/ipuser', 'ip')->middleware('can:lihat ip user');
+                Route::get('/online-users', 'getOnlineUsers')->middleware('can:ip online user')->name('bo.sid.onlineuser');
             });
             //running text
             Route::controller(KomponenController::class)->group(function () {
-                Route::get('/komponen', 'index');
-                Route::put('/edit-text/{id}', 'update');
+                Route::get('/komponen', 'index')->middleware('can:lihat komponen');
+                Route::put('/edit-text/{id}', 'update')->middleware('can:edit komponen');
             });
             //Poster Pamong
             //iki njupuk sko user ae pie??
             Route::controller(PamongController::class)->group(function () {
-                Route::get('/pamong', 'index');
-                Route::get('/hapus-pamong/{id}', 'destroy');
-                Route::post('/tambah-pamong', 'create');
-                Route::put('/edit-pamong/{id}', 'update');
+                Route::get('/pamong', 'index')->middleware('can:list pamong');
+                Route::post('/tambah-pamong', 'create')->middleware('can:tambah pamong');
+                Route::put('/edit-pamong/{id}', 'update')->middleware('can:edit pamong');
+                Route::get('/hapus-pamong/{id}', 'destroy')->middleware('can:hapus pamong');
             });
             //Galeri
             Route::controller(GaleriController::class)->group(function () {
-                Route::get('/galeri', 'index');
-                Route::get('/hapus-galeri/{id}', 'destroy');
-                Route::post('/tambah-galeri', 'create');
-                Route::put('/edit-galeri/{id}', 'update');
+                Route::get('/galeri', 'index')->middleware('can:list galeri');
+                Route::post('/tambah-galeri', 'create')->middleware('can:tambah galeri');
+                Route::put('/edit-galeri/{id}', 'update')->middleware('can:edit galeri');
+                Route::get('/hapus-galeri/{id}', 'destroy')->middleware('can:hapus galeri');
             });
             //menu
             Route::controller(MenuController::class)->group(function () {
-                Route::get('/menu', 'index');
-                Route::post('/menu', 'store');
-                Route::put('/menu/{id}', 'update');
-                Route::get('/deletemenu/{id}', 'destroy');
+                Route::get('/menu', 'index')->middleware('can:list menu');
+                Route::post('/menu', 'store')->middleware('can:tambah menu');
+                Route::put('/menu/{id}', 'update')->middleware('can:edit menu');
+                Route::get('/deletemenu/{id}', 'destroy')->middleware('can:hapus menu');
             });
             //header
             Route::controller(HeaderController::class)->group(function () {
-                Route::get('/header', 'index');
-                Route::post('/header', 'create');
-                Route::post('/subheader', 'createsub');
-                Route::put('/header/{id}', 'update');
-                Route::put('/subheader/{id}', 'updatesub');
-                Route::get('/deleteheader/{id}', 'hapus');
-                Route::get('/deletesubheader/{id}', 'destroysub');
-                Route::get('/checkSubheaders/{id}', 'checkSubheaders');
+                Route::get('/header', 'index')->middleware('can:list header');
+                Route::post('/header', 'create')->middleware('can:tambah header');
+                Route::put('/header/{id}', 'update')->middleware('can:edit header');
+                Route::get('/deleteheader/{id}', 'hapus')->middleware('can:hapus header');
+                Route::get('/checkSubheaders/{id}', 'checkSubheaders')->middleware('can:hapus header');
+                Route::post('/subheader', 'createsub')->middleware('can:tambah subheader');
+                Route::put('/subheader/{id}', 'updatesub')->middleware('can:edit subheader');
+                Route::get('/deletesubheader/{id}', 'destroysub')->middleware('can:hapus subheader');
             });
             //Bagan
             Route::controller(BaganController::class)->group(function () {
-                Route::get('/bagan', 'index');
+                Route::get('/bagan', 'index')->middleware(['can:list agenda', 'can:list jadwal', 'can:list sinergi', 'can:list statistik']);
                 //Tambah
-                Route::post('/tambah-agenda', 'createagenda');
-                Route::post('/tambah-jadwal', 'createjadwal');
-                Route::post('/tambah-sinergi', 'createsinergi');
-                Route::post('/tambah-statistik', 'createstatistik');
+                Route::post('/tambah-agenda', 'createagenda')->middleware('can:tambah agenda');
+                Route::post('/tambah-jadwal', 'createjadwal')->middleware('can:tambah jadwal');
+                Route::post('/tambah-sinergi', 'createsinergi')->middleware('can:tambah sinergi');
+                Route::post('/tambah-statistik', 'createstatistik')->middleware('can:tambah statistik');
                 //Edit
-                Route::put('/edit-agenda/{id}', 'updateagenda');
-                Route::put('/edit-jadwal/{id}', 'updatejadwal');
-                Route::put('/edit-sinergi/{id}', 'updatesinergi');
-                Route::put('/edit-statistik/{id}', 'updatestatistik');
+                Route::put('/edit-agenda/{id}', 'updateagenda')->middleware('can:edit agenda');
+                Route::put('/edit-jadwal/{id}', 'updatejadwal')->middleware('can:edit jadwal');
+                Route::put('/edit-sinergi/{id}', 'updatesinergi')->middleware('can:edit sinergi');
+                Route::put('/edit-statistik/{id}', 'updatestatistik')->middleware('can:edit statistik');
                 //Hapus
-                Route::get('/hapus-jadwal/{id}', 'destroyjadwal');
-                Route::get('/hapus-agenda/{id}', 'destroyagenda');
-                Route::get('/hapus-sinergi/{id}', 'destroysinergi');
-                Route::get('/hapus-statistiki/{id}', 'destroystatistik');
+                Route::get('/hapus-agenda/{id}', 'destroyagenda')->middleware('can:hapus agenda');
+                Route::get('/hapus-jadwal/{id}', 'destroyjadwal')->middleware('can:hapus jadwal');
+                Route::get('/hapus-sinergi/{id}', 'destroysinergi')->middleware('can:hapus sinergi');
+                Route::get('/hapus-statistiki/{id}', 'destroystatistik')->middleware('can:hapus statistik');
             });
             //APBDes
             //iki crud e pie pak
             Route::controller(ApbdesController::class)->group(function () {
-                Route::get('/apbdes', 'index');
+                Route::get('/apbdes', 'index')->middleware('can:list apdes');
                 //Tambah
-                Route::post('/tambah-apbdes', 'create');
+                Route::post('/tambah-apbdes', 'create')->middleware('can:tambah apdes');
 
                 //Edit
-                Route::put('/edit-apbdes-pelaksanaan/{id}', 'updatepelaksanaan');
-                Route::put('/edit-apbdes-pendapatan/{id}', 'updatependapatan');
-                Route::put('/edit-apbdes-pembelanjaan/{id}', 'updatepembelanjaan');
+                Route::put('/edit-apbdes-pelaksanaan/{id}', 'updatepelaksanaan')->middleware('can:edit apdes');
+                Route::put('/edit-apbdes-pendapatan/{id}', 'updatependapatan')->middleware('can:edit apdes');
+                Route::put('/edit-apbdes-pembelanjaan/{id}', 'updatepembelanjaan')->middleware('can:edit apdes');
 
                 //Hapus
-                Route::get('/hapus-apbdes/{id}', 'destroy');
+                Route::get('/hapus-apbdes/{id}', 'destroy')->middleware('can:hapus apdes');
             });
             //Agenda GOR
             Route::controller(AgendaGORController::class)->group(function () {
-                Route::get('/agendagor', 'index');
+                Route::get('/agendagor', 'index')->middleware(['can:list agenda gor','can:list agenda balai']);
                 //Tambah
-                Route::post('/tambah-agendagor', 'create');
+                Route::post('/tambah-agendagor', 'create')->middleware('can:tambah agenda gor');
 
                 //Edit
-                Route::put('/edit-agendagor/{id}', 'edit');
+                Route::put('/edit-agendagor/{id}', 'edit')->middleware('can:edit agenda gor');
 
                 //Hapus
-                Route::get('/hapus-agendagor/{id}', 'destroy');
+                Route::get('/hapus-agendagor/{id}', 'destroy')->middleware('can:hapus agenda gor');
             });
             //Agenda Balai
             Route::controller(AgendaBalaiController::class)->group(function () {
                 //Tambah
-                Route::post('/tambah-agendabalai', 'create');
+                Route::post('/tambah-agendabalai', 'create')->middleware('can:tambah agenda balai');
 
                 //Edit
-                Route::put('/edit-agendabalai/{id}', 'edit');
+                Route::put('/edit-agendabalai/{id}', 'edit')->middleware('can:edit agenda balai');
 
                 //Hapus
-                Route::get('/hapus-agendabalai/{id}', 'destroy');
+                Route::get('/hapus-agendabalai/{id}', 'destroy')->middleware('can:hapus agenda balai');
             });
             //berita dan artikel
             Route::controller(BeritaController::class)->group(function () {
                 //berita
-                Route::get('/berita', 'index')->middleware('can:list surat');
-                Route::get('/berita/komentar', 'indexkomentar');
-                Route::post('/berita', 'store');
-                Route::put('/berita/{id}', 'update');
-                Route::get('/showberita/{id}', 'show');
-                Route::get('/deleteberita/{id}', 'destroy');
-                Route::put('/update-status/{id}', 'updateStatus');
-                Route::put('/update-sideberita/{id}', 'updateSideBerita');
+                Route::get('/berita', 'index')->middleware('can:list berita');
+                Route::post('/berita', 'store')->middleware('can:tambah berita');
+                Route::put('/berita/{id}', 'update')->middleware('can:edit berita');
+                Route::get('/showberita/{id}', 'show')->middleware('can:edit berita');
+                Route::get('/deleteberita/{id}', 'destroy')->middleware('can:hapus berita');
+                Route::put('/update-status/{id}', 'updateStatus')->middleware('can:aktivasi berita');
+                Route::get('/berita/komentar', 'indexkomentar')->middleware('can:komentar berita');
+                Route::put('/update-sideberita/{id}', 'updateSideBerita')->middleware('can:edit berita');
 
                 //Artikel
-                Route::get('/artikel', 'artikel');
-                Route::get('/artikel/komentar', 'komentarartikel');
-                Route::post('/artikel', 'tambah_artikel');
-                Route::get('/showartikel/{id}', 'show_artikel');
-                Route::put('/updateartikel/{id}', 'update_artikel');
-                Route::get('/deleteartikel/{id}', 'destroy_artikel');
+                Route::get('/artikel', 'artikel')->middleware('can:list artikel');
+                Route::get('/showartikel/{id}', 'show_artikel')->middleware('can:lihat artikel');
+                Route::post('/artikel', 'tambah_artikel')->middleware('can:tambah artikel');
+                Route::put('/updateartikel/{id}', 'update_artikel')->middleware('can:edit artikel');
+                Route::get('/deleteartikel/{id}', 'destroy_artikel')->middleware('can:hapus artikel');
+                Route::get('/artikel/komentar', 'komentarartikel')->middleware('can:komentar artikel');
             });
         });
     });
