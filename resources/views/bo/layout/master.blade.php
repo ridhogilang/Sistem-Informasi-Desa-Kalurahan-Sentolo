@@ -55,6 +55,8 @@
         @include('bo.partial.sidebar_sid')
     @elseif(request()->is('admin/kependudukan*'))
         @include('bo.partial.sidebar-kependudukan')
+    @elseif(request()->is('admin/presensi*'))
+        @include('bo.partial.sidebar_profile')
     @else
         @include('bo.partial.sidebar')
     @endif
