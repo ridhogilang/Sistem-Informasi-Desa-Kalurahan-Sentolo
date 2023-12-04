@@ -58,7 +58,6 @@ use App\Http\Controllers\bo\Sid\KomentarController;
 use App\Http\Controllers\bo\Sid\KomponenController;
 use App\Http\Controllers\bo\Sid\PamongController;
 use App\Http\Controllers\PresensiController;
-
 use App\Http\Controllers\ScstmController;
 use App\Http\Controllers\MandiriController;
 use App\Http\Controllers\BuatsuratController;
@@ -130,10 +129,20 @@ Route::prefix('admin')->group(function () {
         })->name('bo.home');
 
         Route::get('/absen-pamong', [HomeController::class, 'absen'])->name('bo.presensi');
-        Route::post('/absen', [PresensiController::class, 'checkIn'])->name('kehadiran.check-in');
-        Route::patch('/absen/{kehadiran}',[PresensiController::class, 'checkOut'])->name('kehadiran.check-out');
-        Route::get('/daftar-hadir', [PresensiController::class, 'index'])->name('daftar-hadir');
-        Route::get('/daftar-hadir/cari', [PresensiController::class, 'cariDaftarHadir'])->name('daftar-hadir.cari');
+
+
+        Route::controller(PresensiController::class)->prefix('presensi')->group(function () {
+            Route::post('/absen', 'checkIn')->name('kehadiran.check-in');
+            Route::patch('/absen/{kehadiran}', 'checkOut')->name('kehadiran.check-out');
+            Route::get('/daftar-hadir', 'index')->name('daftar-hadir');
+            Route::get('/daftar-hadir/cari', 'cariDaftarHadir')->name('daftar-hadir.cari');
+            Route::get('/rekap-harian', 'rekap_harian')->name('kehadiran');
+            Route::get('/rekap-harian/cari', 'harian_search')->name('kehadiran.search');
+            Route::get('/rekap-harian/excel-users', 'excelUsers')->name('kehadiran.excel-users');
+            Route::get('/rekap-harian/show', '')->name('users.show');
+        });
+
+
 
         //halaman bantuan
         Route::controller(BantuanController::class)->prefix('bantuan')->group(function () {
