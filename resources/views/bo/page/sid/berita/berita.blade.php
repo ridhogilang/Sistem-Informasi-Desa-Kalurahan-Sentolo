@@ -23,6 +23,7 @@
 
             <div class="col-lg-12">
 
+                @can('tambah berita')
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Tambah Berita | Side Berita</h5>
@@ -124,6 +125,7 @@
                         </div>
                     </div>
                 </div>
+                @endcan
 
                 <div class="card">
                     <div class="card-body">
@@ -140,7 +142,9 @@
                                     <th scope="col">Penulis</th>
                                     <th scope="col">Kategori</th>
                                     <th scope="col">Tanggal</th>
+                                    @can('aktivasi berita')
                                     <th scope="col">Berita Utama</th>
+                                    @endcan
                                     @canany(['edit berita', 'hapus berita'])
                                     <th scope="col" class="text-center">Action</th>
                                     @endcanany
@@ -157,9 +161,10 @@
                                         <td>{{ $value->penulis }}</td>
                                         <td>{{ $value->kategori->kategori }}</td>
                                         <td>{{ $value->tanggal }}</td>
-                                        @canany(['edit berita', 'hapus berita'])
+                                        @can('aktivasi berita')
                                         <td>
                                             <form action="{{ route('berita.update-status', ['id' => $value->id]) }}" method="POST"
+
                                                 id="statusForm{{ $value->id }}" class="form-check form-switch">
                                                 @csrf
                                                 @method('put')
@@ -174,18 +179,22 @@
                                                 </div>
                                             </form>
                                         </td>
-                                        @endcanany
-                                        @can('hapus berita')
+                                        @endcan
+                                        @canany(['edit berita', 'hapus berita'])
                                         <td class="text-center">
+                                            @can('edit berita')
                                             <a class="btn btn-warning" href="/admin/sistem-informasi/showberita/{{ $value->id }}"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
+                                            @endcan
                                             <!-- Button trigger modal -->
+                                            @can('hapus berita')
                                             <a class="btn btn-danger" type="submit" id="deleteberita"
                                                 data-id="{{ $value->id }}"
                                                 href="/admin/sistem-informasi/deleteberita/{{ $value->id }}"><i
                                                     class="fa-regular fa-trash-can"></i></a>
+                                            @endcan
                                         </td>
-                                        @endcan
+                                        @endcanany
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -199,6 +208,7 @@
 @endsection
 
 @push('footer')
+    @can('hapus berita')
     <script type="text/javascript">
         $(function() {
             $(document).on('click', '#deleteberita', function(e) {
@@ -227,6 +237,7 @@
             });
         });
     </script>
+    @endcan
     <script>
         $('#summernote').summernote({
             placeholder: 'Tuliskan artikel anda disini',

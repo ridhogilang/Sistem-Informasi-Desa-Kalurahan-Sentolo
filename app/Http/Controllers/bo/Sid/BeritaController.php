@@ -352,7 +352,7 @@ class BeritaController extends Controller
 
         $toastMessage = $status ? 'Berita sudah ditampilkan di Halaman Highlight!' : 'Berita dihapus dari Halaman Highlight!';
 
-        return redirect()->back()->with('toast_success', $toastMessage);
+        return redirect('/admin/sistem-informasi/berita')->with('toast_success', $toastMessage);
     }
 
     public function updateSideBerita(Request $request, $id)
@@ -453,7 +453,7 @@ class BeritaController extends Controller
         $artikel->kategori_link = $request->input('kategori_link');
         $artikel->save();
 
-        return redirect('/admin/artikel')->with('toast_success', 'Data Artikel Berhasil diubah!');
+        return redirect('/admin/sistem-informasi/berita')->with('toast_success', 'Data Artikel Berhasil diubah!');
     }
 
     /**

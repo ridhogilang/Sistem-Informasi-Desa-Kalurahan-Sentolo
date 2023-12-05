@@ -27,14 +27,17 @@
                     <div class="">
                         {{-- <h5 class="card-title">Tambah</h5> --}}
                         {{-- <div class="d-flex justify-content-between">
+                            @can('tambah agenda gor')
                             <div>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#modalAgendaGOR"><i class="fa-regular fa-square-plus"
                                         style="margin-right: 5px"></i>Tambah Agenda GOR</button>
                             </div>
+                            @endcan
                         </div> --}}
 
+                        @can('tambah agenda gor')
                         <!-- Modal Form Tambah Agenda GOR-->
                         <div class="modal fade" id="modalAgendaGOR" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="Agenda-Label" aria-hidden="true">
@@ -99,8 +102,9 @@
                                 </div>
                             </div>
                         </div>
+                        @endcan
                     </div>
-
+                    @can('tambah agenda balai')
                     <!-- Modal Form Tambah Agenda BALAI -->
                     <div class="modal fade" id="modalAgendaBalai" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="Agenda-Label" aria-hidden="true">
@@ -165,18 +169,22 @@
                             </div>
                         </div>
                     </div>
+                    @endcan
                 </div>
             </div>
             {{-- Agenda Balai --}}
+            @can('list agenda balai')
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="card-title">Agenda GOR</h5>
                         <div>
+                            @can('tambah agenda gor')
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalAgendaGOR"><i class="fa-regular fa-square-plus"
                                     style="margin-right: 5px"></i>Tambah Agenda GOR</button>
+                            @endcan
                         </div>
                     </div>
 
@@ -190,7 +198,9 @@
                                 <th scope="col">Waktu</th>
                                 <th scope="col">Selesai</th>
                                 <th scope="col">Penanggung Jawab</th>
+                                @canany(['edit agenda gor', 'hapus agenda gor'])
                                 <th scope="col" class="text-center">Action</th>
+                                @endcanany
                             </tr>
                         </thead>
                         <tbody>
@@ -205,6 +215,7 @@
                                     <td>{!! $item->waktu !!}</td>
                                     <td>{!! $item->selesai !!}</td>
                                     <td>{!! $item->koordinator !!}</td>
+                                    @canany(['edit agenda gor', 'hapus agenda gor'])
                                     <td class="text-center">
                                         <a class="btn btn-warning" type="button" data-bs-toggle="modal"
                                             data-bs-target="#Modal-Edit-Agenda-{{ $item->id }}"
@@ -217,7 +228,9 @@
                                                 class="fa-regular fa-trash-can"></i>
                                         </a>
                                     </td>
+                                    @endcanany
                                 </tr>
+                                @can('edit agenda gor')
                                 <!-- Modal Edit Agenda -->
                                 <div class="modal fade" id="Modal-Edit-Agenda-{{ $item->id }}"
                                     data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -292,20 +305,26 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endcan
+
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
+            @endcan
+
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <h5 class="card-title">Agenda Balai</h5>
                         <div>
+                            @can('tambah agenda balai')
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#modalAgendaBalai"><i class="fa-regular fa-square-plus"
                                     style="margin-right: 5px"></i>Tambah Agenda Balai</button>
+                            @endcan
                         </div>
                     </div>
 
@@ -320,7 +339,9 @@
                                 <th scope="col">Selesai</th>
                                 <th scope="col">Penanggung Jawab</th>
                                 <th scope="col">Nomor Hp</th>
+                                @canany(['edit agenda balai', 'hapus agenda balai'])
                                 <th scope="col" class="text-center">Action</th>
+                                @endcanany
                             </tr>
                         </thead>
                         <tbody>
@@ -336,6 +357,7 @@
                                     <td>{!! $item->selesai !!}</td>
                                     <td>{!! $item->koordinator !!}</td>
                                     <td>{!! $item->nomorhp !!}</td>
+                                    @canany(['edit agenda balai', 'hapus agenda balai'])
                                     <td class="text-center">
                                         <a class="btn btn-warning" type="button" data-bs-toggle="modal"
                                             data-bs-target="#Modal-Edit-AgendaBalai-{{ $item->id }}"
@@ -348,7 +370,9 @@
                                                 class="fa-regular fa-trash-can"></i>
                                         </a>
                                     </td>
+                                    @endcanany
                                 </tr>
+                                @can('edit agenda balai')
                                 <!-- Modal Edit Agenda BALAI -->
                                 <div class="modal fade" id="Modal-Edit-AgendaBalai-{{ $item->id }}"
                                     data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -423,6 +447,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endcan
                             @endforeach
                         </tbody>
                     </table>
@@ -434,6 +459,7 @@
 @endsection
 
 @push('footer')
+    @can('hapus agenda gor')
     <script type="text/javascript">
         $(function() {
             $(document).on('click', '#deleteAgendagor', function(e) {
@@ -462,6 +488,8 @@
             });
         });
     </script>
+    @endcan
+    @can('hapus agenda balai')
     <script type="text/javascript">
         $(function() {
             $(document).on('click', '#deleteAgendaBalai', function(e) {
@@ -490,4 +518,5 @@
             });
         });
     </script>
+    @endcan
 @endpush
