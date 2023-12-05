@@ -20,4 +20,8 @@ class Present extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function pamong()
+    {
+        return $this->belongsTo(Pamong::class, 'user_id');
+    }
 }

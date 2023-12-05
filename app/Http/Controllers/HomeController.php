@@ -166,9 +166,18 @@ class HomeController extends Controller
     public function datapamong()
     {
         $pamong = Pamong::all();
+
         foreach ($pamong as $item) {
             $item->gambar = Storage::url($item->gambar);
+            $currentDate = now()->format('Y-m-d');
+            $presentModel = Present::where('user_id', $item->user_id)
+            ->whereDate('tanggal', $currentDate)
+            ->first();
+            $item->presentModel = $presentModel;
         }
+
+        // dd($pamong);
+    
         return response()->json($pamong);
     }
 

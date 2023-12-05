@@ -170,11 +170,12 @@
                                 </div>
                             </div>
                             <br><br>
-                            <div class="credits">
-                                <div class="row justify-content-cente">
+                            <div class="credits text-center">
+                                <div>
+                                    <a href="/admin/presensi/daftar-hadir" class="btn btn-warning ">Rekap Kehadiran</a>
                                     <a href="/" class="btn btn-secondary">Kembali</a>
                                 </div><br><br>
-                                Made by <a href="#">PKKM UJB</a>
+                                <div>Made by <a href="#">PKKM UJB</a></div>
                             </div>
 
                         </div>
