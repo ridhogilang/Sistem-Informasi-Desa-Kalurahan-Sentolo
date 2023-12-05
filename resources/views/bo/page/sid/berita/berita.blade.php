@@ -62,7 +62,7 @@
                             <div class="modal-dialog modal-fullscreen modal-dialog-scrollable modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="sktm-satu-Label">Tambah Artikel</h1>
+                                        <h1 class="modal-title fs-5" id="sktm-satu-Label">Tambah Berita</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
