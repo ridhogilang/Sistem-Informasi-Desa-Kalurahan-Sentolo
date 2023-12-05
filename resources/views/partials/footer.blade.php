@@ -251,10 +251,10 @@
                 <a href=""
                     class="button button-primary text-center px-5 py-3 text-sm" data-mdb-ripple="true"
                     data-md-ripple-color="light">Login Layanan Mandiri</a>
-                <a href=""
+                <a href="/sitemin-sentolo/login"
                     class="button button-secondary text-center px-5 py-3 text-sm" data-mdb-ripple="true"
                     data-md-ripple-color="light">Login Admin</a>
-                <a href=""
+                <a href="/sitemin-sentolo/login-absen"
                     class="button button-tertiary text-center px-5 py-3 text-sm" data-mdb-ripple="true"
                     data-md-ripple-color="light">Login Kehadiran Perangkat</a>
             </div>

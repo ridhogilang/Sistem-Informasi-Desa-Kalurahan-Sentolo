@@ -38,7 +38,7 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-6 col-form-label">Pilih Side Berita</label>
                                     <div class="col-sm-10">
-                                        <form action="/update-sideberita/{id}" method="POST">
+                                        <form action="/admin/sistem-informasi/update-sideberita/{id}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             <select id="pilihsideberita" class="form-select" name="news_id" onchange="this.form.submit()"
@@ -159,7 +159,7 @@
                                         <td>{{ $value->tanggal }}</td>
                                         @canany(['edit berita', 'hapus berita'])
                                         <td>
-                                            <form action="/update-status/{{ $value->id }}" method="POST"
+                                            <form action="{{ route('berita.update-status', ['id' => $value->id]) }}" method="POST"
                                                 id="statusForm{{ $value->id }}" class="form-check form-switch">
                                                 @csrf
                                                 @method('put')

@@ -468,7 +468,7 @@ Route::prefix('admin')->group(function () {
                 Route::put('/berita/{id}', 'update');
                 Route::get('/showberita/{id}', 'show');
                 Route::get('/deleteberita/{id}', 'destroy');
-                Route::put('/update-status/{id}', 'updateStatus');
+                Route::put('/update-status/{id}', 'updateStatus')->name('berita.update-status');
                 Route::put('/update-sideberita/{id}', 'updateSideBerita');
 
                 //Artikel
