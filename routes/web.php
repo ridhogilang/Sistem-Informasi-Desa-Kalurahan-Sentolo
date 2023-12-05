@@ -463,6 +463,7 @@ Route::prefix('admin')->group(function () {
             Route::controller(BeritaController::class)->group(function () {
                 //berita
                 Route::get('/berita', 'index')->middleware('can:list surat');
+                Route::get('/berita-kontributor', 'berita_kontributor');
                 Route::get('/berita/komentar', 'indexkomentar');
                 Route::post('/berita', 'store');
                 Route::put('/berita/{id}', 'update');
@@ -470,6 +471,7 @@ Route::prefix('admin')->group(function () {
                 Route::get('/deleteberita/{id}', 'destroy');
                 Route::put('/update-status/{id}', 'updateStatus')->name('berita.update-status');
                 Route::put('/update-sideberita/{id}', 'updateSideBerita');
+                Route::put('/tampilkan-berita/{id}', 'TampilkanBerita');
 
                 //Artikel
                 Route::get('/artikel', 'artikel');

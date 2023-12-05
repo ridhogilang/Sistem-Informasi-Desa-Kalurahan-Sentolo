@@ -70,6 +70,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/admin/sistem-informasi/berita-kontributor" class="{{ ($title == "Berita Kontributor") ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Tambah Berita (Kontributor)</span>
+                    </a>
+                </li>
+                <li>
                     <a href="/admin/sistem-informasi/berita/komentar" class="{{ ($title == "Komentar Berita") ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Komentar Berita</span>
                     </a>

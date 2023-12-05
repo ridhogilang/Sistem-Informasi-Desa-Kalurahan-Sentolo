@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('link')->nullable();
             $table->string('kategori_link')->nullable();
             $table->unsignedInteger('views_count')->default(0);
+            $table->boolean('tampil')->default(false);
             $table->boolean('status')->default(false);
             $table->boolean('sideberita')->default(false);
             $table->timestamps();
