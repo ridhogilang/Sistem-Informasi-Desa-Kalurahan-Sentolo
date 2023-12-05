@@ -911,6 +911,11 @@ class DatabaseSeeder extends Seeder
 
         $pamongs = Pamong::all();
 
+        $jabatann = Pamong::select('jabatan')->distinct()->get();
+        foreach ($jabatann as $jabatan) {
+            $role = Role::create(['name' => $jabatan->jabatan]);
+        }   
+
         foreach ($pamongs as $pamong) {
             // Mendapatkan nama untuk User
             $userName = $pamong->nama;
@@ -919,16 +924,18 @@ class DatabaseSeeder extends Seeder
             $userEmail = strtolower(str_replace(' ', '', $userName)) . '@mail.com';
 
             // Membuat data User
-            User::create([
+            $pamongg = User::create([
                 'nama' => $userName,
                 'email' => $userEmail,
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
-                'jabatan' => 'Pamong',
+                'jabatan' => $pamong->jabatan,
                 'foto_resmi' => $pamong->gambar,
                 'is_active' => '1',
                 'is_delete' => '0'
             ]);
+
+            $pamongg->assignRole($pamong->jabatan);
         }
         
         Berita::create([
