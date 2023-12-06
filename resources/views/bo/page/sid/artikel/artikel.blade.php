@@ -116,7 +116,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="card-title">Header</h5>
+                            <h5 class="card-title">Artikel</h5>
                         </div>
 
                         <!-- Table with hoverable rows -->
