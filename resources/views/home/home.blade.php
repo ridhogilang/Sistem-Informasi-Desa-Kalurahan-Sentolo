@@ -1821,7 +1821,7 @@
                             </div>
                             <div class="space-y-1 text-sm text-center">
                                 <span class="text-heading">${item.nama}</span>
-                                <span class="block">${item.jabatan}</span>
+                                <span class="block">${item.jabatan}</span><br>
                                 <a href="/daftar-hadir/${formattedDate}/${item.nama}">
                                     ${presentModel ?
                                         (presentModel.keterangan == 'Alpha' || presentModel === null ? 
