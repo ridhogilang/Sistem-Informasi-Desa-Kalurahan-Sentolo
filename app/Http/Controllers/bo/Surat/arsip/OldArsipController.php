@@ -258,6 +258,16 @@ class OldArsipController extends Controller
     public function document_hps(string $id)
     {
         $arsip_surat = ArsipSurat::findOrFail($id);
-        return redirect($arsip_surat->dtlPenghapusan->link);
+
+        if (!$arsip_surat) {
+            abort(404);
+        }
+        // return redirect($arsip_surat->dtlPenghapusan->link);
+
+        $filePath = storage_path("app/public/penghapusan_arsip_surat/{$arsip_surat->dtlPenghapusan->document}");
+        if (!file_exists($filePath)) {
+            abort(404);
+        }
+        return response()->file($filePath);
     }
 }

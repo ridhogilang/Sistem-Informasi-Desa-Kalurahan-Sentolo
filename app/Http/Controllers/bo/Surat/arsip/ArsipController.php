@@ -269,8 +269,11 @@ class ArsipController extends Controller
 
         $file = $request->file('surat_penghapusan');
         $fileName = 'ARSIP-HPS-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
-        Storage::disk('google')->put('Penghapusan Arsip/' .$fileName, file_get_contents($file));
-        $phps_arsip['link'] = Storage::disk('google')->url('Penghapusan Arsip/' . $fileName);
+        $file->storeAs('public/penghapusan_arsip_surat', $fileName);
+
+        // Storage::disk('google')->put('Penghapusan Arsip/' .$fileName, file_get_contents($file));
+        // $phps_arsip['link'] = Storage::disk('google')->url('Penghapusan Arsip/' . $fileName);
+
         $phps_arsip['id']           = 'ARSIP-HPS-'. date('YmdHis') . '-' . rand(100, 999);
         $phps_arsip['delete_by']    = auth()->user()->id;
         $phps_arsip['waktu_penghapusan'] = Carbon::now();
