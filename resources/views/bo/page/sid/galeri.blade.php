@@ -23,6 +23,7 @@
 
             <div class="col-lg-12">
 
+                @can('tambah galeri')
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Tambah</h5>
@@ -77,6 +78,8 @@
                         </div>
                     </div>
                 </div>
+                @can
+                @can('list galeri')
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
@@ -90,7 +93,9 @@
                                     <th scope="col">No.</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Gambar</th>
+                                    @canany(['edit galeri', 'hapus galeri'])
                                     <th scope="col" class="text-center">Action</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
@@ -103,19 +108,26 @@
                                         <td>{!! $item->nama !!}</td>
                                         <td><img src="{{ Storage::url($item->gambar) }}" width="45" height="40">
                                         </td>
+                                        @canany(['edit galeri', 'hapus galeri'])
                                         <td class="text-center">
+                                            @can('edit galeri')
                                             <a class="btn btn-warning" type="button" data-bs-toggle="modal"
                                                 data-bs-target="#Modal-Edit-Galeri-{{ $item->id }}"
                                                 href="/admin/sistem-informasi/edit-text/{{ $item->id }}">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
+                                            @endcan
+                                            @can('hapus galeri')
                                             <a class="btn btn-danger" type="submit" id="deletegaleri"
                                                 data-id="{{ $item->id }}" href="/admin/sistem-informasi/hapus-galeri/{{ $item->id }}"><i
                                                     class="fa-regular fa-trash-can"></i>
                                             </a>
+                                            @endcan
                                         </td>
+                                        @endcanany
                                     </tr>
-                                    <!-- Modal Edit Pamong -->
+                                    @can('edit galeri')
+                                    <!-- Modal Edit galeri -->
                                     <div class="modal fade" id="Modal-Edit-Galeri-{{ $item->id }}"
                                         data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                                         aria-labelledby="Modal-Edit-Galeri-Label" aria-hidden="true">
@@ -164,11 +176,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endcan
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
+                @endcan
 
             </div>
         </div>
@@ -176,6 +190,7 @@
 @endsection
 
 @push('footer')
+    @can('hapus galeri')
     <script type="text/javascript">
         $(function() {
             $(document).on('click', '#deletegaleri', function(e) {
@@ -204,6 +219,7 @@
             });
         });
     </script>
+    @endcan
    <script>
     $('#summernote').summernote({
         placeholder: 'Tuliskan artikel anda disini',

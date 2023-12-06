@@ -16,23 +16,28 @@
         <div class="row">
 
             <div class="col-lg-12">
-
+                @canany(['list header', 'list subheader'])
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Pilih Jenis Header</h5>
 
                         <div class="d-flex justify-content-between">
                             <div>
+                                @can('tambah header')
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#modalheader"><i class="fa-regular fa-square-plus"
                                         style="margin-right: 5px"></i>Tambah Header</button>
+                                @endcan
+                                @can('tambah subheader')
                                 <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#subheader"><i class="fa-regular fa-square-plus"
                                         style="margin-right: 5px"></i>Tambah SubHeader</button>
+                                @endcan
                             </div>
                         </div>
 
+                        @can('tambah header')
                         <!-- Modal Form header -->
                         <div class="modal fade" id="modalheader" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="sktm-satu-Label" aria-hidden="true">
@@ -77,6 +82,8 @@
                                 </div>
                             </div>
                         </div>
+                        @endcan
+                        @can('tambah subheader')
                         <!-- Modal Form subheader -->
                         <div class="modal fade" id="subheader" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="sktm-satu-Label" aria-hidden="true">
@@ -134,9 +141,11 @@
                                 </div>
                             </div>
                         </div>
+                        @endcan
                     </div>
                 </div>
-
+                @endcanany
+                @can('list header')
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
@@ -151,7 +160,9 @@
                                     <th scope="col">Header</th>
                                     <th scope="col">Link</th>
                                     <th scope="col">Urutan</th>
+                                    @canany(['edit header', 'hapus header'])
                                     <th scope="col" class="text-center">Action</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
@@ -164,18 +175,24 @@
                                         <td>{{ $value->header }}</td>
                                         <td>{{ $value->link }}</td>
                                         <td>{{ $value->urutan }}</td>
+                                        @canany(['edit header', 'hapus header'])
                                         <td class="text-center">
+                                            @can('edit header')
                                             <a class="btn btn-warning" type="submit" data-bs-toggle="modal"
                                                 data-bs-target="#Modal-Edit-header-{{ $value->id }}"
                                                 href="/admin/sistem-informasi/header/{{ $value->id }}/edit"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
+                                            @endcan
+                                            @can('hapus header')
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-danger" type="submit" id="deleteheader"
                                                 data-id="{{ $value->id }}" href="/admin/sistem-informasi/deleteheader/{{ $value->id }}"><i
                                                     class="fa-regular fa-trash-can"></i></a>
+                                            @endcan
                                         </td>
+                                        @endcanany
                                     </tr>
-
+                                    @can('edit header')
                                     <!-- Modal Header -->
                                     <div class="modal fade" id="Modal-Edit-header-{{ $value->id }}"
                                         data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -226,11 +243,14 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endcan
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
+                @endcan
+                @can('list subheader')
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
@@ -245,7 +265,9 @@
                                     <th scope="col">Link</th>
                                     <th scope="col">Urutan</th>
                                     <th scope="col">di Bawah Header</th>
+                                    @canany(['edit subheader', 'hapus subheader'])
                                     <th scope="col" class="text-center">Action</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
@@ -259,19 +281,25 @@
                                         <td>{{ $value->link }}</td>
                                         <td>{{ $value->urutan }}</td>
                                         <td>{{ $value->header->header }}</td>
+                                        @canany(['edit subheader', 'hapus subheader'])
                                         <td class="text-center">
+                                            @can('edit subheader')
                                             <a class="btn btn-warning" type="submit" data-bs-toggle="modal"
                                                 data-bs-target="#Modal-Edit-subheader-{{ $value->id }}"
                                                 href="/admin/sistem-informasi/header/{{ $value->id }}/edit"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
+                                            @endcan
+                                            @can('hapus subheader')
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-danger" type="submit" id="deletesubheader"
                                                 data-id="{{ $value->id }}"
                                                 href="/admin/sistem-informasi/deletesubheader/{{ $value->id }}"><i
                                                     class="fa-regular fa-trash-can"></i></a>
+                                            @endcan
                                         </td>
+                                        @endcanany
                                     </tr>
-
+                                    @can('edit subheader')
                                     <!-- Modal Header -->
                                     <div class="modal fade" id="Modal-Edit-subheader-{{ $value->id }}"
                                         data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -341,11 +369,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endcan
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
+                @endcan
 
             </div>
         </div>
@@ -354,6 +384,7 @@
 
 @push('footer')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @can('hapus header')
     <script type="text/javascript">
         $(function() {
             $(document).on('click', '#deleteheader', function(e) {
@@ -397,6 +428,8 @@
             });
         });
     </script>
+    @endcan
+    @can('hapus subheader')
     <script type="text/javascript">
         $(function() {
             $(document).on('click', '#deletesubheader', function(e) {
@@ -425,4 +458,5 @@
             });
         });
     </script>
+    @endcan
 @endpush

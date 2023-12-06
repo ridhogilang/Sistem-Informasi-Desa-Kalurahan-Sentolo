@@ -21,7 +21,7 @@
         <div class="row">
 
             <div class="col-lg-12">
-
+                @can('tambah artikel')
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Tambah Artikel</h5>
@@ -112,7 +112,8 @@
                         </div>
                     </div>
                 </div>
-
+                @endcan
+                @can('list artikel')
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
@@ -129,7 +130,9 @@
                                     <th scope="col">Kategori</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Copy Url</th>
+                                    @canany(['edit artikel', 'hapus artikel'])
                                     <th scope="col" class="text-center">Action</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
@@ -149,28 +152,35 @@
                                                 <i class="fa-solid fa-copy"></i>
                                             </a>
                                         </td>
+                                        @canany(['edit artikel', 'hapus artikel'])
                                         <td class="text-center">
+                                            @can('edit artikel')
                                             <a class="btn btn-warning" href="/admin/sistem-informasi/showartikel/{{ $value->id }}"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
                                             <!-- Button trigger modal -->
+                                            @endcan
+                                            @can('hapus artikel')
                                             <a class="btn btn-danger" type="submit" id="deleteartikel"
                                                 data-id="{{ $value->id }}"
                                                 href="/admin/sistem-informasi/deleteartikel/{{ $value->id }}"><i
                                                     class="fa-regular fa-trash-can"></i></a>
+                                            @endcan
                                         </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
-
+                @endcan
             </div>
         </div>
     </section>
 @endsection
 
 @push('footer')
+    @can('hapus artikel')
     <script type="text/javascript">
         $(function() {
             $(document).on('click', '#deleteartikel', function(e) {
@@ -199,6 +209,7 @@
             });
         });
     </script>
+    @endcan
    <script>
     var checkbox2 = document.getElementById('checkbox2');
     var textarea1 = document.getElementById('summernote');

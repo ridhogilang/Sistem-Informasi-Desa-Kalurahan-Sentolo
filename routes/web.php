@@ -366,8 +366,8 @@ Route::prefix('admin')->group(function () {
             });
             //running text
             Route::controller(KomponenController::class)->group(function () {
-                Route::get('/komponen', 'index')->middleware('can:lihat komponen');
-                Route::put('/edit-text/{id}', 'update')->middleware('can:edit komponen');
+                Route::get('/komponen', 'index')->middleware('can:lihat running text');
+                Route::put('/edit-text/{id}', 'update')->middleware('can:edit running text');
             });
             //Poster Pamong
             //iki njupuk sko user ae pie??
@@ -434,7 +434,7 @@ Route::prefix('admin')->group(function () {
                 Route::put('/edit-apbdes-pembelanjaan/{id}', 'updatepembelanjaan')->middleware('can:edit apdes');
 
                 //Hapus
-                Route::get('/hapus-apbdes/{id}', 'destroy')->middleware('can:hapus apdes');
+                // Route::get('/hapus-apbdes/{id}', 'destroy')->middleware('can:hapus apdes');
             });
             //Agenda GOR
             Route::controller(AgendaGORController::class)->group(function () {
@@ -473,7 +473,7 @@ Route::prefix('admin')->group(function () {
 
                 //Artikel
                 Route::get('/artikel', 'artikel')->middleware('can:list artikel');
-                Route::get('/showartikel/{id}', 'show_artikel')->middleware('can:lihat artikel');
+                Route::get('/showartikel/{id}', 'show_artikel')->middleware('can:edit artikel');
                 Route::post('/artikel', 'tambah_artikel')->middleware('can:tambah artikel');
                 Route::put('/updateartikel/{id}', 'update_artikel')->middleware('can:edit artikel');
                 Route::get('/deleteartikel/{id}', 'destroy_artikel')->middleware('can:hapus artikel');

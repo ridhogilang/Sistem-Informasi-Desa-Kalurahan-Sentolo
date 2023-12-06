@@ -52,7 +52,6 @@ class AdminController extends Controller
         }
 
         $onlineUsers = Cache::get('user_', []);
-        dd($onlineUsers);
 
         return view('bo.page.sid.ipaddress', [
             "title" => "IP Address User",

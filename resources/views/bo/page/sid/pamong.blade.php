@@ -22,9 +22,10 @@
         <div class="row">
 
             <div class="col-lg-12">
-
+                @can('tambah pamong')
                 <div class="card">
                     <div class="card-body">
+
                         <h5 class="card-title">Tambah</h5>
 
                         <div class="d-flex justify-content-between">
@@ -81,6 +82,7 @@
                         </div>
                     </div>
                 </div>
+                @endcan
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
@@ -95,7 +97,9 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">Jabatan</th>
                                     <th scope="col">Gambar</th>
+                                    @canany(['edit pamong', 'hapus pamong'])
                                     <th scope="col" class="text-center">Action</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
@@ -109,18 +113,25 @@
                                         <td>{!! $item->jabatan !!}</td>
                                         <td><img src="{{ Storage::url($item->gambar) }}" width="45" height="40">
                                         </td>
+                                        @canany(['edit pamong', 'hapus pamong'])
                                         <td class="text-center">
+                                            @can('edit pamong')
                                             <a class="btn btn-warning" type="button" data-bs-toggle="modal"
                                                 data-bs-target="#Modal-Edit-Pamong-{{ $item->id }}"
                                                 href="/admin/sistem-informasi/edit-text/{{ $item->id }}">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
+                                            @endcan
+                                            @canany('hapus pamong')
                                             <a class="btn btn-danger" type="submit" id="deletepamong"
                                                 data-id="{{ $item->id }}" href="/admin/sistem-informasi/hapus-pamong/{{ $item->id }}"><i
                                                     class="fa-regular fa-trash-can"></i>
                                             </a>
+                                            @endcan
                                         </td>
+                                        @endcanany
                                     </tr>
+                                    @can('edit pamong')
                                     <!-- Modal Edit Pamong -->
                                     <div class="modal fade" id="Modal-Edit-Pamong-{{ $item->id }}"
                                         data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -176,6 +187,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endcan
                                 @endforeach
                             </tbody>
                         </table>
@@ -188,6 +200,7 @@
 @endsection
 
 @push('footer')
+    @can('hapus pamong')
     <script type="text/javascript">
         $(function() {
             $(document).on('click', '#deletepamong', function(e) {
@@ -216,6 +229,7 @@
             });
         });
     </script>
+    @endcan
     <script>
         $('#summernote').summernote({
             placeholder: 'Tuliskan artikel anda disini',

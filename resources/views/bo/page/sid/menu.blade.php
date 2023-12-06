@@ -16,7 +16,7 @@
         <div class="row">
 
             <div class="col-lg-12">
-
+                @can('tambah menu')
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Tambah Tampilan Menu</h5>
@@ -82,7 +82,8 @@
                         </div>
                     </div>
                 </div>
-
+                @endcan
+                @can('list menu')
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
@@ -98,7 +99,9 @@
                                     <th scope="col">Link</th>
                                     <th scope="col">Gambar</th>
                                     <th scope="col">Urutan</th>
+                                    @canany(['edit menu', 'hapus menu'])
                                     <th scope="col" class="text-center">Action</th>
+                                    @endcanany
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,18 +115,25 @@
                                         <td>{{ $value->link }}</td>
                                         <td><img src="{{ Storage::url($value->gambar) }}" width="50" height="50"></td>
                                         <td>{{ $value->urutan }}</td>
+                                        @canany(['edit menu', 'hapus menu'])
                                         <td class="text-center">
+                                            @can('edit menu')
                                             <a class="btn btn-warning" type="submit" data-bs-toggle="modal"
                                                 data-bs-target="#Modal-Edit-menu-{{ $value->id }}"
                                                 href="/admin/sistem-informasi/menu/{{ $value->id }}/edit"><i
                                                     class="fa-solid fa-pen-to-square"></i></a>
+                                            @endcan
+                                            @can('hapus menu')
                                             <!-- Button trigger modal -->
                                             <a class="btn btn-danger" type="submit" id="deletemenu"
                                                 data-id="{{ $value->id }}" href="/admin/sistem-informasi/deletemenu/{{ $value->id }}"><i
                                                     class="fa-regular fa-trash-can"></i></a>
+                                            @endcan
                                         </td>
+                                        @endcanany
                                     </tr>
 
+                                    @can('edit menu')
                                     <!-- Modal Menu -->
                                     <div class="modal fade" id="Modal-Edit-menu-{{ $value->id }}"
                                         data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -182,11 +192,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endcan
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
+                @endcan
 
             </div>
         </div>
@@ -194,6 +206,7 @@
 @endsection
 
 @push('footer')
+    @can('hapus menu')
     <script type="text/javascript">
         $(function() {
             $(document).on('click', '#deletemenu', function(e) {
@@ -222,4 +235,5 @@
             });
         });
     </script>
+    @endcan
 @endpush

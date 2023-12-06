@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
             //ip user
             'lihat ip user', 'ip online user',
             //komponen
-            'lihat komponen', 'edit komponen',
+            'lihat running text', 'edit running text',
             //pamong
             'list pamong', 'tambah pamong', 'edit pamong', 'hapus pamong',
             //galeri
@@ -67,7 +67,7 @@ class DatabaseSeeder extends Seeder
                 // statistik
                 'list statistik', 'tambah statistik', 'edit statistik', 'hapus statistik',
             //apdes
-                'list apdes', 'tambah apdes', 'edit apdes', 'hapus apdes',
+                'list apdes', 'edit apdes', 
             //agenda gor
                 'list agenda gor', 'tambah agenda gor', 'edit agenda gor', 'hapus agenda gor',
             //agenda balai
@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
             //berita
             'list berita', 'lihat berita', 'tambah berita', 'edit berita', 'aktivasi berita', 'hapus berita', 'komentar berita',
             //artikel
-            'list artikel', 'lihat artikel', 'tambah artikel', 'edit artikel', 'aktivasi artikel', 'hapus artikel', 'komentar artikel',
+            'list artikel', 'tambah artikel', 'edit artikel', 'aktivasi artikel', 'hapus artikel', 'komentar artikel',
         //kependudukan
         'Menejemen Kependudukan',
         

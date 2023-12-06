@@ -217,16 +217,20 @@
                                     <td>{!! $item->koordinator !!}</td>
                                     @canany(['edit agenda gor', 'hapus agenda gor'])
                                     <td class="text-center">
+                                        @can('edit agenda gor')
                                         <a class="btn btn-warning" type="button" data-bs-toggle="modal"
                                             data-bs-target="#Modal-Edit-Agenda-{{ $item->id }}"
                                             href="/admin/sistem-informasi/edit-agenda/{{ $item->id }}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
+                                        @endcan
+                                        @can('hapus agenda gor')
                                         <a class="btn btn-danger" type="submit" id="deleteAgendagor"
                                             data-id="{{ $item->id }}"
                                             href="/admin/sistem-informasi/hapus-agendagor/{{ $item->id }}"><i
                                                 class="fa-regular fa-trash-can"></i>
                                         </a>
+                                        @endcan
                                     </td>
                                     @endcanany
                                 </tr>
@@ -359,16 +363,20 @@
                                     <td>{!! $item->nomorhp !!}</td>
                                     @canany(['edit agenda balai', 'hapus agenda balai'])
                                     <td class="text-center">
+                                        @can('edit agenda balai')
                                         <a class="btn btn-warning" type="button" data-bs-toggle="modal"
                                             data-bs-target="#Modal-Edit-AgendaBalai-{{ $item->id }}"
                                             href="/admin/sistem-informasi/edit-agendabalai/{{ $item->id }}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
+                                        @endcan
+                                        @can('hapus agenda balai')
                                         <a class="btn btn-danger" type="submit" id="deleteAgendaBalai"
                                             data-id="{{ $item->id }}"
                                             href="/admin/sistem-informasi/hapus-agendabalai/{{ $item->id }}"><i
                                                 class="fa-regular fa-trash-can"></i>
                                         </a>
+                                        @endcan
                                     </td>
                                     @endcanany
                                 </tr>
