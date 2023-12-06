@@ -184,6 +184,7 @@ Route::prefix('admin')->group(function () {
             Route::resource('/validasi', ValidasiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
             // validasi mandiri
             Route::get('/validasi-mandiri', [ValidasimandiriController::class, 'index']);
+            Route::put('/validasi-mandiri/{id}', [ValidasimandiriController::class, 'updateStatus']);
 
             //disposisi surat masuk
             Route::resource('/disposisi', DisposisiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
@@ -480,6 +481,7 @@ Route::get('/get-penduduk/{nik}', [PendudukController::class, 'info'])->middlewa
 // Mandiri
 Route::get('/profile-penduduk', [MandiriController::class, 'index']);
 Route::get('/buat-surat', [BuatsuratController::class, 'index']);
+Route::post('/buat-surat', [BuatsuratController::class, 'store']);
 Route::get('/buat-pesan', [MandiriController::class, 'pesan']);
 Route::get('/bantuan', [MandiriController::class, 'bantuan']);
 
