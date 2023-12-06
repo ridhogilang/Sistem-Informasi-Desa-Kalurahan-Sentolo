@@ -236,24 +236,37 @@
 
                                         <a href="/daftar-hadir/{{ now()->format('F') }}/{{ $item['nama'] }}">
                                             @if ($presentModel)
-                                                @if ($presentModel->keterangan == 'Alpha')
+                                                @if ($presentModel->jam_keluar != null)
+                                                    <span class="bg-emerald-500 text-white py-1 px-3 rounded inline-block">
+                                                        Sudah pulang pukul: {{ $presentModel->jam_keluar }}
+                                                    </span>
+                                                @elseif (now()->format('H:i') >= '16:00' && is_null($presentModel->jam_masuk) && is_null($presentModel->jam_keluar) && $presentModel->keterangan == 'Alpha')
+                                                    <span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Tidak
+                                                        Masuk</span>
+                                                @elseif (now()->format('H:i') > '16:30')
                                                     <span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Belum
-                                                        di Kantor</span>
-                                                @elseif ($presentModel->keterangan == 'Masuk' || $presentModel->keterangan == 'Telat')
-                                                    <span
-                                                        class="bg-emerald-500 text-white py-1 px-3 rounded inline-block">Sudah
-                                                        di Kantor</span>
-                                                @elseif ($presentModel->keterangan == 'Izin' || $presentModel->keterangan == 'Sakit')
-                                                    <span
-                                                        class="bg-yellow-500 text-white py-1 px-3 rounded inline-block">Izin</span>
+                                                        scan pulang</span>
                                                 @else
-                                                    <span
-                                                        class="bg-gray-500 text-white py-1 px-3 rounded inline-block">Status
-                                                        tidak diketahui</span>
+                                                    @if ($presentModel->keterangan == 'Alpha')
+                                                        <span
+                                                            class="bg-red-500 text-white py-1 px-3 rounded inline-block">Belum
+                                                            di Kantor</span>
+                                                    @elseif ($presentModel->keterangan == 'Masuk' || $presentModel->keterangan == 'Telat')
+                                                        <span
+                                                            class="bg-emerald-500 text-white py-1 px-3 rounded inline-block">Sudah
+                                                            di Kantor</span>
+                                                    @elseif ($presentModel->keterangan == 'Izin' || $presentModel->keterangan == 'Sakit')
+                                                        <span
+                                                            class="bg-yellow-500 text-white py-1 px-3 rounded inline-block">Izin</span>
+                                                    @else
+                                                        <span
+                                                            class="bg-gray-500 text-white py-1 px-3 rounded inline-block">Status
+                                                            tidak diketahui</span>
+                                                    @endif
                                                 @endif
                                             @else
-                                                <span class="bg-gray-500 text-white py-1 px-3 rounded inline-block">Data
-                                                    tidak ditemukan</span>
+                                                <span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Belum di
+                                                    Kantor</span>
                                             @endif
                                         </a>
                                     </div>
@@ -1808,6 +1821,9 @@
 
                     // Use JavaScript's Date object to get the current date and time
                     var currentDate = new Date();
+                    var now = new Date();
+                    var formattedTime =
+                        `${now.getHours()}:${now.getMinutes() < 10 ? '0' : ''}${now.getMinutes()}`;
                     var formattedDate = currentDate.toLocaleString('en-US', {
                         month: 'long'
                     });
@@ -1823,19 +1839,24 @@
                                 <span class="text-heading">${item.nama}</span>
                                 <span class="block">${item.jabatan}</span><br>
                                 <a href="/daftar-hadir/${formattedDate}/${item.nama}">
-                                    ${presentModel ?
-                                        (presentModel.keterangan == 'Alpha' || presentModel === null ? 
-                                            '<span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Belum di Kantor</span>' :
-                                            (presentModel.keterangan == 'Masuk' || presentModel.keterangan == 'Telat' ?
-                                                '<span class="bg-emerald-500 text-white py-1 px-3 rounded inline-block">Sudah di Kantor</span>' :
-                                                (presentModel.keterangan == 'Cuti' || presentModel.keterangan == 'Sakit' ?
-                                                    '<span class="bg-yellow-500 text-white py-1 px-3 rounded inline-block">Izin</span>' :
-                                                    '<span class="bg-gray-500 text-white py-1 px-3 rounded inline-block">Status tidak diketahui</span>'
-                                                )
-                                            )
-                                        ) :
-                                        '<span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Belum di Kantor</span>'
-                                    }
+                                ${item.presentModel
+                                    ? item.presentModel.jam_keluar !== null
+                                        ? `<span class="bg-emerald-500 text-white py-1 px-3 rounded inline-block">
+                                                Sudah pulang pukul: ${item.presentModel.jam_keluar}
+                                            </span>`
+                                        : (formattedTime >= '16:00' && item.presentModel.jam_masuk === null && item.presentModel.jam_keluar === null && item.presentModel.keterangan === 'Alpha')
+                                            ? `<span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Tidak Masuk</span>`
+                                            : formattedTime > '16:30'
+                                                ? `<span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Belum scan pulang</span>`
+                                                : item.presentModel.keterangan === 'Alpha'
+                                                    ? `<span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Belum di Kantor</span>`
+                                                    : item.presentModel.keterangan === 'Masuk' || item.presentModel.keterangan === 'Telat'
+                                                        ? `<span class="bg-emerald-500 text-white py-1 px-3 rounded inline-block">Sudah di Kantor</span>`
+                                                        : item.presentModel.keterangan === 'Izin' || item.presentModel.keterangan === 'Sakit'
+                                                            ? `<span class="bg-yellow-500 text-white py-1 px-3 rounded inline-block">Izin</span>`
+                                                            : `<span class="bg-gray-500 text-white py-1 px-3 rounded inline-block">Status tidak diketahui</span>`
+                                    : `<span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Belum di Kantor</span>`
+                                }
                                 </a>
                             </div>
                         </div>
@@ -1875,89 +1896,6 @@
             }
         });
     </script>
-
-
-    {{-- <script>
-        $(document).ready(function() {
-            // Kode JavaScript untuk mengambil data dan menambahkan elemen HTML
-            function getDataAndRenderElements() {
-                $.ajax({
-                    url: '/get-pamong', // Ganti dengan URL yang sesuai
-                    method: 'GET',
-                    success: function(data) {
-                        data.forEach(function(item) {
-                            var $owlItem = $(
-                                '<div class="owl-item" style="width: 231px; margin-right: 16px;"></div>'
-                            );
-                            var $card = $(
-                                '<div class="cardaparatur p-4 flex flex-col justify-between space-y-4 product-item"></div>'
-                            );
-                            var $imageContainer = $('<div class="space-y-3"></div>');
-                            var $img = $(
-                                '<img class="w-full object-cover object-center bg-slate-300 dark:bg-slate-600 mx-auto rounded-lg">'
-                            );
-                            var $textContainer = $(
-                                '<div class="space-y-1 text-sm text-center"></div>'
-                            );
-
-                            $img.attr('src', item
-                                .gambar); // Ganti dengan variabel PHP yang sesuai
-                            $img.attr('alt', item
-                                .nama); // Ganti dengan variabel PHP yang sesuai
-
-                            $textContainer.append(
-                                $('<span class="text-heading">' + item.nama + '</span>')
-                            ); // Mengambil nilai dari properti 'nama' dalam objek 'item'
-                            $textContainer.append(
-                                $('<span class="block">' + item.jabatan + '</span>')
-                            ); // Mengambil nilai dari properti 'jabatan' dalam objek 'item'
-
-                            $imageContainer.append($img);
-                            $card.append($imageContainer);
-                            $card.append($textContainer);
-                            $owlItem.append($card);
-                            $('#pamong-container').append($owlItem);
-                        });
-
-                        // Setelah semua elemen ditambahkan, inisialisasi Slick Slider
-                        initSlickSlider();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            }
-
-            // Fungsi untuk menginisialisasi Slick Slider
-            function initSlickSlider() {
-                if ($('.customer-logos').length) {
-                    $('.customer-logos').slick({
-                        slidesToShow: 6,
-                        slidesToScroll: 1,
-                        autoplay: true,
-                        autoplaySpeed: 2000,
-                        arrows: false,
-                        dots: false,
-                        pauseOnHover: false,
-                        responsive: [{
-                            breakpoint: 768,
-                            settings: {
-                                slidesToShow: 4
-                            }
-                        }, {
-                            breakpoint: 520,
-                            settings: {
-                                slidesToShow: 1
-                            }
-                        }]
-                    });
-                }
-            }
-
-            // Panggil fungsi getDataAndRenderElements() saat dokumen siap
-            getDataAndRenderElements();
-        });
-    </script> --}}
     {{-- Agenda Kalurahan --}}
     <script>
         // Fungsi untuk mengatur kelas active pada tab yang diklik

@@ -175,8 +175,6 @@ class HomeController extends Controller
             ->first();
             $item->presentModel = $presentModel;
         }
-
-        // dd($pamong);
     
         return response()->json($pamong);
     }

@@ -13,7 +13,6 @@ class LoginController extends Controller
 {
     public function __construct()
     {
-
     }
 
     public function index()
@@ -36,28 +35,29 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             //mengecek verifikasi email
             $user = User::where('email', $credentials['email'])->first();
-            if($user->email_verified_at == null){
+            if ($user->email_verified_at == null) {
                 Auth::logout();
-                return redirect()->route('login')->with('error', config('error','mohon verifikasi email terlebih dahulu')); 
+                return redirect()->route('login')->with('error', config('error', 'mohon verifikasi email terlebih dahulu'));
             }
             //mengecek aktivasi user
-            if($user->is_active == '0'){
+            if ($user->is_active == '0') {
                 Auth::logout();
-                return redirect()->route('login')->with('error', config('error','Akun anda sedang dinonaktifkan oleh admin'));
+                return redirect()->route('login')->with('error', config('error', 'Akun anda sedang dinonaktifkan oleh admin'));
             }
             //jika user telah dihapus
-            if($user->is_delete == '1'){
+            if ($user->is_delete == '1') {
                 Auth::logout();
-                return redirect()->route('login')->with('error', config('error','nama pengguna atau password tidak sesuai'));
+                return redirect()->route('login')->with('error', config('error', 'nama pengguna atau password tidak sesuai'));
             }
             //proses login
             $request->session()->regenerate();
-            return redirect()->route('bo.home')->with('success', 'Halo selamat datang '.auth()->user()->username);
+            return redirect()->route('bo.home')->with('success', 'Halo selamat datang ' . auth()->user()->username);
         }
-        
-        return back()->with('error', config('error','nama pengguna atau password tidak sesuai'));
+
+        return back()->with('error', config('error', 'nama pengguna atau password tidak sesuai'));
     }
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
@@ -74,26 +74,30 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             //mengecek verifikasi email
             $user = User::where('email', $credentials['email'])->first();
-            if($user->email_verified_at == null){
+            if ($user->email_verified_at == null) {
                 Auth::logout();
-                return redirect()->route('login')->with('error', config('error','mohon verifikasi email terlebih dahulu')); 
+                return redirect()->route('login')->with('error', config('error', 'mohon verifikasi email terlebih dahulu'));
             }
             //mengecek aktivasi user
-            if($user->is_active == '0'){
+            if ($user->is_active == '0') {
                 Auth::logout();
-                return redirect()->route('login')->with('error', config('error','Akun anda sedang dinonaktifkan oleh admin'));
+                return redirect()->route('login')->with('error', config('error', 'Akun anda sedang dinonaktifkan oleh admin'));
             }
             //jika user telah dihapus
-            if($user->is_delete == '1'){
+            if ($user->is_delete == '1') {
                 Auth::logout();
-                return redirect()->route('login')->with('error', config('error','nama pengguna atau password tidak sesuai'));
+                return redirect()->route('login')->with('error', config('error', 'nama pengguna atau password tidak sesuai'));
+            }
+            //Jika user bukan pamong
+            if ($user->is_pamong == '0') {
+                Auth::logout();
+                return redirect()->route('login')->with('error', config('error', 'anda tidak terdaftar sebagai perangkat desa'));
             }
             //proses login
             $request->session()->regenerate();
-            return redirect()->route('bo.presensi')->with('success', 'Halo selamat datang '.auth()->user()->username);
+            return redirect()->route('bo.presensi')->with('success', 'Halo selamat datang ' . auth()->user()->username);
         }
-        
-        return back()->with('error', config('error','nama pengguna atau password tidak sesuai'));
-    }
 
+        return back()->with('error', config('error', 'nama pengguna atau password tidak sesuai'));
+    }
 }

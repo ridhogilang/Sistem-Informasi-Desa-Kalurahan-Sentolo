@@ -51,7 +51,6 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>user_id</th>
                                         <th>Nama</th>
                                         <th>Keterangan</th>
                                         <th>Jam Masuk</th>
@@ -68,7 +67,6 @@
                                         @foreach ($presents as $rank => $present)
                                             <tr>
                                                 <th>{{ $rank + 1 }}</th>
-                                                <td>{{ $present->user_id }}</td>
                                                 <td>{{ $present->user->nama }}</td>
                                                 <td>{{ $present->keterangan }}</td>
                                                 @if ($present->jam_masuk)

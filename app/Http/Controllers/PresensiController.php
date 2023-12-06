@@ -53,7 +53,7 @@ class PresensiController extends Controller
 
     public function checkIn(Request $request)
     {
-        $users = User::all();
+        $users = User::where('is_pamong', '1')->get();
         $data['jam_masuk']  = date('H:i:s');
         $data['tanggal']    = date('Y-m-d');
         $data['user_id']    = $request->user_id;
