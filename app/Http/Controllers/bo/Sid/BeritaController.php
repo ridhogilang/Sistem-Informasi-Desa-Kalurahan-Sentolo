@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Google\Service\Monitoring\CloudFunctionV2Target;
 use Illuminate\Support\Facades\DB;
 
 
@@ -25,11 +26,28 @@ class BeritaController extends Controller
 
     public function index()
     {
-        $data = Berita::whereIn('kategoriberita_id', [1, 2, 3])->get();
+        $data = Berita::whereIn('kategoriberita_id', [1, 2, 3])
+            ->where('tampil', true)
+            ->get();
         $kategori = KategoriBerita::whereIn('id', [1, 2, 3])->get();
 
         return view('bo.page.sid.berita.berita', [
             "title" => "Berita",
+            "dropdown1" => "Komponen Berita",
+            "berita" => $data,
+            "kategori" => $kategori,
+        ]);
+    }
+
+    public function berita_kontributor()
+    {
+        $data = Berita::whereIn('kategoriberita_id', [1, 2, 3])
+            ->where('tampil', false)
+            ->get();
+        $kategori = KategoriBerita::whereIn('id', [1, 2, 3])->get();
+
+        return view('bo.page.sid.berita.berita_kontributor', [
+            "title" => "Berita Kontributor",
             "dropdown1" => "Komponen Berita",
             "berita" => $data,
             "kategori" => $kategori,
@@ -319,7 +337,7 @@ class BeritaController extends Controller
         $berita->artikel = $request->input('artikel');
         $berita->save();
 
-        return redirect('/admin/berita')->with('toast_success', 'Data Berita Berhasil diubah!');
+        return redirect('/admin/sistem-informasi/berita')->with('toast_success', 'Data Berita Berhasil diubah!');
     }
 
     public function updateStatus(Request $request, $id)
@@ -334,7 +352,7 @@ class BeritaController extends Controller
 
         $toastMessage = $status ? 'Berita sudah ditampilkan di Halaman Highlight!' : 'Berita dihapus dari Halaman Highlight!';
 
-        return redirect('/admin/berita')->with('toast_success', $toastMessage);
+        return redirect('/admin/sistem-informasi/berita')->with('toast_success', $toastMessage);
     }
 
     public function updateSideBerita(Request $request, $id)
@@ -435,7 +453,7 @@ class BeritaController extends Controller
         $artikel->kategori_link = $request->input('kategori_link');
         $artikel->save();
 
-        return redirect('/admin/artikel')->with('toast_success', 'Data Artikel Berhasil diubah!');
+        return redirect('/admin/sistem-informasi/berita')->with('toast_success', 'Data Artikel Berhasil diubah!');
     }
 
     /**
@@ -446,7 +464,7 @@ class BeritaController extends Controller
         $data = Berita::find($id);
 
         if (!$data) {
-            return redirect()->back()->with('toast_success', 'Data Menu Tidak Ditemukan!');
+            return redirect()->back()->with('toast_success', 'Data Artikel Tidak Ditemukan!');
         }
 
         // Hapus gambar terlebih dahulu jika ada
@@ -457,7 +475,7 @@ class BeritaController extends Controller
         // Hapus data dari database
         $data->delete();
 
-        return redirect()->back()->with('toast_success', 'Data Menu Berhasil dihapus!');
+        return redirect()->back()->with('toast_success', 'Data Artikel Berhasil dihapus!');
     }
 
     public function destroy_artikel(string $id)
@@ -465,7 +483,7 @@ class BeritaController extends Controller
         $data = Berita::find($id);
 
         if (!$data) {
-            return redirect()->back()->with('toast_success', 'Data Menu Tidak Ditemukan!');
+            return redirect()->back()->with('toast_success', 'Data Artikel Tidak Ditemukan!');
         }
 
         // Hapus gambar terlebih dahulu jika ada
@@ -476,31 +494,18 @@ class BeritaController extends Controller
         // Hapus data dari database
         $data->delete();
 
-        return redirect()->back()->with('toast_success', 'Data Menu Berhasil dihapus!');
+        return redirect()->back()->with('toast_success', 'Data Artikel Berhasil dihapus!');
     }
-    // public function store_komentar(Request $request)
-    // {
-    //     $request->validate([
-    //         'berita_id' => 'required',
-    //         'komentar' => 'required|min:5',
-    //         'nama' => 'required',
-    //         'email' => 'required|email',
-    //         'nohp' => 'required',
-    //         'captcha' => 'required|captcha',
-    //     ],[
-    //         'required' => 'Lengkapi Data!',
-    //         'captcha' => 'Captcha Tidak Valid!'
-    //     ]);
 
-    //     $data = new Komentar;
-    //     $data->berita_id = $request->berita_id;
-    //     $data->komentar = $request->komentar;
-    //     $data->nama = $request->nama;
-    //     $data->email = $request->email;
-    //     $data->nohp = $request->nohp;
-    //     $data->status = 0;
+    public function TampilkanBerita($id)
+    {
+        // Temukan berita berdasarkan ID
+        $berita = Berita::findOrFail($id);
 
-    //     $data->save();
-    //     return redirect('/')->with('toast_success', 'Komentar Berhasil ditambahkan!');
-    // }
+        // Ubah nilai kolom 'tampil' menjadi true
+        $berita->update(['tampil' => true]);
+
+        return redirect()->back()->with('toast_success', 'Berita Berhasil ditampilkan!');
+
+    }
 }

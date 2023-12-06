@@ -44,8 +44,38 @@ class DatabaseSeeder extends Seeder
             'Arsip Surat', 'Menghapus Arsip', 'Arsip Dihapus',
         //sistem informasi
         'Menejemen Sistem Informasi',
+            //ip user
+            'lihat ip user', 'ip online user',
+            //komponen
+            'lihat running text', 'edit running text',
+            //pamong
+            'list pamong', 'tambah pamong', 'edit pamong', 'hapus pamong',
+            //galeri
+            'list galeri', 'tambah galeri', 'edit galeri', 'hapus galeri',
+            //menu
+            'list menu', 'tambah menu', 'edit menu', 'hapus menu',
+            //header & subheader
+            'list header', 'tambah header', 'edit header', 'hapus header',
+            'list subheader', 'tambah subheader', 'edit subheader', 'hapus subheader',
+            //bagan
+                // agenda
+                'list agenda', 'tambah agenda', 'edit agenda', 'hapus agenda',
+                // jadwal
+                'list jadwal', 'tambah jadwal', 'edit jadwal', 'hapus jadwal',
+                // sinergi
+                'list sinergi', 'tambah sinergi', 'edit sinergi', 'hapus sinergi',
+                // statistik
+                'list statistik', 'tambah statistik', 'edit statistik', 'hapus statistik',
+            //apdes
+                'list apdes', 'edit apdes', 
+            //agenda gor
+                'list agenda gor', 'tambah agenda gor', 'edit agenda gor', 'hapus agenda gor',
+            //agenda balai
+                'list agenda balai', 'tambah agenda balai', 'edit agenda balai', 'hapus agenda balai',
             //berita
-            'lihat berita', 'edit berita', 'hapus berita',
+            'list berita', 'lihat berita', 'tambah berita', 'edit berita', 'aktivasi berita', 'hapus berita', 'komentar berita',
+            //artikel
+            'list artikel', 'tambah artikel', 'edit artikel', 'aktivasi artikel', 'hapus artikel', 'komentar artikel',
         //kependudukan
         'Menejemen Kependudukan',
         
@@ -742,144 +772,172 @@ class DatabaseSeeder extends Seeder
 
         Pamong::create([
             'id' =>'1',
+            'user_id' => '2',
             'nama' => 'Teguh',
             'jabatan'=> 'Lurah',
             'gambar'=> '/gambar-pamong/Teguh (Lurah).jpg',
         ]);
         Pamong::create([
             'id' =>'2',
+            'user_id' => '3',
             'nama' => 'Edi Sarwono, S.T.P (Carik)',
             'jabatan'=> 'Carik',
             'gambar'=> '/gambar-pamong/Edi Sarwono, S.T.P (Carik).jpg',
         ]);
         Pamong::create([
             'id' =>'3',
+            'user_id' => '4',
             'nama' => 'Silvy Octavia',
             'jabatan'=> 'Aparatur Desa',
             'gambar'=> '/gambar-pamong/Silvy Octavia (Staff Kalurahan) 2.jpg',
         ]);
         Pamong::create([
             'id' =>'4',
+            'user_id' => '5',
             'nama' => 'Widada',
             'jabatan'=> 'Dukuh Jangkang',
             'gambar'=> '/gambar-pamong/Widada (Dukuh Jangkang Lor).jpg',
         ]);
         Pamong::create([
             'id' =>'5',
+            'user_id' => '6',
             'nama' => 'Tujiman',
             'jabatan'=> 'Dukuh Gedangan',
             'gambar'=> '/gambar-pamong/Tujiman (Dukuh Gedangan).jpg',
         ]);
         Pamong::create([
             'id' =>'6',
+            'user_id' => '7',
             'nama' => 'Tri Endah Budi',
             'jabatan'=> '(Palapa)',
             'gambar'=> '/gambar-pamong/Tri Endah Budi Arti (Palapa).jpg',
         ]);
         Pamong::create([
             'id' =>'7',
+            'user_id' => '8',
             'nama' => 'Teguh Harjono, Sp',
             'jabatan'=> 'Jagabaya',
             'gambar'=> '/gambar-pamong/Teguh Satu.jpg',
         ]);
         Pamong::create([
             'id' =>'8',
+            'user_id' => '9',
             'nama' => 'Sumija',
             'jabatan'=> 'Dukuh Jangkang Kidul',
             'gambar'=> '/gambar-pamong/Sumija (Dukuh Jangkang Kidul).jpg',
         ]);
         Pamong::create([
             'id' =>'9',
+            'user_id' => '10',
             'nama' => 'Sutrisna',
             'jabatan'=> 'Dukuh Malangan',
             'gambar'=> '/gambar-pamong/Sutrisna (Dukuh Malangan).jpg',
         ]);
         Pamong::create([
             'id' =>'10',
+            'user_id' => '11',
             'nama' => 'Sukarni',
             'jabatan'=> 'Dukuh Gunung Waras',
             'gambar'=> '/gambar-pamong/Sukarni (Dukuh Gunung Waras).jpg',
         ]);
         Pamong::create([
             'id' =>'11',
+            'user_id' => '12',
             'nama' => 'Sekar Fareri HP',
             'jabatan'=> 'Dukuh Sentolo Kidul',
             'gambar'=> '/gambar-pamong/Sekar Fareri HP (Dukuh Sentolo Kidul).jpg',
         ]);
         Pamong::create([
             'id' =>'12',
+            'user_id' => '13',
             'nama' => 'S. Djoko Santoso',
             'jabatan'=> 'Dukuh Sentolo Lor',
             'gambar'=> '/gambar-pamong/S. Djoko Santoso (Dukuh Sentolo Lor).jpg',
         ]);
         Pamong::create([
-            'id' =>'14',
+            'id' =>'13',
+            'user_id' => '14',
             'nama' => 'Risdiyanto',
             'jabatan'=> 'Dukuh Pangangan',
             'gambar'=> '/gambar-pamong/Risdiyanto (Dukuh Pangangan).jpg',
         ]);
         Pamong::create([
-            'id' =>'15',
+            'id' =>'14',
+            'user_id' => '15',
             'nama' => 'Puguh Prasetyo',
             'jabatan'=> 'Staff Kalurahan',
             'gambar'=> '/gambar-pamong/Puguh Prasetyo (Staff Kalurahan).jpg',
         ]);
         Pamong::create([
-            'id' =>'16',
+            'id' =>'15',
+            'user_id' => '16',
             'nama' => 'Martanti',
             'jabatan'=> 'Staf Kalurahan',
             'gambar'=> '/gambar-pamong/martanti (Staf Kalurahan).jpg',
         ]);
         Pamong::create([
-            'id' =>'17',
+            'id' =>'16',
+            'user_id' => '17',
             'nama' => 'Marno',
             'jabatan'=> 'Dukuh Dlaban',
             'gambar'=> '/gambar-pamong/Marno (Dukuh Dlaban).jpg',
         ]);
         Pamong::create([
-            'id' =>'18',
+            'id' =>'17',
+            'user_id' => '18',
             'nama' => 'Ilham Kurniawan',
             'jabatan'=> 'Staff Kalurahan',
             'gambar'=> '/gambar-pamong/Ilham Kurniawan(Staff Kalurahan).jpg',
         ]);
         Pamong::create([
-            'id' =>'19',
+            'id' =>'18',
+            'user_id' => '19',
             'nama' => 'Eka Fitri Nurcahyati',
             'jabatan'=> 'Danarta',
             'gambar'=> '/gambar-pamong/Eka Fitri Nurcahyati (Danarta).jpg',
         ]);
         Pamong::create([
-            'id' =>'20',
+            'id' =>'19',
+            'user_id' => '20',
             'nama' => 'Eka Febriyanti',
             'jabatan'=> 'Dukuh Kalibondol',
             'gambar'=> '/gambar-pamong/Eka Febriyanti (Dukuh Kalibondol).jpg',
         ]);
         Pamong::create([
-            'id' =>'21',
+            'id' =>'20',
+            'user_id' => '21',
             'nama' => 'Danang Yulianto',
             'jabatan'=> 'Ulu-Ulu',
             'gambar'=> '/gambar-pamong/Danang Yulianto (Ulu-Ulu).jpg',
         ]);
         Pamong::create([
-            'id' =>'22',
+            'id' =>'21',
+            'user_id' => '22',
             'nama' => 'Anis Nur Hanifah',
             'jabatan'=> 'Staff Kalurahan',
             'gambar'=> '/gambar-pamong/Anis Nur Hanifah (Staff Kalurahan).jpg',
         ]);
         Pamong::create([
-            'id' =>'23',
+            'id' =>'22',
+            'user_id' => '23',
             'nama' => 'Agus Sutrisna, S.Pt',
             'jabatan'=> 'Kamituwa',
             'gambar'=> '/gambar-pamong/Agus.jpg',
         ]);
         Pamong::create([
-            'id' =>'24',
+            'id' =>'23',
+            'user_id' => '24',
             'nama' => 'Agus Sumarno',
             'jabatan'=> 'Dukuh Siwalan',
             'gambar'=> '/gambar-pamong/Agus Sumarno (Dukuh Siwalan).jpg',
         ]);
 
         $pamongs = Pamong::all();
+
+        $jabatann = Pamong::select('jabatan')->distinct()->get();
+        foreach ($jabatann as $jabatan) {
+            $role = Role::create(['name' => $jabatan->jabatan]);
+        }   
 
         foreach ($pamongs as $pamong) {
             // Mendapatkan nama untuk User
@@ -889,16 +947,18 @@ class DatabaseSeeder extends Seeder
             $userEmail = strtolower(str_replace(' ', '', $userName)) . '@mail.com';
 
             // Membuat data User
-            User::create([
+            $pamongg = User::create([
                 'nama' => $userName,
                 'email' => $userEmail,
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'),
-                'jabatan' => 'Pamong',
+                'jabatan' => $pamong->jabatan,
                 'foto_resmi' => $pamong->gambar,
                 'is_active' => '1',
                 'is_delete' => '0'
             ]);
+
+            $pamongg->assignRole($pamong->jabatan);
         }
         
         Berita::create([

@@ -24,6 +24,9 @@ class Berita extends Model
         'link',
         'kategori_link',
         'artikel',
+        'tampil',
+        'status',
+        'sideberita',
     ];
 
     public function kategori()

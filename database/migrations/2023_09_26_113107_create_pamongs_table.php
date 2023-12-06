@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pamong', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->string('nama');
             $table->string('jabatan');
             $table->string('gambar');

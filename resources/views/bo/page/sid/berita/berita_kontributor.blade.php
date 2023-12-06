@@ -23,10 +23,9 @@
 
             <div class="col-lg-12">
 
-                @can('tambah berita')
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Tambah Berita | Side Berita</h5>
+                        <h5 class="card-title">Tambah Berita Kontributor</h5>
 
                         <div class="d-flex justify-content-between">
                             <div>
@@ -34,26 +33,6 @@
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#modalBerita"><i class="fa-regular fa-square-plus"
                                         style="margin-right: 5px"></i>Tambah Berita</button>
-                            </div>
-                            <div>
-                                <div class="row mb-3">
-                                    <label class="col-sm-6 col-form-label">Pilih Side Berita</label>
-                                    <div class="col-sm-10">
-                                        <form action="/admin/sistem-informasi/update-sideberita/{id}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <select id="pilihsideberita" class="form-select" name="news_id" onchange="this.form.submit()"
-                                                placeholder="Pilih berita...">
-                                                <option value="" disabled selected>Pilih sideberita</option>
-                                                @foreach ($berita as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        @if ($item->sideberita) selected @endif>
-                                                        {{ $item->judul }}</option>
-                                                @endforeach
-                                            </select>
-                                        </form>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -63,12 +42,13 @@
                             <div class="modal-dialog modal-fullscreen modal-dialog-scrollable modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="sktm-satu-Label">Tambah Berita</h1>
+                                        <h1 class="modal-title fs-5" id="sktm-satu-Label">Tambah Artikel</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="/admin/sistem-informasi/berita" method="POST" enctype="multipart/form-data">
+                                        <form class="row g-3" action="/admin/sistem-informasi/berita" method="POST"
+                                            enctype="multipart/form-data">
                                             @csrf
                                             <div class="col-md-12">
                                                 <label for="judul" class="form-label">Judul</label>
@@ -125,7 +105,6 @@
                         </div>
                     </div>
                 </div>
-                @endcan
 
                 <div class="card">
                     <div class="card-body">
@@ -142,11 +121,8 @@
                                     <th scope="col">Penulis</th>
                                     <th scope="col">Kategori</th>
                                     <th scope="col">Tanggal</th>
-                                    @can('aktivasi berita')
-                                    <th scope="col">Berita Utama</th>
-                                    @endcan
                                     @canany(['edit berita', 'hapus berita'])
-                                    <th scope="col" class="text-center">Action</th>
+                                        <th scope="col" class="text-center">Action</th>
                                     @endcanany
                                 </tr>
                             </thead>
@@ -161,40 +137,34 @@
                                         <td>{{ $value->penulis }}</td>
                                         <td>{{ $value->kategori->kategori }}</td>
                                         <td>{{ $value->tanggal }}</td>
-                                        @can('aktivasi berita')
-                                        <td>
-                                            <form action="{{ route('berita.update-status', ['id' => $value->id]) }}" method="POST"
+                                        @can('hapus berita')
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <a class="btn btn-warning mx-1"
+                                                        href="/admin/sistem-informasi/showberita/{{ $value->id }}">
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                    </a>
 
-                                                id="statusForm{{ $value->id }}" class="form-check form-switch">
-                                                @csrf
-                                                @method('put')
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="hidden" name="status"
-                                                        value="0">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        id="flexSwitchCheck{{ $value->id }}" name="status"
-                                                        {{ $value->status ? 'checked' : '' }}
+                                                    <!-- Button trigger modal -->
+                                                    <a class="btn btn-danger mx-1" type="submit" id="deleteberita"
                                                         data-id="{{ $value->id }}"
-                                                        onchange="submitStatusForm({{ $value->id }})">
+                                                        href="/admin/sistem-informasi/deleteberita/{{ $value->id }}">
+                                                        <i class="fa-regular fa-trash-can"></i>
+                                                    </a>
+
+                                                    <form
+                                                        action="/admin/sistem-informasi/tampilkan-berita/{{ $value->id }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+
+                                                        <button type="submit" class="btn btn-success mx-1">
+                                                            <i class="fa-solid fa-check"></i>
+                                                        </button>
+                                                    </form>
                                                 </div>
-                                            </form>
-                                        </td>
+                                            </td>
                                         @endcan
-                                        @canany(['edit berita', 'hapus berita'])
-                                        <td class="text-center">
-                                            @can('edit berita')
-                                            <a class="btn btn-warning" href="/admin/sistem-informasi/showberita/{{ $value->id }}"><i
-                                                    class="fa-solid fa-pen-to-square"></i></a>
-                                            @endcan
-                                            <!-- Button trigger modal -->
-                                            @can('hapus berita')
-                                            <a class="btn btn-danger" type="submit" id="deleteberita"
-                                                data-id="{{ $value->id }}"
-                                                href="/admin/sistem-informasi/deleteberita/{{ $value->id }}"><i
-                                                    class="fa-regular fa-trash-can"></i></a>
-                                            @endcan
-                                        </td>
-                                        @endcanany
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -208,7 +178,6 @@
 @endsection
 
 @push('footer')
-    @can('hapus berita')
     <script type="text/javascript">
         $(function() {
             $(document).on('click', '#deleteberita', function(e) {
@@ -237,7 +206,6 @@
             });
         });
     </script>
-    @endcan
     <script>
         $('#summernote').summernote({
             placeholder: 'Tuliskan artikel anda disini',
@@ -253,11 +221,6 @@
                 ['view', ['fullscreen', 'codeview', 'help']]
             ]
         });
-    </script>
-    <script>
-        function submitStatusForm(id) {
-            document.getElementById('statusForm' + id).submit();
-        }
     </script>
     <script>
         const judul = document.querySelector('#judul');
@@ -302,5 +265,5 @@
                     });
             });
         });
-    </script>    
+    </script>
 @endpush

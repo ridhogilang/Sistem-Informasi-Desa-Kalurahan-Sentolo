@@ -17,7 +17,7 @@
             </ol>
         </nav>
     </div><!-- End Page Title -->
-
+    @can('list apdes')
     <section class="section">
         <div class="row">
 
@@ -25,102 +25,12 @@
 
                 <div class="card">
                     <div class="card-body">
-                        {{-- <h5 class="card-title">Tambah</h5>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modalAgenda"><i class="fa-regular fa-square-plus"
-                                        style="margin-right: 5px"></i>Tambah Agenda</button>
-                            </div>
-                            <div>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modalJadwal"><i class="fa-regular fa-square-plus"
-                                        style="margin-right: 5px"></i>Tambah Jadwal</button>
-                            </div>
-                            <div>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modalSinergi"><i class="fa-regular fa-square-plus"
-                                        style="margin-right: 5px"></i>Tambah Sinergi</button>
-                            </div>
-                            <div>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modalStatistik"><i class="fa-regular fa-square-plus"
-                                        style="margin-right: 5px"></i>Tambah Statistik</button>
-                            </div>
-                        </div> --}}
-
-                        <!-- Modal Form Tambah Agenda -->
-                        {{-- <div class="modal fade" id="modalAgenda" data-bs-backdrop="static" data-bs-keyboard="false"
-                            tabindex="-1" aria-labelledby="Agenda-Label" aria-hidden="true">
-                            <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="Agenda-Label">Tambah Agenda</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form class="row" action="/tambah-agenda" method="POST"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="row mb-3">
-                                                <label for="judul" class="col-sm-3 col-form-label">Judul</label>
-                                                <div class="col-sm-9">
-                                                    <input name="judul" id="judul" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="waktu" class="col-sm-3 col-form-label">Tanggal</label>
-                                                <div class="col-sm-9">
-                                                    <input type="date" name="tanggal" id="tanggal"
-                                                        class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="waktu" class="col-sm-3 col-form-label">Waktu</label>
-                                                <div class="col-sm-9">
-                                                    <input name="waktu" id="waktu" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="lokasi" class="col-sm-3 col-form-label">Lokasi</label>
-                                                <div class="col-sm-9">
-                                                    <input name="lokasi" id="lokasi" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="koordinator" class="col-sm-3 col-form-label">Koordinator</label>
-                                                <div class="col-sm-9">
-                                                    <input name="koordinator" id="koordinator" class="form-control">
-                                                </div>
-                                            </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title">Pelaksanaan</h5>
-                            {{-- <div>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modalAgenda"><i class="fa-regular fa-square-plus"
-                                        style="margin-right: 5px"></i>Tambah Pelaksanaan</button>
-                            </div> --}}
                         </div>
 
                         <!-- Table with hoverable rows -->
@@ -131,7 +41,9 @@
                                     <th scope="col">Pendapatan Desa</th>
                                     <th scope="col">Belanja Desa</th>
                                     <th scope="col">Pembiayaan Desa</th>
+                                    @can('edit apdes')
                                     <th scope="col" class="text-center">Action</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
@@ -143,18 +55,18 @@
                                     <td>Rp. {{ number_format($apbdes->pendapatan_desa2, 0, ',', '.') }}</td>
                                     <td>Rp. {{ number_format($apbdes->belanja_desa2, 0, ',', '.') }}</td>
                                     <td>Rp. {{ number_format($apbdes->pembiayaan_desa2, 0, ',', '.') }}</td>
+                                    @can('edit apdes')
                                     <td class="text-center">
                                         <a class="btn btn-warning" type="button" data-bs-toggle="modal"
                                             data-bs-target="#Modal-Edit-APBDes-{{ $apbdes->id }}"
                                             href="/edit-apbdes/{{ $apbdes->id }}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        {{-- <a class="btn btn-danger" type="submit" id="deleteAgenda"
-                                                data-id="{{ $apbdes->id }}" href="/hapus-apabdes/{{ $apbdes->id }}"><i
-                                                    class="fa-regular fa-trash-can"></i>
-                                            </a> --}}
                                     </td>
+                                    @endcan
                                 </tr>
+                                    @can('edit apdes')
+
                                 <!-- Modal Edit Pelaksanaan -->
                                 <div class="modal fade" id="Modal-Edit-APBDes-{{ $apbdes->id }}"
                                     data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -255,6 +167,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endcan
                             </tbody>
                         </table>
                     </div>
@@ -266,9 +179,7 @@
                             <h5 class="card-title">Pendapatan</h5>
                             <div>
                                 <!-- Button trigger modal -->
-                                {{-- <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modalAgenda"><i class="fa-regular fa-square-plus"
-                                        style="margin-right: 5px"></i>Tambah Pendapatan</button> --}}
+                                
                             </div>
                         </div>
 
@@ -284,7 +195,9 @@
                                     <th scope="col">Alokasi Dana Desa</th>
                                     <th scope="col">Koreksi Kesalahan</th>
                                     <th scope="col">Bunga Bank</th>
+                                    @can('edit apdes')
                                     <th scope="col" class="text-center">Action</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
@@ -300,18 +213,17 @@
                                     <td>Rp. {{ number_format($apbdes->alokasidana_desa2, 0, ',', '.') }}</td>
                                     <td>Rp. {{ number_format($apbdes->koreksi_kesalahan2, 0, ',', '.') }}</td>
                                     <td>Rp. {{ number_format($apbdes->bunga_bank2, 0, ',', '.') }}</td>
+                                    @can('edit apdes')
                                     <td class="text-center">
                                         <a class="btn btn-warning" type="button" data-bs-toggle="modal"
                                             data-bs-target="#Modal-Edit-Pendapatan-{{ $apbdes->id }}"
                                             href="/edit-apbdes-pendapatan/{{ $apbdes->id }}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        {{-- <a class="btn btn-danger" type="submit" id="deletePembelanjaan"
-                                                data-id="{{ $apbdes->id }}" href="/hapus-apabdes/{{ $apbdes->id }}"><i
-                                                    class="fa-regular fa-trash-can"></i>
-                                            </a> --}}
                                     </td>
+                                    @endcan
                                 </tr>
+                                @can('edit apdes')
                                 <!-- Modal Edit Pendapatan -->
                                 <div class="modal fade" id="Modal-Edit-Pendapatan-{{ $apbdes->id }}"
                                     data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -474,6 +386,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endcan
                             </tbody>
                         </table>
                     </div>
@@ -485,9 +398,6 @@
                             <h5 class="card-title">Pembelanjaan</h5>
                             <div>
                                 <!-- Button trigger modal -->
-                                {{-- <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modalAgenda"><i class="fa-regular fa-square-plus"
-                                        style="margin-right: 5px"></i>Tambah Pendapatan</button> --}}
                             </div>
                         </div>
 
@@ -501,7 +411,9 @@
                                     <th scope="col">Bidang Pembinaan Kemasyarakatan</th>
                                     <th scope="col">Bidang Pemberdayaan Masyarakat</th>
                                     <th scope="col">Bidang Penanggulangan Bencana, Darurat Dan Mendesak Desa</th>
+                                    @can('edit apdes')
                                     <th scope="col" class="text-center">Action</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
@@ -515,18 +427,17 @@
                                     <td>Rp. {{ number_format($apbdes->bdng_p_k_desa2, 0, ',', '.') }}</td>
                                     <td>Rp. {{ number_format($apbdes->bdng_pm_desa2, 0, ',', '.') }}</td>
                                     <td>Rp. {{ number_format($apbdes->bdng_pbdm_desa2, 0, ',', '.') }}</td>
+                                    @can('edit apdes')
                                     <td class="text-center">
                                         <a class="btn btn-warning" type="button" data-bs-toggle="modal"
                                             data-bs-target="#Modal-Edit-Pembelanjaan-{{ $apbdes->id }}"
                                             href="/edit-apbdes-pembelanjaan/{{ $apbdes->id }}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        {{-- <a class="btn btn-danger" type="submit" id="deletePendapatan"
-                                                data-id="{{ $apbdes->id }}" href="/hapus-apabdes/{{ $apbdes->id }}"><i
-                                                    class="fa-regular fa-trash-can"></i>
-                                            </a> --}}
                                     </td>
+                                    @endcan
                                 </tr>
+                                @can('edit apdes')
                                 <!-- Modal Edit Pembelanjaan -->
                                 <div class="modal fade" id="Modal-Edit-Pembelanjaan-{{ $apbdes->id }}"
                                     data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -664,6 +575,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endcan
                             </tbody>
                         </table>
                     </div>
@@ -671,91 +583,8 @@
             </div>
         </div>
     </section>
+    @endcan
 @endsection
 
 @push('footer')
-    <script type="text/javascript">
-        $(function() {
-            $(document).on('click', '#deleteAgenda', function(e) {
-                e.preventDefault();
-                var data_id = $(this).attr("data-id");
-
-                Swal.fire({
-                    title: 'Apakah kamu Yakin?',
-                    text: "Kamu ingin menghapus data ini ?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, hapus sekarang!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location = "/hapus-agenda/" + data_id,
-                            Swal.fire(
-                                'Deleted!',
-                                'Data sudah terhapus.',
-                                'success'
-                            )
-                    }
-                })
-
-            });
-        });
-    </script>
-    <script type="text/javascript">
-        $(function() {
-            $(document).on('click', '#deleteJadwal', function(e) {
-                e.preventDefault();
-                var data_id = $(this).attr("data-id");
-
-                Swal.fire({
-                    title: 'Apakah kamu Yakin?',
-                    text: "Kamu ingin menghapus data ini ?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, hapus sekarang!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location = "/hapus-jadwal/" + data_id,
-                            Swal.fire(
-                                'Deleted!',
-                                'Data sudah terhapus.',
-                                'success'
-                            )
-                    }
-                })
-
-            });
-        });
-    </script>
-    <script type="text/javascript">
-        $(function() {
-            $(document).on('click', '#deleteSinergi', function(e) {
-                e.preventDefault();
-                var data_id = $(this).attr("data-id");
-
-                Swal.fire({
-                    title: 'Apakah kamu Yakin?',
-                    text: "Kamu ingin menghapus data ini ?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, hapus sekarang!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location = "/hapus-sinergi/" + data_id,
-                            Swal.fire(
-                                'Deleted!',
-                                'Data sudah terhapus.',
-                                'success'
-                            )
-                    }
-                })
-
-            });
-        });
-    </script>
 @endpush

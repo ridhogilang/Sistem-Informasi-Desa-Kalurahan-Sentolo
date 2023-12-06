@@ -80,7 +80,7 @@
             /* Sesuaikan dengan tinggi maksimum yang Anda inginkan */
             overflow-x: auto;
         }
-        
+
         .note-red {
             color: red;
         }
@@ -220,7 +220,46 @@
             <div class="owl-carousel flex space-x-4 bg-primary dark:bg-dark-primary p-4 main-carousel owl-loaded owl-drag">
                 <div class="">
                     <div class="customer-logos slider owl-stage" style="width: 1500px;" id="pamong-container">
+                        {{-- @foreach ($pamong as $item)
+                            <div class="owl-item" style="width: 231px; margin-right: 16px;">
+                                <div class="cardaparatur p-4 flex flex-col justify-between space-y-4 product-item">
+                                    <div class="space-y-3">
+                                        <img class="w-full object-cover object-center bg-slate-300 dark:bg-slate-600 mx-auto rounded-lg"
+                                            src="{{ $item['gambar'] }}" alt="{{ $item['nama'] }}">
+                                    </div>
+                                    <div class="space-y-1 text-sm text-center">
+                                        <span class="text-heading">{{ $item['nama'] }}</span>
+                                        <span class="block">{{ $item['jabatan'] }}</span>
+                                        @php
+                                            $presentModel = \App\Models\Present::where('user_id', $item['user_id'])->first();
+                                        @endphp
 
+                                        <a href="/daftar-hadir/{{ now()->format('F') }}/{{ $item['nama'] }}">
+                                            @if ($presentModel)
+                                                @if ($presentModel->keterangan == 'Alpha')
+                                                    <span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Belum
+                                                        di Kantor</span>
+                                                @elseif ($presentModel->keterangan == 'Masuk' || $presentModel->keterangan == 'Telat')
+                                                    <span
+                                                        class="bg-emerald-500 text-white py-1 px-3 rounded inline-block">Sudah
+                                                        di Kantor</span>
+                                                @elseif ($presentModel->keterangan == 'Izin' || $presentModel->keterangan == 'Sakit')
+                                                    <span
+                                                        class="bg-yellow-500 text-white py-1 px-3 rounded inline-block">Izin</span>
+                                                @else
+                                                    <span
+                                                        class="bg-gray-500 text-white py-1 px-3 rounded inline-block">Status
+                                                        tidak diketahui</span>
+                                                @endif
+                                            @else
+                                                <span class="bg-gray-500 text-white py-1 px-3 rounded inline-block">Data
+                                                    tidak ditemukan</span>
+                                            @endif
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach --}}
                     </div>
                 </div>
                 <div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span
@@ -1739,6 +1778,107 @@
     </script>
     <script>
         $(document).ready(function() {
+            // Make an AJAX request to fetch the data
+            $.ajax({
+                url: '/get-pamong',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // Update the HTML dynamically with the fetched data
+                    updatePamongContainer(data);
+
+                    // Initialize the slick slider after updating the content
+                    initSlickSlider();
+                },
+                error: function(error) {
+                    console.error('Error fetching data:', error);
+                }
+            });
+
+            // Function to update the HTML with the fetched data
+            function updatePamongContainer(data) {
+                var container = $('#pamong-container');
+
+                // Clear the existing content in the container
+                container.empty();
+
+                // Iterate through the data and append the HTML dynamically
+                data.forEach(function(item) {
+                    var presentModel = item.presentModel;
+
+                    // Use JavaScript's Date object to get the current date and time
+                    var currentDate = new Date();
+                    var formattedDate = currentDate.toLocaleString('en-US', {
+                        month: 'long'
+                    });
+
+                    var html = `
+                    <div class="owl-item" style="width: 231px; margin-right: 16px;">
+                        <div class="cardaparatur p-4 flex flex-col justify-between space-y-4 product-item">
+                            <div class="space-y-3">
+                                <img class="w-full object-cover object-center bg-slate-300 dark:bg-slate-600 mx-auto rounded-lg"
+                                    src="${item.gambar}" alt="${item.nama}">
+                            </div>
+                            <div class="space-y-1 text-sm text-center">
+                                <span class="text-heading">${item.nama}</span>
+                                <span class="block">${item.jabatan}</span>
+                                <a href="/daftar-hadir/${formattedDate}/${item.nama}">
+                                    ${presentModel ?
+                                        (presentModel.keterangan == 'Alpha' || presentModel === null ? 
+                                            '<span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Belum di Kantor</span>' :
+                                            (presentModel.keterangan == 'Masuk' || presentModel.keterangan == 'Telat' ?
+                                                '<span class="bg-emerald-500 text-white py-1 px-3 rounded inline-block">Sudah di Kantor</span>' :
+                                                (presentModel.keterangan == 'Cuti' || presentModel.keterangan == 'Sakit' ?
+                                                    '<span class="bg-yellow-500 text-white py-1 px-3 rounded inline-block">Izin</span>' :
+                                                    '<span class="bg-gray-500 text-white py-1 px-3 rounded inline-block">Status tidak diketahui</span>'
+                                                )
+                                            )
+                                        ) :
+                                        '<span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Belum di Kantor</span>'
+                                    }
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    container.append(html);
+                });
+
+                // After adding the HTML, initialize the slick slider
+                initSlickSlider();
+            }
+
+            // Function to initialize the slick slider
+            function initSlickSlider() {
+                if ($('.customer-logos').length) {
+                    $('.customer-logos').slick({
+                        slidesToShow: 6,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 2000,
+                        arrows: false,
+                        dots: false,
+                        pauseOnHover: false,
+                        responsive: [{
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: 4
+                            }
+                        }, {
+                            breakpoint: 520,
+                            settings: {
+                                slidesToShow: 1
+                            }
+                        }]
+                    });
+                }
+            }
+        });
+    </script>
+
+
+    {{-- <script>
+        $(document).ready(function() {
             // Kode JavaScript untuk mengambil data dan menambahkan elemen HTML
             function getDataAndRenderElements() {
                 $.ajax({
@@ -1817,7 +1957,7 @@
             // Panggil fungsi getDataAndRenderElements() saat dokumen siap
             getDataAndRenderElements();
         });
-    </script>
+    </script> --}}
     {{-- Agenda Kalurahan --}}
     <script>
         // Fungsi untuk mengatur kelas active pada tab yang diklik
@@ -1963,66 +2103,6 @@
         // Tampilkan tab konten pertama saat halaman dimuat
         showTabContentBalai('hari-inibalai');
     </script>
-
-    {{-- <script type="text/javascript">
-        $(function() {
-            var chart_widget;
-            $(document).ready(function() {
-                // Build the chart
-                chart_widget = new Highcharts.Chart({
-                    chart: {
-                        renderTo: 'container_widget',
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false
-                    },
-                    title: {
-                        text: 'Jumlah Penduduk'
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Jumlah'
-                        }
-                    },
-                    xAxis: {
-                        categories: [
-                            @foreach ($statistik as $item)
-                                [{{ $item->lk }}, 'LAKI-LAKI'],
-                                [{{ $item->pr }}, 'PEREMPUAN'],
-                                [{{ $item->lk + $item->pr }}, 'TOTAL'],
-                            @endforeach
-                        ]
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        series: {
-                            colorByPoint: true
-                        },
-                        column: {
-                            pointPadding: 0,
-                            borderWidth: 0
-                        }
-                    },
-                    series: [{
-                        type: 'column',
-                        name: 'Populasi',
-                        data: [
-                            @foreach ($statistik as $item)
-                                ['LAKI-LAKI', {{ $item->lk }}],
-                                ['PEREMPUAN', {{ $item->pr }}],
-                                ['TOTAL', {{ $item->lk + $item->pr }}],
-                            @endforeach
-                            // ['LAKI-LAKI', 4000],
-                            // ['PEREMPUAN', 3000],
-                            // ['TOTAL', 7000],
-                        ]
-                    }]
-                });
-            });
-        });
-    </script> --}}
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const beritaTerbaruLink = document.querySelector('a[href="#beritaterbaru"]');

@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Present::class);
     }
+
+    public function pamong()
+    {
+        return $this->hasOne(Pamong::class);
+    }
 }
