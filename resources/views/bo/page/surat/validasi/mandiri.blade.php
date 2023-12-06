@@ -24,44 +24,120 @@
                         <table class="table table-hover datatable">
                             <thead>
                                 <tr>
-                                    <th scope="col" class="text-center">No.</th>
-                                    <th scope="col" class="text-center">Nomor Surat</th>
-                                    <th scope="col" class="text-center">Jenis Surat</th>
-                                    <th scope="col" class="text-center">Status</th>
-                                    <th scope="col" class="text-center">Isi Surat</th>
-                                    <th scope="col" class="text-center">Action</th>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">NIK</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Tanggal Blanko</th>
+                                    <th scope="col">Jenis Surat</th>
+                                    <th scope="col">Status Surat</th>
+                                    <th scope="col">Dokumen</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($surat as $value)
+                                @php
+                                    $no = 1;
+                                @endphp
+                                @foreach ($buatsurat as $value)
                                     <tr>
-                                        <td class="text-center">{{ $loop->iteration }}</td>
-                                        <td>{{ $value['nomor_surat'] }}</td>
-                                        <td>{{ $value['jenis_surat'] }}</td>
-                                        <td class="text-center">{!! $badge_status[$value['status']] !!}</td>
-                                        <td class="text-center">
-                                            <a href="{{ route('bo.surat.validasi.show', $value['id']) }}" target="blank" class="btn btn-primary">
-                                                <i class="bi bi-file-earmark"></i>
-                                            </a>
+                                        <th scope="row">{{ $no++ }}.</th>
+                                        <td>{{ $value->nik }}</td>
+                                        <td>{{ $value->nama }}</td>
+                                        <td>{{ $value->tanggal_blanko }}</td>
+                                        <td>{{ $value->jenis_surat }}</td>
+                                        <td>
+                                            <span class="badge
+                                                @if ($value->status_blanko == 'Pending')
+                                                    bg-danger
+                                                @elseif ($value->status_blanko == 'Proses')
+                                                    bg-warning
+                                                @elseif ($value->status_blanko == 'Sukses')
+                                                    bg-success
+                                                @endif">{{ $value->status_blanko }}
+                                            </span>
                                         </td>
-                                        <td class="text-center">
-                                            <div class="d-flex justify-content-evenly">
-                                                <form action="{{ route('bo.surat.validasi.update', $value['id']) }}" method="POST">
-                                                    @method('put')
-                                                    @csrf
-                                                    <button class="btn btn-success" type="submit"><i class="bi bi-check-lg"></i></button>
-                                                </form>
-
-                                                <form action="{{ route('bo.surat.validasi.destroy', $value['id']) }}" method="POST">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <button class="btn btn-danger"  type="submit"><i class="bi bi-x-lg"></i></button>
-                                                </form>
-
+                                        <td>
+                                            <!-- Button trigger modal -->
+                                            <a class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Dokumen-{{$value->id}}"><i class="bi bi-card-image"></i></a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="Modal-Dokumen-{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Modal-Surat-Mandiri" aria-hidden="true">
+                                                <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="Modal-Surat-Mandiri">Dokumen Surat Mandiri NIK : {{$value->nik}}</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row mb-3">
+                                                                <label class="col-form-label">Foto KTP</label>
+                                                                <img src="{{ asset('storage/syarat-mandiri/foto-ktp/' . $value->foto_ktp) }}" alt="Foto Kartu Tanda Penduduk" class="img-fluid">
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                                <label class="col-form-label">Foto KK</label>
+                                                                <img src="{{ asset('storage/syarat-mandiri/foto-kk/' . $value->foto_kk) }}" alt="Foto Kartu Keluarga" class="img-fluid">
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                                <label class="col-form-label">Foto Surat Pengantar Dukuh</label>
+                                                                <img src="{{ asset('storage/syarat-mandiri/foto-surat-peng-dukuh/' . $value->foto_surat_pengantar_dukuh) }}" alt="Foto Surat Pengantar Dukuh" class="img-fluid">
+                                                            </div>
+                                                            @if ($value->foto_akta_lahir)
+                                                                <div class="row mb-3">
+                                                                    <label class="col-form-label">Foto Akta Lahir</label>
+                                                                    <img src="{{ asset('storage/syarat-mandiri/foto-akta-lahir/' . $value->foto_akta_lahir) }}" alt="Foto Akta Lahir" class="img-fluid">
+                                                                </div>
+                                                            @endif
+                                                            @if ($value->foto_surat_keterangan_dokter)
+                                                                <div class="row mb-3">
+                                                                    <label class="col-form-label">Foto Surat Keterangan Dokter</label>
+                                                                    <img src="{{ asset('storage/syarat-mandiri/foto-surat-ket-dokter/' . $value->foto_surat_keterangan_dokter) }}" alt="Foto Surat Keterangan Dokter" class="img-fluid">
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <!-- Button trigger modal -->
+                                            <a class="btn btn-warning" type="submit" data-bs-toggle="modal" data-bs-target="#Modal-Edit-{{$value->id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="Modal-Edit-{{$value->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="Modal-Edit-Status" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <form action="/admin/e-surat/validasi-mandiri/{{$value->id}}" method="POST">
+                                                            @csrf
+                                                            @method('put')
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="Modal-Edit-Status-Satu-Label">Edit Status Blanko NIK : {{$value->nik}}</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row mb-3">
+                                                                    <label for="status_blanko" class="col-sm-3 col-form-label">Status Blanko</label>
+                                                                    <div class="col-sm-9">
+                                                                        <select id="status_blanko" name="status_blanko" class="form-select" required>
+                                                                            <option value="">Pilih Status Blanko ...</option>
+                                                                            <option value="Pending" {{ ($value->status_blanko == "Pending") ? 'selected' : '' }}>Pending</option>
+                                                                            <option value="Proses" {{ ($value->status_blanko == "Proses") ? 'selected' : '' }}>Proses</option>
+                                                                            <option value="Sukses" {{ ($value->status_blanko == "Sukses") ? 'selected' : '' }}>Sukses</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                         <!-- End Table with hoverable rows -->

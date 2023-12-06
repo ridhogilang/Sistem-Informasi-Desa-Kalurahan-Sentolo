@@ -61,7 +61,7 @@ class MenuController extends Controller
 
         // Upload dan simpan file gambar
         $gambar = $request->file('gambar');
-        $gambarPath = $gambar->store('gambar-menu'); // Ganti 'folder-tujuan' dengan direktori penyimpanan yang sesuai
+        $gambarPath = $gambar->store('public/gambar-menu'); // Ganti 'folder-tujuan' dengan direktori penyimpanan yang sesuai
 
         $validateData['gambar'] = $gambarPath;
 
