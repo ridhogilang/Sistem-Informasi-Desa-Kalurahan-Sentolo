@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('jabatan')->nullable();
             $table->string('foto_resmi')->nullable();
             $table->string('foto_profil')->nullable();
+            $table->boolean('is_pamong')->default(false);
             $table->string('is_active');
             $table->string('is_delete');
             $table->rememberToken();

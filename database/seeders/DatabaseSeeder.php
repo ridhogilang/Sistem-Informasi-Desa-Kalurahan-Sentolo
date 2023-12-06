@@ -954,6 +954,7 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'jabatan' => $pamong->jabatan,
                 'foto_resmi' => $pamong->gambar,
+                'is_pamong' => '1',
                 'is_active' => '1',
                 'is_delete' => '0'
             ]);
