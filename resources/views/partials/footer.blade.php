@@ -201,19 +201,19 @@
 <section
     class="fixed inset-x-0 bottom-0 left-0 max-w-screen right-0 z-40 bg-white dark:bg-dark-secondary shadow-xl lg:hidden lg:invisible bottom-nav">
     <div class="flex justify-between">
-        <a href=""
+        <a href="/"
             class="flex flex-col items-center w-full pt-2 pb-1 active:text-secondary " data-mdb-ripple="true"
             data-mdb-ripple-color="light">
             <i class="fa-solid fa-house text-lg"></i>
             <span class="text-xs">Beranda</span>
         </a>
-        <a href=""
+        <a href="https://maps.app.goo.gl/Gbwj6uU2V6Y7LNxX6"
             class="flex flex-col items-center w-full pt-2 pb-1 active:text-secondary " data-mdb-ripple="true"
             data-mdb-ripple-color="light">
             <i class="fa-solid fa-location-dot text-lg"></i>
             <span class="text-xs">Peta</span>
         </a>
-        <a href=""
+        <a href="#"
             class="flex flex-col items-center w-full pt-2 pb-1 active:text-secondary bg-primary text-white"
             data-mdb-ripple="true" data-mdb-ripple-color="light" @click="drawer = !drawer">
             <i class="fa-solid fa-bars text-lg"></i>
@@ -226,7 +226,7 @@
             <i class="fa-regular fa-user text-lg"></i>
             <span class="text-xs">Login</span>
         </a>
-        <a href=""
+        <a href="/galeri-sentolo"
             class="flex flex-col items-center w-full pt-2 pb-1 active:text-secondary " data-mdb-ripple="true"
             data-mdb-ripple-color="light">
             <i class="fa-solid fa-images text-lg"></i>
