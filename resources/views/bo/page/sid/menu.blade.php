@@ -53,7 +53,7 @@
                                             <div class="row mb-3">
                                                 <label for="link" class="col-sm-3 col-form-label">Link</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" value="http://kalurahansentolo.test/"
+                                                    <input type="text" value="{{ env('APP_URL') }}"
                                                         name="link" class="form-control" id="link" required>
                                                 </div>
                                             </div>
@@ -66,7 +66,7 @@
                                             <div class="row mb-3">
                                                 <label for="urutan" class="col-sm-3 col-form-label">Urutan</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" value="http://kalurahansentolo.test/"
+                                                    <input type="number"
                                                         name="urutan" class="form-control" id="urutan" required>
                                                 </div>
                                             </div>

@@ -14,7 +14,7 @@
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item active">Artikel</li>
             </ol>
-        </nav>
+        </nav> 
     </div><!-- End Page Title -->
 
     <section class="section">
