@@ -15,7 +15,7 @@
                     @auth
                         <ul class="navigation">
                             <li class="navigation-item">
-                                <a class="navigation-link" href="3" target="_blank">
+                                <a class="navigation-link" href="#">
                                     <i class="fa-solid mr-2 fa-right-to-bracket" style="color: #ffffff;"></i>
                                     Hai... {{ auth()->user()->nama }}
                                     <i class="fa-solid ml-2 fa-angle-down"></i>
@@ -61,11 +61,11 @@
                     class="header-top-right-link py-0">
                     <span class="fa mx-1 text-lg fa-brands fa-instagram" style="color: #ffffff;"></span>
                 </a>
-                <a href="https://api.whatsapp.com/send?phone=6285340620352" target="_blank" rel="noopener"
+                <a href="https://api.whatsapp.com/send?phone=6282221843479" target="_blank" rel="noopener"
                     class="header-top-right-link py-0">
                     <span class="fa mx-1 text-lg fa-brands fa-whatsapp" style="color: #ffffff;"></span>
                 </a>
-                <a href="https://t.me/dikisiswanto" target="_blank" rel="noopener" class="header-top-right-link py-0">
+                <a href="https://web.telegram.org/" target="_blank" rel="noopener" class="header-top-right-link py-0">
                     <span class="fa mx-1 text-lg fa-brands fa-telegram" style="color: #ffffff;"></span>
                 </a>
                 <div class="toggle ml-3">

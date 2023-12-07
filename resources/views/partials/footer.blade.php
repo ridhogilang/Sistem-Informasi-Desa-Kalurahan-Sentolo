@@ -296,12 +296,12 @@
                         </a>
                     </li>
                     <li title="WhatsApp" class="mr-2 rounded-full border-2 transition-all duration-200 hover:bg-secondary">
-                        <a href="https://api.whatsapp.com/send?phone=6285340620352" target="_blank" class="inline-flex items-center justify-center p-2 w-10 h-10">
+                        <a href="https://api.whatsapp.com/send?phone=6282221843479" target="_blank" class="inline-flex items-center justify-center p-2 w-10 h-10">
                             <i class="fa fa-whatsapp text-2xl"></i>
                         </a>
                     </li>
                     <li title="Telegram" class="mr-2 rounded-full border-2 transition-all duration-200 hover:bg-secondary">
-                        <a href="https://t.me/dikisiswanto" target="_blank" class="inline-flex items-center justify-center p-2 w-10 h-10">
+                        <a href="https://web.telegram.org/" target="_blank" class="inline-flex items-center justify-center p-2 w-10 h-10">
                             <i class="fa fa-telegram text-2xl"></i>
                         </a>
                     </li>
