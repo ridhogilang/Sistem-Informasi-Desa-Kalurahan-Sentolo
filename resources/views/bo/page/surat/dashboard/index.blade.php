@@ -128,155 +128,160 @@
     </section>
 
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-      new Chart(document.querySelector('#data_penduduk'), {
-        type: 'pie',
-        data: {
-          labels: [
-            @foreach($data_graf['graf_penduduk'] as $penduduk)
-                '{{ $penduduk->jenis_kelamin }}',
-            @endforeach
-          ],
-          datasets: [{
-            label: 'My First Dataset',
-            data: [
-                @foreach($data_graf['graf_penduduk'] as $penduduk)
-                    {{ $penduduk->jumlah }},
-                @endforeach
-                ],
-            backgroundColor: [
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)'
-            ],
-            hoverOffset: 4
-          }]
-        }
-      });
-    });
 
-    @can('Arsip Surat')
-    document.addEventListener("DOMContentLoaded", () => {
-      new Chart(document.querySelector('#arsip_thn_ini'), {
-        type: 'pie',
-        data: {
-          labels: [
-            @foreach($data_graf['graf_arsip'] as $arsip_thn_ini)
-                '{{ $arsip_thn_ini->jenis_surat_2 }}',
-            @endforeach
-          ],
-          datasets: [{
-            label: 'My First Dataset',
-            data: [
-                @foreach($data_graf['graf_arsip'] as $arsip_thn_ini)
-                    {{ $arsip_thn_ini->jumlah }},
-                @endforeach
-                ],
-            backgroundColor: [
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)'
-            ],
-            hoverOffset: 4
-          }]
-        }
-      });
-    });
-    @endcan
-
-
-    document.addEventListener("DOMContentLoaded", () => {
-      new Chart(document.querySelector('#surat_keluar'), {
-        type: 'bar',
-        data: {
-          labels: [
-            @foreach($data_graf['graf_surat_keluar'] as $surat_keluar)
-                '{{ $surat_keluar->jenis_surat }}',
-            @endforeach
-            ],
-          datasets: [{
-            label: 'Surat Keluar',
-            data: [
-                @foreach($data_graf['graf_surat_keluar'] as $surat_keluar)
-                    {{ $surat_keluar->jumlah }},
-                @endforeach
-                ],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-              'rgba(255, 205, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(201, 203, 207, 0.2)'
-            ],
-            borderColor: [
-              'rgb(255, 99, 132)',
-              'rgb(255, 159, 64)',
-              'rgb(255, 205, 86)',
-              'rgb(75, 192, 192)',
-              'rgb(54, 162, 235)',
-              'rgb(153, 102, 255)',
-              'rgb(201, 203, 207)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      new Chart(document.querySelector('#surat_masuk'), {
-        type: 'bar',
-        data: {
-          labels: [
-            @foreach($data_graf['graf_surat_masuk'] as $surat_masuk)
-                '{{ $surat_masuk->status_text }}',
-            @endforeach
-            ],
-          datasets: [{
-            label: 'Surat Masuk',
-            data: [
-                @foreach($data_graf['graf_surat_masuk'] as $surat_masuk)
-                    {{ $surat_masuk->jumlah }},
-                @endforeach
-                ],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-              'rgba(255, 205, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(201, 203, 207, 0.2)'
-            ],
-            borderColor: [
-              'rgb(255, 99, 132)',
-              'rgb(255, 159, 64)',
-              'rgb(255, 205, 86)',
-              'rgb(75, 192, 192)',
-              'rgb(54, 162, 235)',
-              'rgb(153, 102, 255)',
-              'rgb(201, 203, 207)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    });
-</script>
 
 @endsection
+
+@push('footer')
+
+  <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        new Chart(document.querySelector('#data_penduduk'), {
+          type: 'pie',
+          data: {
+            labels: [
+              @foreach($data_graf['graf_penduduk'] as $penduduk)
+                  '{{ $penduduk->jenis_kelamin }}',
+              @endforeach
+            ],
+            datasets: [{
+              label: 'My First Dataset',
+              data: [
+                  @foreach($data_graf['graf_penduduk'] as $penduduk)
+                      {{ $penduduk->jumlah }},
+                  @endforeach
+                  ],
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)'
+              ],
+              hoverOffset: 4
+            }]
+          }
+        });
+      });
+
+      @can('Arsip Surat')
+      document.addEventListener("DOMContentLoaded", () => {
+        new Chart(document.querySelector('#arsip_thn_ini'), {
+          type: 'pie',
+          data: {
+            labels: [
+              @foreach($data_graf['graf_arsip'] as $arsip_thn_ini)
+                  '{{ $arsip_thn_ini->jenis_surat_2 }}',
+              @endforeach
+            ],
+            datasets: [{
+              label: 'My First Dataset',
+              data: [
+                  @foreach($data_graf['graf_arsip'] as $arsip_thn_ini)
+                      {{ $arsip_thn_ini->jumlah }},
+                  @endforeach
+                  ],
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)'
+              ],
+              hoverOffset: 4
+            }]
+          }
+        });
+      });
+      @endcan
+
+
+      document.addEventListener("DOMContentLoaded", () => {
+        new Chart(document.querySelector('#surat_keluar'), {
+          type: 'bar',
+          data: {
+            labels: [
+              @foreach($data_graf['graf_surat_keluar'] as $surat_keluar)
+                  '{{ $surat_keluar->jenis_surat }}',
+              @endforeach
+              ],
+            datasets: [{
+              label: 'Surat Keluar',
+              data: [
+                  @foreach($data_graf['graf_surat_keluar'] as $surat_keluar)
+                      {{ $surat_keluar->jumlah }},
+                  @endforeach
+                  ],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+              ],
+              borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        new Chart(document.querySelector('#surat_masuk'), {
+          type: 'bar',
+          data: {
+            labels: [
+              @foreach($data_graf['graf_surat_masuk'] as $surat_masuk)
+                  '{{ $surat_masuk->status_text }}',
+              @endforeach
+              ],
+            datasets: [{
+              label: 'Surat Masuk',
+              data: [
+                  @foreach($data_graf['graf_surat_masuk'] as $surat_masuk)
+                      {{ $surat_masuk->jumlah }},
+                  @endforeach
+                  ],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+              ],
+              borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      });
+  </script>
+@endpush

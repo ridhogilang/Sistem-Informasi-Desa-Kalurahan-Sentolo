@@ -1,6 +1,7 @@
 <?php
 //bantuan (FAQ)
 use App\Http\Controllers\bo\Bantuan\BantuanController;
+use App\Http\Controllers\bo\dashboard\DashboardAdminController;
 //login dan user
 use App\Http\Controllers\bo\Auth\LoginController;
 use App\Http\Controllers\bo\Auth\VerifikasiEmailController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\bo\Auth\ForgetPasswordController;
 use App\Http\Controllers\bo\Pengguna\UserManagementController;
 use App\Http\Controllers\bo\Pengguna\roleManagementController;
 use App\Http\Controllers\bo\Pengguna\AkunPendudukController;
+use App\Http\Controllers\bo\Pengguna\DashboardPenggunaController;
 
 //e-surat
 use App\Http\Controllers\bo\Surat\dashboard\DashboardSuratController;
@@ -39,7 +41,8 @@ use App\Http\Controllers\bo\Surat\disposisi\DisposisiController;
 use App\Http\Controllers\bo\Surat\arsip\ArsipController;
 use App\Http\Controllers\bo\Surat\arsip\OldArsipController;
 //penduduk
-use App\Http\Controllers\PendudukController;
+use App\Http\Controllers\bo\penduduk\PendudukController;
+use App\Http\Controllers\bo\penduduk\DashboardPendudukController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -120,13 +123,7 @@ Route::prefix('admin')->group(function () {
         //logout
         Route::post('logout', [LoginController::class, 'logout'])->name('logout');
         //dashboard
-        Route::get('/dashboard', function () {
-            return view('bo.page.dashboard', [
-                'dropdown1' => '',
-                'dropdown2' => '',
-                'title' => 'Dashboard',
-            ]);
-        })->name('bo.home');
+        Route::get('/dashboard', [DashboardAdminController::class, 'index'])->name('bo.home');
 
         Route::get('/absen-pamong', [HomeController::class, 'absen'])->name('bo.presensi');
 
@@ -155,13 +152,7 @@ Route::prefix('admin')->group(function () {
 
         //untuk kepegawaian yaitu kebutuhan user dan role tak dewekno marakno riskan
         Route::prefix('pengguna')->middleware('can:Menejemen Pengguna')->group(function () {
-            Route::get('/dashboard', function () {
-                return view('bo.page.dashboard', [
-                    'dropdown1' => '',
-                    'dropdown2' => '',
-                    'title' => 'Dashboard',
-                ]);
-            })->name('bo.pegawai.dashboard');
+            Route::get('/dashboard', [DashboardPenggunaController::class, 'index'])->name('bo.pegawai.dashboard');
             //akun penduduk untuk pelayanan umum
             //bo.pengguna.akun_penduduk_management
             // Route::resource('/akun_penduduk_management', AkunPendudukController::class, ['as' => 'bo.pengguna'])
@@ -340,13 +331,7 @@ Route::prefix('admin')->group(function () {
         });
         //kependudukan
         Route::prefix('kependudukan')->middleware('can:Menejemen Kependudukan')->group(function () {
-            Route::get('/dashboard', function () {
-                return view('bo.page.dashboard', [
-                    'dropdown1' => '',
-                    'dropdown2' => '',
-                    'title' => 'Dashboard',
-                ]);
-            })->name('bo.penduduk.dashboard');
+             Route::get('/dashboard', [DashboardPendudukController::class, 'index'])->name('bo.penduduk.dashboard');
             Route::get('/penduduk', [PendudukController::class, 'index']);
             Route::get('/data-penduduk', [PendudukController::class, 'datasaktif'])->name('bo.penduduk.data.aktif');
             // Crud data penduduk

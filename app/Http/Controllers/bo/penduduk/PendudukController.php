@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\bo\penduduk;
 
+use App\Http\Controllers\Controller;
 use App\Models\Penduduk;
 use App\Models\PenghapusanPenduduk;
 use Illuminate\Http\Request;
