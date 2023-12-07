@@ -76,22 +76,22 @@ class LoginController extends Controller
             $user = User::where('email', $credentials['email'])->first();
             if ($user->email_verified_at == null) {
                 Auth::logout();
-                return redirect()->route('login')->with('error', config('error', 'mohon verifikasi email terlebih dahulu'));
+                return redirect()->route('loginabsen')->with('error', config('error', 'mohon verifikasi email terlebih dahulu'));
             }
             //mengecek aktivasi user
             if ($user->is_active == '0') {
                 Auth::logout();
-                return redirect()->route('login')->with('error', config('error', 'Akun anda sedang dinonaktifkan oleh admin'));
+                return redirect()->route('loginabsen')->with('error', config('error', 'Akun anda sedang dinonaktifkan oleh admin'));
             }
             //jika user telah dihapus
             if ($user->is_delete == '1') {
                 Auth::logout();
-                return redirect()->route('login')->with('error', config('error', 'nama pengguna atau password tidak sesuai'));
+                return redirect()->route('loginabsen')->with('error', config('error', 'nama pengguna atau password tidak sesuai'));
             }
             //Jika user bukan pamong
             if ($user->is_pamong == '0') {
                 Auth::logout();
-                return redirect()->route('login')->with('error', config('error', 'anda tidak terdaftar sebagai perangkat desa'));
+                return redirect()->route('loginabsen')->with('error', config('error', 'anda tidak terdaftar sebagai perangkat desa'));
             }
             //proses login
             $request->session()->regenerate();
