@@ -30,8 +30,7 @@ class DatabaseSeeder extends Seeder
     private $permissions = [
         //kepegawaian
         'Menejemen Pengguna',
-            'Kelola Akun Penduduk',
-            'Kelola Akun Pamong',
+            'Kelola Pengguna',
             'Kelola Hak Akses Pamong',
 
         //e-surat

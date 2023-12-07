@@ -29,6 +29,7 @@ class User extends Authenticatable
         'foto_profil',
         'is_active',
         'is_delete',
+        'is_pamong',
     ];
 
     /**

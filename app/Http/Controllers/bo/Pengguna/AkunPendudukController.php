@@ -35,16 +35,69 @@ class AkunPendudukController extends Controller
 
     public function datas()
     {
-        $data = User::where("is_delete","<>", '1')->where("jabatan","=", null)->get();
+        //ini penduduk
+        $data = User::where('is_delete', '<>', '1')
+            ->where('is_pamong', '=', '0')
+            ->where('jabatan', '=', null)
+            ->get();
+
         return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
+                    if($row["is_active"] == 1){
+                        $aktiv = '<button class="btn btn-success mx-1" type="submit"><i class="bi bi-toggle2-on"></i></button>';
+                    }else{
+                        $aktiv = '<button class="btn btn-secondary mx-1" type="submit"><i class="bi bi-toggle2-off"></i></button>';
+                    }
                     $actionBtn = '
-                    <form action="'. route('bo.pengguna.akun_penduduk_management.destroy', $row["id"]) .'" method="POST"> 
+                    <div class="d-flex">
+                    <form action="'. route('bo.pengguna.data.aktiv', $row["id"]).'">
+                        ' . csrf_field() . '
+                        '.$aktiv.'
+                    </form>
+                    <form action="'. route('bo.pegawai.user_management.destroy', $row["id"]) .'" method="POST"> 
                                 ' . csrf_field() . '
                                 ' . method_field("DELETE") . '
+                                <a class="btn btn-warning" href="'. route('bo.pegawai.user_management.edit', $row["id"]) .'">
+                                <i class="fa-solid fa-pen-to-square"></i></a>
                                 <button class="btn btn-danger" type="submit" href="/surat-kbm/'.$row["id"].'/delete"><i class="fa-regular fa-trash-can"></i></button>
                                  </form>
+                    </div>
+                    ';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+    }
+    public function datak()
+    {
+        $data = User::where("is_delete","<>", '1')
+                ->where("is_pamong","=", "0")
+                ->where('jabatan', '<>', null)
+                ->get();
+
+        return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    if($row["is_active"] == 1){
+                        $aktiv = '<button class="btn btn-success mx-1" type="submit"><i class="bi bi-toggle2-on"></i></button>';
+                    }else{
+                        $aktiv = '<button class="btn btn-secondary mx-1" type="submit"><i class="bi bi-toggle2-off"></i></button>';
+                    }
+                    $actionBtn = '
+                    <div class="d-flex">
+                    <form action="'. route('bo.pengguna.data.aktiv', $row["id"]).'">
+                        ' . csrf_field() . '
+                        '.$aktiv.'
+                    </form>
+                    <form action="'. route('bo.pegawai.user_management.destroy', $row["id"]) .'" method="POST"> 
+                                ' . csrf_field() . '
+                                ' . method_field("DELETE") . '
+                                <a class="btn btn-warning" href="'. route('bo.pegawai.user_management.edit', $row["id"]) .'">
+                                <i class="fa-solid fa-pen-to-square"></i></a>
+                                <button class="btn btn-danger" type="submit" href="/surat-kbm/'.$row["id"].'/delete"><i class="fa-regular fa-trash-can"></i></button>
+                                 </form>
+                    </div>
                     ';
                     return $actionBtn;
                 })
@@ -100,6 +153,7 @@ class AkunPendudukController extends Controller
         $input['password'] = Hash::make($input['password']);
         $input['is_active'] = '1';
         $input['is_delete'] = '0';
+        $input['is_pamong'] = '0';
 
         //proses membuat verify email
         $verimail['id'] = date('Ymdhis').'-'.substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 75);

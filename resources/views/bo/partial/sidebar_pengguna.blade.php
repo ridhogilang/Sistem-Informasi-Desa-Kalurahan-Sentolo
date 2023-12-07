@@ -9,19 +9,11 @@
             </a>
         </li><!-- End Dashboard Nav -->
         <!-- ini nanti can kelola akun penduduk, kelola akun pamong, kelola hak akses dahlah itu bisa crud semua dan semuanya bisa aku puuyeng middleware pasang no route mbuh nopo nek pasang kui kudune pie -->
-        @can('Kelola Akun Penduduk')
-        <li class="nav-item">
-            <a class="nav-link {{ request()->is('admin/pengguna/akun_penduduk_management*') ? '' : 'collapsed' }}" href="{{ route('bo.pengguna.akun_penduduk_management.index') }}">
-                <i class="fa-regular fa-envelope-open"></i>
-                <span>Akun Penduduk</span>
-            </a>
-        </li>
-        @endcan
-        @can('Kelola Akun Pamong')
+        @can('Kelola Pengguna')
         <li class="nav-item">
             <a class="nav-link {{ request()->is('admin/pengguna/user_management*') ? '' : 'collapsed' }}" href="{{ route('bo.pegawai.user_management.index') }}">
-                <i class="fa-regular fa-envelope-open"></i>
-                <span>Akun Pamong</span>
+                <i class="bi bi-people"></i>
+                <span>Data Pengguna</span>
             </a>
         </li>
         @endcan

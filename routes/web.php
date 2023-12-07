@@ -164,20 +164,26 @@ Route::prefix('admin')->group(function () {
             })->name('bo.pegawai.dashboard');
             //akun penduduk untuk pelayanan umum
             //bo.pengguna.akun_penduduk_management
-            Route::resource('/akun_penduduk_management', AkunPendudukController::class, ['as' => 'bo.pengguna'])
-                ->except(['show', 'edit', 'update'])
-                ->middleware('can:Kelola Akun Penduduk');
+            // Route::resource('/akun_penduduk_management', AkunPendudukController::class, ['as' => 'bo.pengguna'])
+                // ->except(['show', 'edit', 'update'])
+                // ->middleware('can:Kelola Pengguna');
             Route::get('/akun_penduduk_management_data', [AkunPendudukController::class, 'datas'])
                 ->name('bo.pengguna.data.akun_penduduk')
-                ->middleware('can:Kelola Akun Penduduk');
+                ->middleware('can:Kelola Pengguna');
+            Route::get('/akun_kontributor_management_data', [AkunPendudukController::class, 'datak'])
+                ->name('bo.pengguna.data.akun_kontributor')
+                ->middleware('can:Kelola Pengguna');
             Route::get('/dapatkan_data_penduduk', [AkunPendudukController::class, 'penduduk'])
                 ->name('bo.pengguna.data.kependudukan');
 
             //akun pamong untuk mengelola website
             Route::resource('/user_management', UserManagementController::class, ['as' => 'bo.pegawai'])
                 ->except(['show'])
-                ->middleware('can:Kelola Akun Pamong');
-            Route::get('/user_management_data', [UserManagementController::class, 'datas'])->name('bo.pengguna.data.akun_pamong');
+                ->middleware('can:Kelola Pengguna');
+            Route::get('/user_management_data', [UserManagementController::class, 'datas'])->name('bo.pengguna.data.akun_pamong')
+                ->middleware('can:Kelola Pengguna');
+            Route::get('/user_management_aktivasi/{id}', [UserManagementController::class, 'aktivv'])->name('bo.pengguna.data.aktiv')
+                ->middleware('can:Kelola Pengguna');
 
             //hak akses pamong
             Route::resource('/role_management', roleManagementController::class, ['as' => 'bo.pegawai'])

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\bo\Sid;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pamong;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,7 +15,7 @@ class PamongController extends Controller
      */
     public function index()
     {
-        $pamong = Pamong::all();
+        $pamong = User::where("is_delete","<>", '1')->where("is_pamong","=", "1")->get();
 
         return view('bo.page.sid.pamong', [
             "title" => "Poster Pamong",
@@ -31,16 +32,16 @@ class PamongController extends Controller
         $validateData = $request->validate([
             'nama' => 'required',
             'jabatan' => 'required',
-            'gambar' => 'required|image|mimes:png,jpg,jpeg', // Mengizinkan format PNG, JPG, dan JPEG
+            'foto_resmi' => 'required|image|mimes:png,jpg,jpeg', // Mengizinkan format PNG, JPG, dan JPEG
         ], [
-            'gambar.mimes' => 'Gambar hanya boleh dalam format PNG, JPG, atau JPEG.',
+            'foto_resmi.mimes' => 'foto_resmi hanya boleh dalam format PNG, JPG, atau JPEG.',
         ]);
         
-        // Upload dan simpan file gambar
-        $gambar = $request->file('gambar');
-        $gambarPath = $gambar->store('gambar-pamong'); // Ganti 'folder-tujuan' dengan direktori penyimpanan yang sesuai
+        // Upload dan simpan file foto_resmi
+        $foto_resmi = $request->file('foto_resmi');
+        $foto_resmiPath = $foto_resmi->store('foto_resmi-pamong'); // Ganti 'folder-tujuan' dengan direktori penyimpanan yang sesuai
 
-        $validateData['gambar'] = $gambarPath;
+        $validateData['foto_resmi'] = $foto_resmiPath;
 
         Pamong::create($validateData);
 
@@ -63,42 +64,31 @@ class PamongController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'nama' => 'required',
-            'jabatan' => 'required',
-            'gambar' => 'image|mimes:png,jpg,jpeg', // Mengizinkan format PNG, JPG, dan JPEG
+            // 'nama' => 'required',
+            // 'jabatan' => 'required',
+            'foto_resmi' => 'image|mimes:png,jpg,jpeg', // Mengizinkan format PNG, JPG, dan JPEG
         ], [
-            'gambar.mimes' => 'Gambar hanya boleh dalam format PNG, JPG, atau JPEG.',
+            'foto_resmi.mimes' => 'foto_resmi hanya boleh dalam format PNG, JPG, atau JPEG.',
         ]);
 
-        $pamong = Pamong::find($id);
+        $pamong = User::find($id);
 
-        if (!$pamong) {
-            return redirect()->back()->with('toast_error', 'Data Pamong tidak ditemukan.');
-        }
-    
-        // Periksa apakah ada pembaruan pada gambar
-        if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada
-            if (Storage::exists($pamong->gambar)) {
-                Storage::delete($pamong->gambar);
-            }
-    
-            // Upload gambar baru
-            $gambar = $request->file('gambar');
-            $gambarPath = $gambar->store('gambar-pamong');
-    
-            // Update kolom 'gambar' dengan path gambar baru
-            $pamong->gambar = $gambarPath;
-        } else {
-            // Jika tidak ada pembaruan pada gambar, gunakan gambar yang sudah ada
-            $pamong->gambar = $request->input('gambar_existing');
-        }
+        if ($request->hasFile('foto_resmi')) {
+            // Hapus file lama sebelum mengunggah yang baru
+            Storage::delete('public' . $pamong->foto_resmi);
 
-        $pamong->nama = $request->input('nama');
-        $pamong->jabatan = $request->input('jabatan');
-        $pamong->save();
+            $file = $request->file('foto_resmi');
+            $fileName = 'Pamong-'. date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
+
+            // Simpan file baru
+            $file->storeAs('public/gambar-pamong', $fileName);
+
+            // Update path gambar di database
+            $pamong->update(['foto_resmi' => '/gambar-pamong/'.$fileName]);
+        }
 
         return redirect()->back()->with('toast_success', 'Data Pamong Berhasil diubah!');
+
     }
 
     /**
@@ -112,9 +102,9 @@ class PamongController extends Controller
             return redirect()->back()->with('toast_success', 'Data Menu Tidak Ditemukan!');
         }
 
-        // Hapus gambar terlebih dahulu jika ada
-        if (Storage::exists($pamong->gambar)) {
-            Storage::delete($pamong->gambar);
+        // Hapus foto_resmi terlebih dahulu jika ada
+        if (Storage::exists($pamong->foto_resmi)) {
+            Storage::delete($pamong->foto_resmi);
         }
 
         // Hapus data dari database
