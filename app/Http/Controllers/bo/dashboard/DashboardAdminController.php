@@ -104,6 +104,10 @@ class DashboardAdminController extends Controller
                 ->count();
 
 
+        if(auth()->user()->jabatan == null){
+            return redirect('/profile-penduduk');
+        }
+        
         return view('bo.page.dashboard.index',[
             'dropdown1' => '',
             'dropdown2' => '',
