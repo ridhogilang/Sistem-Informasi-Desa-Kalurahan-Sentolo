@@ -3,10 +3,17 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
+            @if(auth()->user()->jabatana <> null)
             <a class="nav-link {{ ($title == "Dashboard") ? '' : 'collapsed' }}" href="/admin/dashboard">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
+            @else
+            <a class="nav-link" href="/profile-penduduk">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+            @endif
         </li><!-- End Dashboard Nav -->
         @can('Menejemen E-Surat')
             <li class="nav-item">
