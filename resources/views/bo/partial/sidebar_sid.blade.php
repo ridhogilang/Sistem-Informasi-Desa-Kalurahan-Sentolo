@@ -126,14 +126,14 @@
             </ul>
         </li>
         @endcanany
-        @canany(['lihat ip user', 'ip online user'])  
+        {{-- @canany(['lihat ip user', 'ip online user'])  
         <li class="nav-item">
             <a class="nav-link {{ ($title == "IP Address User") ? '' : 'collapsed' }}" href="/admin/sistem-informasi/ipuser">
                 <i class="bi bi-grid"></i>
                 <span>IP Address User</span>
             </a>
         </li><!-- End Dashboard Nav -->
-        @endcanany
+        @endcanany --}}
     </ul>
 
 </aside>

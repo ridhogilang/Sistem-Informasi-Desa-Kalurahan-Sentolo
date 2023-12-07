@@ -47,15 +47,16 @@ class HomeController extends Controller
         $menu = Menu::orderBy('urutan')->get();
 
         $berita = Berita::orderBy('tanggal', 'desc')
-            ->where(function ($query) {
-                $query->whereIn('kategoriberita_id', [1, 2, 3]);
-            })
-            ->paginate(6);
-
-        $semuaberita = Berita::whereIn('kategoriberita_id', [1, 2, 3])->paginate(12);
-        $beritadesa = Berita::where('kategoriberita_id', 1)->paginate(12);
-        $beritalokal = Berita::where('kategoriberita_id', 2)->paginate(12);
-        $programkerja = Berita::where('kategoriberita_id', 3)->paginate(12);
+        ->where(function ($query) {
+            $query->whereIn('kategoriberita_id', [1, 2, 3])
+                ->where('tampil', true);
+        })
+        ->paginate(6);
+    
+        $semuaberita = Berita::whereIn('kategoriberita_id', [1, 2, 3])->where('tampil', true)->paginate(12);        
+        $beritadesa = Berita::where('kategoriberita_id', 1)->where('tampil', true)->paginate(12);
+        $beritalokal = Berita::where('kategoriberita_id', 2)->where('tampil', true)->paginate(12);
+        $programkerja = Berita::where('kategoriberita_id', 3)->where('tampil', true)->paginate(12);
 
 
         // Mengambil jumlah pengunjung hari ini
@@ -254,7 +255,7 @@ class HomeController extends Controller
 
     public function semuaberita()
     {
-        $terbaru = Berita::whereIn('kategoriberita_id', [1, 2, 3])->paginate(12);
+        $terbaru = Berita::whereIn('kategoriberita_id', [1, 2, 3])->where('tampil', true)->paginate(12);
         $header = Header::all();
         $pamong = Pamong::all();
         $apbd = Apbdes::first();
@@ -273,7 +274,7 @@ class HomeController extends Controller
 
     public function cariberita()
     {
-        $terbaru = Berita::whereIn('kategoriberita_id', [1, 2, 3])
+        $terbaru = Berita::whereIn('kategoriberita_id', [1, 2, 3])->where('tampil', true)
             ->filter(request(['cari']))
             ->paginate(12);
         $header = Header::all();
@@ -295,7 +296,7 @@ class HomeController extends Controller
 
     public function beritadesa()
     {
-        $kategori = Berita::where('kategoriberita_id', 1)->paginate(12);
+        $kategori = Berita::where('kategoriberita_id', 1)->where('tampil', true)->paginate(12);
         $header = Header::all();
         $pamong = Pamong::all();
         $apbd = Apbdes::first();
@@ -313,7 +314,7 @@ class HomeController extends Controller
 
     public function beritalokal()
     {
-        $kategori = Berita::where('kategoriberita_id', 2)->paginate(12);
+        $kategori = Berita::where('kategoriberita_id', 2)->where('tampil', true)->paginate(12);
         $header = Header::all();
         $pamong = Pamong::all();
         $apbd = Apbdes::first();
@@ -331,7 +332,7 @@ class HomeController extends Controller
 
     public function programkerja()
     {
-        $kategori = Berita::where('kategoriberita_id', 3)->paginate(12);
+        $kategori = Berita::where('kategoriberita_id', 3)->where('tampil', true)->paginate(12);
         $header = Header::all();
         $pamong = Pamong::all();
         $apbd = Apbdes::first();

@@ -24,107 +24,109 @@
             <div class="col-lg-12">
 
                 @can('tambah berita')
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Tambah Berita | Side Berita</h5>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Tambah Berita | Side Berita</h5>
 
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modalBerita"><i class="fa-regular fa-square-plus"
-                                        style="margin-right: 5px"></i>Tambah Berita</button>
-                            </div>
-                            <div>
-                                <div class="row mb-3">
-                                    <label class="col-sm-6 col-form-label">Pilih Side Berita</label>
-                                    <div class="col-sm-10">
-                                        <form action="/admin/sistem-informasi/update-sideberita/{id}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <select id="pilihsideberita" class="form-select" name="news_id" onchange="this.form.submit()"
-                                                placeholder="Pilih berita...">
-                                                <option value="" disabled selected>Pilih sideberita</option>
-                                                @foreach ($berita as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        @if ($item->sideberita) selected @endif>
-                                                        {{ $item->judul }}</option>
-                                                @endforeach
-                                            </select>
-                                        </form>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalBerita"><i class="fa-regular fa-square-plus"
+                                            style="margin-right: 5px"></i>Tambah Berita</button>
+                                </div>
+                                <div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-6 col-form-label">Pilih Side Berita</label>
+                                        <div class="col-sm-10">
+                                            <form action="/admin/sistem-informasi/update-sideberita/{id}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <select id="pilihsideberita" class="form-select" name="news_id"
+                                                    onchange="this.form.submit()" placeholder="Pilih berita...">
+                                                    <option value="" disabled selected>Pilih sideberita</option>
+                                                    @foreach ($berita as $item)
+                                                        <option value="{{ $item->id }}"
+                                                            @if ($item->sideberita) selected @endif>
+                                                            {{ $item->judul }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Modal Form Berita -->
-                        <div class="modal fade" id="modalBerita" data-bs-backdrop="static" data-bs-keyboard="false"
-                            tabindex="-1" aria-labelledby="sktm-satu-Label" aria-hidden="true">
-                            <div class="modal-dialog modal-fullscreen modal-dialog-scrollable modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="sktm-satu-Label">Tambah Berita</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form class="row g-3" action="/admin/sistem-informasi/berita" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="col-md-12">
-                                                <label for="judul" class="form-label">Judul</label>
-                                                <input type="text" name="judul" class="form-control" id="judul"
-                                                    value="{{ old('judul') }}">
-                                            </div>
-                                            <div class="col-md-6" style="display: none;">
-                                                <label for="slug" class="form-label">Url</label>
-                                                <input type="text" name="slug" class="form-control" id="slug"
-                                                    value="{{ old('slug') }}" disabled>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="penulis" class="form-label">Penulis</label>
-                                                <input type="text" name="penulis" class="form-control" id="penulis"
-                                                    value="{{ old('penulis') }}">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="tanggal" class="form-label">Tanggal</label>
-                                                <input type="date" name="tanggal" class="form-control"
-                                                    value="{{ old('tanggal') }}">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="gambar" class="form-label">File Upload</label>
-                                                <div class="col-sm-12">
-                                                    <input class="form-control" name="gambar" type="file" id="formFile"
-                                                        accept=".png, .jpg, .jpeg, .img,">
+                            <!-- Modal Form Berita -->
+                            <div class="modal fade" id="modalBerita" data-bs-backdrop="static" data-bs-keyboard="false"
+                                tabindex="-1" aria-labelledby="sktm-satu-Label" aria-hidden="true">
+                                <div class="modal-dialog modal-fullscreen modal-dialog-scrollable modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="sktm-satu-Label">Tambah Berita</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="row g-3" action="/admin/sistem-informasi/berita" method="POST"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="col-md-12">
+                                                    <label for="judul" class="form-label">Judul</label>
+                                                    <input type="text" name="judul" class="form-control" id="judul"
+                                                        value="{{ old('judul') }}">
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="kategoriberita_id" class="form-label">Kategori Artikel</label>
-                                                <select id="kategoriberita_id" name="kategoriberita_id" class="form-select">
-                                                    <option value=""
-                                                        {{ old('kategoriberita_id') == '' ? 'selected' : '' }}>Choose...
-                                                    </option>
-                                                    @foreach ($kategori as $item)
-                                                        <option value="{{ $item->id }}"
-                                                            {{ old('kategoriberita_id') == $item->id ? 'selected' : '' }}>
-                                                            {{ $item->kategori }}
+                                                <div class="col-md-6" style="display: none;">
+                                                    <label for="slug" class="form-label">Url</label>
+                                                    <input type="text" name="slug" class="form-control" id="slug"
+                                                        value="{{ old('slug') }}" disabled>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="penulis" class="form-label">Penulis</label>
+                                                    <input type="text" name="penulis" class="form-control" id="penulis"
+                                                        value="{{ old('penulis') }}">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="tanggal" class="form-label">Tanggal</label>
+                                                    <input type="date" name="tanggal" class="form-control"
+                                                        value="{{ old('tanggal') }}">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="gambar" class="form-label">File Upload</label>
+                                                    <div class="col-sm-12">
+                                                        <input class="form-control" name="gambar" type="file" id="formFile"
+                                                            accept=".png, .jpg, .jpeg, .img,">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="kategoriberita_id" class="form-label">Kategori Artikel</label>
+                                                    <select id="kategoriberita_id" name="kategoriberita_id"
+                                                        class="form-select">
+                                                        <option value=""
+                                                            {{ old('kategoriberita_id') == '' ? 'selected' : '' }}>Choose...
                                                         </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <label for="artikel" class="form-label">Artikel</label>
-                                            <textarea name="artikel" id="summernote">{{ old('artikel') }}</textarea>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                            </div>
-                                        </form>
+                                                        @foreach ($kategori as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ old('kategoriberita_id') == $item->id ? 'selected' : '' }}>
+                                                                {{ $item->kategori }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <label for="artikel" class="form-label">Artikel</label>
+                                                <textarea name="artikel" id="summernote">{{ old('artikel') }}</textarea>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endcan
 
                 <div class="card">
@@ -143,10 +145,10 @@
                                     <th scope="col">Kategori</th>
                                     <th scope="col">Tanggal</th>
                                     @can('aktivasi berita')
-                                    <th scope="col">Berita Utama</th>
+                                        <th scope="col">Berita Utama</th>
                                     @endcan
                                     @canany(['edit berita', 'hapus berita'])
-                                    <th scope="col" class="text-center">Action</th>
+                                        <th scope="col" class="text-center">Action</th>
                                     @endcanany
                                 </tr>
                             </thead>
@@ -162,38 +164,59 @@
                                         <td>{{ $value->kategori->kategori }}</td>
                                         <td>{{ $value->tanggal }}</td>
                                         @can('aktivasi berita')
-                                        <td>
-                                            <form action="{{ route('berita.update-status', ['id' => $value->id]) }}" method="POST"
-
-                                                id="statusForm{{ $value->id }}" class="form-check form-switch">
-                                                @csrf
-                                                @method('put')
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="hidden" name="status"
-                                                        value="0">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        id="flexSwitchCheck{{ $value->id }}" name="status"
-                                                        {{ $value->status ? 'checked' : '' }}
-                                                        data-id="{{ $value->id }}"
-                                                        onchange="submitStatusForm({{ $value->id }})">
-                                                </div>
-                                            </form>
-                                        </td>
+                                            <td>
+                                                @if ($value->tampil)
+                                                    <form action="{{ route('berita.update-status', ['id' => $value->id]) }}"
+                                                        method="POST" id="statusForm{{ $value->id }}"
+                                                        class="form-check form-switch">
+                                                        @csrf
+                                                        @method('put')
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="hidden" name="status"
+                                                                value="0">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="flexSwitchCheck{{ $value->id }}" name="status"
+                                                                {{ $value->status ? 'checked' : '' }}
+                                                                data-id="{{ $value->id }}"
+                                                                onchange="submitStatusForm({{ $value->id }})">
+                                                        </div>
+                                                    </form>
+                                                @endif
+                                            </td>
                                         @endcan
-                                        @canany(['edit berita', 'hapus berita'])
-                                        <td class="text-center">
-                                            @can('edit berita')
-                                            <a class="btn btn-warning" href="/admin/sistem-informasi/showberita/{{ $value->id }}"><i
-                                                    class="fa-solid fa-pen-to-square"></i></a>
-                                            @endcan
-                                            <!-- Button trigger modal -->
-                                            @can('hapus berita')
-                                            <a class="btn btn-danger" type="submit" id="deleteberita"
-                                                data-id="{{ $value->id }}"
-                                                href="/admin/sistem-informasi/deleteberita/{{ $value->id }}"><i
-                                                    class="fa-regular fa-trash-can"></i></a>
-                                            @endcan
-                                        </td>
+                                        @canany(['edit berita', 'hapus berita', 'aktivasi berita'])
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    @can('edit berita')
+                                                        <a class="btn btn-warning"
+                                                            href="/admin/sistem-informasi/showberita/{{ $value->id }}"><i
+                                                                class="fa-solid fa-pen-to-square"></i></a>
+                                                    @endcan
+                                                    @can('aktivasi berita')
+                                                        @if ($value->tampil)
+                                                        <div class="mx-1"></div>
+                                                        @else
+                                                            <form
+                                                                action="/admin/sistem-informasi/tampilkan-berita/{{ $value->id }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('PUT')
+
+                                                                <button type="submit" class="btn btn-success mx-1">
+                                                                    <i class="fa-solid fa-check"></i>
+                                                                </button>
+                                                            </form>
+                                                        @endif
+                                                    @endcan
+                                                    <!-- Button trigger modal -->
+                                                    @can('hapus berita')
+                                                        <a class="btn btn-danger" type="submit" id="deleteberita"
+                                                            data-id="{{ $value->id }}"
+                                                            href="/admin/sistem-informasi/deleteberita/{{ $value->id }}"><i
+                                                                class="fa-regular fa-trash-can"></i></a>
+                                                    @endcan
+                                                </div>
+                                            </td>
                                         @endcanany
                                     </tr>
                                 @endforeach
@@ -209,34 +232,34 @@
 
 @push('footer')
     @can('hapus berita')
-    <script type="text/javascript">
-        $(function() {
-            $(document).on('click', '#deleteberita', function(e) {
-                e.preventDefault();
-                var data_id = $(this).attr("data-id");
+        <script type="text/javascript">
+            $(function() {
+                $(document).on('click', '#deleteberita', function(e) {
+                    e.preventDefault();
+                    var data_id = $(this).attr("data-id");
 
-                Swal.fire({
-                    title: 'Apakah kamu Yakin?',
-                    text: "Kamu ingin menghapus data ini ?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, hapus sekarang!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location = "/admin/sistem-informasi/deleteberita/" + data_id,
-                            Swal.fire(
-                                'Deleted!',
-                                'Data sudah terhapus.',
-                                'success'
-                            )
-                    }
-                })
+                    Swal.fire({
+                        title: 'Apakah kamu Yakin?',
+                        text: "Kamu ingin menghapus data ini ?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, hapus sekarang!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = "/admin/sistem-informasi/deleteberita/" + data_id,
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Data sudah terhapus.',
+                                    'success'
+                                )
+                        }
+                    })
 
+                });
             });
-        });
-    </script>
+        </script>
     @endcan
     <script>
         $('#summernote').summernote({
@@ -302,5 +325,5 @@
                     });
             });
         });
-    </script>    
+    </script>
 @endpush

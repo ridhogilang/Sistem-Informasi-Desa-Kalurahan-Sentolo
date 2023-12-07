@@ -78,7 +78,7 @@
                         </div>
                     </div>
                 </div>
-                @can
+                @endcan
                 @can('list galeri')
                 <div class="card">
                     <div class="card-body">
