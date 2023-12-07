@@ -26,11 +26,11 @@
                         <i class="bi bi-circle"></i><span>Absen Harian</span>
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="/admin/presensi/rekap-bulanan" class="{{ $title == 'Rekap Bulanan' ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Absen Bulanan</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </li>
     </ul>

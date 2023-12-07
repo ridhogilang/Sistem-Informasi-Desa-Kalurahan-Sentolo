@@ -27,8 +27,11 @@ class BeritaController extends Controller
     public function index()
     {
         $data = Berita::whereIn('kategoriberita_id', [1, 2, 3])
-            ->where('tampil', true)
+            ->orderByRaw('CASE WHEN tampil = false THEN 0 ELSE 1 END')
+            ->orderBy('tampil', 'desc')
             ->get();
+
+
         $kategori = KategoriBerita::whereIn('id', [1, 2, 3])->get();
 
         return view('bo.page.sid.berita.berita', [
@@ -252,7 +255,7 @@ class BeritaController extends Controller
 
         return view('bo.page.sid.artikel.show', [
             "title" => "Artikel",
-            "dropdown1" => "Komponen Website",
+            "dropdown1" => "Komponen Artikel",
             "artikel" => $data,
             "kategori" => $kategori,
         ]);
@@ -506,6 +509,5 @@ class BeritaController extends Controller
         $berita->update(['tampil' => true]);
 
         return redirect()->back()->with('toast_success', 'Berita Berhasil ditampilkan!');
-
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\bo\Sid;
 
 use App\Http\Controllers\Controller;
+use App\Models\Berita;
+use App\Models\Komentar;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -18,8 +20,33 @@ class AdminController extends Controller
 
     public function index()
     {
+        $berita = Berita::whereIn('kategoriberita_id', [1, 2, 3])
+        ->where('tampil', false)
+        ->orderBy('created_at', 'desc')
+        ->limit(3)
+        ->get();
+    
+
+        $totalberita = Berita::whereIn('kategoriberita_id', [1, 2, 3])
+        ->where('tampil', false)
+        ->count();
+
+        $komentar = Komentar::whereIn('kategoriberita_id', [1, 2, 3])
+        ->where('status', false)
+        ->orderBy('created_at', 'desc')
+        ->limit('3')
+        ->get();
+
+        $totalkomentar = Komentar::whereIn('kategoriberita_id', [1, 2, 3])
+        ->where('status', false)
+        ->count();
+
         return view('bo.page.sid.dashboard', [
             "title" => "Dashboard",
+            "berita" => $berita,
+            "totalberita" => $totalberita,
+            "komentar" => $komentar,
+            "totalkomentar" => $totalkomentar,
             "dropdown1" => "",
         ]);
     }

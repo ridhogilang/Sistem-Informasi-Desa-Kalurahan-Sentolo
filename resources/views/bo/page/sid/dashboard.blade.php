@@ -18,7 +18,7 @@
             <div class="col-lg-12">
                 <div class="row">
 
-                    <!-- Sales Card -->
+                    {{-- <!-- Sales Card -->
                     <div class="col-xxl-3 col-md-3">
                         <div class="card info-card sales-card">
 
@@ -112,7 +112,7 @@
                             </div>
 
                         </div>
-                    </div><!-- End Revenue Card -->
+                    </div><!-- End Revenue Card --> --}}
 
                     <!-- Customers Card -->
                     <div class="col-xxl-6 col-xl-6">
@@ -120,99 +120,48 @@
                         <div class="card info-card customers-card">
 
                             <div class="card-body">
-                                <h5 class="card-title">Customers <span>| This Year</span></h5>
+                                <h5 class="card-title">Berita <span>| Dari Kontributor (Yang belum disetujui)</span></h5>
 
                                 <div class="d-flex align-items-center">
-                                    <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-people"></i>
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="fa-regular fa-newspaper"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>1244</h6>
-                                        <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                                            class="text-muted small pt-2 ps-1">decrease</span>
-
+                                        <h6>{{ $totalberita }} Berita</h6>
                                     </div>
                                 </div>
-
+                                <div class="card-title">Daftar Berita Yang belum disetujui
+                                    @foreach ($berita as $item)
+                                        <div><span>{{ $loop->iteration }}. {{ $item->judul }}</span></div>
+                                    @endforeach
+                                    <div><span><a href="/admin/sistem-informasi/berita">Selengkapnya....</a></span></div>
+                                </div>
                             </div>
                         </div>
 
                     </div><!-- End Customers Card -->
-
                     <!-- Customers Card -->
                     <div class="col-xxl-6 col-xl-6">
 
-                        <div class="card info-card customers-card">
+                        <div class="card info-card sales-card">
 
                             <div class="card-body">
-                                <h5 class="card-title">Customers <span>| This Year</span></h5>
+                                <h5 class="card-title">Komentar <span>| yang belum disetujui</span></h5>
 
                                 <div class="d-flex align-items-center">
-                                    <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-people"></i>
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="fa-regular fa-comment-dots"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>1244</h6>
-                                        <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                                            class="text-muted small pt-2 ps-1">decrease</span>
-
+                                        <h6>{{ $totalkomentar }} Komentar</h6>
                                     </div>
                                 </div>
-
-                            </div>
-                        </div>
-
-                    </div><!-- End Customers Card -->
-
-                    <!-- Customers Card -->
-                    <div class="col-xxl-6 col-xl-6">
-
-                        <div class="card info-card customers-card">
-
-                            <div class="card-body">
-                                <h5 class="card-title">Customers <span>| This Year</span></h5>
-
-                                <div class="d-flex align-items-center">
-                                    <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-people"></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        <h6>1244</h6>
-                                        <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                                            class="text-muted small pt-2 ps-1">decrease</span>
-
-                                    </div>
+                                <div class="card-title">Daftar Komentar Yang belum disetujui
+                                    @foreach ($komentar as $item)
+                                        <div><span>{{ $loop->iteration }}. {{ Str::limit($item->komentar, 50) }}</span></div>
+                                    @endforeach
+                                    <div><span><a href="/admin/sistem-informasi/berita/komentar">Selengkapnya....</a></span></div>
                                 </div>
-
-                            </div>
-                        </div>
-
-                    </div><!-- End Customers Card -->
-
-                    <!-- Customers Card -->
-                    <div class="col-xxl-6 col-xl-6">
-
-                        <div class="card info-card customers-card">
-
-                            <div class="card-body">
-                                <h5 class="card-title">Customers <span>| This Year</span></h5>
-
-                                <div class="d-flex align-items-center">
-                                    <div
-                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-people"></i>
-                                    </div>
-                                    <div class="ps-3">
-                                        <h6>1244</h6>
-                                        <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                                            class="text-muted small pt-2 ps-1">decrease</span>
-
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
 
@@ -224,3 +173,5 @@
         </div>
     </section>
 @endsection
+
+

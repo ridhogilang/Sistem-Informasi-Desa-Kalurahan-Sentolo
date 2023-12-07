@@ -477,6 +477,7 @@ Route::prefix('admin')->group(function () {
                 Route::put('/update-status/{id}', 'updateStatus')->middleware('can:aktivasi berita')->name('berita.update-status');
                 Route::get('/berita/komentar', 'indexkomentar')->middleware('can:komentar berita');
                 Route::put('/update-sideberita/{id}', 'updateSideBerita')->middleware('can:edit berita');
+                Route::put('/tampilkan-berita/{id}', 'TampilkanBerita')->middleware('can:aktivasi berita');
 
                 //Artikel
                 Route::get('/artikel', 'artikel')->middleware('can:list artikel');
