@@ -26,8 +26,8 @@
                         <h5 class="card-title">Edit Artikel</h5>
 
                         <!-- Multi Columns Form -->
-                        <form class="row g-3" action="/admin/sistem-informasi/updateartikel/{{ $artikel->id }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form class="row g-3" action="/admin/sistem-informasi/updateartikel/{{ $artikel->id }}"
+                            method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="col-md-12">
@@ -68,22 +68,27 @@
                                     <option value="4">Artikel</option>
                                 </select>
                             </div>
-                            @if($artikel->link)
-                            <div class="col-md-6">
-                                <label for="link" class="form-label" style="margin-right: 10px;">Link Google Drive</label>
-                                <input type="text" name="link" class="form-control" id="link" value="{{ $artikel->link }}">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="kategori_link" class="form-label" id="kategori_link">Kategori Link Google Drive</label>
-                                <select id="kategorilink" name="kategori_link" class="form-select">
-                                    <option disabled value="">Pilih Jenis Link Google Drive</option>
-                                    <option value="1" {{ $artikel->kategori_link == 1 ? 'selected' : '' }}>Video</option>
-                                    <option value="2" {{ $artikel->kategori_link == 2 ? 'selected' : '' }}>PDF</option>
-                                </select>
-                            </div>
+                            @if ($artikel->link)
+                                <div class="col-md-6">
+                                    <label for="link" class="form-label" style="margin-right: 10px;">Link Google
+                                        Drive</label>
+                                    <input type="text" name="link" class="form-control" id="link"
+                                        value="{{ $artikel->link }}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="kategori_link" class="form-label" id="kategori_link">Kategori Link Google
+                                        Drive</label>
+                                    <select id="kategorilink" name="kategori_link" class="form-select">
+                                        <option disabled value="">Pilih Jenis Link Google Drive</option>
+                                        <option value="1" {{ $artikel->kategori_link == 1 ? 'selected' : '' }}>Video
+                                        </option>
+                                        <option value="2" {{ $artikel->kategori_link == 2 ? 'selected' : '' }}>PDF
+                                        </option>
+                                    </select>
+                                </div>
                             @else
-                            <label for="artikel" class="form-label">Artikel</label>
-                            <textarea name="artikel" id="summernote">{{ $artikel->artikel }}</textarea>
+                                <label for="artikel" class="form-label">Artikel</label>
+                                <textarea name="artikel" id="summernote">{{ $artikel->artikel }}</textarea>
                             @endif
                             <div class="modal-footer">
                                 <a href="javascript:history.back()" class="btn btn-secondary"
