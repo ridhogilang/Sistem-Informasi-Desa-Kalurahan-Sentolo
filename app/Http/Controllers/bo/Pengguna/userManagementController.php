@@ -14,6 +14,7 @@ use Illuminate\Validation\Rule;
 use App\Mail\VerifyMail;
 use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\Datatables;
+use App\Models\Penduduk;
 // use DataTables;
 
 class userManagementController extends Controller
@@ -37,11 +38,21 @@ class userManagementController extends Controller
 
     public function datas()
     {
-        $data = User::where("is_delete","<>", '1')->get();
+        $data = User::where("is_delete","<>", '1')->where("is_pamong","=", "1")->get();
         return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
+                    if($row["is_active"] == 1){
+                        $aktiv = '<button class="btn btn-success mx-1" type="submit"><i class="bi bi-toggle2-on"></i></button>';
+                    }else{
+                        $aktiv = '<button class="btn btn-secondary mx-1" type="submit"><i class="bi bi-toggle2-off"></i></button>';
+                    }
                     $actionBtn = '
+                    <div class="d-flex">
+                    <form action="'. route('bo.pengguna.data.aktiv', $row["id"]).'">
+                        ' . csrf_field() . '
+                        '.$aktiv.'
+                    </form>
                     <form action="'. route('bo.pegawai.user_management.destroy', $row["id"]) .'" method="POST"> 
                                 ' . csrf_field() . '
                                 ' . method_field("DELETE") . '
@@ -49,6 +60,7 @@ class userManagementController extends Controller
                                 <i class="fa-solid fa-pen-to-square"></i></a>
                                 <button class="btn btn-danger" type="submit" href="/surat-kbm/'.$row["id"].'/delete"><i class="fa-regular fa-trash-can"></i></button>
                                  </form>
+                    </div>
                     ';
                     return $actionBtn;
                 })
@@ -59,6 +71,18 @@ class userManagementController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    public function aktivv(string $id)
+    {
+        $user = User::find($id);
+        if($user->is_active == 0){
+            $user->update(['is_active' => '1']);
+        }
+        else{
+            $user->update(['is_active' => '0']);
+        }
+        return redirect()->route('bo.pegawai.user_management.index')
+                        ->with('success','User updated successfully');
+    }
     public function create()
     {
         $data = $this->data;
@@ -73,14 +97,19 @@ class userManagementController extends Controller
     public function store(Request $request)
     {
          $this->validate($request, [
-            'nama' => 'required',
+            'nik' => 'required',
             'email' => 'required|email|unique:users,email|unique:verify_mails,email',
             'password' => 'required|min:6|same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'nullable',
+            'is_pamong' => 'required',
         ]);
 
         $input = $request->all();
-        $input['jabatan'] = $input['roles'];
+        $input['nama'] = Penduduk::where('nik', '=', $input['nik'])->first()->nama;
+        $input['jabatan'] = isset($input['roles']) ? $input['roles'] : null; 
+        if(!isset($input['jabatan'])){
+            $input['is_pamong'] = '0';
+        }
         // tambahan input
         $input['password'] = Hash::make($input['password']);
         $input['is_active'] = '1';
@@ -130,14 +159,19 @@ class userManagementController extends Controller
     {
 
         $this->validate($request, [
-            'nama' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'nullable|min:6|same:confirm-password',
-            'roles' => 'required'
+            'nik' => 'required',
+            'email' => 'required|email|unique:users,email|unique:verify_mails,email',
+            'password' => 'required|min:6|same:confirm-password',
+            'roles' => 'nullable',
+            'is_pamong' => 'required',
         ]);
 
         $input = $request->all();
-        $input['jabatan'] = $input['roles']; 
+        $input['nama'] = Penduduk::where('nik', '=', $input['nik'])->first()->nama;
+        $input['jabatan'] = isset($input['roles']) ? $input['roles'] : null; 
+        if(!isset($input['jabatan'])){
+            $input['is_pamong'] = '0';
+        }
         if(!empty($input['password'])){
             $input['password'] = Hash::make($input['password']);
         }else{
@@ -175,9 +209,15 @@ class userManagementController extends Controller
      */
     public function destroy(string $id)
     {
-        $input['is_delete'] = '1';
-        User::find($id)->update($input);
+        $user = User::find($id);
+        if($user->is_active == 0){
+            $user->delete();
+        }
+        else{
+            return redirect()->route('bo.pegawai.user_management.index')
+                        ->with('warning','Gagal Menghapus Pengguna');
+        }
         return redirect()->route('bo.pegawai.user_management.index')
-                        ->with('success','User deleted successfully');
+                        ->with('success','Berhasil Menghapus Pengguna');
     }
 }

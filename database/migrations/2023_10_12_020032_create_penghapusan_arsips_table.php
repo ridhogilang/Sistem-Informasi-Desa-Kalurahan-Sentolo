@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('delete_by');
             $table->string('waktu_penghapusan');
             $table->string('document');
-            $table->text('link');
+            $table->text('link')->nullable();
             $table->timestamps();
         });
     }

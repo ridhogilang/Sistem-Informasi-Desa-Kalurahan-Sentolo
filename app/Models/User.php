@@ -29,6 +29,7 @@ class User extends Authenticatable
         'foto_profil',
         'is_active',
         'is_delete',
+        'is_pamong',
     ];
 
     /**
@@ -59,5 +60,10 @@ class User extends Authenticatable
     public function pamong()
     {
         return $this->hasOne(Pamong::class);
+    }
+
+    public function detilakun()
+    {
+        return $this->hasOne(Penduduk::class, 'nik', 'nik');
     }
 }

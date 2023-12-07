@@ -22,67 +22,6 @@
         <div class="row">
 
             <div class="col-lg-12">
-                @can('tambah pamong')
-                <div class="card">
-                    <div class="card-body">
-
-                        <h5 class="card-title">Tambah</h5>
-
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modalPamong"><i class="fa-regular fa-square-plus"
-                                        style="margin-right: 5px"></i>Tambah Pamong</button>
-                            </div>
-                        </div>
-
-                        <!-- Modal Form Tambah Poster Pamong -->
-                        <div class="modal fade" id="modalPamong" data-bs-backdrop="static" data-bs-keyboard="false"
-                            tabindex="-1" aria-labelledby="pamong-Label" aria-hidden="true">
-                            <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="pamong-Label">Tambah Pamong</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form class="row g-3" action="/admin/sistem-informasi/tambah-pamong" method="POST"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="row mb-3">
-                                                <label for="nama" class="col-sm-3 col-form-label">Nama</label>
-                                                <div class="col-sm-9">
-                                                    <input name="nama" id="nama" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="jabatan" class="col-sm-3 col-form-label">Jabatan</label>
-                                                <div class="col-sm-9">
-                                                    <input name="jabatan" id="jabatan" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="gambar" class="col-sm-3 col-form-label">File Upload</label>
-                                                <div class="col-sm-9">
-                                                    <input class="form-control" name="gambar" type="file" id="gambar"
-                                                        accept=".png, .jpg, .jpeg">
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endcan
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
@@ -97,7 +36,7 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">Jabatan</th>
                                     <th scope="col">Gambar</th>
-                                    @canany(['edit pamong', 'hapus pamong'])
+                                    @canany(['edit pamong'])
                                     <th scope="col" class="text-center">Action</th>
                                     @endcanany
                                 </tr>
@@ -111,9 +50,9 @@
                                         <th scope="row">{{ $no++ }}.</th>
                                         <td>{!! $item->nama !!}</td>
                                         <td>{!! $item->jabatan !!}</td>
-                                        <td><img src="{{ Storage::url($item->gambar) }}" width="45" height="40">
+                                        <td><img src="{{ Storage::url($item->foto_resmi) }}" width="45" height="40">
                                         </td>
-                                        @canany(['edit pamong', 'hapus pamong'])
+                                        @canany(['edit pamong'])
                                         <td class="text-center">
                                             @can('edit pamong')
                                             <a class="btn btn-warning" type="button" data-bs-toggle="modal"
@@ -123,10 +62,10 @@
                                             </a>
                                             @endcan
                                             @canany('hapus pamong')
-                                            <a class="btn btn-danger" type="submit" id="deletepamong"
+                                            <!-- <a class="btn btn-danger" type="submit" id="deletepamong"
                                                 data-id="{{ $item->id }}" href="/admin/sistem-informasi/hapus-pamong/{{ $item->id }}"><i
                                                     class="fa-regular fa-trash-can"></i>
-                                            </a>
+                                            </a> -->
                                             @endcan
                                         </td>
                                         @endcanany
@@ -154,7 +93,7 @@
                                                                 class="col-sm-3 col-form-label">Nama</label>
                                                             <div class="col-sm-9">
                                                                 <input class="form-control" name="nama" id="nama"
-                                                                    value="{{ $item->nama }}">
+                                                                    value="{{ $item->nama }}" disabled>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
@@ -162,20 +101,20 @@
                                                                 class="col-sm-3 col-form-label">Jabatan</label>
                                                             <div class="col-sm-9">
                                                                 <input class="form-control" name="jabatan" id="jabatan"
-                                                                    value="{{ $item->jabatan }}">
+                                                                    value="{{ $item->jabatan }}" disabled>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
-                                                            <label for="gambar" class="col-sm-3 col-form-label">File
+                                                            <label for="foto_resmi" class="col-sm-3 col-form-label">File
                                                                 Upload</label>
                                                             <div class="col-sm-9">
-                                                                <img src="{{ Storage::url($item->gambar) }}"
+                                                                <img src="{{ Storage::url($item->foto_resmi) }}"
                                                                     alt="{{ $item->nama }}" width="50"
                                                                     height="50">
-                                                                <input class="form-control" name="gambar" type="file"
-                                                                    id="gambar" accept=".png, .jpg, .jpeg">
-                                                                <input type="hidden" name="gambar_existing"
-                                                                    value="{{ $item->gambar }}">
+                                                                <input class="form-control" name="foto_resmi" type="file"
+                                                                    id="foto_resmi" accept=".png, .jpg, .jpeg">
+                                                                <input type="hidden" name="foto_resmi_existing"
+                                                                    value="{{ $item->foto_resmi }}">
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">

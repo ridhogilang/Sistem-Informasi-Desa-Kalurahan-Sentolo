@@ -225,7 +225,7 @@
                                 <div class="cardaparatur p-4 flex flex-col justify-between space-y-4 product-item">
                                     <div class="space-y-3">
                                         <img class="w-full object-cover object-center bg-slate-300 dark:bg-slate-600 mx-auto rounded-lg"
-                                            src="{{ $item['gambar'] }}" alt="{{ $item['nama'] }}">
+                                            src="{{ $item['foto_resmi'] }}" alt="{{ $item['nama'] }}">
                                     </div>
                                     <div class="space-y-1 text-sm text-center">
                                         <span class="text-heading">{{ $item['nama'] }}</span>

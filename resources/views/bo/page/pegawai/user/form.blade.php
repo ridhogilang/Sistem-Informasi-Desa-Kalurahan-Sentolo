@@ -1,5 +1,10 @@
 @extends('bo.layout.master')
 
+@push('header')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+@endpush
+
 @section('content')
 <div class="pagetitle">
         <h1>Pegawai</h1>
@@ -45,9 +50,9 @@
             <div class="row">
                 <div class="col-xs-12 mb-3">
                     <div class="form-group">
-                        <strong>nama:</strong>
-                        <input type="text" name="nama" value="{{ old('nama', isset($user) ? $user->nama : '') }}"
-                        class="form-control" placeholder="nama">
+                        <strong>NIK - Nama :</strong>
+                        <select name="nik" class="data-penduduk form-control">
+                        </select>
                     </div>
                 </div>
                 <div class="col-xs-12 mb-3">
@@ -83,6 +88,23 @@
                         </select> -->
                     </div>
                 </div>
+
+                <div class="col-xs-12 mb-3">
+                    <div class="form-group">
+                        <strong>Apakah PamongPamong:</strong><br>
+                        <input type="radio" id="yass-1" name="is_pamong" value="1" {{ isset($user) && $user->is_pamong == '1' ? 'checked' : '' }}>
+                        <label for="yass-1">Ya</label><br>
+
+                        <input type="radio" id="yass-0" name="is_pamong" value="0" {{ isset($user) && $user->is_pamong == '0' ? 'checked' : '' }}>
+                        <label for="yass-0">Tidak</label><br>
+
+                        <!-- 
+                        <select class="form-control" multiple name="roles[]">
+                            
+                        </select> -->
+                    </div>
+                </div>
+
                 <div class="col-xs-12 mb-3 text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
@@ -92,3 +114,27 @@
     </section>
 @endsection
 
+@push('footer')
+    <script type="text/javascript">
+        $('.data-penduduk').select2({
+            placeholder: "Pilih Nama - NIK",
+            allowClear: true,
+            ajax: {
+                url: "{{ route('bo.pengguna.data.kependudukan')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    return {
+                        results: data.data.map(function (item) {
+                            return {
+                                id: item.select_value,
+                                text: item.select_display
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+    </script>
+@endpush
