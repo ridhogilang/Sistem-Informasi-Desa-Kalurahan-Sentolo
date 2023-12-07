@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Agenda;
 use App\Models\AgendaGOR;
 use App\Models\Apbdes;
@@ -82,7 +83,7 @@ class HomeController extends Controller
 
         $text = Runningtext::where('id', 1)->first();
 
-        $pamong = Pamong::all();
+        $pamong = User::where("is_delete","<>", '1')->where("is_pamong","=", "1")->get();
         //Agenda
         $agenda_hari_ini = Agenda::where('tanggal', $today)->get();
         $agenda_yangakandatang = Agenda::where('tanggal', '>', $today)->get();

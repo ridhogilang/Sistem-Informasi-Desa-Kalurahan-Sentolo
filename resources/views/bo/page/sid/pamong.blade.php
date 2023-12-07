@@ -36,7 +36,7 @@
                                     <th scope="col">Nama</th>
                                     <th scope="col">Jabatan</th>
                                     <th scope="col">Gambar</th>
-                                    @canany(['edit pamong', 'hapus pamong'])
+                                    @canany(['edit pamong'])
                                     <th scope="col" class="text-center">Action</th>
                                     @endcanany
                                 </tr>
@@ -52,7 +52,7 @@
                                         <td>{!! $item->jabatan !!}</td>
                                         <td><img src="{{ Storage::url($item->foto_resmi) }}" width="45" height="40">
                                         </td>
-                                        @canany(['edit pamong', 'hapus pamong'])
+                                        @canany(['edit pamong'])
                                         <td class="text-center">
                                             @can('edit pamong')
                                             <a class="btn btn-warning" type="button" data-bs-toggle="modal"
@@ -108,7 +108,7 @@
                                                             <label for="foto_resmi" class="col-sm-3 col-form-label">File
                                                                 Upload</label>
                                                             <div class="col-sm-9">
-                                                                <img src="{{ asset($item->foto_resmi) }}"
+                                                                <img src="{{ Storage::url($item->foto_resmi) }}"
                                                                     alt="{{ $item->nama }}" width="50"
                                                                     height="50">
                                                                 <input class="form-control" name="foto_resmi" type="file"
