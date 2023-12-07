@@ -47,7 +47,14 @@
             </a>
         </li><!-- End Penduduk Page Nav -->
         @endcan
-
+        @if(auth()->user()->is_pamong == 1)
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/presensi/daftar-hadir">
+                <i class="bi bi-file-medical"></i>
+                <span>Absensi</span>
+            </a>
+        </li>
+        @endif
     </ul>
 
 </aside>

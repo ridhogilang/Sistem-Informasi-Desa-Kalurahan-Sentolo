@@ -79,6 +79,17 @@
                             <hr class="dropdown-divider">
                         </li>
                     @endcan
+                    @if(auth()->user()->is_pamong == 1)
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="/admin/presensi/daftar-hadir">
+                                <i class="bi bi-file-medical"></i>
+                                <span>Absensi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    @endif
                     
 
                 </ul><!-- End Profile Dropdown Items -->
