@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Pamong::class);
     }
+
+    public function detilakun()
+    {
+        return $this->hasOne(Penduduk::class, 'nik', 'nik');
+    }
 }

@@ -106,7 +106,10 @@ class userManagementController extends Controller
 
         $input = $request->all();
         $input['nama'] = Penduduk::where('nik', '=', $input['nik'])->first()->nama;
-        $input['jabatan'] = $input['roles'];
+        $input['jabatan'] = isset($input['roles']) ? $input['roles'] : null; 
+        if(!isset($input['jabatan'])){
+            $input['is_pamong'] = '0';
+        }
         // tambahan input
         $input['password'] = Hash::make($input['password']);
         $input['is_active'] = '1';
@@ -165,7 +168,10 @@ class userManagementController extends Controller
 
         $input = $request->all();
         $input['nama'] = Penduduk::where('nik', '=', $input['nik'])->first()->nama;
-        $input['jabatan'] = $input['roles']; 
+        $input['jabatan'] = isset($input['roles']) ? $input['roles'] : null; 
+        if(!isset($input['jabatan'])){
+            $input['is_pamong'] = '0';
+        }
         if(!empty($input['password'])){
             $input['password'] = Hash::make($input['password']);
         }else{

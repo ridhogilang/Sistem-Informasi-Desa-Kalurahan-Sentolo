@@ -495,11 +495,18 @@ Route::prefix('admin')->group(function () {
 Route::get('/get-penduduk/{nik}', [PendudukController::class, 'info'])->middleware(['web', 'auth']);
 
 // Mandiri
-Route::get('/profile-penduduk', [MandiriController::class, 'index']);
-Route::get('/buat-surat', [BuatsuratController::class, 'index']);
-Route::post('/buat-surat', [BuatsuratController::class, 'store']);
-Route::get('/buat-pesan', [MandiriController::class, 'pesan']);
-Route::get('/bantuan', [MandiriController::class, 'bantuan']);
+Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::get('/profile-penduduk', [MandiriController::class, 'index'])->name('bo.akun.pelayanan');
+    Route::get('/profile-akun', [MandiriController::class, 'index'])->name('bo.akun.akun');
+    Route::put('/profile-password', [MandiriController::class, 'ubahpass'])->name('bo.akun.ganti_password');
+    Route::put('/profile-gambar', [MandiriController::class, 'gantipp'])->name('bo.akun.ganti_gambar');
+
+    Route::get('/buat-surat', [BuatsuratController::class, 'index']);
+    Route::post('/buat-surat', [BuatsuratController::class, 'store']);
+    Route::get('/buat-pesan', [MandiriController::class, 'pesan']);
+    Route::get('/bantuan', [MandiriController::class, 'bantuan']);    
+});
+
 
 Route::get('/profile', function () {
     return view('bo.page.profile', [
