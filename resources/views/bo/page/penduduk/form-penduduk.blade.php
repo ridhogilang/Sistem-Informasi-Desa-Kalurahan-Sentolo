@@ -27,113 +27,113 @@
                                 @csrf
                                 <div class="col-md-6">
                                     <label for="nik" class="form-label">NIK<i style="color: #ff0000;">*</i></label>
-                                    <input type="number" class="form-control" name="nik" id="nik" required {{ old('nik') }}>
+                                    <input type="number" class="form-control" name="nik" id="nik" required value="{{ old('nik') }}">
+                                </div>
+                                <div class="col-6">
+                                    <label for="nomor_kk" class="form-label">Nomor KK<i style="color: #ff0000;">*</i></label>
+                                    <input type="number" class="form-control" name="nomor_kk" id="nomor_kk" required value="{{ old('nomor_kk') }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="nama" class="form-label">Nama<i style="color: #ff0000;">*</i></label>
-                                    <input type="text" class="form-control" name="nama" id="nama" required {{ old('nama') }}>
+                                    <input type="text" class="form-control" name="nama" id="nama" required value="{{ old('nama') }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="tempat_lahir" class="form-label">Tempat Lahir<i style="color: #ff0000;">*</i></label>
-                                    <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" required {{ old('tempat_lahir') }}>
+                                    <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" required value="{{ old('tempat_lahir') }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="tanggal_lahir" class="form-label">Tanggal Lahir<i style="color: #ff0000;">*</i></label>
-                                    <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" required {{ old('tanggal_lahir') }}>
+                                    <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" required value="{{ old('tanggal_lahir') }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="jenis_kelamin" class="form-label">Jenis Kelamin<i style="color: #ff0000;">*</i></label>
                                     <select class="form-select" id="jenis_kelamin" name="jenis_kelamin" required>
                                         <option value="" @if(old('jenis_kelamin')=='' ) selected @endif>Pilih Jenis Kelamin ...</option>
-                                        <option value="Laki-laki" @if(old('jenis_kelamin')=='Laki-laki' ) selected @endif>Laki-laki</option>
-                                        <option value="Perempuan" @if(old('jenis_kelamin')=='Perempuan' ) selected @endif>Perempuan</option>
+                                        <option value="LAKI LAKI" @if(old('jenis_kelamin')=='LAKI LAKI' ) selected @endif>LAKI LAKI</option>
+                                        <option value="PEREMPUAN" @if(old('jenis_kelamin')=='PEREMPUAN' ) selected @endif>PEREMPUAN</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="agama" class="form-label">Agama<i style="color: #ff0000;">*</i></label>
                                     <select class="form-select" id="agama" name="agama" required>
                                         <option value="" @if(old('agama')=='' ) selected @endif>Pilih Agama ...</option>
-                                        <option value="Islam" @if(old('agama')=='Islam' ) selected @endif>Islam</option>
-                                        <option value="Kristen Protestan" @if(old('agama')=='Kristen Protestan' ) selected @endif>Kristen Protestan</option>
-                                        <option value="Kristen Katolik" @if(old('agama')=='Kristen Katolik' ) selected @endif>Kristen Katolik</option>
-                                        <option value="Hindu" @if(old('agama')=='Hindu' ) selected @endif>Hindu</option>
-                                        <option value="Buddha" @if(old('agama')=='Buddha' ) selected @endif>Buddha</option>
-                                        <option value="Konghucu" @if(old('agama')=='Konghucu' ) selected @endif>Konghucu</option>
-                                        <option value="Lainnya" @if(old('agama')=='Lainnya' ) selected @endif>Lainnya</option>
+                                        <option value="ISLAM" @if(old('agama')=='ISLAM' ) selected @endif>ISLAM</option>
+                                        <option value="KRISTEN" @if(old('agama')=='KRISTEN' ) selected @endif>KRISTEN</option>
+                                        <option value="KATHOLIK" @if(old('agama')=='KATHOLIK' ) selected @endif>KATHOLIK</option>
+                                        <option value="HINDU" @if(old('agama')=='HINDU' ) selected @endif>HINDU</option>
+                                        <option value="BUDDHA" @if(old('agama')=='BUDDHA' ) selected @endif>BUDDHA</option>
+                                        <option value="KONGHUCU" @if(old('agama')=='KONGHUCU' ) selected @endif>KONGHUCU</option>
+                                        <option value="LAINNYA" @if(old('agama')=='LAINNYA' ) selected @endif>LAINNYA</option>
                                     </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="umur" class="form-label">Umur<i style="color: #ff0000;">*</i></label>
+                                    <input type="number" class="form-control" name="umur" id="umur" required value="{{ old('umur') }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="status_perkawinan" class="form-label">Status Perkawinan<i style="color: #ff0000;">*</i></label>
                                     <select class="form-select" id="status_perkawinan" name="status_perkawinan" required>
                                         <option value="" @if(old('status_perkawinan')=='' ) selected @endif>Pilih Status Perkawinan ...</option>
-                                        <option value="Belum Menikah" @if(old('status_perkawinan')=='Belum Menikah' ) selected @endif>Belum Menikah</option>
-                                        <option value="Sudah Menikah" @if(old('status_perkawinan')=='Sudah Menikah' ) selected @endif>Sudah Menikah</option>
-                                        <option value="Duda" @if(old('status_perkawinan')=='Duda' ) selected @endif>Duda</option>
-                                        <option value="Janda" @if(old('status_perkawinan')=='Janda' ) selected @endif>Janda</option>
+                                        <option value="Belum Kawin" @if(old('status_perkawinan')=='Belum Kawin' ) selected @endif>Belum Kawin</option>
+                                        <option value="Kawin" @if(old('status_perkawinan')=='Kawin' ) selected @endif>Kawin</option>
+                                        <option value="Cerai Hidup" @if(old('status_perkawinan')=='Cerai Hidup' ) selected @endif>Cerai Hidup</option>
+                                        <option value="Cerai Mati" @if(old('status_perkawinan')=='Cerai Mati' ) selected @endif>Cerai Mati</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="kewarganegaraan" class="form-label">Kewarganegaraan<i style="color: #ff0000;">*</i></label>
-                                    <select class="form-select" id="kewarganegaraan" name="kewarganegaraan" required>
-                                        <option value="" @if(old('kewarganegaraan')=='' ) selected @endif>Pilih Kewarganegaraan ...</option>
-                                        <option value="WNI" @if(old('kewarganegaraan')=='WNI' ) selected @endif>WNI</option>
-                                        <option value="WNA" @if(old('kewarganegaraan')=='WNA' ) selected @endif>WNA</option>
+                                    <label for="pendidikan" class="form-label">Pendidikan<i style="color: #ff0000;">*</i></label>
+                                    <select class="form-select" id="pendidikan" name="pendidikan" required>
+                                        <option value="" @if(old('pendidikan')=='' ) selected @endif>Pilih Pendidikan ...</option>
+                                        <option value="Tidak/Belum Sekolah" @if(old('pendidikan')=='Tidak/Belum Sekolah' ) selected @endif>Tidak/Belum Sekolah</option>
+                                        <option value="Belum Tamat SD/Sederajat" @if(old('pendidikan')=='Belum Tamat SD/Sederajat' ) selected @endif>Belum Tamat SD/Sederajat</option>
+                                        <option value="Tamat SD/Sederajat" @if(old('pendidikan')=='Tamat SD/Sederajat' ) selected @endif>Tamat SD/Sederajat</option>
+                                        <option value="SLTA/Sederajat" @if(old('pendidikan')=='SLTA/Sederajat' ) selected @endif>SLTA/Sederajat</option>
+                                        <option value="Diploma I/II" @if(old('pendidikan')=='Diploma I/II' ) selected @endif>Diploma I/II</option>
+                                        <option value="Diploma III/Sarjana muda" @if(old('pendidikan')=='Diploma III/Sarjana muda' ) selected @endif>Diploma III/Sarjana muda</option>
+                                        <option value="Akademi/Diploma III/S. Muda" @if(old('pendidikan')=='Akademi/Diploma III/S. Muda' ) selected @endif>Akademi/Diploma III/S. Muda</option>
+                                        <option value="Diploma IV/Strata I" @if(old('pendidikan')=='Diploma IV/Strata I' ) selected @endif>Diploma IV/Strata I</option>
+                                        <option value="Strata II" @if(old('pendidikan')=='Strata II' ) selected @endif>Strata II</option>
                                     </select>
-                                </div>
-                                <div class="col-12">
-                                    <label for="alamat" class="form-label">Alamat<i style="color: #ff0000;">*</i></label>
-                                    <input type="text" class="form-control" name="alamat" id="alamat" required {{ old('alamat') }}>
                                 </div>
                                 <div class="col-6">
                                     <label for="pekerjaan" class="form-label">Pekerjaan<i style="color: #ff0000;">*</i></label>
-                                    <input type="text" class="form-control" name="pekerjaan" id="pekerjaan" required {{ old('pekerjaan') }}>
+                                    <input type="text" class="form-control" name="pekerjaan" id="pekerjaan" required value="{{ old('pekerjaan') }}">
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="pendidikan_terakhir" class="form-label">Pendidikan Terakhir<i style="color: #ff0000;">*</i></label>
-                                    <select class="form-select" id="pendidikan_terakhir" name="pendidikan_terakhir" required>
-                                        <option value="" @if(old('pendidikan_terakhir')=='' ) selected @endif>Pilih Pendidikan Terakhir ...</option>
-                                        <option value="SD" @if(old('pendidikan_terakhir')=='SD' ) selected @endif>SD</option>
-                                        <option value="SMP" @if(old('pendidikan_terakhir')=='SMP' ) selected @endif>SMP</option>
-                                        <option value="SMK" @if(old('pendidikan_terakhir')=='SMK' ) selected @endif>SMK</option>
-                                        <option value="S1" @if(old('pendidikan_terakhir')=='S1' ) selected @endif>S1</option>
-                                        <option value="S2" @if(old('pendidikan_terakhir')=='S2' ) selected @endif>S2</option>
-                                        <option value="S3" @if(old('pendidikan_terakhir')=='S3' ) selected @endif>S3</option>
+                                    <label for="status_hubungan_kel" class="form-label">Status Hubungan Keluarga<i style="color: #ff0000;">*</i></label>
+                                    <select class="form-select" id="status_hubungan_kel" name="status_hubungan_kel" required>
+                                        <option value="" @if(old('status_hubungan_kel')=='' ) selected @endif>Pilih Status Hubungan Keluarga ...</option>
+                                        <option value="ORANG TUA" @if(old('status_hubungan_kel')=='ORANG TUA' ) selected @endif>ORANG TUA</option>
+                                        <option value="KEPALA KELUARGA" @if(old('status_hubungan_kel')=='KEPALA KELUARGA' ) selected @endif>KEPALA KELUARGA</option>
+                                        <option value="ISTRI" @if(old('status_hubungan_kel')=='ISTRI' ) selected @endif>ISTRI</option>
+                                        <option value="ANAK" @if(old('status_hubungan_kel')=='ANAK' ) selected @endif>ANAK</option>
+                                        <option value="CUCU" @if(old('status_hubungan_kel')=='CUCU' ) selected @endif>CUCU</option>
+                                        <option value="FAMILY LAIN" @if(old('status_hubungan_kel')=='FAMILY LAIN' ) selected @endif>FAMILY LAIN</option>
                                     </select>
                                 </div>
                                 <div class="col-6">
-                                    <label for="nomor_telepon" class="form-label">Nomor Telepon<i style="color: #ff0000;">*</i></label>
-                                    <input type="number" class="form-control" name="nomor_telepon" id="nomor_telepon" required {{ old('nomor_telepon') }}>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="penghasilan" class="form-label">Penghasilan</label>
-                                    <select class="form-select" id="penghasilan" name="penghasilan">
-                                        <option value="" @if(old('penghasilan')=='' ) selected @endif>Pilih Penghasilan Perbulan...</option>
-                                        <option value="< Rp. 500.000" @if(old('penghasilan')=='< Rp. 500.000' ) selected @endif>< Rp. 500.000</option>
-                                        <option value="Rp. 500.000 - Rp. 1.000.000" @if(old('penghasilan')=='Rp. 500.000 - Rp. 1.000.000' ) selected @endif>Rp. 500.000 - Rp. 1.000.000</option>
-                                        <option value="Rp. 1.000.000 - Rp. 3.000.000" @if(old('penghasilan')=='Rp. 1.000.000 - Rp. 3.000.000' ) selected @endif>Rp. 1.000.000 - Rp. 3.000.000</option>
-                                        <option value="Rp. 3.000.000 - Rp. 5.000.000" @if(old('penghasilan')=='Rp. 3.000.000 - Rp. 5.000.000' ) selected @endif>Rp. 3.000.000 - Rp. 5.000.000</option>
-                                        <option value="> Rp. 5.000.000" @if(old('penghasilan')=='> Rp. 5.000.000' ) selected @endif>> Rp. 5.000.000</option>
-                                    </select>
+                                    <label for="nama_ayah" class="form-label">Nama Ayah<i style="color: #ff0000;">*</i></label>
+                                    <input type="text" class="form-control" name="nama_ayah" id="nama_ayah" required value="{{ old('nama_ayah') }}">
                                 </div>
                                 <div class="col-6">
-                                    <label for="foto_penduduk" class="form-label">Foto Penduduk</label>
-                                    <input type="file" class="form-control" name="foto_penduduk" id="foto_penduduk">
+                                    <label for="nama_ibu" class="form-label">Nama Ibu<i style="color: #ff0000;">*</i></label>
+                                    <input type="text" class="form-control" name="nama_ibu" id="nama_ibu" required value="{{ old('nama_ibu') }}">
                                 </div>
                                 <div class="col-6">
-                                    <label for="nomor_kk" class="form-label">Nomor KK<i style="color: #ff0000;">*</i></label>
-                                    <input type="text" class="form-control" name="nomor_kk" id="nomor_kk" required {{ old('nomor_kk') }}>
+                                    <label for="alamat" class="form-label">Alamat<i style="color: #ff0000;">*</i></label>
+                                    <input type="text" class="form-control" name="alamat" id="alamat" required value="{{ old('alamat') }}">
                                 </div>
-                                <div class="col-6">
-                                    <label for="nomor_ktp" class="form-label">Nomor KTP<i style="color: #ff0000;">*</i></label>
-                                    <input type="text" class="form-control" name="nomor_ktp" id="nomor_ktp" required {{ old('nomor_ktp') }}>
+                                <div class="col-3">
+                                    <label for="rt" class="form-label">RT<i style="color: #ff0000;">*</i></label>
+                                    <input type="number" class="form-control" name="rt" id="rt" required value="{{ old('rt') }}">
                                 </div>
-                                <div class="col-6">
-                                    <label for="kontak_darurat" class="form-label">Kontak Darurat<i style="color: #ff0000;">*</i></label>
-                                    <input type="text" class="form-control" name="kontak_darurat" id="kontak_darurat" required {{ old('kontak_darurat') }}>
+                                <div class="col-3">
+                                    <label for="rw" class="form-label">RW<i style="color: #ff0000;">*</i></label>
+                                    <input type="number" class="form-control" name="rw" id="rw" required value="{{ old('rw') }}">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                    <button type="reset" class="btn btn-secondary">Reset</button>
+                                    <a type="submit" href="/admin/kependudukan/penduduk" class="btn btn-secondary">Kembali</a>
                                 </div>
                             </form><!-- End Multi Columns Form -->
 
@@ -158,6 +158,10 @@
                                     <label for="nik" class="form-label">NIK<i style="color: #ff0000;">*</i></label>
                                     <input type="number" class="form-control" name="nik" id="nik" required value="{{ $penduduk->nik }}">
                                 </div>
+                                <div class="col-6">
+                                    <label for="nomor_kk" class="form-label">Nomor KK<i style="color: #ff0000;">*</i></label>
+                                    <input type="number" class="form-control" name="nomor_kk" id="nomor_kk" required value="{{ $penduduk->nomor_kk }}">
+                                </div>
                                 <div class="col-md-6">
                                     <label for="nama" class="form-label">Nama<i style="color: #ff0000;">*</i></label>
                                     <input type="text" class="form-control" name="nama" id="nama" required value="{{ $penduduk->nama }}">
@@ -174,120 +178,87 @@
                                     <label for="jenis_kelamin" class="form-label">Jenis Kelamin<i style="color: #ff0000;">*</i></label>
                                     <select class="form-select" id="jenis_kelamin" name="jenis_kelamin" required>
                                         <option value="" >Pilih Jenis Kelamin ...</option>
-                                        <option value="Laki-laki" {{ ($penduduk->jenis_kelamin == "Laki-laki") ? 'selected' : '' }}>Laki-laki</option>
-                                        <option value="Perempuan" {{ ($penduduk->jenis_kelamin == "Perempuan") ? 'selected' : '' }}>Perempuan</option>
+                                        <option value="LAKI LAKI" {{ ($penduduk->jenis_kelamin == "LAKI LAKI") ? 'selected' : '' }}>LAKI LAKI</option>
+                                        <option value="PEREMPUAN" {{ ($penduduk->jenis_kelamin == "PEREMPUAN") ? 'selected' : '' }}>PEREMPUAN</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="agama" class="form-label">Agama<i style="color: #ff0000;">*</i></label>
                                     <select class="form-select" id="agama" name="agama" required>
                                         <option value="">Pilih Agama ...</option>
-                                        <option value="Islam" {{ ($penduduk->agama == "Islam") ? 'selected' : '' }}>Islam</option>
-                                        <option value="Kristen Protestan" {{ ($penduduk->agama == "Kristen Protestan") ? 'selected' : '' }}>Kristen Protestan</option>
-                                        <option value="Kristen Katolik" {{ ($penduduk->agama == "Kristen Katolik") ? 'selected' : '' }}>Kristen Katolik</option>
-                                        <option value="Hindu" {{ ($penduduk->agama == "Hindu") ? 'selected' : '' }}>Hindu</option>
-                                        <option value="Buddha" {{ ($penduduk->agama == "Buddha") ? 'selected' : '' }}>Buddha</option>
-                                        <option value="Konghucu" {{ ($penduduk->agama == "Konghucu") ? 'selected' : '' }}>Konghucu</option>
-                                        <option value="Lainnya" {{ ($penduduk->agama == "Lainnya") ? 'selected' : '' }}>Lainnya</option>
+                                        <option value="ISLAM" {{ ($penduduk->agama == "ISLAM") ? 'selected' : '' }}>ISLAM</option>
+                                        <option value="KRISTEN" {{ ($penduduk->agama == "KRISTEN") ? 'selected' : '' }}>KRISTEN</option>
+                                        <option value="KATHOLIK" {{ ($penduduk->agama == "KATHOLIK") ? 'selected' : '' }}>KATHOLIK</option>
+                                        <option value="HINDU" {{ ($penduduk->agama == "HINDU") ? 'selected' : '' }}>HINDU</option>
+                                        <option value="BUDDHA" {{ ($penduduk->agama == "BUDDHA") ? 'selected' : '' }}>BUDDHA</option>
+                                        <option value="KONGHUCU" {{ ($penduduk->agama == "KONGHUCU") ? 'selected' : '' }}>KONGHUCU</option>
+                                        <option value="LAINNYA" {{ ($penduduk->agama == "LAINNYA") ? 'selected' : '' }}>LAINNYA</option>
                                     </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="umur" class="form-label">Umur<i style="color: #ff0000;">*</i></label>
+                                    <input type="number" class="form-control" name="umur" id="umur" required value="{{ $penduduk->umur }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="status_perkawinan" class="form-label">Status Perkawinan<i style="color: #ff0000;">*</i></label>
                                     <select class="form-select" id="status_perkawinan" name="status_perkawinan" required>
                                         <option value="" >Pilih Status Perkawinan ...</option>
-                                        <option value="Belum Menikah" {{ ($penduduk->status_perkawinan == "Belum Menikah") ? 'selected' : '' }}>Belum Menikah</option>
-                                        <option value="Sudah Menikah" {{ ($penduduk->status_perkawinan == "Sudah Menikah") ? 'selected' : '' }}>Sudah Menikah</option>
-                                        <option value="Janda" {{ ($penduduk->status_perkawinan == "Janda") ? 'selected' : '' }}>Janda</option>
-                                        <option value="Duda" {{ ($penduduk->status_perkawinan == "Duda") ? 'selected' : '' }}>Duda</option>
+                                        <option value="Belum Kawin" {{ ($penduduk->status_perkawinan == "Belum Kawin") ? 'selected' : '' }}>Belum Kawin</option>
+                                        <option value="Kawin" {{ ($penduduk->status_perkawinan == "Kawin") ? 'selected' : '' }}>Kawin</option>
+                                        <option value="Cerai Hidup" {{ ($penduduk->status_perkawinan == "Cerai Hidup") ? 'selected' : '' }}>Cerai Hidup</option>
+                                        <option value="Cerai Mati" {{ ($penduduk->status_perkawinan == "Cerai Mati") ? 'selected' : '' }}>Cerai Mati</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="kewarganegaraan" class="form-label">Kewarganegaraan<i style="color: #ff0000;">*</i></label>
-                                    <select class="form-select" id="kewarganegaraan" name="kewarganegaraan" required>
-                                        <option value="" >Pilih Kewarganegaraan ...</option>
-                                        <option value="WNI" {{ ($penduduk->kewarganegaraan == "WNI") ? 'selected' : '' }}>WNI</option>
-                                        <option value="WNA" {{ ($penduduk->kewarganegaraan == "WNA") ? 'selected' : '' }}>WNA</option>
+                                    <label for="pendidikan" class="form-label">Pendidikan<i style="color: #ff0000;">*</i></label>
+                                    <select class="form-select" id="pendidikan" name="pendidikan" required>
+                                        <option value="" >Pilih Pendidikan ...</option>
+                                        <option value="Tidak/Belum Sekolah" {{ ($penduduk->pendidikan == "Tidak/Belum Sekolah") ? 'selected' : '' }}>Tidak/Belum Sekolah</option>
+                                        <option value="Belum Tamat SD/Sederajat" {{ ($penduduk->pendidikan == "Belum Tamat SD/Sederajat") ? 'selected' : '' }}>Belum Tamat SD/Sederajat</option>
+                                        <option value="Tamat SD/Sederajat" {{ ($penduduk->pendidikan == "Tamat SD/Sederajat") ? 'selected' : '' }}>Tamat SD/Sederajat</option>
+                                        <option value="SLTA/Sederajat" {{ ($penduduk->pendidikan == "SLTA/Sederajat") ? 'selected' : '' }}>SLTA/Sederajat</option>
+                                        <option value="Diploma I/II" {{ ($penduduk->pendidikan == "Diploma I/II") ? 'selected' : '' }}>Diploma I/II</option>
+                                        <option value="Diploma III/Sarjana muda" {{ ($penduduk->pendidikan == "Diploma III/Sarjana muda") ? 'selected' : '' }}>Diploma III/Sarjana muda</option>
+                                        <option value="Akademi/Diploma III/S. Muda" {{ ($penduduk->pendidikan == "Akademi/Diploma III/S. Muda") ? 'selected' : '' }}>Akademi/Diploma III/S. Muda</option>
+                                        <option value="Diploma IV/Strata I" {{ ($penduduk->pendidikan == "Diploma IV/Strata I") ? 'selected' : '' }}>Diploma IV/Strata I</option>
+                                        <option value="Strata II" {{ ($penduduk->pendidikan == "Strata II") ? 'selected' : '' }}>Strata II</option>
                                     </select>
-                                </div>
-                                <div class="col-12">
-                                    <label for="alamat" class="form-label">Alamat<i style="color: #ff0000;">*</i></label>
-                                    <input type="text" class="form-control" name="alamat" id="alamat" required value="{{ $penduduk->alamat }}">
                                 </div>
                                 <div class="col-6">
                                     <label for="pekerjaan" class="form-label">Pekerjaan<i style="color: #ff0000;">*</i></label>
                                     <input type="text" class="form-control" name="pekerjaan" id="pekerjaan" required value="{{ $penduduk->pekerjaan }}">
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="pendidikan_terakhir" class="form-label">Pendidikan Terakhir<i style="color: #ff0000;">*</i></label>
-                                    <select class="form-select" id="pendidikan_terakhir" name="pendidikan_terakhir" required>
-                                        <option value="" >Pilih Pendidikan Terakhir ...</option>
-                                        <option value="SD" {{ ($penduduk->pendidikan_terakhir == "SD") ? 'selected' : '' }}>SD</option>
-                                        <option value="SMP" {{ ($penduduk->pendidikan_terakhir == "SMP") ? 'selected' : '' }}>SMP</option>
-                                        <option value="SMK" {{ ($penduduk->pendidikan_terakhir == "SMK") ? 'selected' : '' }}>SMK</option>
-                                        <option value="S1" {{ ($penduduk->pendidikan_terakhir == "S1") ? 'selected' : '' }}>S1</option>
-                                        <option value="S2" {{ ($penduduk->pendidikan_terakhir == "S2") ? 'selected' : '' }}>S2</option>
-                                        <option value="S3" {{ ($penduduk->pendidikan_terakhir == "S3") ? 'selected' : '' }}>S3</option>
-                                    </select>
-                                </div>
-                                <div class="col-6">
-                                    <label for="nomor_telepon" class="form-label">Nomor Telepon<i style="color: #ff0000;">*</i></label>
-                                    <input type="text" class="form-control" name="nomor_telepon" id="nomor_telepon" required value="{{ $penduduk->nomor_telepon }}">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="penghasilan" class="form-label">Penghasilan</label>
-                                    <select class="form-select" id="penghasilan" name="penghasilan">
-                                        <option value="" >Pilih Penghasilan Perbulan...</option>
-                                        <option value="< Rp. 500.000" {{ ($penduduk->penghasilan == "< Rp. 500.000") ? 'selected' : ''}}>< Rp. 500.000</option>
-                                        <option value="Rp. 500.000 - Rp. 1.000.000" {{ ($penduduk->penghasilan == "Rp. 500.000 - Rp. 1.000.000") ? 'selected' : ''}}>Rp. 500.000 - Rp. 1.000.000</option>
-                                        <option value="Rp. 1.000.000 - Rp. 3.000.000" {{ ($penduduk->penghasilan == "Rp. 1.000.000 - Rp. 3.000.000") ? 'selected' : ''}}>Rp. 1.000.000 - Rp. 3.000.000</option>
-                                        <option value="Rp. 3.000.000 - Rp. 5.000.000" {{ ($penduduk->penghasilan == "Rp. 3.000.000 - Rp. 5.000.000") ? 'selected' : ''}}>Rp. 3.000.000 - Rp. 5.000.000</option>
-                                        <option value="> Rp. 5.000.000" {{ ($penduduk->penghasilan == "> Rp. 5.000.000") ? 'selected' : ''}}>> Rp. 5.000.000</option>
-                                    </select>
-                                </div>
-                                <div class="col-6">
-                                    <label for="foto_penduduk" class="form-label">Foto Penduduk</label>
-                                    <input type="file" class="form-control" name="foto_penduduk" id="foto_penduduk" value="{{ $penduduk->foto_penduduk }}">
-                                </div>
-                                <div class="col-6">
-                                    <label for="nomor_kk" class="form-label">Nomor KK<i style="color: #ff0000;">*</i></label>
-                                    <input type="number" class="form-control" name="nomor_kk" id="nomor_kk" required value="{{ $penduduk->nomor_kk }}">
-                                </div>
-                                <div class="col-6">
-                                    <label for="nomor_ktp" class="form-label">Nomor KTP<i style="color: #ff0000;">*</i></label>
-                                    <input type="number" class="form-control" name="nomor_ktp" id="nomor_ktp" required value="{{ $penduduk->nomor_ktp }}">
-                                </div>
-                                <div class="col-6">
-                                    <label for="kontak_darurat" class="form-label">Kontak Darurat<i style="color: #ff0000;">*</i></label>
-                                    <input type="text" class="form-control" name="kontak_darurat" id="kontak_darurat" required value="{{ $penduduk->kontak_darurat }}">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="status_nyawa" class="form-label">Status Nyawa<i style="color: #ff0000;">*</i></label>
-                                    <select class="form-select" id="status_nyawa" name="status_nyawa" required>
-                                        <option value="" >Pilih Status Nyawa ...</option>
-                                        <option value="Hidup" {{ ($penduduk->status_nyawa == "Hidup") ? 'selected' : '' }}>Hidup</option>
-                                        <option value="Meninggal" {{ ($penduduk->status_nyawa == "Meninggal") ? 'selected' : '' }}>Meninggal</option>
-                                    </select>
-                                </div>
-                                <div class="col-6">
-                                    <label for="keterangan_kematian" class="form-label">Keterangan Kematian</label>
-                                    <input type="text" class="form-control" name="keterangan_kematian" id="keterangan_kematian" value="{{ $penduduk->keterangan_kematian }}">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="status_migrasi" class="form-label">Status Migrasi</label>
-                                    <select class="form-select" id="status_migrasi" name="status_migrasi" >
-                                        <option value="" >Pilih Status Migrasi ...</option>
-                                        <option value="Migrasi Masuk" {{ ($penduduk->status_migrasi == "Migrasi Masuk") ? 'selected' : '' }}>Migrasi Masuk</option>
-                                        <option value="Migrasi Keluar" {{ ($penduduk->status_migrasi == "Migrasi Keluar") ? 'selected' : '' }}>Migrasi Keluar</option>
-                                        <option value="Tidak Migrasi" {{ ($penduduk->status_migrasi == "Tidak Migrasi") ? 'selected' : '' }}>Tidak Migrasi</option>
+                                    <label for="status_hubungan_kel" class="form-label">Status Hubungan Keluarga<i style="color: #ff0000;">*</i></label>
+                                    <select class="form-select" id="status_hubungan_kel" name="status_hubungan_kel" required>
+                                        <option value="" >Pilih Status Hubungan Keluarga ...</option>
+                                        <option value="ORANG TUA" {{ ($penduduk->status_hubungan_kel == "ORANG TUA") ? 'selected' : '' }}>ORANG TUA</option>
+                                        <option value="KEPALA KELUARGA" {{ ($penduduk->status_hubungan_kel == "KEPALA KELUARGA") ? 'selected' : '' }}>KEPALA KELUARGA</option>
+                                        <option value="ISTRI" {{ ($penduduk->status_hubungan_kel == "ISTRI") ? 'selected' : '' }}>ISTRI</option>
+                                        <option value="ANAK" {{ ($penduduk->status_hubungan_kel == "ANAK") ? 'selected' : '' }}>ANAK</option>
+                                        <option value="CUCU" {{ ($penduduk->status_hubungan_kel == "CUCU") ? 'selected' : '' }}>CUCU</option>
+                                        <option value="FAMILY LAIN" {{ ($penduduk->status_hubungan_kel == "FAMILY LAIN") ? 'selected' : '' }}>FAMILY LAIN</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="status_pajak" class="form-label">Status Pajak</label>
-                                    <select class="form-select" id="status_pajak" name="status_pajak" >
-                                        <option value="" >Pilih Status Pajak ...</option>
-                                        <option value="Terdaftar" {{ ($penduduk->status_pajak == "Terdaftar") ? 'selected' : '' }}>Terdaftar</option>
-                                        <option value="Belum Terdaftar" {{ ($penduduk->status_pajak == "Belum Terdaftar") ? 'selected' : '' }}>Belum Terdaftar</option>
-                                    </select>
+                                    <label for="nama_ayah" class="form-label">Nama Ayah<i style="color: #ff0000;">*</i></label>
+                                    <input type="text" class="form-control" name="nama_ayah" id="nama_ayah" required value="{{ $penduduk->nama_ayah }}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nama_ibu" class="form-label">Nama Ibu<i style="color: #ff0000;">*</i></label>
+                                    <input type="text" class="form-control" name="nama_ibu" id="nama_ibu" required value="{{ $penduduk->nama_ibu }}">
+                                </div>
+                                <div class="col-6">
+                                    <label for="alamat" class="form-label">Alamat<i style="color: #ff0000;">*</i></label>
+                                    <input type="text" class="form-control" name="alamat" id="alamat" required value="{{ $penduduk->alamat }}">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="rt" class="form-label">RT<i style="color: #ff0000;">*</i></label>
+                                    <input type="text" class="form-control" name="rt" id="rt" required value="{{ $penduduk->rt }}">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="rw" class="form-label">RW<i style="color: #ff0000;">*</i></label>
+                                    <input type="text" class="form-control" name="rw" id="rw" required value="{{ $penduduk->rw }}">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>

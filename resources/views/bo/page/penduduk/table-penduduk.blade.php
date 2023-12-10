@@ -13,7 +13,7 @@
         <h1>Data Penduduk</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                <li class="breadcrumb-item"><a href="/admin/kependudukan/dashboard">Home</a></li>
                 <li class="breadcrumb-item active">Data Penduduk</li>
             </ol>
         </nav>
@@ -45,11 +45,11 @@
                                             <div class="modal-body">
                                                 <div class="row mb-3">
                                                     <div class="col-sm-12">
-                                                        <input type="file" name="file" class="form-control" id="file" accept=".xls, .xlsx" required>
+                                                        <input type="file" name="file" class="form-control" id="file" accept=".xls, .xlsx, .csv" required>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <i>*masukkan data dengan extensi .xls atau .xlsx</i>
+                                                    <i>*masukkan data dengan extensi .xls, .xlsx atau .csv</i>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -91,8 +91,7 @@
 
 @push('footer')
     <script type="text/javascript">
-      $(function () {
-
+        $(function () {
         var table = $('.data-table-penduduk').DataTable({
             processing: true,
             serverSide: true,
@@ -104,18 +103,34 @@
                 {data: 'nama', name: 'nama'},
                 {data: 'jenis_kelamin', name: 'jenis_kelamin'},
                 {data: 'tempat_lahir', name: 'tempat_lahir'},
-                {data: 'tanggal_lahir', name: 'tanggal_lahir'},
+                {data: 'tanggal_lahir', name: 'tanggal_lahir', render: function(data, type, row) {
+                    return formatDate(data);
+                }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ],
             columnDefs: [
-                    {
-                        "targets": 0,
-                        "className": "text-center align-middle text-sm font-weight-normal hilang-nan",
-                        "width": "4%"
-                    },
+                {
+                    "targets": 0,
+                    "className": "text-center align-middle text-sm font-weight-normal hilang-nan",
+                    "width": "4%"
+                },
             ]
         });
 
-      });
+        function formatDate(dateString) {
+            var dateObject = new Date(dateString);
+            var day = dateObject.getDate();
+            var month = dateObject.getMonth() + 1;
+            var year = dateObject.getFullYear();
+
+            if (day < 10) {
+                day = '0' + day;
+            }
+            if (month < 10) {
+                month = '0' + month;
+            }
+            return day + '/' + month + '/' + year;
+        }
+        });
     </script>
 @endpush

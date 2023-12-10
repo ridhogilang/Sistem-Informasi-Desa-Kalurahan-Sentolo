@@ -42,8 +42,8 @@ class PendudukController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $actionBtn = '<div class="d-flex"><a class="btn btn-warning mx-1" type="button" href="/admin/kependudukan/penduduk/'.$row["id"].'/edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#migrasi_penduduk'.$row["id"].'"><i class="fa-solid fa-trash-can"></i></button>
-                            <div class="modal fade" id="migrasi_penduduk'.$row["id"].'" tabindex="-1">
+                        <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#penduduk'.$row["id"].'"><i class="fa-solid fa-trash-can"></i></button>
+                            <div class="modal fade" id="penduduk'.$row["id"].'" tabindex="-1">
                                                     <div class="modal-dialog modal-lg">
                                                         <form action="/admin/kependudukan/penduduk/'.$row["id"].'/delete" method="POST" enctype="multipart/form-data">
                                                             ' . csrf_field() . '
@@ -65,7 +65,7 @@ class PendudukController extends Controller
                                                                     <div class="row ">
                                                                         <label for="dokumen" class="col-sm-3 col-form-label">Dokumen</label>
                                                                         <div class="col-sm-9">
-                                                                            <input type="file" name="dokumen" class="form-control" id="dokumen" required>
+                                                                            <input type="file" name="dokumen" class="form-control" id="dokumen" accept=".doc, .docx, .pdf" required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -83,10 +83,10 @@ class PendudukController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
     }
-    public function migrasi()
+    public function bukanpenduduk()
     {
-        return view('bo.page.penduduk.table-migrasi', [
-            'title' => 'Data Penduduk Migrasi'
+        return view('bo.page.penduduk.table-bukan-penduduk', [
+            'title' => 'Data Bukan Penduduk'
         ]);
     }
     public function datasnonaktif()
@@ -98,10 +98,10 @@ class PendudukController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $actionBtn = '<div class="d-flex"><a class="btn btn-warning mx-1" type="button" href="/admin/kependudukan/penduduk/'.$row["id"].'/edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#migrasi_penduduk'.$row["id"].'"><i class="fa-solid fa-trash-can"></i></button>
-                            <div class="modal fade" id="migrasi_penduduk'.$row["id"].'" tabindex="-1">
+                        <button type="button" class="btn btn-danger mx-1" data-bs-toggle="modal" data-bs-target="#bukan_penduduk'.$row["id"].'"><i class="fa-solid fa-trash-can"></i></button>
+                            <div class="modal fade" id="bukan_penduduk'.$row["id"].'" tabindex="-1">
                                                     <div class="modal-dialog modal-lg">
-                                                        <form action="/admin/kependudukan/penduduk-migrasi/'.$row["id"].'/delete" method="POST" enctype="multipart/form-data">
+                                                        <form action="/admin/kependudukan/bukan-penduduk/'.$row["id"].'/delete" method="POST" enctype="multipart/form-data">
                                                             ' . csrf_field() . '
                                                             ' . method_field("DELETE") . '
                                                             <div class="modal-content">
@@ -148,40 +148,27 @@ class PendudukController extends Controller
     public function store(Request $request)
     {
         $record = $request->validate([
+            'nomor_kk' => 'required|min:16',
             'nik' => 'required|min:16',
-            'nama' => 'required',
             'jenis_kelamin' => 'required',
+            'nama' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'agama' => 'required',
+            'umur' => 'required',
             'status_perkawinan' => 'required',
-            'alamat' => 'required',
-            'kewarganegaraan' => 'required',
+            'pendidikan' => 'required',
             'pekerjaan' => 'required',
-            'pendidikan_terakhir' => 'required',
-            'nomor_telepon' => 'required',
-            'penghasilan' => 'required',
-            'foto_penduduk' => 'nullable|mimes:jpg,jpeg,png',
-            'nomor_kk' => 'required|min:16',
-            'nomor_ktp' => 'required|min:16',
-            'kontak_darurat' => 'required',
+            'status_hubungan_kel' => 'required',
+            'nama_ibu' => 'required',
+            'nama_ayah' => 'required',
+            'alamat' => 'required',
+            'rt' => 'required',
+            'rw' => 'required',
         ], [
-            'mimes' => 'File tidak valid.',
             'min' => 'Nomor minimal 16 digit'
         ]);
 
-        // Upload file ke Google Drive
-        if ($request->hasFile('foto_penduduk')) {
-            $file = $request->file('foto_penduduk');
-            $fileName = 'FOTO-' . $request->nama . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
-            // Storage::disk('google')->put('Foto Penduduk/' .$fileName, file_get_contents($file));
-            $file->storeAs('public/foto_penduduk', $fileName);
-            $record['foto_penduduk'] = $fileName;
-
-            // $publicUrl = Storage::disk('google')->url('Foto Penduduk/' . $fileName);
-            // $record['link_foto'] = $publicUrl;
-        }
-        $record['status_nyawa'] = 'Hidup';
         $record['is_active'] = '1';
 
         //menginputkan data penduduk
@@ -201,44 +188,26 @@ class PendudukController extends Controller
         $penduduk = Penduduk::find($id);
 
         $record = $request->validate([
+            'nomor_kk' => 'required|min:16',
             'nik' => 'required|min:16',
-            'nama' => 'required',
             'jenis_kelamin' => 'required',
+            'nama' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'agama' => 'required',
+            'umur' => 'required',
             'status_perkawinan' => 'required',
-            'alamat' => 'required',
-            'kewarganegaraan' => 'required',
+            'pendidikan' => 'required',
             'pekerjaan' => 'required',
-            'pendidikan_terakhir' => 'required',
-            'nomor_telepon' => 'required',
-            'penghasilan' => 'required',
-            'foto_penduduk' => 'nullable|mimes:jpg,jpeg,png',
-            'nomor_kk' => 'required|min:16',
-            'nomor_ktp' => 'required|min:16',
-            'status_nyawa' => 'required',
-            'kontak_darurat' => 'required',
-            'keterangan_kematian' => 'nullable',
-            'status_migrasi' => 'nullable',
-            'status_pajak' => 'nullable',
+            'status_hubungan_kel' => 'required',
+            'nama_ibu' => 'required',
+            'nama_ayah' => 'required',
+            'alamat' => 'required',
+            'rt' => 'required',
+            'rw' => 'required',
         ], [
-            'mimes' => 'File tidak valid.',
             'min' => 'Nomor minimal 16 digit'
         ]);
-
-        if ($request->hasFile('foto_penduduk')) {
-            // Hapus file foto_penduduk lama jika ada
-            Storage::delete('public/foto_penduduk/' . $penduduk->foto_penduduk);
-
-            $file = $request->file('foto_penduduk');
-            $fileName = 'FOTO-' . $request->nama . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/foto_penduduk', $fileName);
-            $record['foto_penduduk'] = $fileName;
-
-            // $publicUrl = Storage::disk('google')->url('Foto Penduduk/' . $fileName);
-            // $record['link_foto'] = $publicUrl;
-        }
 
         Penduduk::where('id', $id)->update($record);
         return redirect('/admin/kependudukan/penduduk')->with('toast_success', 'Data Diubah!');
@@ -247,7 +216,7 @@ class PendudukController extends Controller
     {
         $record = $request->validate([
             'catatan' => 'required',
-            'dokumen' => 'required|mimes:doc,docx,pdf,xls,xlsx,ppt,pptx',
+            'dokumen' => 'required|mimes:doc,docx,pdf',
         ], [
             'mimes' => 'File tidak valid.',
         ]);
@@ -256,26 +225,22 @@ class PendudukController extends Controller
             $file = $request->file('dokumen');
             $fileName = 'DPBP-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
             // Storage::disk('google')->put('Dokumen Penduduk/' .$fileName, file_get_contents($file));
-            $file->storeAs('public/dokumen_penduduk_migrasi', $fileName);
+            $file->storeAs('public/bukan-penduduk', $fileName);
             $record['dokumen'] = $fileName;
-
-            // $publicUrl = Storage::disk('google')->url('Dokumen Penduduk/' . $fileName);
-            // $record['link'] = $publicUrl;
         }
         $record['id'] = 'DPBP-'. date('YmdHis') . '-' . rand(100, 999);
         $record['id_penduduk'] = $id;
         $record['delete_by'] = auth()->user()->id;
 
-        // dd($record);
         PenghapusanPenduduk::create($record);
         Penduduk::where('id', $id)->update(['is_active'=> '0']);
         return redirect('/admin/kependudukan/penduduk')->with('toast_success', 'Data Dihapus!');
     }
-    public function destroymigrasi(Request $request, $id)
+    public function destroybukanp(Request $request, $id)
     {
         $record = $request->validate([
             'catatan' => 'required',
-            'dokumen' => 'required|mimes:doc,docx,pdf,xls,xlsx,ppt,pptx',
+            'dokumen' => 'required|mimes:doc,docx,pdf',
         ], [
             'mimes' => 'File tidak valid.',
         ]);
@@ -284,11 +249,8 @@ class PendudukController extends Controller
             $file = $request->file('dokumen');
             $fileName = 'DPBP-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
             // Storage::disk('google')->put('Dokumen Penduduk/' .$fileName, file_get_contents($file));
-            $file->storeAs('public/dokumen_penduduk', $fileName);
+            $file->storeAs('public/penduduk', $fileName);
             $record['dokumen'] = $fileName;
-
-            // $publicUrl = Storage::disk('google')->url('Dokumen Penduduk/' . $fileName);
-            // $record['link'] = $publicUrl;
         }
         $record['id'] = 'DPBP-'. date('YmdHis') . '-' . rand(100, 999);
         $record['id_penduduk'] = $id;
@@ -297,7 +259,7 @@ class PendudukController extends Controller
         // dd($record);
         PenghapusanPenduduk::create($record);
         Penduduk::where('id', $id)->update(['is_active'=> '1']);
-        return redirect('/admin/kependudukan/penduduk-migrasi')->with('toast_success', 'Data Dihapus dari Migrasi!');
+        return redirect('/admin/kependudukan/bukan-penduduk')->with('toast_success', 'Data Dihapus dari Bukan Penduduk!');
     }
     public function pendudukexport()
     {
@@ -308,7 +270,7 @@ class PendudukController extends Controller
     {
         $file = $request->file('file');
         $namaFile = $file->getClientOriginalName();
-        $path = Storage::putFileAs('public/import_penduduk', $file, $namaFile);
+        $path = Storage::putFileAs('public/import-penduduk', $file, $namaFile);
 
         Excel::import(new PendudukImport, storage_path('app/' . $path));
         Storage::delete($path);

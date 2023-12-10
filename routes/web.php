@@ -339,14 +339,14 @@ Route::prefix('admin')->group(function () {
             Route::get('/penduduk', [PendudukController::class, 'index']);
             Route::get('/data-penduduk', [PendudukController::class, 'datasaktif'])->name('bo.penduduk.data.aktif');
             // Crud data penduduk
-            Route::get('/penduduk-migrasi', [PendudukController::class, 'migrasi']);
-            Route::get('/data-penduduk-migrasi', [PendudukController::class, 'datasnonaktif'])->name('bo.penduduk.data.migrasi');
+            Route::get('/bukan-penduduk', [PendudukController::class, 'bukanpenduduk']);
+            Route::get('/data-bukan-penduduk', [PendudukController::class, 'datasnonaktif'])->name('bo.penduduk.data.bukan');
             Route::get('/penduduk/tambah-data', [PendudukController::class, 'create'])->defaults('action', 'Tambah');
             Route::post('/penduduk', [PendudukController::class, 'store']);
             Route::get('/penduduk/{id}/edit', [PendudukController::class, 'edit'])->defaults('action', 'Edit');
             Route::put('/penduduk/{id}', [PendudukController::class, 'update']);
             Route::delete('/penduduk/{id}/delete', [PendudukController::class, 'destroy']);
-            Route::delete('/penduduk-migrasi/{id}/delete', [PendudukController::class, 'destroymigrasi']);
+            Route::delete('/bukan-penduduk/{id}/delete', [PendudukController::class, 'destroybukanp']);
             // Import / Export Penduduk
             Route::get('/penduduk-export', [PendudukController::class, 'pendudukexport']);
             Route::post('/penduduk-import', [PendudukController::class, 'pendudukimport']);
@@ -493,7 +493,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/buat-surat', [BuatsuratController::class, 'index']);
     Route::post('/buat-surat', [BuatsuratController::class, 'store']);
     Route::get('/buat-pesan', [MandiriController::class, 'pesan']);
-    Route::get('/bantuan', [MandiriController::class, 'bantuan']);    
+    Route::get('/bantuan', [MandiriController::class, 'bantuan']);
 });
 
 

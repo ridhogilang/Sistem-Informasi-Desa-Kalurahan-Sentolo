@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('delete_by');
             $table->text('catatan');
             $table->string('dokumen');
-            $table->text('link');
             $table->timestamps();
         });
     }
