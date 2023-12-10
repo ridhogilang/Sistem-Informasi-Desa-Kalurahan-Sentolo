@@ -91,16 +91,7 @@
                             @endif
                             <div class="card mb-1">
                                 <div class="card-body">
-                                    @if ($libur)
-                                        <div class="text-center">
-                                            <p>Absen Libur (Hari Libur Nasional {{ $holiday }})</p>
-                                        </div>
-                                    @else
-                                        @if (date('l') == 'Saturday' || date('l') == 'Sunday')
-                                            <div class="text-center">
-                                                <p>Absen Libur</p>
-                                            </div>
-                                        @else
+                                   
                                             @if ($present)
                                                 @if ($present->keterangan == 'Alpha')
                                                     <div class="text-center">
@@ -165,19 +156,70 @@
                                                     @endif
                                                 </div>
                                             @endif
-                                        @endif
-                                    @endif
+                                      
                                 </div>
                             </div>
                             <br><br>
                             <div class="credits text-center">
+                                <div>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#basicModal">
+                                        Ajukan Perizinan
+                                    </button>
+                                </div><br>
                                 <div>
                                     <a href="/admin/presensi/daftar-hadir" class="btn btn-warning ">Rekap Kehadiran</a>
                                     <a href="/" class="btn btn-secondary">Kembali</a>
                                 </div><br><br>
                                 <div>Made by <a href="#">PKKM UJB</a></div>
                             </div>
-
+                            <div class="modal fade" id="basicModal" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Ajukan Perizinan Absensi</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="row" action="{{ route('absen.perizinan') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                                <input type="hidden" name="nama" value="{{ auth()->user()->nama }}">
+                                                <div class="row mb-3">
+                                                    <label for="tanggal"
+                                                        class="col-sm-3 col-form-label">Tanggal</label>
+                                                    <div class="col-sm-9">
+                                                        <input name="tanggal" type="date" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="jenis" class="col-sm-3 col-form-label">Jenis Perizinan</label>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-select" name="jenis" id="" required>
+                                                            <option value="" selected disabled>Jenis Perizinan</option>
+                                                            <option value="Sakit">Sakit</option>
+                                                            <option value="Cuti">Cuti</option>
+                                                            <option value="Dinas">Dinas Luar Kota</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="alasan" class="col-sm-3 col-form-label">Alasan</label>
+                                                    <div class="col-sm-9">
+                                                        <textarea name="alasan" class="form-control" placeholder="Tulis Alasanmu disini" id="floatingTextarea" required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

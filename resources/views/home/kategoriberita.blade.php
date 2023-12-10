@@ -18,10 +18,7 @@
                     class="newsticker-title">Sekilas Info</span></h3>
             <ul class="newsticker-list py-1"style="padding: 0px; margin: 0px; position: relative; list-style-type: none;">
                 <li class="newsticker-item" style="left: 50%; white-space: nowrap;">
-                    <marquee behavior="" direction="">Selamat Datang di Website Informasi Kalurahan Sentolo, Untuk
-                        Keluhan dan Informasi bisa menghubungi pamong dan apabila kurang jelas dapat di infokan langsung ke
-                        kelurahan apakah samapai sini sudah paham</marquee><a
-                        href="https://preview.silirdev.com/artikel/2020/6/8/profil-desa" class="newsticker-link"></a>
+                    <marquee behavior="" direction="">{!! $text->textrunning !!}</marquee><a class="newsticker-link"></a>
                 </li>
 
             </ul>

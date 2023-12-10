@@ -8,6 +8,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ $title == 'Perizinan Absensi' ? '' : 'collapsed' }}" href="{{ route('absen.perizinan-show') }}">
+                <i class="bi bi-grid"></i>
+                <span>Perizinan Absensi</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{ ($dropdown1 == "Rekapitulasi") ? '' : 'collapsed' }}" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-menu-button-wide"></i><span>Rekapitulasi Absen</span>
                 <i class="bi bi-chevron-down ms-auto"></i>

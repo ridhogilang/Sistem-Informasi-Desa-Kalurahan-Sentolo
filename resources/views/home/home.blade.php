@@ -1838,7 +1838,7 @@
                             <div class="space-y-1 text-sm text-center">
                                 <span class="text-heading">${item.nama}</span>
                                 <span class="block">${item.jabatan}</span><br>
-                                <a href="/daftar-hadir/${formattedDate}/${item.nama}">
+                                <a href="/daftar-hadir/${item.user_id}/${formattedDate}">
                                 ${item.presentModel
                                     ? item.presentModel.jam_keluar !== null
                                         ? `<span class="bg-emerald-500 text-white py-1 px-3 rounded inline-block">
@@ -1852,8 +1852,10 @@
                                                     ? `<span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Belum di Kantor</span>`
                                                     : item.presentModel.keterangan === 'Masuk' || item.presentModel.keterangan === 'Telat'
                                                         ? `<span class="bg-emerald-500 text-white py-1 px-3 rounded inline-block">Sudah di Kantor</span>`
-                                                        : item.presentModel.keterangan === 'Izin' || item.presentModel.keterangan === 'Sakit'
+                                                        : item.presentModel.keterangan === 'Izin' || item.presentModel.keterangan === 'Sakit'  || item.presentModel.keterangan === 'Cuti'
                                                             ? `<span class="bg-yellow-500 text-white py-1 px-3 rounded inline-block">Izin</span>`
+                                                            : item.presentModel.keterangan === 'Diluar'
+                                                                ? `<span class="bg-blue-600 text-white py-1 px-3 rounded inline-block">Sedang Diluar Kantor</span>`
                                                             : `<span class="bg-gray-500 text-white py-1 px-3 rounded inline-block">Status tidak diketahui</span>`
                                     : `<span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Belum di Kantor</span>`
                                 }

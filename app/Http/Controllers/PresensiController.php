@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Exports\UsersPresentExport;
+use App\Models\PerizinanAbsen;
 use App\Models\Present;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class PresensiController extends Controller
 {
@@ -57,19 +59,24 @@ class PresensiController extends Controller
         $data['jam_masuk']  = date('H:i:s');
         $data['tanggal']    = date('Y-m-d');
         $data['user_id']    = $request->user_id;
+        $startDate = Carbon::now()->startOfMonth();
+        $endDate = Carbon::now()->endOfMonth();
 
         if (date('l') == 'Saturday' || date('l') == 'Sunday') {
             return redirect()->back()->with('error', 'Hari Libur Tidak bisa Check In');
         }
 
         foreach ($users as $user) {
-            $absen = Present::whereUserId($user->id)->whereTanggal($data['tanggal'])->first();
-            if (!$absen) {
-                if ($user->id != $data['user_id']) {
+            // Loop melalui setiap tanggal dalam rentang waktu satu bulan
+            for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
+                $absen = Present::whereUserId($user->id)->whereTanggal($date->toDateString())->first();
+
+                // Jika tidak ada absen untuk tanggal tersebut, dan bukan user yang sedang login, buat entri absensi
+                if (!$absen) {
                     Present::create([
-                        'keterangan'    => 'Alpha',
-                        'tanggal'       => date('Y-m-d'),
-                        'user_id'       => $user->id
+                        'keterangan' => 'Alpha',
+                        'tanggal' => $date->toDateString(),
+                        'user_id' => $user->id
                     ]);
                 }
             }
@@ -153,8 +160,116 @@ class PresensiController extends Controller
         $tanggal = $request->tanggal;
 
         // Memanggil UsersPresentExport dengan dua parameter
-        return Excel::download(new UsersPresentExport( $tanggal), 'kehadiran-' . $tanggal . '.xlsx');
+        return Excel::download(new UsersPresentExport($tanggal), 'kehadiran-' . $tanggal . '.xlsx');
     }
 
+    public function perizinan(Request $request)
+    {
+        $validatedData = $request->validate([
+            'user_id' => 'required',
+            'nama' => 'required',
+            'tanggal' => 'required',
+            'jenis' => 'required',
+            'alasan' => 'required',
+        ]);
 
+        // dd($validatedData);
+
+        PerizinanAbsen::create($validatedData);
+
+        return redirect()->back()->with('success', 'Berhasil Mengajukan Perizinan');
+    }
+
+    public function show_perizinan()
+    {
+        $bulan_ini = Carbon::now()->month;
+        $izin = PerizinanAbsen::where('setuju', false)->get();
+
+        $izinsebulan = PerizinanAbsen::where('setuju', true)->whereMonth('tanggal', $bulan_ini)->get();
+
+        return view('bo.page.absen.perizinan_absen', [
+            "title" => "Perizinan Absensi",
+            "dropdown1" => "",
+            "izin" => $izin,
+            "izinsebulan" => $izinsebulan,
+        ]);
+    }
+
+    public function updatePerizinan(Request $request, $user_id)
+    {
+        // Update PresentModel
+        $presentModel = Present::where('user_id', $user_id)
+            ->where('tanggal', $request->taggal)
+            ->first();
+
+        if (!$presentModel) {
+            // Jika $presentModel belum ada, buat entri baru
+            $presentModel = new Present([
+                'user_id' => $user_id,
+                'tanggal' => $request->taggal,
+                'keterangan' => $request->jenis,
+            ]);
+
+            $presentModel->save();
+        } else {
+            // Jika $presentModel sudah ada, update keterangan sesuai dengan jenis
+            $presentModel->keterangan = $request->jenis;
+            $presentModel->save();
+        }
+
+        // Update PerizinanAbsen
+        $perizinanAbsen = PerizinanAbsen::where('id', $request->id)
+            ->where('tanggal', $request->taggal)
+            ->first();
+
+        if ($perizinanAbsen) {
+            // Setuju menjadi true
+            $perizinanAbsen->setuju = true;
+            $perizinanAbsen->save();
+        }
+
+        // Redirect atau tampilkan halaman lain sesuai kebutuhan
+        return redirect()->back()->with('success', 'Perizinan berhasil diupdate');
+    }
+
+    public function updateLuar(Request $request, $id)
+    {
+        // Validasi request jika diperlukan
+
+        // Mendapatkan data PresentModel berdasarkan id
+        $presentModel = Present::where('id', $id)->first();
+
+        // Cek apakah data PresentModel ditemukan
+        if ($presentModel) {
+            // Cek apakah keterangan saat ini adalah "Masuk" atau "Telat"
+            if ($presentModel->keterangan == 'Masuk' || $presentModel->keterangan == 'Telat') {
+                // Update keterangan menjadi "Diluar"
+                $presentModel->keterangan = 'Diluar';
+                $presentModel->save();
+
+                // Redirect atau tampilkan halaman lain sesuai kebutuhan
+                return redirect()->back()->with('success', 'Update berhasil');
+            } elseif ($presentModel->keterangan == 'Diluar') {
+                if ($presentModel->jam_masuk > config('absensi.jam_masuk')) {
+                    $presentModel->keterangan = 'Telat';
+                    $presentModel->save();
+
+                    return redirect()->back()->with('success', 'Update berhasil');
+                }
+            } elseif ($presentModel->keterangan == 'Diluar') {
+                if ($presentModel->jam_masuk <= config('absensi.jam_masuk')) {
+                    $presentModel->keterangan = 'Masuk';
+                    $presentModel->save();
+
+                    return redirect()->back()->with('success', 'Update berhasil');
+                }
+            } else {
+                // Keterangan saat ini bukan "Masuk" atau "Telat", mungkin sudah "Diluar"
+                return redirect()->back()->with('error', 'Update gagal, keterangan saat ini bukan "Masuk" atau "Telat"');
+            }
+        }
+
+        // User tidak ditemukan dalam data PresentModel
+        return redirect()->back()->with('error', 'User tidak ditemukan');
+    }
 }

@@ -48,13 +48,13 @@ class HomeController extends Controller
         $menu = Menu::orderBy('urutan')->get();
 
         $berita = Berita::orderBy('tanggal', 'desc')
-        ->where(function ($query) {
-            $query->whereIn('kategoriberita_id', [1, 2, 3])
-                ->where('tampil', true);
-        })
-        ->paginate(6);
-    
-        $semuaberita = Berita::whereIn('kategoriberita_id', [1, 2, 3])->where('tampil', true)->paginate(12);        
+            ->where(function ($query) {
+                $query->whereIn('kategoriberita_id', [1, 2, 3])
+                    ->where('tampil', true);
+            })
+            ->paginate(6);
+
+        $semuaberita = Berita::whereIn('kategoriberita_id', [1, 2, 3])->where('tampil', true)->paginate(12);
         $beritadesa = Berita::where('kategoriberita_id', 1)->where('tampil', true)->paginate(12);
         $beritalokal = Berita::where('kategoriberita_id', 2)->where('tampil', true)->paginate(12);
         $programkerja = Berita::where('kategoriberita_id', 3)->where('tampil', true)->paginate(12);
@@ -83,7 +83,7 @@ class HomeController extends Controller
 
         $text = Runningtext::where('id', 1)->first();
 
-        $pamong = User::where("is_delete","<>", '1')->where("is_pamong","=", "1")->get();
+        $pamong = User::where("is_delete", "<>", '1')->where("is_pamong", "=", "1")->get();
         //Agenda
         $agenda_hari_ini = Agenda::where('tanggal', $today)->get();
         $agenda_yangakandatang = Agenda::where('tanggal', '>', $today)->get();
@@ -173,11 +173,11 @@ class HomeController extends Controller
             $item->gambar = Storage::url($item->gambar);
             $currentDate = now()->format('Y-m-d');
             $presentModel = Present::where('user_id', $item->user_id)
-            ->whereDate('tanggal', $currentDate)
-            ->first();
+                ->whereDate('tanggal', $currentDate)
+                ->first();
             $item->presentModel = $presentModel;
         }
-    
+
         return response()->json($pamong);
     }
 
@@ -196,6 +196,7 @@ class HomeController extends Controller
         $apbd = Apbdes::first();
         $statistik = Statistik::first();
         $sinergi = Sinergi::all();
+        $text = Runningtext::where('id', 1)->first();
 
         $berita_id = $berita->id;
 
@@ -212,6 +213,7 @@ class HomeController extends Controller
             "statistik" => $statistik,
             "komentar" => $komentar,
             "sinergi" => $sinergi,
+            "text" => $text,
         ]);
     }
 
@@ -235,6 +237,7 @@ class HomeController extends Controller
         $apbd = Apbdes::first();
         $statistik = Statistik::first();
         $sinergi = Sinergi::all();
+        $text = Runningtext::where('id', 1)->first();
 
         $berita_id = $artikel->id;
 
@@ -251,6 +254,7 @@ class HomeController extends Controller
             "statistik" => $statistik,
             "komentar" => $komentar,
             "sinergi" => $sinergi,
+            "text" => $text,
         ]);
     }
 
@@ -261,6 +265,7 @@ class HomeController extends Controller
         $pamong = Pamong::all();
         $apbd = Apbdes::first();
         $statistik = Statistik::first();
+        $text = Runningtext::where('id', 1)->first();
 
         return view('home.kategoriberita', [
             "title" => "Berita Kalurahan Sentolo",
@@ -270,6 +275,7 @@ class HomeController extends Controller
             "pamong" => $pamong,
             "apbd" => $apbd,
             "statistik" => $statistik,
+            "text" => $text,
         ]);
     }
 
@@ -282,6 +288,7 @@ class HomeController extends Controller
         $pamong = Pamong::all();
         $apbd = Apbdes::first();
         $statistik = Statistik::first();
+        $text = Runningtext::where('id', 1)->first();
 
 
         return view('home.kategoriberita', [
@@ -292,6 +299,7 @@ class HomeController extends Controller
             "pamong" => $pamong,
             "apbd" => $apbd,
             "statistik" => $statistik,
+            "text" => $text,
         ]);
     }
 
@@ -302,6 +310,7 @@ class HomeController extends Controller
         $pamong = Pamong::all();
         $apbd = Apbdes::first();
         $statistik = Statistik::first();
+        $text = Runningtext::where('id', 1)->first();
 
         return view('home.kategoriberita', [
             "title" => "Berita - Berita Desa",
@@ -310,6 +319,7 @@ class HomeController extends Controller
             "pamong" => $pamong,
             "apbd" => $apbd,
             "statistik" => $statistik,
+            "text" => $text,
         ]);
     }
 
@@ -320,6 +330,7 @@ class HomeController extends Controller
         $pamong = Pamong::all();
         $apbd = Apbdes::first();
         $statistik = Statistik::first();
+        $text = Runningtext::where('id', 1)->first();
 
         return view('home.kategoriberita', [
             "title" => "Berita -  Berita Lokal",
@@ -328,6 +339,7 @@ class HomeController extends Controller
             "pamong" => $pamong,
             "apbd" => $apbd,
             "statistik" => $statistik,
+            "text" => $text,
         ]);
     }
 
@@ -338,6 +350,7 @@ class HomeController extends Controller
         $pamong = Pamong::all();
         $apbd = Apbdes::first();
         $statistik = Statistik::first();
+        $text = Runningtext::where('id', 1)->first();
 
         return view('home.kategoriberita', [
             "title" => "Berita - Program Kerja",
@@ -346,6 +359,7 @@ class HomeController extends Controller
             "pamong" => $pamong,
             "apbd" => $apbd,
             "statistik" => $statistik,
+            "text" => $text,
         ]);
     }
 
@@ -356,6 +370,7 @@ class HomeController extends Controller
         $apbd = Apbdes::first();
         $galeri = Galeri::paginate(12);
         $statistik = Statistik::first();
+        $text = Runningtext::where('id', 1)->first();
 
         return view('home.showberita', [
             "title" => "Galeri Kalurahan Sentolo",
@@ -364,6 +379,7 @@ class HomeController extends Controller
             "pamong" => $pamong,
             "apbd" => $apbd,
             "statistik" => $statistik,
+            "text" => $text,
         ]);
     }
     public function show_galeri($year, $month, $day, $nama)
@@ -378,6 +394,7 @@ class HomeController extends Controller
             ->first();
         $statistik = Statistik::first();
         $sinergi = Sinergi::all();
+        $text = Runningtext::where('id', 1)->first();
 
 
         return view(
@@ -388,7 +405,8 @@ class HomeController extends Controller
                 'apbd',
                 'galeri',
                 'statistik',
-                'sinergi'
+                'sinergi',
+                'text',
             ),
             [
                 "title" => "Galeri - $nama",
@@ -426,11 +444,10 @@ class HomeController extends Controller
             'selesai' => 'required',
             'koordinator' => 'required',
             'nomorhp' => 'required',
-        ],[
+        ], [
             'required' => 'Lengkapi Data!',
         ]);
 
-        
         // Ambil num1, num2, dan jawaban CAPTCHA dari input
         $num1 = intval($request->input('num1'));
         $num2 = intval($request->input('num2'));
@@ -439,15 +456,15 @@ class HomeController extends Controller
         if ($captchaAnswer === ($num1 + $num2)) {
 
             $existingAgendas = AgendaGOR::where('tanggal', $createData['tanggal'])
-            ->where(function ($query) use ($createData) {
-                $query->whereBetween('waktu', [$createData['waktu'], $createData['selesai']])
-                    ->orWhereBetween('selesai', [$createData['waktu'], $createData['selesai']])
-                    ->orWhere(function ($query) use ($createData) {
-                        $query->where('waktu', '<=', $createData['waktu'])
-                            ->where('selesai', '>=', $createData['selesai']);
-                    });
-            })
-            ->get();
+                ->where(function ($query) use ($createData) {
+                    $query->whereBetween('waktu', [$createData['waktu'], $createData['selesai']])
+                        ->orWhereBetween('selesai', [$createData['waktu'], $createData['selesai']])
+                        ->orWhere(function ($query) use ($createData) {
+                            $query->where('waktu', '<=', $createData['waktu'])
+                                ->where('selesai', '>=', $createData['selesai']);
+                        });
+                })
+                ->get();
             if ($existingAgendas->count() > 0) {
                 // Jika terdapat konflik waktu, kembalikan ke halaman sebelumnya dengan pesan kesalahan
                 return redirect()->back()->with('error', 'Konflik waktu! Agenda pada rentang waktu tersebut sudah terdaftar.');
@@ -457,7 +474,6 @@ class HomeController extends Controller
 
                 return redirect()->back()->with('toast_success', 'Anda Telah Berhasil Mengajukan Booking GOR!!');
             }
-           
         } else {
             // Jawaban CAPTCHA salah, tampilkan pesan kesalahan
             return redirect()->back()->with('error', '!!Jawaban CAPTCHA ANDA SALAH!!');
@@ -474,11 +490,11 @@ class HomeController extends Controller
             'selesai' => 'required',
             'koordinator' => 'required',
             'nomorhp' => 'required',
-        ],[
+        ], [
             'required' => 'Lengkapi Data!',
         ]);
 
-        
+
         // Ambil num1, num2, dan jawaban CAPTCHA dari input
         $num1 = intval($request->input('num1'));
         $num2 = intval($request->input('num2'));
@@ -487,15 +503,15 @@ class HomeController extends Controller
         if ($captchaAnswer === ($num1 + $num2)) {
 
             $existingAgendas = AgendaBalai::where('tanggal', $createData['tanggal'])
-            ->where(function ($query) use ($createData) {
-                $query->whereBetween('waktu', [$createData['waktu'], $createData['selesai']])
-                    ->orWhereBetween('selesai', [$createData['waktu'], $createData['selesai']])
-                    ->orWhere(function ($query) use ($createData) {
-                        $query->where('waktu', '<=', $createData['waktu'])
-                            ->where('selesai', '>=', $createData['selesai']);
-                    });
-            })
-            ->get();
+                ->where(function ($query) use ($createData) {
+                    $query->whereBetween('waktu', [$createData['waktu'], $createData['selesai']])
+                        ->orWhereBetween('selesai', [$createData['waktu'], $createData['selesai']])
+                        ->orWhere(function ($query) use ($createData) {
+                            $query->where('waktu', '<=', $createData['waktu'])
+                                ->where('selesai', '>=', $createData['selesai']);
+                        });
+                })
+                ->get();
             if ($existingAgendas->count() > 0) {
                 // Jika terdapat konflik waktu, kembalikan ke halaman sebelumnya dengan pesan kesalahan
                 return redirect()->back()->with('error', 'Konflik waktu! Agenda pada rentang waktu tersebut sudah terdaftar.');
@@ -505,7 +521,6 @@ class HomeController extends Controller
 
                 return redirect()->back()->with('toast_success', 'Anda Telah Berhasil Mengajukan Booking Balai!');
             }
-           
         } else {
             // Jawaban CAPTCHA salah, tampilkan pesan kesalahan
             return redirect()->back()->with('error', '!!Jawaban CAPTCHA ANDA SALAH!!');
@@ -515,7 +530,7 @@ class HomeController extends Controller
     public function absen()
     {
         $present = Present::whereUserId(auth()->user()->id)->whereTanggal(date('Y-m-d'))->first();
-        $url = 'https://kalenderindonesia.com/api/YZ35u6a7sFWN/libur/masehi/'.date('Y/m');
+        $url = 'https://kalenderindonesia.com/api/YZ35u6a7sFWN/libur/masehi/' . date('Y/m');
         $kalender = file_get_contents($url);
         $kalender = json_decode($kalender, true);
         $libur = false;
@@ -531,7 +546,59 @@ class HomeController extends Controller
                 }
             }
         }
-        return view('bo.page.absen.presensi', compact('present','libur','holiday'));
+        return view('bo.page.absen.presensi', compact('present', 'libur', 'holiday'));
     }
 
+    public function absen_personal($user_id, $month)
+    {
+        $text = Runningtext::where('id', 1)->first();
+        $headers = Header::all();
+        // $pamong = Pamong::all();
+        $presentData = Present::where('user_id', $user_id)
+            ->whereMonth('tanggal', '=', \Carbon\Carbon::parse($month)->month)
+            ->get();
+
+        $user = User::where('id', $user_id)
+            ->where('is_pamong', true)
+            ->first();
+
+        $apbd = Apbdes::first();
+        $statistik = Statistik::first();
+        $sinergi = Sinergi::all();
+
+        return view('home.absensi_pamong', [
+            "title" => "Presensi Pamong",
+            "text" => $text,
+            "headers" => $headers,
+            "apbd" => $apbd,
+            "statistik" => $statistik,
+            "sinergi" => $sinergi,
+            "pamong" => $user,
+            "present" => $presentData,
+            "bulan" => $month
+        ]);
+    }
+
+    public function absen_pamong()
+    {
+        $text = Runningtext::where('id', 1)->first();
+        $headers = Header::all();
+
+        $user = User::where('is_pamong', true)
+            ->get();
+
+        $apbd = Apbdes::first();
+        $statistik = Statistik::first();
+        $sinergi = Sinergi::all();
+
+        return view('home.absensi_allpamong', [
+            "title" => "Presensi All Pamong",
+            "text" => $text,
+            "headers" => $headers,
+            "apbd" => $apbd,
+            "statistik" => $statistik,
+            "sinergi" => $sinergi,
+            "pamong" => $user,
+        ]);
+    }
 }

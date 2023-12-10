@@ -97,6 +97,8 @@ Route::controller(HomeController::class)->group(function () {
     Route::post('/booking-gor', 'booking_gor');
     Route::get('/booking-balai', 'hlmnbooking_balai');
     Route::post('/booking-balai', 'booking_balai');
+    Route::get('/daftar-hadir/{user_id}/{month}', 'absen_personal');
+    Route::get('/daftarhadir-pamong', 'absen_pamong');
 });
 
 
@@ -137,9 +139,11 @@ Route::prefix('admin')->group(function () {
             Route::get('/rekap-harian/cari', 'harian_search')->name('kehadiran.search');
             Route::get('/rekap-harian/excel-users', 'excelUsers')->name('kehadiran.excel-users');
             Route::get('/rekap-harian/show', '')->name('users.show');
+            Route::post('/perizinan', 'perizinan')->name('absen.perizinan');
+            Route::get('/perizinan', 'show_perizinan')->name('absen.perizinan-show');
+            Route::put('/update-perizinan/{user_id}', 'updatePerizinan')->name('absen.perizinan-update');
+            Route::put('/update-keluar/{id}', 'updateLuar')->name('absen.perizinan-updateluar');
         });
-
-
 
         //halaman bantuan
         Route::controller(BantuanController::class)->prefix('bantuan')->group(function () {

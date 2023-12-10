@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('present', function (Blueprint $table) {
+        Schema::create('perizinan_absen', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->enum('keterangan',['Masuk','Alpha','Telat','Sakit','Cuti','Izin', 'Diluar']);
-            $table->date('tanggal');
-            $table->time('jam_masuk')->nullable();
-            $table->time('jam_keluar')->nullable();
+            $table->string('nama');
+            $table->string('tanggal');
+            $table->enum('jenis', ['Sakit', 'Cuti', 'Dinas']);
+            $table->text('alasan');
+            $table->boolean('setuju')->default(false);
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('present');
+        Schema::dropIfExists('perizinan_absen');
     }
 };
