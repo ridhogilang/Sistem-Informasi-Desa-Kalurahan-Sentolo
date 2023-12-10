@@ -16,6 +16,5 @@ class PenghapusanPenduduk extends Model
         'delete_by',
         'catatan',
         'dokumen',
-        'link',
     ];
 }

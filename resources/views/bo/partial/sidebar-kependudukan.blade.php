@@ -16,11 +16,11 @@
         </li><!-- End Penduduk Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ ($title == "Data Penduduk Migrasi") ? '' : 'collapsed' }}" href="/admin/kependudukan/penduduk-migrasi">
+            <a class="nav-link {{ ($title == "Data Bukan Penduduk") ? '' : 'collapsed' }}" href="/admin/kependudukan/bukan-penduduk">
                 <i class="fa-solid fa-users-slash"></i>
-                <span>Penduduk Migrasi</span>
+                <span>Bukan Penduduk</span>
             </a>
-        </li><!-- End Penduduk Migrasi Page Nav -->
+        </li><!-- End Bukan Penduduk Page Nav -->
 
     </ul>
 

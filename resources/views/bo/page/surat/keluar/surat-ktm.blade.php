@@ -215,8 +215,8 @@
                                             <div class="col-sm-9">
                                                 <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
                                                     <option value="" @if(old('jenis_kelamin')=='' ) selected @endif>Pilih Jenis Kelamin ...</option>
-                                                    <option value="Laki-laki" @if(old('jenis_kelamin')=='Laki-laki' ) selected @endif>Laki-laki</option>
-                                                    <option value="Perempuan" @if(old('jenis_kelamin')=='Perempuan' ) selected @endif>Perempuan</option>
+                                                    <option value="LAKI LAKI" @if(old('jenis_kelamin')=='LAKI LAKI' ) selected @endif>LAKI LAKI</option>
+                                                    <option value="PEREMPUAN" @if(old('jenis_kelamin')=='PEREMPUAN' ) selected @endif>PEREMPUAN</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -235,13 +235,13 @@
                                             <div class="col-sm-9">
                                                 <select id="agama" name="agama" class="form-select" required>
                                                     <option value="" @if(old('agama')=='' ) selected @endif>Pilih Agama ...</option>
-                                                    <option value="Islam" @if(old('agama')=='Islam' ) selected @endif>Islam</option>
-                                                    <option value="Kristen Protestan" @if(old('agama')=='Kristen Protestan' ) selected @endif>Kristen Protestan</option>
-                                                    <option value="Kristen Katolik" @if(old('agama')=='Kristen Katolik' ) selected @endif>Kristen Katolik</option>
-                                                    <option value="Hindu" @if(old('agama')=='Hindu' ) selected @endif>Hindu</option>
-                                                    <option value="Buddha" @if(old('agama')=='Buddha' ) selected @endif>Buddha</option>
-                                                    <option value="Konghucu" @if(old('agama')=='Konghucu' ) selected @endif>Konghucu</option>
-                                                    <option value="Lainnya" @if(old('agama')=='Lainnya' ) selected @endif>Lainnya</option>
+                                                    <option value="ISLAM" @if(old('agama')=='ISLAM' ) selected @endif>ISLAM</option>
+                                                    <option value="KRISTEN" @if(old('agama')=='KRISTEN' ) selected @endif>KRISTEN</option>
+                                                    <option value="KATHOLIK" @if(old('agama')=='KATHOLIK' ) selected @endif>KATHOLIK</option>
+                                                    <option value="HINDU" @if(old('agama')=='HINDU' ) selected @endif>HINDU</option>
+                                                    <option value="BUDDHA" @if(old('agama')=='BUDDHA' ) selected @endif>BUDDHA</option>
+                                                    <option value="KONGHUCU" @if(old('agama')=='KONGHUCU' ) selected @endif>KONGHUCU</option>
+                                                    <option value="LAINNYA" @if(old('agama')=='LAINNYA' ) selected @endif>LAINNYA</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -250,10 +250,10 @@
                                             <div class="col-sm-9">
                                                 <select id="status_perkawinan" name="status_perkawinan" class="form-select" required>
                                                     <option value="" @if(old('status_perkawinan')=='' ) selected @endif>Pilih Status Perkawinan ...</option>
-                                                    <option value="Belum Menikah" @if(old('status_perkawinan')=='Belum Menikah' ) selected @endif>Belum Menikah</option>
-                                                    <option value="Sudah Menikah" @if(old('status_perkawinan')=='Sudah Menikah' ) selected @endif>Sudah Menikah</option>
-                                                    <option value="Janda" @if(old('status_perkawinan')=='Janda' ) selected @endif>Janda</option>
-                                                    <option value="Duda" @if(old('status_perkawinan')=='Duda' ) selected @endif>Duda</option>
+                                                    <option value="Belum Kawin" @if(old('status_perkawinan')=='Belum Kawin' ) selected @endif>Belum Kawin</option>
+                                                    <option value="Kawin" @if(old('status_perkawinan')=='Kawin' ) selected @endif>Kawin</option>
+                                                    <option value="Cerai Hidup" @if(old('status_perkawinan')=='Cerai Hidup' ) selected @endif>Cerai Hidup</option>
+                                                    <option value="Cerai Mati" @if(old('status_perkawinan')=='Cerai Mati' ) selected @endif>Cerai Mati</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -371,13 +371,13 @@
                                             <div class="col-sm-9">
                                                 <select id="agama_satu" name="agama" class="form-select" required>
                                                     <option value="" @if(old('agama')=='' ) selected @endif>Pilih Agama ...</option>
-                                                    <option value="Islam" @if(old('agama')=='Islam' ) selected @endif>Islam</option>
-                                                    <option value="Kristen Protestan" @if(old('agama')=='Kristen Protestan' ) selected @endif>Kristen Protestan</option>
-                                                    <option value="Kristen Katolik" @if(old('agama')=='Kristen Katolik' ) selected @endif>Kristen Katolik</option>
-                                                    <option value="Hindu" @if(old('agama')=='Hindu' ) selected @endif>Hindu</option>
-                                                    <option value="Buddha" @if(old('agama')=='Buddha' ) selected @endif>Buddha</option>
-                                                    <option value="Konghucu" @if(old('agama')=='Konghucu' ) selected @endif>Konghucu</option>
-                                                    <option value="Lainnya" @if(old('agama')=='Lainnya' ) selected @endif>Lainnya</option>
+                                                    <option value="ISLAM" @if(old('agama')=='ISLAM' ) selected @endif>ISLAM</option>
+                                                    <option value="KRISTEN" @if(old('agama')=='KRISTEN' ) selected @endif>KRISTEN</option>
+                                                    <option value="KATHOLIK" @if(old('agama')=='KATHOLIK' ) selected @endif>KATHOLIK</option>
+                                                    <option value="HINDU" @if(old('agama')=='HINDU' ) selected @endif>HINDU</option>
+                                                    <option value="BUDDHA" @if(old('agama')=='BUDDHA' ) selected @endif>BUDDHA</option>
+                                                    <option value="KONGHUCU" @if(old('agama')=='KONGHUCU' ) selected @endif>KONGHUCU</option>
+                                                    <option value="LAINNYA" @if(old('agama')=='LAINNYA' ) selected @endif>LAINNYA</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -432,13 +432,13 @@
                                             <div class="col-sm-9">
                                                 <select id="agama_dua" name="agama_dua" class="form-select" required>
                                                     <option value="" @if(old('agama_dua')=='' ) selected @endif>Pilih Agama ...</option>
-                                                    <option value="Islam" @if(old('agama_dua')=='Islam' ) selected @endif>Islam</option>
-                                                    <option value="Kristen Protestan" @if(old('agama_dua')=='Kristen Protestan' ) selected @endif>Kristen Protestan</option>
-                                                    <option value="Kristen Katolik" @if(old('agama_dua')=='Kristen Katolik' ) selected @endif>Kristen Katolik</option>
-                                                    <option value="Hindu" @if(old('agama_dua')=='Hindu' ) selected @endif>Hindu</option>
-                                                    <option value="Buddha" @if(old('agama_dua')=='Buddha' ) selected @endif>Buddha</option>
-                                                    <option value="Konghucu" @if(old('agama_dua')=='Konghucu' ) selected @endif>Konghucu</option>
-                                                    <option value="Lainnya" @if(old('agama_dua')=='Lainnya' ) selected @endif>Lainnya</option>
+                                                    <option value="ISLAM" @if(old('agama_dua')=='ISLAM' ) selected @endif>ISLAM</option>
+                                                    <option value="KRISTEN" @if(old('agama_dua')=='KRISTEN' ) selected @endif>KRISTEN</option>
+                                                    <option value="KATHOLIK" @if(old('agama_dua')=='KATHOLIK' ) selected @endif>KATHOLIK</option>
+                                                    <option value="HINDU" @if(old('agama_dua')=='HINDU' ) selected @endif>HINDU</option>
+                                                    <option value="BUDDHA" @if(old('agama_dua')=='BUDDHA' ) selected @endif>BUDDHA</option>
+                                                    <option value="KONGHUCU" @if(old('agama_dua')=='KONGHUCU' ) selected @endif>KONGHUCU</option>
+                                                    <option value="LAINNYA" @if(old('agama_dua')=='LAINNYA' ) selected @endif>LAINNYA</option>
                                                 </select>
                                             </div>
                                         </div>
