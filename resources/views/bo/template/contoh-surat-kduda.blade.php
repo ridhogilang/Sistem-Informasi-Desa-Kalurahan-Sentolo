@@ -156,14 +156,14 @@
                 <td>Kulon Progo / 01-01-2020 </td>
             </tr>
             <tr>
-                <td class="template">Kewarganegaraan</td>
-                <td>:</td>
-                <td>Indonesia</td>
-            </tr>
-            <tr>
                 <td class="template">Agama</td>
                 <td>:</td>
                 <td>Islam</td>
+            </tr>
+            <tr>
+                <td class="template">Status Cerai</td>
+                <td>:</td>
+                <td>Cerai Hidup</td>
             </tr>
             <tr>
                 <td class="template">Status Perkawinan</td>

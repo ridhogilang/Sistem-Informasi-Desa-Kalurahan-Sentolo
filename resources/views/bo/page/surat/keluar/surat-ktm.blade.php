@@ -22,7 +22,7 @@
                     var data = JSON.parse(xhr.responseText);
 
                     // Daftar elemen form yang ingin Anda isi
-                    var formElements = ['nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'status_perkawinan', 'alamat', 'kewarganegaraan', 'pekerjaan', 'pendidikan_terakhir', 'nomor_telepon', 'penghasilan', 'foto_penduduk', 'nomor_kk', 'nomor_ktp', 'status_nyawa', 'keterangan_kematian', 'kontak_darurat', 'status_migrasi', 'status_pajak'];
+                    var formElements = ['nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'umur', 'status_perkawinan', 'pendidikan', 'pekerjaan', 'status_hubungan_kel', 'nama_ibu', 'nama_ayah', 'alamat', 'rt', 'rw', 'nomor_kk'];
 
                     // Loop melalui elemen form dan isi nilainya jika ada dalam data
                     formElements.forEach(function(element) {

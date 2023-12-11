@@ -19,7 +19,6 @@ class Skkematian extends Model
         'umur',
         'pekerjaan',
         'agama',
-        'kewarganegaraan',
         'status_perkawinan',
         'tanggal_meninggal',
         'waktu',
@@ -34,7 +33,7 @@ class Skkematian extends Model
     {
         return $this->hasMany(TandaTanganSurat::class, 'id_surat', 'id');
     }
-    
+
     public function MengetahuiVerifikasiSurat()
     {
         return $this->hasMany(MengetahuiVerifikasiSurat::class, 'id_surat', 'id');

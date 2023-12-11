@@ -157,11 +157,6 @@
                 <td>{{$skd->tempat_lahir}} / {{date('d-m-Y',strtotime($skd->tanggal_lahir))}}  </td>
             </tr>
             <tr>
-                <td class="template">Kewarganegaraan</td>
-                <td>:</td>
-                <td>{{$skd->kewarganegaraan}}</td>
-            </tr>
-            <tr>
                 <td class="template">Agama</td>
                 <td>:</td>
                 <td>{{$skd->agama}}</td>
@@ -201,7 +196,7 @@
         <table  class="tujuh">
             <tr>
                 <td align="center">
-                    <p>{{ $skd->tandatangan[0]['jabatan_user'] }}</p><br><br><br><br>  
+                    <p>{{ $skd->tandatangan[0]['jabatan_user'] }}</p><br><br><br><br>
                     <p><b>({{ $skd->tandatangan[0]['nama_user'] }}) </b></p>
                 </td>
             </tr>

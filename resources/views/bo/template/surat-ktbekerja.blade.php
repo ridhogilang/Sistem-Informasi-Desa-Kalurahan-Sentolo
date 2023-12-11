@@ -169,11 +169,6 @@
                 <td>{{$ktbekerja->agama}}</td>
             </tr>
             <tr>
-                <td class="template">Warga Negara</td>
-                <td>:</td>
-                <td>{{$ktbekerja->warga_negara}}</td>
-            </tr>
-            <tr>
                 <td class="template" style="vertical-align: top;">Alamat</td>
                 <td style="vertical-align: top;">:</td>
                 <td style="max-width: 405px; word-wrap: break-word;">{{$ktbekerja->alamat}}</td>
@@ -198,7 +193,7 @@
         <table  class="tujuh">
             <tr>
                 <td align="center">
-                    <p>{{ $ktbekerja->tandatangan[0]['jabatan_user'] }}</p><br><br><br><br>  
+                    <p>{{ $ktbekerja->tandatangan[0]['jabatan_user'] }}</p><br><br><br><br>
                     <p><b>({{ $ktbekerja->tandatangan[0]['nama_user'] }}) </b></p>
                 </td>
             </tr>

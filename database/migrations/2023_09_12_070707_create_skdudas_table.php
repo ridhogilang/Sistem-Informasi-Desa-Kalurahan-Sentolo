@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('jenis_kelamin');
             $table->string('tempat_lahir');
             $table->string('tanggal_lahir');
-            $table->string('kewarganegaraan');
             $table->string('agama');
+            $table->string('status_cerai');
             $table->string('status_perkawinan');
             $table->string('pekerjaan');
             $table->string('alamat');

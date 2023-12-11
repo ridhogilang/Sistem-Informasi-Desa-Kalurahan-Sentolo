@@ -185,7 +185,7 @@
             <tr>
                 <td class="template">Status Hubungan</td>
                 <td>:</td>
-                <td>Anak Kandung</td>
+                <td>Anak Sah</td>
             </tr>
             <tr>
                 <td class="template">Tempat Lahir</td>

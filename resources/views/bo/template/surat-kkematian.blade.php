@@ -174,11 +174,6 @@
                 <td>{{$kkematian->agama}}</td>
             </tr>
             <tr>
-                <td class="template">Kewarganegaraan</td>
-                <td>:</td>
-                <td>{{$kkematian->kewarganegaraan}}</td>
-            </tr>
-            <tr>
                 <td class="template">Status Perkawinan</td>
                 <td>:</td>
                 <td>{{$kkematian->status_perkawinan}}</td>
@@ -203,7 +198,7 @@
         <table  class="tujuh">
             <tr>
                 <td align="center">
-                    <p>{{ $kkematian->tandatangan[0]['jabatan_user'] }}</p><br><br><br><br>  
+                    <p>{{ $kkematian->tandatangan[0]['jabatan_user'] }}</p><br><br><br><br>
                     <p><b>({{ $kkematian->tandatangan[0]['nama_user'] }}) </b></p>
                 </td>
             </tr>

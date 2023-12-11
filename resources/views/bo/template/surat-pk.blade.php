@@ -158,11 +158,6 @@
                 <td>{{$spk->agama}}</td>
             </tr>
             <tr>
-                <td class="template">Kewarganegaraan</td>
-                <td>:</td>
-                <td>{{$spk->kewarganegaraan}}</td>
-            </tr>
-            <tr>
                 <td class="template" style="vertical-align: top;">Alamat</td>
                 <td style="vertical-align: top;">:</td>
                 <td style="max-width: 405px; word-wrap: break-word;">{{$spk->alamat}}</td>
@@ -200,7 +195,7 @@
                         <b>(..............................)</b>
                     </p>
                 </td>
-                
+
             </tr>
         </table>
     </center>

@@ -18,8 +18,8 @@ class Skduda extends Model
         'jenis_kelamin',
         'tempat_lahir',
         'tanggal_lahir',
-        'kewarganegaraan',
         'agama',
+        'status_cerai',
         'status_perkawinan',
         'pekerjaan',
         'alamat',
@@ -32,7 +32,7 @@ class Skduda extends Model
     {
         return $this->hasMany(TandaTanganSurat::class, 'id_surat', 'id');
     }
-    
+
     public function MengetahuiVerifikasiSurat()
     {
         return $this->hasMany(MengetahuiVerifikasiSurat::class, 'id_surat', 'id');

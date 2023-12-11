@@ -157,11 +157,6 @@
                 <td>Kulon Progo / 01-09-2023</td>
             </tr>
             <tr>
-                <td class="template">Kewarganegaraan</td>
-                <td>:</td>
-                <td>Indonesia</td>
-            </tr>
-            <tr>
                 <td class="template">Agama</td>
                 <td>:</td>
                 <td>Islam</td>
