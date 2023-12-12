@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('foto_surat_keterangan_dokter')->nullable();
             $table->string('jenis_surat');
             $table->string('status_blanko');
+            $table->string('dokumen')->nullable();
             $table->timestamps();
         });
     }

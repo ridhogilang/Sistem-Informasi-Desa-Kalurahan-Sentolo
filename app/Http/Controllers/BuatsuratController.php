@@ -75,4 +75,16 @@ class BuatsuratController extends Controller
         Buatsurat::create($record);
         return redirect()->back()->with('success', 'Permintaan Surat sedang diproses. Tunggu sampai mendapatkan balasan!');
     }
+    public function show($id)
+    {
+        $smandiri = Buatsurat::find($id);
+        if (!$smandiri) {
+            abort(404);
+        }
+        $filePath = storage_path("app/public/surat-mandiri/{$smandiri->dokumen}");
+        if (!file_exists($filePath)) {
+            abort(404);
+        }
+        return response()->file($filePath);
+    }
 }

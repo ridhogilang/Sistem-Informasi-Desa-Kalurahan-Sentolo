@@ -21,5 +21,6 @@ class Buatsurat extends Model
         'foto_surat_keterangan_dokter',
         'jenis_surat',
         'status_blanko',
+        'dokumen',
     ];
 }

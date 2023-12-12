@@ -57,18 +57,18 @@
                             @csrf
                             <div class="col-md-6">
                                 <label for="nik" class="form-label">NIK</label>
-                                <input type="text" class="form-control" id="nik" name="nik" value="3401532516997842" readonly>
+                                <input type="text" class="form-control" id="nik" name="nik" value="3401197702494900" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama" value="Rizki Bagus Pangestu" readonly>
+                                <input type="text" class="form-control" id="nama" name="nama" value="RIZKI BAGUS PANGESTU" readonly>
                             </div>
                             <div class="col-md-6">
-                                <label for="foto_ktp" class="form-label">Upload File KTP</label>
+                                <label for="foto_ktp" class="form-label">Upload File Kartu Tanda Penduduk</label>
                                 <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="foto_kk" class="form-label">Upload File KK</label>
+                                <label for="foto_kk" class="form-label">Upload File Kartu Keluarga</label>
                                 <input type="file" class="form-control" id="foto_kk" name="foto_kk" required>
                             </div>
                             <input type="hidden" name="jenis_surat">
@@ -89,18 +89,18 @@
                             @csrf
                             <div class="col-md-6">
                                 <label for="nik" class="form-label">NIK</label>
-                                <input type="text" class="form-control" id="nik" name="nik" value="3401532516997842" readonly>
+                                <input type="text" class="form-control" id="nik" name="nik" value="3401197702494900" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama" value="Rizki Bagus Pangestu" readonly>
+                                <input type="text" class="form-control" id="nama" name="nama" value="RIZKI BAGUS PANGESTU" readonly>
                             </div>
                             <div class="col-md-6">
-                                <label for="foto_ktp" class="form-label">Upload File KTP</label>
+                                <label for="foto_ktp" class="form-label">Upload File Kartu Tanda Penduduk</label>
                                 <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="foto_kk" class="form-label">Upload File KK</label>
+                                <label for="foto_kk" class="form-label">Upload File Kartu Keluarga</label>
                                 <input type="file" class="form-control" id="foto_kk" name="foto_kk" required>
                             </div>
                             <div class="col-md-6">
@@ -125,18 +125,18 @@
                             @csrf
                             <div class="col-md-6">
                                 <label for="nik" class="form-label">NIK</label>
-                                <input type="text" class="form-control" id="nik" name="nik" value="3401532516997842" readonly>
+                                <input type="text" class="form-control" id="nik" name="nik" value="3401197702494900" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama" value="Rizki Bagus Pangestu" readonly>
+                                <input type="text" class="form-control" id="nama" name="nama" value="RIZKI BAGUS PANGESTU" readonly>
                             </div>
                             <div class="col-md-6">
-                                <label for="foto_ktp" class="form-label">Upload File KTP</label>
+                                <label for="foto_ktp" class="form-label">Upload File Kartu Tanda Penduduk</label>
                                 <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="foto_kk" class="form-label">Upload File KK</label>
+                                <label for="foto_kk" class="form-label">Upload File Kartu Keluarga</label>
                                 <input type="file" class="form-control" id="foto_kk" name="foto_kk" required>
                             </div>
                             <div class="col-md-6">
@@ -197,7 +197,7 @@
                                         </td>
                                         <td>
                                             @if ($value->status_blanko == 'Sukses')
-                                                <a class="btn btn-success" type="submit" target="blank" href="#"><i class="fa-solid fa-print"></i></a>
+                                                <a class="btn btn-success" type="submit" target="blank" href="/buat-surat/{{$value->id}}/document"><i class="fa-solid fa-print"></i></a>
                                             @endif
                                         </td>
                                     </tr>
