@@ -69,27 +69,23 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="row mb-3">
-                                                                <label class="col-form-label">Foto KTP</label>
-                                                                <img src="{{ asset('storage/syarat-mandiri/foto-ktp/' . $value->foto_ktp) }}" alt="Foto Kartu Tanda Penduduk" class="img-fluid">
+                                                                <h3>Foto Kartu Tanda Penduduk</h3>
+                                                                <img src="{{ asset('storage/syarat-mandiri/foto-ktp/' . $value->foto_ktp) }}" style="width: 50%" alt="Foto Kartu Tanda Penduduk" class="img-fluid">
                                                             </div>
                                                             <div class="row mb-3">
-                                                                <label class="col-form-label">Foto KK</label>
+                                                                <h3>Foto Kartu Keluarga</h3>
                                                                 <img src="{{ asset('storage/syarat-mandiri/foto-kk/' . $value->foto_kk) }}" alt="Foto Kartu Keluarga" class="img-fluid">
-                                                            </div>
-                                                            <div class="row mb-3">
-                                                                <label class="col-form-label">Foto Surat Pengantar Dukuh</label>
-                                                                <img src="{{ asset('storage/syarat-mandiri/foto-surat-peng-dukuh/' . $value->foto_surat_pengantar_dukuh) }}" alt="Foto Surat Pengantar Dukuh" class="img-fluid">
                                                             </div>
                                                             @if ($value->foto_akta_lahir)
                                                                 <div class="row mb-3">
-                                                                    <label class="col-form-label">Foto Akta Lahir</label>
-                                                                    <img src="{{ asset('storage/syarat-mandiri/foto-akta-lahir/' . $value->foto_akta_lahir) }}" alt="Foto Akta Lahir" class="img-fluid">
+                                                                    <h3>Foto Akta Lahir</h3>
+                                                                    <img src="{{ asset('storage/syarat-mandiri/foto-akta-lahir/' . $value->foto_akta_lahir) }}" alt="Foto Akta Lahir" style="width: 70%" class="img-fluid">
                                                                 </div>
                                                             @endif
                                                             @if ($value->foto_surat_keterangan_dokter)
                                                                 <div class="row mb-3">
-                                                                    <label class="col-form-label">Foto Surat Keterangan Dokter</label>
-                                                                    <img src="{{ asset('storage/syarat-mandiri/foto-surat-ket-dokter/' . $value->foto_surat_keterangan_dokter) }}" alt="Foto Surat Keterangan Dokter" class="img-fluid">
+                                                                    <h3>Foto Surat Keterangan Dokter</h3>
+                                                                    <img src="{{ asset('storage/syarat-mandiri/foto-surat-ket-dokter/' . $value->foto_surat_keterangan_dokter) }}" style="width: 50%" alt="Foto Surat Keterangan Dokter" class="img-fluid">
                                                                 </div>
                                                             @endif
                                                         </div>

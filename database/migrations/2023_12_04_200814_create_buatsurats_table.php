@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('tanggal_blanko');
             $table->string('foto_ktp');
             $table->string('foto_kk');
-            $table->string('foto_surat_pengantar_dukuh');
             $table->string('foto_akta_lahir')->nullable();
             $table->string('foto_surat_keterangan_dokter')->nullable();
             $table->string('jenis_surat');

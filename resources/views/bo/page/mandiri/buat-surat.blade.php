@@ -71,10 +71,6 @@
                                 <label for="foto_kk" class="form-label">Upload File KK</label>
                                 <input type="file" class="form-control" id="foto_kk" name="foto_kk" required>
                             </div>
-                            <div class="col-md-6">
-                                <label for="foto_surat_pengantar_dukuh" class="form-label">Upload File Surat Pengantar Dukuh</label>
-                                <input type="file" class="form-control" id="foto_surat_pengantar_dukuh" name="foto_surat_pengantar_dukuh" required>
-                            </div>
                             <input type="hidden" name="jenis_surat">
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Kirim</button>
@@ -111,10 +107,6 @@
                                 <label for="foto_akta_lahir" class="form-label">Upload File Akta Lahir</label>
                                 <input type="file" class="form-control" id="foto_akta_lahir" name="foto_akta_lahir" required>
                             </div>
-                            <div class="col-md-6">
-                                <label for="foto_surat_pengantar_dukuh" class="form-label">Upload File Surat Pengantar Dukuh</label>
-                                <input type="file" class="form-control" id="foto_surat_pengantar_dukuh" name="foto_surat_pengantar_dukuh" required>
-                            </div>
                             <input type="hidden" name="jenis_surat">
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Kirim</button>
@@ -150,10 +142,6 @@
                             <div class="col-md-6">
                                 <label for="foto_akta_lahir" class="form-label">Upload File Akta Lahir</label>
                                 <input type="file" class="form-control" id="foto_akta_lahir" name="foto_akta_lahir" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="foto_surat_pengantar_dukuh" class="form-label">Upload File Surat Pengantar Dukuh</label>
-                                <input type="file" class="form-control" id="foto_surat_pengantar_dukuh" name="foto_surat_pengantar_dukuh" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_surat_keterangan_dokter" class="form-label">Upload File Surat Keterangan Dokter</label>

@@ -29,10 +29,6 @@ class BuatsuratController extends Controller
                 'required',
                 'mimes:jpg,jpeg,png',
             ],
-            'foto_surat_pengantar_dukuh' => [
-                'required',
-                'mimes:jpg,jpeg,png',
-            ],
             'foto_akta_lahir' => [
                 'nullable',
                 'mimes:jpg,jpeg,png',
@@ -56,11 +52,6 @@ class BuatsuratController extends Controller
         $foto_kk = 'FOTO-KK-' . $request->nik . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
         $file->storeAs('public/syarat-mandiri/foto-kk', $foto_kk);
         $record['foto_kk'] = $foto_kk;
-
-        $file = $request->file('foto_surat_pengantar_dukuh');
-        $foto_surat_pengantar_dukuh = 'FOTO-SPD-' . $request->nik . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('public/syarat-mandiri/foto-surat-peng-dukuh', $foto_surat_pengantar_dukuh);
-        $record['foto_surat_pengantar_dukuh'] = $foto_surat_pengantar_dukuh;
 
         if ($request->hasFile('foto_akta_lahir')) {
             $file = $request->file('foto_akta_lahir');

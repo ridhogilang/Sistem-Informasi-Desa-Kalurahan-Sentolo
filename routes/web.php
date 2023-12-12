@@ -64,6 +64,7 @@ use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\ScstmController;
 use App\Http\Controllers\MandiriController;
 use App\Http\Controllers\BuatsuratController;
+use App\Http\Controllers\SignatureController;
 use App\Models\AgendaBalai;
 
 /*
@@ -494,6 +495,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('/buat-surat', [BuatsuratController::class, 'store']);
     Route::get('/buat-pesan', [MandiriController::class, 'pesan']);
     Route::get('/bantuan', [MandiriController::class, 'bantuan']);
+    Route::get('/signature', [SignatureController::class, 'index']);
+    Route::post('/signature', [SignatureController::class, 'store']);
 });
 
 
