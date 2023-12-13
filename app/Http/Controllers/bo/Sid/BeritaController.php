@@ -224,7 +224,7 @@ class BeritaController extends Controller
         }
 
         // Simpan data artikel ke basis data dengan slug yang unik
-        $validatedData['slug'] = $slug; // Menambahkan slug ke dalam data yang divalidasi
+        $validatedData['slug'] = $slug;
 
         // dd($validatedData);
         Berita::create($validatedData);
