@@ -65,11 +65,11 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_ktp" class="form-label">Upload File Kartu Tanda Penduduk</label>
-                                <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" required>
+                                <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_kk" class="form-label">Upload File Kartu Keluarga</label>
-                                <input type="file" class="form-control" id="foto_kk" name="foto_kk" required>
+                                <input type="file" class="form-control" id="foto_kk" name="foto_kk" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <input type="hidden" name="jenis_surat">
                             <div class="text-center">
@@ -97,15 +97,15 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_ktp" class="form-label">Upload File Kartu Tanda Penduduk</label>
-                                <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" required>
+                                <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_kk" class="form-label">Upload File Kartu Keluarga</label>
-                                <input type="file" class="form-control" id="foto_kk" name="foto_kk" required>
+                                <input type="file" class="form-control" id="foto_kk" name="foto_kk" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_akta_lahir" class="form-label">Upload File Akta Lahir</label>
-                                <input type="file" class="form-control" id="foto_akta_lahir" name="foto_akta_lahir" required>
+                                <input type="file" class="form-control" id="foto_akta_lahir" name="foto_akta_lahir" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <input type="hidden" name="jenis_surat">
                             <div class="text-center">
@@ -133,19 +133,19 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_ktp" class="form-label">Upload File Kartu Tanda Penduduk</label>
-                                <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" required>
+                                <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_kk" class="form-label">Upload File Kartu Keluarga</label>
-                                <input type="file" class="form-control" id="foto_kk" name="foto_kk" required>
+                                <input type="file" class="form-control" id="foto_kk" name="foto_kk" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_akta_lahir" class="form-label">Upload File Akta Lahir</label>
-                                <input type="file" class="form-control" id="foto_akta_lahir" name="foto_akta_lahir" required>
+                                <input type="file" class="form-control" id="foto_akta_lahir" name="foto_akta_lahir" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_surat_keterangan_dokter" class="form-label">Upload File Surat Keterangan Dokter</label>
-                                <input type="file" class="form-control" id="foto_surat_keterangan_dokter" name="foto_surat_keterangan_dokter" required>
+                                <input type="file" class="form-control" id="foto_surat_keterangan_dokter" name="foto_surat_keterangan_dokter" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <input type="hidden" name="jenis_surat">
                             <div class="text-center">
