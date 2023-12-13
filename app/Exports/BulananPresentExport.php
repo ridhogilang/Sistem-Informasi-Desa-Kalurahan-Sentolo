@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Present;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\Fromview;
 use Carbon\Carbon;
@@ -10,53 +11,26 @@ use Carbon\Carbon;
 
 class BulananPresentExport implements Fromview
 {
-    protected $bulan;
+    protected $absensi;
 
-    public function __construct($bulan)
+    public function __construct($absensi)
     {
-        $this->bulan = $bulan;
+        $this->absensi = $absensi;
     }
 
     public function view(): View
     {
-        $bulan = Carbon::parse($this->bulan)->format('m');
-        $tahun = Carbon::parse($this->bulan)->format('Y');
+        $userIds = $this->absensi->pluck('user_id')->unique();
 
-        $dataAbsensi = Present::with('user')
-            ->whereMonth('tanggal', $bulan)
-            ->whereYear('tanggal', $tahun)
-            ->get();
+        // Ambil data user berdasarkan user_ids dari data absensi
+        $users = User::whereIn('id', $userIds)->get();
+        // dd($users);
 
-        $exportData = [];
-        $header = ['Nama'];
-        $tanggalAwal = Carbon::createFromDate(null, $bulan, 1)->format('Y-m-d');
-        $tanggalAkhir = Carbon::createFromDate(null, $bulan, 1)->endOfMonth()->format('Y-m-d');
-
-        for ($tanggal = $tanggalAwal; $tanggal <= $tanggalAkhir; $tanggal = date('Y-m-d', strtotime($tanggal . ' + 1 day'))) {
-            $header[] = $tanggal . ' Jam Masuk';
-            $header[] = $tanggal . ' Jam Keluar';
-        }
-
-        $exportData[] = $header;
-
-        foreach ($dataAbsensi as $absensi) {
-            $rowData = [$absensi->user->name];
-            $tanggalAwal = Carbon::createFromDate(null, $bulan, 1)->format('Y-m-d');
-            $tanggalAkhir = Carbon::createFromDate(null, $bulan, 1)->endOfMonth()->format('Y-m-d');
-
-            for ($tanggal = $tanggalAwal; $tanggal <= $tanggalAkhir; $tanggal = date('Y-m-d', strtotime($tanggal . ' + 1 day'))) {
-                $jamMasuk = $absensi->where('tanggal', $tanggal)->pluck('jam_masuk')->first();
-                $jamKeluar = $absensi->where('tanggal', $tanggal)->pluck('jam_keluar')->first();
-
-                $rowData[] = $jamMasuk;
-                $rowData[] = $jamKeluar;
-            }
-
-            $exportData[] = $rowData;
-        }
+        $dates = $this->absensi->pluck('tanggal')->unique();
 
         return view('bo.page.absen.excel_bulanan', [
-            'data' => $exportData,
+            'users' => $users,
+            'dates' => $dates,
         ]);
     }
 }

@@ -13,6 +13,11 @@ use Carbon\Carbon;
 
 class PresensiController extends Controller
 {
+    public function __construct()
+    {
+        Carbon::setLocale('id');
+    }
+    
     public function index()
     {
         $presents = Present::whereUserId(auth()->user()->id)->whereYear('tanggal', date('Y'))->whereMonth('tanggal', date('m'))->whereDate('tanggal', '<=', now())->orderBy('tanggal', 'desc')->get();
@@ -212,8 +217,18 @@ class PresensiController extends Controller
     public function excelBulanan(Request $request)
     {
         $bulan = $request->input('bulan', date('Y-m'));
-        
-        return Excel::download(new BulananPresentExport($bulan), 'bulanan_present.xlsx');
+
+        list($tahun, $bulan) = explode('-', $bulan);
+
+        $startDate = Carbon::create($tahun, $bulan, 1)->startOfMonth();
+        $endDate = $startDate->copy()->endOfMonth();
+
+        $absensi = Present::with('user')
+            ->whereBetween('tanggal', [$startDate, $endDate])
+            ->get();
+
+
+        return Excel::download(new BulananPresentExport($absensi), 'rekap_absen_' . $startDate->format('Y-m') . '.xlsx');
     }
 
     public function perizinan(Request $request)
