@@ -64,6 +64,7 @@ use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\ScstmController;
 use App\Http\Controllers\MandiriController;
 use App\Http\Controllers\BuatsuratController;
+use App\Http\Controllers\SignatureController;
 use App\Models\AgendaBalai;
 
 /*
@@ -191,7 +192,8 @@ Route::prefix('admin')->group(function () {
             Route::resource('/validasi', ValidasiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
             // validasi mandiri
             Route::get('/validasi-mandiri', [ValidasimandiriController::class, 'index']);
-            Route::put('/validasi-mandiri/{id}', [ValidasimandiriController::class, 'updateStatus']);
+            Route::put('/validasi-mandiri/{id}/status', [ValidasimandiriController::class, 'updateStatus']);
+            Route::put('/validasi-mandiri/{id}/file', [ValidasimandiriController::class, 'updateFile']);
 
             //disposisi surat masuk
             Route::resource('/disposisi', DisposisiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
@@ -496,8 +498,11 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::get('/buat-surat', [BuatsuratController::class, 'index']);
     Route::post('/buat-surat', [BuatsuratController::class, 'store']);
+    Route::get('/buat-surat/{id}/document', [BuatsuratController::class, 'show']);
     Route::get('/buat-pesan', [MandiriController::class, 'pesan']);
     Route::get('/bantuan', [MandiriController::class, 'bantuan']);
+    Route::get('/signature', [SignatureController::class, 'index']);
+    Route::post('/signature', [SignatureController::class, 'store']);
 });
 
 

@@ -223,7 +223,7 @@ class SMasukController extends Controller
         // Simpan file di storage lokal
         $file = $request->file('dokumen');
         $fileName = 'SM-' . $request->judul_surat . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('public/surat_masuk', $fileName);
+        $file->storeAs('public/surat-masuk', $fileName);
         $record['dokumen'] = $fileName;
 
         $record['jenis_surat'] = 'Surat Masuk';
@@ -273,7 +273,7 @@ class SMasukController extends Controller
         if (!$smasuk) {
             abort(404);
         }
-        $filePath = storage_path("app/public/surat_masuk/{$smasuk->dokumen}");
+        $filePath = storage_path("app/public/surat-masuk/{$smasuk->dokumen}");
         if (!file_exists($filePath)) {
             abort(404);
         }
@@ -311,7 +311,7 @@ class SMasukController extends Controller
                 'title' => 'Surat Masuk',
                 'dropdown1' => 'Surat Masuk',
                 'dropdown2' => '',
-                'suratM' => $smasuk, 
+                'suratM' => $smasuk,
                 'badge_disposisi_status' => $badge_disposisi_status,
                 'pejabat' => $pejabat,
             ]);
@@ -352,10 +352,10 @@ class SMasukController extends Controller
         // }
 
         if ($request->hasFile('dokumen')) {
-            Storage::delete('public/surat_masuk/' . $smasuk->dokumen);
+            Storage::delete('public/surat-masuk/' . $smasuk->dokumen);
             $file = $request->file('dokumen');
             $fileName = 'SM-' . $request->judul_surat . '-' . date('YmdHis') . '-' . rand(100, 999) . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/surat_masuk', $fileName);
+            $file->storeAs('public/surat-masuk', $fileName);
             $record['dokumen'] = $fileName;
         }
 

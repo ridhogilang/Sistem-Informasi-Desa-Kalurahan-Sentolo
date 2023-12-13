@@ -56,11 +56,11 @@ class SktbekerjaController extends Controller
         $TemplateNoSurat = "000/KET/TB/{$bulanRomawi}/" . date('Y');
         //badge
         $badge_status = [
-            '0' => '<span class="badge bg-info"> blanko </span>', 
-            '1' => '<span class="badge bg-secondary"> menunggu verifikasi </span>', 
-            '2' => '<span class="badge bg-success"> terverifikasi </span>', 
-            '3' => '<span class="badge bg-danger"> verifikasi ditolak </span>', 
-            '4' => '<span class="badge bg-primary"> arsip </span>', 
+            '0' => '<span class="badge bg-info"> blanko </span>',
+            '1' => '<span class="badge bg-secondary"> menunggu verifikasi </span>',
+            '2' => '<span class="badge bg-success"> terverifikasi </span>',
+            '3' => '<span class="badge bg-danger"> verifikasi ditolak </span>',
+            '4' => '<span class="badge bg-primary"> arsip </span>',
         ];
 
         return view('bo.page.surat.keluar.surat-ktbekerja', [
@@ -87,7 +87,6 @@ class SktbekerjaController extends Controller
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
             'agama' => 'required',
-            'warga_negara' => 'required',
             'alamat' => 'required',
             'tanda_tangan' => 'required',
             'mengetahui' => 'required'
@@ -101,7 +100,7 @@ class SktbekerjaController extends Controller
         //proses tanda tangan
         foreach ($record['tanda_tangan'] as $ttd) {
             list($id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
-    
+
             $tandatanganData[] = [
                 'id' => 'TTD-' . date('YmdHis') . '-' . rand(100, 999),
                 'id_user' => $id_user,
@@ -112,7 +111,7 @@ class SktbekerjaController extends Controller
                 'jenis_surat' => $record['jenis_surat'],
             ];
         }
-        
+
         TandaTanganSurat::insert($tandatanganData);
         unset($record['tanda_tangan']);
 
@@ -120,7 +119,7 @@ class SktbekerjaController extends Controller
         foreach ($record['mengetahui'] as $ttd) {
             if($ttd != null){
                 list($id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
-        
+
                 $mengetahuiData[] = [
                     'id' => 'MGTH-' . date('YmdHis') . '-' . rand(100, 999),
                     'id_user' => $id_user,
@@ -134,7 +133,7 @@ class SktbekerjaController extends Controller
                 ];
             }
         }
-        
+
         MengetahuiVerifikasiSurat::insert($mengetahuiData);
         unset($record['mengetahui']);
 
@@ -192,7 +191,6 @@ class SktbekerjaController extends Controller
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
             'agama' => 'required',
-            'warga_negara' => 'required',
             'alamat' => 'required',
             'tanda_tangan' => 'required',
             'mengetahui' => 'required'
@@ -207,7 +205,7 @@ class SktbekerjaController extends Controller
         //proses tanda tangan
         foreach ($record['tanda_tangan'] as $ttd) {
             list($id_record, $id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
-    
+
             $tandatanganData = [
                 'id_user' => $id_user,
                 'nama_user' => $nama_user,
@@ -231,7 +229,7 @@ class SktbekerjaController extends Controller
         foreach ($record['mengetahui'] as $ttd) {
             if($ttd != null){
                 list($id_record, $id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
-        
+
                 $mengetahuiData = [
                     'id_user' => $id_user,
                     'id_surat' => $id,
@@ -270,7 +268,7 @@ class SktbekerjaController extends Controller
 
         //     return redirect()->back()->with('toast_success', 'Data Dihapus!');
         // }
-        if($status == '2' || $status == '3'){ 
+        if($status == '2' || $status == '3'){
             MengetahuiVerifikasiSurat::where('id_surat', $id)->update(['is_arsip' => '1']);
             ArsipSurat::create([
                 'id' => 'ARSIP-' . date('YmdHis') . '-' . rand(100, 999),
@@ -286,6 +284,6 @@ class SktbekerjaController extends Controller
 
             return redirect()->back()->with('toast_success', 'Data Telah Diarsipkan!');
         }
-        return redirect()->back()->with('toast_warning', 'Data menunggu verifikasi'); 
+        return redirect()->back()->with('toast_warning', 'Data menunggu verifikasi');
     }
 }

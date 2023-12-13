@@ -173,11 +173,6 @@
                 <td>Islam</td>
             </tr>
             <tr>
-                <td class="template">Kewarganegaraan</td>
-                <td>:</td>
-                <td>Indonesia</td>
-            </tr>
-            <tr>
                 <td class="template">Status Perkawinan</td>
                 <td>:</td>
                 <td>Kawin</td>

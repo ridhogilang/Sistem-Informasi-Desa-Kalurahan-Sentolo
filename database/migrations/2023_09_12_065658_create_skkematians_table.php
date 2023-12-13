@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('umur');
             $table->string('pekerjaan');
             $table->string('agama');
-            $table->string('kewarganegaraan');
             $table->string('status_perkawinan');
             $table->string('tanggal_meninggal');
             $table->string('waktu');

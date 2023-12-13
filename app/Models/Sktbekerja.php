@@ -19,7 +19,6 @@ class Sktbekerja extends Model
         'tanggal_lahir',
         'jenis_kelamin',
         'agama',
-        'warga_negara',
         'alamat',
         'jenis_surat',
         'status_surat',
@@ -30,7 +29,7 @@ class Sktbekerja extends Model
     {
         return $this->hasMany(TandaTanganSurat::class, 'id_surat', 'id');
     }
-    
+
     public function MengetahuiVerifikasiSurat()
     {
         return $this->hasMany(MengetahuiVerifikasiSurat::class, 'id_surat', 'id');

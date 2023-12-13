@@ -17,10 +17,10 @@ class Buatsurat extends Model
         'tanggal_blanko',
         'foto_ktp',
         'foto_kk',
-        'foto_surat_pengantar_dukuh',
         'foto_akta_lahir',
         'foto_surat_keterangan_dokter',
         'jenis_surat',
         'status_blanko',
+        'dokumen',
     ];
 }

@@ -19,7 +19,7 @@ use App\Models\ArsipSurat;
 
 class SpkController extends Controller
 {
-    public function __construct() 
+    public function __construct()
    {
         Carbon::setLocale('id');
    }
@@ -61,11 +61,11 @@ class SpkController extends Controller
         $TemplateNoSurat = "000/KET/SPK/{$bulanRomawi}/" . date('Y');
         //badge
         $badge_status = [
-            '0' => '<span class="badge bg-info"> blanko </span>', 
-            '1' => '<span class="badge bg-secondary"> menunggu verifikasi </span>', 
-            '2' => '<span class="badge bg-success"> terverifikasi </span>', 
-            '3' => '<span class="badge bg-danger"> verifikasi ditolak </span>', 
-            '4' => '<span class="badge bg-primary"> arsip </span>', 
+            '0' => '<span class="badge bg-info"> blanko </span>',
+            '1' => '<span class="badge bg-secondary"> menunggu verifikasi </span>',
+            '2' => '<span class="badge bg-success"> terverifikasi </span>',
+            '3' => '<span class="badge bg-danger"> verifikasi ditolak </span>',
+            '4' => '<span class="badge bg-primary"> arsip </span>',
         ];
 
         return view('bo.page.surat.keluar.surat-pk', [
@@ -101,7 +101,6 @@ class SpkController extends Controller
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
-            'kewarganegaraan' => 'required',
             'agama' => 'required',
             'status_perkawinan' => 'required',
             'alamat' => 'required',
@@ -116,11 +115,11 @@ class SpkController extends Controller
         $record['jenis_surat'] = 'Surat Pengantar Kependudukan';
         $record['status_surat'] = '1';
         $record['id'] = 'SPK-'. date('YmdHis') . '-' . rand(100, 999);
-        
+
         //proses tanda tangan
         foreach ($record['tanda_tangan'] as $ttd) {
             list($id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
-    
+
             $tandatanganData[] = [
                 'id' => 'TTD-' . date('YmdHis') . '-' . rand(100, 999),
                 'id_user' => $id_user,
@@ -131,7 +130,7 @@ class SpkController extends Controller
                 'jenis_surat' => $record['jenis_surat'],
             ];
         }
-        
+
         TandaTanganSurat::insert($tandatanganData);
         unset($record['tanda_tangan']);
 
@@ -139,7 +138,7 @@ class SpkController extends Controller
         foreach ($record['mengetahui'] as $ttd) {
             if($ttd != null){
                 list($id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
-        
+
                 $mengetahuiData[] = [
                     'id' => 'MGTH-' . date('YmdHis') . '-' . rand(100, 999),
                     'id_user' => $id_user,
@@ -153,7 +152,7 @@ class SpkController extends Controller
                 ];
             }
         }
-        
+
         MengetahuiVerifikasiSurat::insert($mengetahuiData);
         unset($record['mengetahui']);
 
@@ -203,7 +202,6 @@ class SpkController extends Controller
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
-            'kewarganegaraan' => 'required',
             'agama' => 'required',
             'status_perkawinan' => 'required',
             'alamat' => 'required',
@@ -221,7 +219,7 @@ class SpkController extends Controller
         //proses tanda tangan
         foreach ($record['tanda_tangan'] as $ttd) {
             list($id_record, $id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
-    
+
             $tandatanganData = [
                 'id_user' => $id_user,
                 'nama_user' => $nama_user,
@@ -245,7 +243,7 @@ class SpkController extends Controller
         foreach ($record['mengetahui'] as $ttd) {
             if($ttd != null){
                 list($id_record, $id_user, $nama_user, $jabatan_user) = explode("/", $ttd);
-        
+
                 $mengetahuiData = [
                     'id_user' => $id_user,
                     'id_surat' => $id,
@@ -284,7 +282,7 @@ class SpkController extends Controller
 
         //     return redirect()->back()->with('toast_success', 'Data Dihapus!');
         // }
-        if($status == '2' || $status == '3'){ 
+        if($status == '2' || $status == '3'){
             MengetahuiVerifikasiSurat::where('id_surat', $id)->update(['is_arsip' => '1']);
             ArsipSurat::create([
                 'id' => 'ARSIP-' . date('YmdHis') . '-' . rand(100, 999),
@@ -300,6 +298,6 @@ class SpkController extends Controller
 
             return redirect()->back()->with('toast_success', 'Data Telah Diarsipkan!');
         }
-        return redirect()->back()->with('toast_warning', 'Data menunggu verifikasi'); 
+        return redirect()->back()->with('toast_warning', 'Data menunggu verifikasi');
     }
 }
