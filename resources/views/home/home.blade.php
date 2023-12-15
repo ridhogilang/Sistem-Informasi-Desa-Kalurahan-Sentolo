@@ -1189,8 +1189,7 @@
                                         @endif
                                     </ul>
                                 </div>
-                                <button class="btn btn-success btn-block" type="button"><a href="/booking_gor"
-                                        style="color:#fff;" target="_blank">Booking GOR</a></button>
+                               <a href="/booking_gor" class="btn btn-success btn-block text-center" style="color:#fff;" target="_blank">Booking GOR</a>
                             </div>
                         </div>
                     </div>
@@ -1361,8 +1360,8 @@
                                         @endif
                                     </ul>
                                 </div>
-                                <button class="btn btn-success btn-block" type="button"><a href="/booking-balai"
-                                        style="color:#fff;" target="_blank">Booking Balai</a></button>
+                                <a href="/booking-balai" class="btn btn-success btn-block text-center" type="button"
+                                        style="color:#fff;" target="_blank">Booking Balai</a>
                             </div>
                         </div>
                     </div>

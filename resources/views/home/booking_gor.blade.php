@@ -133,10 +133,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <div class="btn btn-secondary w-100"><a
-                                                            href="/"
-                                                            style="color: white;">Kembali</a>
-                                                    </div>
+                                                        <a class="btn btn-secondary w-100" href="/" style="color: white;">Kembali</a>
                                                 </div>
 
                                                 <div class="col-6">
