@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\UsersPresentExport;
+use App\Exports\BulananPresentExport;
 use App\Models\PerizinanAbsen;
 use App\Models\Present;
 use App\Models\User;
@@ -12,9 +13,14 @@ use Carbon\Carbon;
 
 class PresensiController extends Controller
 {
+    public function __construct()
+    {
+        Carbon::setLocale('id');
+    }
+    
     public function index()
     {
-        $presents = Present::whereUserId(auth()->user()->id)->whereMonth('tanggal', date('m'))->whereYear('tanggal', date('Y'))->orderBy('tanggal', 'desc')->get();
+        $presents = Present::whereUserId(auth()->user()->id)->whereYear('tanggal', date('Y'))->whereMonth('tanggal', date('m'))->whereDate('tanggal', '<=', now())->orderBy('tanggal', 'desc')->get();
         $masuk = Present::whereUserId(auth()->user()->id)->whereMonth('tanggal', date('m'))->whereYear('tanggal', date('Y'))->whereKeterangan('masuk')->count();
         $telat = Present::whereUserId(auth()->user()->id)->whereMonth('tanggal', date('m'))->whereYear('tanggal', date('Y'))->whereKeterangan('telat')->count();
         $cuti = Present::whereUserId(auth()->user()->id)->whereMonth('tanggal', date('m'))->whereYear('tanggal', date('Y'))->whereKeterangan('cuti')->count();
@@ -37,7 +43,7 @@ class PresensiController extends Controller
             'bulan' => ['required']
         ]);
         $data = explode('-', $request->bulan);
-        $presents = Present::whereUserId(auth()->user()->id)->whereMonth('tanggal', $data[1])->whereYear('tanggal', $data[0])->orderBy('tanggal', 'desc')->get();
+        $presents = Present::whereUserId(auth()->user()->id)->whereMonth('tanggal', $data[1])->whereYear('tanggal', $data[0])->whereDate('tanggal', '<=', now())->orderBy('tanggal', 'desc')->get();
         $masuk = Present::whereUserId(auth()->user()->id)->whereMonth('tanggal', $data[1])->whereYear('tanggal', $data[0])->whereKeterangan('masuk')->count();
         $telat = Present::whereUserId(auth()->user()->id)->whereMonth('tanggal', $data[1])->whereYear('tanggal', $data[0])->whereKeterangan('telat')->count();
         $cuti = Present::whereUserId(auth()->user()->id)->whereMonth('tanggal', $data[1])->whereYear('tanggal', $data[0])->whereKeterangan('cuti')->count();
@@ -131,11 +137,32 @@ class PresensiController extends Controller
         ]);
     }
 
+    public function rekap_bulanan()
+    {
+        $presents = Present::whereYear('tanggal', date('Y'))->whereMonth('tanggal', date('m'))->orderBy('tanggal', 'desc')->get();
+        $masuk = Present::whereTanggal(date('m'))->whereKeterangan('masuk')->count();
+        $telat = Present::whereTanggal(date('m'))->whereKeterangan('telat')->count();
+        $cuti = Present::whereTanggal(date('m'))->whereKeterangan('cuti')->count();
+        $alpha = Present::whereTanggal(date('m'))->whereKeterangan('alpha')->count();
+        $rank = $presents->first();
+        return view('bo.page.absen.datapresensi_bulanan', [
+            "title" => "Rekap Bulanan",
+            "dropdown1" => "Rekapitulasi",
+            "presents" => $presents,
+            "masuk" => $masuk,
+            "telat" => $telat,
+            "cuti" => $cuti,
+            "alpha" => $alpha,
+            "rank" => $rank,
+        ]);
+    }
+
     public function harian_search(Request $request)
     {
         $request->validate([
             'tanggal' => ['required']
         ]);
+
         $presents = Present::whereTanggal($request->tanggal)->orderBy('jam_masuk', 'desc')->get();
         $masuk = Present::whereTanggal($request->tanggal)->whereKeterangan('masuk')->count();
         $telat = Present::whereTanggal($request->tanggal)->whereKeterangan('telat')->count();
@@ -143,6 +170,30 @@ class PresensiController extends Controller
         $alpha = Present::whereTanggal($request->tanggal)->whereKeterangan('alpha')->count();
         $rank = $presents->first();
         return view('bo.page.absen.datapresensi_harian', [
+            "title" => "Rekap Harian",
+            "dropdown1" => "Rekapitulasi",
+            "presents" => $presents,
+            "masuk" => $masuk,
+            "telat" => $telat,
+            "cuti" => $cuti,
+            "alpha" => $alpha,
+            "rank" => $rank,
+        ]);
+    }
+    
+    public function bulanan_search(Request $request)
+    {
+        $request->validate([
+            'bulan' => ['required']
+        ]);
+        $data = explode('-', $request->bulan);
+        $presents = Present::whereMonth('tanggal', $data[1])->whereYear('tanggal', $data[0])->orderBy('tanggal', 'desc')->get();
+        $masuk = Present::whereTanggal($request->bulan)->whereKeterangan('masuk')->count();
+        $telat = Present::whereTanggal($request->bulan)->whereKeterangan('telat')->count();
+        $cuti = Present::whereTanggal($request->bulan)->whereKeterangan('cuti')->count();
+        $alpha = Present::whereTanggal($request->bulan)->whereKeterangan('alpha')->count();
+        $rank = $presents->first();
+        return view('bo.page.absen.datapresensi_bulanan', [
             "title" => "Rekap Harian",
             "dropdown1" => "Rekapitulasi",
             "presents" => $presents,
@@ -161,6 +212,23 @@ class PresensiController extends Controller
 
         // Memanggil UsersPresentExport dengan dua parameter
         return Excel::download(new UsersPresentExport($tanggal), 'kehadiran-' . $tanggal . '.xlsx');
+    }
+
+    public function excelBulanan(Request $request)
+    {
+        $bulan = $request->input('bulan', date('Y-m'));
+
+        list($tahun, $bulan) = explode('-', $bulan);
+
+        $startDate = Carbon::create($tahun, $bulan, 1)->startOfMonth();
+        $endDate = $startDate->copy()->endOfMonth();
+
+        $absensi = Present::with('user')
+            ->whereBetween('tanggal', [$startDate, $endDate])
+            ->get();
+
+
+        return Excel::download(new BulananPresentExport($absensi), 'rekap_absen_' . $startDate->format('Y-m') . '.xlsx');
     }
 
     public function perizinan(Request $request)

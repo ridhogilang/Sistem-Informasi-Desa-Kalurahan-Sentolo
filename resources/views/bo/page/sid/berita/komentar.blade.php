@@ -219,7 +219,7 @@
 
                     const id = this.getAttribute("data-id");
 
-                    fetch(`/approvecomment/${id}`, {
+                    fetch(`/admin/sistem-informasi/approvecomment/${id}`, {
                             method: "PUT",
                             headers: {
                                 "X-CSRF-TOKEN": "{{ csrf_token() }}",
