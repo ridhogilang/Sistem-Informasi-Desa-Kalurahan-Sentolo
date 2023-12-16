@@ -284,10 +284,20 @@
         <section class="flex flex-col lg:flex-row lg:space-x-5 lg:space-y-0 space-y-3 shalat">
             <div
                 class="lg:w-1/3 bg-secondary bg-opacity-90 py-5 px-4 text-white flex flex-col bg-flower bg-right-top bg-5 bg-no-repeat justify-center">
-                <span class="font-bold font-heading"><i class="fa-regular fa-clock mr-1"></i> Jadwal Sholat di <span
-                        class="city-name capitalize">{{ $waktu['data']['lokasi'] }}</span></span>
-                <span class="text-sm italic"><i class="fa-regular fa-calendar-days mr-1"></i> <span
-                        class="date-now">{{ $waktu['data']['jadwal']['tanggal'] }}</span></span>
+                <span class="font-bold font-heading"><i class="fa-regular fa-clock mr-1"></i> Jadwal Sholat di
+                    @if (isset($waktu['data']['lokasi']))
+                        <span class="city-name capitalize">{{ $waktu['data']['lokasi'] }}</span>
+                    @else
+                        <span class="city-name capitalize">Default Lokasi</span>
+                    @endif
+                </span>
+                <span class="text-sm italic"><i class="fa-regular fa-calendar-days mr-1"></i>
+                    @if (isset($waktu['data']['jadwal']['tanggal']))
+                        <span class="date-now">{{ $waktu['data']['jadwal']['tanggal'] }}</span>
+                    @else
+                        <span class="date-now">Data Loading</span>
+                    @endif
+                </span>
             </div>
 
             <div class="lg:w-2/3 grid grid-cols-3 lg:grid-cols-6 gap-3">
@@ -307,7 +317,12 @@
                                 fill="#d1ac11"></path>
                         </svg>
                         imsak </span>
-                    <span class="text-2xl font-bold shalat-time lg:ml-1" data-name="imsak">04:23</span>
+                    @if (isset($waktu['data']['jadwal']['imsak']))
+                        <span class="text-2xl font-bold shalat-time lg:ml-1"
+                            data-name="imsak">{{ $waktu['data']['jadwal']['imsak'] }}</span>
+                    @else
+                        <span class="text-2xl font-bold shalat-time lg:ml-1" data-name="imsak">Data Loading</span>
+                    @endif
                 </div>
                 <div
                     class="bg-white dark:bg-dark-secondary py-5 px-4 shadow rounded-lg flex flex-col bg-flower bg-right-top bg-5 bg-no-repeat space-y-1">
@@ -325,8 +340,11 @@
                                 fill="#d1ac11"></path>
                         </svg>
                         subuh </span>
-                    <span class="text-2xl font-bold shalat-time lg:ml-1"
-                        data-name="subuh">{{ $waktu['data']['jadwal']['subuh'] }}</span>
+                        @if (isset($waktu['data']['jadwal']['subuh']))
+                        <span class="text-2xl font-bold shalat-time lg:ml-1" data-name="subuh">{{ $waktu['data']['jadwal']['subuh'] }}</span>  
+                        @else
+                        <span class="text-2xl font-bold shalat-time lg:ml-1" data-name="subuh">Data Loading</span>  
+                        @endif
                 </div>
                 <div
                     class="bg-white dark:bg-dark-secondary py-5 px-4 shadow rounded-lg flex flex-col bg-flower bg-right-top bg-5 bg-no-repeat space-y-1">
@@ -344,8 +362,11 @@
                                 fill="#d1ac11"></path>
                         </svg>
                         dzuhur </span>
-                    <span class="text-2xl font-bold shalat-time lg:ml-1"
-                        data-name="dzuhur">{{ $waktu['data']['jadwal']['dzuhur'] }}</span>
+                        @if (isset($waktu['data']['jadwal']['dzuhur']))
+                        <span class="text-2xl font-bold shalat-time lg:ml-1" data-name="dzuhur">{{ $waktu['data']['jadwal']['dzuhur'] }}</span>
+                        @else
+                        <span class="text-2xl font-bold shalat-time lg:ml-1" data-name="dzuhur">Data Loading</span>
+                        @endif
                 </div>
                 <div
                     class="bg-white dark:bg-dark-secondary py-5 px-4 shadow rounded-lg flex flex-col bg-flower bg-right-top bg-5 bg-no-repeat space-y-1">
@@ -363,8 +384,11 @@
                                 fill="#d1ac11"></path>
                         </svg>
                         ashar </span>
-                    <span class="text-2xl font-bold shalat-time lg:ml-1"
-                        data-name="ashar">{{ $waktu['data']['jadwal']['ashar'] }}</span>
+                        @if (isset($waktu['data']['jadwal']['ashar']))
+                        <span class="text-2xl font-bold shalat-time lg:ml-1" data-name="ashar">{{ $waktu['data']['jadwal']['ashar'] }}</span>  
+                        @else
+                        <span class="text-2xl font-bold shalat-time lg:ml-1" data-name="ashar">Data Loading</span>  
+                        @endif
                 </div>
                 <div
                     class="bg-white dark:bg-dark-secondary py-5 px-4 shadow rounded-lg flex flex-col bg-flower bg-right-top bg-5 bg-no-repeat space-y-1">
@@ -382,8 +406,11 @@
                                 fill="#d1ac11"></path>
                         </svg>
                         maghrib </span>
-                    <span class="text-2xl font-bold shalat-time lg:ml-1"
-                        data-name="maghrib">{{ $waktu['data']['jadwal']['maghrib'] }}</span>
+                        @if (isset($waktu['data']['jadwal']['maghrib']))
+                        <span class="text-2xl font-bold shalat-time lg:ml-1" data-name="maghrib">{{ $waktu['data']['jadwal']['maghrib'] }}</span>
+                        @else
+                        <span class="text-2xl font-bold shalat-time lg:ml-1" data-name="maghrib">Data Loading</span>
+                        @endif
                 </div>
                 <div
                     class="bg-white dark:bg-dark-secondary py-5 px-4 shadow rounded-lg flex flex-col bg-flower bg-right-top bg-5 bg-no-repeat space-y-1">
@@ -401,8 +428,11 @@
                                 fill="#d1ac11"></path>
                         </svg>
                         isya </span>
-                    <span class="text-2xl font-bold shalat-time lg:ml-1"
-                        data-name="isya">{{ $waktu['data']['jadwal']['isya'] }}</span>
+                        @if (isset($waktu['data']['jadwal']['isya']))
+                        <span class="text-2xl font-bold shalat-time lg:ml-1" data-name="isya">{{ $waktu['data']['jadwal']['isya'] }}</span> 
+                        @else
+                        <span class="text-2xl font-bold shalat-time lg:ml-1" data-name="isya">Data Loading</span> 
+                        @endif
                 </div>
             </div>
         </section>
@@ -1189,7 +1219,8 @@
                                         @endif
                                     </ul>
                                 </div>
-                               <a href="/booking_gor" class="btn btn-success btn-block text-center" style="color:#fff;" target="_blank">Booking GOR</a>
+                                <a href="/booking_gor" class="btn btn-success btn-block text-center" style="color:#fff;"
+                                    target="_blank">Booking GOR</a>
                             </div>
                         </div>
                     </div>
@@ -1361,7 +1392,7 @@
                                     </ul>
                                 </div>
                                 <a href="/booking-balai" class="btn btn-success btn-block text-center" type="button"
-                                        style="color:#fff;" target="_blank">Booking Balai</a>
+                                    style="color:#fff;" target="_blank">Booking Balai</a>
                             </div>
                         </div>
                     </div>
@@ -1841,8 +1872,8 @@
                                 ${item.presentModel
                                     ? item.presentModel.jam_keluar !== null
                                         ? `<span class="bg-emerald-500 text-white py-1 px-3 rounded inline-block">
-                                                Sudah pulang pukul: ${item.presentModel.jam_keluar}
-                                            </span>`
+                                                                    Sudah pulang pukul: ${item.presentModel.jam_keluar}
+                                                                </span>`
                                         : (formattedTime >= '16:00' && item.presentModel.jam_masuk === null && item.presentModel.jam_keluar === null && item.presentModel.keterangan === 'Alpha')
                                             ? `<span class="bg-red-500 text-white py-1 px-3 rounded inline-block">Tidak Masuk</span>`
                                             : formattedTime > '16:30'
