@@ -1,5 +1,8 @@
 @extends('bo.layout.master')
 
+@push('header')
+@endpush
+
 @section('content')
     <div class="pagetitle">
         <h1>Daftar Hadir</h1>
@@ -41,7 +44,48 @@
                         </div>
 
                         <!-- Table with hoverable rows -->
-                        <table class="table table-hover datatable">
+                        <table id="absen" class="absen table" style="width:100%">
+                            <thead>
+                                <tr>
+                                    {{-- <th>No.</th> --}}
+                                    <th>Nama</th>
+                                    @foreach ($dates as $date)
+                                        <th colspan="2">{{ \Carbon\Carbon::parse($date)->isoFormat('dddd, D-M-Y') }}</th>
+                                    @endforeach
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    @foreach ($dates as $date)
+                                        <th>Jam Masuk</th>
+                                        <th>Jam Keluar</th>
+                                    @endforeach
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($users as $user)
+                                    <tr>
+                                        {{-- <td>{{ $loop->iteration }}</td> --}}
+                                        <td>{{ $user->nama }}</td>
+                                        @foreach ($dates as $date)
+                                            <td>
+                                                @php
+                                                    $formattedDate = \Carbon\Carbon::parse($date)->format('Y-m-d');
+                                                    $presents = optional($user->present);
+                                                    $present = $presents->firstWhere('tanggal', $formattedDate);
+                                                @endphp
+
+                                                {{ $present->jam_masuk ? $present->jam_masuk : '-' }}
+                                            </td>
+                                            <td>
+                                                {{ $present->jam_keluar ? $present->jam_keluar : '-' }}
+                                            </td>
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+
+                        {{-- <table class="table table-hover datatable">
                             <thead>
                                 <tr>
                                     <th>Tanggal</th>
@@ -85,7 +129,7 @@
                                                 <td>-</td>
                                             @endif
                                             <td>
-                                                @if (date('Y-m-d') == $present->tanggal && ($present->keterangan == 'Masuk' || $present->keterangan == 'Telat'  || $present->keterangan == 'Diluar'))
+                                                @if (date('Y-m-d') == $present->tanggal && ($present->keterangan == 'Masuk' || $present->keterangan == 'Telat' || $present->keterangan == 'Diluar'))
                                                     <form
                                                         action="/admin/presensi/update-keluar/{{ $present->id }}"
                                                         method="POST">
@@ -102,7 +146,7 @@
                                     @endforeach
                                 @endif
                             </tbody>
-                        </table>
+                        </table> --}}
                     </div>
                 </div>
 
@@ -112,6 +156,15 @@
 @endsection
 
 @push('footer')
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
+    <!-- DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
     <script type="text/javascript">
         $(function() {
             $(document).on('click', '#deletemenu', function(e) {
@@ -137,6 +190,17 @@
                     }
                 })
 
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#absen').DataTable({
+                "scrollY": false, // Matikan Y-scroll
+                "scrollX": true, // Aktifkan X-scroll
+                "scrollCollapse": true,
+                "paging": true, // Untuk menonaktifkan paging
+                // Opsi lainnya...
             });
         });
     </script>

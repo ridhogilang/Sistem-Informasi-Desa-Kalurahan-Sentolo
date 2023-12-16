@@ -3,7 +3,7 @@
         <tr>
             <th>Nama</th>
             @foreach ($dates as $date)
-            <th colspan="2">{{ \Carbon\Carbon::parse($date)->isoFormat('DD MMMM YYYY') }}</th>
+            <th colspan="2">{{ \Carbon\Carbon::parse($date)->isoFormat('dddd, DD MMMM YYYY') }}</th>
             @endforeach
         </tr>
         <tr>

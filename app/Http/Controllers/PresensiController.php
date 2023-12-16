@@ -140,6 +140,9 @@ class PresensiController extends Controller
     public function rekap_bulanan()
     {
         $presents = Present::whereYear('tanggal', date('Y'))->whereMonth('tanggal', date('m'))->orderBy('tanggal', 'desc')->get();
+        $dates = Present::whereYear('tanggal', date('Y'))->whereMonth('tanggal', date('m'))->pluck('tanggal')->unique();
+        $userIds = Present::pluck('user_id')->unique();
+        $users = User::whereIn('id', $userIds)->get();
         $masuk = Present::whereTanggal(date('m'))->whereKeterangan('masuk')->count();
         $telat = Present::whereTanggal(date('m'))->whereKeterangan('telat')->count();
         $cuti = Present::whereTanggal(date('m'))->whereKeterangan('cuti')->count();
@@ -154,6 +157,8 @@ class PresensiController extends Controller
             "cuti" => $cuti,
             "alpha" => $alpha,
             "rank" => $rank,
+            "dates" => $dates,
+            "users" => $users,
         ]);
     }
 
@@ -188,6 +193,9 @@ class PresensiController extends Controller
         ]);
         $data = explode('-', $request->bulan);
         $presents = Present::whereMonth('tanggal', $data[1])->whereYear('tanggal', $data[0])->orderBy('tanggal', 'desc')->get();
+        $dates = Present::whereMonth('tanggal', $data[1])->whereYear('tanggal', $data[0])->pluck('tanggal')->unique();
+        $userIds = Present::pluck('user_id')->unique();
+        $users = User::whereIn('id', $userIds)->get();
         $masuk = Present::whereTanggal($request->bulan)->whereKeterangan('masuk')->count();
         $telat = Present::whereTanggal($request->bulan)->whereKeterangan('telat')->count();
         $cuti = Present::whereTanggal($request->bulan)->whereKeterangan('cuti')->count();
@@ -202,6 +210,8 @@ class PresensiController extends Controller
             "cuti" => $cuti,
             "alpha" => $alpha,
             "rank" => $rank,
+            "dates" => $dates,
+            "users" => $users,
         ]);
     }
 
