@@ -90,7 +90,7 @@
                             <hr class="dropdown-divider">
                         </li>
                     @endif
-                    
+
 
                 </ul><!-- End Profile Dropdown Items -->
             </li><!-- End Profile Nav -->
@@ -135,9 +135,6 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
 
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
@@ -145,7 +142,7 @@
                             <button class="dropdown-item d-flex align-items-center" href="#">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
-                            </button>    
+                            </button>
                         </form>
                     </li>
 

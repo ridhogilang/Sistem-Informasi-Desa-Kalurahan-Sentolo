@@ -37,7 +37,7 @@ class GaleriController extends Controller
         $gambarPath = $gambar->store('public/gambar-galeri'); // Ganti 'folder-tujuan' dengan direktori penyimpanan yang sesuai
 
         $validateData['gambar'] = $gambarPath;
-        dd($validateData);
+        // dd($validateData);
         Galeri::create($validateData);
 
         return redirect()->back()->with('toast_success', 'Gambar Galeri Berhasil Di tambahkan');

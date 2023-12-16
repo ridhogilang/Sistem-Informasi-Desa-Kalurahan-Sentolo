@@ -55,11 +55,14 @@
                                                 <h5 class="card-title text-center pb-0 fs-4">Halaman Booking Balai Desa
                                                     Kalurahan Sentolo</h5>
                                                 <p class="text-center small">Silahkan Mengisi Form Di Bawah ini Untuk
-                                                    Melakukan Booking GOR</p>
-                                                <p class="text-center small">!! Setelah Mengisi Form Di Bawah ini, Maka Admin dari kalurahan akan menghubngi anda untuk melakukan konfirmasi !!</p>
+                                                    Melakukan Booking Balai</p>
+                                                <p class="text-center small">!! Setelah Mengisi Form Di Bawah ini, Maka
+                                                    Admin dari kalurahan akan menghubngi anda untuk melakukan konfirmasi
+                                                    !!</p>
                                             </div>
 
-                                            <form class="row g-3 needs-validation" action="/booking-balai" method="POST">
+                                            <form class="row g-3 needs-validation" action="/booking-balai"
+                                                method="POST">
                                                 @csrf
                                                 @method('post')
                                                 <div class="col-12">
@@ -119,8 +122,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-4">
-                                                            <button type="button"
-                                                                class="btn btn-warning text-sm"
+                                                            <button type="button" class="btn btn-warning text-sm"
                                                                 id="change-captcha">[Ganti Captcha]</button>
                                                         </div>
                                                         <div class="col-6">
@@ -132,19 +134,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <div class="btn btn-secondary w-100"><a
-                                                            href="/"
-                                                            style="color: white;">Kembali</a>
-                                                    </div>
+                                                    <a href="/" class="btn btn-secondary w-100"
+                                                        style="color: white;">Kembali</a>
                                                 </div>
-
                                                 <div class="col-6">
                                                     <button class="btn btn-primary w-100"
                                                         type="submit">Booking</button>
                                                 </div>
-
                                             </form>
-
                                         </div>
                                     </div>
                                 </div>

@@ -41,8 +41,13 @@ class HomeController extends Controller
     {
         // dd(request('cari'));
 
-        $url = 'https://api.myquran.com/v1/sholat/jadwal/1503/' . date('Y') . '/' . date('m') . '/' . date('d');
-        $waktu = json_decode(file_get_contents($url), true);
+        try {
+            $url = 'https://api.myquran.com/v1/sholat/jadwal/1503/' . date('Y') . '/' . date('m') . '/' . date('d');
+            $waktu = json_decode(file_get_contents($url), true);
+        } catch (\Exception $e) {
+            // \Log::error('Gagal mengambil data dari API: ' . $e->getMessage());
+            $waktu = [];
+        }
 
         $headers = Header::orderBy('urutan')->with('subheader')->get();
         $menu = Menu::orderBy('urutan')->get();

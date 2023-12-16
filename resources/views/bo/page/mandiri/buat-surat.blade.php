@@ -57,23 +57,19 @@
                             @csrf
                             <div class="col-md-6">
                                 <label for="nik" class="form-label">NIK</label>
-                                <input type="text" class="form-control" id="nik" name="nik" value="3401532516997842" readonly>
+                                <input type="text" class="form-control" id="nik" name="nik" value="3401197702494900" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama" value="Rizki Bagus Pangestu" readonly>
+                                <input type="text" class="form-control" id="nama" name="nama" value="RIZKI BAGUS PANGESTU" readonly>
                             </div>
                             <div class="col-md-6">
-                                <label for="foto_ktp" class="form-label">Upload File KTP</label>
-                                <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" required>
+                                <label for="foto_ktp" class="form-label">Upload File Kartu Tanda Penduduk</label>
+                                <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="foto_kk" class="form-label">Upload File KK</label>
-                                <input type="file" class="form-control" id="foto_kk" name="foto_kk" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="foto_surat_pengantar_dukuh" class="form-label">Upload File Surat Pengantar Dukuh</label>
-                                <input type="file" class="form-control" id="foto_surat_pengantar_dukuh" name="foto_surat_pengantar_dukuh" required>
+                                <label for="foto_kk" class="form-label">Upload File Kartu Keluarga</label>
+                                <input type="file" class="form-control" id="foto_kk" name="foto_kk" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <input type="hidden" name="jenis_surat">
                             <div class="text-center">
@@ -93,27 +89,23 @@
                             @csrf
                             <div class="col-md-6">
                                 <label for="nik" class="form-label">NIK</label>
-                                <input type="text" class="form-control" id="nik" name="nik" value="3401532516997842" readonly>
+                                <input type="text" class="form-control" id="nik" name="nik" value="3401197702494900" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama" value="Rizki Bagus Pangestu" readonly>
+                                <input type="text" class="form-control" id="nama" name="nama" value="RIZKI BAGUS PANGESTU" readonly>
                             </div>
                             <div class="col-md-6">
-                                <label for="foto_ktp" class="form-label">Upload File KTP</label>
-                                <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" required>
+                                <label for="foto_ktp" class="form-label">Upload File Kartu Tanda Penduduk</label>
+                                <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="foto_kk" class="form-label">Upload File KK</label>
-                                <input type="file" class="form-control" id="foto_kk" name="foto_kk" required>
+                                <label for="foto_kk" class="form-label">Upload File Kartu Keluarga</label>
+                                <input type="file" class="form-control" id="foto_kk" name="foto_kk" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_akta_lahir" class="form-label">Upload File Akta Lahir</label>
-                                <input type="file" class="form-control" id="foto_akta_lahir" name="foto_akta_lahir" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="foto_surat_pengantar_dukuh" class="form-label">Upload File Surat Pengantar Dukuh</label>
-                                <input type="file" class="form-control" id="foto_surat_pengantar_dukuh" name="foto_surat_pengantar_dukuh" required>
+                                <input type="file" class="form-control" id="foto_akta_lahir" name="foto_akta_lahir" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <input type="hidden" name="jenis_surat">
                             <div class="text-center">
@@ -133,31 +125,27 @@
                             @csrf
                             <div class="col-md-6">
                                 <label for="nik" class="form-label">NIK</label>
-                                <input type="text" class="form-control" id="nik" name="nik" value="3401532516997842" readonly>
+                                <input type="text" class="form-control" id="nik" name="nik" value="3401197702494900" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama" value="Rizki Bagus Pangestu" readonly>
+                                <input type="text" class="form-control" id="nama" name="nama" value="RIZKI BAGUS PANGESTU" readonly>
                             </div>
                             <div class="col-md-6">
-                                <label for="foto_ktp" class="form-label">Upload File KTP</label>
-                                <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" required>
+                                <label for="foto_ktp" class="form-label">Upload File Kartu Tanda Penduduk</label>
+                                <input type="file" class="form-control" id="foto_ktp" name="foto_ktp" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="foto_kk" class="form-label">Upload File KK</label>
-                                <input type="file" class="form-control" id="foto_kk" name="foto_kk" required>
+                                <label for="foto_kk" class="form-label">Upload File Kartu Keluarga</label>
+                                <input type="file" class="form-control" id="foto_kk" name="foto_kk" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_akta_lahir" class="form-label">Upload File Akta Lahir</label>
-                                <input type="file" class="form-control" id="foto_akta_lahir" name="foto_akta_lahir" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="foto_surat_pengantar_dukuh" class="form-label">Upload File Surat Pengantar Dukuh</label>
-                                <input type="file" class="form-control" id="foto_surat_pengantar_dukuh" name="foto_surat_pengantar_dukuh" required>
+                                <input type="file" class="form-control" id="foto_akta_lahir" name="foto_akta_lahir" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_surat_keterangan_dokter" class="form-label">Upload File Surat Keterangan Dokter</label>
-                                <input type="file" class="form-control" id="foto_surat_keterangan_dokter" name="foto_surat_keterangan_dokter" required>
+                                <input type="file" class="form-control" id="foto_surat_keterangan_dokter" name="foto_surat_keterangan_dokter" accept=".jpg, .jpeg, .png" required>
                             </div>
                             <input type="hidden" name="jenis_surat">
                             <div class="text-center">
@@ -209,7 +197,7 @@
                                         </td>
                                         <td>
                                             @if ($value->status_blanko == 'Sukses')
-                                                <a class="btn btn-success" type="submit" target="blank" href="#"><i class="fa-solid fa-print"></i></a>
+                                                <a class="btn btn-success" type="submit" target="blank" href="/buat-surat/{{$value->id}}/document"><i class="fa-solid fa-print"></i></a>
                                             @endif
                                         </td>
                                     </tr>

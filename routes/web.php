@@ -64,6 +64,7 @@ use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\ScstmController;
 use App\Http\Controllers\MandiriController;
 use App\Http\Controllers\BuatsuratController;
+use App\Http\Controllers\SignatureController;
 use App\Models\AgendaBalai;
 
 /*
@@ -112,12 +113,6 @@ Route::prefix('sitemin-sentolo')->group(function () {
     Route::resource('/forget_password', ForgetPasswordController::class)->except(['create', 'show', 'destroy']);
 });
 
-//komentar iki no ngendi index e approve e
-Route::controller(KomentarController::class)->group(function () {
-    Route::post('/komentar', 'store');
-    Route::put('/approvecomment/{id}', 'approveComment');
-    Route::get('/hapus-komentar/{id}', 'destroy');
-});
 
 //back office (halaman admin)
 Route::prefix('admin')->group(function () {
@@ -136,8 +131,11 @@ Route::prefix('admin')->group(function () {
             Route::get('/daftar-hadir', 'index')->name('daftar-hadir');
             Route::get('/daftar-hadir/cari', 'cariDaftarHadir')->name('daftar-hadir.cari');
             Route::get('/rekap-harian', 'rekap_harian')->name('kehadiran');
+            Route::get('/rekap-bulanan', 'rekap_bulanan')->name('kehadiran.bulanan');
+            Route::get('/rekap-bulanan/cari', 'bulanan_search')->name('bulanan.search');
             Route::get('/rekap-harian/cari', 'harian_search')->name('kehadiran.search');
             Route::get('/rekap-harian/excel-users', 'excelUsers')->name('kehadiran.excel-users');
+            Route::get('/rekap-harian/excel-bulanan', 'excelBulanan')->name('kehadiran.excel-bulanan');
             Route::get('/rekap-harian/show', '')->name('users.show');
             Route::post('/perizinan', 'perizinan')->name('absen.perizinan');
             Route::get('/perizinan', 'show_perizinan')->name('absen.perizinan-show');
@@ -194,7 +192,8 @@ Route::prefix('admin')->group(function () {
             Route::resource('/validasi', ValidasiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
             // validasi mandiri
             Route::get('/validasi-mandiri', [ValidasimandiriController::class, 'index']);
-            Route::put('/validasi-mandiri/{id}', [ValidasimandiriController::class, 'updateStatus']);
+            Route::put('/validasi-mandiri/{id}/status', [ValidasimandiriController::class, 'updateStatus']);
+            Route::put('/validasi-mandiri/{id}/file', [ValidasimandiriController::class, 'updateFile']);
 
             //disposisi surat masuk
             Route::resource('/disposisi', DisposisiController::class, ['as' => 'bo.surat'])->only(['index', 'show', 'update', 'destroy']);
@@ -365,6 +364,13 @@ Route::prefix('admin')->group(function () {
                 Route::get('/komponen', 'index')->middleware('can:lihat running text');
                 Route::put('/edit-text/{id}', 'update')->middleware('can:edit running text');
             });
+
+            Route::controller(KomentarController::class)->group(function () {
+                Route::post('/komentar', 'store');
+                Route::put('/approvecomment/{id}', 'approveComment');
+                Route::get('/hapus-komentar/{id}', 'destroy');
+            });
+
             //Poster Pamong
             //iki njupuk sko user ae pie??
             Route::controller(PamongController::class)->group(function () {
@@ -492,8 +498,11 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::get('/buat-surat', [BuatsuratController::class, 'index']);
     Route::post('/buat-surat', [BuatsuratController::class, 'store']);
+    Route::get('/buat-surat/{id}/document', [BuatsuratController::class, 'show']);
     Route::get('/buat-pesan', [MandiriController::class, 'pesan']);
     Route::get('/bantuan', [MandiriController::class, 'bantuan']);
+    Route::get('/signature', [SignatureController::class, 'index']);
+    Route::post('/signature', [SignatureController::class, 'store']);
 });
 
 

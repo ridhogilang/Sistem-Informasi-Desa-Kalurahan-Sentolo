@@ -101,8 +101,6 @@ class KomentarController extends Controller
     {
         $data = Komentar::find($id);
 
-        dd($data);
-
         if (!$data) {
             return redirect()->back()->with('toast_success', 'Data Komentar Tidak Ditemukan!');
         }

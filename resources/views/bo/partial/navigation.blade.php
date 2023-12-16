@@ -50,7 +50,7 @@
                 </div><!-- End Revenue Card -->
 
                 <!-- Sales Card -->
-                <div class="col-xxl-3 col-md-3">
+                {{-- <div class="col-xxl-3 col-md-3">
                     <div class="card info-card customers-card {{ ($title == "Buat Pesan") ? 'active-warning' : '' }}">
 
                         <div class="card-body">
@@ -69,10 +69,10 @@
                         </div>
 
                     </div>
-                </div><!-- End Sales Card -->
+                </div><!-- End Sales Card --> --}}
 
                 <!-- Revenue Card -->
-                <div class="col-xxl-3 col-md-3">
+                {{-- <div class="col-xxl-3 col-md-3">
                     <div class="card info-card sales-card {{ ($title == "Bantuan Penduduk") ? 'active-info' : '' }}">
 
                         <div class="card-body">
@@ -91,7 +91,7 @@
                         </div>
 
                     </div>
-                </div><!-- End Revenue Card -->
+                </div><!-- End Revenue Card --> --}}
 
             </div>
         </div><!-- End Left side columns -->

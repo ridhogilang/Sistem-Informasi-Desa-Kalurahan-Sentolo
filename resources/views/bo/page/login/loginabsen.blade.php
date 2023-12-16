@@ -94,10 +94,10 @@
                                     </form>
 
                                 </div>
-                            </div>
+                            </div><br>
 
+                            <a href="/" class="btn btn-secondary">Kembali</a><br>
                             <div class="credits">
-                                <a href="/" class="btn btn-secondary">Kembali</a>
                                 Made by <a href="#">PKKM UJB</a>
                             </div>
 
@@ -107,7 +107,7 @@
 
             </section>
 
-        </div>
+        </div> 
     </main><!-- End #main -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
