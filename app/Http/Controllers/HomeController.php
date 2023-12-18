@@ -16,7 +16,6 @@ use App\Models\Runningtext;
 use App\Models\Sinergi;
 use App\Models\Statistik;
 use App\Models\Visitor;
-use App\Models\SubHeader;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
@@ -41,13 +40,15 @@ class HomeController extends Controller
     {
         // dd(request('cari'));
 
-        try {
-            $url = 'https://api.myquran.com/v1/sholat/jadwal/1503/' . date('Y') . '/' . date('m') . '/' . date('d');
-            $waktu = json_decode(file_get_contents($url), true);
-        } catch (\Exception $e) {
-            // \Log::error('Gagal mengambil data dari API: ' . $e->getMessage());
-            $waktu = [];
-        }
+        // try {
+        //     $url = 'https://api.myquran.com/v1/sholat/jadwal/1503/' . date('Y') . '/' . date('m') . '/' . date('d');
+        //     $waktu = json_decode(file_get_contents($url), true);
+        // } catch (\Exception $e) {
+        //     // \Log::error('Gagal mengambil data dari API: ' . $e->getMessage());
+        //     $waktu = [];
+        // }
+        $waktu = [];
+
 
         $headers = Header::orderBy('urutan')->with('subheader')->get();
         $menu = Menu::orderBy('urutan')->get();

@@ -131,6 +131,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/daftar-hadir', 'index')->name('daftar-hadir');
             Route::get('/daftar-hadir/cari', 'cariDaftarHadir')->name('daftar-hadir.cari');
             Route::get('/rekap-harian', 'rekap_harian')->name('kehadiran');
+            Route::put('/rekap-harian/{id}', 'update_absensi')->name('update.absensi');
             Route::get('/rekap-bulanan', 'rekap_bulanan')->name('kehadiran.bulanan');
             Route::get('/rekap-bulanan/cari', 'bulanan_search')->name('bulanan.search');
             Route::get('/rekap-harian/cari', 'harian_search')->name('kehadiran.search');

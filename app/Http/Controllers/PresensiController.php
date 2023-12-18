@@ -17,7 +17,7 @@ class PresensiController extends Controller
     {
         Carbon::setLocale('id');
     }
-    
+
     public function index()
     {
         $presents = Present::whereUserId(auth()->user()->id)->whereYear('tanggal', date('Y'))->whereMonth('tanggal', date('m'))->whereDate('tanggal', '<=', now())->orderBy('tanggal', 'desc')->get();
@@ -67,9 +67,16 @@ class PresensiController extends Controller
         $data['user_id']    = $request->user_id;
         $startDate = Carbon::now()->startOfMonth();
         $endDate = Carbon::now()->endOfMonth();
+        $ipAddress = $request->ip();
+
+        // dd($ipAddress);
 
         if (date('l') == 'Saturday' || date('l') == 'Sunday') {
             return redirect()->back()->with('error', 'Hari Libur Tidak bisa Check In');
+        }
+
+        if (($ipAddress != config('absensi.ip_address')) && ($ipAddress != config('absensi.ip_address_2')) && ($ipAddress != config('absensi.ip_address_local'))) {
+            return redirect()->back()->with('error', 'Anda Tidak Berada di Area Kalurahan');
         }
 
         foreach ($users as $user) {
@@ -185,7 +192,7 @@ class PresensiController extends Controller
             "rank" => $rank,
         ]);
     }
-    
+
     public function bulanan_search(Request $request)
     {
         $request->validate([
@@ -313,41 +320,55 @@ class PresensiController extends Controller
     public function updateLuar(Request $request, $id)
     {
         // Validasi request jika diperlukan
+        // Add your validation logic here
 
         // Mendapatkan data PresentModel berdasarkan id
-        $presentModel = Present::where('id', $id)->first();
+        $presentModel = Present::find($id);
 
         // Cek apakah data PresentModel ditemukan
         if ($presentModel) {
-            // Cek apakah keterangan saat ini adalah "Masuk" atau "Telat"
+            // Consolidate conditions for readability
             if ($presentModel->keterangan == 'Masuk' || $presentModel->keterangan == 'Telat') {
                 // Update keterangan menjadi "Diluar"
                 $presentModel->keterangan = 'Diluar';
-                $presentModel->save();
-
-                // Redirect atau tampilkan halaman lain sesuai kebutuhan
-                return redirect()->back()->with('success', 'Update berhasil');
-            } elseif ($presentModel->keterangan == 'Diluar') {
-                if ($presentModel->jam_masuk > config('absensi.jam_masuk')) {
-                    $presentModel->keterangan = 'Telat';
-                    $presentModel->save();
-
-                    return redirect()->back()->with('success', 'Update berhasil');
-                }
-            } elseif ($presentModel->keterangan == 'Diluar') {
-                if ($presentModel->jam_masuk <= config('absensi.jam_masuk')) {
-                    $presentModel->keterangan = 'Masuk';
-                    $presentModel->save();
-
-                    return redirect()->back()->with('success', 'Update berhasil');
-                }
+            } elseif ($presentModel->keterangan == 'Diluar' && $presentModel->jam_masuk > config('absensi.jam_masuk')) {
+                // Update keterangan menjadi "Telat"
+                $presentModel->keterangan = 'Telat';
+            } elseif ($presentModel->keterangan == 'Diluar' && $presentModel->jam_masuk <= config('absensi.jam_masuk')) {
+                // Update keterangan menjadi "Masuk"
+                $presentModel->keterangan = 'Masuk';
             } else {
                 // Keterangan saat ini bukan "Masuk" atau "Telat", mungkin sudah "Diluar"
                 return redirect()->back()->with('error', 'Update gagal, keterangan saat ini bukan "Masuk" atau "Telat"');
             }
+
+            // Save the changes
+            $presentModel->save();
+
+            // Redirect atau tampilkan halaman lain sesuai kebutuhan
+            return redirect()->back()->with('success', 'Update berhasil');
         }
 
         // User tidak ditemukan dalam data PresentModel
         return redirect()->back()->with('error', 'User tidak ditemukan');
+    }
+
+    public function update_absensi(Request $request, string $id)
+    {
+        $validatedData = $request->validate([
+            'keterangan' => 'required',
+            'jam_masuk' => 'required',
+            'jam_keluar' => 'required',
+        ]);
+
+        $absen = Present::find($id);
+
+        $absen->keterangan = $request->input('keterangan');
+        $absen->jam_masuk = $request->input('jam_masuk');
+        $absen->jam_keluar = $request->input('jam_keluar');
+        $absen->save();
+
+        return redirect()->back()->with('toast_success', 'Data Absensi Berhasil di Update!');
+
     }
 }
