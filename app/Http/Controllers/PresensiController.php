@@ -68,9 +68,9 @@ class PresensiController extends Controller
         $startDate = Carbon::now()->startOfMonth();
         $endDate = Carbon::now()->endOfMonth();
 
-        if (date('l') == 'Saturday' || date('l') == 'Sunday') {
-            return redirect()->back()->with('error', 'Hari Libur Tidak bisa Check In');
-        }
+        // if (date('l') == 'Saturday' || date('l') == 'Sunday') {
+        //     return redirect()->back()->with('error', 'Hari Libur Tidak bisa Check In');
+        // }
 
         foreach ($users as $user) {
             // Loop melalui setiap tanggal dalam rentang waktu satu bulan
@@ -316,6 +316,7 @@ class PresensiController extends Controller
 
         // Mendapatkan data PresentModel berdasarkan id
         $presentModel = Present::where('id', $id)->first();
+        // dd($presentModel);
 
         // Cek apakah data PresentModel ditemukan
         if ($presentModel) {
@@ -327,6 +328,7 @@ class PresensiController extends Controller
 
                 // Redirect atau tampilkan halaman lain sesuai kebutuhan
                 return redirect()->back()->with('success', 'Update berhasil');
+
             } elseif ($presentModel->keterangan == 'Diluar') {
                 if ($presentModel->jam_masuk > config('absensi.jam_masuk')) {
                     $presentModel->keterangan = 'Telat';
@@ -334,6 +336,7 @@ class PresensiController extends Controller
 
                     return redirect()->back()->with('success', 'Update berhasil');
                 }
+                
             } elseif ($presentModel->keterangan == 'Diluar') {
                 if ($presentModel->jam_masuk <= config('absensi.jam_masuk')) {
                     $presentModel->keterangan = 'Masuk';
@@ -346,8 +349,5 @@ class PresensiController extends Controller
                 return redirect()->back()->with('error', 'Update gagal, keterangan saat ini bukan "Masuk" atau "Telat"');
             }
         }
-
-        // User tidak ditemukan dalam data PresentModel
-        return redirect()->back()->with('error', 'User tidak ditemukan');
     }
 }
