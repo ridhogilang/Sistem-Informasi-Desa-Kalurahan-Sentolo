@@ -38,17 +38,14 @@ class HomeController extends Controller
 
     public function index()
     {
-        // dd(request('cari'));
+        $today = Carbon::today()->toDateString();
+        $todayy = Carbon::today();
+        
+        $url = 'https://api-jadwal-sholat.vercel.app/api/cari?provinsi=d.i.+yogyakarta&kota=kab.+kulon+progo&bulan=' . date('m') . '&tahun=' . date('Y') ;
+        $sholat = json_decode(file_get_contents($url), true);
+        $waktu = collect($sholat['data'])->firstWhere('key', $today);
 
-        // try {
-        //     $url = 'https://api.myquran.com/v1/sholat/jadwal/1503/' . date('Y') . '/' . date('m') . '/' . date('d');
-        //     $waktu = json_decode(file_get_contents($url), true);
-        // } catch (\Exception $e) {
-        //     // \Log::error('Gagal mengambil data dari API: ' . $e->getMessage());
-        //     $waktu = [];
-        // }
-        $waktu = [];
-
+        // dd($waktu);
 
         $headers = Header::orderBy('urutan')->with('subheader')->get();
         $menu = Menu::orderBy('urutan')->get();
@@ -67,8 +64,7 @@ class HomeController extends Controller
 
 
         // Mengambil jumlah pengunjung hari ini
-        $today = Carbon::today()->toDateString();
-        $todayy = Carbon::today();
+        
         $oneMonthAgo = $todayy->copy()->subMonth(); // Menghitung satu bulan yang lalu dari tanggal saat ini
         //
         $nextDay = $todayy->copy()->addDay();

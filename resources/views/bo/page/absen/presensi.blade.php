@@ -91,7 +91,16 @@
                             @endif
                             <div class="card mb-1">
                                 <div class="card-body">
-                                   
+                                    @if ($libur)
+                                        <div class="text-center">
+                                            <p>Absen Libur (Hari Libur Nasional {{ $holiday }})</p>
+                                        </div>
+                                    @else
+                                        @if (date('l') == 'Saturday' || date('l') == 'Sunday')
+                                            <div class="text-center">
+                                                <p>Absen Libur</p>
+                                            </div>
+                                        @else
                                             @if ($present)
                                                 @if ($present->keterangan == 'Alpha')
                                                     <div class="text-center">
@@ -156,7 +165,8 @@
                                                     @endif
                                                 </div>
                                             @endif
-                                      
+                                        @endif
+                                    @endif
                                 </div>
                             </div>
                             <br><br>
@@ -182,22 +192,29 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="row" action="{{ route('absen.perizinan') }}" method="POST">
+                                            <form class="row" action="{{ route('absen.perizinan') }}"
+                                                method="POST">
                                                 @csrf
-                                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                                                <input type="hidden" name="nama" value="{{ auth()->user()->nama }}">
+                                                <input type="hidden" name="user_id"
+                                                    value="{{ auth()->user()->id }}">
+                                                <input type="hidden" name="nama"
+                                                    value="{{ auth()->user()->nama }}">
                                                 <div class="row mb-3">
                                                     <label for="tanggal"
                                                         class="col-sm-3 col-form-label">Tanggal</label>
                                                     <div class="col-sm-9">
-                                                        <input name="tanggal" type="date" class="form-control" required>
+                                                        <input name="tanggal" type="date" class="form-control"
+                                                            required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="jenis" class="col-sm-3 col-form-label">Jenis Perizinan</label>
+                                                    <label for="jenis" class="col-sm-3 col-form-label">Jenis
+                                                        Perizinan</label>
                                                     <div class="col-sm-9">
-                                                        <select class="form-select" name="jenis" id="" required>
-                                                            <option value="" selected disabled>Jenis Perizinan</option>
+                                                        <select class="form-select" name="jenis" id=""
+                                                            required>
+                                                            <option value="" selected disabled>Jenis Perizinan
+                                                            </option>
                                                             <option value="Sakit">Sakit</option>
                                                             <option value="Cuti">Cuti</option>
                                                             <option value="Dinas">Dinas Luar Kota</option>
@@ -205,7 +222,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="alasan" class="col-sm-3 col-form-label">Alasan</label>
+                                                    <label for="alasan"
+                                                        class="col-sm-3 col-form-label">Alasan</label>
                                                     <div class="col-sm-9">
                                                         <textarea name="alasan" class="form-control" placeholder="Tulis Alasanmu disini" id="floatingTextarea" required></textarea>
                                                     </div>

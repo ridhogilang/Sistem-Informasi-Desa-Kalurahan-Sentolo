@@ -277,7 +277,6 @@
     <script>
         function copySlug(slug, tanggal) {
             // Ambil URL aplikasi dari .env
-            var appUrl = "{{ config('app.url') }}";
             
             // Ubah tanggal menjadi format yang sesuai (misalnya "yyyy/mm/dd")
             var date = new Date(tanggal);
@@ -286,7 +285,7 @@
             var day = String(date.getDate()).padStart(2, '0'); // Tambahkan '0' jika tanggal < 10
         
             // Gabungkan URL aplikasi, /artikel, tanggal, dan slug
-            var fullUrl = appUrl + "/artikel/" + year + "/" + month + "/" + day + "/" + slug;
+            var fullUrl = "/artikel/" + year + "/" + month + "/" + day + "/" + slug;
         
             // Buat elemen input sementara untuk menyalin teks
             var tempInput = document.createElement("input");

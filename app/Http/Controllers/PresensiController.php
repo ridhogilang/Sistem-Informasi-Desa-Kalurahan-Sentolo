@@ -75,46 +75,48 @@ class PresensiController extends Controller
             return redirect()->back()->with('error', 'Hari Libur Tidak bisa Check In');
         }
 
-        if (($ipAddress != config('absensi.ip_address')) && ($ipAddress != config('absensi.ip_address_2')) && ($ipAddress != config('absensi.ip_address_local'))) {
+        if (($ipAddress == config('absensi.ip_address')) || ($ipAddress == config('absensi.ip_address_2')) || ($ipAddress == config('absensi.ip_address_local'))) {
+            foreach ($users as $user) {
+                // Loop melalui setiap tanggal dalam rentang waktu satu bulan
+                for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
+                    $absen = Present::whereUserId($user->id)->whereTanggal($date->toDateString())->first();
+    
+                    // Jika tidak ada absen untuk tanggal tersebut, dan bukan user yang sedang login, buat entri absensi
+                    if (!$absen) {
+                        Present::create([
+                            'keterangan' => 'Alpha',
+                            'tanggal' => $date->toDateString(),
+                            'user_id' => $user->id
+                        ]);
+                    }
+                }
+            }
+    
+            if (strtotime($data['jam_masuk']) >= strtotime(config('absensi.jam_masuk') . ' -1 hours') && strtotime($data['jam_masuk']) <= strtotime(config('absensi.jam_masuk'))) {
+                $data['keterangan'] = 'Masuk';
+            } else if (strtotime($data['jam_masuk']) > strtotime(config('absensi.jam_masuk')) && strtotime($data['jam_masuk']) <= strtotime(config('absensi.jam_pulang'))) {
+                $data['keterangan'] = 'Telat';
+            } else {
+                $data['keterangan'] = 'Alpha';
+            }
+    
+            $present = Present::whereUserId($data['user_id'])->whereTanggal($data['tanggal'])->first();
+            if ($present) {
+                if ($present->keterangan == 'Alpha') {
+                    $present->update($data);
+                    return redirect()->back()->with('success', 'Check-in berhasil');
+                } else {
+                    return redirect()->back()->with('error', 'Check-in gagal');
+                }
+            }
+    
+            Present::create($data);
+            return redirect()->back()->with('success', 'Check-in berhasil');
+        } else {
             return redirect()->back()->with('error', 'Anda Tidak Berada di Area Kalurahan');
         }
 
-        foreach ($users as $user) {
-            // Loop melalui setiap tanggal dalam rentang waktu satu bulan
-            for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
-                $absen = Present::whereUserId($user->id)->whereTanggal($date->toDateString())->first();
-
-                // Jika tidak ada absen untuk tanggal tersebut, dan bukan user yang sedang login, buat entri absensi
-                if (!$absen) {
-                    Present::create([
-                        'keterangan' => 'Alpha',
-                        'tanggal' => $date->toDateString(),
-                        'user_id' => $user->id
-                    ]);
-                }
-            }
-        }
-
-        if (strtotime($data['jam_masuk']) >= strtotime(config('absensi.jam_masuk') . ' -1 hours') && strtotime($data['jam_masuk']) <= strtotime(config('absensi.jam_masuk'))) {
-            $data['keterangan'] = 'Masuk';
-        } else if (strtotime($data['jam_masuk']) > strtotime(config('absensi.jam_masuk')) && strtotime($data['jam_masuk']) <= strtotime(config('absensi.jam_pulang'))) {
-            $data['keterangan'] = 'Telat';
-        } else {
-            $data['keterangan'] = 'Alpha';
-        }
-
-        $present = Present::whereUserId($data['user_id'])->whereTanggal($data['tanggal'])->first();
-        if ($present) {
-            if ($present->keterangan == 'Alpha') {
-                $present->update($data);
-                return redirect()->back()->with('success', 'Check-in berhasil');
-            } else {
-                return redirect()->back()->with('error', 'Check-in gagal');
-            }
-        }
-
-        Present::create($data);
-        return redirect()->back()->with('success', 'Check-in berhasil');
+        
     }
 
     public function checkOut(Request $request, Present $kehadiran)
