@@ -65,7 +65,7 @@ use App\Http\Controllers\ScstmController;
 use App\Http\Controllers\MandiriController;
 use App\Http\Controllers\BuatsuratController;
 use App\Http\Controllers\SignatureController;
-use App\Models\AgendaBalai;
+use App\Http\Controllers\IotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -503,6 +503,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/bantuan', [MandiriController::class, 'bantuan']);
     Route::get('/signature', [SignatureController::class, 'index']);
     Route::post('/signature', [SignatureController::class, 'store']);
+    Route::get('/monitoring-iot', [IotController::class, 'api']);
 });
 
 
