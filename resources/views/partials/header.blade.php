@@ -82,7 +82,7 @@
     <section class="header-bottom">
         <div class="header-bottom-inner">
             <a href="http://127.0.0.1:8000/#" class="brand">
-                <img loading="lazy" src="/home/img/kulonprogo.png" alt="Logo Desa Sukaraya" class="brand-image">
+                <img loading="lazy" src="/home/img/kulonprogo.png" alt="Logo Kalurahan Sentolo" class="brand-image">
                 <div class="brand-name">
                     <span id="typed" class="brand-title">Sistem Informasi Kalurahan Sentolo</span>
                     <p class="brand-tagline">Kab. Kulon Progo, Daerah Istimewa Yogyakarta</p>
