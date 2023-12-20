@@ -1,5 +1,9 @@
 @extends('bo.layout.master')
 
+@push('header')
+    <link href="{{ asset('admin/assets/css/table-responsive-datatable.css') }}" rel="stylesheet">
+@endpush
+
 @push('scripts')
     <script>
         // Mendapatkan elemen input NIK
@@ -225,7 +229,7 @@
                     </div>
 
                     <!-- Table with hoverable rows -->
-                    <table class="table table-hover datatable">
+                    <table class="table table-hover datatable responsive-table w-100">
                         <thead>
                             <tr>
                                 <th scope="col">No.</th>

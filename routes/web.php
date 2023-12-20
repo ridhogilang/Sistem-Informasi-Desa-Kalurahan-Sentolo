@@ -502,8 +502,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/buat-surat/{id}/document', [BuatsuratController::class, 'show']);
     Route::get('/buat-pesan', [MandiriController::class, 'pesan']);
     Route::get('/bantuan', [MandiriController::class, 'bantuan']);
-    Route::get('/signature', [SignatureController::class, 'index']);
-    Route::post('/signature', [SignatureController::class, 'store']);
+    // Route::get('/signature', [SignatureController::class, 'index']);
+    // Route::post('/signature', [SignatureController::class, 'store']);
     Route::get('/monitoring-iot', [IotController::class, 'api']);
 });
 
