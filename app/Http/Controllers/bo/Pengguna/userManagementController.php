@@ -13,9 +13,9 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Validation\Rule;
 use App\Mail\VerifyMail;
 use Illuminate\Support\Facades\Mail;
-use Yajra\DataTables\Facades\Datatables;
+// use Yajra\DataTables\Facades\Datatables;
 use App\Models\Penduduk;
-// use DataTables;
+use DataTables;
 
 class userManagementController extends Controller
 {
@@ -39,7 +39,7 @@ class userManagementController extends Controller
     public function datas()
     {
         $data = User::where("is_delete","<>", '1')->where("is_pamong","=", "1")->get();
-        return Datatables::of($data)
+        return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     if($row["is_active"] == 1){

@@ -105,11 +105,11 @@ class ArsipController extends Controller
         //memilih surat masuk apakah surat keluar
         if($arsip_surat->jenis_surat_2 == 'Surat Masuk')
         {
-            $smasuk = SMasuk::findOrFail($arsip_surat->id_surat);
+            $smasuk = SMasuk::find($arsip_surat->id_surat);
             if (!$smasuk) {
                 abort(404);
             }
-            $filePath = storage_path("app/public/surat_masuk/{$smasuk->dokumen}");
+            $filePath = storage_path("app/public/public/surat-masuk/{$smasuk->dokumen}");
             if (!file_exists($filePath)) {
                 abort(404);
             }
