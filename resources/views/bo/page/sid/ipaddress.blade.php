@@ -1,5 +1,9 @@
 @extends('bo.layout.master')
 
+@push('header')
+    <link href="{{ asset('admin/assets/css/table-responsive-datatable.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
     <div class="pagetitle">
         <h1>IP Address User</h1>
@@ -23,7 +27,7 @@
                         </div>
 
                         <!-- Table with hoverable rows -->
-                        <table class="table table-hover datatable" id="online-users-table">
+                        <table class="table table-hover datatable responsive-table w-100" id="online-users-table">
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>

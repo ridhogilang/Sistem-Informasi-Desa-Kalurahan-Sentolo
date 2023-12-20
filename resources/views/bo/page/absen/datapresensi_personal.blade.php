@@ -1,5 +1,9 @@
 @extends('bo.layout.master')
 
+@push('header')
+    <link href="{{ asset('admin/assets/css/table-responsive-datatable.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
     <div class="pagetitle">
         <h1>Daftar Hadir</h1>

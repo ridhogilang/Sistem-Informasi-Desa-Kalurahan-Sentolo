@@ -17,7 +17,7 @@ use App\Models\DisposisiSurat;
 use App\Models\DetailDisposisiSurat;
 use App\Models\ArsipSurat;
 //datatable
-use Yajra\DataTables\Facades\Datatables;
+use DataTables;
 
 
 class SMasukController extends Controller
@@ -78,7 +78,7 @@ class SMasukController extends Controller
             ->where('is_arsip', '=', null)
             ->get();
 
-        return Datatables::of($smasuk)
+        return DataTables::of($smasuk)
                 ->addIndexColumn()
                 ->addColumn('kepada', function($row){
                     $marang_sopo = $row['kepada_detil']['nama'].' ( '.$row['kepada_detil']['jabatan'].' )';
@@ -273,7 +273,7 @@ class SMasukController extends Controller
         if (!$smasuk) {
             abort(404);
         }
-        $filePath = storage_path("app/public/surat-masuk/{$smasuk->dokumen}");
+        $filePath = storage_path("app/public/public/surat-masuk/{$smasuk->dokumen}");
         if (!file_exists($filePath)) {
             abort(404);
         }

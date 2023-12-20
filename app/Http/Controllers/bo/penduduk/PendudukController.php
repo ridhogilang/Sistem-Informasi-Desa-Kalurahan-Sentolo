@@ -7,7 +7,7 @@ use App\Models\Penduduk;
 use App\Models\PenghapusanPenduduk;
 use Illuminate\Http\Request;
 use Storage;
-use Yajra\DataTables\Facades\Datatables;
+use DataTables;
 use App\Exports\PendudukExport;
 use App\Imports\PendudukImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -30,15 +30,10 @@ class PendudukController extends Controller
     {
         $searchTerm = $request->input('q');
         $penduduk = Penduduk::select('id', 'nik', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir')
-                    ->where('nama', 'like', "%$searchTerm%")
-                    ->orwhere('nik', 'like', "%$searchTerm%")
-                    ->orwhere('jenis_kelamin', 'like', "%$searchTerm%")
-                    ->orwhere('tempat_lahir', 'like', "%$searchTerm%")
-                    ->orwhere('tanggal_lahir', 'like', "%$searchTerm%")
                     ->where('is_active', '=', '1')
                     ->get();
 
-        return Datatables::of($penduduk)
+        return DataTables::of($penduduk)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $actionBtn = '<div class="d-flex"><a class="btn btn-warning mx-1" type="button" href="/admin/kependudukan/penduduk/'.$row["id"].'/edit"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -94,7 +89,7 @@ class PendudukController extends Controller
         $penduduk = Penduduk::select('id', 'nik', 'nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir')
                     ->where('is_active', '=', '0')
                     ->get();
-        return Datatables::of($penduduk)
+        return DataTables::of($penduduk)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $actionBtn = '<div class="d-flex"><a class="btn btn-warning mx-1" type="button" href="/admin/kependudukan/penduduk/'.$row["id"].'/edit"><i class="fa-solid fa-pen-to-square"></i></a>

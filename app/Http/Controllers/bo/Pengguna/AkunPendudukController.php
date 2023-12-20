@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\VerifyMail;
 use Illuminate\Support\Facades\Mail;
-use Yajra\DataTables\Facades\Datatables;
+use DataTables;
 
 class AkunPendudukController extends Controller
 {
@@ -41,7 +41,7 @@ class AkunPendudukController extends Controller
             ->where('jabatan', '=', null)
             ->get();
 
-        return Datatables::of($data)
+        return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     if($row["is_active"] == 1){
@@ -76,7 +76,7 @@ class AkunPendudukController extends Controller
                 ->where('jabatan', '<>', null)
                 ->get();
 
-        return Datatables::of($data)
+        return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     if($row["is_active"] == 1){
@@ -107,11 +107,7 @@ class AkunPendudukController extends Controller
 
     public function penduduk(Request $request)
     {
-        $searchTerm = $request->input('q');
-
         $datas  = Penduduk::select('nik', 'nama')
-                    ->where('nama', 'like', "%$searchTerm%")
-                    ->orwhere('nik', 'like', "%$searchTerm%")
                     ->where('is_active', '=', '1')
                     ->get();
 

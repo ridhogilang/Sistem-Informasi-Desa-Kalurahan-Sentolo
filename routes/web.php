@@ -6,7 +6,7 @@ use App\Http\Controllers\bo\dashboard\DashboardAdminController;
 use App\Http\Controllers\bo\Auth\LoginController;
 use App\Http\Controllers\bo\Auth\VerifikasiEmailController;
 use App\Http\Controllers\bo\Auth\ForgetPasswordController;
-use App\Http\Controllers\bo\Pengguna\UserManagementController;
+use App\Http\Controllers\bo\Pengguna\userManagementController;
 use App\Http\Controllers\bo\Pengguna\roleManagementController;
 use App\Http\Controllers\bo\Pengguna\AkunPendudukController;
 use App\Http\Controllers\bo\Pengguna\DashboardPenggunaController;
@@ -171,12 +171,12 @@ Route::prefix('admin')->group(function () {
                 ->name('bo.pengguna.data.kependudukan');
 
             //akun pamong untuk mengelola website
-            Route::resource('/user_management', UserManagementController::class, ['as' => 'bo.pegawai'])
+            Route::resource('/user_management', userManagementController::class, ['as' => 'bo.pegawai'])
                 ->except(['show'])
                 ->middleware('can:Kelola Pengguna');
-            Route::get('/user_management_data', [UserManagementController::class, 'datas'])->name('bo.pengguna.data.akun_pamong')
+            Route::get('/user_management_data', [userManagementController::class, 'datas'])->name('bo.pengguna.data.akun_pamong')
                 ->middleware('can:Kelola Pengguna');
-            Route::get('/user_management_aktivasi/{id}', [UserManagementController::class, 'aktivv'])->name('bo.pengguna.data.aktiv')
+            Route::get('/user_management_aktivasi/{id}', [userManagementController::class, 'aktivv'])->name('bo.pengguna.data.aktiv')
                 ->middleware('can:Kelola Pengguna');
 
             //hak akses pamong
@@ -502,8 +502,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/buat-surat/{id}/document', [BuatsuratController::class, 'show']);
     Route::get('/buat-pesan', [MandiriController::class, 'pesan']);
     Route::get('/bantuan', [MandiriController::class, 'bantuan']);
-    Route::get('/signature', [SignatureController::class, 'index']);
-    Route::post('/signature', [SignatureController::class, 'store']);
+    // Route::get('/signature', [SignatureController::class, 'index']);
+    // Route::post('/signature', [SignatureController::class, 'store']);
     Route::get('/monitoring-iot', [IotController::class, 'api']);
 });
 

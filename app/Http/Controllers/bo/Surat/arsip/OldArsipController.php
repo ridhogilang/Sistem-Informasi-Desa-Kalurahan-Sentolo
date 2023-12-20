@@ -107,11 +107,11 @@ class OldArsipController extends Controller
         //memilih surat masuk apakah surat keluar
         if($arsip_surat->jenis_surat_2 == 'Surat Masuk')
         {
-            $smasuk = SMasuk::findOrFail($arsip_surat->id_surat);
+            $smasuk = SMasuk::find($arsip_surat->id_surat);
             if (!$smasuk) {
                 abort(404);
             }
-            $filePath = storage_path("app/public/surat_masuk/{$smasuk->dokumen}");
+            $filePath = storage_path("app/public/public/surat-masuk/{$smasuk->dokumen}");
             if (!file_exists($filePath)) {
                 abort(404);
             }
@@ -264,7 +264,7 @@ class OldArsipController extends Controller
         }
         // return redirect($arsip_surat->dtlPenghapusan->link);
 
-        $filePath = storage_path("app/public/penghapusan_arsip_surat/{$arsip_surat->dtlPenghapusan->document}");
+        $filePath = storage_path("app/public/public/penghapusan_arsip_surat/{$arsip_surat->dtlPenghapusan->document}");
         if (!file_exists($filePath)) {
             abort(404);
         }

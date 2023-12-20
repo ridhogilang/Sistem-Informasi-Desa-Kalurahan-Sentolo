@@ -83,11 +83,11 @@ class DisposisiController extends Controller
      */
     public function show(string $id)
     {
-        $smasuk = SMasuk::findOrFail($id);
+       $smasuk = SMasuk::find($id);
         if (!$smasuk) {
             abort(404);
         }
-        $filePath = storage_path("app/public/surat_masuk/{$smasuk->dokumen}");
+        $filePath = storage_path("app/public/public/surat-masuk/{$smasuk->dokumen}");
         if (!file_exists($filePath)) {
             abort(404);
         }
