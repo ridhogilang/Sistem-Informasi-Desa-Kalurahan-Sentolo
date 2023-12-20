@@ -62,83 +62,85 @@
                         </a>
                     @endif
                     @if ($artikel->artikel)
-                        {!! $artikel->artikel !!}
+                        <div style="overflow-x: auto;">
+                            {!! $artikel->artikel !!}
+                        </div>
                     @else
                         <iframe src="{{ $artikel->link }}"
                             @if ($artikel->kategori_link == 1) width="784" height="410" @elseif ($artikel->kategori_link == 2)  width="784" height="1180" @endif
                             id="responsive-iframe"></iframe>
-@endif
+                    @endif
                 </div>
                 <div id="print">
-                            <style media="print">
-                                @page {
-                                    size: A4;
-                                    orientation: portrait
-                                }
+                    <style media="print">
+                        @page {
+                            size: A4;
+                            orientation: portrait
+                        }
 
-                                body {
-                                    font-family: 'Inter', sans-serif;
-                                    font-size: 12pt;
-                                    color: #000 !important
-                                }
+                        body {
+                            font-family: 'Inter', sans-serif;
+                            font-size: 12pt;
+                            color: #000 !important
+                        }
 
-                                .loading,
-                                .header,
-                                .main-nav,
-                                #sidenav,
-                                .apbdesa,
-                                #comment,
-                                .comment,
-                                #kolom-komentar,
-                                #shortcut-link,
-                                .newsticker,
-                                .sidebar,
-                                .modal,
-                                .footer,
-                                .bottom-nav,
-                                #main-css,
-                                #scroll-to-top,
-                                .print-button {
-                                    display: none
-                                }
+                        .loading,
+                        .header,
+                        .main-nav,
+                        #sidenav,
+                        .apbdesa,
+                        #comment,
+                        .comment,
+                        #kolom-komentar,
+                        #shortcut-link,
+                        .newsticker,
+                        .sidebar,
+                        .modal,
+                        .footer,
+                        .bottom-nav,
+                        #main-css,
+                        #scroll-to-top,
+                        .print-button {
+                            display: none
+                        }
 
-                                .title {
-                                    font-size: 180%;
-                                    font-family: 'Poppins', sans-serif;
-                                    color: #000 !important;
-                                    margin-bottom: 8px
-                                }
+                        .title {
+                            font-size: 180%;
+                            font-family: 'Poppins', sans-serif;
+                            color: #000 !important;
+                            margin-bottom: 8px
+                        }
 
-                                .flex {
-                                    display: flex;
-                                    gap: 10px;
-                                    font-size: 90%
-                                }
+                        .flex {
+                            display: flex;
+                            gap: 10px;
+                            font-size: 90%
+                        }
 
-                                .icon {
-                                    color: teal
-                                }
+                        .icon {
+                            color: teal
+                        }
 
-                                img {
-                                    margin-top: 10px;
-                                    margin-bottom: 10px;
-                                    width: 100%
-                                }
+                        img {
+                            margin-top: 10px;
+                            margin-bottom: 10px;
+                            width: 100%
+                        }
 
-                                table {
-                                    display: block
-                                }
+                        table {
+                            display: block
+                        }
 
-                                table td {
-                                    border: 1px solid #ccc;
-                                    border-collapse: collapse
-                                }
+                        table td {
+                            border: 1px solid #ccc;
+                            border-collapse: collapse
+                        }
 
-                                .text-link {
-                                    color: #00f;
-                                    text-decoration: underline
-                                }
-                            </style>
+                        .text-link {
+                            color: #00f;
+                            text-decoration: underline
+                        }
+                    </style>
                 </div>
                 <script>
                     function printArticle() {

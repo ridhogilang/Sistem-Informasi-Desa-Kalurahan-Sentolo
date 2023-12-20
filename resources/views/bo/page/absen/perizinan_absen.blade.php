@@ -24,50 +24,52 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title">Perizinan Absensi</h5>
                         </div>
-                        <table class="table table-hover datatable responsive-table w-100">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Jenis Perizinan</th>
-                                    <th>Tanggal</th>
-                                    <th>Alasan</th>
-                                    <th class="text-center">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($izin as $value)
+                        <div style="overflow-x: auto;">
+                            <table class="table table-hover datatable responsive-table w-100">
+                                <thead>
                                     <tr>
-                                        <th scope="row">{{ $loop->iteration }}.</th>
-                                        <td>{{ $value->nama }}</td>
-                                        <td>{{ $value->jenis }}</td>
-                                        <td>{{ date('d F Y', strtotime($value->tanggal)) }}</td>
-                                        <td>{{ $value->alasan }}</td>
-                                        <td class="text-center">
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <form action="/admin/presensi/update-perizinan/{{ $value->user_id }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('PUT')
-
-                                                    <input type="hidden" name="jenis" value="{{ $value->jenis }}">
-                                                    <input type="hidden" name="id" value="{{ $value->id }}">
-                                                    <input type="hidden" name="taggal" value="{{ $value->tanggal }}">
-
-                                                    <button type="submit" class="btn btn-success mx-1">
-                                                        <i class="fa-solid fa-check"></i>
-                                                    </button>
-                                                </form>
-                                                <a class="btn btn-danger" type="submit" id="deleteberita"
-                                                    data-id="{{ $value->id }}"
-                                                    href="/admin/sistem-informasi/deleteberita/{{ $value->id }}"><i
-                                                        class="fa-regular fa-trash-can"></i></a>
-                                            </div>
-                                        </td>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Jenis Perizinan</th>
+                                        <th>Tanggal</th>
+                                        <th>Alasan</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($izin as $value)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}.</th>
+                                            <td>{{ $value->nama }}</td>
+                                            <td>{{ $value->jenis }}</td>
+                                            <td>{{ date('d F Y', strtotime($value->tanggal)) }}</td>
+                                            <td>{{ $value->alasan }}</td>
+                                            <td class="text-center">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <form action="/admin/presensi/update-perizinan/{{ $value->user_id }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+
+                                                        <input type="hidden" name="jenis" value="{{ $value->jenis }}">
+                                                        <input type="hidden" name="id" value="{{ $value->id }}">
+                                                        <input type="hidden" name="taggal" value="{{ $value->tanggal }}">
+
+                                                        <button type="submit" class="btn btn-success mx-1">
+                                                            <i class="fa-solid fa-check"></i>
+                                                        </button>
+                                                    </form>
+                                                    <a class="btn btn-danger" type="submit" id="deleteberita"
+                                                        data-id="{{ $value->id }}"
+                                                        href="/admin/sistem-informasi/deleteberita/{{ $value->id }}"><i
+                                                            class="fa-regular fa-trash-can"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
