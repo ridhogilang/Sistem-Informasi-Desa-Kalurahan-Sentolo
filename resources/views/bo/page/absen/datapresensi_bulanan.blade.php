@@ -84,69 +84,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-
-                        {{-- <table class="table table-hover datatable">
-                            <thead>
-                                <tr>
-                                    <th>Tanggal</th>
-                                    <th>Keterangan</th>
-                                    <th>Jam Masuk</th>
-                                    <th>Jam Keluar</th>
-                                    <th>Total Jam</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (!$presents->count())
-                                    <tr>
-                                        <td colspan="5" class="text-center">Tidak ada data yang tersedia</td>
-                                    </tr>
-                                @else
-                                    @foreach ($presents as $present)
-                                        <tr>
-                                            <td>{{ date('d/m/Y', strtotime($present->tanggal)) }}</td>
-                                            <td>{{ $present->keterangan }}</td>
-                                            @if ($present->jam_masuk)
-                                                <td>{{ date('H:i:s', strtotime($present->jam_masuk)) }}</td>
-                                            @else
-                                                <td>-</td>
-                                            @endif
-                                            @if ($present->jam_keluar)
-                                                <td>{{ date('H:i:s', strtotime($present->jam_keluar)) }}</td>
-                                                <td>
-                                                    @if (strtotime($present->jam_keluar) <= strtotime($present->jam_masuk))
-                                                        {{ 21 - \Carbon\Carbon::parse($present->jam_masuk)->diffInHours(\Carbon\Carbon::parse($present->jam_keluar)) }}
-                                                    @else
-                                                        @if (strtotime($present->jam_keluar) >= strtotime(config('absensi.jam_pulang') . ' +2 hours'))
-                                                            {{ \Carbon\Carbon::parse($present->jam_masuk)->diffInHours(\Carbon\Carbon::parse($present->jam_keluar)) - 3 }}
-                                                        @else
-                                                            {{ \Carbon\Carbon::parse($present->jam_masuk)->diffInHours(\Carbon\Carbon::parse($present->jam_keluar)) - 1 }}
-                                                        @endif
-                                                    @endif
-                                                </td>
-                                            @else
-                                                <td>-</td>
-                                                <td>-</td>
-                                            @endif
-                                            <td>
-                                                @if (date('Y-m-d') == $present->tanggal && ($present->keterangan == 'Masuk' || $present->keterangan == 'Telat' || $present->keterangan == 'Diluar'))
-                                                    <form
-                                                        action="/admin/presensi/update-keluar/{{ $present->id }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('PUT')
-
-                                                        <button type="submit" class="btn btn-warning mx-1">
-                                                            <i class="fa-solid fa-right-from-bracket"></i>
-                                                        </button>
-                                                    </form>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                            </tbody>
-                        </table> --}}
                     </div>
                 </div>
 

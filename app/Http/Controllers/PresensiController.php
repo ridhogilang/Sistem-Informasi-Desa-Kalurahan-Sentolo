@@ -60,64 +60,68 @@ class PresensiController extends Controller
     }
 
     public function checkIn(Request $request)
-    {
-        $users = User::where('is_pamong', '1')->get();
-        $data['jam_masuk']  = date('H:i:s');
-        $data['tanggal']    = date('Y-m-d');
-        $data['user_id']    = $request->user_id;
-        $startDate = Carbon::now()->startOfMonth();
-        $endDate = Carbon::now()->endOfMonth();
-        $ipAddress = $request->ip();
+{
+    $users = User::where('is_pamong', '1')->get();
+    $data['jam_masuk']  = date('H:i:s');
+    $data['tanggal']    = date('Y-m-d');
+    $data['user_id']    = $request->user_id;
+    $startDate = Carbon::now()->startOfMonth();
+    $endDate = Carbon::now()->endOfMonth();
+    $ipAddress = $request->ip();
 
-        // dd($ipAddress);
+    // dd($ipAddress);
 
-        if (date('l') == 'Saturday' || date('l') == 'Sunday') {
-            return redirect()->back()->with('error', 'Hari Libur Tidak bisa Check In');
-        }
-
-        if (($ipAddress == config('absensi.ip_address')) || ($ipAddress == config('absensi.ip_address_2')) || ($ipAddress == config('absensi.ip_address_local'))) {
-            foreach ($users as $user) {
-                // Loop melalui setiap tanggal dalam rentang waktu satu bulan
-                for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
-                    $absen = Present::whereUserId($user->id)->whereTanggal($date->toDateString())->first();
-    
-                    // Jika tidak ada absen untuk tanggal tersebut, dan bukan user yang sedang login, buat entri absensi
-                    if (!$absen) {
-                        Present::create([
-                            'keterangan' => 'Alpha',
-                            'tanggal' => $date->toDateString(),
-                            'user_id' => $user->id
-                        ]);
-                    }
-                }
-            }
-    
-            if (strtotime($data['jam_masuk']) >= strtotime(config('absensi.jam_masuk') . ' -1 hours') && strtotime($data['jam_masuk']) <= strtotime(config('absensi.jam_masuk'))) {
-                $data['keterangan'] = 'Masuk';
-            } else if (strtotime($data['jam_masuk']) > strtotime(config('absensi.jam_masuk')) && strtotime($data['jam_masuk']) <= strtotime(config('absensi.jam_pulang'))) {
-                $data['keterangan'] = 'Telat';
-            } else {
-                $data['keterangan'] = 'Alpha';
-            }
-    
-            $present = Present::whereUserId($data['user_id'])->whereTanggal($data['tanggal'])->first();
-            if ($present) {
-                if ($present->keterangan == 'Alpha') {
-                    $present->update($data);
-                    return redirect()->back()->with('success', 'Check-in berhasil');
-                } else {
-                    return redirect()->back()->with('error', 'Check-in gagal');
-                }
-            }
-    
-            Present::create($data);
-            return redirect()->back()->with('success', 'Check-in berhasil');
-        } else {
-            return redirect()->back()->with('error', 'Anda Tidak Berada di Area Kalurahan');
-        }
-
-        
+    if (date('l') == 'Saturday' || date('l') == 'Sunday') {
+        return redirect()->back()->with('error', 'Hari Libur Tidak bisa Check In');
     }
+
+    $ipSegments = implode('.', array_slice(explode('.', $ipAddress), 0, 3));
+
+    if (
+        $ipSegments == implode('.', array_slice(explode('.', config('absensi.ip_address')), 0, 3)) ||
+        $ipSegments == implode('.', array_slice(explode('.', config('absensi.ip_address_2')), 0, 3)) ||
+        $ipSegments == implode('.', array_slice(explode('.', config('absensi.ip_address_local')), 0, 3))
+    ) {
+        foreach ($users as $user) {
+            // Loop melalui setiap tanggal dalam rentang waktu satu bulan
+            for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
+                $absen = Present::whereUserId($user->id)->whereTanggal($date->toDateString())->first();
+
+                // Jika tidak ada absen untuk tanggal tersebut, dan bukan user yang sedang login, buat entri absensi
+                if (!$absen) {
+                    Present::create([
+                        'keterangan' => 'Alpha',
+                        'tanggal' => $date->toDateString(),
+                        'user_id' => $user->id
+                    ]);
+                }
+            }
+        }
+
+        if (strtotime($data['jam_masuk']) >= strtotime(config('absensi.jam_masuk') . ' -1 hours') && strtotime($data['jam_masuk']) <= strtotime(config('absensi.jam_masuk'))) {
+            $data['keterangan'] = 'Masuk';
+        } else if (strtotime($data['jam_masuk']) > strtotime(config('absensi.jam_masuk')) && strtotime($data['jam_masuk']) <= strtotime(config('absensi.jam_pulang'))) {
+            $data['keterangan'] = 'Telat';
+        } else {
+            $data['keterangan'] = 'Alpha';
+        }
+
+        $present = Present::whereUserId($data['user_id'])->whereTanggal($data['tanggal'])->first();
+        if ($present) {
+            if ($present->keterangan == 'Alpha') {
+                $present->update($data);
+                return redirect()->back()->with('success', 'Check-in berhasil');
+            } else {
+                return redirect()->back()->with('error', 'Check-in gagal');
+            }
+        }
+
+        Present::create($data);
+        return redirect()->back()->with('success', 'Check-in berhasil');
+    } else {
+        return redirect()->back()->with('error', 'Anda Tidak Berada di Area Kalurahan');
+    }
+}
 
     public function checkOut(Request $request, Present $kehadiran)
     {
