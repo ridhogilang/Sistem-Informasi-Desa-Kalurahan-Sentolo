@@ -5,6 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+    <link href="{{ asset('admin/assets/css/table-responsive-datatable.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -39,7 +40,7 @@
                             <h5 class="card-title">Data Akun Pamong</h5>
                         </div>
                         <!-- Table with hoverable rows -->
-                        <table id="user_table" class="table table-hover content_table datatable_akun_pamong">
+                        <table id="user_table" class="table table-hover content_table datatable_akun_pamong responsive-table w-100">
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>
@@ -68,7 +69,7 @@
                         </div>
 
                         <!-- Table with hoverable rows -->
-                        <table id="user_table" class="table table-hover content_table datatable_akun_kontributor">
+                        <table id="user_table" class="table table-hover content_table datatable_akun_kontributor responsive-table w-100">
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>
@@ -98,7 +99,7 @@
                         </div>
 
                         <!-- Table with hoverable rows -->
-                        <table id="user_table" class="table table-hover content_table datatable_akun_penduduk">
+                        <table id="user_table" class="table table-hover content_table datatable_akun_penduduk responsive-table w-100">
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>
