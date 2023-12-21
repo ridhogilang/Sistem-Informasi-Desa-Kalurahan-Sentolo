@@ -59,9 +59,9 @@
                                                             <i class="fa-solid fa-check"></i>
                                                         </button>
                                                     </form>
-                                                    <a class="btn btn-danger" type="submit" id="deleteberita"
+                                                    <a class="btn btn-danger" type="submit" id="deleteizin"
                                                         data-id="{{ $value->id }}"
-                                                        href="/admin/sistem-informasi/deleteberita/{{ $value->id }}"><i
+                                                        href="/admin/presensi/delete-perizinan/{{ $value->id }}"><i
                                                             class="fa-regular fa-trash-can"></i></a>
                                                 </div>
                                             </td>
@@ -113,7 +113,7 @@
 @push('footer')
     <script type="text/javascript">
         $(function() {
-            $(document).on('click', '#deletemenu', function(e) {
+            $(document).on('click', '#deleteizin', function(e) {
                 e.preventDefault();
                 var data_id = $(this).attr("data-id");
 
@@ -127,7 +127,7 @@
                     confirmButtonText: 'Ya, hapus sekarang!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "/admin/sistem-informasi/deletemenu/" + data_id,
+                        window.location = "/admin/presensi/delete-perizinan/" + data_id,
                             Swal.fire(
                                 'Deleted!',
                                 'Data sudah terhapus.',

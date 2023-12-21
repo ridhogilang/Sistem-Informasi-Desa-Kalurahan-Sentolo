@@ -130,6 +130,11 @@ Route::prefix('admin')->group(function () {
             Route::patch('/absen/{kehadiran}', 'checkOut')->name('kehadiran.check-out');
             Route::get('/daftar-hadir', 'index')->name('daftar-hadir');
             Route::get('/daftar-hadir/cari', 'cariDaftarHadir')->name('daftar-hadir.cari');
+            Route::get('/perizinan-personal', 'rekapizin_personal')->name('absen.perizinan-personal');
+            Route::put('/perizinan-personal/{id}', 'izinpersonal_edit')->name('absen.update.perizinan-personal');
+            Route::get('/delete-perizinan/{id}', 'delete_izin')->name('absen.delete.perizinan-personal');
+            Route::post('/perizinan', 'perizinan')->name('absen.perizinan');
+            //route khusus pak lurah dan pak carik
             Route::get('/rekap-harian', 'rekap_harian')->name('kehadiran');
             Route::put('/rekap-harian/{id}', 'update_absensi')->name('update.absensi');
             Route::get('/rekap-bulanan', 'rekap_bulanan')->name('kehadiran.bulanan');
@@ -138,7 +143,6 @@ Route::prefix('admin')->group(function () {
             Route::get('/rekap-harian/excel-users', 'excelUsers')->name('kehadiran.excel-users');
             Route::get('/rekap-harian/excel-bulanan', 'excelBulanan')->name('kehadiran.excel-bulanan');
             Route::get('/rekap-harian/show', '')->name('users.show');
-            Route::post('/perizinan', 'perizinan')->name('absen.perizinan');
             Route::get('/perizinan', 'show_perizinan')->name('absen.perizinan-show');
             Route::put('/update-perizinan/{user_id}', 'updatePerizinan')->name('absen.perizinan-update');
             Route::put('/update-keluar/{id}', 'updateLuar')->name('absen.perizinan-updateluar');

@@ -377,4 +377,52 @@ class PresensiController extends Controller
         return redirect()->back()->with('toast_success', 'Data Absensi Berhasil di Update!');
 
     }
+
+    public function rekapizin_personal()
+    {
+        $userId = auth()->id();
+        $bulan_ini = Carbon::now()->month;
+        $izin = PerizinanAbsen::where('user_id', $userId)->whereMonth('tanggal', $bulan_ini)->get();
+
+        return view('bo.page.absen.dataizin_personal', [
+            "title" => "Riwayat Pengajuan Izin",
+            "dropdown1" => "",
+            "izin" => $izin,
+        ]);
+    }
+
+    public function izinpersonal_edit(Request $request, string $id)
+    {
+        $validatedData = $request->validate([
+            'tanggal' => 'required',
+            'jenis' => 'required',
+            'alasan' => 'required',
+        ]);
+
+        $izin = PerizinanAbsen::find($id);
+
+        if (!$izin) {
+            return redirect()->back()->with('toast_error', 'Data Perizinan tidak ditemukan.');
+        }
+
+        $izin->tanggal = $request->input('tanggal');
+        $izin->jenis = $request->input('jenis');
+        $izin->alasan = $request->input('alasan');
+        $izin->save();
+
+        return redirect()->back()->with('toast_success', 'Data Perizinan Berhasil diubah!');
+    }
+
+    public function delete_izin(string $id)
+    {
+        $izin = PerizinanAbsen::find($id);
+
+        if (!$izin) {
+            return redirect()->back()->with('toast_error', 'Data Perizinan tidak ditemukan.');
+        }
+
+        $izin->delete();
+
+        return redirect()->back()->with('toast_success', 'Data Perizinan Berhasil dihapus!');
+    }
 }

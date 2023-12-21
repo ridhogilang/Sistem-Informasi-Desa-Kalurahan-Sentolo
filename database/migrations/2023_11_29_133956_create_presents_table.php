@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('present', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->enum('keterangan',['Masuk','Alpha','Telat','Sakit','Cuti','Izin', 'Diluar']);
+            $table->enum('keterangan',['Masuk','Alpha','Telat','Sakit','Cuti','Izin', 'Diluar', 'Dinas']);
             $table->date('tanggal');
             $table->time('jam_masuk')->nullable();
             $table->time('jam_keluar')->nullable();

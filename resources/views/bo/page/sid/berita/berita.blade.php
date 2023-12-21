@@ -137,92 +137,95 @@
                         </div>
 
                         <!-- Table with hoverable rows -->
-                        <table class="table table-hover datatable responsive-table w-100">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Judul</th>
-                                    <th scope="col">Penulis</th>
-                                    <th scope="col">Kategori</th>
-                                    <th scope="col">Tanggal</th>
-                                    @can('aktivasi berita')
-                                        <th scope="col">Berita Utama</th>
-                                    @endcan
-                                    @canany(['edit berita', 'hapus berita'])
-                                        <th scope="col" class="text-center">Action</th>
-                                    @endcanany
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $no = 1;
-                                @endphp
-                                @foreach ($berita as $value)
+                        <div style="overflow-x: auto;">
+                            <table class="table table-hover datatable">
+                                <thead>
                                     <tr>
-                                        <th scope="row">{{ $no++ }}.</th>
-                                        <td>{{ $value->judul }}</td>
-                                        <td>{{ $value->penulis }}</td>
-                                        <td>{{ $value->kategori->kategori }}</td>
-                                        <td>{{ $value->tanggal }}</td>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Judul</th>
+                                        <th scope="col">Penulis</th>
+                                        <th scope="col">Kategori</th>
+                                        <th scope="col">Tanggal</th>
                                         @can('aktivasi berita')
-                                            <td>
-                                                @if ($value->tampil)
-                                                    <form action="{{ route('berita.update-status', ['id' => $value->id]) }}"
-                                                        method="POST" id="statusForm{{ $value->id }}"
-                                                        class="form-check form-switch">
-                                                        @csrf
-                                                        @method('put')
-                                                        <div class="form-check form-switch">
-                                                            <input class="form-check-input" type="hidden" name="status"
-                                                                value="0">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                id="flexSwitchCheck{{ $value->id }}" name="status"
-                                                                {{ $value->status ? 'checked' : '' }}
-                                                                data-id="{{ $value->id }}"
-                                                                onchange="submitStatusForm({{ $value->id }})">
-                                                        </div>
-                                                    </form>
-                                                @endif
-                                            </td>
+                                            <th scope="col">Berita Utama</th>
                                         @endcan
-                                        @canany(['edit berita', 'hapus berita', 'aktivasi berita'])
-                                            <td class="text-center">
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    @can('edit berita')
-                                                        <a class="btn btn-warning"
-                                                            href="/admin/sistem-informasi/showberita/{{ $value->id }}"><i
-                                                                class="fa-solid fa-pen-to-square"></i></a>
-                                                    @endcan
-                                                    @can('aktivasi berita')
-                                                        @if ($value->tampil)
-                                                        <div class="mx-1"></div>
-                                                        @else
-                                                            <form
-                                                                action="/admin/sistem-informasi/tampilkan-berita/{{ $value->id }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('PUT')
-
-                                                                <button type="submit" class="btn btn-success mx-1">
-                                                                    <i class="fa-solid fa-check"></i>
-                                                                </button>
-                                                            </form>
-                                                        @endif
-                                                    @endcan
-                                                    <!-- Button trigger modal -->
-                                                    @can('hapus berita')
-                                                        <a class="btn btn-danger" type="submit" id="deleteberita"
-                                                            data-id="{{ $value->id }}"
-                                                            href="/admin/sistem-informasi/deleteberita/{{ $value->id }}"><i
-                                                                class="fa-regular fa-trash-can"></i></a>
-                                                    @endcan
-                                                </div>
-                                            </td>
+                                        @canany(['edit berita', 'hapus berita'])
+                                            <th scope="col" class="text-center">Action</th>
                                         @endcanany
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($berita as $value)
+                                        <tr>
+                                            <th scope="row">{{ $no++ }}.</th>
+                                            <td>{{ $value->judul }}</td>
+                                            <td>{{ $value->penulis }}</td>
+                                            <td>{{ $value->kategori->kategori }}</td>
+                                            <td>{{ $value->tanggal }}</td>
+                                            @can('aktivasi berita')
+                                                <td>
+                                                    @if ($value->tampil)
+                                                        <form
+                                                            action="{{ route('berita.update-status', ['id' => $value->id]) }}"
+                                                            method="POST" id="statusForm{{ $value->id }}"
+                                                            class="form-check form-switch">
+                                                            @csrf
+                                                            @method('put')
+                                                            <div class="form-check form-switch">
+                                                                <input class="form-check-input" type="hidden" name="status"
+                                                                    value="0">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="flexSwitchCheck{{ $value->id }}" name="status"
+                                                                    {{ $value->status ? 'checked' : '' }}
+                                                                    data-id="{{ $value->id }}"
+                                                                    onchange="submitStatusForm({{ $value->id }})">
+                                                            </div>
+                                                        </form>
+                                                    @endif
+                                                </td>
+                                            @endcan
+                                            @canany(['edit berita', 'hapus berita', 'aktivasi berita'])
+                                                <td class="text-center">
+                                                    <div class="d-flex justify-content-center align-items-center">
+                                                        @can('edit berita')
+                                                            <a class="btn btn-warning"
+                                                                href="/admin/sistem-informasi/showberita/{{ $value->id }}"><i
+                                                                    class="fa-solid fa-pen-to-square"></i></a>
+                                                        @endcan
+                                                        @can('aktivasi berita')
+                                                            @if ($value->tampil)
+                                                                <div class="mx-1"></div>
+                                                            @else
+                                                                <form
+                                                                    action="/admin/sistem-informasi/tampilkan-berita/{{ $value->id }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('PUT')
+
+                                                                    <button type="submit" class="btn btn-success mx-1">
+                                                                        <i class="fa-solid fa-check"></i>
+                                                                    </button>
+                                                                </form>
+                                                            @endif
+                                                        @endcan
+                                                        <!-- Button trigger modal -->
+                                                        @can('hapus berita')
+                                                            <a class="btn btn-danger" type="submit" id="deleteberita"
+                                                                data-id="{{ $value->id }}"
+                                                                href="/admin/sistem-informasi/deleteberita/{{ $value->id }}"><i
+                                                                    class="fa-regular fa-trash-can"></i></a>
+                                                        @endcan
+                                                    </div>
+                                                </td>
+                                            @endcanany
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 

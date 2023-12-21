@@ -8,6 +8,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ $title == 'Riwayat Pengajuan Izin' ? '' : 'collapsed' }}" href="{{ route('absen.perizinan-personal') }}">
+                <i class="bi bi-grid"></i>
+                <span>Riwayat Pengajuan Absen</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{ $title == 'Perizinan Absensi' ? '' : 'collapsed' }}" href="{{ route('absen.perizinan-show') }}">
                 <i class="bi bi-grid"></i>
                 <span>Perizinan Absensi</span>

@@ -27,116 +27,122 @@
                         </div>
 
                         <!-- Table with hoverable rows -->
-                        <table class="table table-hover datatable responsive-table w-100">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Judul Berita</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Komentar</th>
-                                    <th scope="col" class="text-center">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $no = 1;
-                                @endphp
-                                @foreach ($komentar as $value)
+                        <div style="overflow-x: auto;">
+                            <table class="table table-hover datatable">
+                                <thead>
                                     <tr>
-                                        <th scope="row">{{ $no++ }}.</th>
-                                        <td>{{ $value->berita->judul }}</td>
-                                        <td>{{ $value->nama }}</td>
-                                        <td>{{ $value->komentar }}</td>
-                                        <td class="text-center">
-                                            <a class="btn btn-warning" type="submit" data-bs-toggle="modal"
-                                                data-bs-target="#Modal-Show-komentar-{{ $value->id }}"
-                                                href="/admin/sistem-informasi/komentar/{{ $value->id }}/show"><i
-                                                    class="fa-regular fa-eye"></i></a>
-                                            <a class="btn btn-success" id="SetujuiKomentar" data-id="{{ $value->id }}"
-                                                href="#">
-                                                <i class="fa-solid fa-check"></i>
-                                            </a>
-                                            <!-- Button trigger modal -->
-                                            <a class="btn btn-danger" type="submit" id="deletekomentar"
-                                                data-id="{{ $value->id }}" href="/admin/sistem-informasi/hapus-komentar/{{ $value->id }}"><i
-                                                    class="fa-regular fa-trash-can"></i></a>
-                                        </td>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Judul Berita</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">Komentar</th>
+                                        <th scope="col" class="text-center">Action</th>
                                     </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($komentar as $value)
+                                        <tr>
+                                            <th scope="row">{{ $no++ }}.</th>
+                                            <td>{{ $value->berita->judul }}</td>
+                                            <td>{{ $value->nama }}</td>
+                                            <td>{{ $value->komentar }}</td>
+                                            <td class="text-center">
+                                                <a class="btn btn-warning" type="submit" data-bs-toggle="modal"
+                                                    data-bs-target="#Modal-Show-komentar-{{ $value->id }}"
+                                                    href="/admin/sistem-informasi/komentar/{{ $value->id }}/show"><i
+                                                        class="fa-regular fa-eye"></i></a>
+                                                <a class="btn btn-success" id="SetujuiKomentar"
+                                                    data-id="{{ $value->id }}" href="#">
+                                                    <i class="fa-solid fa-check"></i>
+                                                </a>
+                                                <!-- Button trigger modal -->
+                                                <a class="btn btn-danger" type="submit" id="deletekomentar"
+                                                    data-id="{{ $value->id }}"
+                                                    href="/admin/sistem-informasi/hapus-komentar/{{ $value->id }}"><i
+                                                        class="fa-regular fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
 
-                                    <!-- Modal Header -->
-                                    <div class="modal fade" id="Modal-Show-komentar-{{ $value->id }}"
-                                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                        aria-labelledby="Modal-Edit-header-Label" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <form action="" method="">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="Modal-Edit-SKTM-Satu-Label">Show
-                                                            Komentar </h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row mb-3">
-                                                            <label for="nama" class="col-sm-3 col-form-label">Judul
-                                                                Berita</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control" id="nama"
-                                                                    name="nama" value="{{ $value->berita->judul }}"
-                                                                    required readonly>
+                                        <!-- Modal Header -->
+                                        <div class="modal fade" id="Modal-Show-komentar-{{ $value->id }}"
+                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                            aria-labelledby="Modal-Edit-header-Label" aria-hidden="true">
+                                            <div
+                                                class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <form action="" method="">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="Modal-Edit-SKTM-Satu-Label">
+                                                                Show
+                                                                Komentar </h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row mb-3">
+                                                                <label for="nama" class="col-sm-3 col-form-label">Judul
+                                                                    Berita</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control"
+                                                                        id="nama" name="nama"
+                                                                        value="{{ $value->berita->judul }}" required
+                                                                        readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                                <label for="nama"
+                                                                    class="col-sm-3 col-form-label">Nama</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" class="form-control"
+                                                                        id="nama" name="nama"
+                                                                        value="{{ $value->nama }}" required readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                                <label for="email"
+                                                                    class="col-sm-3 col-form-label">Emal</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" name="email"
+                                                                        class="form-control" id="email"
+                                                                        value="{{ $value->email }}" required readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                                <label for="nohp" class="col-sm-3 col-form-label">No
+                                                                    HP</label>
+                                                                <div class="col-sm-9">
+                                                                    <input type="text" name="nohp"
+                                                                        class="form-control" id="nohp"
+                                                                        value="{{ $value->nohp }}" required readonly>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-3">
+                                                                <label for="nohp"
+                                                                    class="col-sm-3 col-form-label">Komentar</label>
+                                                                <div class="col-sm-9">
+                                                                    <textarea type="text" name="nohp" class="form-control" id="nohp" value="{{ $value->komentar }}"
+                                                                        required readonly>{{ $value->komentar }}</textarea>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="row mb-3">
-                                                            <label for="nama"
-                                                                class="col-sm-3 col-form-label">Nama</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" class="form-control" id="nama"
-                                                                    name="nama" value="{{ $value->nama }}" required
-                                                                    readonly>
-                                                            </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <a class="btn btn-primary" id="approveButton"
+                                                                data-id="{{ $value->id }}" href="#">
+                                                                <i class="fa-solid fa-check"></i> Setujui
+                                                            </a>
                                                         </div>
-                                                        <div class="row mb-3">
-                                                            <label for="email"
-                                                                class="col-sm-3 col-form-label">Emal</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" name="email" class="form-control"
-                                                                    id="email" value="{{ $value->email }}" required
-                                                                    readonly>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <label for="nohp" class="col-sm-3 col-form-label">No
-                                                                HP</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" name="nohp" class="form-control"
-                                                                    id="nohp" value="{{ $value->nohp }}" required
-                                                                    readonly>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <label for="nohp"
-                                                                class="col-sm-3 col-form-label">Komentar</label>
-                                                            <div class="col-sm-9">
-                                                                <textarea type="text" name="nohp" class="form-control" id="nohp" value="{{ $value->komentar }}" required
-                                                                    readonly>{{ $value->komentar }}</textarea>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                        <a class="btn btn-primary" id="approveButton"
-                                                            data-id="{{ $value->id }}" href="#">
-                                                            <i class="fa-solid fa-check"></i> Setujui
-                                                        </a>
-                                                    </div>
-                                                </form>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="card">
@@ -146,36 +152,38 @@
                         </div>
 
                         <!-- Table with hoverable rows -->
-                        <table class="table table-hover datatable responsive-table w-100">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Judul Berita</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Komentar</th>
-                                    <th scope="col" class="text-center">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $no = 1;
-                                @endphp
-                                @foreach ($setuju as $value)
+                        <div style="overflow-x: auto;">
+                            <table class="table table-hover datatable">
+                                <thead>
                                     <tr>
-                                        <th scope="row">{{ $no++ }}.</th>
-                                        <td>{{ $value->berita->judul }}</td>
-                                        <td>{{ $value->nama }}</td>
-                                        <td>{{ $value->komentar }}</td>
-                                        <td class="text-center">
-                                            <a class="btn btn-danger" type="submit" id="deletekomentar"
-                                                data-id="{{ $value->id }}"
-                                                href="/admin/sistem-informasi/hapus-komentar/{{ $value->id }}"><i
-                                                    class="fa-regular fa-trash-can"></i></a>
-                                        </td>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Judul Berita</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">Komentar</th>
+                                        <th scope="col" class="text-center">Action</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $no = 1;
+                                    @endphp
+                                    @foreach ($setuju as $value)
+                                        <tr>
+                                            <th scope="row">{{ $no++ }}.</th>
+                                            <td>{{ $value->berita->judul }}</td>
+                                            <td>{{ $value->nama }}</td>
+                                            <td>{{ $value->komentar }}</td>
+                                            <td class="text-center">
+                                                <a class="btn btn-danger" type="submit" id="deletekomentar"
+                                                    data-id="{{ $value->id }}"
+                                                    href="/admin/sistem-informasi/hapus-komentar/{{ $value->id }}"><i
+                                                        class="fa-regular fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 

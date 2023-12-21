@@ -31,12 +31,15 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('template/css/style.css') }}" rel="stylesheet">
 
-    <!-- =======================================================
-  * Template Name: NiceAdmin - v2.4.1
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    <style>
+        body,
+        html {
+            background-image: url('/home/img/background_login.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center top;
+        }
+    </style>
 </head>
 
 <body>
@@ -53,7 +56,7 @@
                             <div class="d-flex justify-content-center py-4">
                                 <a href="/" class="logo d-flex align-items-center w-auto">
                                     <img src="{{ asset('template/img/kulonprogo.png') }}" alt="">
-                                    <span class="text-center ">Aplikasi Absen Pamong Kalurahan Sentolo</span>
+                                    <span class="text-center "  style="color: rgb(255, 193, 7);">Aplikasi Absen Pamong Kalurahan Sentolo</span>
                                 </a>
                             </div><!-- End Logo -->
 
@@ -97,8 +100,8 @@
                             </div><br>
 
                             <a href="/" class="btn btn-secondary">Kembali</a><br>
-                            <div class="credits">
-                                Made by <a href="#">PKKM UJB</a>
+                            <div class="credits" style="color: rgb(255, 255, 255);">
+                                Made by <a style="color: rgb(255, 193, 7);" href="#">PKKM UJB</a>
                             </div>
 
                         </div>
