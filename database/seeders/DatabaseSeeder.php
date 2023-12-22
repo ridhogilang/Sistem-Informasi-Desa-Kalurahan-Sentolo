@@ -943,7 +943,7 @@ class DatabaseSeeder extends Seeder
             $userName = $pamong->nama;
 
             // Menghapus spasi dan mengubah menjadi huruf kecil untuk email
-            $userEmail = strtolower(str_replace(' ', '', $userName)) . '@mail.com';
+            $userEmail = strtolower(str_replace(' ', '', $userName)) . '@gmail.com';
 
             // Membuat data User
             $pamongg = User::create([

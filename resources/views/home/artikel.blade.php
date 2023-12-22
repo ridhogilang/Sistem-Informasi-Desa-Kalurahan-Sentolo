@@ -295,12 +295,12 @@
                 responsive: [{
                     breakpoint: 768,
                     settings: {
-                        slidesToShow: 4
+                        slidesToShow: 1
                     }
                 }, {
                     breakpoint: 520,
                     settings: {
-                        slidesToShow: 3
+                        slidesToShow: 1
                     }
                 }]
             });

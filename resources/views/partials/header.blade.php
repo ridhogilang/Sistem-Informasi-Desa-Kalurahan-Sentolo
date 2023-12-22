@@ -81,7 +81,7 @@
     </section>
     <section class="header-bottom">
         <div class="header-bottom-inner">
-            <a href="http://127.0.0.1:8000/#" class="brand">
+            <a href="/" class="brand">
                 <img loading="lazy" src="/home/img/kulonprogo.png" alt="Logo Kalurahan Sentolo" class="brand-image">
                 <div class="brand-name">
                     <span id="typed" class="brand-title">Sistem Informasi Kalurahan Sentolo</span>
