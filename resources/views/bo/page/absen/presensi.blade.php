@@ -66,11 +66,11 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-1 d-flex flex-column align-items-center justify-content-center">
-
                             <div class="d-flex justify-content-center py-5">
                                 <a href="/" class="logo d-flex align-items-center w-auto">
                                     <img src="{{ asset('template/img/kulonprogo.png') }}" alt="">
-                                    <span class="text-center"  style="color: rgb(255, 193, 7);">Aplikasi Absen Pamong Kalurahan Sentolo</span>
+                                    <span class="text-center" style="color: rgb(255, 193, 7);">Aplikasi Absen Pamong
+                                        Kalurahan Sentolo</span>
                                 </a>
                             </div>
                             @if (session('success'))
@@ -181,7 +181,8 @@
                                     <a href="/admin/presensi/daftar-hadir" class="btn btn-warning ">Rekap Kehadiran</a>
                                     <a href="/" class="btn btn-secondary">Kembali</a>
                                 </div><br><br>
-                                <div style="color: white;">Made by <a  style="color: rgb(255, 193, 7);" href="#">PKKM UJB</a></div>
+                                <div style="color: white;">Made by <a style="color: rgb(255, 193, 7);"
+                                        href="#">PKKM UJB</a></div>
                             </div>
                             <div class="modal fade" id="basicModal" tabindex="-1">
                                 <div class="modal-dialog">
