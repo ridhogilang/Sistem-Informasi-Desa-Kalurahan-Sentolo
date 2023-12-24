@@ -108,6 +108,7 @@ Route::prefix('sitemin-sentolo')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
     Route::get('/login-absen', [LoginController::class, 'absen'])->middleware('guest')->name('loginabsen');
     Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
+    Route::post('/login-mandiri', [LoginController::class, 'loginmandiri'])->name('login.mandiri');
     Route::post('/login-absen', [LoginController::class, 'loginabsen'])->middleware('guest')->name('login.absen');
     Route::get('/verifymail/{id}', [VerifikasiEmailController::class, 'mailverify'])->name('verifymail');
     Route::resource('/forget_password', ForgetPasswordController::class)->except(['create', 'show', 'destroy']);

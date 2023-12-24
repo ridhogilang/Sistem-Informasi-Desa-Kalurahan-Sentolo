@@ -41,10 +41,12 @@ class HomeController extends Controller
         $today = Carbon::today()->toDateString();
         $todayy = Carbon::today();
         
-        $url = 'https://api-jadwal-sholat.vercel.app/api/cari?provinsi=d.i.+yogyakarta&kota=kab.+kulon+progo&bulan=' . date('m') . '&tahun=' . date('Y') ;
-        $sholat = json_decode(file_get_contents($url), true);
-        $waktu = collect($sholat['data'])->firstWhere('key', $today);
-
+        // $url = 'https://api-jadwal-sholat.vercel.app/api/cari?provinsi=d.i.+yogyakarta&kota=kab.+kulon+progo&bulan=' . date('m') . '&tahun=' . date('Y') ;
+        // $sholat = json_decode(file_get_contents($url), true);
+        // $waktu = collect($sholat['data'])->firstWhere('key', $today);
+        
+        $waktu = [];
+        
         // dd($waktu);
 
         $headers = Header::orderBy('urutan')->with('subheader')->get();

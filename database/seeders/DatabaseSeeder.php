@@ -100,12 +100,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@mail.com',
             'email_verified_at' => date('Y-m-d H:i:s'),
             'password' => Hash::make('password'),
-            'jabatan' => 'Admin',
+            'jabatan' => 'SuperDuperAdmin',
             'is_active' => '1',
             'is_delete' => '0'
         ]);
         
-        $role = Role::create(['name' => 'superduperadmin']);
+        $role = Role::create(['name' => 'SuperDuperAdmin']);
         
         $role->syncPermissions($this->permissions);
         
