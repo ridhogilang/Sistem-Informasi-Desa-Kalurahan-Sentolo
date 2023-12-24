@@ -12,15 +12,21 @@ class DashboardPenggunaController extends Controller
     {
         $count['penduduk'] = User::where('is_delete', '<>', '1')
             ->where('is_pamong', '=', '0')
+            ->where('email', '<>', 'admin@mail.com')
+            ->where('email', '<>', 'example@mail.com')
             ->where('jabatan', '=', null)
             ->count();
 
         $count['kontributor'] = User::where("is_delete","<>", '1')
                 ->where("is_pamong","=", "0")
+                ->where('email', '<>', 'admin@mail.com')
+                ->where('email', '<>', 'example@mail.com')
                 ->where('jabatan', '<>', null)
                 ->count();
         $count['pamong'] = User::where("is_delete","<>", '1')
                 ->where("is_pamong","=", "1")
+                ->where('email', '<>', 'admin@mail.com')
+                ->where('email', '<>', 'example@mail.com')
                 ->count();
 
         return view('bo.page.pengguna.dashboard.index',[

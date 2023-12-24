@@ -55,6 +55,14 @@
             </a>
         </li>
         @endif
+        @can('Monitoring IOT')
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('bo.monitor_iot') }}">
+                <i class="bi bi-display"></i>
+                <span>Monitoring IOT</span>
+            </a>
+        </li><!-- End Penduduk Page Nav -->
+        @endcan
     </ul>
 
 </aside>

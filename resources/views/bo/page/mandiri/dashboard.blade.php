@@ -24,7 +24,7 @@
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                        <img src="{{ isset(auth()->user()->foto_profil) ? asset('storage/' . auth()->user()->foto_profil) : asset('template/img/akun_kosong.png') }}" alt="Profile" class="rounded-circle">
+                        <img src="{{ isset(auth()->user()->foto_profil) ? asset('storage/public/' . auth()->user()->foto_profil) : asset('template/img/akun_kosong.png') }}" alt="Profile" class="rounded-circle">
                         <h2>{{ auth()->user()->nama }}</h2>
                         <h3>@if(isset(auth()->user()->roles[0]['name']))
                                 {{ auth()->user()->roles[0]['name'] }}
@@ -110,7 +110,7 @@
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <img src="{{ isset(auth()->user()->foto_profil) ? asset('storage/' . auth()->user()->foto_profil) : asset('template/img/akun_kosong.png') }}" alt="Profile">
+                                            <img src="{{ isset(auth()->user()->foto_profil) ? asset('storage/public/' . auth()->user()->foto_profil) : asset('template/img/akun_kosong.png') }}" alt="Profile">
                                         </div>
 
                                         <div class="row mb-3 mt-3">

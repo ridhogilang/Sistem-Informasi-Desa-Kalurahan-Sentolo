@@ -90,6 +90,17 @@
                             <hr class="dropdown-divider">
                         </li>
                     @endif
+                    @can('Monitoring IOT')
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('bo.monitor_iot') }}">
+                                <i class="bi bi-display"></i>
+                                <span>Monitoring IOT</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    @endcan
 
 
                 </ul><!-- End Profile Dropdown Items -->
@@ -99,7 +110,7 @@
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0 btn" href="#"
                     data-bs-toggle="dropdown">
-                    <img src="{{ isset(auth()->user()->foto_profil) ? asset('storage/' . auth()->user()->foto_profil) : asset('template/img/akun_kosong.png') }}" alt="Profile" class="rounded-circle">
+                    <img src="{{ isset(auth()->user()->foto_profil) ? asset('storage/public/' . auth()->user()->foto_profil) : asset('template/img/akun_kosong.png') }}" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->nama }}</span>
                 </a><!-- End Profile Iamge Icon -->
 

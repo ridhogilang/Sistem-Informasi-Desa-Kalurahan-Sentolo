@@ -38,7 +38,10 @@ class userManagementController extends Controller
 
     public function datas()
     {
-        $data = User::where("is_delete","<>", '1')->where("is_pamong","=", "1")->get();
+        $data = User::where("is_delete","<>", '1')->where("is_pamong","=", "1")
+            ->where('email', '<>', 'admin@mail.com')
+            ->where('email', '<>', 'example@mail.com')
+            ->get();
         return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){

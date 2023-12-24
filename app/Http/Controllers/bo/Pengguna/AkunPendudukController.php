@@ -38,6 +38,8 @@ class AkunPendudukController extends Controller
         //ini penduduk
         $data = User::where('is_delete', '<>', '1')
             ->where('is_pamong', '=', '0')
+            ->where('email', '<>', 'admin@mail.com')
+            ->where('email', '<>', 'example@mail.com')
             ->where('jabatan', '=', null)
             ->get();
 
@@ -74,6 +76,8 @@ class AkunPendudukController extends Controller
         $data = User::where("is_delete","<>", '1')
                 ->where("is_pamong","=", "0")
                 ->where('jabatan', '<>', null)
+                ->where('email', '<>', 'admin@mail.com')
+                ->where('email', '<>', 'example@mail.com')
                 ->get();
 
         return DataTables::of($data)

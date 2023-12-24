@@ -24,7 +24,7 @@ class roleManagementController extends Controller
     public function index()
     {
         $data = $this->data;
-        $data['roles'] = Role::orderBy('id', 'DESC')->get();
+        $data['roles'] = Role::orderBy('id', 'DESC')->where('name', '<>', 'superduperadmin')->get();
         return view($data['view'].'.index', $data);
     }
 

@@ -13,6 +13,7 @@
                 <span>Riwayat Pengajuan Absen</span>
             </a>
         </li>
+        @can('HR Absensi')
         <li class="nav-item">
             <a class="nav-link {{ $title == 'Perizinan Absensi' ? '' : 'collapsed' }}" href="{{ route('absen.perizinan-show') }}">
                 <i class="bi bi-grid"></i>
@@ -38,5 +39,6 @@
                 </li>
             </ul>
         </li>
+        @endcan
     </ul>
 </aside>
