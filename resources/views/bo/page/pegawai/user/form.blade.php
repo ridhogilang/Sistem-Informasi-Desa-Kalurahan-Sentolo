@@ -1,3 +1,4 @@
+
 @extends('bo.layout.master')
 
 @push('header')
@@ -50,7 +51,7 @@
             <div class="row">
                 <div class="col-xs-12 mb-3">
                     <div class="form-group">
-                        <strong>NIK - Nama : </strong> {{  $user->nik }} - {{  $user->nama }}
+                        <strong>NIK - Nama : </strong> {{ isset($user->nik)?$user->nik:'' }} - {{  isset($user->nama)?$user->nama:'' }}
                         <select name="nik" class="data-penduduk form-control">
                         </select>
                     </div>
@@ -78,8 +79,9 @@
                         <strong>Role: </strong>
                         <select name="roles" id="id_supplier" class="form-control">
                             <option disabled value="">Silahkan Pilih Jabatan / Hak Akses</option>
+                            <option value="">Akun Penduduk</option>
                             @foreach ($roles as $role)
-                                <option value="{{ $role }}" {{ ($user->hasRole($role)) ? 'selected' : '' }}>
+                                <option value="{{ $role }}" {{ isset($user->hasRole) && ($user->hasRole($role)) ? 'selected' : '' }}>
                                     {{ $role }}
                                 </option>
                             @endforeach

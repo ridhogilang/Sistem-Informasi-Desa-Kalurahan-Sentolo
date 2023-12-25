@@ -124,7 +124,7 @@
                                         <td class="text-center">
                                             <div class="d-flex justify-content-evenly">
                                                 <button data-bs-toggle="modal" data-bs-target="#dispos_{{$value->id}}" class="btn btn-success" type="submit">
-                                                    <i class="bi bi-diagram-2"></i> Disposisikan
+                                                    <i class="bi bi-diagram-2"></i> Tindakan
                                                 </button>
 
                                                 <!-- ini bagian modal disposisi -->
@@ -151,7 +151,7 @@
                                                                 </button>
                                                                 @if($id_jns[$value->id] != 'PLK')
                                                                 <button data-bs-toggle="modal" data-bs-target="#teruskan_{{$value->id}}" type="button" class="btn btn-success">
-                                                                    Teruskan
+                                                                    Disposisikan
                                                                 </button>
                                                                 @endif
 
@@ -214,7 +214,7 @@
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                                 <button type="submit" class="btn btn-success">
-                                                                    Teruskan
+                                                                    Disposisikan
                                                                 </button>
                                                             </div>
                                                         </form>
