@@ -5,7 +5,7 @@
         <h1>Hak Akses</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Kepegawaian</a></li>
+                <li class="breadcrumb-item"><a href="/">Pengguna</a></li>
                 <li class="breadcrumb-item">Hak Akses</li>
                 <li class="breadcrumb-item active">Tambah Hak Akses</li>
             </ol>
