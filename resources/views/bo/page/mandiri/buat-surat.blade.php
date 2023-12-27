@@ -61,11 +61,11 @@
                             @csrf
                             <div class="col-md-6">
                                 <label for="nik" class="form-label">NIK</label>
-                                <input type="text" class="form-control" id="nik" name="nik" value="3401197702494900" readonly>
+                                <input type="text" class="form-control" id="nik" name="nik" value="{{ auth()->user()->nik }}" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama" value="RIZKI BAGUS PANGESTU" readonly>
+                                <input type="text" class="form-control" id="nama" name="nama" value="{{ auth()->user()->nama }}" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_ktp" class="form-label">Upload File Kartu Tanda Penduduk</label>
@@ -93,11 +93,11 @@
                             @csrf
                             <div class="col-md-6">
                                 <label for="nik" class="form-label">NIK</label>
-                                <input type="text" class="form-control" id="nik" name="nik" value="3401197702494900" readonly>
+                                <input type="text" class="form-control" id="nik" name="nik" value="{{ auth()->user()->nik }}" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama" value="RIZKI BAGUS PANGESTU" readonly>
+                                <input type="text" class="form-control" id="nama" name="nama" value="{{ auth()->user()->nama }}" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_ktp" class="form-label">Upload File Kartu Tanda Penduduk</label>
@@ -129,11 +129,11 @@
                             @csrf
                             <div class="col-md-6">
                                 <label for="nik" class="form-label">NIK</label>
-                                <input type="text" class="form-control" id="nik" name="nik" value="3401197702494900" readonly>
+                                <input type="text" class="form-control" id="nik" name="nik" value="{{ auth()->user()->nik }}" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama" value="RIZKI BAGUS PANGESTU" readonly>
+                                <input type="text" class="form-control" id="nama" name="nama" value="{{ auth()->user()->nama }}" readonly>
                             </div>
                             <div class="col-md-6">
                                 <label for="foto_ktp" class="form-label">Upload File Kartu Tanda Penduduk</label>
