@@ -11,11 +11,11 @@
 @section('content')
 
     <div class="pagetitle">
-        <h1>Pegawai</h1>
+        <h1>Data Pengguna</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Kepegawaian</a></li>
-                <li class="breadcrumb-item active">Pegawai</li>
+                <li class="breadcrumb-item"><a href="/">Pengguna</a></li>
+                <li class="breadcrumb-item active">Data Pengguna</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->

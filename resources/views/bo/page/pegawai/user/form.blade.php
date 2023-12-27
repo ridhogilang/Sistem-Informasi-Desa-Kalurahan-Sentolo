@@ -8,12 +8,12 @@
 
 @section('content')
 <div class="pagetitle">
-        <h1>Pegawai</h1>
+        <h1>Pengguna</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Kepegawaian</a></li>
-                <li class="breadcrumb-item">Pegawai</li>
-                <li class="breadcrumb-item active">Tambah Pegawai</li>
+                <li class="breadcrumb-item"><a href="/">Pengguna</a></li>
+                <li class="breadcrumb-item">Data Pegawai</li>
+                <li class="breadcrumb-item active">Detail Pengguna</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -81,10 +81,11 @@
                             <option disabled value="">Silahkan Pilih Jabatan / Hak Akses</option>
                             <option value="">Akun Penduduk</option>
                             @foreach ($roles as $role)
-                                <option value="{{ $role }}" {{ isset($user->hasRole) && ($user->hasRole($role)) ? 'selected' : '' }}>
+                                <option value="{{ $role }}" {{ isset($user) && $user->hasRole($role) ? 'selected' : '' }}>
                                     {{ $role }}
                                 </option>
                             @endforeach
+
                         </select>
 
                         <!-- 
