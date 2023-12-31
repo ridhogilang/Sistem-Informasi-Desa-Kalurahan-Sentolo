@@ -27,6 +27,8 @@
     <link href="{{ asset('template/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
     <link href="{{ asset('template/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('template/vendor/simple-datatables/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('template/css/style.css') }}" rel="stylesheet">
@@ -51,6 +53,10 @@
             justify-content: center;
             align-items: center;
 
+        }
+
+        #map {
+            height: 200px;
         }
     </style>
 
@@ -112,6 +118,7 @@
                                                                 @csrf
                                                                 <input type="hidden" name="user_id"
                                                                     value="{{ auth()->user()->id }}">
+                                                                <input type="hidden" id="lokasi" name="lokasi">
                                                                 <button class="btn btn-primary"
                                                                     type="submit">Check-in</button>
                                                             </form>
@@ -138,6 +145,7 @@
                                                                     action="{{ route('kehadiran.check-out', ['kehadiran' => $present]) }}"
                                                                     method="post">
                                                                     @csrf @method('patch')
+                                                                    <input type="hidden" id="lokasi" name="lokasi">
                                                                     <button class="btn btn-primary"
                                                                         type="submit">Check-out</button>
                                                                 </form>
@@ -159,6 +167,7 @@
                                                                 value="{{ auth()->user()->id }}">
                                                             <button class="btn btn-primary"
                                                                 type="submit">Check-in</button>
+                                                            <input type="hidden" id="lokasi" name="lokasi">
                                                         </form>
                                                     @else
                                                         <p>Check-in Belum Tersedia</p>
@@ -167,6 +176,10 @@
                                             @endif
                                         @endif
                                     @endif
+
+                                </div>
+                                <div class="card">
+                                    <div id="map"></div>
                                 </div>
                             </div>
                             <br><br>
@@ -178,7 +191,8 @@
                                     </button>
                                 </div><br>
                                 <div>
-                                    <a href="/admin/presensi/daftar-hadir" class="btn btn-warning ">Rekap Kehadiran</a>
+                                    <a href="/admin/presensi/daftar-hadir" class="btn btn-warning ">Rekap
+                                        Kehadiran</a>
                                     <a href="/" class="btn btn-secondary">Kembali</a>
                                 </div><br><br>
                                 <div style="color: white;">Made by <a style="color: rgb(255, 193, 7);"
@@ -269,6 +283,8 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @include('sweetalert::alert')
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
         @if (session('toast_success'))
             const Toast = Swal.mixin({
@@ -288,6 +304,42 @@
                 title: '{{ session('toast_success') }}'
             });
         @endif
+    </script>
+    <script>
+        // Fungsi untuk mendapatkan lokasi pengguna
+        function getLokasi() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Fungsi yang akan dipanggil ketika mendapatkan posisi
+        function showPosition(position) {
+            // Mendapatkan latitude dan longitude
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
+            var map = L.map('map').setView([latitude, longitude], 13);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+            var marker = L.marker([latitude, longitude]).addTo(map);
+            var circle = L.circle([-7.8367103481447264, 110.2184030826265], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: 500
+            }).addTo(map);
+
+            // Menetapkan nilai ke input dengan id "lokasi"
+            document.getElementById("lokasi").value = latitude + ", " + longitude;
+        }
+
+        // Panggil fungsi getLokasi saat halaman dimuat
+        getLokasi();
     </script>
 
 </body>
