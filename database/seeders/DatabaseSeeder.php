@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             //komponen
             'lihat running text', 'edit running text',
             //pamong
-            'list pamong', 'tambah pamong', 'edit pamong', 'hapus pamong',
+            'list pamong', 'edit pamong',
             //galeri
             'list galeri', 'tambah galeri', 'edit galeri', 'hapus galeri',
             //menu
@@ -77,6 +77,8 @@ class DatabaseSeeder extends Seeder
             'list artikel', 'tambah artikel', 'edit artikel', 'aktivasi artikel', 'hapus artikel', 'komentar artikel',
         //kependudukan
         'Menejemen Kependudukan',
+        'HR Absensi',
+        'Monitoring IOT',
         
         
     ];
@@ -98,12 +100,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@mail.com',
             'email_verified_at' => date('Y-m-d H:i:s'),
             'password' => Hash::make('password'),
-            'jabatan' => 'Admin',
+            'jabatan' => 'SuperDuperAdmin',
             'is_active' => '1',
             'is_delete' => '0'
         ]);
         
-        $role = Role::create(['name' => 'Admin']);
+        $role = Role::create(['name' => 'SuperDuperAdmin']);
         
         $role->syncPermissions($this->permissions);
         

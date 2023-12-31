@@ -281,6 +281,7 @@
                 <div class="owl-dots disabled"></div>
             </div>
         </section>
+        @if($waktu)
         <section class="flex flex-col lg:flex-row lg:space-x-5 lg:space-y-0 space-y-3 shalat">
             <div
                 class="lg:w-1/3 bg-secondary bg-opacity-90 py-5 px-4 text-white flex flex-col bg-flower bg-right-top bg-5 bg-no-repeat justify-center">
@@ -432,6 +433,7 @@
                 </div>
             </div>
         </section>
+        @endif
         <section id="article-list" class="space-y-4 py-5">
             <h2 class="text-heading text-xl lg:text-3xl font-bold mb-5"><i
                     class="fa-regular fa-newspaper inline-block mr-2 h-10 text-primary dark:text-white"></i>Berita
@@ -1677,8 +1679,9 @@
                 </svg>
             </div>
             <div class="w-full lg:w-5/12">
-                <form action="" method="post"
+                <form action="{{ route('login.mandiri') }}" method="post"
                     class="shadow rounded-lg bg-primary dark:bg-dark-secondary overflow-hidden relative">
+                @csrf
                     <h3
                         class="py-4 text-center bg-secondary text-white font-bold font-heading text-lg absolute top-0 left-0 w-full">
                         Layanan Mandiri</h3>
@@ -1690,16 +1693,15 @@
                     <div class="p-5 -mt-10 space-y-4 pb-8">
                         <div
                             class="bg-slate-200 dark:bg-dark-primary py-2 px-4 border-l-4 border-secondary text-secondary">
-                            <p class="text-xs"><i class="ti ti-info-circle mr-1"></i> Hubungi operator desa untuk
-                                memperoleh PIN</p>
+                            <p class="text-xs"><i class="ti ti-info-circle mr-1"></i> Hubungi operator desa jika ada masalah terkait login</p>
                         </div>
                         <div class="space-y-2 flex flex-col">
                             <label for="nik" class="text-white text-sm font-bold">NIK / No. KTP</label>
                             <input type="text" class="form-input" id="nik" name="nik">
                         </div>
                         <div class="space-y-2 flex flex-col">
-                            <label for="pin" class="text-white text-sm font-bold">Kode PIN</label>
-                            <input type="password" class="form-input" id="pin" name="pin">
+                            <label for="pin" class="text-white text-sm font-bold">Password</label>
+                            <input type="password" class="form-input" id="pin" name="password">
                         </div>
                         <button type="submit" class="button button-tertiary w-full mt-10 hover:ring-offset-primary"
                             data-mdb-ripple="true" data-md-ripple-color="light">Masuk</button>

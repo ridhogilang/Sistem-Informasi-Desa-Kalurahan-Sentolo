@@ -1,4 +1,4 @@
-<aside id="sidebar" class="sidebar">
+hi<aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -130,7 +130,7 @@
         <li class="nav-item">
             <a class="nav-link {{ ($title == "Disposisi Surat Masuk") ? '' : 'collapsed' }}" href="/admin/e-surat/disposisi">
                 <i class="bi bi-mailbox"></i>
-                <span>Disposisi Surat</span>
+                <span>Surat Diterima</span>
             </a>
         </li><!-- End Disposisi Nav -->
         @can('Arsip Surat')

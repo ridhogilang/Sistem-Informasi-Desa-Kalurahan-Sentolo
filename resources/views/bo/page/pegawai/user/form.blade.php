@@ -1,3 +1,4 @@
+
 @extends('bo.layout.master')
 
 @push('header')
@@ -7,12 +8,12 @@
 
 @section('content')
 <div class="pagetitle">
-        <h1>Pegawai</h1>
+        <h1>Pengguna</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Kepegawaian</a></li>
-                <li class="breadcrumb-item">Pegawai</li>
-                <li class="breadcrumb-item active">Tambah Pegawai</li>
+                <li class="breadcrumb-item"><a href="/">Pengguna</a></li>
+                <li class="breadcrumb-item">Data Pegawai</li>
+                <li class="breadcrumb-item active">Detail Pengguna</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -50,7 +51,7 @@
             <div class="row">
                 <div class="col-xs-12 mb-3">
                     <div class="form-group">
-                        <strong>NIK - Nama :</strong>
+                        <strong>NIK - Nama : </strong> {{ isset($user->nik)?$user->nik:'' }} - {{  isset($user->nama)?$user->nama:'' }}
                         <select name="nik" class="data-penduduk form-control">
                         </select>
                     </div>
@@ -75,13 +76,18 @@
                 </div>
                 <div class="col-xs-12 mb-3">
                     <div class="form-group">
-                        <strong>Role:</strong>
+                        <strong>Role: </strong>
                         <select name="roles" id="id_supplier" class="form-control">
-                            <option disabled selected value="">Silahkan Pilih Jabatan / Hak Akses</option>
+                            <option disabled value="">Silahkan Pilih Jabatan / Hak Akses</option>
+                            <option value="">Akun Penduduk</option>
                             @foreach ($roles as $role)
-                                <option value="{{ $role }}" >{{ $role }}</option>
+                                <option value="{{ $role }}" {{ isset($user) && $user->hasRole($role) ? 'selected' : '' }}>
+                                    {{ $role }}
+                                </option>
                             @endforeach
+
                         </select>
+
                         <!-- 
                         <select class="form-control" multiple name="roles[]">
                             

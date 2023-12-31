@@ -108,6 +108,7 @@ Route::prefix('sitemin-sentolo')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
     Route::get('/login-absen', [LoginController::class, 'absen'])->middleware('guest')->name('loginabsen');
     Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
+    Route::post('/login-mandiri', [LoginController::class, 'loginmandiri'])->middleware('guest')->name('login.mandiri');
     Route::post('/login-absen', [LoginController::class, 'loginabsen'])->middleware('guest')->name('login.absen');
     Route::get('/verifymail/{id}', [VerifikasiEmailController::class, 'mailverify'])->name('verifymail');
     Route::resource('/forget_password', ForgetPasswordController::class)->except(['create', 'show', 'destroy']);
@@ -135,17 +136,28 @@ Route::prefix('admin')->group(function () {
             Route::get('/delete-perizinan/{id}', 'delete_izin')->name('absen.delete.perizinan-personal');
             Route::post('/perizinan', 'perizinan')->name('absen.perizinan');
             //route khusus pak lurah dan pak carik
-            Route::get('/rekap-harian', 'rekap_harian')->name('kehadiran');
-            Route::put('/rekap-harian/{id}', 'update_absensi')->name('update.absensi');
-            Route::get('/rekap-bulanan', 'rekap_bulanan')->name('kehadiran.bulanan');
-            Route::get('/rekap-bulanan/cari', 'bulanan_search')->name('bulanan.search');
-            Route::get('/rekap-harian/cari', 'harian_search')->name('kehadiran.search');
-            Route::get('/rekap-harian/excel-users', 'excelUsers')->name('kehadiran.excel-users');
-            Route::get('/rekap-harian/excel-bulanan', 'excelBulanan')->name('kehadiran.excel-bulanan');
-            Route::get('/rekap-harian/show', '')->name('users.show');
-            Route::get('/perizinan', 'show_perizinan')->name('absen.perizinan-show');
-            Route::put('/update-perizinan/{user_id}', 'updatePerizinan')->name('absen.perizinan-update');
-            Route::put('/update-keluar/{id}', 'updateLuar')->name('absen.perizinan-updateluar');
+            Route::get('/rekap-harian', 'rekap_harian')->name('kehadiran')
+                ->middleware('can:HR Absensi');
+            Route::put('/rekap-harian/{id}', 'update_absensi')->name('update.absensi')
+                ->middleware('can:HR Absensi');
+            Route::get('/rekap-bulanan', 'rekap_bulanan')->name('kehadiran.bulanan')
+                ->middleware('can:HR Absensi');
+            Route::get('/rekap-bulanan/cari', 'bulanan_search')->name('bulanan.search')
+                ->middleware('can:HR Absensi');
+            Route::get('/rekap-harian/cari', 'harian_search')->name('kehadiran.search')
+                ->middleware('can:HR Absensi');
+            Route::get('/rekap-harian/excel-users', 'excelUsers')->name('kehadiran.excel-users')
+                ->middleware('can:HR Absensi');
+            Route::get('/rekap-harian/excel-bulanan', 'excelBulanan')->name('kehadiran.excel-bulanan')
+                ->middleware('can:HR Absensi');
+            Route::get('/rekap-harian/show', '')->name('users.show')
+                ->middleware('can:HR Absensi');
+            Route::get('/perizinan', 'show_perizinan')->name('absen.perizinan-show')
+                ->middleware('can:HR Absensi');
+            Route::put('/update-perizinan/{user_id}', 'updatePerizinan')->name('absen.perizinan-update')
+                ->middleware('can:HR Absensi');
+            Route::put('/update-keluar/{id}', 'updateLuar')->name('absen.perizinan-updateluar')
+                ->middleware('can:HR Absensi');
         });
 
         //halaman bantuan
@@ -508,7 +520,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/bantuan', [MandiriController::class, 'bantuan']);
     // Route::get('/signature', [SignatureController::class, 'index']);
     // Route::post('/signature', [SignatureController::class, 'store']);
-    Route::get('/monitoring-iot', [IotController::class, 'api']);
+    Route::get('/monitoring-iot', [IotController::class, 'api'])->name('bo.monitor_iot')->middleware('can:Monitoring IOT');
 });
 
 

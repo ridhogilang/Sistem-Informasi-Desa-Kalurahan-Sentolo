@@ -47,6 +47,16 @@
             </a>
         </li><!-- End Penduduk Page Nav -->
         @endcan
+        
+        @can('Monitoring IOT')
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('bo.monitor_iot') }}">
+                <i class="bi bi-display"></i>
+                <span>Monitoring IOT</span>
+            </a>
+        </li><!-- End Penduduk Page Nav -->
+        @endcan
+        
         @if(auth()->user()->is_pamong == 1)
         <li class="nav-item">
             <a class="nav-link collapsed" href="/admin/presensi/daftar-hadir">
@@ -55,6 +65,7 @@
             </a>
         </li>
         @endif
+        
     </ul>
 
 </aside>

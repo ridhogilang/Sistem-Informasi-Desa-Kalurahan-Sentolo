@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Mail;
 // use Yajra\DataTables\Facades\Datatables;
 use App\Models\Penduduk;
 use DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class userManagementController extends Controller
 {
@@ -38,7 +39,10 @@ class userManagementController extends Controller
 
     public function datas()
     {
-        $data = User::where("is_delete","<>", '1')->where("is_pamong","=", "1")->get();
+        $data = User::where("is_delete","<>", '1')->where("is_pamong","=", "1")
+            ->where('email', '<>', 'admin@mail.com')
+            ->where('email', '<>', 'example@mail.com')
+            ->get();
         return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -159,15 +163,21 @@ class userManagementController extends Controller
     {
 
         $this->validate($request, [
-            'nik' => 'required',
-            'email' => 'required|email|unique:users,email|unique:verify_mails,email',
-            'password' => 'required|min:6|same:confirm-password',
+            'nik' => 'nullable',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users', 'email')->ignore($id),
+            ],
+            'password' => 'nullable|min:6|same:confirm-password',
             'roles' => 'nullable',
             'is_pamong' => 'required',
         ]);
 
         $input = $request->all();
-        $input['nama'] = Penduduk::where('nik', '=', $input['nik'])->first()->nama;
+        if(isset($input['nik'])){
+            $input['nama'] = Penduduk::where('nik', '=', $input['nik'])->first()->nama;
+        }
         $input['jabatan'] = isset($input['roles']) ? $input['roles'] : null; 
         if(!isset($input['jabatan'])){
             $input['is_pamong'] = '0';

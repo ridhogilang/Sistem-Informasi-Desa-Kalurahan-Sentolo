@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Buatsurat;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 // use Carbon\CarbonInterface;
 
 class BuatsuratController extends Controller
 {
     public function index()
     {
-        $buatsurat = Buatsurat::all();
+        $user = Auth::user();
+        $buatsurat = Buatsurat::where('nik', $user->nik)->get();
         return view('bo.page.mandiri.buat-surat', [
             'title' => 'Buat Surat Mandiri'
         ])->with('buatsurat',$buatsurat);
