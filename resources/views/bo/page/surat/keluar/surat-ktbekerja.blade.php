@@ -1,11 +1,15 @@
 @extends('bo.layout.master')
 
+@push('header')
+    <link href="{{ asset('admin/assets/css/table-responsive-datatable.css') }}" rel="stylesheet">
+@endpush
+
 @push('scripts')
     <script>
-        // Mendapatkan elemen input NIK Data Ayah
+        // Mendapatkan elemen input NIK
         var nikInput = document.getElementById('nik');
 
-        // Menambahkan event listener ketika nilai input NIK berubah Orang 1
+        // Menambahkan event listener ketika nilai input NIK berubah
         nikInput.addEventListener('input', function() {
             var nik = this.value;
 
@@ -17,37 +21,22 @@
                 if (xhr.status === 200) {
                     var data = JSON.parse(xhr.responseText);
 
-                    // Isi input dengan data yang diterima
-                    if (document.getElementById('nama')) {
-                        document.getElementById('nama').value = data.nama || '';
-                    }
-                    if (document.getElementById('tempat_lahir')) {
-                        document.getElementById('tempat_lahir').value = data.tempat_lahir || '';
-                    }
-                    if (document.getElementById('tanggal_lahir')) {
-                        document.getElementById('tanggal_lahir').value = data.tanggal_lahir || '';
-                    }
-                    if (document.getElementById('jenis_kelamin')) {
-                        document.getElementById('jenis_kelamin').value = data.jenis_kelamin || '';
-                    }
-                    if (document.getElementById('agama')) {
-                        document.getElementById('agama').value = data.agama || '';
-                    }
-                    if (document.getElementById('warga_negara')) {
-                        document.getElementById('warga_negara').value = data.kewarganegaraan || '';
-                    }
-                    if (document.getElementById('alamat')) {
-                        document.getElementById('alamat').value = data.alamat || '';
-                    }
+                    // Daftar elemen form yang ingin Anda isi
+                    var formElements = ['nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'umur', 'pendidikan', 'pekerjaan', 'status_hubungan_kel', 'nama_ibu', 'nama_ayah', 'alamat', 'rt', 'rw', 'nomor_kk'];
+
+                    // Loop melalui elemen form dan isi nilainya jika ada dalam data
+                    formElements.forEach(function(element) {
+                        if (document.getElementById(element)) {
+                            document.getElementById(element).value = data[element] || '';
+                        }
+                    });
                 } else {
                     // Handle jika NIK tidak ditemukan
-                    document.getElementById('nama').value = '';
-                    document.getElementById('tempat_lahir').value = '';
-                    document.getElementById('tanggal_lahir').value = '';
-                    document.getElementById('jenis_kelamin').value = '';
-                    document.getElementById('agama').value = '';
-                    document.getElementById('warga_negara').value = '';
-                    document.getElementById('alamat').value = '';
+                    formElements.forEach(function(element) {
+                        if (document.getElementById(element)) {
+                            document.getElementById(element).value = '';
+                        }
+                    });
                 }
             };
 
@@ -133,8 +122,8 @@
                                             <div class="col-sm-9">
                                                 <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
                                                     <option value="" @if(old('jenis_kelamin')=='' ) selected @endif>Pilih Jenis Kelamin ...</option>
-                                                    <option value="Laki-laki" @if(old('jenis_kelamin')=='Laki-laki' ) selected @endif>Laki-laki</option>
-                                                    <option value="Perempuan" @if(old('jenis_kelamin')=='Perempuan' ) selected @endif>Perempuan</option>
+                                                    <option value="LAKI LAKI" @if(old('jenis_kelamin')=='LAKI LAKI' ) selected @endif>LAKI LAKI</option>
+                                                    <option value="PEREMPUAN" @if(old('jenis_kelamin')=='PEREMPUAN' ) selected @endif>PEREMPUAN</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -143,23 +132,13 @@
                                             <div class="col-sm-9">
                                                 <select id="agama" name="agama" class="form-select" required>
                                                     <option value="" @if(old('agama')=='' ) selected @endif>Pilih Agama ...</option>
-                                                    <option value="Islam" @if(old('agama')=='Islam' ) selected @endif>Islam</option>
-                                                    <option value="Kristen Protestan" @if(old('agama')=='Kristen Protestan' ) selected @endif>Kristen Protestan</option>
-                                                    <option value="Kristen Katolik" @if(old('agama')=='Kristen Katolik' ) selected @endif>Kristen Katolik</option>
-                                                    <option value="Hindu" @if(old('agama')=='Hindu' ) selected @endif>Hindu</option>
-                                                    <option value="Buddha" @if(old('agama')=='Buddha' ) selected @endif>Buddha</option>
-                                                    <option value="Konghucu" @if(old('agama')=='Konghucu' ) selected @endif>Konghucu</option>
-                                                    <option value="Lainnya" @if(old('agama')=='Lainnya' ) selected @endif>Lainnya</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="warga_negara" class="col-sm-3 col-form-label">Warga Negara</label>
-                                            <div class="col-sm-9">
-                                                <select id="warga_negara" name="warga_negara" class="form-select" required>
-                                                    <option value="" @if(old('warga_negara')=='' ) selected @endif>Pilih Warga Negara ...</option>
-                                                    <option value="WNI" @if(old('warga_negara')=='WNI' ) selected @endif>WNI</option>
-                                                    <option value="WNA" @if(old('warga_negara')=='WNA' ) selected @endif>WNA</option>
+                                                    <option value="ISLAM" @if(old('agama')=='ISLAM' ) selected @endif>ISLAM</option>
+                                                    <option value="KRISTEN" @if(old('agama')=='KRISTEN' ) selected @endif>KRISTEN</option>
+                                                    <option value="KATHOLIK" @if(old('agama')=='KATHOLIK' ) selected @endif>KATHOLIK</option>
+                                                    <option value="HINDU" @if(old('agama')=='HINDU' ) selected @endif>HINDU</option>
+                                                    <option value="BUDDHA" @if(old('agama')=='BUDDHA' ) selected @endif>BUDDHA</option>
+                                                    <option value="KONGHUCU" @if(old('agama')=='KONGHUCU' ) selected @endif>KONGHUCU</option>
+                                                    <option value="LAINNYA" @if(old('agama')=='LAINNYA' ) selected @endif>LAINNYA</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -229,7 +208,7 @@
                     </div>
 
                     <!-- Table with hoverable rows -->
-                    <table class="table table-hover datatable">
+                    <table class="table table-hover datatable responsive-table w-100">
                         <thead>
                             <tr>
                                 <th scope="col">No.</th>
@@ -272,6 +251,7 @@
                                                     <div class="row border-bottom p-3">
                                                         <div class="col-sm-3">
                                                             {!! $badge_status[$verifikasi->status]!!}
+                                                            {{ $verifikasi->updated_at }}
                                                         </div>
                                                         <div class="col mx-5">
                                                             {{ $verifikasi->nama_user}}
@@ -382,8 +362,8 @@
                                                     <div class="col-sm-9">
                                                         <select id="jenis_kelamin3" name="jenis_kelamin" class="form-select" required>
                                                             <option value="">Pilih Jenis Kelamin ...</option>
-                                                            <option value="Laki-laki" {{ ($value->jenis_kelamin == "Laki-laki") ? 'selected' : '' }}>Laki-laki</option>
-                                                            <option value="Perempuan" {{ ($value->jenis_kelamin == "Perempuan") ? 'selected' : '' }}>Perempuan</option>
+                                                            <option value="LAKI LAKI" {{ ($value->jenis_kelamin == "LAKI LAKI") ? 'selected' : '' }}>LAKI LAKI</option>
+                                                            <option value="PEREMPUAN" {{ ($value->jenis_kelamin == "PEREMPUAN") ? 'selected' : '' }}>PEREMPUAN</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -392,23 +372,13 @@
                                                     <div class="col-sm-9">
                                                         <select id="agama3" name="agama" class="form-select" required>
                                                             <option value="">Pilih Agama ...</option>
-                                                            <option value="Islam" {{ ($value->agama == "Islam") ? 'selected' : '' }}>Islam</option>
-                                                            <option value="Kristen Protestan" {{ ($value->agama == "Kristen Protestan") ? 'selected' : '' }}>Kristen Protestan</option>
-                                                            <option value="Kristen Katolik" {{ ($value->agama == "Kristen Katolik") ? 'selected' : '' }}>Kristen Katolik</option>
-                                                            <option value="Hindu" {{ ($value->agama == "Hindu") ? 'selected' : '' }}>Hindu</option>
-                                                            <option value="Buddha" {{ ($value->agama == "Buddha") ? 'selected' : '' }}>Buddha</option>
-                                                            <option value="Konghucu" {{ ($value->agama == "Konghucu") ? 'selected' : '' }}>Konghucu</option>
-                                                            <option value="Lainnya" {{ ($value->agama == "Lainnya") ? 'selected' : '' }}>Lainnya</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <label for="warga_negara3" class="col-sm-3 col-form-label">Warga Negara</label>
-                                                    <div class="col-sm-9">
-                                                        <select id="warga_negara3" name="warga_negara" class="form-select" required>
-                                                            <option value="" {{ ($value->warga_negara == "") ? 'selected' : '' }}>Pilih Warga Negara ...</option>
-                                                            <option value="WNI" {{ ($value->warga_negara == "WNI") ? 'selected' : '' }}>WNI</option>
-                                                            <option value="WNA" {{ ($value->warga_negara == "WNA") ? 'selected' : '' }}>WNA</option>
+                                                            <option value="ISLAM" {{ ($value->agama == "ISLAM") ? 'selected' : '' }}>ISLAM</option>
+                                                            <option value="KRISTEN" {{ ($value->agama == "KRISTEN") ? 'selected' : '' }}>KRISTEN</option>
+                                                            <option value="KATHOLIK" {{ ($value->agama == "KATHOLIK") ? 'selected' : '' }}>KATHOLIK</option>
+                                                            <option value="HINDU" {{ ($value->agama == "HINDU") ? 'selected' : '' }}>HINDU</option>
+                                                            <option value="BUDDHA" {{ ($value->agama == "BUDDHA") ? 'selected' : '' }}>BUDDHA</option>
+                                                            <option value="KONGHUCU" {{ ($value->agama == "KONGHUCU") ? 'selected' : '' }}>KONGHUCU</option>
+                                                            <option value="LAINNYA" {{ ($value->agama == "LAINNYA") ? 'selected' : '' }}>LAINNYA</option>
                                                         </select>
                                                     </div>
                                                 </div>

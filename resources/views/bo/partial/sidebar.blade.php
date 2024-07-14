@@ -3,58 +3,69 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link {{ ($title == "Dashboard") ? '' : 'collapsed' }}" href="/">
+            @if(auth()->user()->jabatana <> null)
+            <a class="nav-link {{ ($title == "Dashboard") ? '' : 'collapsed' }}" href="/admin/dashboard">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
+            @else
+            <a class="nav-link" href="/profile-penduduk">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+            @endif
         </li><!-- End Dashboard Nav -->
-        @can('enter_kepegawaian')
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="/admin/pegawai/dashboard">
-                    <i class="fa-regular fa-envelope-open"></i>
-                    <span>Kepegawaian</span>
-                </a>
-            </li><!-- End Surat Masuk Nav -->
-        @endcan
-        @can('enter_e-surat')
+        @can('Menejemen E-Surat')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/admin/e-surat/dashboard">
-                    <i class="fa-regular fa-envelope-open"></i>
+                    <i class="bi bi-envelope"></i>
                     <span>E-surat</span>
                 </a>
             </li><!-- End Surat Masuk Nav -->
         @endcan
-        @can('enter_sistem informasi')
+        @can('Menejemen Sistem Informasi')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/admin/sistem-informasi/dashboard">
-                    <i class="fa-regular fa-envelope-open"></i>
+                    <i class="bi bi-info-lg"></i>
                     <span>Sistem Informasi</span>
                 </a>
             </li><!-- End Surat Masuk Nav -->
         @endcan
-        <li class="nav-heading">Pages</li>
-
+        @can('Menejemen Pengguna')
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/admin/pengguna/dashboard">
+                    <i class="bi bi-fingerprint"></i>
+                    <span>Pengguna</span>
+                </a>
+            </li><!-- End Surat Masuk Nav -->
+        @endcan
+        @can('Menejemen Kependudukan')
         <li class="nav-item">
-            <a class="nav-link {{ ($title == "Profile") ? '' : 'collapsed' }}" href="/profile">
+            <a class="nav-link collapsed" href="{{ route('bo.penduduk.dashboard') }}">
                 <i class="bi bi-person"></i>
-                <span>Profile</span>
+                <span>Kependudukan</span>
             </a>
-        </li><!-- End Profile Page Nav -->
-
+        </li><!-- End Penduduk Page Nav -->
+        @endcan
+        
+        @can('Monitoring IOT')
         <li class="nav-item">
-            <a class="nav-link {{ ($title == "Register") ? '' : 'collapsed' }}" href="/register">
-                <i class="bi bi-card-list"></i>
-                <span>Register</span>
+            <a class="nav-link collapsed" href="{{ route('bo.monitor_iot') }}">
+                <i class="bi bi-display"></i>
+                <span>Monitoring IOT</span>
             </a>
-        </li><!-- End Register Page Nav -->
-
+        </li><!-- End Penduduk Page Nav -->
+        @endcan
+        
+        @if(auth()->user()->is_pamong == 1)
         <li class="nav-item">
-            <a class="nav-link {{ ($title == "Login") ? '' : 'collapsed' }}" href="/login">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Login</span>
+            <a class="nav-link collapsed" href="/admin/presensi/daftar-hadir">
+                <i class="bi bi-file-medical"></i>
+                <span>Absensi</span>
             </a>
-        </li><!-- End Login Page Nav -->
-
+        </li>
+        @endif
+        
     </ul>
 
 </aside>

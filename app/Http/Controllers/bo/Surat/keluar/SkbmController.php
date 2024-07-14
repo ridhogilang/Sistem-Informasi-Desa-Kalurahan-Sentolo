@@ -20,7 +20,6 @@ class SkbmController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:surat Keterangan Belum Menikah');
         Carbon::setLocale('id');
     }
     public function index()
@@ -284,6 +283,7 @@ class SkbmController extends Controller
                 'nomor_surat' => $surat->nomor_surat,
                 'jenis_surat' => 'Surat Keterangan Belum Menikah',
                 'jenis_surat_2' => 'Surat Keluar',
+                'status_riwayat_surat' => $status,
                 'surat_penghapusan' => null,
                 'is_delete' => '0',
             ]);

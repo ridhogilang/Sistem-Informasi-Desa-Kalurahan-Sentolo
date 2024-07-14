@@ -20,12 +20,16 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'nama',
+        'nik',
         'email',
         'password',
         'email_verified_at',
         'jabatan',
+        'foto_resmi',
+        'foto_profil',
         'is_active',
         'is_delete',
+        'is_pamong',
     ];
 
     /**
@@ -47,4 +51,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function present()
+    {
+        return $this->hasMany(Present::class);
+    }
+
+    public function pamong()
+    {
+        return $this->hasOne(Pamong::class);
+    }
+
+    public function detilakun()
+    {
+        return $this->hasOne(Penduduk::class, 'nik', 'nik');
+    }
 }

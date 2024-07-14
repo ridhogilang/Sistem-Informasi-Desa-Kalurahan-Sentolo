@@ -1,5 +1,9 @@
 @extends('bo.layout.master')
 
+@push('header')
+    <link href="{{ asset('admin/assets/css/table-responsive-datatable.css') }}" rel="stylesheet">
+@endpush
+
 @push('scripts')
     <script>
         // Mendapatkan elemen input NIK Data Ayah
@@ -156,7 +160,9 @@
                                             <div class="col-sm-9">
                                                 <select id="status_hubungan" name="status_hubungan" class="form-select" required>
                                                     <option value="" @if(old('status_hubungan')=='' ) selected @endif>Pilih Status Hubungan ...</option>
-                                                    <option value="Anak Kandung" @if(old('status_hubungan')=='Anak Kandung' ) selected @endif>Anak Kandung</option>
+                                                    <option value="Anak Sah" @if(old('status_hubungan')=='Anak Sah' ) selected @endif>Anak Sah</option>
+                                                    <option value="Anak Luar Nikah" @if(old('status_hubungan')=='Anak Luar Nikah' ) selected @endif>Anak Luar Nikah</option>
+                                                    <option value="Anak Angkat" @if(old('status_hubungan')=='Anak Angkat' ) selected @endif>Anak Angkat</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -201,8 +207,8 @@
                                             <div class="col-sm-9">
                                                 <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
                                                     <option value="" @if(old('jenis_kelamin')=='' ) selected @endif>Pilih Jenis Kelamin ...</option>
-                                                    <option value="Laki-laki" @if(old('jenis_kelamin')=='Laki-laki' ) selected @endif>Laki-laki</option>
-                                                    <option value="Perempuan" @if(old('jenis_kelamin')=='Perempuan' ) selected @endif>Perempuan</option>
+                                                    <option value="LAKI LAKI" @if(old('jenis_kelamin')=='LAKI LAKI' ) selected @endif>LAKI LAKI</option>
+                                                    <option value="PEREMPUAN" @if(old('jenis_kelamin')=='PEREMPUAN' ) selected @endif>PEREMPUAN</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -217,13 +223,13 @@
                                             <div class="col-sm-9">
                                                 <select id="agama" name="agama" class="form-select" required>
                                                     <option value="" @if(old('agama')=='' ) selected @endif>Pilih Agama ...</option>
-                                                    <option value="Islam" @if(old('agama')=='Islam' ) selected @endif>Islam</option>
-                                                    <option value="Kristen Protestan" @if(old('agama')=='Kristen Protestan' ) selected @endif>Kristen Protestan</option>
-                                                    <option value="Kristen Katolik" @if(old('agama')=='Kristen Katolik' ) selected @endif>Kristen Katolik</option>
-                                                    <option value="Hindu" @if(old('agama')=='Hindu' ) selected @endif>Hindu</option>
-                                                    <option value="Buddha" @if(old('agama')=='Buddha' ) selected @endif>Buddha</option>
-                                                    <option value="Konghucu" @if(old('agama')=='Konghucu' ) selected @endif>Konghucu</option>
-                                                    <option value="Lainnya" @if(old('agama')=='Lainnya' ) selected @endif>Lainnya</option>
+                                                    <option value="ISLAM" @if(old('agama')=='ISLAM' ) selected @endif>ISLAM</option>
+                                                    <option value="KRISTEN" @if(old('agama')=='KRISTEN' ) selected @endif>KRISTEN</option>
+                                                    <option value="KATHOLIK" @if(old('agama')=='KATHOLIK' ) selected @endif>KATHOLIK</option>
+                                                    <option value="HINDU" @if(old('agama')=='HINDU' ) selected @endif>HINDU</option>
+                                                    <option value="BUDDHA" @if(old('agama')=='BUDDHA' ) selected @endif>BUDDHA</option>
+                                                    <option value="KONGHUCU" @if(old('agama')=='KONGHUCU' ) selected @endif>KONGHUCU</option>
+                                                    <option value="LAINNYA" @if(old('agama')=='LAINNYA' ) selected @endif>LAINNYA</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -255,13 +261,13 @@
                                             <div class="col-sm-9">
                                                 <select id="agama_ayah" name="agama_ayah" class="form-select" required>
                                                     <option value="" @if(old('agama_ayah')=='' ) selected @endif>Pilih Agama ...</option>
-                                                    <option value="Islam" @if(old('agama_ayah')=='Islam' ) selected @endif>Islam</option>
-                                                    <option value="Kristen Protestan" @if(old('agama_ayah')=='Kristen Protestan' ) selected @endif>Kristen Protestan</option>
-                                                    <option value="Kristen Katolik" @if(old('agama_ayah')=='Kristen Katolik' ) selected @endif>Kristen Katolik</option>
-                                                    <option value="Hindu" @if(old('agama_ayah')=='Hindu' ) selected @endif>Hindu</option>
-                                                    <option value="Buddha" @if(old('agama_ayah')=='Buddha' ) selected @endif>Buddha</option>
-                                                    <option value="Konghucu" @if(old('agama_ayah')=='Konghucu' ) selected @endif>Konghucu</option>
-                                                    <option value="Lainnya" @if(old('agama_ayah')=='Lainnya' ) selected @endif>Lainnya</option>
+                                                    <option value="ISLAM" @if(old('agama_ayah')=='ISLAM' ) selected @endif>ISLAM</option>
+                                                    <option value="KRISTEN" @if(old('agama_ayah')=='KRISTEN' ) selected @endif>KRISTEN</option>
+                                                    <option value="KATHOLIK" @if(old('agama_ayah')=='KATHOLIK' ) selected @endif>KATHOLIK</option>
+                                                    <option value="HINDU" @if(old('agama_ayah')=='HINDU' ) selected @endif>HINDU</option>
+                                                    <option value="BUDDHA" @if(old('agama_ayah')=='BUDDHA' ) selected @endif>BUDDHA</option>
+                                                    <option value="KONGHUCU" @if(old('agama_ayah')=='KONGHUCU' ) selected @endif>KONGHUCU</option>
+                                                    <option value="LAINNYA" @if(old('agama_ayah')=='LAINNYA' ) selected @endif>LAINNYA</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -305,13 +311,13 @@
                                             <div class="col-sm-9">
                                                 <select id="agama_ibu" name="agama_ibu" class="form-select" required>
                                                     <option value="" @if(old('agama_ibu')=='' ) selected @endif>Pilih Agama ...</option>
-                                                    <option value="Islam" @if(old('agama_ibu')=='Islam' ) selected @endif>Islam</option>
-                                                    <option value="Kristen Protestan" @if(old('agama_ibu')=='Kristen Protestan' ) selected @endif>Kristen Protestan</option>
-                                                    <option value="Kristen Katolik" @if(old('agama_ibu')=='Kristen Katolik' ) selected @endif>Kristen Katolik</option>
-                                                    <option value="Hindu" @if(old('agama_ibu')=='Hindu' ) selected @endif>Hindu</option>
-                                                    <option value="Buddha" @if(old('agama_ibu')=='Buddha' ) selected @endif>Buddha</option>
-                                                    <option value="Konghucu" @if(old('agama_ibu')=='Konghucu' ) selected @endif>Konghucu</option>
-                                                    <option value="Lainnya" @if(old('agama_ibu')=='Lainnya' ) selected @endif>Lainnya</option>
+                                                    <option value="ISLAM" @if(old('agama_ibu')=='ISLAM' ) selected @endif>ISLAM</option>
+                                                    <option value="KRISTEN" @if(old('agama_ibu')=='KRISTEN' ) selected @endif>KRISTEN</option>
+                                                    <option value="KATHOLIK" @if(old('agama_ibu')=='KATHOLIK' ) selected @endif>KATHOLIK</option>
+                                                    <option value="HINDU" @if(old('agama_ibu')=='HINDU' ) selected @endif>HINDU</option>
+                                                    <option value="BUDDHA" @if(old('agama_ibu')=='BUDDHA' ) selected @endif>BUDDHA</option>
+                                                    <option value="KONGHUCU" @if(old('agama_ibu')=='KONGHUCU' ) selected @endif>KONGHUCU</option>
+                                                    <option value="LAINNYA" @if(old('agama_ibu')=='LAINNYA' ) selected @endif>LAINNYA</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -390,7 +396,7 @@
                 </div>
 
                 <!-- Table with hoverable rows -->
-                <table class="table table-hover datatable">
+                <table class="table table-hover datatable responsive-table w-100">
                     <thead>
                         <tr>
                             <th scope="col">No.</th>
@@ -435,6 +441,7 @@
                                                 <div class="row border-bottom p-3">
                                                     <div class="col-sm-3">
                                                         {!! $badge_status[$verifikasi->status]!!}
+                                                        {{ $verifikasi->updated_at }}
                                                     </div>
                                                     <div class="col mx-5">
                                                         {{ $verifikasi->nama_user}}
@@ -530,7 +537,9 @@
                                                 <div class="col-sm-9">
                                                     <select id="status_hubungan3" name="status_hubungan" class="form-select" required>
                                                         <option value="" {{ ($value->status_hubungan == "") ? 'selected' : '' }}>Pilih Status Hubungan ...</option>
-                                                        <option value="Anak Kandung" {{ ($value->status_hubungan == "Anak Kandung") ? 'selected' : '' }}>Anak Kandung</option>
+                                                        <option value="Anak Sah" {{ ($value->status_hubungan == "Anak Sah") ? 'selected' : '' }}>Anak Sah</option>
+                                                        <option value="Anak Luar Nikah" @if(old('status_hubungan')=='Anak Luar Nikah' ) selected @endif>Anak Luar Nikah</option>
+                                                        <option value="Anak Angkat" @if(old('status_hubungan')=='Anak Angkat' ) selected @endif>Anak Angkat</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -575,8 +584,8 @@
                                                 <div class="col-sm-9">
                                                     <select id="jenis_kelamin3" name="jenis_kelamin" class="form-select" required>
                                                         <option value="">Pilih Jenis Kelamin ...</option>
-                                                        <option value="Laki-laki" {{ ($value->jenis_kelamin == "Laki-laki") ? 'selected' : '' }}>Laki-laki</option>
-                                                        <option value="Perempuan" {{ ($value->jenis_kelamin == "Perempuan") ? 'selected' : '' }}>Perempuan</option>
+                                                        <option value="LAKI LAKI" {{ ($value->jenis_kelamin == "LAKI LAKI") ? 'selected' : '' }}>LAKI LAKI</option>
+                                                        <option value="PEREMPUAN" {{ ($value->jenis_kelamin == "PEREMPUAN") ? 'selected' : '' }}>PEREMPUAN</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -591,13 +600,13 @@
                                                 <div class="col-sm-9">
                                                     <select id="agama3" name="agama" class="form-select" required>
                                                         <option value="">Pilih Agama ...</option>
-                                                        <option value="Islam" {{ ($value->agama == "Islam") ? 'selected' : '' }}>Islam</option>
-                                                        <option value="Kristen Protestan" {{ ($value->agama == "Kristen Protestan") ? 'selected' : '' }}>Kristen Protestan</option>
-                                                        <option value="Kristen Katolik" {{ ($value->agama == "Kristen Katolik") ? 'selected' : '' }}>Kristen Katolik</option>
-                                                        <option value="Hindu" {{ ($value->agama == "Hindu") ? 'selected' : '' }}>Hindu</option>
-                                                        <option value="Buddha" {{ ($value->agama == "Buddha") ? 'selected' : '' }}>Buddha</option>
-                                                        <option value="Konghucu" {{ ($value->agama == "Konghucu") ? 'selected' : '' }}>Konghucu</option>
-                                                        <option value="Lainnya" {{ ($value->agama == "Lainnya") ? 'selected' : '' }}>Lainnya</option>
+                                                        <option value="ISLAM" {{ ($value->agama == "ISLAM") ? 'selected' : '' }}>ISLAM</option>
+                                                        <option value="KRISTEN" {{ ($value->agama == "KRISTEN") ? 'selected' : '' }}>KRISTEN</option>
+                                                        <option value="KATHOLIK" {{ ($value->agama == "KATHOLIK") ? 'selected' : '' }}>KATHOLIK</option>
+                                                        <option value="HINDU" {{ ($value->agama == "HINDU") ? 'selected' : '' }}>HINDU</option>
+                                                        <option value="BUDDHA" {{ ($value->agama == "BUDDHA") ? 'selected' : '' }}>BUDDHA</option>
+                                                        <option value="KONGHUCU" {{ ($value->agama == "KONGHUCU") ? 'selected' : '' }}>KONGHUCU</option>
+                                                        <option value="LAINNYA" {{ ($value->agama == "LAINNYA") ? 'selected' : '' }}>LAINNYA</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -629,13 +638,13 @@
                                                 <div class="col-sm-9">
                                                     <select id="agama_ayah3" name="agama_ayah" class="form-select" required>
                                                         <option value="">Pilih Agama ...</option>
-                                                        <option value="Islam" {{ ($value->agama_ayah == "Islam") ? 'selected' : '' }}>Islam</option>
-                                                        <option value="Kristen Protestan" {{ ($value->agama_ayah == "Kristen Protestan") ? 'selected' : '' }}>Kristen Protestan</option>
-                                                        <option value="Kristen Katolik" {{ ($value->agama_ayah == "Kristen Katolik") ? 'selected' : '' }}>Kristen Katolik</option>
-                                                        <option value="Hindu" {{ ($value->agama_ayah == "Hindu") ? 'selected' : '' }}>Hindu</option>
-                                                        <option value="Buddha" {{ ($value->agama_ayah == "Buddha") ? 'selected' : '' }}>Buddha</option>
-                                                        <option value="Konghucu" {{ ($value->agama_ayah == "Konghucu") ? 'selected' : '' }}>Konghucu</option>
-                                                        <option value="Lainnya" {{ ($value->agama_ayah == "Lainnya") ? 'selected' : '' }}>Lainnya</option>
+                                                        <option value="ISLAM" {{ ($value->agama_ayah == "ISLAM") ? 'selected' : '' }}>ISLAM</option>
+                                                        <option value="KRISTEN" {{ ($value->agama_ayah == "KRISTEN") ? 'selected' : '' }}>KRISTEN</option>
+                                                        <option value="KATHOLIK" {{ ($value->agama_ayah == "KATHOLIK") ? 'selected' : '' }}>KATHOLIK</option>
+                                                        <option value="HINDU" {{ ($value->agama_ayah == "HINDU") ? 'selected' : '' }}>HINDU</option>
+                                                        <option value="BUDDHA" {{ ($value->agama_ayah == "BUDDHA") ? 'selected' : '' }}>BUDDHA</option>
+                                                        <option value="KONGHUCU" {{ ($value->agama_ayah == "KONGHUCU") ? 'selected' : '' }}>KONGHUCU</option>
+                                                        <option value="LAINNYA" {{ ($value->agama_ayah == "LAINNYA") ? 'selected' : '' }}>LAINNYA</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -679,13 +688,13 @@
                                                 <div class="col-sm-9">
                                                     <select id="agama_ibu3" name="agama_ibu" class="form-select" required>
                                                         <option value="" {{ ($value->agama_ibu == "") ? 'selected' : '' }}>Pilih Agama ...</option>
-                                                        <option value="Islam" {{ ($value->agama_ibu == "Islam") ? 'selected' : '' }}>Islam</option>
-                                                        <option value="Kristen Protestan" {{ ($value->agama_ibu == "Kristen Protestan") ? 'selected' : '' }}>Kristen Protestan</option>
-                                                        <option value="Kristen Katolik" {{ ($value->agama_ibu == "Kristen Katolik") ? 'selected' : '' }}>Kristen Katolik</option>
-                                                        <option value="Hindu" {{ ($value->agama_ibu == "Hindu") ? 'selected' : '' }}>Hindu</option>
-                                                        <option value="Buddha" {{ ($value->agama_ibu == "Buddha") ? 'selected' : '' }}>Buddha</option>
-                                                        <option value="Konghucu" {{ ($value->agama_ibu == "Konghucu") ? 'selected' : '' }}>Konghucu</option>
-                                                        <option value="Lainnya" {{ ($value->agama_ibu == "Lainnya") ? 'selected' : '' }}>Lainnya</option>
+                                                        <option value="ISLAM" {{ ($value->agama_ibu == "ISLAM") ? 'selected' : '' }}>ISLAM</option>
+                                                        <option value="KRISTEN" {{ ($value->agama_ibu == "KRISTEN") ? 'selected' : '' }}>KRISTEN</option>
+                                                        <option value="KATHOLIK" {{ ($value->agama_ibu == "KATHOLIK") ? 'selected' : '' }}>KATHOLIK</option>
+                                                        <option value="HINDU" {{ ($value->agama_ibu == "HINDU") ? 'selected' : '' }}>HINDU</option>
+                                                        <option value="BUDDHA" {{ ($value->agama_ibu == "BUDDHA") ? 'selected' : '' }}>BUDDHA</option>
+                                                        <option value="KONGHUCU" {{ ($value->agama_ibu == "KONGHUCU") ? 'selected' : '' }}>KONGHUCU</option>
+                                                        <option value="LAINNYA" {{ ($value->agama_ibu == "LAINNYA") ? 'selected' : '' }}>LAINNYA</option>
                                                     </select>
                                                 </div>
                                             </div>

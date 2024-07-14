@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('disposisi_surats', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('id_surat');
-            $table->string('tanggal_kegiatan');
             $table->string('id_user');
             $table->string('jabatan_user');
+            $table->string('is_arsip')->nullable();
             $table->timestamps();
         });
     }

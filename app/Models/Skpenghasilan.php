@@ -19,7 +19,6 @@ class Skpenghasilan extends Model
         'jenis_kelamin',
         'pekerjaan',
         'penghasilan',
-        'kewarganegaraan',
         'alamat',
         'jenis_surat',
         'status_surat',
@@ -30,7 +29,7 @@ class Skpenghasilan extends Model
     {
         return $this->hasMany(TandaTanganSurat::class, 'id_surat', 'id');
     }
-    
+
     public function MengetahuiVerifikasiSurat()
     {
         return $this->hasMany(MengetahuiVerifikasiSurat::class, 'id_surat', 'id');

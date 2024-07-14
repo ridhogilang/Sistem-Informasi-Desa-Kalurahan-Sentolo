@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('s_masuk', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('nomor_surat')->unique();
+            $table->string('judul_surat');
             $table->date('tanggal_surat');
-            $table->string('kepada');
+            $table->string('kepada_id_user');
+            $table->string('kepada_jabatan');
             $table->string('keperluan');
             $table->date('tanggal_kegiatan');
             $table->string('catatan');
@@ -23,6 +25,7 @@ return new class extends Migration
             $table->string('dokumen');
             $table->string('status_surat')->nullable();
             $table->string('jenis_surat');
+            $table->string('is_arsip')->nullable();
             $table->timestamps();
         });
     }

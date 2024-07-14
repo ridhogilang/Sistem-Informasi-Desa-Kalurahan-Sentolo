@@ -1,13 +1,19 @@
+
 @extends('bo.layout.master')
+
+@push('header')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+@endpush
 
 @section('content')
 <div class="pagetitle">
-        <h1>Pegawai</h1>
+        <h1>Pengguna</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Kepegawaian</a></li>
-                <li class="breadcrumb-item">Pegawai</li>
-                <li class="breadcrumb-item active">Tambah Pegawai</li>
+                <li class="breadcrumb-item"><a href="/">Pengguna</a></li>
+                <li class="breadcrumb-item">Data Pegawai</li>
+                <li class="breadcrumb-item active">Detail Pengguna</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -45,9 +51,9 @@
             <div class="row">
                 <div class="col-xs-12 mb-3">
                     <div class="form-group">
-                        <strong>nama:</strong>
-                        <input type="text" name="nama" value="{{ old('nama', isset($user) ? $user->nama : '') }}"
-                        class="form-control" placeholder="nama">
+                        <strong>NIK - Nama : </strong> {{ isset($user->nik)?$user->nik:'' }} - {{  isset($user->nama)?$user->nama:'' }}
+                        <select name="nik" class="data-penduduk form-control">
+                        </select>
                     </div>
                 </div>
                 <div class="col-xs-12 mb-3">
@@ -70,19 +76,41 @@
                 </div>
                 <div class="col-xs-12 mb-3">
                     <div class="form-group">
-                        <strong>Role:</strong>
+                        <strong>Role: </strong>
                         <select name="roles" id="id_supplier" class="form-control">
-                            <option disabled selected value="">Silahkan Pilih Jabatan / Hak Akses</option>
+                            <option disabled value="">Silahkan Pilih Jabatan / Hak Akses</option>
+                            <option value="">Akun Penduduk</option>
                             @foreach ($roles as $role)
-                                <option value="{{ $role }}" >{{ $role }}</option>
+                                <option value="{{ $role }}" {{ isset($user) && $user->hasRole($role) ? 'selected' : '' }}>
+                                    {{ $role }}
+                                </option>
                             @endforeach
+
                         </select>
+
                         <!-- 
                         <select class="form-control" multiple name="roles[]">
                             
                         </select> -->
                     </div>
                 </div>
+
+                <div class="col-xs-12 mb-3">
+                    <div class="form-group">
+                        <strong>Apakah PamongPamong:</strong><br>
+                        <input type="radio" id="yass-1" name="is_pamong" value="1" {{ isset($user) && $user->is_pamong == '1' ? 'checked' : '' }}>
+                        <label for="yass-1">Ya</label><br>
+
+                        <input type="radio" id="yass-0" name="is_pamong" value="0" {{ isset($user) && $user->is_pamong == '0' ? 'checked' : '' }}>
+                        <label for="yass-0">Tidak</label><br>
+
+                        <!-- 
+                        <select class="form-control" multiple name="roles[]">
+                            
+                        </select> -->
+                    </div>
+                </div>
+
                 <div class="col-xs-12 mb-3 text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
@@ -92,3 +120,27 @@
     </section>
 @endsection
 
+@push('footer')
+    <script type="text/javascript">
+        $('.data-penduduk').select2({
+            placeholder: "Pilih Nama - NIK",
+            allowClear: true,
+            ajax: {
+                url: "{{ route('bo.pengguna.data.kependudukan')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    return {
+                        results: data.data.map(function (item) {
+                            return {
+                                id: item.select_value,
+                                text: item.select_display
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+    </script>
+@endpush

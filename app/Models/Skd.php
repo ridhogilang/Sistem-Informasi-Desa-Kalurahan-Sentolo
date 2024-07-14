@@ -18,7 +18,6 @@ class Skd extends Model
         'jenis_kelamin',
         'tempat_lahir',
         'tanggal_lahir',
-        'kewarganegaraan',
         'agama',
         'status_perkawinan',
         'pekerjaan',
@@ -33,7 +32,7 @@ class Skd extends Model
     {
         return $this->hasMany(TandaTanganSurat::class, 'id_surat', 'id');
     }
-    
+
     public function MengetahuiVerifikasiSurat()
     {
         return $this->hasMany(MengetahuiVerifikasiSurat::class, 'id_surat', 'id');

@@ -16,29 +16,26 @@ class PendudukSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1, 100) as $index) {
+        foreach (range(1, 5) as $index) {
             DB::table('penduduk')->insert([
+                'nomor_kk' => $faker->unique()->numerify('################'),
                 'nik' => $faker->unique()->numerify('3401############'),
+                'jenis_kelamin' => $faker->randomElement(['LAKI LAKI', 'PEREMPUAN']),
                 'nama' => $faker->name,
-                'jenis_kelamin' => $faker->randomElement(['Laki-laki', 'Perempuan']),
                 'tempat_lahir' => $faker->city,
                 'tanggal_lahir' => $faker->date,
-                'agama' => $faker->randomElement(['Islam', 'Kristen Protestan', 'Kristen Katolik', 'Hindu', 'Buddha', 'Konghucu']),
-                'status_perkawinan' => $faker->randomElement(['Belum Menikah', 'Sudah Menikah', 'Duda', 'Janda']),
-                'alamat' => $faker->address,
-                'kewarganegaraan' => $faker->randomElement(['WNI', 'WNA']),
+                'agama' => $faker->randomElement(['ISLAM', 'KRISTEN', 'KATHOLIK', 'HINDU', 'BUDDHA', 'KONGHUCU']),
+                'umur' => $faker->numberBetween(10,90),
+                'status_perkawinan' => $faker->randomElement(['Belum Kawin', 'Kawin', 'Cerai Hidup', 'Cerai Mati']),
+                'pendidikan' => $faker->randomElement(['SD', 'SMP', 'SMK', 'D3', 'S1', 'S2', 'S3']),
                 'pekerjaan' => $faker->jobTitle,
-                'pendidikan_terakhir' => $faker->randomElement(['SD', 'SMP', 'SMA', 'D3', 'S1', 'S2', 'S3']),
-                'nomor_telepon' => $faker->phoneNumber,
-                'penghasilan' => $faker->numberBetween(1000000, 5000000),
-                'foto_penduduk' => null, // Foto dapat diisi dengan path ke file foto
-                'nomor_kk' => $faker->unique()->numerify('################'),
-                'nomor_ktp' => $faker->unique()->numerify('################'),
-                'status_nyawa' => $faker->randomElement(['Hidup', 'Meninggal']),
-                'keterangan_kematian' => $faker->sentence,
-                'kontak_darurat' => $faker->phoneNumber,
-                'status_migrasi' => $faker->randomElement(['Migrasi Masuk', 'Migrasi Keluar', 'Tidak Migrasi']),
-                'status_pajak' => $faker->randomElement(['Terdaftar', 'Belum Terdaftar']),
+                'status_hubungan_kel' => $faker->randomElement(['ORANG TUA', 'KEPALA KELUARGA', 'ISTRI', 'ANAK', 'CUCU']),
+                'nama_ibu' => $faker->name,
+                'nama_ayah' => $faker->name,
+                'alamat' => $faker->address,
+                'rt' => $faker->numberBetween(1,10),
+                'rw' => $faker->numberBetween(1,10),
+                'is_active' => '1',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

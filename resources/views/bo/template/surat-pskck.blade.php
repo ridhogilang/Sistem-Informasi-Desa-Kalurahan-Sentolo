@@ -202,16 +202,11 @@
                 </td>
             </tr>
         </table>
-
-        <table class="enam">
-            <tr>
-                <p>Sentolo, {{ \Carbon\Carbon::parse($pskck['created_at'])->translatedFormat('j F Y') }}</p>
-            </tr>
-        </table>
         <table  class="tujuh">
             <tr>
                  <td align="center">
-                    <p>{{ $pskck->tandatangan[0]['jabatan_user'] }}</p><br><br><br><br>  
+                    <p>Sentolo, {{ \Carbon\Carbon::parse($pskck['created_at'])->translatedFormat('j F Y') }}</p>
+                    <p>{{ $pskck->tandatangan[0]['jabatan_user'] }}</p><br><br><br>  
                     <p><b>({{ $pskck->tandatangan[0]['nama_user'] }}) </b></p>
                 </td>
             </tr>

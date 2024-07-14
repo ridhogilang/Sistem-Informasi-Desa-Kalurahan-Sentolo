@@ -1,7 +1,7 @@
 @extends('bo.layout.master')
 
 @push('header')
-<!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" /> -->
+    <link href="{{ asset('admin/assets/css/table-responsive-datatable.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
@@ -22,7 +22,7 @@
                     var data = JSON.parse(xhr.responseText);
 
                     // Daftar elemen form yang ingin Anda isi
-                    var formElements = ['nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'status_perkawinan', 'alamat', 'kewarganegaraan', 'pekerjaan', 'pendidikan_terakhir', 'nomor_telepon', 'penghasilan', 'foto_penduduk', 'nomor_kk', 'nomor_ktp', 'status_nyawa', 'keterangan_kematian', 'kontak_darurat', 'status_migrasi', 'status_pajak'];
+                    var formElements = ['nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'umur', 'status_perkawinan', 'pendidikan', 'pekerjaan', 'status_hubungan_kel', 'nama_ibu', 'nama_ayah', 'alamat', 'rt', 'rw', 'nomor_kk'];
 
                     // Loop melalui elemen form dan isi nilainya jika ada dalam data
                     formElements.forEach(function(element) {
@@ -107,8 +107,8 @@
                                             <div class="col-sm-9">
                                                 <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
                                                     <option value="" disabled selected>Pilih Jenis Kelamin ...</option>
-                                                    <option value="Laki-laki" @if(old('jenis_kelamin')=='Laki-laki' ) selected @endif>Laki-laki</option>
-                                                    <option value="Perempuan" @if(old('jenis_kelamin')=='Perempuan' ) selected @endif>Perempuan</option>
+                                                    <option value="LAKI LAKI" @if(old('jenis_kelamin')=='LAKI LAKI' ) selected @endif>LAKI LAKI</option>
+                                                    <option value="PEREMPUAN" @if(old('jenis_kelamin')=='PEREMPUAN' ) selected @endif>PEREMPUAN</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -127,13 +127,13 @@
                                             <div class="col-sm-9">
                                                 <select id="agama" name="agama" class="form-select" required>
                                                     <option value="" disabled selected>Pilih Agama ...</option>
-                                                    <option value="Islam" @if(old('agama')=='Islam' ) selected @endif>Islam</option>
-                                                    <option value="Kristen Protestan" @if(old('agama')=='Kristen Protestan' ) selected @endif>Kristen Protestan</option>
-                                                    <option value="Kristen Katolik" @if(old('agama')=='Kristen Katolik' ) selected @endif>Kristen Katolik</option>
-                                                    <option value="Hindu" @if(old('agama')=='Hindu' ) selected @endif>Hindu</option>
-                                                    <option value="Buddha" @if(old('agama')=='Buddha' ) selected @endif>Buddha</option>
-                                                    <option value="Konghucu" @if(old('agama')=='Konghucu' ) selected @endif>Konghucu</option>
-                                                    <option value="Lainnya" @if(old('agama')=='Lainnya' ) selected @endif>Lainnya</option>
+                                                    <option value="ISLAM" @if(old('agama')=='ISLAM' ) selected @endif>ISLAM</option>
+                                                    <option value="KRISTEN" @if(old('agama')=='KRISTEN' ) selected @endif>KRISTEN</option>
+                                                    <option value="KATHOLIK" @if(old('agama')=='KATHOLIK' ) selected @endif>KATHOLIK</option>
+                                                    <option value="HINDU" @if(old('agama')=='HINDU' ) selected @endif>HINDU</option>
+                                                    <option value="BUDDHA" @if(old('agama')=='BUDDHA' ) selected @endif>BUDDHA</option>
+                                                    <option value="KONGHUCU" @if(old('agama')=='KONGHUCU' ) selected @endif>KONGHUCU</option>
+                                                    <option value="LAINNYA" @if(old('agama')=='LAINNYA' ) selected @endif>LAINNYA</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -217,7 +217,7 @@
                     </div>
 
                     <!-- Table with hoverable rows -->
-                    <table class="table table-hover datatable">
+                    <table class="table table-hover datatable responsive-table w-100">
                         <thead>
                             <tr>
                                 <th scope="col">No.</th>
@@ -259,6 +259,7 @@
                                                     <div class="row border-bottom p-3">
                                                         <div class="col-sm-3">
                                                             {!! $badge_status[$verifikasi->status]!!}
+                                                            {{ $verifikasi->updated_at }}
                                                         </div>
                                                         <div class="col mx-5">
                                                             {{ $verifikasi->nama_user}}
@@ -344,15 +345,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="nama3" class="col-sm-3 col-form-label">Nama</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="nama" class="form-control" id="nama3" value="{{$value->nama}}" required>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
                                                     <label for="nik3" class="col-sm-3 col-form-label">NIK</label>
                                                     <div class="col-sm-9">
                                                         <input type="text" name="nik" class="form-control" id="nik3" value="{{$value->nik}}" required>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="nama3" class="col-sm-3 col-form-label">Nama</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="nama" class="form-control" id="nama3" value="{{$value->nama}}" required>
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">

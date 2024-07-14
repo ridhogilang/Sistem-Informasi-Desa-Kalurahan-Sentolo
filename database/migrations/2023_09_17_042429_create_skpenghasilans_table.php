@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('jenis_kelamin');
             $table->string('pekerjaan');
             $table->string('penghasilan');
-            $table->string('kewarganegaraan');
             $table->string('alamat');
             $table->string('jenis_surat');
             $table->string('status_surat');

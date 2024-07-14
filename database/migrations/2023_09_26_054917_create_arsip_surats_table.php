@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nomor_surat');
             $table->string('jenis_surat');
             $table->string('jenis_surat_2');
+            $table->string('status_riwayat_surat');
             $table->string('surat_penghapusan')->nullable();
             $table->string('is_delete');
             $table->timestamps();

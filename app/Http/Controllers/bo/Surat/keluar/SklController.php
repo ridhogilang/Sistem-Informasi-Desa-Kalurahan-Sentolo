@@ -19,7 +19,6 @@ class SklController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:surat keterangan Kelahiran');
         Carbon::setLocale('id');
     }
     public function index()
@@ -303,6 +302,7 @@ class SklController extends Controller
                 'nomor_surat' => $surat->nomor_surat,
                 'jenis_surat' => 'Surat Keterangan Kelahiran',
                 'jenis_surat_2' => 'Surat Keluar',
+                'status_riwayat_surat' => $status,
                 'surat_penghapusan' => null,
                 'is_delete' => '0',
             ]);

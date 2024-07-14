@@ -1,5 +1,9 @@
 @extends('bo.layout.master')
 
+@push('header')
+    <link href="{{ asset('admin/assets/css/table-responsive-datatable.css') }}" rel="stylesheet">
+@endpush
+
 @push('scripts')
     <script>
         // Mendapatkan elemen input NIK
@@ -18,7 +22,7 @@
                     var data = JSON.parse(xhr.responseText);
 
                     // Daftar elemen form yang ingin Anda isi
-                    var formElements = ['nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'status_perkawinan', 'alamat', 'kewarganegaraan', 'pekerjaan', 'pendidikan_terakhir', 'nomor_telepon', 'penghasilan', 'foto_penduduk', 'nomor_kk', 'nomor_ktp', 'status_nyawa', 'keterangan_kematian', 'kontak_darurat', 'status_migrasi', 'status_pajak'];
+                    var formElements = ['nama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'umur', 'pendidikan', 'pekerjaan', 'status_hubungan_kel', 'nama_ibu', 'nama_ayah', 'alamat', 'rt', 'rw', 'nomor_kk'];
 
                     // Loop melalui elemen form dan isi nilainya jika ada dalam data
                     formElements.forEach(function(element) {
@@ -103,8 +107,8 @@
                                             <div class="col-sm-9">
                                                 <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
                                                     <option value="" @if(old('jenis_kelamin')=='' ) selected @endif>Pilih Jenis Kelamin ...</option>
-                                                    <option value="Laki-laki" @if(old('jenis_kelamin')=='Laki-laki' ) selected @endif>Laki-laki</option>
-                                                    <option value="Perempuan" @if(old('jenis_kelamin')=='Perempuan' ) selected @endif>Perempuan</option>
+                                                    <option value="LAKI LAKI" @if(old('jenis_kelamin')=='LAKI LAKI' ) selected @endif>LAKI LAKI</option>
+                                                    <option value="PEREMPUAN" @if(old('jenis_kelamin')=='PEREMPUAN' ) selected @endif>PEREMPUAN</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -119,27 +123,27 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="kewarganegaraan" class="col-sm-3 col-form-label">Kewarganegaraan</label>
-                                            <div class="col-sm-9">
-                                                <select id="kewarganegaraan" name="kewarganegaraan" class="form-select" required>
-                                                    <option value="" @if(old('kewarganegaraan')=='' ) selected @endif>Pilih Kewarganegaraan ...</option>
-                                                    <option value="WNI" @if(old('kewarganegaraan')=='WNI' ) selected @endif>WNI</option>
-                                                    <option value="WNA" @if(old('kewarganegaraan')=='WNA' ) selected @endif>WNA</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
                                             <label for="agama" class="col-sm-3 col-form-label">Agama</label>
                                             <div class="col-sm-9">
                                                 <select id="agama" name="agama" class="form-select" required>
                                                     <option value="" @if(old('agama')=='' ) selected @endif>Pilih Agama ...</option>
-                                                    <option value="Islam" @if(old('agama')=='Islam' ) selected @endif>Islam</option>
-                                                    <option value="Kristen Protestan" @if(old('agama')=='Kristen Protestan' ) selected @endif>Kristen Protestan</option>
-                                                    <option value="Kristen Katolik" @if(old('agama')=='Kristen Katolik' ) selected @endif>Kristen Katolik</option>
-                                                    <option value="Hindu" @if(old('agama')=='Hindu' ) selected @endif>Hindu</option>
-                                                    <option value="Buddha" @if(old('agama')=='Buddha' ) selected @endif>Buddha</option>
-                                                    <option value="Konghucu" @if(old('agama')=='Konghucu' ) selected @endif>Konghucu</option>
-                                                    <option value="Lainnya" @if(old('agama')=='Lainnya' ) selected @endif>Lainnya</option>
+                                                    <option value="ISLAM" @if(old('agama')=='ISLAM' ) selected @endif>ISLAM</option>
+                                                    <option value="KRISTEN" @if(old('agama')=='KRISTEN' ) selected @endif>KRISTEN</option>
+                                                    <option value="KATHOLIK" @if(old('agama')=='KATHOLIK' ) selected @endif>KATHOLIK</option>
+                                                    <option value="HINDU" @if(old('agama')=='HINDU' ) selected @endif>HINDU</option>
+                                                    <option value="BUDDHA" @if(old('agama')=='BUDDHA' ) selected @endif>BUDDHA</option>
+                                                    <option value="KONGHUCU" @if(old('agama')=='KONGHUCU' ) selected @endif>KONGHUCU</option>
+                                                    <option value="LAINNYA" @if(old('agama')=='LAINNYA' ) selected @endif>LAINNYA</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="status_cerai" class="col-sm-3 col-form-label">Status Cerai</label>
+                                            <div class="col-sm-9">
+                                                <select id="status_cerai" name="status_cerai" class="form-select" required>
+                                                    <option value="" @if(old('status_cerai')=='' ) selected @endif>Pilih Status Cerai ...</option>
+                                                    <option value="Cerai Hidup" @if(old('status_cerai')=='Cerai Hidup' ) selected @endif>Cerai Hidup</option>
+                                                    <option value="Cerai Mati" @if(old('status_cerai')=='Cerai Mati' ) selected @endif>Cerai Mati</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -225,7 +229,7 @@
                     </div>
 
                     <!-- Table with hoverable rows -->
-                    <table class="table table-hover datatable">
+                    <table class="table table-hover datatable responsive-table w-100">
                         <thead>
                             <tr>
                                 <th scope="col">No.</th>
@@ -268,6 +272,7 @@
                                                     <div class="row border-bottom p-3">
                                                         <div class="col-sm-3">
                                                             {!! $badge_status[$verifikasi->status]!!}
+                                                            {{ $verifikasi->updated_at }}
                                                         </div>
                                                         <div class="col mx-5">
                                                             {{ $verifikasi->nama_user}}
@@ -369,8 +374,8 @@
                                                     <div class="col-sm-9">
                                                         <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
                                                             <option value="">Pilih Jenis Kelamin ...</option>
-                                                            <option value="Laki-laki" {{ ($value->jenis_kelamin == "Laki-laki") ? 'selected' : '' }}>Laki-laki</option>
-                                                            <option value="Perempuan" {{ ($value->jenis_kelamin == "Perempuan") ? 'selected' : '' }}>Perempuan</option>
+                                                            <option value="LAKI LAKI" {{ ($value->jenis_kelamin == "LAKI LAKI") ? 'selected' : '' }}>LAKI LAKI</option>
+                                                            <option value="PEREMPUAN" {{ ($value->jenis_kelamin == "PEREMPUAN") ? 'selected' : '' }}>PEREMPUAN</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -385,27 +390,27 @@
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
-                                                    <label for="kewarganegaraan" class="col-sm-3 col-form-label">Kewarganegaraan</label>
-                                                    <div class="col-sm-9">
-                                                        <select id="kewarganegaraan" name="kewarganegaraan" class="form-select" required>
-                                                            <option value="">Pilih Kewarganegaraan ...</option>
-                                                            <option value="WNI" {{ ($value->kewarganegaraan == "WNI") ? 'selected' : '' }}>WNI</option>
-                                                            <option value="WNA" {{ ($value->kewarganegaraan == "WNA") ? 'selected' : '' }}>WNA</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
                                                     <label for="agama" class="col-sm-3 col-form-label">Agama</label>
                                                     <div class="col-sm-9">
                                                         <select id="agama" name="agama" class="form-select" required>
                                                             <option value="">Pilih Agama ...</option>
-                                                            <option value="Islam" {{ ($value->agama == "Islam") ? 'selected' : '' }}>Islam</option>
-                                                            <option value="Kristen Protestan" {{ ($value->agama == "Kristen Protestan") ? 'selected' : '' }}>Kristen Protestan</option>
-                                                            <option value="Kristen Katolik" {{ ($value->agama == "Kristen Katolik") ? 'selected' : '' }}>Kristen Katolik</option>
-                                                            <option value="Hindu" {{ ($value->agama == "Hindu") ? 'selected' : '' }}>Hindu</option>
-                                                            <option value="Buddha" {{ ($value->agama == "Buddha") ? 'selected' : '' }}>Buddha</option>
-                                                            <option value="Konghucu" {{ ($value->agama == "Konghucu") ? 'selected' : '' }}>Konghucu</option>
-                                                            <option value="Lainnya" {{ ($value->agama == "Lainnya") ? 'selected' : '' }}>Lainnya</option>
+                                                            <option value="ISLAM" {{ ($value->agama == "ISLAM") ? 'selected' : '' }}>ISLAM</option>
+                                                            <option value="KRISTEN" {{ ($value->agama == "KRISTEN") ? 'selected' : '' }}>KRISTEN</option>
+                                                            <option value="KATHOLIK" {{ ($value->agama == "KATHOLIK") ? 'selected' : '' }}>KATHOLIK</option>
+                                                            <option value="HINDU" {{ ($value->agama == "HINDU") ? 'selected' : '' }}>HINDU</option>
+                                                            <option value="BUDDHA" {{ ($value->agama == "BUDDHA") ? 'selected' : '' }}>BUDDHA</option>
+                                                            <option value="KONGHUCU" {{ ($value->agama == "KONGHUCU") ? 'selected' : '' }}>KONGHUCU</option>
+                                                            <option value="LAINNYA" {{ ($value->agama == "LAINNYA") ? 'selected' : '' }}>LAINNYA</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label for="status_cerai" class="col-sm-3 col-form-label">Status Cerai</label>
+                                                    <div class="col-sm-9">
+                                                        <select id="status_cerai" name="status_cerai" class="form-select" required>
+                                                            <option value="">Pilih Status Cerai ...</option>
+                                                            <option value="Cerai Hidup" {{ ($value->status_cerai == "Cerai Hidup") ? 'selected' : '' }}>Cerai Hidup</option>
+                                                            <option value="Cerai Mati" {{ ($value->status_cerai == "Cerai Mati") ? 'selected' : '' }}>Cerai Mati</option>
                                                         </select>
                                                     </div>
                                                 </div>

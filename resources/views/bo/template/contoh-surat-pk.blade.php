@@ -172,11 +172,6 @@
                 <td>Islam</td>
             </tr>
             <tr>
-                <td class="template">Kewarganegaraan</td>
-                <td>:</td>
-                <td>Indonesia</td>
-            </tr>
-            <tr>
                 <td class="template" style="vertical-align: top;">Alamat</td>
                 <td style="vertical-align: top;">:</td>
                 <td style="max-width: 405px; word-wrap: break-word;">Padukuhan Gedangan, RT 50 RW 24, Kalurahan Sentolo, Kapanewon Sentolo, Kabupaten Kulon Progo</td>
